@@ -2,10 +2,10 @@
 ConfigVersion=1.2
 InstanceType=OneSix
 ExportAuthor={{ini_quote AUTHOR}}
+# Deliberate pack override; empack 0.7.1 otherwise inherits launcher memory.
 OverrideMemory=true
 MaxMemAlloc=8192
 MinMemAlloc=512
-PermGen=256
 name={{ini_quote NAME}}
 iconKey=empack_icon
 AutoUpdate=false

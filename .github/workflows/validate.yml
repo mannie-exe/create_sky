@@ -7,21 +7,36 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: validate-${{ github.ref }}
+  group: pack-validate-${{ github.ref }}
   cancel-in-progress: true
+env:
+  EMPACK_VERSION: v0.7.1-beta
+  # Empty selects distribution.defaults; otherwise list profile names, one per line.
+  EMPACK_PROFILES: |
+    modrinth
+    prism
+    server
+  JAVA_VERSION: '21'
 jobs:
   validate:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
-      - uses: ./.github/actions/setup-empack
-      - name: Build all distributions from the recorded lock
-        run: empack build --yes --profile modrinth --profile prism --profile server
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+      - name: Install verified empack release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 .github/scripts/empack-ci.py install
+      - name: Build selected profiles
+        run: python3 .github/scripts/empack-ci.py validate
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: verified-pack
-          path: dist/*
+          path: ${{ runner.temp }}/empack-artifacts/*
           if-no-files-found: error

@@ -5307,7 +5307,7 @@ dependencies:
         id: 9vSFkDAr
         provider: modrinth
     title: Fast Noise
-intent-revision: c9452545e6f97d950d2b32071ca7d4c65ebcda17b0c73fb056158ca3b720e72b
+intent-revision: b7f6a0ab4228a973080b9edc3dff8d2a51e8a284b34b0ab0309492a523800e94
 required-edges:
   accessories:
   - owo-lib

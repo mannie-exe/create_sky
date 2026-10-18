@@ -1,8 +1,10 @@
 # Create Sky
 
+By **mannie-exe** and **TimdoesLive**.
+
 Sky islands, airships and engineering, built around **Create 6.0.10**, **Create Aeronautics 1.3.2**, **Sable 2.0.6** and **Sky Archipelago 1.3.6**. Seeded from a friend’s Create sky-world pack; survival progression and ship interactions are still being playtested.
 
-Minecraft **1.21.1** · NeoForge **21.1.263** · Java **21** · empack **0.7.0-beta**
+Minecraft **1.21.1** · NeoForge **21.1.263** · Java **21** · empack **0.7.1-beta**
 
 ## Play
 
@@ -32,7 +34,7 @@ Exact selections live in `empack.yml` and `empack.lock`; selected file roles and
 
 The remaining nine URL-pinned dependencies work around provider metadata conflicts involving exact old pins, Connector/Forgified Fabric API and client-only dependencies. They need explicit provider-version checks when updating; `empack outdated` alone does not cover them. Do not replace them blindly with provider roots or downgrade their runtime dependencies to satisfy stale metadata.
 
-CI builds all three distributions from the recorded lock. A `v*` tag must match the author version and triggers a GitHub release containing all three archives and SHA-256 checksums. CI uses the verified empack Linux binary and pinned GitHub Actions revisions.
+CI builds all three distributions from the recorded lock. A `v*` tag must match the author version and triggers a GitHub release containing all three archives and SHA-256 checksums. CI uses the 0.7.1 helper, verified empack Linux binary and pinned GitHub Actions revisions. It stages only the selected outputs, hashes their normalized filenames, and publishes the draft only after uploads succeed. See [automation maintenance](docs/AUTOMATION.md).
 
 ## Development notes
 

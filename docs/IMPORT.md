@@ -39,7 +39,7 @@ No release was published, no remote was created, and no commit was made. Generat
 
 ## Empack upgrade
 
-Installed `~/.local/bin/empack` reports **0.7.0-beta**. macOS ARM64 release asset SHA-256:
+At initial import, `~/.local/bin/empack` reported **0.7.0-beta**. For the current toolchain, see [automation maintenance](AUTOMATION.md). macOS ARM64 release asset SHA-256:
 
 `7fbeb78ffc1d8cdb9f5ab6fa75c930c2e14bf00388263498b39f6b74c38b2e90`
 

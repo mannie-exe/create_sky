@@ -5,39 +5,34 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: release-${{ github.ref }}
+  group: pack-release-${{ github.ref }}
   cancel-in-progress: false
+env:
+  EMPACK_VERSION: v0.7.1-beta
+  # Empty selects distribution.defaults; otherwise list profile names, one per line.
+  EMPACK_PROFILES: |
+    modrinth
+    prism
+    server
+  JAVA_VERSION: '21'
+  EMPACK_RELEASE_NOTES: docs/RELEASE_NOTES.md
 jobs:
   release:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
-      - uses: ./.github/actions/setup-empack
-      - name: Check tag matches pack version
-        run: |
-          python3 - <<'PYCODE'
-          import json, os, subprocess
-          status = json.loads(subprocess.check_output(['empack', 'status', '--json']))
-          author = next(c for c in status['contexts'] if c['context'] == 'author')
-          assert author['state'] == 'valid' and author['lock'] == 'valid', status
-          assert os.environ['GITHUB_REF_NAME'] == 'v' + author['version']
-          PYCODE
-      - name: Build verified distributions
-        run: empack build --yes --profile modrinth --profile prism --profile server
-      - name: Normalize published filenames
-        run: |
-          python3 - <<'PYCODE'
-          from pathlib import Path
-          for path in Path('dist').iterdir():
-              if path.suffix in {'.zip', '.mrpack'}:
-                  path.rename(path.with_name(path.name.replace(' ', '.')))
-          PYCODE
-      - name: Generate artifact checksums
-        run: (cd dist && sha256sum ./*.zip ./*.mrpack > SHA256SUMS)
-      - name: Publish tagged distributions
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+      - name: Install verified empack release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" dist/*.zip dist/*.mrpack dist/SHA256SUMS --verify-tag --title "Create Sky $GITHUB_REF_NAME" --notes-file docs/RELEASE_NOTES.md
+        run: python3 .github/scripts/empack-ci.py install
+      - name: Build and publish selected profiles
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 .github/scripts/empack-ci.py release
