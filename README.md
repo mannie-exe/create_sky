@@ -8,7 +8,7 @@ Minecraft **1.21.1** · NeoForge **21.1.263** · Java **21** · empack **0.7.0-b
 
 Download a [release](https://github.com/mannie-exe/create_sky/releases). Import the `prism-bundled.zip` into Prism Launcher, or import the `.mrpack` into a compatible launcher. Prism is configured for up to 8 GiB of RAM.
 
-New single-player worlds default to **Sky Islands** with the saved **eee** preset. The world-type button remains available if you deliberately want another generator. New dedicated worlds use the same terrain settings. Existing worlds are not converted.
+New single-player worlds default to **Sky Islands** with the saved **eee** preset. The world-type button remains available if you deliberately want another generator. New dedicated worlds use the same terrain settings. Existing vanilla worlds are not converted. Keep the `eee` preset/config files with your worlds: this mod version can resolve stock saved generator settings through the current default preset at runtime.
 
 The preset allows island radii 10–500, island-center Y −32–300 and dynamic spacing 32–1500, with no ocean layer and no islands over ocean biomes. Large gaps are intentional; early-game travel and resource availability need playtesting. RANDOM sizing remains the preset’s effective default; the saved size bands apply only when SPECIFIC sizing is chosen.
 
