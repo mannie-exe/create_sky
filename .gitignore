@@ -1,0 +1,26 @@
+# Generated distributions and machine-local files
+/dist/
+/.empack-cache/
+/.host-state/
+.env
+.env.*
+!.env.example
+*.log
+*.swp
+*~
+.DS_Store
+Thumbs.db
+# Keep empack.yml, empack.lock, pack/, overrides/ and templates/ in version control
+
+# Reacquired exact provider payloads; retained custom overlays stay tracked.
+/pack/mods/*.jar
+/pack/shaderpacks/*.zip
+/overrides/client/mods/*.jar
+/overrides/server/mods/*.jar
+# Local runtime evidence can contain machine/user details.
+/docs/config-audit/evidence/
+
+# Local import/audit evidence includes host paths and source settings.
+/docs/config-audit/
+/docs/**/*.json
+/docs/TASK.md

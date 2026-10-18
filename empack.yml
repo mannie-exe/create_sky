@@ -1,0 +1,824 @@
+dependencies:
+  accessories:
+    source: modrinth:jtmvUHXj
+    version:
+      mode: exact
+      pin:
+        id: dy9BbDEy
+        provider: modrinth
+  accessories-compat-layer:
+    source: modrinth:ySnjMzLg
+    version:
+      mode: exact
+      pin:
+        id: UB8bxpVn
+        provider: modrinth
+  almostunified:
+    source: modrinth:sdaSaQEz
+    version:
+      mode: exact
+      pin:
+        id: e8iYxxI3
+        provider: modrinth
+  analog-audio:
+    source: modrinth:iMAVG2nH
+    version:
+      mode: exact
+      pin:
+        id: BshMjyFt
+        provider: modrinth
+  appleskin:
+    source: modrinth:EsAfCjCV
+    version:
+      mode: exact
+      pin:
+        id: uAKA6Laj
+        provider: modrinth
+  architectury-api:
+    source: modrinth:lhGA9TYQ
+    version:
+      mode: exact
+      pin:
+        id: 1IiqEQGl
+        provider: modrinth
+  azimuth-api:
+    source: modrinth:RpH8tmT1
+    version:
+      mode: exact
+      pin:
+        id: dxtZVosY
+        provider: modrinth
+  bellsandwhistles:
+    source: modrinth:gJ5afkVv
+    version:
+      mode: exact
+      pin:
+        id: w0mifib8
+        provider: modrinth
+  c2me-neoforge:
+    source: modrinth:COlSi5iR
+    version:
+      mode: exact
+      pin:
+        id: avwWYPbG
+        provider: modrinth
+  cable-facades:
+    source: modrinth:twipgzWx
+    version:
+      mode: exact
+      pin:
+        id: XWCAtdzJ
+        provider: modrinth
+  carry-on:
+    source: modrinth:joEfVgkn
+    version:
+      mode: exact
+      pin:
+        id: PV8oLZ1q
+        provider: modrinth
+  cloth-config:
+    source: modrinth:9s6osm5g
+    version:
+      mode: exact
+      pin:
+        id: izKINKFg
+        provider: modrinth
+  complementary-unbound:
+    content: shader-pack
+    source: modrinth:R6NEzAwj
+    version:
+      mode: exact
+      pin:
+        id: B1kyfoUZ
+        provider: modrinth
+  connector:
+    source: modrinth:u58R1TMW
+    version:
+      mode: exact
+      pin:
+        id: IITF0PRC
+        provider: modrinth
+  copycats:
+    source: modrinth:UT2M39wf
+    version:
+      mode: exact
+      pin:
+        id: bPYeUWZx
+        provider: modrinth
+  create:
+    source: modrinth:LNytGWDc
+    version:
+      mode: exact
+      pin:
+        id: UjX6dr61
+        provider: modrinth
+  create-accessories-compat:
+    source: modrinth:2MhMVi7C
+    version:
+      mode: exact
+      pin:
+        id: 2r7hvkCQ
+        provider: modrinth
+  create-aero-cables:
+    source: modrinth:AHTfty0S
+    version:
+      mode: exact
+      pin:
+        id: Wn81ihHo
+        provider: modrinth
+  create-aeronautics:
+    source: modrinth:oWaK0Q19
+    version:
+      mode: exact
+      pin:
+        id: 44pLdPGg
+        provider: modrinth
+  create-aeronautics-climbable-rope:
+    source: modrinth:jImqv1M5
+    version:
+      mode: exact
+      pin:
+        id: fk5DMIYY
+        provider: modrinth
+  create-aeronautics-covers:
+    source: modrinth:eWrKPy9E
+    version:
+      mode: exact
+      pin:
+        id: R35biaZf
+        provider: modrinth
+  create-aeronautics-rechiseled-compatibility:
+    source:
+      downloads:
+      - >-
+        https://cdn.modrinth.com/data/ub0jAGhg/versions/b6O6XLL6/create-aeronautics-rechiseled-compat-1.21.1-1.2.2.jar
+      kind: url
+    version:
+      digests:
+        sha1: 80083f94d278ddba23d43a92cd8a0de584a5a087
+        sha512: >-
+          0a0cc1a51602b59a49fc5b316c8b7356bd307b4e0ed33d1485e22cae51b9bcc9ac1637067fd4c833699b7f3785d6f156723bccabc90f85c4044c37e8efe96db4
+      mode: content-pinned
+  create-aeronautics-throwable-rope-connector:
+    source:
+      downloads:
+      - >-
+        https://cdn.modrinth.com/data/9xiCbKmM/versions/EDzeTV17/create_aeronautics_throwable_rope_connector-0.4.3.jar
+      kind: url
+    version:
+      digests:
+        sha1: 63fcbbc960461d42a59b417665fb938c79919514
+        sha512: >-
+          0a1fc122e4c303a0903213192c32dbc6a0a819c101e70e508e989297e5e688855730a2f9e28f7107a92524cc3ee7349fc47615fd04902fda04b797a401a40c71
+      mode: content-pinned
+  create-aeroworks:
+    source: modrinth:P26k79kP
+    version:
+      mode: exact
+      pin:
+        id: 6kk7ruR3
+        provider: modrinth
+  create-ballast:
+    source: modrinth:5ypXYrfG
+    version:
+      mode: exact
+      pin:
+        id: XzlV3NlT
+        provider: modrinth
+  create-big-cannons:
+    source: modrinth:GWp4jCJj
+    version:
+      mode: exact
+      pin:
+        id: bOiDu0LS
+        provider: modrinth
+  create-bits-n-bobs:
+    source: modrinth:T8bvmqVZ
+    version:
+      mode: exact
+      pin:
+        id: g9Lmjjc5
+        provider: modrinth
+  create-confectionery:
+    source: modrinth:WPE5gRs9
+    version:
+      mode: exact
+      pin:
+        id: ndnETBEN
+        provider: modrinth
+  create-connected:
+    source: modrinth:Vg5TIO6d
+    version:
+      mode: exact
+      pin:
+        id: Xe7EqzfQ
+        provider: modrinth
+  create-deco:
+    source: modrinth:sMvUb4Rb
+    version:
+      mode: exact
+      pin:
+        id: qrcMVoBD
+        provider: modrinth
+  create-design-n-decor:
+    source: modrinth:x49wilh8
+    version:
+      mode: exact
+      pin:
+        id: uQsIRky8
+        provider: modrinth
+  create-factory:
+    source: modrinth:j6Zt3N7W
+    version:
+      mode: exact
+      pin:
+        id: OA9Dvj5m
+        provider: modrinth
+  create-power-loader:
+    source: modrinth:wPQ6GgFE
+    version:
+      mode: exact
+      pin:
+        id: 3Y4r0ItR
+        provider: modrinth
+  create-radars:
+    source: modrinth:BLu2Yqfq
+    version:
+      mode: exact
+      pin:
+        id: AntNFNAx
+        provider: modrinth
+  create-transmission:
+    source: modrinth:QFCkBuIh
+    version:
+      mode: exact
+      pin:
+        id: dOsq88jX
+        provider: modrinth
+  create-vibrant-vaults:
+    source:
+      downloads:
+      - >-
+        https://cdn.modrinth.com/data/hddN8ksR/versions/t17qYXjn/create_vibrant_vaults-0.3.2.jar
+      kind: url
+    version:
+      digests:
+        sha1: d0dbdde6318c4dd4ede1d2c091f1a64896ba872a
+        sha512: >-
+          3bd53097482e614dc4e5e635778af25020fa27c1c453d4928d1d8baa6767c93cb300810a5ac0c49af86813749a180e3f092ab2e65b07e7741c2b12aaebd47006
+      mode: content-pinned
+  createaddoncompatibility:
+    source: modrinth:QgrK9rtJ
+    version:
+      mode: exact
+      pin:
+        id: tL1Tayuh
+        provider: modrinth
+  curios:
+    source: modrinth:vvuO3ImH
+    version:
+      mode: exact
+      pin:
+        id: yohfFbgD
+        provider: modrinth
+  defaultworldtype:
+    side: client
+    source: modrinth:kZvO1mDq
+    version:
+      mode: exact
+      pin:
+        id: CCrwlupr
+        provider: modrinth
+  distant-horizons-seedgen:
+    source: modrinth:iUGLCJTI
+    version:
+      mode: exact
+      pin:
+        id: 2DrfEi0d
+        provider: modrinth
+  distanthorizons:
+    source: modrinth:uCdwusMi
+    version:
+      mode: exact
+      pin:
+        id: 9w34y8ai
+        provider: modrinth
+  distraction-free-recipes:
+    side: client
+    source: modrinth:gbJLUhZP
+    version:
+      mode: exact
+      pin:
+        id: H0rFJIiC
+        provider: modrinth
+  dynamic-fps:
+    side: client
+    source: modrinth:LQ3K71Q1
+    version:
+      mode: exact
+      pin:
+        id: T238FZpQ
+        provider: modrinth
+  effortless-building:
+    source: modrinth:DYtfQEYj
+    version:
+      mode: exact
+      pin:
+        id: YxnBXtLv
+        provider: modrinth
+  emi:
+    source: modrinth:fRiHVvU7
+    version:
+      mode: exact
+      pin:
+        id: 5sIPA1To
+        provider: modrinth
+  emi-loot:
+    source: modrinth:qbbO7Jns
+    version:
+      mode: exact
+      pin:
+        id: QXkODMCT
+        provider: modrinth
+  entityculling:
+    side: client
+    source: modrinth:NNAgCjsB
+    version:
+      mode: exact
+      pin:
+        id: eieYbWYb
+        provider: modrinth
+  escalated:
+    source: modrinth:LyOBYG8Q
+    version:
+      mode: exact
+      pin:
+        id: vJ49zRJl
+        provider: modrinth
+  euphoria-patches:
+    side: client
+    source: modrinth:4H6sumDB
+    version:
+      mode: exact
+      pin:
+        id: QMsRXtSJ
+        provider: modrinth
+  exposure:
+    source: modrinth:hB899VmG
+    version:
+      mode: exact
+      pin:
+        id: iBvaR6AK
+        provider: modrinth
+  ferrite-core:
+    source: modrinth:uXXizFIs
+    version:
+      mode: exact
+      pin:
+        id: x7kQWVju
+        provider: modrinth
+  forgified-fabric-api:
+    source: modrinth:Aqlf1Shp
+    version:
+      mode: exact
+      pin:
+        id: C4eskNuR
+        provider: modrinth
+  fusion-connected-textures:
+    side: client
+    source: modrinth:p19vrgc2
+    version:
+      mode: exact
+      pin:
+        id: AYDaLPK8
+        provider: modrinth
+  fzzy-config:
+    source: modrinth:hYykXjDp
+    version:
+      mode: exact
+      pin:
+        id: uG7oHgw6
+        provider: modrinth
+  hoofprint:
+    side: client
+    source:
+      downloads:
+      - >-
+        https://cdn.modrinth.com/data/8O6iJpuJ/versions/YQxLELnA/hoofprint-1.3.0%2B1.21.jar
+      kind: url
+    version:
+      digests:
+        sha1: d2395ad821239db36507fc6946d185fd10e81d3c
+        sha512: >-
+          68afc8c41407f2a421bf322e9b7bd71cf69285fa871f2dfd91a996f4822bac35ee20215d12d39ac91ddd6ab4d5e3a9ce6c735fd171b06edd71a817ed8bec5e17
+      mode: content-pinned
+  immediatelyfast:
+    side: client
+    source: modrinth:5ZwdcRci
+    version:
+      mode: exact
+      pin:
+        id: EJzmEPZV
+        provider: modrinth
+  interiors:
+    source: modrinth:r4Knci2k
+    version:
+      mode: exact
+      pin:
+        id: gBrfZy6S
+        provider: modrinth
+  iris:
+    side: client
+    source: modrinth:YL57xq9U
+    version:
+      mode: exact
+      pin:
+        id: KduFYu4t
+        provider: modrinth
+  jade:
+    source: modrinth:nvQzSEkH
+    version:
+      mode: exact
+      pin:
+        id: eYz2YBGT
+        provider: modrinth
+  jade-addons-forge:
+    source: modrinth:xuDOzCLy
+    version:
+      mode: exact
+      pin:
+        id: O3F6Dkle
+        provider: modrinth
+  jade-sable-compat:
+    side: client
+    source: modrinth:jCrJ4iGH
+    version:
+      mode: exact
+      pin:
+        id: cxUohR7A
+        provider: modrinth
+  jei:
+    source: modrinth:u6dRKJwZ
+    version:
+      mode: exact
+      pin:
+        id: iv3KiVkE
+        provider: modrinth
+  kotlin-for-forge:
+    source: modrinth:ordsPcFz
+    version:
+      mode: exact
+      pin:
+        id: uhJhCT7X
+        provider: modrinth
+  lets-do-camping:
+    source: modrinth:uJXTNuf0
+    version:
+      mode: exact
+      pin:
+        id: GdYcZwHn
+        provider: modrinth
+  lets-do-emi-compat:
+    side: client
+    source: modrinth:k6hi4lMv
+    version:
+      mode: exact
+      pin:
+        id: j1Vdf01b
+        provider: modrinth
+  lithium:
+    source: modrinth:gvQqBUqZ
+    version:
+      mode: exact
+      pin:
+        id: DDUrRVCA
+        provider: modrinth
+  lootr:
+    source: modrinth:EltpO5cN
+    version:
+      mode: exact
+      pin:
+        id: SPOrIzX8
+        provider: modrinth
+  macaws-bridges:
+    source: modrinth:GURcjz8O
+    version:
+      mode: exact
+      pin:
+        id: aQ7rY7ng
+        provider: modrinth
+  macaws-doors:
+    source: modrinth:kNxa8z3e
+    version:
+      mode: exact
+      pin:
+        id: u7BRX44F
+        provider: modrinth
+  macaws-fences-and-walls:
+    source: modrinth:GmwLse2I
+    version:
+      mode: exact
+      pin:
+        id: jVdb0r4W
+        provider: modrinth
+  macaws-lights-and-lamps:
+    source: modrinth:w4an97C2
+    version:
+      mode: exact
+      pin:
+        id: 5U2kQZIL
+        provider: modrinth
+  macaws-paths-and-pavings:
+    source: modrinth:VRLhWB91
+    version:
+      mode: exact
+      pin:
+        id: tlymsxUG
+        provider: modrinth
+  macaws-stairs:
+    source: modrinth:iP3wH1ha
+    version:
+      mode: exact
+      pin:
+        id: 4t8L0dGP
+        provider: modrinth
+  macaws-trapdoors:
+    source: modrinth:n2fvCDlM
+    version:
+      mode: exact
+      pin:
+        id: StnP0RNi
+        provider: modrinth
+  macaws-windows:
+    source: modrinth:C7I0BCni
+    version:
+      mode: exact
+      pin:
+        id: rQUE4LCz
+        provider: modrinth
+  mcqoy:
+    side: client
+    source:
+      downloads:
+      - >-
+        https://cdn.modrinth.com/data/tNmWwdI2/versions/nfqfeKsL/mcqoy-0.4.1%2Bneo-1.21.jar
+      kind: url
+    version:
+      digests:
+        sha1: 98a771b14c1f4ead12ffcd99a90b1c91b25cca8d
+        sha512: >-
+          20c40e4bd4104069b65455065cbb9beac829efa314b6e9e960b269725727f0d4f9bed6946815e8b573223cd4a76feddd1e5fbfb17c7293fa6a25545299e1afbc
+      mode: content-pinned
+  modernfix:
+    source: modrinth:nmDcB62a
+    version:
+      mode: exact
+      pin:
+        id: 7Jy58lnT
+        provider: modrinth
+  moreculling:
+    side: client
+    source: modrinth:51shyZVL
+    version:
+      mode: exact
+      pin:
+        id: 5M4T2FfG
+        provider: modrinth
+  owo-lib:
+    source: modrinth:ccKDOlHs
+    version:
+      mode: exact
+      pin:
+        id: wbdHEItB
+        provider: modrinth
+  playeranimator:
+    source: modrinth:gedNE4y2
+    version:
+      mode: exact
+      pin:
+        id: HJZB6bmA
+        provider: modrinth
+  polymorph:
+    source: modrinth:tagwiZkJ
+    version:
+      mode: exact
+      pin:
+        id: 9yWvrF5o
+        provider: modrinth
+  power-grid:
+    source: modrinth:eWiBLJ9R
+    version:
+      mode: exact
+      pin:
+        id: jCkPHjmP
+        provider: modrinth
+  rechiseled:
+    source:
+      downloads:
+      - >-
+        https://cdn.modrinth.com/data/B0g2vT6l/versions/6muGRqvu/rechiseled-1.2.6-neoforge-mc1.21.jar
+      kind: url
+    version:
+      digests:
+        sha1: a7ca83d2f99520233bfa9ce769a157fe05201639
+        sha512: >-
+          fc7556e42439e526edddafdbde108cd1326fd5742d75ae73fe9519f57af18b75cd2861053247b65fa3acd9c58e186bc540496d1e7095a3206b401d9459958e34
+      mode: content-pinned
+  rechiseled-create:
+    source:
+      downloads:
+      - >-
+        https://cdn.modrinth.com/data/E6867niZ/versions/VnOezhJR/rechiseledcreate-1.1.1-neoforge-mc1.21.jar
+      kind: url
+    version:
+      digests:
+        sha1: 6f7e53f39eb477d7cee8e21af215cd3db698deda
+        sha512: >-
+          ca77dea4dd3276105176578855b0ffd9f48256bed58701a86171b05db1116a29592871ca7d6d5acc9a023270a45654feb4ab7153026eb751d567e7bf892ca560
+      mode: content-pinned
+  reddens-stone-lanterns:
+    source: modrinth:plgWdsGJ
+    version:
+      mode: exact
+      pin:
+        id: uehlsDrT
+        provider: modrinth
+  reliable-emi:
+    side: client
+    source: modrinth:N9WucjHL
+    version:
+      mode: exact
+      pin:
+        id: 2TeI2Zyn
+        provider: modrinth
+  rpl:
+    source: modrinth:B3pb093D
+    version:
+      mode: exact
+      pin:
+        id: hZ6B2Z0x
+        provider: modrinth
+  sable:
+    source: modrinth:T9PomCSv
+    version:
+      mode: exact
+      pin:
+        id: fg9dTRz9
+        provider: modrinth
+  simulated-copycats:
+    source: modrinth:NYBH9vVY
+    version:
+      mode: exact
+      pin:
+        id: 6zbD44Qe
+        provider: modrinth
+  sky-archipelago:
+    source: modrinth:sHFNUlBU
+    version:
+      mode: exact
+      pin:
+        id: RwLz4CJb
+        provider: modrinth
+  sodium:
+    side: client
+    source: modrinth:AANobbMI
+    version:
+      mode: exact
+      pin:
+        id: uMOpc5uV
+        provider: modrinth
+  sodium-extra:
+    side: client
+    source: modrinth:PtjYWJkn
+    version:
+      mode: exact
+      pin:
+        id: ufpcXU9c
+        provider: modrinth
+  sound-physics-remastered:
+    side: client
+    source: modrinth:qyVF9oeo
+    version:
+      mode: exact
+      pin:
+        id: Dd2tmpsk
+        provider: modrinth
+  spyglass-improvements:
+    side: client
+    source: modrinth:Z6ykjRlM
+    version:
+      mode: exact
+      pin:
+        id: F2s6rUr5
+        provider: modrinth
+  ssrd:
+    source:
+      downloads:
+      - https://cdn.modrinth.com/data/fJ183v3D/versions/iZflRKdV/SSRD-1.8.7-1.21.1.jar
+      kind: url
+    version:
+      digests:
+        sha1: 7da02fc5f783bedb55a29268e4c8ba7b0c3c9e6f
+        sha512: >-
+          fb09bb6799f2f9d8b051bc87920a49ee68319c358d0d23be5beaea444542be8336a52f71b57f81e8871df274fe2e1310121b90a3aded615421e84bcd6dfbae47
+      mode: content-pinned
+  strut-your-stuff:
+    source: modrinth:sHO3MhQx
+    version:
+      mode: exact
+      pin:
+        id: BOTN7zzN
+        provider: modrinth
+  supermartijn642s-config-lib:
+    source: modrinth:LN9BxssP
+    version:
+      mode: exact
+      pin:
+        id: qKL9jM75
+        provider: modrinth
+  supermartijn642s-core-lib:
+    source: modrinth:rOUBggPv
+    version:
+      mode: exact
+      pin:
+        id: OG6Edgmm
+        provider: modrinth
+  surveyor:
+    source:
+      downloads:
+      - >-
+        https://cdn.modrinth.com/data/4KjqhPc9/versions/egJBsDTn/surveyor-1.2.4%2B1.21.jar
+      kind: url
+    version:
+      digests:
+        sha1: 77e9d3996c11eed104fe224c3ba706be1c759303
+        sha512: >-
+          3a91efbc596db7192792de069e814aeb3e9e1d771267ea5a5d4371b1311bef26a7f9bd02a28619026c23e4df702d99a1bbaaf732e06179dd4999dbd01aaf920c
+      mode: content-pinned
+  travelersbackpack:
+    source: modrinth:rlloIFEV
+    version:
+      mode: exact
+      pin:
+        id: LcOq0PxG
+        provider: modrinth
+  treechop:
+    source: modrinth:gHoB7SHO
+    version:
+      mode: exact
+      pin:
+        id: iLXWmfax
+        provider: modrinth
+  txnilib:
+    source: modrinth:vBbPDuOs
+    version:
+      mode: exact
+      pin:
+        id: M1CyD3Uu
+        provider: modrinth
+  yacl:
+    source: modrinth:1eAoo2KR
+    version:
+      mode: exact
+      pin:
+        id: 7TVdVtxF
+        provider: modrinth
+  zfastnoise:
+    source: modrinth:OnlVIpq5
+    version:
+      mode: exact
+      pin:
+        id: 9vSFkDAr
+        provider: modrinth
+distribution:
+  defaults:
+  - prism
+  profiles:
+    modrinth:
+      consumer: modrinth
+      delivery: references
+      environment: both
+      format: zip
+      updates: snapshot
+    prism:
+      consumer: prism
+      delivery: bundled
+      environment: client
+      format: zip
+      updates: snapshot
+    server:
+      consumer: server
+      delivery: bundled
+      environment: server
+      format: zip
+      updates: snapshot
+pack:
+  author: mannie-exe
+  name: Create Sky
+  version: "0.1.0"
+runtime:
+  loader:
+    kind: neoforge
+    version: "21.1.263"
+  minecraft: "1.21.1"
+schema: 4

@@ -1,0 +1,5397 @@
+acceptable-versions: []
+coverage:
+  accessories: complete
+  accessories-compat-layer: complete
+  almostunified: complete
+  analog-audio: complete
+  appleskin: complete
+  architectury-api: complete
+  azimuth-api: complete
+  bellsandwhistles: complete
+  c2me-neoforge: complete
+  cable-facades: complete
+  carry-on: complete
+  cloth-config: complete
+  complementary-unbound: complete
+  connector: complete
+  copycats: complete
+  create: complete
+  create-accessories-compat: complete
+  create-aero-cables: complete
+  create-aeronautics: complete
+  create-aeronautics-climbable-rope: complete
+  create-aeronautics-covers: complete
+  create-aeronautics-rechiseled-compatibility: unknown
+  create-aeronautics-throwable-rope-connector: unknown
+  create-aeroworks: complete
+  create-ballast: complete
+  create-big-cannons: complete
+  create-bits-n-bobs: complete
+  create-confectionery: complete
+  create-connected: complete
+  create-deco: complete
+  create-design-n-decor: complete
+  create-factory: complete
+  create-power-loader: complete
+  create-radars: complete
+  create-transmission: complete
+  create-vibrant-vaults: unknown
+  createaddoncompatibility: complete
+  curios: complete
+  defaultworldtype: complete
+  distant-horizons-seedgen: complete
+  distanthorizons: complete
+  distraction-free-recipes: complete
+  dynamic-fps: complete
+  effortless-building: complete
+  emi: complete
+  emi-loot: complete
+  entityculling: complete
+  escalated: complete
+  euphoria-patches: complete
+  exposure: complete
+  ferrite-core: complete
+  forgified-fabric-api: complete
+  fusion-connected-textures: complete
+  fzzy-config: complete
+  hoofprint: unknown
+  immediatelyfast: complete
+  interiors: complete
+  iris: complete
+  jade: complete
+  jade-addons-forge: complete
+  jade-sable-compat: complete
+  jei: complete
+  kotlin-for-forge: complete
+  lets-do-camping: complete
+  lets-do-emi-compat: complete
+  lithium: complete
+  lootr: complete
+  macaws-bridges: complete
+  macaws-doors: complete
+  macaws-fences-and-walls: complete
+  macaws-lights-and-lamps: complete
+  macaws-paths-and-pavings: complete
+  macaws-stairs: complete
+  macaws-trapdoors: complete
+  macaws-windows: complete
+  mcqoy: unknown
+  mezzconfig: complete
+  modernfix: complete
+  moreculling: complete
+  owo-lib: complete
+  playeranimator: complete
+  polymorph: complete
+  power-grid: complete
+  rechiseled: unknown
+  rechiseled-create: unknown
+  reddens-stone-lanterns: complete
+  reliable-emi: complete
+  rpl: complete
+  sable: complete
+  simulated-copycats: complete
+  sky-archipelago: complete
+  sodium: complete
+  sodium-extra: complete
+  sound-physics-remastered: complete
+  spyglass-improvements: complete
+  ssrd: unknown
+  strut-your-stuff: complete
+  supermartijn642s-config-lib: complete
+  supermartijn642s-core-lib: complete
+  surveyor: unknown
+  travelersbackpack: complete
+  treechop: complete
+  txnilib: complete
+  yacl: complete
+  zfastnoise: complete
+dependencies:
+  accessories:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/jtmvUHXj/versions/dy9BbDEy/accessories-neoforge-1.1.0-beta.54%2B1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: jtmvUHXj
+            provider: modrinth
+          selection:
+            id: dy9BbDEy
+            provider: modrinth
+        slot: accessories-neoforge-1.1.0-beta.54+1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 0d0b07fa319a9f93c82873f9851ad35e100031f6
+          sha512: >-
+            2ebf453d11892fc8b12520af3b154a49acd9b93fc10c9c9777dcb6afe3b93ad17b0ce019b35ba7935a2ecb306b7094f97fecf056bbcb4dbeeb8477a76cd93f2d
+        size: 1086553
+      placements:
+      - destination: mods/accessories-neoforge-1.1.0-beta.54+1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 0d0b07fa319a9f93c82873f9851ad35e100031f6
+          sha512: >-
+            2ebf453d11892fc8b12520af3b154a49acd9b93fc10c9c9777dcb6afe3b93ad17b0ce019b35ba7935a2ecb306b7094f97fecf056bbcb4dbeeb8477a76cd93f2d
+        location: jtmvUHXj
+        source: provider-catalog
+      slot: filename:accessories-neoforge-1.1.0-beta.54+1.21.1.jar
+    identity:
+      kind: provider
+      project:
+        project: jtmvUHXj
+        provider: modrinth
+    selection:
+      project:
+        project: jtmvUHXj
+        provider: modrinth
+      selection:
+        id: dy9BbDEy
+        provider: modrinth
+    title: Accessories
+  accessories-compat-layer:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/ySnjMzLg/versions/UB8bxpVn/accessories_compat_layer-neoforge-0.1.13%2B1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: ySnjMzLg
+            provider: modrinth
+          selection:
+            id: UB8bxpVn
+            provider: modrinth
+        slot: accessories_compat_layer-neoforge-0.1.13+1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 87032a586140cded332c0240a4aed13b50f28a44
+          sha512: >-
+            119bb3f01d861a7967dab772daa042ddeef8747cfa59d6849776ffc50ebd13afe75dc77317f48903da142a3e913cd4b220a2c5186c7e7002895f90f4273c82a4
+        size: 405559
+      placements:
+      - destination: mods/accessories_compat_layer-neoforge-0.1.13+1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 87032a586140cded332c0240a4aed13b50f28a44
+          sha512: >-
+            119bb3f01d861a7967dab772daa042ddeef8747cfa59d6849776ffc50ebd13afe75dc77317f48903da142a3e913cd4b220a2c5186c7e7002895f90f4273c82a4
+        location: ySnjMzLg
+        source: provider-catalog
+      slot: filename:accessories_compat_layer-neoforge-0.1.13+1.21.1.jar
+    identity:
+      kind: provider
+      project:
+        project: ySnjMzLg
+        provider: modrinth
+    selection:
+      project:
+        project: ySnjMzLg
+        provider: modrinth
+      selection:
+        id: UB8bxpVn
+        provider: modrinth
+    title: Accessories Compatibility Layer
+  almostunified:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/sdaSaQEz/versions/e8iYxxI3/almostunified-neoforge-1.21.1-1.4.2.jar
+        kind: provider
+        pin:
+          project:
+            project: sdaSaQEz
+            provider: modrinth
+          selection:
+            id: e8iYxxI3
+            provider: modrinth
+        slot: almostunified-neoforge-1.21.1-1.4.2.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: f9a58fa95780f4b045d30559c1fdaedaa7f0fba3
+          sha512: >-
+            82ddfb82b86dcbf62c729ebbb2ed571bf284d31a8ad494b7e10db2da24a87e7887969e6092b78e79053ea0279c75de58dc548d30eca6ba60c2816a9bd3e436fd
+        size: 295093
+      placements:
+      - destination: mods/almostunified-neoforge-1.21.1-1.4.2.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: f9a58fa95780f4b045d30559c1fdaedaa7f0fba3
+          sha512: >-
+            82ddfb82b86dcbf62c729ebbb2ed571bf284d31a8ad494b7e10db2da24a87e7887969e6092b78e79053ea0279c75de58dc548d30eca6ba60c2816a9bd3e436fd
+        location: sdaSaQEz
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: sdaSaQEz
+        provider: modrinth
+    selection:
+      project:
+        project: sdaSaQEz
+        provider: modrinth
+      selection:
+        id: e8iYxxI3
+        provider: modrinth
+    title: Almost Unified
+  analog-audio:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/iMAVG2nH/versions/BshMjyFt/Analog-Audio-0.1.5-hotfix.1.jar
+        kind: provider
+        pin:
+          project:
+            project: iMAVG2nH
+            provider: modrinth
+          selection:
+            id: BshMjyFt
+            provider: modrinth
+        slot: Analog-Audio-0.1.5-hotfix.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 0dbee94c7d315d51a7a2c819c22f1c1235663277
+          sha512: >-
+            b53d0d09d0c6bb864b4ff5426599a029184583ebc8117d5c50fedbd54e949434970e8bf448ce492820f60adab2116effd1a46c7a082b82f53cf7dc3fbba6b909
+        size: 1726267
+      placements:
+      - destination: mods/Analog-Audio-0.1.5-hotfix.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 0dbee94c7d315d51a7a2c819c22f1c1235663277
+          sha512: >-
+            b53d0d09d0c6bb864b4ff5426599a029184583ebc8117d5c50fedbd54e949434970e8bf448ce492820f60adab2116effd1a46c7a082b82f53cf7dc3fbba6b909
+        location: iMAVG2nH
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: iMAVG2nH
+        provider: modrinth
+    selection:
+      project:
+        project: iMAVG2nH
+        provider: modrinth
+      selection:
+        id: BshMjyFt
+        provider: modrinth
+    title: Analog Audio
+  appleskin:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/EsAfCjCV/versions/uAKA6Laj/appleskin-neoforge-mc1.21-3.0.9.jar
+        kind: provider
+        pin:
+          project:
+            project: EsAfCjCV
+            provider: modrinth
+          selection:
+            id: uAKA6Laj
+            provider: modrinth
+        slot: appleskin-neoforge-mc1.21-3.0.9.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 81cf0e668f991f83ac8820c386fbd6c9c3602246
+          sha512: >-
+            f4ea46273e407334b63e262e2555c9a8204f7b5e60f23f272fbaa83ad9e88800e0ee186aca840710df2dbe0a18b37758695fef2ae1a902c10b3706e3de772937
+        size: 75804
+      placements:
+      - destination: mods/appleskin-neoforge-mc1.21-3.0.9.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 81cf0e668f991f83ac8820c386fbd6c9c3602246
+          sha512: >-
+            f4ea46273e407334b63e262e2555c9a8204f7b5e60f23f272fbaa83ad9e88800e0ee186aca840710df2dbe0a18b37758695fef2ae1a902c10b3706e3de772937
+        location: EsAfCjCV
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: EsAfCjCV
+        provider: modrinth
+    selection:
+      project:
+        project: EsAfCjCV
+        provider: modrinth
+      selection:
+        id: uAKA6Laj
+        provider: modrinth
+    title: AppleSkin
+  architectury-api:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/lhGA9TYQ/versions/1IiqEQGl/architectury-13.0.11-neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: lhGA9TYQ
+            provider: modrinth
+          selection:
+            id: 1IiqEQGl
+            provider: modrinth
+        slot: architectury-13.0.11-neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 008656a0702801174b8ec245ed7aad1921d6e9f1
+          sha512: >-
+            d9f7c3bb8162577dfb461ffdf04bd6a3563c7586934a0e2a744c14421beffb8286f0d88d4c758317003f20f99fe8072a39b9d675af061e036970d36db36027f0
+        size: 584734
+      placements:
+      - destination: mods/architectury-13.0.11-neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 008656a0702801174b8ec245ed7aad1921d6e9f1
+          sha512: >-
+            d9f7c3bb8162577dfb461ffdf04bd6a3563c7586934a0e2a744c14421beffb8286f0d88d4c758317003f20f99fe8072a39b9d675af061e036970d36db36027f0
+        location: lhGA9TYQ
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: lhGA9TYQ
+        provider: modrinth
+    selection:
+      project:
+        project: lhGA9TYQ
+        provider: modrinth
+      selection:
+        id: 1IiqEQGl
+        provider: modrinth
+    title: Architectury API
+  azimuth-api:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/RpH8tmT1/versions/dxtZVosY/azimuth-1.4.10.jar
+        kind: provider
+        pin:
+          project:
+            project: RpH8tmT1
+            provider: modrinth
+          selection:
+            id: dxtZVosY
+            provider: modrinth
+        slot: azimuth-1.4.10.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 911e255bd09a6bcb2ca85ea172d1812e0f4665f1
+          sha512: >-
+            29d2ee1b146d91047bc265a4902d43c20a825005921aeb9c7c4e96be0ae880b1bc842ca5e2b9c607dc46bede744ab023dc5ba8876ac8892f06d3550637819349
+        size: 143818
+      placements:
+      - destination: mods/azimuth-1.4.10.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 911e255bd09a6bcb2ca85ea172d1812e0f4665f1
+          sha512: >-
+            29d2ee1b146d91047bc265a4902d43c20a825005921aeb9c7c4e96be0ae880b1bc842ca5e2b9c607dc46bede744ab023dc5ba8876ac8892f06d3550637819349
+        location: RpH8tmT1
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: RpH8tmT1
+        provider: modrinth
+    selection:
+      project:
+        project: RpH8tmT1
+        provider: modrinth
+      selection:
+        id: dxtZVosY
+        provider: modrinth
+    title: Azimuth API
+  bellsandwhistles:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/gJ5afkVv/versions/w0mifib8/bellsandwhistles-0.4.7-1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: gJ5afkVv
+            provider: modrinth
+          selection:
+            id: w0mifib8
+            provider: modrinth
+        slot: bellsandwhistles-0.4.7-1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 85944080f8bd47dad64a8193a70662cd9ddbb200
+          sha512: >-
+            482ee096477b89ed8ec5ce008a4a8ac0ae853079a4f5ce16ad0e0dd9b2eb12b3326f17acaaca1eae0bc51ad238f4e51c8d5b93ded71fe7240717ac8600041c59
+        size: 193619
+      placements:
+      - destination: mods/bellsandwhistles-0.4.7-1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 85944080f8bd47dad64a8193a70662cd9ddbb200
+          sha512: >-
+            482ee096477b89ed8ec5ce008a4a8ac0ae853079a4f5ce16ad0e0dd9b2eb12b3326f17acaaca1eae0bc51ad238f4e51c8d5b93ded71fe7240717ac8600041c59
+        location: gJ5afkVv
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: gJ5afkVv
+        provider: modrinth
+    selection:
+      project:
+        project: gJ5afkVv
+        provider: modrinth
+      selection:
+        id: w0mifib8
+        provider: modrinth
+    title: "Create: Bells & Whistles"
+  c2me-neoforge:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/COlSi5iR/versions/avwWYPbG/c2me-neoforge-mc1.21.1-0.4.0-alpha.0.123.jar
+        kind: provider
+        pin:
+          project:
+            project: COlSi5iR
+            provider: modrinth
+          selection:
+            id: avwWYPbG
+            provider: modrinth
+        slot: c2me-neoforge-mc1.21.1-0.4.0-alpha.0.123.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 50fe2e38c6369b51e4dee1106d0295185e6251c4
+          sha512: >-
+            c7c485d856fa0118694ae8484e85a714db92ce7886195dbc355257d59d4254da2ce537ac18da8e05c9786c3a98f70cc5ffdfd089ad23b6822f854d72f3caa62d
+        size: 3717365
+      placements:
+      - destination: mods/c2me-neoforge-mc1.21.1-0.4.0-alpha.0.123.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 50fe2e38c6369b51e4dee1106d0295185e6251c4
+          sha512: >-
+            c7c485d856fa0118694ae8484e85a714db92ce7886195dbc355257d59d4254da2ce537ac18da8e05c9786c3a98f70cc5ffdfd089ad23b6822f854d72f3caa62d
+        location: COlSi5iR
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: COlSi5iR
+        provider: modrinth
+    selection:
+      project:
+        project: COlSi5iR
+        provider: modrinth
+      selection:
+        id: avwWYPbG
+        provider: modrinth
+    title: Concurrent Chunk Management Engine (NeoForge)
+  cable-facades:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/twipgzWx/versions/XWCAtdzJ/cable_facades-1.21.1-NeoForge-2.1.4.jar
+        kind: provider
+        pin:
+          project:
+            project: twipgzWx
+            provider: modrinth
+          selection:
+            id: XWCAtdzJ
+            provider: modrinth
+        slot: cable_facades-1.21.1-NeoForge-2.1.4.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: ab793d3c2dbb5a492f2bee15d75f3a45011c4578
+          sha512: >-
+            c7753e7eeeb76b55dee2b66fb6b311d358688dbd20f2b42977cd9366bb9a8be690635ffc5243d470321364d6b1f041673f2a021e43b37794f42c6fcc45671f86
+        size: 285434
+      placements:
+      - destination: mods/cable_facades-1.21.1-NeoForge-2.1.4.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: ab793d3c2dbb5a492f2bee15d75f3a45011c4578
+          sha512: >-
+            c7753e7eeeb76b55dee2b66fb6b311d358688dbd20f2b42977cd9366bb9a8be690635ffc5243d470321364d6b1f041673f2a021e43b37794f42c6fcc45671f86
+        location: twipgzWx
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: twipgzWx
+        provider: modrinth
+    selection:
+      project:
+        project: twipgzWx
+        provider: modrinth
+      selection:
+        id: XWCAtdzJ
+        provider: modrinth
+    title: Cable Facades
+  carry-on:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/joEfVgkn/versions/PV8oLZ1q/carryon-neoforge-1.21.1-2.2.6.13.jar
+        kind: provider
+        pin:
+          project:
+            project: joEfVgkn
+            provider: modrinth
+          selection:
+            id: PV8oLZ1q
+            provider: modrinth
+        slot: carryon-neoforge-1.21.1-2.2.6.13.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 2ceb0d9284525b6cb2a214c88cf6511cab91f601
+          sha512: >-
+            e097b11d6f14e0957bab6c0276b81542e786cb86b9c31d9f25975f8c9fb04a734188b8790683298bbc5c695dc3de7d6e947616a20ad26d4a728a3beb0bb78667
+        size: 361486
+      placements:
+      - destination: mods/carryon-neoforge-1.21.1-2.2.6.13.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 2ceb0d9284525b6cb2a214c88cf6511cab91f601
+          sha512: >-
+            e097b11d6f14e0957bab6c0276b81542e786cb86b9c31d9f25975f8c9fb04a734188b8790683298bbc5c695dc3de7d6e947616a20ad26d4a728a3beb0bb78667
+        location: joEfVgkn
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: joEfVgkn
+        provider: modrinth
+    selection:
+      project:
+        project: joEfVgkn
+        provider: modrinth
+      selection:
+        id: PV8oLZ1q
+        provider: modrinth
+    title: Carry On
+  cloth-config:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/9s6osm5g/versions/izKINKFg/cloth-config-15.0.140-neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: 9s6osm5g
+            provider: modrinth
+          selection:
+            id: izKINKFg
+            provider: modrinth
+        slot: cloth-config-15.0.140-neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: c3e5733ba4503b102589a026000fd5ce0212f6f2
+          sha512: >-
+            aaf9b010955b8cd294e5a92f069985b18729fd5e2cf22d351f1dff9680f15488688803ec41e77e941cbde130ceb535014ca4c868047d80ab69c2d508e216654d
+        size: 1163890
+      placements:
+      - destination: mods/cloth-config-15.0.140-neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: c3e5733ba4503b102589a026000fd5ce0212f6f2
+          sha512: >-
+            aaf9b010955b8cd294e5a92f069985b18729fd5e2cf22d351f1dff9680f15488688803ec41e77e941cbde130ceb535014ca4c868047d80ab69c2d508e216654d
+        location: 9s6osm5g
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: 9s6osm5g
+        provider: modrinth
+    selection:
+      project:
+        project: 9s6osm5g
+        provider: modrinth
+      selection:
+        id: izKINKFg
+        provider: modrinth
+    title: Cloth Config API
+  complementary-unbound:
+    content: shader-pack
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/R6NEzAwj/versions/B1kyfoUZ/ComplementaryUnbound_r5.9.3.zip
+        kind: provider
+        pin:
+          project:
+            project: R6NEzAwj
+            provider: modrinth
+          selection:
+            id: B1kyfoUZ
+            provider: modrinth
+        slot: ComplementaryUnbound_r5.9.3.zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 2ee08300e1d6f039e63eae8484dddf57b3aaaf67
+          sha512: >-
+            a085d1d8cda67cd17a2b414eeba48bbd809da069f269bab46246235ec8fe714a275013c70d0504527b0987d810deddddba4564332414ab3b3bd7435932ff808c
+        size: 553400
+      placements:
+      - destination: shaderpacks/ComplementaryUnbound_r5.9.3.zip
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 2ee08300e1d6f039e63eae8484dddf57b3aaaf67
+          sha512: >-
+            a085d1d8cda67cd17a2b414eeba48bbd809da069f269bab46246235ec8fe714a275013c70d0504527b0987d810deddddba4564332414ab3b3bd7435932ff808c
+        location: R6NEzAwj
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: R6NEzAwj
+        provider: modrinth
+    selection:
+      project:
+        project: R6NEzAwj
+        provider: modrinth
+      selection:
+        id: B1kyfoUZ
+        provider: modrinth
+    title: Complementary Shaders - Unbound
+  connector:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/u58R1TMW/versions/IITF0PRC/connector-2.0.0-beta.17%2B1.21.1-full.jar
+        kind: provider
+        pin:
+          project:
+            project: u58R1TMW
+            provider: modrinth
+          selection:
+            id: IITF0PRC
+            provider: modrinth
+        slot: connector-2.0.0-beta.17+1.21.1-full.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 15e652d3628b1bcb644b93576fcab154496f770a
+          sha512: >-
+            cb92b662047208792e61191d372d1e255766200406c35769007101f8c578c1018938610c3b90352afd93ec42d7963acf3607e35c50e669df50ac85d7c5529560
+        size: 4573244
+      placements:
+      - destination: mods/connector-2.0.0-beta.17+1.21.1-full.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 15e652d3628b1bcb644b93576fcab154496f770a
+          sha512: >-
+            cb92b662047208792e61191d372d1e255766200406c35769007101f8c578c1018938610c3b90352afd93ec42d7963acf3607e35c50e669df50ac85d7c5529560
+        location: u58R1TMW
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: u58R1TMW
+        provider: modrinth
+    selection:
+      project:
+        project: u58R1TMW
+        provider: modrinth
+      selection:
+        id: IITF0PRC
+        provider: modrinth
+    title: Sinytra Connector
+  copycats:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/UT2M39wf/versions/bPYeUWZx/copycats-3.0.9%2Bmc.1.21.1-neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: UT2M39wf
+            provider: modrinth
+          selection:
+            id: bPYeUWZx
+            provider: modrinth
+        slot: copycats-3.0.9+mc.1.21.1-neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 74de17876c43f5f780bac478b9f9eb11e687b8d7
+          sha512: >-
+            432b5cde473976476b0729172710d32805576d0c3a5fd66d21f882d96cef0c4eef1b85e4e3a1a316e2adc473784b11e156b0265b0f62bcfd5b035a6ff7dfcc6e
+        size: 1799381
+      placements:
+      - destination: mods/copycats-3.0.9+mc.1.21.1-neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 74de17876c43f5f780bac478b9f9eb11e687b8d7
+          sha512: >-
+            432b5cde473976476b0729172710d32805576d0c3a5fd66d21f882d96cef0c4eef1b85e4e3a1a316e2adc473784b11e156b0265b0f62bcfd5b035a6ff7dfcc6e
+        location: UT2M39wf
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: UT2M39wf
+        provider: modrinth
+    selection:
+      project:
+        project: UT2M39wf
+        provider: modrinth
+      selection:
+        id: bPYeUWZx
+        provider: modrinth
+    title: "Create: Copycats+"
+  create:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/LNytGWDc/versions/UjX6dr61/create-1.21.1-6.0.10.jar
+        kind: provider
+        pin:
+          project:
+            project: LNytGWDc
+            provider: modrinth
+          selection:
+            id: UjX6dr61
+            provider: modrinth
+        slot: create-1.21.1-6.0.10.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 0e97e49837bed766e6f28a4c95b04885d6acc353
+          sha512: >-
+            11cc8fc049d2f67f6548c7abfada6b82a3adb5c7ca410a742de04bbca76e03862c518721b88d806f6e6d768a4d68531fdb903a85859b25d1484d550cc7bafd4b
+        size: 19123767
+      placements:
+      - destination: mods/create-1.21.1-6.0.10.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 0e97e49837bed766e6f28a4c95b04885d6acc353
+          sha512: >-
+            11cc8fc049d2f67f6548c7abfada6b82a3adb5c7ca410a742de04bbca76e03862c518721b88d806f6e6d768a4d68531fdb903a85859b25d1484d550cc7bafd4b
+        location: LNytGWDc
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: LNytGWDc
+        provider: modrinth
+    selection:
+      project:
+        project: LNytGWDc
+        provider: modrinth
+      selection:
+        id: UjX6dr61
+        provider: modrinth
+    title: Create
+  create-accessories-compat:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/2MhMVi7C/versions/2r7hvkCQ/Create-Accessories-Compat.jar
+        kind: provider
+        pin:
+          project:
+            project: 2MhMVi7C
+            provider: modrinth
+          selection:
+            id: 2r7hvkCQ
+            provider: modrinth
+        slot: Create-Accessories-Compat.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: ab5fe8f8d7b9e95ac215e23bfea7df38236e3fc8
+          sha512: >-
+            0e432b1154589ede7ceff167f97e3dde387b72e76c058851b372853a9a884e5150db19023c1d79369bc7973cbf43f180a9c501202c6e3843a991d9706ad934dd
+        size: 166403
+      placements:
+      - destination: mods/Create-Accessories-Compat.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: ab5fe8f8d7b9e95ac215e23bfea7df38236e3fc8
+          sha512: >-
+            0e432b1154589ede7ceff167f97e3dde387b72e76c058851b372853a9a884e5150db19023c1d79369bc7973cbf43f180a9c501202c6e3843a991d9706ad934dd
+        location: 2MhMVi7C
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: 2MhMVi7C
+        provider: modrinth
+    selection:
+      project:
+        project: 2MhMVi7C
+        provider: modrinth
+      selection:
+        id: 2r7hvkCQ
+        provider: modrinth
+    title: Create Accessories Compat
+  create-aero-cables:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/AHTfty0S/versions/Wn81ihHo/aerocables-0.4.0.jar
+        kind: provider
+        pin:
+          project:
+            project: AHTfty0S
+            provider: modrinth
+          selection:
+            id: Wn81ihHo
+            provider: modrinth
+        slot: aerocables-0.4.0.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: f38a48ff5ef72a79f1d56582f9cda47b88fe9268
+          sha512: >-
+            3c4fc5ef77ca99c34b97a9249b4e5def572d9d9314c75b9a4105950486900582c2f2e1919f829e13de6231b5a8f2d885f6425de61aa93c892c9212addb2c2310
+        size: 203873
+      placements:
+      - destination: mods/aerocables-0.4.0.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: f38a48ff5ef72a79f1d56582f9cda47b88fe9268
+          sha512: >-
+            3c4fc5ef77ca99c34b97a9249b4e5def572d9d9314c75b9a4105950486900582c2f2e1919f829e13de6231b5a8f2d885f6425de61aa93c892c9212addb2c2310
+        location: AHTfty0S
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: AHTfty0S
+        provider: modrinth
+    selection:
+      project:
+        project: AHTfty0S
+        provider: modrinth
+      selection:
+        id: Wn81ihHo
+        provider: modrinth
+    title: "Create: Aero Cables"
+  create-aeronautics:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/oWaK0Q19/versions/44pLdPGg/create-aeronautics-bundled-1.21.1-1.3.2.jar
+        kind: provider
+        pin:
+          project:
+            project: oWaK0Q19
+            provider: modrinth
+          selection:
+            id: 44pLdPGg
+            provider: modrinth
+        slot: create-aeronautics-bundled-1.21.1-1.3.2.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: ddbe9cbc25e8f663218aa1e9fdfc4b99f0e11e4b
+          sha512: >-
+            dc7e8e1148fa442243889ba29412207137e1bb86206e6c92bc0a589f1374a466e93de22bdbf14f753984d86c29308fbbdc0f14a4b9618b14c0ac1666a36b46f5
+        size: 33123131
+      placements:
+      - destination: mods/create-aeronautics-bundled-1.21.1-1.3.2.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: ddbe9cbc25e8f663218aa1e9fdfc4b99f0e11e4b
+          sha512: >-
+            dc7e8e1148fa442243889ba29412207137e1bb86206e6c92bc0a589f1374a466e93de22bdbf14f753984d86c29308fbbdc0f14a4b9618b14c0ac1666a36b46f5
+        location: oWaK0Q19
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: oWaK0Q19
+        provider: modrinth
+    selection:
+      project:
+        project: oWaK0Q19
+        provider: modrinth
+      selection:
+        id: 44pLdPGg
+        provider: modrinth
+    title: Create Aeronautics
+  create-aeronautics-climbable-rope:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/jImqv1M5/versions/fk5DMIYY/climbable_ropes-2.1.4.jar
+        kind: provider
+        pin:
+          project:
+            project: jImqv1M5
+            provider: modrinth
+          selection:
+            id: fk5DMIYY
+            provider: modrinth
+        slot: climbable_ropes-2.1.4.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 7b830925ecde368f0848470d52d840f6b74a6de8
+          sha512: >-
+            c25839624e204267a7ed82f413a1b2448a508ca554d451d37c2ca89420972002a565ccbc91e63d1b4f8aa76552287dd8c9c6f66769be7384c815c8a62f0a9eb2
+        size: 256035
+      placements:
+      - destination: mods/climbable_ropes-2.1.4.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 7b830925ecde368f0848470d52d840f6b74a6de8
+          sha512: >-
+            c25839624e204267a7ed82f413a1b2448a508ca554d451d37c2ca89420972002a565ccbc91e63d1b4f8aa76552287dd8c9c6f66769be7384c815c8a62f0a9eb2
+        location: jImqv1M5
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: jImqv1M5
+        provider: modrinth
+    selection:
+      project:
+        project: jImqv1M5
+        provider: modrinth
+      selection:
+        id: fk5DMIYY
+        provider: modrinth
+    title: Climbable Ropes for Create Aeronautics
+  create-aeronautics-covers:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/eWrKPy9E/versions/R35biaZf/aeronauticscovers-1.21.1-NeoForge-1.0.1.jar
+        kind: provider
+        pin:
+          project:
+            project: eWrKPy9E
+            provider: modrinth
+          selection:
+            id: R35biaZf
+            provider: modrinth
+        slot: aeronauticscovers-1.21.1-NeoForge-1.0.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: c4404a98d85c75e5e80ace462c3ed1bdf0b1c93e
+          sha512: >-
+            635fbdba8eba8527a0de944d77a9f0c10eca47135ecbca4070e7cae9609e41e61723ed2c70108b71be45021cbdc78c1bb746420e37e268100342995d42dd978d
+        size: 44232
+      placements:
+      - destination: mods/aeronauticscovers-1.21.1-NeoForge-1.0.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: c4404a98d85c75e5e80ace462c3ed1bdf0b1c93e
+          sha512: >-
+            635fbdba8eba8527a0de944d77a9f0c10eca47135ecbca4070e7cae9609e41e61723ed2c70108b71be45021cbdc78c1bb746420e37e268100342995d42dd978d
+        location: eWrKPy9E
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: eWrKPy9E
+        provider: modrinth
+    selection:
+      project:
+        project: eWrKPy9E
+        provider: modrinth
+      selection:
+        id: R35biaZf
+        provider: modrinth
+    title: "Create Aeronautics: Covers"
+  create-aeronautics-rechiseled-compatibility:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/ub0jAGhg/versions/b6O6XLL6/create-aeronautics-rechiseled-compat-1.21.1-1.2.2.jar
+        kind: url
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 80083f94d278ddba23d43a92cd8a0de584a5a087
+          sha512: >-
+            0a0cc1a51602b59a49fc5b316c8b7356bd307b4e0ed33d1485e22cae51b9bcc9ac1637067fd4c833699b7f3785d6f156723bccabc90f85c4044c37e8efe96db4
+        size: null
+      placements:
+      - destination: mods/create-aeronautics-rechiseled-compat-1.21.1-1.2.2.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 80083f94d278ddba23d43a92cd8a0de584a5a087
+          sha512: >-
+            0a0cc1a51602b59a49fc5b316c8b7356bd307b4e0ed33d1485e22cae51b9bcc9ac1637067fd4c833699b7f3785d6f156723bccabc90f85c4044c37e8efe96db4
+        location: null
+        source: url-file
+      slot: content
+    identity:
+      key: create-aeronautics-rechiseled-compatibility
+      kind: url
+    selection: null
+    title: create-aeronautics-rechiseled-compatibility
+  create-aeronautics-throwable-rope-connector:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/9xiCbKmM/versions/EDzeTV17/create_aeronautics_throwable_rope_connector-0.4.3.jar
+        kind: url
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 63fcbbc960461d42a59b417665fb938c79919514
+          sha512: >-
+            0a1fc122e4c303a0903213192c32dbc6a0a819c101e70e508e989297e5e688855730a2f9e28f7107a92524cc3ee7349fc47615fd04902fda04b797a401a40c71
+        size: null
+      placements:
+      - destination: mods/create_aeronautics_throwable_rope_connector-0.4.3.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 63fcbbc960461d42a59b417665fb938c79919514
+          sha512: >-
+            0a1fc122e4c303a0903213192c32dbc6a0a819c101e70e508e989297e5e688855730a2f9e28f7107a92524cc3ee7349fc47615fd04902fda04b797a401a40c71
+        location: null
+        source: url-file
+      slot: content
+    identity:
+      key: create-aeronautics-throwable-rope-connector
+      kind: url
+    selection: null
+    title: create-aeronautics-throwable-rope-connector
+  create-aeroworks:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/P26k79kP/versions/6kk7ruR3/aeroworks-1.5.0.jar
+        kind: provider
+        pin:
+          project:
+            project: P26k79kP
+            provider: modrinth
+          selection:
+            id: 6kk7ruR3
+            provider: modrinth
+        slot: aeroworks-1.5.0.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 0dffcd74781e2f7d0495c4aad1165eb3473476ec
+          sha512: >-
+            d79435aaf9c8d8697d1cb5a95b2189ab00ac1387dcbcdc0fbd701a25a22678eba2107e55b8da47bf0089282280ee2b3ff36418d9d7bda744b210d5fa5f4ca697
+        size: 790152
+      placements:
+      - destination: mods/aeroworks-1.5.0.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 0dffcd74781e2f7d0495c4aad1165eb3473476ec
+          sha512: >-
+            d79435aaf9c8d8697d1cb5a95b2189ab00ac1387dcbcdc0fbd701a25a22678eba2107e55b8da47bf0089282280ee2b3ff36418d9d7bda744b210d5fa5f4ca697
+        location: P26k79kP
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: P26k79kP
+        provider: modrinth
+    selection:
+      project:
+        project: P26k79kP
+        provider: modrinth
+      selection:
+        id: 6kk7ruR3
+        provider: modrinth
+    title: "Create: Aeroworks"
+  create-ballast:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/5ypXYrfG/versions/XzlV3NlT/ballastmod-0.1.1.jar
+        kind: provider
+        pin:
+          project:
+            project: 5ypXYrfG
+            provider: modrinth
+          selection:
+            id: XzlV3NlT
+            provider: modrinth
+        slot: ballastmod-0.1.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: dc7a83667104c1307e40de01468f0deb6702b400
+          sha512: >-
+            9b1aede6db9667d96f04efe0ee443d74fc56f7b1d336c73ee3d894bc31e850aae30ea816083e131e00a3be8690e99a7567bf36defed83d6772faf8c63bf18acb
+        size: 30381
+      placements:
+      - destination: mods/ballastmod-0.1.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: dc7a83667104c1307e40de01468f0deb6702b400
+          sha512: >-
+            9b1aede6db9667d96f04efe0ee443d74fc56f7b1d336c73ee3d894bc31e850aae30ea816083e131e00a3be8690e99a7567bf36defed83d6772faf8c63bf18acb
+        location: 5ypXYrfG
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: 5ypXYrfG
+        provider: modrinth
+    selection:
+      project:
+        project: 5ypXYrfG
+        provider: modrinth
+      selection:
+        id: XzlV3NlT
+        provider: modrinth
+    title: "Create: Ballast"
+  create-big-cannons:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/GWp4jCJj/versions/bOiDu0LS/createbigcannons-5.11.7%2Bmc.1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: GWp4jCJj
+            provider: modrinth
+          selection:
+            id: bOiDu0LS
+            provider: modrinth
+        slot: createbigcannons-5.11.7+mc.1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: c90ee0b2142e2c58d233e150cb3a24c7cb07eb2d
+          sha512: >-
+            24f414dfbb973a0f4d9c9b2aa059edc7bed4d23b4f39eb1f7d23a1d6b437e3b5d64cca6e4b85ff7eb2815743fa711d54ad652bffe96d1eb1234544716006440d
+        size: 3771506
+      placements:
+      - destination: mods/createbigcannons-5.11.7+mc.1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: c90ee0b2142e2c58d233e150cb3a24c7cb07eb2d
+          sha512: >-
+            24f414dfbb973a0f4d9c9b2aa059edc7bed4d23b4f39eb1f7d23a1d6b437e3b5d64cca6e4b85ff7eb2815743fa711d54ad652bffe96d1eb1234544716006440d
+        location: GWp4jCJj
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: GWp4jCJj
+        provider: modrinth
+    selection:
+      project:
+        project: GWp4jCJj
+        provider: modrinth
+      selection:
+        id: bOiDu0LS
+        provider: modrinth
+    title: Create Big Cannons
+  create-bits-n-bobs:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/T8bvmqVZ/versions/g9Lmjjc5/bits_n_bobs-2.3.5.jar
+        kind: provider
+        pin:
+          project:
+            project: T8bvmqVZ
+            provider: modrinth
+          selection:
+            id: g9Lmjjc5
+            provider: modrinth
+        slot: bits_n_bobs-2.3.5.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 50119ba6849f2b165ab692ab312dbe4867444ac0
+          sha512: >-
+            33aaa835f1b1774a2b2f14ed6015efdf47a5b3827e702814c651ccde08ef5fda7572f6734c3b0f136795b45972a153c8dfe330df708b6487e58e18a29c689cb8
+        size: 2433531
+      placements:
+      - destination: mods/bits_n_bobs-2.3.5.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 50119ba6849f2b165ab692ab312dbe4867444ac0
+          sha512: >-
+            33aaa835f1b1774a2b2f14ed6015efdf47a5b3827e702814c651ccde08ef5fda7572f6734c3b0f136795b45972a153c8dfe330df708b6487e58e18a29c689cb8
+        location: T8bvmqVZ
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: T8bvmqVZ
+        provider: modrinth
+    selection:
+      project:
+        project: T8bvmqVZ
+        provider: modrinth
+      selection:
+        id: g9Lmjjc5
+        provider: modrinth
+    title: "Create: Bits 'n' Bobs"
+  create-confectionery:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/WPE5gRs9/versions/ndnETBEN/create-confectionery1.21.1_v1.1.3b.jar
+        kind: provider
+        pin:
+          project:
+            project: WPE5gRs9
+            provider: modrinth
+          selection:
+            id: ndnETBEN
+            provider: modrinth
+        slot: create-confectionery1.21.1_v1.1.3b.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 47e235efa862c5cbea53fdf8346d4c499674defa
+          sha512: >-
+            ee299e0b3fc12edc506f7385a44eef207fcdc30ba6a0d30248614eed3486f78c661d9a176cb715eba044ac1a4255e38aa522bdd4b3fc1778049625108e114e82
+        size: 2127265
+      placements:
+      - destination: mods/create-confectionery1.21.1_v1.1.3b.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 47e235efa862c5cbea53fdf8346d4c499674defa
+          sha512: >-
+            ee299e0b3fc12edc506f7385a44eef207fcdc30ba6a0d30248614eed3486f78c661d9a176cb715eba044ac1a4255e38aa522bdd4b3fc1778049625108e114e82
+        location: WPE5gRs9
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: WPE5gRs9
+        provider: modrinth
+    selection:
+      project:
+        project: WPE5gRs9
+        provider: modrinth
+      selection:
+        id: ndnETBEN
+        provider: modrinth
+    title: Create Confectionery
+  create-connected:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/Vg5TIO6d/versions/Xe7EqzfQ/create_connected-1.3.3-mc1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: Vg5TIO6d
+            provider: modrinth
+          selection:
+            id: Xe7EqzfQ
+            provider: modrinth
+        slot: create_connected-1.3.3-mc1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 96ae45fa44cd7028a31b9613cb672009e811b145
+          sha512: >-
+            485675693980a266611669857fa9cd348e2a29140b87bf0a8ab3e13c3591422cceaa36b7a2eb90084d35ec1868c8eec9f924383bb4dada2dddcb72e9f09361b0
+        size: 6786783
+      placements:
+      - destination: mods/create_connected-1.3.3-mc1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 96ae45fa44cd7028a31b9613cb672009e811b145
+          sha512: >-
+            485675693980a266611669857fa9cd348e2a29140b87bf0a8ab3e13c3591422cceaa36b7a2eb90084d35ec1868c8eec9f924383bb4dada2dddcb72e9f09361b0
+        location: Vg5TIO6d
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: Vg5TIO6d
+        provider: modrinth
+    selection:
+      project:
+        project: Vg5TIO6d
+        provider: modrinth
+      selection:
+        id: Xe7EqzfQ
+        provider: modrinth
+    title: "Create: Connected"
+  create-deco:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/sMvUb4Rb/versions/qrcMVoBD/createdeco-2.1.3.jar
+        kind: provider
+        pin:
+          project:
+            project: sMvUb4Rb
+            provider: modrinth
+          selection:
+            id: qrcMVoBD
+            provider: modrinth
+        slot: createdeco-2.1.3.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 93d9eff58b46c6953e907d071e6be4e3ce07be38
+          sha512: >-
+            c536662f9d47ad57a37419165ded14835b23ad6c3e82a920298ecd7ee074244b0b6062ef9cc7ea4501ddd35919a840faccd7fc64e43eb8df31e12076681c3c0d
+        size: 3328498
+      placements:
+      - destination: mods/createdeco-2.1.3.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 93d9eff58b46c6953e907d071e6be4e3ce07be38
+          sha512: >-
+            c536662f9d47ad57a37419165ded14835b23ad6c3e82a920298ecd7ee074244b0b6062ef9cc7ea4501ddd35919a840faccd7fc64e43eb8df31e12076681c3c0d
+        location: sMvUb4Rb
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: sMvUb4Rb
+        provider: modrinth
+    selection:
+      project:
+        project: sMvUb4Rb
+        provider: modrinth
+      selection:
+        id: qrcMVoBD
+        provider: modrinth
+    title: Create Deco
+  create-design-n-decor:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/x49wilh8/versions/uQsIRky8/Design-n-Decor-1.21.1-2.2b.jar
+        kind: provider
+        pin:
+          project:
+            project: x49wilh8
+            provider: modrinth
+          selection:
+            id: uQsIRky8
+            provider: modrinth
+        slot: Design-n-Decor-1.21.1-2.2b.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: ff5f0411a3d82e15d69b65617128f6d54e818e1b
+          sha512: >-
+            d888553c8a254c3654f8da2ae2cae0bb642594546c71988739c93bf6b18668145e0ce5b1c20ae0544b9b6019f17e4da944bd5bc17e4c6b73e7f1374cfa2c9db9
+        size: 6329899
+      placements:
+      - destination: mods/Design-n-Decor-1.21.1-2.2b.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: ff5f0411a3d82e15d69b65617128f6d54e818e1b
+          sha512: >-
+            d888553c8a254c3654f8da2ae2cae0bb642594546c71988739c93bf6b18668145e0ce5b1c20ae0544b9b6019f17e4da944bd5bc17e4c6b73e7f1374cfa2c9db9
+        location: x49wilh8
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: x49wilh8
+        provider: modrinth
+    selection:
+      project:
+        project: x49wilh8
+        provider: modrinth
+      selection:
+        id: uQsIRky8
+        provider: modrinth
+    title: "Create: Design n' Decor"
+  create-factory:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/j6Zt3N7W/versions/OA9Dvj5m/create_factory-0.7b-1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: j6Zt3N7W
+            provider: modrinth
+          selection:
+            id: OA9Dvj5m
+            provider: modrinth
+        slot: create_factory-0.7b-1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: d8d406117a717a0359079b50e987f265378b05b1
+          sha512: >-
+            4acc37144a644ea0ddc1290e2419b2eb852e38faa48992f702afc2555162fcc8baa9b79c9dab2f77da57b5b530011ad737cf638ba4813053a63c43b3a554d485
+        size: 212765
+      placements:
+      - destination: mods/create_factory-0.7b-1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: d8d406117a717a0359079b50e987f265378b05b1
+          sha512: >-
+            4acc37144a644ea0ddc1290e2419b2eb852e38faa48992f702afc2555162fcc8baa9b79c9dab2f77da57b5b530011ad737cf638ba4813053a63c43b3a554d485
+        location: j6Zt3N7W
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: j6Zt3N7W
+        provider: modrinth
+    selection:
+      project:
+        project: j6Zt3N7W
+        provider: modrinth
+      selection:
+        id: OA9Dvj5m
+        provider: modrinth
+    title: "Create: Factory"
+  create-power-loader:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/wPQ6GgFE/versions/3Y4r0ItR/create_power_loader-2.0.5-mc1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: wPQ6GgFE
+            provider: modrinth
+          selection:
+            id: 3Y4r0ItR
+            provider: modrinth
+        slot: create_power_loader-2.0.5-mc1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 5bd3ecef6fc66985e6fdf416706c98fb774ba03d
+          sha512: >-
+            e4f06cfe79eafa538a2edf45d0b173051475f2a20d6c2352668f6980f4433078f2cdd8ffdd047984c30dfd903142ea37eadde48ff71a3892f18154662f20eb57
+        size: 442369
+      placements:
+      - destination: mods/create_power_loader-2.0.5-mc1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 5bd3ecef6fc66985e6fdf416706c98fb774ba03d
+          sha512: >-
+            e4f06cfe79eafa538a2edf45d0b173051475f2a20d6c2352668f6980f4433078f2cdd8ffdd047984c30dfd903142ea37eadde48ff71a3892f18154662f20eb57
+        location: wPQ6GgFE
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: wPQ6GgFE
+        provider: modrinth
+    selection:
+      project:
+        project: wPQ6GgFE
+        provider: modrinth
+      selection:
+        id: 3Y4r0ItR
+        provider: modrinth
+    title: "Create: Power Loader"
+  create-radars:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/BLu2Yqfq/versions/AntNFNAx/create_radar-0.4.9.4-1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: BLu2Yqfq
+            provider: modrinth
+          selection:
+            id: AntNFNAx
+            provider: modrinth
+        slot: create_radar-0.4.9.4-1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 9726fced4bf86c9e2c0ea09b35bc39ed3ac007b6
+          sha512: >-
+            9ce111ea7e39fe979a6d423766820bbdd8c7e61ecf72db35b94539330aadc0cd45b5eed469ef4bbfeb36b1c558209e048019f5a4a253b43f3b6b3bd4fbc8ac63
+        size: 2990812
+      placements:
+      - destination: mods/create_radar-0.4.9.4-1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 9726fced4bf86c9e2c0ea09b35bc39ed3ac007b6
+          sha512: >-
+            9ce111ea7e39fe979a6d423766820bbdd8c7e61ecf72db35b94539330aadc0cd45b5eed469ef4bbfeb36b1c558209e048019f5a4a253b43f3b6b3bd4fbc8ac63
+        location: BLu2Yqfq
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: BLu2Yqfq
+        provider: modrinth
+    selection:
+      project:
+        project: BLu2Yqfq
+        provider: modrinth
+      selection:
+        id: AntNFNAx
+        provider: modrinth
+    title: "Create: Radars"
+  create-transmission:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/QFCkBuIh/versions/dOsq88jX/createtransmission-1.2.2%2Bneoforge-create6-1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: QFCkBuIh
+            provider: modrinth
+          selection:
+            id: dOsq88jX
+            provider: modrinth
+        slot: createtransmission-1.2.2+neoforge-create6-1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 60e020b39a243e4eca5d15e3c9299fcdf8ed20d2
+          sha512: >-
+            ed90c19f6e265a3862a2c96d95e9b204cb3b3be8b781d8364d0a2aea4d70877f5fe66056354da0fed2eb35fde22c6e4c2801b0cf31d8d7157e4933f1d8913233
+        size: 250901
+      placements:
+      - destination: mods/createtransmission-1.2.2+neoforge-create6-1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 60e020b39a243e4eca5d15e3c9299fcdf8ed20d2
+          sha512: >-
+            ed90c19f6e265a3862a2c96d95e9b204cb3b3be8b781d8364d0a2aea4d70877f5fe66056354da0fed2eb35fde22c6e4c2801b0cf31d8d7157e4933f1d8913233
+        location: QFCkBuIh
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: QFCkBuIh
+        provider: modrinth
+    selection:
+      project:
+        project: QFCkBuIh
+        provider: modrinth
+      selection:
+        id: dOsq88jX
+        provider: modrinth
+    title: "Create: Transmission!"
+  create-vibrant-vaults:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/hddN8ksR/versions/t17qYXjn/create_vibrant_vaults-0.3.2.jar
+        kind: url
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: d0dbdde6318c4dd4ede1d2c091f1a64896ba872a
+          sha512: >-
+            3bd53097482e614dc4e5e635778af25020fa27c1c453d4928d1d8baa6767c93cb300810a5ac0c49af86813749a180e3f092ab2e65b07e7741c2b12aaebd47006
+        size: null
+      placements:
+      - destination: mods/create_vibrant_vaults-0.3.2.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: d0dbdde6318c4dd4ede1d2c091f1a64896ba872a
+          sha512: >-
+            3bd53097482e614dc4e5e635778af25020fa27c1c453d4928d1d8baa6767c93cb300810a5ac0c49af86813749a180e3f092ab2e65b07e7741c2b12aaebd47006
+        location: null
+        source: url-file
+      slot: content
+    identity:
+      key: create-vibrant-vaults
+      kind: url
+    selection: null
+    title: create-vibrant-vaults
+  createaddoncompatibility:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/QgrK9rtJ/versions/tL1Tayuh/createaddoncompatibility-neoforge-1.21.1-1.0.0.jar
+        kind: provider
+        pin:
+          project:
+            project: QgrK9rtJ
+            provider: modrinth
+          selection:
+            id: tL1Tayuh
+            provider: modrinth
+        slot: createaddoncompatibility-neoforge-1.21.1-1.0.0.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 7f6b3c61ffd85ec38435b8f7a71be4fc4ced4168
+          sha512: >-
+            dd00b322526454c60c088e1e50e9473fa3a3eb3bcb5fbaf2cd9b0ba41121d4b0458b49ecca15c0f0fa0b863bd2775741362da249eca11422955648c2722d99c3
+        size: 158395
+      placements:
+      - destination: mods/createaddoncompatibility-neoforge-1.21.1-1.0.0.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 7f6b3c61ffd85ec38435b8f7a71be4fc4ced4168
+          sha512: >-
+            dd00b322526454c60c088e1e50e9473fa3a3eb3bcb5fbaf2cd9b0ba41121d4b0458b49ecca15c0f0fa0b863bd2775741362da249eca11422955648c2722d99c3
+        location: QgrK9rtJ
+        source: provider-catalog
+      slot: filename:createaddoncompatibility-neoforge-1.21.1-1.0.0.jar
+    identity:
+      kind: provider
+      project:
+        project: QgrK9rtJ
+        provider: modrinth
+    selection:
+      project:
+        project: QgrK9rtJ
+        provider: modrinth
+      selection:
+        id: tL1Tayuh
+        provider: modrinth
+    title: "Create: Addon Compatibility"
+  curios:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/vvuO3ImH/versions/yohfFbgD/curios-neoforge-9.5.1%2B1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: vvuO3ImH
+            provider: modrinth
+          selection:
+            id: yohfFbgD
+            provider: modrinth
+        slot: curios-neoforge-9.5.1+1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 418fcd42e3a7844c9bdc71c9b6401fdb3894e0c4
+          sha512: >-
+            5981a267686b744e7e3c227f78cbcd5267c14ac6979a28e814695f4589273998563147207fef4a5cdb7cdbdc39797cd95d9e4abadb55869f18e02a38d0654ae5
+        size: 410690
+      placements:
+      - destination: mods/curios-neoforge-9.5.1+1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 418fcd42e3a7844c9bdc71c9b6401fdb3894e0c4
+          sha512: >-
+            5981a267686b744e7e3c227f78cbcd5267c14ac6979a28e814695f4589273998563147207fef4a5cdb7cdbdc39797cd95d9e4abadb55869f18e02a38d0654ae5
+        location: vvuO3ImH
+        source: provider-catalog
+      slot: filename:curios-neoforge-9.5.1+1.21.1.jar
+    identity:
+      kind: provider
+      project:
+        project: vvuO3ImH
+        provider: modrinth
+    selection:
+      project:
+        project: vvuO3ImH
+        provider: modrinth
+      selection:
+        id: yohfFbgD
+        provider: modrinth
+    title: Curios API
+  defaultworldtype:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/kZvO1mDq/versions/CCrwlupr/DefaultWorldType-1.21-5.0.4.jar
+        kind: provider
+        pin:
+          project:
+            project: kZvO1mDq
+            provider: modrinth
+          selection:
+            id: CCrwlupr
+            provider: modrinth
+        slot: DefaultWorldType-1.21-5.0.4.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: ee1a6664e67858b64f1e95ebbfcd6fa1e3111069
+          sha512: >-
+            6d862519baa92d08dfb31fd64ee9b3e1457f78e189eb1843f5fb91051603abd13ec64610c0597247a4a2badc8f144002079fda6890dc6d6142fdf09ad5137408
+        size: 14563
+      placements:
+      - destination: mods/DefaultWorldType-1.21-5.0.4.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: ee1a6664e67858b64f1e95ebbfcd6fa1e3111069
+          sha512: >-
+            6d862519baa92d08dfb31fd64ee9b3e1457f78e189eb1843f5fb91051603abd13ec64610c0597247a4a2badc8f144002079fda6890dc6d6142fdf09ad5137408
+        location: kZvO1mDq
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: kZvO1mDq
+        provider: modrinth
+    selection:
+      project:
+        project: kZvO1mDq
+        provider: modrinth
+      selection:
+        id: CCrwlupr
+        provider: modrinth
+    title: Default World Type
+  distant-horizons-seedgen:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/iUGLCJTI/versions/2DrfEi0d/Distant%20Horizons%20SeedGen%200.9.1%20for%201.21.1%20NeoForge.jar
+        kind: provider
+        pin:
+          project:
+            project: iUGLCJTI
+            provider: modrinth
+          selection:
+            id: 2DrfEi0d
+            provider: modrinth
+        slot: Distant Horizons SeedGen 0.9.1 for 1.21.1 NeoForge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: d9d65b1fcbaf5e4eaaa8564f87c300829c981795
+          sha512: >-
+            4b0bbb0426d0d600fcef2deb0580f458bbf16b90440b84b9d28fe377a3107cf22ff9f166eec85b802cb5386d5af39d5b0a12ac6bf7ca04fad427206d1405c61d
+        size: 1355029
+      placements:
+      - destination: mods/Distant Horizons SeedGen 0.9.1 for 1.21.1 NeoForge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: d9d65b1fcbaf5e4eaaa8564f87c300829c981795
+          sha512: >-
+            4b0bbb0426d0d600fcef2deb0580f458bbf16b90440b84b9d28fe377a3107cf22ff9f166eec85b802cb5386d5af39d5b0a12ac6bf7ca04fad427206d1405c61d
+        location: iUGLCJTI
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: iUGLCJTI
+        provider: modrinth
+    selection:
+      project:
+        project: iUGLCJTI
+        provider: modrinth
+      selection:
+        id: 2DrfEi0d
+        provider: modrinth
+    title: Distant Horizons SeedGen
+  distanthorizons:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/uCdwusMi/versions/9w34y8ai/DistantHorizons-3.3.3-1.21.1-fabric-neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: uCdwusMi
+            provider: modrinth
+          selection:
+            id: 9w34y8ai
+            provider: modrinth
+        slot: DistantHorizons-3.3.3-1.21.1-fabric-neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 4357b4d19fab818780c94f0e43dad1cc931634b2
+          sha512: >-
+            d14b32d3fd143a06514d6ad388eee11e9d657c84e1a937aaf8d033b1137fb43ef8b05cff1011a994cc42f3106823c51234f8bc18d72bb05bc317a20ea83c50ed
+        size: 28289212
+      placements:
+      - destination: mods/DistantHorizons-3.3.3-1.21.1-fabric-neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 4357b4d19fab818780c94f0e43dad1cc931634b2
+          sha512: >-
+            d14b32d3fd143a06514d6ad388eee11e9d657c84e1a937aaf8d033b1137fb43ef8b05cff1011a994cc42f3106823c51234f8bc18d72bb05bc317a20ea83c50ed
+        location: uCdwusMi
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: uCdwusMi
+        provider: modrinth
+    selection:
+      project:
+        project: uCdwusMi
+        provider: modrinth
+      selection:
+        id: 9w34y8ai
+        provider: modrinth
+    title: Distant Horizons
+  distraction-free-recipes:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/gbJLUhZP/versions/H0rFJIiC/distraction_free_recipes-neoforge-1.2.1-1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: gbJLUhZP
+            provider: modrinth
+          selection:
+            id: H0rFJIiC
+            provider: modrinth
+        slot: distraction_free_recipes-neoforge-1.2.1-1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: ece9588b8c0f1825bac33c915378af761b6101ae
+          sha512: >-
+            e32874486193ae21abe4b0afc03b8864a1e01173192bd26a1df258823ac27867101dcffa526e69a4370d008fe13755234ec18725a87bbe3c338173100f58d7ce
+        size: 58044
+      placements:
+      - destination: mods/distraction_free_recipes-neoforge-1.2.1-1.21.1.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: client
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: ece9588b8c0f1825bac33c915378af761b6101ae
+          sha512: >-
+            e32874486193ae21abe4b0afc03b8864a1e01173192bd26a1df258823ac27867101dcffa526e69a4370d008fe13755234ec18725a87bbe3c338173100f58d7ce
+        location: gbJLUhZP
+        source: provider-catalog
+      slot: filename:distraction_free_recipes-neoforge-1.2.1-1.21.1.jar
+    identity:
+      kind: provider
+      project:
+        project: gbJLUhZP
+        provider: modrinth
+    selection:
+      project:
+        project: gbJLUhZP
+        provider: modrinth
+      selection:
+        id: H0rFJIiC
+        provider: modrinth
+    title: Distraction Free Recipes (EMI / REI / JEI)
+  dynamic-fps:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/LQ3K71Q1/versions/T238FZpQ/dynamic-fps-3.11.4%2Bminecraft-1.21.0-neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: LQ3K71Q1
+            provider: modrinth
+          selection:
+            id: T238FZpQ
+            provider: modrinth
+        slot: dynamic-fps-3.11.4+minecraft-1.21.0-neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 35b17e95b2b65930116ccc83e0cc358ac1bfcf9e
+          sha512: >-
+            8eb18a280b265e598540306275b51a165836f4b14c6c703b6ced11fcac50bfab439e4deb69e222f62614a9f15fa0ef58e5bd84e20e37ae57755d9c2f8b134057
+        size: 220193
+      placements:
+      - destination: mods/dynamic-fps-3.11.4+minecraft-1.21.0-neoforge.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: client
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 35b17e95b2b65930116ccc83e0cc358ac1bfcf9e
+          sha512: >-
+            8eb18a280b265e598540306275b51a165836f4b14c6c703b6ced11fcac50bfab439e4deb69e222f62614a9f15fa0ef58e5bd84e20e37ae57755d9c2f8b134057
+        location: LQ3K71Q1
+        source: provider-catalog
+      slot: filename:dynamic-fps-3.11.4+minecraft-1.21.0-neoforge.jar
+    identity:
+      kind: provider
+      project:
+        project: LQ3K71Q1
+        provider: modrinth
+    selection:
+      project:
+        project: LQ3K71Q1
+        provider: modrinth
+      selection:
+        id: T238FZpQ
+        provider: modrinth
+    title: Dynamic FPS
+  effortless-building:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/DYtfQEYj/versions/YxnBXtLv/effortlessbuilding-4.2%2B1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: DYtfQEYj
+            provider: modrinth
+          selection:
+            id: YxnBXtLv
+            provider: modrinth
+        slot: effortlessbuilding-4.2+1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 34af0d5e57f771fa9a37e6b1b5e59c38a03afd01
+          sha512: >-
+            bc1fccb3b2bae54119f4fd32030d88b32bfb362e706d8c75600f7909d15ca5db9b7cbd08e9e7fa71c79275f6b19e4c1a358586fefb24008e6b002ccb482a4a18
+        size: 958842
+      placements:
+      - destination: mods/effortlessbuilding-4.2+1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 34af0d5e57f771fa9a37e6b1b5e59c38a03afd01
+          sha512: >-
+            bc1fccb3b2bae54119f4fd32030d88b32bfb362e706d8c75600f7909d15ca5db9b7cbd08e9e7fa71c79275f6b19e4c1a358586fefb24008e6b002ccb482a4a18
+        location: DYtfQEYj
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: DYtfQEYj
+        provider: modrinth
+    selection:
+      project:
+        project: DYtfQEYj
+        provider: modrinth
+      selection:
+        id: YxnBXtLv
+        provider: modrinth
+    title: Effortless Building
+  emi:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/fRiHVvU7/versions/5sIPA1To/emi-1.1.24%2B1.21.1%2Bneoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: fRiHVvU7
+            provider: modrinth
+          selection:
+            id: 5sIPA1To
+            provider: modrinth
+        slot: emi-1.1.24+1.21.1+neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 3fd494b37027dfbc7f78414d7cbf251c9eb6738a
+          sha512: >-
+            f4c45ed686fe617311d6debadcb6ace5963e66f8cfe0cfed398231f081f87407070efc7a73c8b695d158f1d87a97180737b9107a46771e77df2bc9a7dc715ebd
+        size: 1111538
+      placements:
+      - destination: mods/emi-1.1.24+1.21.1+neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 3fd494b37027dfbc7f78414d7cbf251c9eb6738a
+          sha512: >-
+            f4c45ed686fe617311d6debadcb6ace5963e66f8cfe0cfed398231f081f87407070efc7a73c8b695d158f1d87a97180737b9107a46771e77df2bc9a7dc715ebd
+        location: fRiHVvU7
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: fRiHVvU7
+        provider: modrinth
+    selection:
+      project:
+        project: fRiHVvU7
+        provider: modrinth
+      selection:
+        id: 5sIPA1To
+        provider: modrinth
+    title: EMI
+  emi-loot:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/qbbO7Jns/versions/QXkODMCT/emi_loot-0.7.9%2B1.21%2Bneoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: qbbO7Jns
+            provider: modrinth
+          selection:
+            id: QXkODMCT
+            provider: modrinth
+        slot: emi_loot-0.7.9+1.21+neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: bd0326eeda721c87a29efd78f9a52f46d572392c
+          sha512: >-
+            9c67ff502da7a94ef7707c144deb4ec6472f445e99cc8eab30b77f22d886a86b8793338452fe394296f3132ed4d37271d475af184e3a9519ddebdad1a82eecf7
+        size: 465870
+      placements:
+      - destination: mods/emi_loot-0.7.9+1.21+neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: bd0326eeda721c87a29efd78f9a52f46d572392c
+          sha512: >-
+            9c67ff502da7a94ef7707c144deb4ec6472f445e99cc8eab30b77f22d886a86b8793338452fe394296f3132ed4d37271d475af184e3a9519ddebdad1a82eecf7
+        location: qbbO7Jns
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: qbbO7Jns
+        provider: modrinth
+    selection:
+      project:
+        project: qbbO7Jns
+        provider: modrinth
+      selection:
+        id: QXkODMCT
+        provider: modrinth
+    title: EMI Loot
+  entityculling:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/NNAgCjsB/versions/eieYbWYb/entityculling-neoforge-1.11.3-mc1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: NNAgCjsB
+            provider: modrinth
+          selection:
+            id: eieYbWYb
+            provider: modrinth
+        slot: entityculling-neoforge-1.11.3-mc1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: f122f84f329793675b2625d51b77f990d7de3579
+          sha512: >-
+            93e83dd690b91d610be29451b34836c9daa7e08bd952f88ffa07c62d8774bbaac2ff0c6768d2cbf1b14f47d0b86f98cef9fd341e0d29bd37207eaf4aa2abea63
+        size: 1510075
+      placements:
+      - destination: mods/entityculling-neoforge-1.11.3-mc1.21.1.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: f122f84f329793675b2625d51b77f990d7de3579
+          sha512: >-
+            93e83dd690b91d610be29451b34836c9daa7e08bd952f88ffa07c62d8774bbaac2ff0c6768d2cbf1b14f47d0b86f98cef9fd341e0d29bd37207eaf4aa2abea63
+        location: NNAgCjsB
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: NNAgCjsB
+        provider: modrinth
+    selection:
+      project:
+        project: NNAgCjsB
+        provider: modrinth
+      selection:
+        id: eieYbWYb
+        provider: modrinth
+    title: Entity Culling
+  escalated:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/LyOBYG8Q/versions/vJ49zRJl/escalated-1.3.2%2Bmc.1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: LyOBYG8Q
+            provider: modrinth
+          selection:
+            id: vJ49zRJl
+            provider: modrinth
+        slot: escalated-1.3.2+mc.1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 34854b74bd9c627b873cb21bb5ec15fbad038db6
+          sha512: >-
+            6989262104ab83d79c14fef15a19c7bcdbfb46ef7659f3c41a8421df57c6754e3bd8ce20de37b9200bfb7cb84da0977001385cfa489803efc02273419f248429
+        size: 512624
+      placements:
+      - destination: mods/escalated-1.3.2+mc.1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 34854b74bd9c627b873cb21bb5ec15fbad038db6
+          sha512: >-
+            6989262104ab83d79c14fef15a19c7bcdbfb46ef7659f3c41a8421df57c6754e3bd8ce20de37b9200bfb7cb84da0977001385cfa489803efc02273419f248429
+        location: LyOBYG8Q
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: LyOBYG8Q
+        provider: modrinth
+    selection:
+      project:
+        project: LyOBYG8Q
+        provider: modrinth
+      selection:
+        id: vJ49zRJl
+        provider: modrinth
+    title: "Create: Escalated"
+  euphoria-patches:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/4H6sumDB/versions/QMsRXtSJ/EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: 4H6sumDB
+            provider: modrinth
+          selection:
+            id: QMsRXtSJ
+            provider: modrinth
+        slot: EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 2b3f92878d6867fa0199937da25ba882b9db7902
+          sha512: >-
+            19e5528f6284f68d28e9e8b17a9531bb0f8e0ab862e3ab93a1b53fe3f18765cfa38cc512e66c2d4b308e6783307d132e8b5c337db4a39b016d75e6830376070a
+        size: 4492151
+      placements:
+      - destination: mods/EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 2b3f92878d6867fa0199937da25ba882b9db7902
+          sha512: >-
+            19e5528f6284f68d28e9e8b17a9531bb0f8e0ab862e3ab93a1b53fe3f18765cfa38cc512e66c2d4b308e6783307d132e8b5c337db4a39b016d75e6830376070a
+        location: 4H6sumDB
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: 4H6sumDB
+        provider: modrinth
+    selection:
+      project:
+        project: 4H6sumDB
+        provider: modrinth
+      selection:
+        id: QMsRXtSJ
+        provider: modrinth
+    title: Euphoria Patches
+  exposure:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/hB899VmG/versions/iBvaR6AK/exposure-neoforge-1.21.1-1.9.19.jar
+        kind: provider
+        pin:
+          project:
+            project: hB899VmG
+            provider: modrinth
+          selection:
+            id: iBvaR6AK
+            provider: modrinth
+        slot: exposure-neoforge-1.21.1-1.9.19.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 181d328a0328523fa99dd310937c40d917e91029
+          sha512: >-
+            b6b18638d61196c3b579dcb5cd977b125586c848822ffa3bb247b3d34dc019e3ca53629303cbb57c0875f7e29be30ae036e81d90dd8feb5dd87090b2b81c08b7
+        size: 2206392
+      placements:
+      - destination: mods/exposure-neoforge-1.21.1-1.9.19.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 181d328a0328523fa99dd310937c40d917e91029
+          sha512: >-
+            b6b18638d61196c3b579dcb5cd977b125586c848822ffa3bb247b3d34dc019e3ca53629303cbb57c0875f7e29be30ae036e81d90dd8feb5dd87090b2b81c08b7
+        location: hB899VmG
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: hB899VmG
+        provider: modrinth
+    selection:
+      project:
+        project: hB899VmG
+        provider: modrinth
+      selection:
+        id: iBvaR6AK
+        provider: modrinth
+    title: Exposure
+  ferrite-core:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/uXXizFIs/versions/x7kQWVju/ferritecore-7.0.3-neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: uXXizFIs
+            provider: modrinth
+          selection:
+            id: x7kQWVju
+            provider: modrinth
+        slot: ferritecore-7.0.3-neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 9563692efb708b6b568df27a01ec52f6311928ef
+          sha512: >-
+            19af89a2075bb10a63884fa853ebf84b02c79dc3242430ecdad056fd764fdcde367a7303276b329df01b0736e2ef264c5d80c7dc92c6aebd244f556a230bb417
+        size: 121559
+      placements:
+      - destination: mods/ferritecore-7.0.3-neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 9563692efb708b6b568df27a01ec52f6311928ef
+          sha512: >-
+            19af89a2075bb10a63884fa853ebf84b02c79dc3242430ecdad056fd764fdcde367a7303276b329df01b0736e2ef264c5d80c7dc92c6aebd244f556a230bb417
+        location: uXXizFIs
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: uXXizFIs
+        provider: modrinth
+    selection:
+      project:
+        project: uXXizFIs
+        provider: modrinth
+      selection:
+        id: x7kQWVju
+        provider: modrinth
+    title: FerriteCore
+  forgified-fabric-api:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/Aqlf1Shp/versions/C4eskNuR/forgified-fabric-api-0.116.15%2B2.3.6%2B1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: Aqlf1Shp
+            provider: modrinth
+          selection:
+            id: C4eskNuR
+            provider: modrinth
+        slot: forgified-fabric-api-0.116.15+2.3.6+1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 1fe1ca9f440cd30c86186e42505694b70ececc11
+          sha512: >-
+            470ae4e8569484e6942a2f7e09a37ae58a58e0ad44f49f0d483db88024db19d41bfac3c68221c38623829871ade9d89bc5aa31cf0e682e798b2f9029b808011d
+        size: 5612888
+      placements:
+      - destination: mods/forgified-fabric-api-0.116.15+2.3.6+1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 1fe1ca9f440cd30c86186e42505694b70ececc11
+          sha512: >-
+            470ae4e8569484e6942a2f7e09a37ae58a58e0ad44f49f0d483db88024db19d41bfac3c68221c38623829871ade9d89bc5aa31cf0e682e798b2f9029b808011d
+        location: Aqlf1Shp
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: Aqlf1Shp
+        provider: modrinth
+    selection:
+      project:
+        project: Aqlf1Shp
+        provider: modrinth
+      selection:
+        id: C4eskNuR
+        provider: modrinth
+    title: Forgified Fabric API
+  fusion-connected-textures:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/p19vrgc2/versions/AYDaLPK8/fusion-1.3.16-neoforge-mc1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: p19vrgc2
+            provider: modrinth
+          selection:
+            id: AYDaLPK8
+            provider: modrinth
+        slot: fusion-1.3.16-neoforge-mc1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: c3cd7c2718583aa5a12e8502c6b92e050bad0c19
+          sha512: >-
+            0b65c3a78db5785c76a222639a56da0cd09fc8445e02cdfb84e4bb7c88dc2c5622ccb468291a12df30440205a881db2023d9857fdb7252e7d21238876fcc8608
+        size: 947335
+      placements:
+      - destination: mods/fusion-1.3.16-neoforge-mc1.21.1.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: c3cd7c2718583aa5a12e8502c6b92e050bad0c19
+          sha512: >-
+            0b65c3a78db5785c76a222639a56da0cd09fc8445e02cdfb84e4bb7c88dc2c5622ccb468291a12df30440205a881db2023d9857fdb7252e7d21238876fcc8608
+        location: p19vrgc2
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: p19vrgc2
+        provider: modrinth
+    selection:
+      project:
+        project: p19vrgc2
+        provider: modrinth
+      selection:
+        id: AYDaLPK8
+        provider: modrinth
+    title: Fusion (Connected Textures)
+  fzzy-config:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/hYykXjDp/versions/uG7oHgw6/fzzy_config-0.7.7%2B1.21%2Bneoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: hYykXjDp
+            provider: modrinth
+          selection:
+            id: uG7oHgw6
+            provider: modrinth
+        slot: fzzy_config-0.7.7+1.21+neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 518eadc53c065a74a49207769209c116e77d1849
+          sha512: >-
+            ef03b411b0e1b241a9952e1a8fdac61979665953eb5f28116aac06530964e7378eb20a78594a47ba4d942c74dfa20d550c292014b5de8e63c42b882a33aef5a5
+        size: 2392693
+      placements:
+      - destination: mods/fzzy_config-0.7.7+1.21+neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 518eadc53c065a74a49207769209c116e77d1849
+          sha512: >-
+            ef03b411b0e1b241a9952e1a8fdac61979665953eb5f28116aac06530964e7378eb20a78594a47ba4d942c74dfa20d550c292014b5de8e63c42b882a33aef5a5
+        location: hYykXjDp
+        source: provider-catalog
+      slot: filename:fzzy_config-0.7.7+1.21+neoforge.jar
+    identity:
+      kind: provider
+      project:
+        project: hYykXjDp
+        provider: modrinth
+    selection:
+      project:
+        project: hYykXjDp
+        provider: modrinth
+      selection:
+        id: uG7oHgw6
+        provider: modrinth
+    title: Fzzy Config
+  hoofprint:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/8O6iJpuJ/versions/YQxLELnA/hoofprint-1.3.0%2B1.21.jar
+        kind: url
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: d2395ad821239db36507fc6946d185fd10e81d3c
+          sha512: >-
+            68afc8c41407f2a421bf322e9b7bd71cf69285fa871f2dfd91a996f4822bac35ee20215d12d39ac91ddd6ab4d5e3a9ce6c735fd171b06edd71a817ed8bec5e17
+        size: null
+      placements:
+      - destination: mods/hoofprint-1.3.0+1.21.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: client
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: d2395ad821239db36507fc6946d185fd10e81d3c
+          sha512: >-
+            68afc8c41407f2a421bf322e9b7bd71cf69285fa871f2dfd91a996f4822bac35ee20215d12d39ac91ddd6ab4d5e3a9ce6c735fd171b06edd71a817ed8bec5e17
+        location: null
+        source: url-file
+      slot: content
+    identity:
+      key: hoofprint
+      kind: url
+    selection: null
+    title: hoofprint
+  immediatelyfast:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/5ZwdcRci/versions/EJzmEPZV/ImmediatelyFast-NeoForge-1.6.15%2B1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: 5ZwdcRci
+            provider: modrinth
+          selection:
+            id: EJzmEPZV
+            provider: modrinth
+        slot: ImmediatelyFast-NeoForge-1.6.15+1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: f991166f7c82b493481c876e3c83c9fac4159671
+          sha512: >-
+            c115cad7b060373fc597aae08c685e2d56f173b88b792a4a2c229e222f8da293b99865e9553cf716483d3c3d6a18f31c51c5dd55be22d4625ed2c962d7b94fd0
+        size: 368896
+      placements:
+      - destination: mods/ImmediatelyFast-NeoForge-1.6.15+1.21.1.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: f991166f7c82b493481c876e3c83c9fac4159671
+          sha512: >-
+            c115cad7b060373fc597aae08c685e2d56f173b88b792a4a2c229e222f8da293b99865e9553cf716483d3c3d6a18f31c51c5dd55be22d4625ed2c962d7b94fd0
+        location: 5ZwdcRci
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: 5ZwdcRci
+        provider: modrinth
+    selection:
+      project:
+        project: 5ZwdcRci
+        provider: modrinth
+      selection:
+        id: EJzmEPZV
+        provider: modrinth
+    title: ImmediatelyFast
+  interiors:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/r4Knci2k/versions/gBrfZy6S/interiors-1.21.1-neoforge-0.6.1.jar
+        kind: provider
+        pin:
+          project:
+            project: r4Knci2k
+            provider: modrinth
+          selection:
+            id: gBrfZy6S
+            provider: modrinth
+        slot: interiors-1.21.1-neoforge-0.6.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: a558777ef4510da2f4d32ca3da6ac7384c9a9940
+          sha512: >-
+            68b0d915e41fb0ce9d12a8c580d688a604770ded2b21e963058aa6d80cbc5661c481416d051a541395b5c79f461edcb658046e53cfcfb405179a450662ed01b5
+        size: 486912
+      placements:
+      - destination: mods/interiors-1.21.1-neoforge-0.6.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: a558777ef4510da2f4d32ca3da6ac7384c9a9940
+          sha512: >-
+            68b0d915e41fb0ce9d12a8c580d688a604770ded2b21e963058aa6d80cbc5661c481416d051a541395b5c79f461edcb658046e53cfcfb405179a450662ed01b5
+        location: r4Knci2k
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: r4Knci2k
+        provider: modrinth
+    selection:
+      project:
+        project: r4Knci2k
+        provider: modrinth
+      selection:
+        id: gBrfZy6S
+        provider: modrinth
+    title: "Create: Interiors"
+  iris:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/YL57xq9U/versions/KduFYu4t/iris-neoforge-1.8.14-beta.1%2Bmc1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: YL57xq9U
+            provider: modrinth
+          selection:
+            id: KduFYu4t
+            provider: modrinth
+        slot: iris-neoforge-1.8.14-beta.1+mc1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 1bd129cf7bce65d6b1c0543045f0620c98a0f885
+          sha512: >-
+            33fddb430e16222902eac75b8b3d57c381b0f3cc729f3b56c4628df12ca108f23a0b11e2feb167923d6d14d1fc7e8ee1a977ec421b19d1951bdca74c4092b9c5
+        size: 2540723
+      placements:
+      - destination: mods/iris-neoforge-1.8.14-beta.1+mc1.21.1.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 1bd129cf7bce65d6b1c0543045f0620c98a0f885
+          sha512: >-
+            33fddb430e16222902eac75b8b3d57c381b0f3cc729f3b56c4628df12ca108f23a0b11e2feb167923d6d14d1fc7e8ee1a977ec421b19d1951bdca74c4092b9c5
+        location: YL57xq9U
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: YL57xq9U
+        provider: modrinth
+    selection:
+      project:
+        project: YL57xq9U
+        provider: modrinth
+      selection:
+        id: KduFYu4t
+        provider: modrinth
+    title: Iris Shaders
+  jade:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/nvQzSEkH/versions/eYz2YBGT/Jade-1.21.1-NeoForge-15.10.6.jar
+        kind: provider
+        pin:
+          project:
+            project: nvQzSEkH
+            provider: modrinth
+          selection:
+            id: eYz2YBGT
+            provider: modrinth
+        slot: Jade-1.21.1-NeoForge-15.10.6.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 88ee316e68900080b017f60c12162e2731924cf8
+          sha512: >-
+            dad9755dce8d85d914fc4df2baa0211f13e5839a71c1925fdd01f69081a95e30a2934e6273f8b01f0169adebe7a9dae57a8d904de0c4cb36dc17369bb474f0f2
+        size: 726853
+      placements:
+      - destination: mods/Jade-1.21.1-NeoForge-15.10.6.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 88ee316e68900080b017f60c12162e2731924cf8
+          sha512: >-
+            dad9755dce8d85d914fc4df2baa0211f13e5839a71c1925fdd01f69081a95e30a2934e6273f8b01f0169adebe7a9dae57a8d904de0c4cb36dc17369bb474f0f2
+        location: nvQzSEkH
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: nvQzSEkH
+        provider: modrinth
+    selection:
+      project:
+        project: nvQzSEkH
+        provider: modrinth
+      selection:
+        id: eYz2YBGT
+        provider: modrinth
+    title: Jade 🔍
+  jade-addons-forge:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/xuDOzCLy/versions/O3F6Dkle/JadeAddons-1.21.1-NeoForge-6.1.2.jar
+        kind: provider
+        pin:
+          project:
+            project: xuDOzCLy
+            provider: modrinth
+          selection:
+            id: O3F6Dkle
+            provider: modrinth
+        slot: JadeAddons-1.21.1-NeoForge-6.1.2.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 479b327078f8f0091e2413675d1236c931f68cf4
+          sha512: >-
+            7fc0f413a73e11af6463cc246d9390e0cbe14ff46d0778d9893be59bb1dbbf300a745cc50731412ab4a940f7fe06e5433fa61a423a38ff64b6c6742c5ee62c7b
+        size: 82315
+      placements:
+      - destination: mods/JadeAddons-1.21.1-NeoForge-6.1.2.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 479b327078f8f0091e2413675d1236c931f68cf4
+          sha512: >-
+            7fc0f413a73e11af6463cc246d9390e0cbe14ff46d0778d9893be59bb1dbbf300a745cc50731412ab4a940f7fe06e5433fa61a423a38ff64b6c6742c5ee62c7b
+        location: xuDOzCLy
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: xuDOzCLy
+        provider: modrinth
+    selection:
+      project:
+        project: xuDOzCLy
+        provider: modrinth
+      selection:
+        id: O3F6Dkle
+        provider: modrinth
+    title: Jade Addons (Neo/Forge)
+  jade-sable-compat:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/jCrJ4iGH/versions/cxUohR7A/sablejade-1.3.0.jar
+        kind: provider
+        pin:
+          project:
+            project: jCrJ4iGH
+            provider: modrinth
+          selection:
+            id: cxUohR7A
+            provider: modrinth
+        slot: sablejade-1.3.0.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: beb78d81a4d5768780c8566fa869ced5dbe08263
+          sha512: >-
+            20a0b808b5e1ea0e7251bd9ac5161bd96cf504b054f27f85343980956980210be6b364e8d6cbadbde9a6588550afd24e66ee5f17480839998772dc9de719ad64
+        size: 301532
+      placements:
+      - destination: mods/sablejade-1.3.0.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: beb78d81a4d5768780c8566fa869ced5dbe08263
+          sha512: >-
+            20a0b808b5e1ea0e7251bd9ac5161bd96cf504b054f27f85343980956980210be6b364e8d6cbadbde9a6588550afd24e66ee5f17480839998772dc9de719ad64
+        location: jCrJ4iGH
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: jCrJ4iGH
+        provider: modrinth
+    selection:
+      project:
+        project: jCrJ4iGH
+        provider: modrinth
+      selection:
+        id: cxUohR7A
+        provider: modrinth
+    title: Jade Sable Compat
+  jei:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/u6dRKJwZ/versions/iv3KiVkE/jei-1.21.1-neoforge-19.64.0.455.jar
+        kind: provider
+        pin:
+          project:
+            project: u6dRKJwZ
+            provider: modrinth
+          selection:
+            id: iv3KiVkE
+            provider: modrinth
+        slot: jei-1.21.1-neoforge-19.64.0.455.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: f6d6fc08d54c40752926b570a2220471e8c45c1a
+          sha512: >-
+            fdd02e57ce4dcf20b69860a5ace1b97d9a771486241179cf9edfe71e30c69bb4003b046d0cce8d8c4913b9689f1d8b04cf0542b0b04a6cf0b3b0465f3bb11702
+        size: 2375741
+      placements:
+      - destination: mods/jei-1.21.1-neoforge-19.64.0.455.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: f6d6fc08d54c40752926b570a2220471e8c45c1a
+          sha512: >-
+            fdd02e57ce4dcf20b69860a5ace1b97d9a771486241179cf9edfe71e30c69bb4003b046d0cce8d8c4913b9689f1d8b04cf0542b0b04a6cf0b3b0465f3bb11702
+        location: u6dRKJwZ
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: u6dRKJwZ
+        provider: modrinth
+    selection:
+      project:
+        project: u6dRKJwZ
+        provider: modrinth
+      selection:
+        id: iv3KiVkE
+        provider: modrinth
+    title: Just Enough Items (JEI)
+  kotlin-for-forge:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/ordsPcFz/versions/uhJhCT7X/kotlinforforge-5.12.0-all.jar
+        kind: provider
+        pin:
+          project:
+            project: ordsPcFz
+            provider: modrinth
+          selection:
+            id: uhJhCT7X
+            provider: modrinth
+        slot: kotlinforforge-5.12.0-all.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: d10d062caf1aad9aec82d7852f2fee1781735c1f
+          sha512: >-
+            b8c3942f4d33179edf3f102f3d870b99dd436f8b8236dbbd31aa51b888162c692cfd88927295f24dc8b4375232f4c6c17360c5d6c4823f93cbcd7cf4bdc8bd14
+        size: 7279264
+      placements:
+      - destination: mods/kotlinforforge-5.12.0-all.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: d10d062caf1aad9aec82d7852f2fee1781735c1f
+          sha512: >-
+            b8c3942f4d33179edf3f102f3d870b99dd436f8b8236dbbd31aa51b888162c692cfd88927295f24dc8b4375232f4c6c17360c5d6c4823f93cbcd7cf4bdc8bd14
+        location: ordsPcFz
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: ordsPcFz
+        provider: modrinth
+    selection:
+      project:
+        project: ordsPcFz
+        provider: modrinth
+      selection:
+        id: uhJhCT7X
+        provider: modrinth
+    title: Kotlin for Forge
+  lets-do-camping:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/uJXTNuf0/versions/GdYcZwHn/letsdo-camping-neoforge-2.1.6.jar
+        kind: provider
+        pin:
+          project:
+            project: uJXTNuf0
+            provider: modrinth
+          selection:
+            id: GdYcZwHn
+            provider: modrinth
+        slot: letsdo-camping-neoforge-2.1.6.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: efdde75d38c08ab8952d4732ff537e5a88f17c01
+          sha512: >-
+            f47a9dac957faea4793d285e45f4d0b5f38815d3049ce7bfd024b765ece4cb2825a303c1132e203db6060c49b5f1c36c85ba65ff0cd2f79d21d392634412e744
+        size: 1346314
+      placements:
+      - destination: mods/letsdo-camping-neoforge-2.1.6.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: efdde75d38c08ab8952d4732ff537e5a88f17c01
+          sha512: >-
+            f47a9dac957faea4793d285e45f4d0b5f38815d3049ce7bfd024b765ece4cb2825a303c1132e203db6060c49b5f1c36c85ba65ff0cd2f79d21d392634412e744
+        location: uJXTNuf0
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: uJXTNuf0
+        provider: modrinth
+    selection:
+      project:
+        project: uJXTNuf0
+        provider: modrinth
+      selection:
+        id: GdYcZwHn
+        provider: modrinth
+    title: "[Let's Do] Camping"
+  lets-do-emi-compat:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/k6hi4lMv/versions/j1Vdf01b/emi-letsdo-compat-2.0.3.jar
+        kind: provider
+        pin:
+          project:
+            project: k6hi4lMv
+            provider: modrinth
+          selection:
+            id: j1Vdf01b
+            provider: modrinth
+        slot: emi-letsdo-compat-2.0.3.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: af5780b19d76dafe9febcc83efc36e309870292a
+          sha512: >-
+            40bdfd6192cbd37fce828d337e98267141e3bd99301f423b5ea169512dad6d01afdd54fdfad7aaa8609241651c229a86beaa481d3403257038cd08e5e626a057
+        size: 123119
+      placements:
+      - destination: mods/emi-letsdo-compat-2.0.3.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: af5780b19d76dafe9febcc83efc36e309870292a
+          sha512: >-
+            40bdfd6192cbd37fce828d337e98267141e3bd99301f423b5ea169512dad6d01afdd54fdfad7aaa8609241651c229a86beaa481d3403257038cd08e5e626a057
+        location: k6hi4lMv
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: k6hi4lMv
+        provider: modrinth
+    selection:
+      project:
+        project: k6hi4lMv
+        provider: modrinth
+      selection:
+        id: j1Vdf01b
+        provider: modrinth
+    title: "[Let's Do Addon] EMI Compat"
+  lithium:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/gvQqBUqZ/versions/DDUrRVCA/lithium-neoforge-0.15.4%2Bmc1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: gvQqBUqZ
+            provider: modrinth
+          selection:
+            id: DDUrRVCA
+            provider: modrinth
+        slot: lithium-neoforge-0.15.4+mc1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 97212e45c963730bbfc7c44780df99317814c21b
+          sha512: >-
+            2735da2088b88a8bdcd4ad02a2b6fffbfd3925557cefd4fa54b5477dfb9e582ea7f521300c060f57dff1325dd21bff276b7333363ad3371ed6893e3de9eca9cd
+        size: 774220
+      placements:
+      - destination: mods/lithium-neoforge-0.15.4+mc1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 97212e45c963730bbfc7c44780df99317814c21b
+          sha512: >-
+            2735da2088b88a8bdcd4ad02a2b6fffbfd3925557cefd4fa54b5477dfb9e582ea7f521300c060f57dff1325dd21bff276b7333363ad3371ed6893e3de9eca9cd
+        location: gvQqBUqZ
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: gvQqBUqZ
+        provider: modrinth
+    selection:
+      project:
+        project: gvQqBUqZ
+        provider: modrinth
+      selection:
+        id: DDUrRVCA
+        provider: modrinth
+    title: Lithium
+  lootr:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/EltpO5cN/versions/SPOrIzX8/lootr-neoforge-1.21.1-1.11.38.127.jar
+        kind: provider
+        pin:
+          project:
+            project: EltpO5cN
+            provider: modrinth
+          selection:
+            id: SPOrIzX8
+            provider: modrinth
+        slot: lootr-neoforge-1.21.1-1.11.38.127.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 7a305b581abd90e1a8b7c1bb5eb4511d2653aa58
+          sha512: >-
+            7496051c1ba98f8801b8eb81773d1baec16166c3d2c5682476bd6f9433f794095099cea609fd5610525edb7c450b1bacd0011a31763e91c77c9a0034c8245ca3
+        size: 1075929
+      placements:
+      - destination: mods/lootr-neoforge-1.21.1-1.11.38.127.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 7a305b581abd90e1a8b7c1bb5eb4511d2653aa58
+          sha512: >-
+            7496051c1ba98f8801b8eb81773d1baec16166c3d2c5682476bd6f9433f794095099cea609fd5610525edb7c450b1bacd0011a31763e91c77c9a0034c8245ca3
+        location: EltpO5cN
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: EltpO5cN
+        provider: modrinth
+    selection:
+      project:
+        project: EltpO5cN
+        provider: modrinth
+      selection:
+        id: SPOrIzX8
+        provider: modrinth
+    title: Lootr
+  macaws-bridges:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/GURcjz8O/versions/aQ7rY7ng/mcw-bridges-3.1.2-mc1.21.1neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: GURcjz8O
+            provider: modrinth
+          selection:
+            id: aQ7rY7ng
+            provider: modrinth
+        slot: mcw-bridges-3.1.2-mc1.21.1neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 71ece28129789a2123cf07e79938f488d8675bb2
+          sha512: >-
+            e98e476324229564132288f0a59bfcc897cff4cda7d12fe218563ca48d382d880662375687c69d1b4619144262ae09cbef130f4330474d8eacd37a21e8e9afb4
+        size: 661387
+      placements:
+      - destination: mods/mcw-bridges-3.1.2-mc1.21.1neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 71ece28129789a2123cf07e79938f488d8675bb2
+          sha512: >-
+            e98e476324229564132288f0a59bfcc897cff4cda7d12fe218563ca48d382d880662375687c69d1b4619144262ae09cbef130f4330474d8eacd37a21e8e9afb4
+        location: GURcjz8O
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: GURcjz8O
+        provider: modrinth
+    selection:
+      project:
+        project: GURcjz8O
+        provider: modrinth
+      selection:
+        id: aQ7rY7ng
+        provider: modrinth
+    title: Macaw's Bridges
+  macaws-doors:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/kNxa8z3e/versions/u7BRX44F/mcw-doors-1.1.5-mc1.21.1neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: kNxa8z3e
+            provider: modrinth
+          selection:
+            id: u7BRX44F
+            provider: modrinth
+        slot: mcw-doors-1.1.5-mc1.21.1neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: c127904f23db1a641dd9e065ec51c5c177cb4cd7
+          sha512: >-
+            43ddf00be46af91c009a95392a094f05017155214c46c7980042cbcf871864dc792416497019e688eb558897c87848bd70c282ec4a6d7b268e1ba30389ba987a
+        size: 1190404
+      placements:
+      - destination: mods/mcw-doors-1.1.5-mc1.21.1neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: c127904f23db1a641dd9e065ec51c5c177cb4cd7
+          sha512: >-
+            43ddf00be46af91c009a95392a094f05017155214c46c7980042cbcf871864dc792416497019e688eb558897c87848bd70c282ec4a6d7b268e1ba30389ba987a
+        location: kNxa8z3e
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: kNxa8z3e
+        provider: modrinth
+    selection:
+      project:
+        project: kNxa8z3e
+        provider: modrinth
+      selection:
+        id: u7BRX44F
+        provider: modrinth
+    title: Macaw's Doors
+  macaws-fences-and-walls:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/GmwLse2I/versions/jVdb0r4W/mcw-mcwfences-1.2.1-mc1.21.1neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: GmwLse2I
+            provider: modrinth
+          selection:
+            id: jVdb0r4W
+            provider: modrinth
+        slot: mcw-mcwfences-1.2.1-mc1.21.1neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: b5580c3fc521ed8bf4db3e407bd590efc317f74d
+          sha512: >-
+            9bf496a8db8c6074ab32374042ae15e87fe87d897e21de29d459556fa8d7d0e73f2718f28a0236181cfb3c1bc66c776b4d079f0a7084696ad490275ab1b9eb6e
+        size: 673871
+      placements:
+      - destination: mods/mcw-mcwfences-1.2.1-mc1.21.1neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: b5580c3fc521ed8bf4db3e407bd590efc317f74d
+          sha512: >-
+            9bf496a8db8c6074ab32374042ae15e87fe87d897e21de29d459556fa8d7d0e73f2718f28a0236181cfb3c1bc66c776b4d079f0a7084696ad490275ab1b9eb6e
+        location: GmwLse2I
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: GmwLse2I
+        provider: modrinth
+    selection:
+      project:
+        project: GmwLse2I
+        provider: modrinth
+      selection:
+        id: jVdb0r4W
+        provider: modrinth
+    title: Macaw's Fences and Walls
+  macaws-lights-and-lamps:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/w4an97C2/versions/5U2kQZIL/mcw-lights-1.1.5-mc1.21.1neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: w4an97C2
+            provider: modrinth
+          selection:
+            id: 5U2kQZIL
+            provider: modrinth
+        slot: mcw-lights-1.1.5-mc1.21.1neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 13c1107caf26b2c60d8626b3658b26cc7f634b38
+          sha512: >-
+            a6e1c4419b70a3f9225ad03daafca22c8a7da432ec4939b8029455927e3b44683a20e89a3299da78f124d0438e188dad3735d2018a931ad4d553ec9d3b83a9ca
+        size: 525744
+      placements:
+      - destination: mods/mcw-lights-1.1.5-mc1.21.1neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 13c1107caf26b2c60d8626b3658b26cc7f634b38
+          sha512: >-
+            a6e1c4419b70a3f9225ad03daafca22c8a7da432ec4939b8029455927e3b44683a20e89a3299da78f124d0438e188dad3735d2018a931ad4d553ec9d3b83a9ca
+        location: w4an97C2
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: w4an97C2
+        provider: modrinth
+    selection:
+      project:
+        project: w4an97C2
+        provider: modrinth
+      selection:
+        id: 5U2kQZIL
+        provider: modrinth
+    title: Macaw's Lights and Lamps
+  macaws-paths-and-pavings:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/VRLhWB91/versions/tlymsxUG/mcw-mcwpaths-1.1.1-mc1.21.1neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: VRLhWB91
+            provider: modrinth
+          selection:
+            id: tlymsxUG
+            provider: modrinth
+        slot: mcw-mcwpaths-1.1.1-mc1.21.1neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 4bb7e1d28eef19f87438881b0f582a15297b95ae
+          sha512: >-
+            8a7bc0100e57369fdcfbb65164fdf97cd7f6a931882d0f63aae15fd3db8975a78cc8734f34f640a5790dddaca5883d8e97117e7966dab50de479b1a8f3662678
+        size: 777742
+      placements:
+      - destination: mods/mcw-mcwpaths-1.1.1-mc1.21.1neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 4bb7e1d28eef19f87438881b0f582a15297b95ae
+          sha512: >-
+            8a7bc0100e57369fdcfbb65164fdf97cd7f6a931882d0f63aae15fd3db8975a78cc8734f34f640a5790dddaca5883d8e97117e7966dab50de479b1a8f3662678
+        location: VRLhWB91
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: VRLhWB91
+        provider: modrinth
+    selection:
+      project:
+        project: VRLhWB91
+        provider: modrinth
+      selection:
+        id: tlymsxUG
+        provider: modrinth
+    title: Macaw's Paths and Pavings
+  macaws-stairs:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/iP3wH1ha/versions/4t8L0dGP/mcw-mcwstairs-1.0.2-mc1.21.1neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: iP3wH1ha
+            provider: modrinth
+          selection:
+            id: 4t8L0dGP
+            provider: modrinth
+        slot: mcw-mcwstairs-1.0.2-mc1.21.1neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 1ee43d693c821efc955a74e551f94372af90a140
+          sha512: >-
+            51533899b5e64610a642ee9e9d89eb9f193d0877a8cba16d3bfa262789334c864128b01757bff9d3db2718bd3df1fc177f9b2d45b84f06fc0a6ee15474af2fac
+        size: 529082
+      placements:
+      - destination: mods/mcw-mcwstairs-1.0.2-mc1.21.1neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 1ee43d693c821efc955a74e551f94372af90a140
+          sha512: >-
+            51533899b5e64610a642ee9e9d89eb9f193d0877a8cba16d3bfa262789334c864128b01757bff9d3db2718bd3df1fc177f9b2d45b84f06fc0a6ee15474af2fac
+        location: iP3wH1ha
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: iP3wH1ha
+        provider: modrinth
+    selection:
+      project:
+        project: iP3wH1ha
+        provider: modrinth
+      selection:
+        id: 4t8L0dGP
+        provider: modrinth
+    title: Macaw's Stairs
+  macaws-trapdoors:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/n2fvCDlM/versions/StnP0RNi/mcw-trapdoors-1.1.5-mc1.21.1neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: n2fvCDlM
+            provider: modrinth
+          selection:
+            id: StnP0RNi
+            provider: modrinth
+        slot: mcw-trapdoors-1.1.5-mc1.21.1neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 1f8b59e31f889f53b6296b42ee09d447e7e56620
+          sha512: >-
+            70721b55802192d678b6fb66619c6e210a49d5e829fc1951c70c27d8ed940c446979e36dd06221c6a35e358e97fb57c22c41ed0b24cd6d03519926b81d58d4b4
+        size: 572870
+      placements:
+      - destination: mods/mcw-trapdoors-1.1.5-mc1.21.1neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 1f8b59e31f889f53b6296b42ee09d447e7e56620
+          sha512: >-
+            70721b55802192d678b6fb66619c6e210a49d5e829fc1951c70c27d8ed940c446979e36dd06221c6a35e358e97fb57c22c41ed0b24cd6d03519926b81d58d4b4
+        location: n2fvCDlM
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: n2fvCDlM
+        provider: modrinth
+    selection:
+      project:
+        project: n2fvCDlM
+        provider: modrinth
+      selection:
+        id: StnP0RNi
+        provider: modrinth
+    title: Macaw's Trapdoors
+  macaws-windows:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/C7I0BCni/versions/rQUE4LCz/mcw-mcwwindows-2.4.2-mc1.21.1neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: C7I0BCni
+            provider: modrinth
+          selection:
+            id: rQUE4LCz
+            provider: modrinth
+        slot: mcw-mcwwindows-2.4.2-mc1.21.1neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: eb1d3c118acb450cc2fe14c2ce7ce247a1bca60c
+          sha512: >-
+            7628aa390a689a211013e5856cca1c695729b1faa7e20da16fa1f8a3822d5b569631829e91222caa8f1b27c4a7d28ab49110502551551216de2fb471b6f2549f
+        size: 1261268
+      placements:
+      - destination: mods/mcw-mcwwindows-2.4.2-mc1.21.1neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: eb1d3c118acb450cc2fe14c2ce7ce247a1bca60c
+          sha512: >-
+            7628aa390a689a211013e5856cca1c695729b1faa7e20da16fa1f8a3822d5b569631829e91222caa8f1b27c4a7d28ab49110502551551216de2fb471b6f2549f
+        location: C7I0BCni
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: C7I0BCni
+        provider: modrinth
+    selection:
+      project:
+        project: C7I0BCni
+        provider: modrinth
+      selection:
+        id: rQUE4LCz
+        provider: modrinth
+    title: Macaw's Windows
+  mcqoy:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/tNmWwdI2/versions/nfqfeKsL/mcqoy-0.4.1%2Bneo-1.21.jar
+        kind: url
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 98a771b14c1f4ead12ffcd99a90b1c91b25cca8d
+          sha512: >-
+            20c40e4bd4104069b65455065cbb9beac829efa314b6e9e960b269725727f0d4f9bed6946815e8b573223cd4a76feddd1e5fbfb17c7293fa6a25545299e1afbc
+        size: null
+      placements:
+      - destination: mods/mcqoy-0.4.1+neo-1.21.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: client
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 98a771b14c1f4ead12ffcd99a90b1c91b25cca8d
+          sha512: >-
+            20c40e4bd4104069b65455065cbb9beac829efa314b6e9e960b269725727f0d4f9bed6946815e8b573223cd4a76feddd1e5fbfb17c7293fa6a25545299e1afbc
+        location: null
+        source: url-file
+      slot: content
+    identity:
+      key: mcqoy
+      kind: url
+    selection: null
+    title: mcqoy
+  mezzconfig:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/7tEfOcA7/versions/idpM3DKC/mezz_config-1.21.1-neoforge-0.6.8-standalone.jar
+        kind: provider
+        pin:
+          project:
+            project: 7tEfOcA7
+            provider: modrinth
+          selection:
+            id: idpM3DKC
+            provider: modrinth
+        slot: mezz_config-1.21.1-neoforge-0.6.8-standalone.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: d99ed592d8ab7105c00444047be7d8346d694ba3
+          sha512: >-
+            ed5ff5acf441ae2a9d2ba7ccc59e9394f4cf1e0f14802dd2ea01e9cd60c3cd412039d12f68297b3726eef63a8a85e6f4340bd969dbd1ab7e1ddc7aef88992e6b
+        size: 327173
+      placements:
+      - destination: mods/mezz_config-1.21.1-neoforge-0.6.8-standalone.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: d99ed592d8ab7105c00444047be7d8346d694ba3
+          sha512: >-
+            ed5ff5acf441ae2a9d2ba7ccc59e9394f4cf1e0f14802dd2ea01e9cd60c3cd412039d12f68297b3726eef63a8a85e6f4340bd969dbd1ab7e1ddc7aef88992e6b
+        location: 7tEfOcA7
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: 7tEfOcA7
+        provider: modrinth
+    selection:
+      project:
+        project: 7tEfOcA7
+        provider: modrinth
+      selection:
+        id: idpM3DKC
+        provider: modrinth
+    title: MezzConfig
+  modernfix:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/nmDcB62a/versions/7Jy58lnT/modernfix-neoforge-5.27.26%2Bmc1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: nmDcB62a
+            provider: modrinth
+          selection:
+            id: 7Jy58lnT
+            provider: modrinth
+        slot: modernfix-neoforge-5.27.26+mc1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 69d468b70e53f6a014c778a81116a41a38fbab33
+          sha512: >-
+            37c76fc5bc72cfc1035260f891ffeb45b4f32651d2e490c5eb8c60f3b5686deca3145b32d4fab9036f65f5277b0ac66f4ad3855e52cd973e791b09e9c4b896d8
+        size: 611043
+      placements:
+      - destination: mods/modernfix-neoforge-5.27.26+mc1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 69d468b70e53f6a014c778a81116a41a38fbab33
+          sha512: >-
+            37c76fc5bc72cfc1035260f891ffeb45b4f32651d2e490c5eb8c60f3b5686deca3145b32d4fab9036f65f5277b0ac66f4ad3855e52cd973e791b09e9c4b896d8
+        location: nmDcB62a
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: nmDcB62a
+        provider: modrinth
+    selection:
+      project:
+        project: nmDcB62a
+        provider: modrinth
+      selection:
+        id: 7Jy58lnT
+        provider: modrinth
+    title: ModernFix
+  moreculling:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/51shyZVL/versions/5M4T2FfG/moreculling-neoforge-1.21.1-1.0.10.jar
+        kind: provider
+        pin:
+          project:
+            project: 51shyZVL
+            provider: modrinth
+          selection:
+            id: 5M4T2FfG
+            provider: modrinth
+        slot: moreculling-neoforge-1.21.1-1.0.10.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 7e2d906031fdba883649eef6ef48a4dbdbb0f6cf
+          sha512: >-
+            64b6d1c71b7251915a35d93ddfb2a0a44851c9962b081fc8a7bb9458a19cb1ce6efb8eeef447bb7217c67010ed7e903d2bed8ed6d166053cacc3f8fb6d2df3d4
+        size: 335699
+      placements:
+      - destination: mods/moreculling-neoforge-1.21.1-1.0.10.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 7e2d906031fdba883649eef6ef48a4dbdbb0f6cf
+          sha512: >-
+            64b6d1c71b7251915a35d93ddfb2a0a44851c9962b081fc8a7bb9458a19cb1ce6efb8eeef447bb7217c67010ed7e903d2bed8ed6d166053cacc3f8fb6d2df3d4
+        location: 51shyZVL
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: 51shyZVL
+        provider: modrinth
+    selection:
+      project:
+        project: 51shyZVL
+        provider: modrinth
+      selection:
+        id: 5M4T2FfG
+        provider: modrinth
+    title: More Culling
+  owo-lib:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/ccKDOlHs/versions/wbdHEItB/owo-lib-neoforge-0.12.15.6-beta.1%2B1.21.jar
+        kind: provider
+        pin:
+          project:
+            project: ccKDOlHs
+            provider: modrinth
+          selection:
+            id: wbdHEItB
+            provider: modrinth
+        slot: owo-lib-neoforge-0.12.15.6-beta.1+1.21.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 3a7f843ce3a4d24f8765a74bc5dde914b316b992
+          sha512: >-
+            fc843ef350c4af6748d9fd6ecd3c28f96262cf46d46a8329029f49ea4f9eb87238113a8a415e8bba2c4f346c718bf450194f6f5823dfbf1ae7312529a81c3e5c
+        size: 1223197
+      placements:
+      - destination: mods/owo-lib-neoforge-0.12.15.6-beta.1+1.21.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 3a7f843ce3a4d24f8765a74bc5dde914b316b992
+          sha512: >-
+            fc843ef350c4af6748d9fd6ecd3c28f96262cf46d46a8329029f49ea4f9eb87238113a8a415e8bba2c4f346c718bf450194f6f5823dfbf1ae7312529a81c3e5c
+        location: ccKDOlHs
+        source: provider-catalog
+      slot: filename:owo-lib-neoforge-0.12.15.6-beta.1+1.21.jar
+    identity:
+      kind: provider
+      project:
+        project: ccKDOlHs
+        provider: modrinth
+    selection:
+      project:
+        project: ccKDOlHs
+        provider: modrinth
+      selection:
+        id: wbdHEItB
+        provider: modrinth
+    title: oωo (owo-lib)
+  playeranimator:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/gedNE4y2/versions/HJZB6bmA/player-animation-lib-forge-2.0.4%2B1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: gedNE4y2
+            provider: modrinth
+          selection:
+            id: HJZB6bmA
+            provider: modrinth
+        slot: player-animation-lib-forge-2.0.4+1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 05be8ddcc78532b9a5520c718edc6c971cd0057c
+          sha512: >-
+            fc00450fb6c95ec1779021bdc726122dacb5915c6baddaacc981cd221b01b8db35f2a0dfde5d6fa6766d877266dc82f58854f571ea53cc5c4d468b80e1548a5f
+        size: 203149
+      placements:
+      - destination: mods/player-animation-lib-forge-2.0.4+1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 05be8ddcc78532b9a5520c718edc6c971cd0057c
+          sha512: >-
+            fc00450fb6c95ec1779021bdc726122dacb5915c6baddaacc981cd221b01b8db35f2a0dfde5d6fa6766d877266dc82f58854f571ea53cc5c4d468b80e1548a5f
+        location: gedNE4y2
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: gedNE4y2
+        provider: modrinth
+    selection:
+      project:
+        project: gedNE4y2
+        provider: modrinth
+      selection:
+        id: HJZB6bmA
+        provider: modrinth
+    title: playerAnimator
+  polymorph:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/tagwiZkJ/versions/9yWvrF5o/polymorph-neoforge-1.2.0%2B1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: tagwiZkJ
+            provider: modrinth
+          selection:
+            id: 9yWvrF5o
+            provider: modrinth
+        slot: polymorph-neoforge-1.2.0+1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: fa6c5fa8a21229c85d564b47c73df7160b3bd4df
+          sha512: >-
+            dce77fffebae80532fec39d35c9c8b5817ba756bb03569022cc0854a8a6cf1868690f91451b587bd60d813e8403b5de91adbc324796bc423ef28deecfb13c775
+        size: 172671
+      placements:
+      - destination: mods/polymorph-neoforge-1.2.0+1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: fa6c5fa8a21229c85d564b47c73df7160b3bd4df
+          sha512: >-
+            dce77fffebae80532fec39d35c9c8b5817ba756bb03569022cc0854a8a6cf1868690f91451b587bd60d813e8403b5de91adbc324796bc423ef28deecfb13c775
+        location: tagwiZkJ
+        source: provider-catalog
+      slot: filename:polymorph-neoforge-1.2.0+1.21.1.jar
+    identity:
+      kind: provider
+      project:
+        project: tagwiZkJ
+        provider: modrinth
+    selection:
+      project:
+        project: tagwiZkJ
+        provider: modrinth
+      selection:
+        id: 9yWvrF5o
+        provider: modrinth
+    title: Polymorph
+  power-grid:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/eWiBLJ9R/versions/jCkPHjmP/powergrid-mc1.21.1-0.6.2.jar
+        kind: provider
+        pin:
+          project:
+            project: eWiBLJ9R
+            provider: modrinth
+          selection:
+            id: jCkPHjmP
+            provider: modrinth
+        slot: powergrid-mc1.21.1-0.6.2.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: e09452dac8202e31f282149d45c49dcdb218bd54
+          sha512: >-
+            60307e23a27526d22bf753d387edef5a2f2a063a04a47b69e98b7f71bbad32fdf17e05f9838008e47a5999a60e5e77a91f0695215d0ab57694f0034fde9873ca
+        size: 5738480
+      placements:
+      - destination: mods/powergrid-mc1.21.1-0.6.2.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: e09452dac8202e31f282149d45c49dcdb218bd54
+          sha512: >-
+            60307e23a27526d22bf753d387edef5a2f2a063a04a47b69e98b7f71bbad32fdf17e05f9838008e47a5999a60e5e77a91f0695215d0ab57694f0034fde9873ca
+        location: eWiBLJ9R
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: eWiBLJ9R
+        provider: modrinth
+    selection:
+      project:
+        project: eWiBLJ9R
+        provider: modrinth
+      selection:
+        id: jCkPHjmP
+        provider: modrinth
+    title: "Create: Power Grid"
+  rechiseled:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/B0g2vT6l/versions/6muGRqvu/rechiseled-1.2.6-neoforge-mc1.21.jar
+        kind: url
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: a7ca83d2f99520233bfa9ce769a157fe05201639
+          sha512: >-
+            fc7556e42439e526edddafdbde108cd1326fd5742d75ae73fe9519f57af18b75cd2861053247b65fa3acd9c58e186bc540496d1e7095a3206b401d9459958e34
+        size: null
+      placements:
+      - destination: mods/rechiseled-1.2.6-neoforge-mc1.21.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: a7ca83d2f99520233bfa9ce769a157fe05201639
+          sha512: >-
+            fc7556e42439e526edddafdbde108cd1326fd5742d75ae73fe9519f57af18b75cd2861053247b65fa3acd9c58e186bc540496d1e7095a3206b401d9459958e34
+        location: null
+        source: url-file
+      slot: content
+    identity:
+      key: rechiseled
+      kind: url
+    selection: null
+    title: rechiseled
+  rechiseled-create:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/E6867niZ/versions/VnOezhJR/rechiseledcreate-1.1.1-neoforge-mc1.21.jar
+        kind: url
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 6f7e53f39eb477d7cee8e21af215cd3db698deda
+          sha512: >-
+            ca77dea4dd3276105176578855b0ffd9f48256bed58701a86171b05db1116a29592871ca7d6d5acc9a023270a45654feb4ab7153026eb751d567e7bf892ca560
+        size: null
+      placements:
+      - destination: mods/rechiseledcreate-1.1.1-neoforge-mc1.21.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 6f7e53f39eb477d7cee8e21af215cd3db698deda
+          sha512: >-
+            ca77dea4dd3276105176578855b0ffd9f48256bed58701a86171b05db1116a29592871ca7d6d5acc9a023270a45654feb4ab7153026eb751d567e7bf892ca560
+        location: null
+        source: url-file
+      slot: content
+    identity:
+      key: rechiseled-create
+      kind: url
+    selection: null
+    title: rechiseled-create
+  reddens-stone-lanterns:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/plgWdsGJ/versions/uehlsDrT/reddensstonelantern-1.0.4-neoforge-1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: plgWdsGJ
+            provider: modrinth
+          selection:
+            id: uehlsDrT
+            provider: modrinth
+        slot: reddensstonelantern-1.0.4-neoforge-1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 6f67a2b70506db7bcc13031739cf98d5994c4725
+          sha512: >-
+            28f0b04e8e448cc43e4a4a5684fe35e30e21e7db698aba24c556a5b2353b81fd749a4948d4bfe6465708997368d9253839a97794e67bf5ab35906395afadf00f
+        size: 617092
+      placements:
+      - destination: mods/reddensstonelantern-1.0.4-neoforge-1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 6f67a2b70506db7bcc13031739cf98d5994c4725
+          sha512: >-
+            28f0b04e8e448cc43e4a4a5684fe35e30e21e7db698aba24c556a5b2353b81fd749a4948d4bfe6465708997368d9253839a97794e67bf5ab35906395afadf00f
+        location: plgWdsGJ
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: plgWdsGJ
+        provider: modrinth
+    selection:
+      project:
+        project: plgWdsGJ
+        provider: modrinth
+      selection:
+        id: uehlsDrT
+        provider: modrinth
+    title: Redden's Stone Lanterns
+  reliable-emi:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/N9WucjHL/versions/2TeI2Zyn/remi-neoforge-1.21.1-4.7.12.jar
+        kind: provider
+        pin:
+          project:
+            project: N9WucjHL
+            provider: modrinth
+          selection:
+            id: 2TeI2Zyn
+            provider: modrinth
+        slot: remi-neoforge-1.21.1-4.7.12.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 056966c6c09bc6aa683603845f61c6c92dbb225f
+          sha512: >-
+            53f277848356d0c4e8027b97b7ea30b39ea85556d3043e525e248c9408ad9f4b659e71ac78d16adfd3d85c580355b7be5794ff90df98865d5f9173abd13f9cee
+        size: 293172
+      placements:
+      - destination: mods/remi-neoforge-1.21.1-4.7.12.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 056966c6c09bc6aa683603845f61c6c92dbb225f
+          sha512: >-
+            53f277848356d0c4e8027b97b7ea30b39ea85556d3043e525e248c9408ad9f4b659e71ac78d16adfd3d85c580355b7be5794ff90df98865d5f9173abd13f9cee
+        location: N9WucjHL
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: N9WucjHL
+        provider: modrinth
+    selection:
+      project:
+        project: N9WucjHL
+        provider: modrinth
+      selection:
+        id: 2TeI2Zyn
+        provider: modrinth
+    title: Reliable EMI (REMI)
+  rpl:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/B3pb093D/versions/hZ6B2Z0x/ritchiesprojectilelib-2.1.2%2Bmc.1.21.1-neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: B3pb093D
+            provider: modrinth
+          selection:
+            id: hZ6B2Z0x
+            provider: modrinth
+        slot: ritchiesprojectilelib-2.1.2+mc.1.21.1-neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: ec2e4996f8bee8714173e603e379fef8a6901765
+          sha512: >-
+            6d64c84505a5a8fbb96d106603065465c5a2314ec09636900c5c1a31014c12fa68f1a41e758313cbf0d6f95d9a1f53bd67339020f7d8db0e184c23f66aee0330
+        size: 76369
+      placements:
+      - destination: mods/ritchiesprojectilelib-2.1.2+mc.1.21.1-neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: ec2e4996f8bee8714173e603e379fef8a6901765
+          sha512: >-
+            6d64c84505a5a8fbb96d106603065465c5a2314ec09636900c5c1a31014c12fa68f1a41e758313cbf0d6f95d9a1f53bd67339020f7d8db0e184c23f66aee0330
+        location: B3pb093D
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: B3pb093D
+        provider: modrinth
+    selection:
+      project:
+        project: B3pb093D
+        provider: modrinth
+      selection:
+        id: hZ6B2Z0x
+        provider: modrinth
+    title: Ritchie's Projectile Library
+  sable:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/T9PomCSv/versions/fg9dTRz9/sable-neoforge-1.21.1-2.0.6.jar
+        kind: provider
+        pin:
+          project:
+            project: T9PomCSv
+            provider: modrinth
+          selection:
+            id: fg9dTRz9
+            provider: modrinth
+        slot: sable-neoforge-1.21.1-2.0.6.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: cf46f7e8c1511f170abcdbee739944f0540549bf
+          sha512: >-
+            76d293ce751a01cb9c095a3659b0a41e03e005480bc9d76dfdc73ec7c2eabf7923740c7b077921d42616673c496cd5143569f2085ddcebe174fd91d81e2a04b8
+        size: 12986135
+      placements:
+      - destination: mods/sable-neoforge-1.21.1-2.0.6.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: cf46f7e8c1511f170abcdbee739944f0540549bf
+          sha512: >-
+            76d293ce751a01cb9c095a3659b0a41e03e005480bc9d76dfdc73ec7c2eabf7923740c7b077921d42616673c496cd5143569f2085ddcebe174fd91d81e2a04b8
+        location: T9PomCSv
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: T9PomCSv
+        provider: modrinth
+    selection:
+      project:
+        project: T9PomCSv
+        provider: modrinth
+      selection:
+        id: fg9dTRz9
+        provider: modrinth
+    title: Sable
+  simulated-copycats:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/NYBH9vVY/versions/6zbD44Qe/sim_copycats-1.3.2.jar
+        kind: provider
+        pin:
+          project:
+            project: NYBH9vVY
+            provider: modrinth
+          selection:
+            id: 6zbD44Qe
+            provider: modrinth
+        slot: sim_copycats-1.3.2.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 5191a4741acb58199f7bdb6f162c5fab6abb287f
+          sha512: >-
+            ee11cfd6f3616effd4dc2ec5c5cb3532e4f5155eb0684c07976ca11bfc673e7844b3834360d389db74e225cff4934f5ab0bb550f09adcfb39726e98ce889689c
+        size: 388184
+      placements:
+      - destination: mods/sim_copycats-1.3.2.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 5191a4741acb58199f7bdb6f162c5fab6abb287f
+          sha512: >-
+            ee11cfd6f3616effd4dc2ec5c5cb3532e4f5155eb0684c07976ca11bfc673e7844b3834360d389db74e225cff4934f5ab0bb550f09adcfb39726e98ce889689c
+        location: NYBH9vVY
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: NYBH9vVY
+        provider: modrinth
+    selection:
+      project:
+        project: NYBH9vVY
+        provider: modrinth
+      selection:
+        id: 6zbD44Qe
+        provider: modrinth
+    title: "Aeronautics: simulated copycats"
+  sky-archipelago:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/sHFNUlBU/versions/RwLz4CJb/sky_archipelago-1.3.6.jar
+        kind: provider
+        pin:
+          project:
+            project: sHFNUlBU
+            provider: modrinth
+          selection:
+            id: RwLz4CJb
+            provider: modrinth
+        slot: sky_archipelago-1.3.6.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 9594e849d072021bf4b0d7563b48e4765a0f59ae
+          sha512: >-
+            4acaa8fb29a6eb94ad40e0d6efceec2db561fa38e1dae1bf4803b78b3a0c4b03cac68ebbc97bed487e3c21704a0d48243e124974ac6b309f693d022c9021167c
+        size: 1566796
+      placements:
+      - destination: mods/sky_archipelago-1.3.6.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 9594e849d072021bf4b0d7563b48e4765a0f59ae
+          sha512: >-
+            4acaa8fb29a6eb94ad40e0d6efceec2db561fa38e1dae1bf4803b78b3a0c4b03cac68ebbc97bed487e3c21704a0d48243e124974ac6b309f693d022c9021167c
+        location: sHFNUlBU
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: sHFNUlBU
+        provider: modrinth
+    selection:
+      project:
+        project: sHFNUlBU
+        provider: modrinth
+      selection:
+        id: RwLz4CJb
+        provider: modrinth
+    title: Sky Archipelago
+  sodium:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/AANobbMI/versions/uMOpc5uV/sodium-neoforge-0.8.13%2Bmc1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: AANobbMI
+            provider: modrinth
+          selection:
+            id: uMOpc5uV
+            provider: modrinth
+        slot: sodium-neoforge-0.8.13+mc1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 1757289be21ed18db5b0d90703fa3db1b2de5693
+          sha512: >-
+            4f537696af95411e9daf15795fb5fcbc49913d488a96fa912fa8f1d7db408710995e8a1461190f3cd0f8217bf9e35e9539176592428ed587ca2d7aa84450a390
+        size: 1292934
+      placements:
+      - destination: mods/sodium-neoforge-0.8.13+mc1.21.1.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 1757289be21ed18db5b0d90703fa3db1b2de5693
+          sha512: >-
+            4f537696af95411e9daf15795fb5fcbc49913d488a96fa912fa8f1d7db408710995e8a1461190f3cd0f8217bf9e35e9539176592428ed587ca2d7aa84450a390
+        location: AANobbMI
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: AANobbMI
+        provider: modrinth
+    selection:
+      project:
+        project: AANobbMI
+        provider: modrinth
+      selection:
+        id: uMOpc5uV
+        provider: modrinth
+    title: Sodium
+  sodium-extra:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/PtjYWJkn/versions/ufpcXU9c/sodium-extra-neoforge-0.9.4%2Bmc1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: PtjYWJkn
+            provider: modrinth
+          selection:
+            id: ufpcXU9c
+            provider: modrinth
+        slot: sodium-extra-neoforge-0.9.4+mc1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 75f9c202e8384cb5de039cdcc47d5e1c8fde8fe5
+          sha512: >-
+            b930a9c6364bdbac42da7175f9fa71360053cd046d2f1e9a99d712e5942299882bfb585e5b661490b791e219b5dd6b9f064fb94f169d7a32a9934c1dc2b85edf
+        size: 472060
+      placements:
+      - destination: mods/sodium-extra-neoforge-0.9.4+mc1.21.1.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: client
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 75f9c202e8384cb5de039cdcc47d5e1c8fde8fe5
+          sha512: >-
+            b930a9c6364bdbac42da7175f9fa71360053cd046d2f1e9a99d712e5942299882bfb585e5b661490b791e219b5dd6b9f064fb94f169d7a32a9934c1dc2b85edf
+        location: PtjYWJkn
+        source: provider-catalog
+      slot: filename:sodium-extra-neoforge-0.9.4+mc1.21.1.jar
+    identity:
+      kind: provider
+      project:
+        project: PtjYWJkn
+        provider: modrinth
+    selection:
+      project:
+        project: PtjYWJkn
+        provider: modrinth
+      selection:
+        id: ufpcXU9c
+        provider: modrinth
+    title: Sodium Extra
+  sound-physics-remastered:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/qyVF9oeo/versions/Dd2tmpsk/sound-physics-remastered-neoforge-1.21.1-1.5.1.jar
+        kind: provider
+        pin:
+          project:
+            project: qyVF9oeo
+            provider: modrinth
+          selection:
+            id: Dd2tmpsk
+            provider: modrinth
+        slot: sound-physics-remastered-neoforge-1.21.1-1.5.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: a5ac35ccb902231047709530a5708fb71dc3e3b5
+          sha512: >-
+            ff7e9f0b968eeb2ba0e833328a122813cad0434cfe2d5c3d527c1c0d564504f13a737fc05f22d3fea562a2f86568d31b95212bf5347dd10da36cd49ad56143a6
+        size: 202454
+      placements:
+      - destination: mods/sound-physics-remastered-neoforge-1.21.1-1.5.1.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: a5ac35ccb902231047709530a5708fb71dc3e3b5
+          sha512: >-
+            ff7e9f0b968eeb2ba0e833328a122813cad0434cfe2d5c3d527c1c0d564504f13a737fc05f22d3fea562a2f86568d31b95212bf5347dd10da36cd49ad56143a6
+        location: qyVF9oeo
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: qyVF9oeo
+        provider: modrinth
+    selection:
+      project:
+        project: qyVF9oeo
+        provider: modrinth
+      selection:
+        id: Dd2tmpsk
+        provider: modrinth
+    title: Sound Physics Remastered
+  spyglass-improvements:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/Z6ykjRlM/versions/F2s6rUr5/spyglass_improvements-1.5.7%2Bmc1.21%2Bneoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: Z6ykjRlM
+            provider: modrinth
+          selection:
+            id: F2s6rUr5
+            provider: modrinth
+        slot: spyglass_improvements-1.5.7+mc1.21+neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: c7a2041f23f99a289fa2307774a2709e42d3d591
+          sha512: >-
+            6b4933795f3fda0d8c042c35c8f95ce47db88f2ec06b15a6c803298e660a1cb18223ed5fcb96d15aeabde540abf050f3a19ca23ebad4d060afc8860174af937f
+        size: 62864
+      placements:
+      - destination: mods/spyglass_improvements-1.5.7+mc1.21+neoforge.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: c7a2041f23f99a289fa2307774a2709e42d3d591
+          sha512: >-
+            6b4933795f3fda0d8c042c35c8f95ce47db88f2ec06b15a6c803298e660a1cb18223ed5fcb96d15aeabde540abf050f3a19ca23ebad4d060afc8860174af937f
+        location: Z6ykjRlM
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: Z6ykjRlM
+        provider: modrinth
+    selection:
+      project:
+        project: Z6ykjRlM
+        provider: modrinth
+      selection:
+        id: F2s6rUr5
+        provider: modrinth
+    title: Spyglass Improvements
+  ssrd:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/fJ183v3D/versions/iZflRKdV/SSRD-1.8.7-1.21.1.jar
+        kind: url
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 7da02fc5f783bedb55a29268e4c8ba7b0c3c9e6f
+          sha512: >-
+            fb09bb6799f2f9d8b051bc87920a49ee68319c358d0d23be5beaea444542be8336a52f71b57f81e8871df274fe2e1310121b90a3aded615421e84bcd6dfbae47
+        size: null
+      placements:
+      - destination: mods/SSRD-1.8.7-1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 7da02fc5f783bedb55a29268e4c8ba7b0c3c9e6f
+          sha512: >-
+            fb09bb6799f2f9d8b051bc87920a49ee68319c358d0d23be5beaea444542be8336a52f71b57f81e8871df274fe2e1310121b90a3aded615421e84bcd6dfbae47
+        location: null
+        source: url-file
+      slot: content
+    identity:
+      key: ssrd
+      kind: url
+    selection: null
+    title: ssrd
+  strut-your-stuff:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/sHO3MhQx/versions/BOTN7zzN/struts-1.3.1.jar
+        kind: provider
+        pin:
+          project:
+            project: sHO3MhQx
+            provider: modrinth
+          selection:
+            id: BOTN7zzN
+            provider: modrinth
+        slot: struts-1.3.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 131663d29e0dd944e03299b35bda18aefacd1932
+          sha512: >-
+            f7c9c3b66c926c163a8c747d3b50c45589f1796711bc9de0e3bb3f024cb18a552e9b7df6e667b813d12aba50377a39a1cd80a493925f164deb89c8a9dc709f49
+        size: 216678
+      placements:
+      - destination: mods/struts-1.3.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 131663d29e0dd944e03299b35bda18aefacd1932
+          sha512: >-
+            f7c9c3b66c926c163a8c747d3b50c45589f1796711bc9de0e3bb3f024cb18a552e9b7df6e667b813d12aba50377a39a1cd80a493925f164deb89c8a9dc709f49
+        location: sHO3MhQx
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: sHO3MhQx
+        provider: modrinth
+    selection:
+      project:
+        project: sHO3MhQx
+        provider: modrinth
+      selection:
+        id: BOTN7zzN
+        provider: modrinth
+    title: Strut Your Stuff (Struts)
+  supermartijn642s-config-lib:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/LN9BxssP/versions/qKL9jM75/supermartijn642configlib-1.1.8-neoforge-mc1.21.jar
+        kind: provider
+        pin:
+          project:
+            project: LN9BxssP
+            provider: modrinth
+          selection:
+            id: qKL9jM75
+            provider: modrinth
+        slot: supermartijn642configlib-1.1.8-neoforge-mc1.21.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 07452242e389975e8a88b97066f4bae6a4ebe574
+          sha512: >-
+            768d8ca178c5e653986f5131b7aeb7fa57ce7d32c16ed399ced01b273565a2b640130c55c7092747efeff40dbb0348876b18b415f59b0d16dd2c7f32f1798ce2
+        size: 207514
+      placements:
+      - destination: mods/supermartijn642configlib-1.1.8-neoforge-mc1.21.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 07452242e389975e8a88b97066f4bae6a4ebe574
+          sha512: >-
+            768d8ca178c5e653986f5131b7aeb7fa57ce7d32c16ed399ced01b273565a2b640130c55c7092747efeff40dbb0348876b18b415f59b0d16dd2c7f32f1798ce2
+        location: LN9BxssP
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: LN9BxssP
+        provider: modrinth
+    selection:
+      project:
+        project: LN9BxssP
+        provider: modrinth
+      selection:
+        id: qKL9jM75
+        provider: modrinth
+    title: SuperMartijn642's Config Lib
+  supermartijn642s-core-lib:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/rOUBggPv/versions/OG6Edgmm/supermartijn642corelib-1.1.25-neoforge-mc1.21.jar
+        kind: provider
+        pin:
+          project:
+            project: rOUBggPv
+            provider: modrinth
+          selection:
+            id: OG6Edgmm
+            provider: modrinth
+        slot: supermartijn642corelib-1.1.25-neoforge-mc1.21.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 60d45feac8cd2f0b497b013c7fd501b3ae8b6f6d
+          sha512: >-
+            c9c4f22ed1657da646331f519e5d40495cc7e92a6683800691823dfcaf858973c8f202285322c095ebeca245c6a512aa8edf83a97c8a65be0080f9b176f5c2e2
+        size: 562683
+      placements:
+      - destination: mods/supermartijn642corelib-1.1.25-neoforge-mc1.21.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 60d45feac8cd2f0b497b013c7fd501b3ae8b6f6d
+          sha512: >-
+            c9c4f22ed1657da646331f519e5d40495cc7e92a6683800691823dfcaf858973c8f202285322c095ebeca245c6a512aa8edf83a97c8a65be0080f9b176f5c2e2
+        location: rOUBggPv
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: rOUBggPv
+        provider: modrinth
+    selection:
+      project:
+        project: rOUBggPv
+        provider: modrinth
+      selection:
+        id: OG6Edgmm
+        provider: modrinth
+    title: SuperMartijn642's Core Lib
+  surveyor:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/4KjqhPc9/versions/egJBsDTn/surveyor-1.2.4%2B1.21.jar
+        kind: url
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 77e9d3996c11eed104fe224c3ba706be1c759303
+          sha512: >-
+            3a91efbc596db7192792de069e814aeb3e9e1d771267ea5a5d4371b1311bef26a7f9bd02a28619026c23e4df702d99a1bbaaf732e06179dd4999dbd01aaf920c
+        size: null
+      placements:
+      - destination: mods/surveyor-1.2.4+1.21.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 77e9d3996c11eed104fe224c3ba706be1c759303
+          sha512: >-
+            3a91efbc596db7192792de069e814aeb3e9e1d771267ea5a5d4371b1311bef26a7f9bd02a28619026c23e4df702d99a1bbaaf732e06179dd4999dbd01aaf920c
+        location: null
+        source: url-file
+      slot: content
+    identity:
+      key: surveyor
+      kind: url
+    selection: null
+    title: surveyor
+  travelersbackpack:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/rlloIFEV/versions/LcOq0PxG/travelersbackpack-neoforge-1.21.1-10.1.39.jar
+        kind: provider
+        pin:
+          project:
+            project: rlloIFEV
+            provider: modrinth
+          selection:
+            id: LcOq0PxG
+            provider: modrinth
+        slot: travelersbackpack-neoforge-1.21.1-10.1.39.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 4fe7a8d15085f40d45f1555330b2826478ebc484
+          sha512: >-
+            bd539a448f13a9173247397e2f257bfca9f5cf6d157a33d2fc2a2891a9cdb5c451dfbd2a35de88994b80ba2dbe009cd6885a920b7066156b7aa0fafd5fbf129a
+        size: 1425397
+      placements:
+      - destination: mods/travelersbackpack-neoforge-1.21.1-10.1.39.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 4fe7a8d15085f40d45f1555330b2826478ebc484
+          sha512: >-
+            bd539a448f13a9173247397e2f257bfca9f5cf6d157a33d2fc2a2891a9cdb5c451dfbd2a35de88994b80ba2dbe009cd6885a920b7066156b7aa0fafd5fbf129a
+        location: rlloIFEV
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: rlloIFEV
+        provider: modrinth
+    selection:
+      project:
+        project: rlloIFEV
+        provider: modrinth
+      selection:
+        id: LcOq0PxG
+        provider: modrinth
+    title: Traveler's Backpack
+  treechop:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/gHoB7SHO/versions/iLXWmfax/TreeChop-1.21.1-neoforge-0.19.3.jar
+        kind: provider
+        pin:
+          project:
+            project: gHoB7SHO
+            provider: modrinth
+          selection:
+            id: iLXWmfax
+            provider: modrinth
+        slot: TreeChop-1.21.1-neoforge-0.19.3.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 7bf7c1bde0f574e3fb9077115a2d4f59e534486c
+          sha512: >-
+            f7e2dba5b40d544383048e9cb846977b01eca7f653d6513cf9d2b26abd10ab5d73eefe3956a0759cb342c7ac8af41e61fc338873ca47a8e4899e4407cb44b17d
+        size: 517750
+      placements:
+      - destination: mods/TreeChop-1.21.1-neoforge-0.19.3.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 7bf7c1bde0f574e3fb9077115a2d4f59e534486c
+          sha512: >-
+            f7e2dba5b40d544383048e9cb846977b01eca7f653d6513cf9d2b26abd10ab5d73eefe3956a0759cb342c7ac8af41e61fc338873ca47a8e4899e4407cb44b17d
+        location: gHoB7SHO
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: gHoB7SHO
+        provider: modrinth
+    selection:
+      project:
+        project: gHoB7SHO
+        provider: modrinth
+      selection:
+        id: iLXWmfax
+        provider: modrinth
+    title: HT's TreeChop
+  txnilib:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/vBbPDuOs/versions/M1CyD3Uu/txnilib-neoforge-1.0.24-1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: vBbPDuOs
+            provider: modrinth
+          selection:
+            id: M1CyD3Uu
+            provider: modrinth
+        slot: txnilib-neoforge-1.0.24-1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 17b1bbb96e922e683a1807a2e7bece603fdc491d
+          sha512: >-
+            656cd5746fe1b3a2cc7c516619d9f88556f37387e672bb0f362c8aecefc6f1d06705d3a84564c8779856fbbf69fee67b6038a24ffcf46f36f2c478a1aff43a57
+        size: 6276522
+      placements:
+      - destination: mods/txnilib-neoforge-1.0.24-1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 17b1bbb96e922e683a1807a2e7bece603fdc491d
+          sha512: >-
+            656cd5746fe1b3a2cc7c516619d9f88556f37387e672bb0f362c8aecefc6f1d06705d3a84564c8779856fbbf69fee67b6038a24ffcf46f36f2c478a1aff43a57
+        location: vBbPDuOs
+        source: provider-catalog
+      slot: filename:txnilib-neoforge-1.0.24-1.21.1.jar
+    identity:
+      kind: provider
+      project:
+        project: vBbPDuOs
+        provider: modrinth
+    selection:
+      project:
+        project: vBbPDuOs
+        provider: modrinth
+      selection:
+        id: M1CyD3Uu
+        provider: modrinth
+    title: TxniLib
+  yacl:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/1eAoo2KR/versions/7TVdVtxF/yet_another_config_lib_v3-3.8.2%2B1.21.1-neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: 1eAoo2KR
+            provider: modrinth
+          selection:
+            id: 7TVdVtxF
+            provider: modrinth
+        slot: yet_another_config_lib_v3-3.8.2+1.21.1-neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: fe270c9f6e0a8142cf316944087f5109cef08bbb
+          sha512: >-
+            583de19b927ce8050c2b7d5e60b75accc69e325e5aac85c27994c82a9dec2e4e078343fa1d4c3a10d4bd7e0e524e0b3b246a18cf03db01e363a1e6f865adcf48
+        size: 1118651
+      placements:
+      - destination: mods/yet_another_config_lib_v3-3.8.2+1.21.1-neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: fe270c9f6e0a8142cf316944087f5109cef08bbb
+          sha512: >-
+            583de19b927ce8050c2b7d5e60b75accc69e325e5aac85c27994c82a9dec2e4e078343fa1d4c3a10d4bd7e0e524e0b3b246a18cf03db01e363a1e6f865adcf48
+        location: 1eAoo2KR
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: 1eAoo2KR
+        provider: modrinth
+    selection:
+      project:
+        project: 1eAoo2KR
+        provider: modrinth
+      selection:
+        id: 7TVdVtxF
+        provider: modrinth
+    title: YetAnotherConfigLib (YACL)
+  zfastnoise:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/OnlVIpq5/versions/9vSFkDAr/zfastnoise-1.0.13%2B1.21.1%2Bneoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: OnlVIpq5
+            provider: modrinth
+          selection:
+            id: 9vSFkDAr
+            provider: modrinth
+        slot: zfastnoise-1.0.13+1.21.1+neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 7b9f0b4d62a6e30505f8e64ebb58dfd2dc46c81e
+          sha512: >-
+            23c50dc3d75da96d87b065381e32a979528017f872d056bf1cb012e085122734ab218ea8af7b5570403d83c88ebfb53296969af47198fdb637058753d3974278
+        size: 39526
+      placements:
+      - destination: mods/zfastnoise-1.0.13+1.21.1+neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 7b9f0b4d62a6e30505f8e64ebb58dfd2dc46c81e
+          sha512: >-
+            23c50dc3d75da96d87b065381e32a979528017f872d056bf1cb012e085122734ab218ea8af7b5570403d83c88ebfb53296969af47198fdb637058753d3974278
+        location: OnlVIpq5
+        source: provider-catalog
+      slot: filename:zfastnoise-1.0.13+1.21.1+neoforge.jar
+    identity:
+      kind: provider
+      project:
+        project: OnlVIpq5
+        provider: modrinth
+    selection:
+      project:
+        project: OnlVIpq5
+        provider: modrinth
+      selection:
+        id: 9vSFkDAr
+        provider: modrinth
+    title: Fast Noise
+intent-revision: c9452545e6f97d950d2b32071ca7d4c65ebcda17b0c73fb056158ca3b720e72b
+required-edges:
+  accessories:
+  - owo-lib
+  accessories-compat-layer:
+  - accessories
+  - curios
+  - owo-lib
+  azimuth-api:
+  - create
+  bellsandwhistles:
+  - create
+  connector:
+  - forgified-fabric-api
+  copycats:
+  - create
+  create-accessories-compat:
+  - accessories
+  - curios
+  create-aero-cables:
+  - create
+  - create-aeronautics
+  create-aeronautics:
+  - create
+  - sable
+  create-aeronautics-climbable-rope:
+  - create
+  - playeranimator
+  - sable
+  create-aeronautics-covers:
+  - cable-facades
+  - create
+  - create-aeronautics
+  - jei
+  create-aeroworks:
+  - create
+  - sable
+  create-big-cannons:
+  - create
+  - rpl
+  create-bits-n-bobs:
+  - azimuth-api
+  - create
+  - strut-your-stuff
+  create-confectionery:
+  - create
+  create-connected:
+  - create
+  create-design-n-decor:
+  - create
+  create-power-loader:
+  - create
+  create-transmission:
+  - create
+  createaddoncompatibility:
+  - almostunified
+  - create
+  distraction-free-recipes:
+  - txnilib
+  emi-loot:
+  - emi
+  - fzzy-config
+  escalated:
+  - create
+  fzzy-config:
+  - kotlin-for-forge
+  jade-addons-forge:
+  - jade
+  jei:
+  - mezzconfig
+  lets-do-camping:
+  - curios
+  moreculling:
+  - cloth-config
+  power-grid:
+  - architectury-api
+  - create
+  reliable-emi:
+  - emi
+  - yacl
+  sodium-extra:
+  - sodium
+resolver: empack-initialize-v0.5
+runtime:
+  loader: neoforge
+  loader-version: "21.1.263"
+  minecraft: "1.21.1"
+schema: 1
