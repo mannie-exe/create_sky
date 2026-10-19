@@ -39,7 +39,6 @@ coverage:
   createaddoncompatibility: complete
   curios: complete
   defaultworldtype: complete
-  distant-horizons-seedgen: complete
   distanthorizons: complete
   distraction-free-recipes: complete
   dynamic-fps: complete
@@ -2041,57 +2040,6 @@ dependencies:
         id: CCrwlupr
         provider: modrinth
     title: Default World Type
-  distant-horizons-seedgen:
-    content: mod
-    files:
-    - acquisition:
-        downloads:
-        - >-
-          https://cdn.modrinth.com/data/iUGLCJTI/versions/2DrfEi0d/Distant%20Horizons%20SeedGen%200.9.1%20for%201.21.1%20NeoForge.jar
-        kind: provider
-        pin:
-          project:
-            project: iUGLCJTI
-            provider: modrinth
-          selection:
-            id: 2DrfEi0d
-            provider: modrinth
-        slot: Distant Horizons SeedGen 0.9.1 for 1.21.1 NeoForge.jar
-      expected:
-        accepted-observation: null
-        digests:
-          sha1: d9d65b1fcbaf5e4eaaa8564f87c300829c981795
-          sha512: >-
-            4b0bbb0426d0d600fcef2deb0580f458bbf16b90440b84b9d28fe377a3107cf22ff9f166eec85b802cb5386d5af39d5b0a12ac6bf7ca04fad427206d1405c61d
-        size: 1355029
-      placements:
-      - destination: mods/Distant Horizons SeedGen 0.9.1 for 1.21.1 NeoForge.jar
-        environment:
-          client: required
-          server: required
-        layer: common
-      provenance:
-        conversions: []
-        declared-digests:
-          sha1: d9d65b1fcbaf5e4eaaa8564f87c300829c981795
-          sha512: >-
-            4b0bbb0426d0d600fcef2deb0580f458bbf16b90440b84b9d28fe377a3107cf22ff9f166eec85b802cb5386d5af39d5b0a12ac6bf7ca04fad427206d1405c61d
-        location: iUGLCJTI
-        source: provider-catalog
-      slot: primary
-    identity:
-      kind: provider
-      project:
-        project: iUGLCJTI
-        provider: modrinth
-    selection:
-      project:
-        project: iUGLCJTI
-        provider: modrinth
-      selection:
-        id: 2DrfEi0d
-        provider: modrinth
-    title: Distant Horizons SeedGen
   distanthorizons:
     content: mod
     files:
@@ -5307,7 +5255,7 @@ dependencies:
         id: 9vSFkDAr
         provider: modrinth
     title: Fast Noise
-intent-revision: b7f6a0ab4228a973080b9edc3dff8d2a51e8a284b34b0ab0309492a523800e94
+intent-revision: 20df3e107966b89959a1d69079c732d1608021e4ecc552185ba87b299d0be936
 required-edges:
   accessories:
   - owo-lib

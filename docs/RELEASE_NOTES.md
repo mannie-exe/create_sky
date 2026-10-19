@@ -1,28 +1,28 @@
-# Create Sky v0.1.1
+# Create Sky v0.1.2
 
 By **mannie-exe** and **TimdoesLive**.
 
-A tooling and packaging update for the Create/Aeronautics sky-island pack.
-Minecraft **1.21.1**, NeoForge **21.1.263**, Java **21**, and the mod selections
-remain unchanged from v0.1.0.
+This patch removes Distant Horizons SeedGen, whose seed-based terrain reconstruction
+does not reproduce Sky Archipelago's islands. Distant Horizons itself remains
+installed and now uses `CHUNKS_ONLY` with `INTERNAL_SERVER` for generation.
 
-- Build and release automation now uses **empack 0.7.1-beta**, including verified
-  binary installation, exact profile selection, release-tag validation, and
-  draft-first publication with checksums for normalized download filenames.
-- Windows server scripts now retain console output and exit status. The bundled
-  installer explains that files are already present; unattended runs can set
-  `EMPACK_NO_PAUSE=1`.
-- TimdoesLive is credited alongside mannie-exe in the project metadata, README,
-  Prism export metadata, and an `AUTHORS.txt` included in every distribution.
-- Prism retains its explicit 512–8192 MiB memory settings. The `eee` sky-island
-  preset, server whitelist, and gameplay configuration are preserved.
+- Set DH to four worker threads with runtime ratio 1.0, matching LOW_IMPACT on the
+  reference host. Run `/dh config common.threadPreset LOW_IMPACT` to adapt it to
+  another server.
+- Remove the copied DH server ID from distributed configs.
+- Remove SeedGen and its configuration from exports.
+- Consolidate historical documentation into `docs/DECISIONS.md`, with separate
+  current compatibility and build instructions.
 
-Import the Prism ZIP into Prism Launcher, or import the `.mrpack` into a compatible
-launcher. For servers, extract the server ZIP, review the EULA, use the generated
-launcher with Java 21, and whitelist your players. Back up existing worlds before
-replacing an installation; retain the Sky Archipelago preset/config files.
+Minecraft 1.21.1, NeoForge 21.1.263, the `eee` preset, whitelist enforcement and
+remaining mod versions are unchanged. Shaders and DH rendering remain disabled
+by default in fresh exports.
 
-The distributions include SHA-256 checksums. Published filenames now use hyphens
-instead of spaces. This patch does not resolve the previously documented mod issues
-or expand gameplay validation: moving ships, dedicated-server gameplay, and shader
-rendering remain unverified. See `docs/UPDATE_REVIEW.md` for those limits.
+For existing installations, remove the SeedGen JAR and `config/seedgen.json`
+from both client and server. Incorrect cached LODs may need a separate reset
+while both are stopped; see [compatibility instructions](https://github.com/mannie-exe/create_sky/blob/v0.1.2/docs/COMPATIBILITY.md).
+Keep your worlds and Sky Archipelago preset/configs when updating.
+
+Validation covers dependency metadata and distribution contents. This patch has
+not been launched for a gameplay test; sky-island LOD rendering and moving ships
+still require in-game verification.

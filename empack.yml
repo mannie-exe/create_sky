@@ -289,13 +289,6 @@ dependencies:
       pin:
         id: CCrwlupr
         provider: modrinth
-  distant-horizons-seedgen:
-    source: modrinth:iUGLCJTI
-    version:
-      mode: exact
-      pin:
-        id: 2DrfEi0d
-        provider: modrinth
   distanthorizons:
     source: modrinth:uCdwusMi
     version:
@@ -815,7 +808,7 @@ distribution:
 pack:
   author: mannie-exe, TimdoesLive
   name: Create Sky
-  version: "0.1.1"
+  version: "0.1.2"
 runtime:
   loader:
     kind: neoforge
