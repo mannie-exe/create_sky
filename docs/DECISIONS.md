@@ -107,3 +107,59 @@ at `v0.1.2-verification/`. Hosted publication follows the matching tag through
 [GitHub Actions](https://github.com/mannie-exe/create_sky/actions); its result is
 separate from these pre-publication checks. No game was launched, and no gameplay
 pass is implied by successful packaging.
+
+
+## v0.1.3: DH native polygon query backport
+
+**Decision (2026-10-19):** add the client-only
+[DH Polygon Fix 1.0.0](https://github.com/mannie-exe/dh-polygon-fix/releases/tag/v1.0.0)
+as a GitHub URL source with content-pinned SHA-1/SHA-512 digests. Keep official
+DH 3.3.3, its server installation, and all other existing mod versions. The patch
+is LGPL-3.0-only and must be removed when upgrading DH.
+
+The patch release uses source commit `c46b418c6d91a416b6cf9d0828f3dae2e706cd3a`;
+its binary SHA-256 is
+`94bc0487fa20bfba36fd6338a9ecae5ad9fadc020526a361ebeb8511c212bad5`.
+Published bytes matched the local native/full-pack-tested binary. Public download,
+both checksum manifests, source archive contents, and release CI were verified.
+
+**Evidence:** the original scalar `GL_POLYGON_MODE` query overwrote the allocated
+adjacent canary with `GL_FILL` on both Apple M4 Pro OpenGL 4.1 and Linux/Mesa 4.5.
+The runtime redirect implements upstream !126's two-int query. Real Mixin tests
+changed one invocation and retained other methods' bytecode; one-value/two-value
+returns and wrong-query rejection passed. The server-side transformer left DH
+unchanged. `./gradlew --no-daemon check build` passed locally and on Linux,
+Windows, and macOS. `./gradlew --no-daemon nativeProbe` completed 10,000 native
+query/restore cycles on macOS and on Linux/Mesa under Xvfb.
+[Release workflow](https://github.com/mannie-exe/dh-polygon-fix/actions/runs/39371869301)
+passed and required identical artifacts from all three build platforms.
+
+An isolated copy of the full pack joined a separate flat-world server, initialized
+DH rendering, applied the patch and both SSRD projection/shader hooks, and travelled
+Overworld/Nether/Overworld without a crash. A spyglass was supplied to the player's
+main hand; actual zoom input was not exercised. The client was deliberately
+terminated after being kicked, and the temporary server was stopped. An initial
+instrumented launch hit an unrelated optional Sky Archipelago injection assertion
+with global `mixin.debug.countInjections=true`; normal launch settings passed.
+Physical Windows GPUs, prolonged survival, sky-island zoom, and moving ships remain
+for playtesting.
+
+**Pack checks:** `empack sync --materialize --yes` resolved 105 selections.
+`empack build --profile modrinth --profile prism --profile server --yes` passed
+with Java 21. Author/lock status is valid; exact state is
+`0339f965e6db0e1a918492f615523816e005a21d21ef40d0c8dd00ade2ad8eda`.
+Archive CRCs and hashes passed. Prism has 104 top-level mod JARs, with the patch
+as its only addition; the server has 85 unchanged mod JARs. The prior v0.1.2 report's
+88 server count also included three bootstrap library JARs under `cpw/mods`.
+The mrpack references the exact GitHub asset with client-required/server-unsupported
+metadata. All existing mod payloads match 0.1.2 exports.
+
+**Local installation:** added the published patch JAR to the existing Prism
+Create Sky instance. Existing client/server mods and configs remain byte-identical.
+The dedicated server's 85 mod JARs already exactly match the new server export;
+no server JAR change is required. Production worlds and LOD caches were not changed.
+Rollback removes only the new client patch JAR.
+
+Commands, logs, the transformed full-pack GLState class, before-install manifests,
+and the archive verification script/results are saved locally under
+`~/Minecraft/.backups/create_sky/dh-polygon-fix-1.0.0/`.

@@ -62,6 +62,15 @@ bindings:
             client: required
             server: required
           layer: common
+  dh-polygon-fix:
+    placement:
+      files:
+        content:
+        - destination: mods/dh-polygon-fix-1.0.0-mc1.21.1-neoforge.jar
+          environment:
+            client: required
+            server: unsupported
+          layer: client
   distraction-free-recipes:
     placement:
       files:

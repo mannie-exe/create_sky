@@ -7,6 +7,13 @@ its worlds and world-generation configuration.
 
 ## Sky islands and Distant Horizons
 
+Clients include [DH Polygon Fix 1.0.0](https://github.com/mannie-exe/dh-polygon-fix/releases/tag/v1.0.0),
+a standalone backport of upstream !126 for DH 3.3.3. It fixes an undersized native
+polygon-mode query observed on Apple OpenGL and Linux/Mesa. The original DH JAR
+and SSRD interfaces remain unchanged. Keep the fix on clients across platforms;
+it is not needed on dedicated servers. Remove it when upgrading DH because its
+client dependency deliberately requires exactly DH 3.3.3.
+
 Sky Archipelago uses its own island generator. Distant Horizons must generate
 LODs from that generator's chunks. The pack selects `CHUNKS_ONLY` with
 `INTERNAL_SERVER`, four worker threads and a runtime ratio of 1.0. To recalculate

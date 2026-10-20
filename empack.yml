@@ -289,6 +289,17 @@ dependencies:
       pin:
         id: CCrwlupr
         provider: modrinth
+  dh-polygon-fix:
+    side: client
+    source:
+      kind: url
+      downloads:
+      - https://github.com/mannie-exe/dh-polygon-fix/releases/download/v1.0.0/dh-polygon-fix-1.0.0-mc1.21.1-neoforge.jar
+    version:
+      mode: content-pinned
+      digests:
+        sha1: 7cea56b071753ca1ccd5a9a3cfef2a21f735e955
+        sha512: e62f5e264ba11de1c5bf5eb43e83437ee8e56ebdf5dc56b6e2683d87d5e32a6d7167d214beacfbf2eef27f9c3592f0db12198c65e001d5e01a4413e282f93d7f
   distanthorizons:
     source: modrinth:uCdwusMi
     version:
@@ -808,7 +819,7 @@ distribution:
 pack:
   author: mannie-exe, TimdoesLive
   name: Create Sky
-  version: "0.1.2"
+  version: "0.1.3"
 runtime:
   loader:
     kind: neoforge

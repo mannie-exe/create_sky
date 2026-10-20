@@ -39,6 +39,7 @@ coverage:
   createaddoncompatibility: complete
   curios: complete
   defaultworldtype: complete
+  dh-polygon-fix: unknown
   distanthorizons: complete
   distraction-free-recipes: complete
   dynamic-fps: complete
@@ -2040,6 +2041,41 @@ dependencies:
         id: CCrwlupr
         provider: modrinth
     title: Default World Type
+  dh-polygon-fix:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://github.com/mannie-exe/dh-polygon-fix/releases/download/v1.0.0/dh-polygon-fix-1.0.0-mc1.21.1-neoforge.jar
+        kind: url
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 7cea56b071753ca1ccd5a9a3cfef2a21f735e955
+          sha512: >-
+            e62f5e264ba11de1c5bf5eb43e83437ee8e56ebdf5dc56b6e2683d87d5e32a6d7167d214beacfbf2eef27f9c3592f0db12198c65e001d5e01a4413e282f93d7f
+        size: null
+      placements:
+      - destination: mods/dh-polygon-fix-1.0.0-mc1.21.1-neoforge.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: client
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 7cea56b071753ca1ccd5a9a3cfef2a21f735e955
+          sha512: >-
+            e62f5e264ba11de1c5bf5eb43e83437ee8e56ebdf5dc56b6e2683d87d5e32a6d7167d214beacfbf2eef27f9c3592f0db12198c65e001d5e01a4413e282f93d7f
+        location: null
+        source: url-file
+      slot: content
+    identity:
+      key: dh-polygon-fix
+      kind: url
+    selection: null
+    title: dh-polygon-fix
   distanthorizons:
     content: mod
     files:
@@ -5255,7 +5291,7 @@ dependencies:
         id: 9vSFkDAr
         provider: modrinth
     title: Fast Noise
-intent-revision: 20df3e107966b89959a1d69079c732d1608021e4ecc552185ba87b299d0be936
+intent-revision: 40b893740c7eb0d5fb296aef30df36e61f85716e621b7472bc124646c957c154
 required-edges:
   accessories:
   - owo-lib
