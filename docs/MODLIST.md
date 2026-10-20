@@ -1,6 +1,6 @@
 # Included content
 
-Create Sky 0.1.3, checked 2026-10-19. 104 top-level client mod JARs and one base shader ZIP. Euphoria generates its patched shader at launch. Bundled libraries are additional to this top-level list.
+Create Sky 0.1.3, checked 2026-10-19. 104 top-level client mod JARs and two base shader ZIPs. Euphoria generates its patched shader at launch. Bundled libraries are additional to this top-level list.
 
 | Project | Version | Source |
 |---|---|---|
@@ -16,6 +16,7 @@ Create Sky 0.1.3, checked 2026-10-19. 104 top-level client mod JARs and one base
 | Cable Facades | 2.1.4 | [Exact version](https://modrinth.com/mod/cable-facades/version/XWCAtdzJ) |
 | Climbable Ropes for Create Aeronautics | 2.1.4 | [Exact version](https://modrinth.com/mod/create-aeronautics-climbable-rope/version/fk5DMIYY) |
 | Cloth Config API | 15.0.140+neoforge | [Exact version](https://modrinth.com/mod/cloth-config/version/izKINKFg) |
+| BSL Shaders | 10.1.8 | [Exact version](https://modrinth.com/shader/bsl-shaders/version/Y68yiql9) |
 | Complementary Unbound | r5.9.3 | [Exact version](https://modrinth.com/version/B1kyfoUZ) |
 | Concurrent Chunk Management Engine (NeoForge) | 0.4.0-alpha.0.123+1.21.1 | [Exact version](https://modrinth.com/mod/c2me-neoforge/version/avwWYPbG) |
 | Create | 6.0.10+mc1.21.1 | [Exact version](https://modrinth.com/mod/create/version/UjX6dr61) |
@@ -46,7 +47,7 @@ Create Sky 0.1.3, checked 2026-10-19. 104 top-level client mod JARs and one base
 | Create: Vibrant Vaults | 0.3.2 | [Exact version](https://modrinth.com/mod/create-vibrant-vaults/version/t17qYXjn) |
 | Curios API | 9.5.1+1.21.1 | [Exact version](https://modrinth.com/mod/curios/version/yohfFbgD) |
 | Distant Horizons | 3.3.3-1.21.1 | [Exact version](https://modrinth.com/mod/distanthorizons/version/9w34y8ai) |
-| Distant Horizons Polygon Fix (client) | 1.0.0 | [Exact release](https://github.com/mannie-exe/dh-polygon-fix/releases/tag/v1.0.0) |
+| Distant Horizons Polygon Fix (client) | 1.0.1 | [Exact release](https://github.com/mannie-exe/dh-polygon-fix/releases/tag/v1.0.1) |
 | Distraction Free Recipes (EMI / REI / JEI) | 1.2.1 | [Exact version](https://modrinth.com/mod/distraction-free-recipes/version/H0rFJIiC) |
 | Dynamic FPS | 3.11.4 | [Exact version](https://modrinth.com/mod/dynamic-fps/version/T238FZpQ) |
 | Effortless Building | 4.2 | [Exact version](https://modrinth.com/mod/effortless-building/version/YxnBXtLv) |

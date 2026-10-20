@@ -7,7 +7,7 @@ its worlds and world-generation configuration.
 
 ## Sky islands and Distant Horizons
 
-Clients include [DH Polygon Fix 1.0.0](https://github.com/mannie-exe/dh-polygon-fix/releases/tag/v1.0.0),
+Clients include [DH Polygon Fix 1.0.1](https://github.com/mannie-exe/dh-polygon-fix/releases/tag/v1.0.1),
 a standalone backport of upstream !126 for DH 3.3.3. It fixes an undersized native
 polygon-mode query observed on Apple OpenGL and Linux/Mesa. The original DH JAR
 and SSRD interfaces remain unchanged. Keep the fix on clients across platforms;
@@ -35,6 +35,43 @@ With the game and server stopped, back up and remove affected DH `.sqlite` cache
 (and any adjacent `-wal`/`-shm` files) if incorrect far terrain persists. DH can
 rebuild its LODs; do not delete world region, entity, POI or player files.
 This release does not automatically clear caches in existing installations.
+
+## Shader presets
+
+Client exports include Complementary Unbound r5.9.3, Euphoria Patches 1.10.5
+(generated at launch), and BSL 10.1.8. The shader-specific `.txt` files under
+`overrides/client/shaderpacks/` supply defaults when each pack is selected.
+Shaders remain opt-in. These are common defaults across platforms; they do not
+alter Iris or disable DH compatibility.
+
+| Setting | Complementary / Euphoria | BSL |
+| --- | --- | --- |
+| Shadow distance | 128 blocks (was 192) | 128 blocks (was 256) |
+| Shadow quality | Retain HIGH preset's quality/filtering | Retain 2048 map, filtered colored shadows |
+| Block reflections | Low: sun/moon highlights | Retain stock reflections; advanced materials off |
+| Light shafts | Low sample quality, still enabled | Retain enabled |
+| Clouds, AO, bloom, water reflections | Retain stock HIGH behavior | Retain stock HIGH behavior |
+| Expensive optional effects | Voxel colored lighting/world-space reflections off | Multicolored blocklight, DOF/motion blur off |
+
+On the Apple M4 Pro reference client, Iris 1.8.14-beta.1 has 16 texture units but
+reserves two for composite passes. Complementary's HIGH + DH `composite1` uses
+15 active samplers and fails allocating `shadowcolor1`. `BLOCK_REFLECT_QUALITY=1`
+removes three reflection-buffer samplers. Do not switch back to HIGH/ULTRA or
+raise block reflections on this configuration without rechecking the limit.
+Euphoria retains the pack's existing fog-distance and night-sky preferences.
+
+Instrumented pipeline construction passed for the Overworld, Nether, and End
+with all three presets on Apple M4 Pro / Iris 1.8.14-beta.1 / DH 3.3.3. The
+highest measured composite/deferred sampler count was 12 for Complementary and
+Euphoria, and 10 for BSL. This checks compilation and sampler allocation;
+it does not validate terrain visuals, actual dimension travel, or frame rates.
+
+The lower shadow distance limits distant moving shadows, without lowering the
+shadow-map quality. Lower light-shaft sampling may show more noise in motion.
+No FPS improvement is claimed without a fixed-scene benchmark. After changing
+presets, check moving ships, reflective water/glass, sunrise/sunset shafts, DH
+island edges, and travel through the Nether and End. Shader settings are tied
+to exact pack filenames; review/migrate them whenever shader versions change.
 
 ## World settings and interactions
 

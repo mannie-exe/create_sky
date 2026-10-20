@@ -163,3 +163,62 @@ Rollback removes only the new client patch JAR.
 Commands, logs, the transformed full-pack GLState class, before-install manifests,
 and the archive verification script/results are saved locally under
 `~/Minecraft/.backups/create_sky/dh-polygon-fix-1.0.0/`.
+
+## 2026-10-19 — Balanced shader presets and BSL alternative
+
+**Decision:** pin BSL 10.1.8 (`Y68yiql9`) through `empack add`, and author
+client shader settings for BSL, Complementary r5.9.3, and Euphoria 1.10.5.
+Retain the HIGH baseline's shadows/filtering, clouds, water reflections, AO,
+bloom and anti-aliasing. Reduce shadow distance to 128 blocks; Complementary
+variants also use Low block reflections and Low light-shaft sampling. Preserve
+Euphoria's existing fog and night-sky choices. Both base shader ZIPs are
+client-only; shaders and DH remain disabled in distributed default configs.
+
+**Evidence:** the earlier Complementary HIGH baseline reproduced
+`No more available texture units while activating sampler shadowcolor1` in
+`composite1`: 15 active sampler uniforms versus 14 allocatable units. Iris
+reserves units 1 and 2 despite the driver's 16-unit limit. A local Java agent
+then logged native linked-program sampler uniforms and requested each
+Overworld/Nether/End pipeline through Iris on the render thread. All nine
+shader/dimension combinations constructed `IrisRenderingPipeline` successfully.
+The maximum measured composite/deferred counts were 12/7/12 for each
+Complementary variant and 10/10/10 for BSL. Full modpack, DH 3.3.3, SSRD and
+DH Polygon Fix 1.0.0 remained present. The agent was used only in a temporary
+client; production JARs were not modified.
+
+**Commands/checks:** `empack add https://modrinth.com/shader/bsl-shaders --type
+shader --platform modrinth --yes`, explicit client/exact pins in `empack.yml`,
+`empack sync --materialize --yes`, and `empack build --profile prism --profile
+modrinth --profile server --yes`. Archive inspection checks all three settings
+in client exports, BSL's exact hash/reference, and no shader payloads/settings
+in the server export. `git diff --check` verifies whitespace. Local evidence,
+agent sources, sampler results and pre-change Prism settings are under
+`~/Minecraft/.backups/create_sky/shader-presets-2026-10-19/`.
+
+**Limits:** pipeline compilation/allocation only; no automated camera or world
+benchmark, actual dimension travel, or other-platform runtime test. Reduced
+sampling/draw coverage supports a lower workload, not a measured FPS claim.
+All three presets and BSL were copied to the local Prism instance for gameplay
+review. No server/world files were changed and no release was published.
+
+## 2026-10-19 — Release DH maintenance update in Create Sky 0.1.3
+
+Pin DH Polygon Fix 1.0.1 at its immutable GitHub release URL and SHA-1/SHA-512
+content digests. Update the explicit empack placement filename as well as the
+URL, so exports contain one correctly named 1.0.1 binary and no 1.0.0 binary.
+The namespace migration is included; the runtime query implementation is
+identical to 1.0.0 apart from its Java package.
+
+The fix's source/release review added missing/duplicate target regression
+probes and disabled persisted CI checkout credentials. Local `clean check build
+nativeProbe` passed, including 10,000 native Apple GL query/restore cycles.
+Tag CI passed on Linux, Windows and macOS, with Mesa native testing on Linux;
+release publication also required byte-identical JARs across those runners.
+Both published checksum manifests and local/released binary equality passed.
+See [the tag workflow](https://github.com/mannie-exe/dh-polygon-fix/actions/runs/39382246888).
+
+Create Sky's `empack sync --materialize --yes` and all three profile builds
+verify the new pin and client-only placement. Archive checks cover the exact
+published fix bytes, exclusion from the server, the BSL reference and all
+three shader presets. This release combines the fix and the previously
+recorded shader tuning; no further gameplay compatibility is claimed.

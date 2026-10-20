@@ -55,6 +55,15 @@ dependencies:
       pin:
         id: w0mifib8
         provider: modrinth
+  bsl-shaders:
+    content: shader-pack
+    side: client
+    source: modrinth:Q1vvjJYV
+    version:
+      mode: exact
+      pin:
+        id: Y68yiql9
+        provider: modrinth
   c2me-neoforge:
     source: modrinth:COlSi5iR
     version:
@@ -85,6 +94,7 @@ dependencies:
         provider: modrinth
   complementary-unbound:
     content: shader-pack
+    side: client
     source: modrinth:R6NEzAwj
     version:
       mode: exact
@@ -294,12 +304,12 @@ dependencies:
     source:
       kind: url
       downloads:
-      - https://github.com/mannie-exe/dh-polygon-fix/releases/download/v1.0.0/dh-polygon-fix-1.0.0-mc1.21.1-neoforge.jar
+      - https://github.com/mannie-exe/dh-polygon-fix/releases/download/v1.0.1/dh-polygon-fix-1.0.1-mc1.21.1-neoforge.jar
     version:
       mode: content-pinned
       digests:
-        sha1: 7cea56b071753ca1ccd5a9a3cfef2a21f735e955
-        sha512: e62f5e264ba11de1c5bf5eb43e83437ee8e56ebdf5dc56b6e2683d87d5e32a6d7167d214beacfbf2eef27f9c3592f0db12198c65e001d5e01a4413e282f93d7f
+        sha1: 09fb384e78a2312266aec3831ad74c63ae100541
+        sha512: ae3cff2976c7e34b08bb3b0a71989d430e9c169176d54dc69ceccce100175aa7efac36da5d20c9f771877a9f592c72490099e95836d0e0b1e102e0d1cbb4dd5b
   distanthorizons:
     source: modrinth:uCdwusMi
     version:

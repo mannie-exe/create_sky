@@ -8,6 +8,7 @@ coverage:
   architectury-api: complete
   azimuth-api: complete
   bellsandwhistles: complete
+  bsl-shaders: complete
   c2me-neoforge: complete
   cable-facades: complete
   carry-on: complete
@@ -513,6 +514,56 @@ dependencies:
         id: w0mifib8
         provider: modrinth
     title: "Create: Bells & Whistles"
+  bsl-shaders:
+    content: shader-pack
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/Q1vvjJYV/versions/Y68yiql9/BSL_v10.1.8.zip
+        kind: provider
+        pin:
+          project:
+            project: Q1vvjJYV
+            provider: modrinth
+          selection:
+            id: Y68yiql9
+            provider: modrinth
+        slot: BSL_v10.1.8.zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: e89818c8827d0131c102fb480c3c3446624db0df
+          sha512: >-
+            94a3c25d6820868db624e11347873e6b572e7cd571967d9ac6f4690ca5d37ca302a7645d85eec800e0654541e3825fba14d37b5a25d3996aaf038178552be26f
+        size: 1134153
+      placements:
+      - destination: shaderpacks/BSL_v10.1.8.zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: e89818c8827d0131c102fb480c3c3446624db0df
+          sha512: >-
+            94a3c25d6820868db624e11347873e6b572e7cd571967d9ac6f4690ca5d37ca302a7645d85eec800e0654541e3825fba14d37b5a25d3996aaf038178552be26f
+        location: Q1vvjJYV
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: Q1vvjJYV
+        provider: modrinth
+    selection:
+      project:
+        project: Q1vvjJYV
+        provider: modrinth
+      selection:
+        id: Y68yiql9
+        provider: modrinth
+    title: BSL Shaders
   c2me-neoforge:
     content: mod
     files:
@@ -744,7 +795,7 @@ dependencies:
       - destination: shaderpacks/ComplementaryUnbound_r5.9.3.zip
         environment:
           client: required
-          server: required
+          server: unsupported
         layer: common
       provenance:
         conversions: []
@@ -2047,17 +2098,17 @@ dependencies:
     - acquisition:
         downloads:
         - >-
-          https://github.com/mannie-exe/dh-polygon-fix/releases/download/v1.0.0/dh-polygon-fix-1.0.0-mc1.21.1-neoforge.jar
+          https://github.com/mannie-exe/dh-polygon-fix/releases/download/v1.0.1/dh-polygon-fix-1.0.1-mc1.21.1-neoforge.jar
         kind: url
       expected:
         accepted-observation: null
         digests:
-          sha1: 7cea56b071753ca1ccd5a9a3cfef2a21f735e955
+          sha1: 09fb384e78a2312266aec3831ad74c63ae100541
           sha512: >-
-            e62f5e264ba11de1c5bf5eb43e83437ee8e56ebdf5dc56b6e2683d87d5e32a6d7167d214beacfbf2eef27f9c3592f0db12198c65e001d5e01a4413e282f93d7f
+            ae3cff2976c7e34b08bb3b0a71989d430e9c169176d54dc69ceccce100175aa7efac36da5d20c9f771877a9f592c72490099e95836d0e0b1e102e0d1cbb4dd5b
         size: null
       placements:
-      - destination: mods/dh-polygon-fix-1.0.0-mc1.21.1-neoforge.jar
+      - destination: mods/dh-polygon-fix-1.0.1-mc1.21.1-neoforge.jar
         environment:
           client: required
           server: unsupported
@@ -2065,9 +2116,9 @@ dependencies:
       provenance:
         conversions: []
         declared-digests:
-          sha1: 7cea56b071753ca1ccd5a9a3cfef2a21f735e955
+          sha1: 09fb384e78a2312266aec3831ad74c63ae100541
           sha512: >-
-            e62f5e264ba11de1c5bf5eb43e83437ee8e56ebdf5dc56b6e2683d87d5e32a6d7167d214beacfbf2eef27f9c3592f0db12198c65e001d5e01a4413e282f93d7f
+            ae3cff2976c7e34b08bb3b0a71989d430e9c169176d54dc69ceccce100175aa7efac36da5d20c9f771877a9f592c72490099e95836d0e0b1e102e0d1cbb4dd5b
         location: null
         source: url-file
       slot: content
@@ -5291,7 +5342,7 @@ dependencies:
         id: 9vSFkDAr
         provider: modrinth
     title: Fast Noise
-intent-revision: 40b893740c7eb0d5fb296aef30df36e61f85716e621b7472bc124646c957c154
+intent-revision: fc4adbcf59e44b591bdc84c5788cf5f7b5bb9f087cd95b10672885d5a9c49dbc
 required-edges:
   accessories:
   - owo-lib

@@ -2,22 +2,33 @@
 
 By **mannie-exe** and **TimdoesLive**.
 
-Adds [DH Polygon Fix 1.0.0](https://github.com/mannie-exe/dh-polygon-fix/releases/tag/v1.0.0)
-to clients. This backports Distant Horizons !126, replacing an undersized native
-`GL_POLYGON_MODE` query that can corrupt memory and cause a delayed JVM crash.
-The issue was reproduced on Apple OpenGL and Linux/Mesa.
+Includes [DH Polygon Fix 1.0.1](https://github.com/mannie-exe/dh-polygon-fix/releases/tag/v1.0.1)
+on clients. This backports DH !126's two-integer polygon-mode query, preventing
+an undersized native buffer write that can cause delayed JVM crashes. Version
+1.0.1 uses the `design.inherent` namespace, adds injection-count regression
+checks, and hardens CI credential handling. The runtime fix remains unchanged.
+Keep the original DH 3.3.3 JAR; remove the patch when upgrading DH.
 
-The original DH 3.3.3 JAR remains installed. Its interfaces used by Separate Sable
-Render Distance are preserved. The fix is appropriate across client platforms;
-the dedicated server does not need it. Remove the patch before upgrading DH.
+Adds **BSL 10.1.8** as a client-only shader alternative and balanced defaults for
+BSL, Complementary Unbound **r5.9.3**, and Euphoria **1.10.5**:
 
-For an existing 0.1.2 client, add only
-`dh-polygon-fix-1.0.0-mc1.21.1-neoforge.jar` from the linked release to `mods`.
-No server mod change, world conversion, cache reset, or configuration change is
-required for this update. Earlier SeedGen migration instructions remain in
-[compatibility notes](https://github.com/mannie-exe/create_sky/blob/main/docs/COMPATIBILITY.md).
+- Complementary/Euphoria use Low block reflections to fit Iris's 14 available
+  composite texture units on the tested macOS configuration.
+- All three use 128-block shadow distance; Complementary variants also use
+  Low light-shaft sampling. Clouds, water reflections, AO, bloom and
+  anti-aliasing retain their stock HIGH behavior.
+- Euphoria's existing fog and night-sky preferences remain. Patched shader
+  files are generated at launch. Shaders and DH rendering remain opt-in.
+- Shader ZIPs and presets are excluded from server exports.
 
-Validation includes Linux/Windows/macOS builds, real Mixin transformation tests,
-10,000 native query/restore cycles on Apple M4 Pro and Linux/Mesa, and an isolated
-full-pack client/server smoke test with DH rendering and dimension transitions.
-Prolonged sky-island, spyglass-zoom, and moving-ship playtesting remains necessary.
+For existing installations, replace any `dh-polygon-fix-1.0.0-*.jar` with the
+1.0.1 binary; never install both. Copy the three shader settings files and BSL
+ZIP from the client export to receive the new defaults, saving personal shader
+settings first if needed. No server mod change, world conversion, or cache
+reset is required. Preserve existing worlds and world-generation settings.
+
+Verification: the fix passes Mixin transformation, missing/duplicate target,
+server exclusion, and native OpenGL tests. All nine shader/dimension pipeline
+constructions passed on the M4 Pro (Overworld, Nether, End). These checks do not
+establish frame-rate gains or complete gameplay/visual compatibility; those
+remain playtesting tasks. See the [compatibility notes](https://github.com/mannie-exe/create_sky/blob/main/docs/COMPATIBILITY.md).

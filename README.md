@@ -14,7 +14,7 @@ New single-player worlds default to **Sky Islands** with the saved **eee** prese
 
 The preset allows island radii 10–500, island-center Y −32–300 and dynamic spacing 32–1500, with no ocean layer and no islands over ocean biomes. Large gaps are intentional; early-game travel and resource availability need playtesting. RANDOM sizing remains the preset’s effective default; the saved size bands apply only when SPECIFIC sizing is chosen.
 
-Complementary **5.9.3** now matches Euphoria Patcher **1.10.5**. Patched shader files are generated at launch. Shaders and Distant Horizons rendering remain disabled by default, matching the source pack’s rendering preference.
+Complementary **5.9.3**, its generated **Euphoria 1.10.5** variant, and **BSL 10.1.8** have balanced shader defaults. Complementary/Euphoria use Low block reflections for the macOS Iris sampler budget; all three use 128-block shadows. Shaders and Distant Horizons rendering remain disabled by default. See [shader settings and validation](docs/COMPATIBILITY.md#shader-presets) before raising quality options.
 
 The pack includes Lootr, AppleSkin, Carry On, Spyglass Improvements, Exposure and Sound Physics Remastered. See the [mod list](docs/MODLIST.md) and [compatibility notes](docs/COMPATIBILITY.md).
 
@@ -32,7 +32,7 @@ empack build --profile prism --profile modrinth --profile server --yes
 
 Exact selections live in `empack.yml` and `empack.lock`; selected file roles and destinations live in `empack.bindings.yml`. Edit configs under `overrides/` and launch templates under `templates/`. Generated JARs and archives are ignored by Git. Historical decisions and test results live in `docs/DECISIONS.md`; raw local evidence is stored outside the pack.
 
-Nine URL-pinned dependencies work around provider metadata conflicts involving exact old pins, Connector/Forgified Fabric API and client-only dependencies. A tenth pins the [DH Polygon Fix](https://github.com/mannie-exe/dh-polygon-fix/releases/tag/v1.0.0) GitHub release for clients. These need explicit upstream-version checks when updating; `empack outdated` alone does not cover them. Remove the polygon fix when upgrading DH. Do not replace the other URL pins blindly with provider roots or downgrade their runtime dependencies to satisfy stale metadata.
+Nine URL-pinned dependencies work around provider metadata conflicts involving exact old pins, Connector/Forgified Fabric API and client-only dependencies. A tenth pins the [DH Polygon Fix](https://github.com/mannie-exe/dh-polygon-fix/releases/tag/v1.0.1) GitHub release for clients. These need explicit upstream-version checks when updating; `empack outdated` alone does not cover them. Remove the polygon fix when upgrading DH. Do not replace the other URL pins blindly with provider roots or downgrade their runtime dependencies to satisfy stale metadata.
 
 CI builds all three distributions from the recorded lock. A `v*` tag must match the author version and triggers a GitHub release containing all three archives and SHA-256 checksums. CI uses the 0.7.1 helper, verified empack Linux binary and pinned GitHub Actions revisions. It stages only the selected outputs, hashes their normalized filenames, and publishes the draft only after uploads succeed. See [automation maintenance](docs/AUTOMATION.md).
 

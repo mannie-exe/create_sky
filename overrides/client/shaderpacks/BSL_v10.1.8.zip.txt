@@ -1,0 +1,20 @@
+# Create Sky balanced defaults for BSL v10.1.8.
+# Preserve HIGH lighting/reflections; reduce shadow coverage from 256 to 128 blocks.
+shadowDistance=128.0
+shadowMapResolution=2048
+SHADOW=true
+SHADOW_FILTER=true
+SHADOW_COLOR=true
+SHADOW_ENTITY=true
+SHADOW_BLOCK_ENTITY=true
+AO=true
+LIGHT_SHAFT=true
+TAA=true
+FXAA=true
+CLOUDS=2
+REFLECTION=2
+REFLECTION_LOD=1
+ADVANCED_MATERIALS=false
+MULTICOLORED_BLOCKLIGHT=false
+DOF=false
+MOTION_BLUR=false
