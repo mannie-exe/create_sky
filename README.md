@@ -1,48 +1,34 @@
 # Create Sky
 
-By **mannie-exe** and **TimdoesLive**.
+A Minecraft modpack about sky islands, airships and engineering, built around
+Create, Create Aeronautics, Sable and Sky Archipelago. By **mannie-exe** and
+**TimdoesLive**. Survival progression and ship interactions are still being tested.
 
-Sky islands, airships and engineering, built around **Create 6.0.10**, **Create Aeronautics 1.3.2**, **Sable 2.0.6** and **Sky Archipelago 1.3.6**. Seeded from a friend’s Create sky-world pack; survival progression and ship interactions are still being playtested.
+Minecraft **1.21.1** · NeoForge **21.1.263** · Java **21**
 
-Minecraft **1.21.1** · NeoForge **21.1.263** · Java **21** · empack **0.7.1-beta**
+## Installation
 
-## Play
+Download a [release](https://github.com/mannie-exe/create_sky/releases). Import the
+`prism-bundled.zip` into Prism Launcher, or the `.mrpack` into a compatible launcher.
+Select Java 21 for the instance. The Prism profile allows up to 8 GiB of RAM.
 
-Download a [release](https://github.com/mannie-exe/create_sky/releases). Import the `prism-bundled.zip` into Prism Launcher, or import the `.mrpack` into a compatible launcher. Prism is configured for up to 8 GiB of RAM.
+New worlds default to Sky Islands. Shaders are optional; Complementary, Euphoria
+and BSL settings are included. Distant Horizons rendering
+is enabled by default in v0.1.4; v0.1.3 requires enabling it manually.
 
-New single-player worlds default to **Sky Islands** with the saved **eee** preset. The world-type button remains available if you deliberately want another generator. New dedicated worlds use the same terrain settings. Existing vanilla worlds are not converted. Keep the `eee` preset/config files with your worlds: this mod version can resolve stock saved generator settings through the current default preset at runtime.
+## Player and server guides
 
-The preset allows island radii 10–500, island-center Y −32–300 and dynamic spacing 32–1500, with no ocean layer and no islands over ocean biomes. Large gaps are intentional; early-game travel and resource availability need playtesting. RANDOM sizing remains the preset’s effective default; the saved size bands apply only when SPECIFIC sizing is chosen.
+- [Installation, worlds and updates](docs/players/getting-started.md)
+- [Distant Horizons, shaders and missing terrain](docs/players/graphics.md)
+- [Server setup and maintenance](docs/players/server.md)
+- [Included mods and shaders](docs/MODLIST.md)
+- [v0.1.4 release notes](docs/RELEASE_NOTES.md)
 
-Complementary **5.9.3**, its generated **Euphoria 1.10.5** variant, and **BSL 10.1.8** have balanced shader defaults. Complementary/Euphoria use Low block reflections for the macOS Iris sampler budget; all three use 128-block shadows. Shaders and Distant Horizons rendering remain disabled by default. See [shader settings and validation](docs/COMPATIBILITY.md#shader-presets) before raising quality options.
+## Development
 
-The pack includes Lootr, AppleSkin, Carry On, Spyglass Improvements, Exposure and Sound Physics Remastered. See the [mod list](docs/MODLIST.md) and [compatibility notes](docs/COMPATIBILITY.md).
+Builds use empack **0.7.1-beta**. Start with the [build and release guide](docs/development/build.md).
+The [documentation index](docs/README.md) separates player instructions from
+maintainer references and historical test evidence.
 
-## Server
-
-Extract the `server-bundled.zip` and use its generated launcher with Java 21. Review and accept Minecraft’s EULA yourself. The whitelist is enabled: use `whitelist add <player>` from the console. New worlds use `sky_archipelago:sky_islands`; the common Sky Archipelago config mirrors `eee` because dedicated servers prioritize that config over the saved preset.
-
-## Build and update
-
-```sh
-empack status
-empack sync --materialize --yes
-empack build --profile prism --profile modrinth --profile server --yes
-```
-
-Exact selections live in `empack.yml` and `empack.lock`; selected file roles and destinations live in `empack.bindings.yml`. Edit configs under `overrides/` and launch templates under `templates/`. Generated JARs and archives are ignored by Git. Historical decisions and test results live in `docs/DECISIONS.md`; raw local evidence is stored outside the pack.
-
-Nine URL-pinned dependencies work around provider metadata conflicts involving exact old pins, Connector/Forgified Fabric API and client-only dependencies. A tenth pins the [DH Polygon Fix](https://github.com/mannie-exe/dh-polygon-fix/releases/tag/v1.0.1) GitHub release for clients. These need explicit upstream-version checks when updating; `empack outdated` alone does not cover them. Remove the polygon fix when upgrading DH. Do not replace the other URL pins blindly with provider roots or downgrade their runtime dependencies to satisfy stale metadata.
-
-CI builds all three distributions from the recorded lock. A `v*` tag must match the author version and triggers a GitHub release containing all three archives and SHA-256 checksums. CI uses the 0.7.1 helper, verified empack Linux binary and pinned GitHub Actions revisions. It stages only the selected outputs, hashes their normalized filenames, and publishes the draft only after uploads succeed. See [automation maintenance](docs/AUTOMATION.md).
-
-## Documentation
-
-- [Compatibility and server settings](docs/COMPATIBILITY.md)
-- [Mod list](docs/MODLIST.md)
-- [Build and release maintenance](docs/AUTOMATION.md)
-- [Release notes](docs/RELEASE_NOTES.md)
-- [Decisions and verification](docs/DECISIONS.md)
-
-Mod and shader authors retain their respective licenses; this repository does not
-relicense their work. No user worlds, accounts or server lists are distributed.
+Mod and shader authors retain their respective licenses; this repository does
+not relicense their work. User worlds, accounts and server lists are not distributed.

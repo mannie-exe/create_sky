@@ -1,6 +1,6 @@
 # Included content
 
-Create Sky 0.1.3, checked 2026-10-19. 104 top-level client mod JARs and two base shader ZIPs. Euphoria generates its patched shader at launch. Bundled libraries are additional to this top-level list.
+Create Sky 0.1.4, checked 2026-10-20. Content versions are unchanged from 0.1.3. 104 top-level client mod JARs and two base shader ZIPs. Euphoria generates its patched shader at launch. Bundled libraries are additional to this top-level list.
 
 | Project | Version | Source |
 |---|---|---|
