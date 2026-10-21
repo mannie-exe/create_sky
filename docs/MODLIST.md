@@ -1,6 +1,6 @@
 # Included content
 
-Create Sky 0.1.4, checked 2026-10-20. Content versions are unchanged from 0.1.3. 104 top-level client mod JARs and two base shader ZIPs. Euphoria generates its patched shader at launch. Bundled libraries are additional to this top-level list.
+Create Sky 0.1.5, checked 2026-10-20. Climbable Ropes is updated to 2.2.0; other content versions remain unchanged from 0.1.4. 104 top-level client mod JARs and two base shader ZIPs. Euphoria generates its patched shader at launch. Bundled libraries are additional to this top-level list.
 
 | Project | Version | Source |
 |---|---|---|
@@ -14,7 +14,7 @@ Create Sky 0.1.4, checked 2026-10-20. Content versions are unchanged from 0.1.3.
 | Architectury API | 13.0.11+neoforge | [Exact version](https://modrinth.com/mod/architectury-api/version/1IiqEQGl) |
 | Azimuth API | 1.4.10 | [Exact version](https://modrinth.com/mod/azimuth-api/version/dxtZVosY) |
 | Cable Facades | 2.1.4 | [Exact version](https://modrinth.com/mod/cable-facades/version/XWCAtdzJ) |
-| Climbable Ropes for Create Aeronautics | 2.1.4 | [Exact version](https://modrinth.com/mod/create-aeronautics-climbable-rope/version/fk5DMIYY) |
+| Climbable Ropes for Create Aeronautics | 2.2.0 | [Exact version](https://modrinth.com/mod/create-aeronautics-climbable-rope/version/TTGedLb3) |
 | Cloth Config API | 15.0.140+neoforge | [Exact version](https://modrinth.com/mod/cloth-config/version/izKINKFg) |
 | BSL Shaders | 10.1.8 | [Exact version](https://modrinth.com/shader/bsl-shaders/version/Y68yiql9) |
 | Complementary Unbound | r5.9.3 | [Exact version](https://modrinth.com/version/B1kyfoUZ) |

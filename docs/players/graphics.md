@@ -5,7 +5,7 @@ distance. Shader packs change lighting and appearance; they can be enabled separ
 
 ## Distant Horizons defaults
 
-Version 0.1.4 enables DH rendering. **Version 0.1.3 ships with it disabled**:
+Version 0.1.4 and later enable DH rendering. **Version 0.1.3 ships with it disabled**:
 enable rendering in DH's settings, or, with the client stopped, set
 `rendererMode = "DEFAULT"` under `[client.advanced.debugging]` in
 `config/DistantHorizons.toml`.

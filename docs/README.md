@@ -11,8 +11,8 @@ record what was tested at the time; they do not define current defaults.
 | [Getting started](players/getting-started.md) | Installation, world creation and updates |
 | [Graphics](players/graphics.md) | DH rendering, shader choices and missing LODs |
 | [Servers](players/server.md) | Hosting, world preservation and DH generation |
-| [Included content](MODLIST.md) | Exact mods and shaders for v0.1.4 |
-| [Release notes](RELEASE_NOTES.md) | v0.1.4 changes; [v0.1.3 archive](releases/0.1.3.md) |
+| [Included content](MODLIST.md) | Exact mods and shaders for v0.1.5 |
+| [Release notes](RELEASE_NOTES.md) | v0.1.5 changes; [v0.1.4 archive](releases/0.1.4.md) |
 
 ## Development and maintenance
 
@@ -24,7 +24,7 @@ record what was tested at the time; they do not define current defaults.
 
 ## Source and release defaults
 
-Version 0.1.4 enables DH rendering by default. Version 0.1.3 disables it.
+Version 0.1.4 and later enable DH rendering by default. Version 0.1.3 disables it.
 Shaders remain opt-in in both. Building source does not update a downloaded
 release or an installed instance. Current defaults live in `overrides/` and
 `templates/`; release notes describe their named release only.

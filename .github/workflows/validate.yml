@@ -10,8 +10,8 @@ concurrency:
   group: pack-validate-${{ github.ref }}
   cancel-in-progress: true
 env:
-  EMPACK_VERSION: v0.7.1-beta
-  # Empty selects distribution.defaults; otherwise list profile names, one per line.
+  EMPACK_VERSION: v0.8.1-beta
+  # Empty selects build.default; otherwise list profile names, one per line.
   EMPACK_PROFILES: |
     modrinth
     prism

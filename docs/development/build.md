@@ -1,6 +1,6 @@
 # Build and release maintenance
 
-Use empack **0.7.1-beta** and Java **21** from the repository root. Builds use the
+Use empack **0.8.1-beta** and Java **21** from the repository root. Builds use the
 recorded lock and explicit distribution profiles. They do not update installed
 clients or servers.
 
@@ -29,12 +29,12 @@ then build all supported exports:
 ```sh
 empack status
 empack sync --materialize --yes
-empack build --profile prism --profile modrinth --profile server --yes
+empack build --profile prism --profile modrinth --profile server --yes --optional-defaults
 ```
 
 The outputs are a bundled Prism client, a reference-based Modrinth pack and a
-bundled server under `dist/`. Without explicit profiles, the local default is
-Prism. Check placement and archive contents as well as command success.
+bundled server under `dist/`. Without explicit profiles, the local defaults are
+Prism and server. Check placement and archive contents as well as command success.
 
 Local edits can change an export without changing its filename. Use the published
 release's checksums to identify released bytes; a local rebuild is not a substitute
@@ -76,13 +76,13 @@ release is prepared and publication is authorized.
 Both workflows select `modrinth`, `prism` and `server`, use Temurin 21, and pin
 GitHub Actions to commits. `.github/scripts/empack-ci.py` comes from the empack
 0.7.1-beta scaffold, source tag `v0.7.1-beta` at `4d1ef04`, with a project-specific
-release-notes option.
+release-notes option. Its build-explanation check now expects schema 2 for empack 0.8.1.
 
 The helper verifies the downloaded empack binary against GitHub's asset digest,
 rejects stale locks and tag/version mismatches, and stages only the outputs named
 by `build --explain --json`. It normalizes filenames before hashing and publishes
 a draft only after uploads succeed. Published names use hyphens for spaces,
-such as `Create-Sky-0.1.4-prism-bundled.zip`.
+such as `Create-Sky-0.1.5-prism-bundled.zip`.
 
 Retain these choices when refreshing the scaffold:
 

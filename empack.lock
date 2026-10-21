@@ -131,7 +131,7 @@ dependencies:
             2ebf453d11892fc8b12520af3b154a49acd9b93fc10c9c9777dcb6afe3b93ad17b0ce019b35ba7935a2ecb306b7094f97fecf056bbcb4dbeeb8477a76cd93f2d
         size: 1086553
       placements:
-      - destination: mods/accessories-neoforge-1.1.0-beta.54+1.21.1.jar
+      - destination: mods/accessories.jar
         environment:
           client: required
           server: required
@@ -144,12 +144,13 @@ dependencies:
             2ebf453d11892fc8b12520af3b154a49acd9b93fc10c9c9777dcb6afe3b93ad17b0ce019b35ba7935a2ecb306b7094f97fecf056bbcb4dbeeb8477a76cd93f2d
         location: jtmvUHXj
         source: provider-catalog
-      slot: filename:accessories-neoforge-1.1.0-beta.54+1.21.1.jar
+      slot: primary
     identity:
       kind: provider
       project:
         project: jtmvUHXj
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: jtmvUHXj
@@ -157,6 +158,9 @@ dependencies:
       selection:
         id: dy9BbDEy
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: jtmvUHXj
     title: Accessories
   accessories-compat-layer:
     content: mod
@@ -182,7 +186,7 @@ dependencies:
             119bb3f01d861a7967dab772daa042ddeef8747cfa59d6849776ffc50ebd13afe75dc77317f48903da142a3e913cd4b220a2c5186c7e7002895f90f4273c82a4
         size: 405559
       placements:
-      - destination: mods/accessories_compat_layer-neoforge-0.1.13+1.21.1.jar
+      - destination: mods/accessories-compat-layer.jar
         environment:
           client: required
           server: required
@@ -195,12 +199,17 @@ dependencies:
             119bb3f01d861a7967dab772daa042ddeef8747cfa59d6849776ffc50ebd13afe75dc77317f48903da142a3e913cd4b220a2c5186c7e7002895f90f4273c82a4
         location: ySnjMzLg
         source: provider-catalog
-      slot: filename:accessories_compat_layer-neoforge-0.1.13+1.21.1.jar
+      slot: primary
     identity:
       kind: provider
       project:
         project: ySnjMzLg
         provider: modrinth
+    incompatibilities:
+    - project:
+        project: izkDUlrJ
+        provider: modrinth
+      selection: null
     selection:
       project:
         project: ySnjMzLg
@@ -208,6 +217,9 @@ dependencies:
       selection:
         id: UB8bxpVn
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: ySnjMzLg
     title: Accessories Compatibility Layer
   almostunified:
     content: mod
@@ -252,6 +264,7 @@ dependencies:
       project:
         project: sdaSaQEz
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: sdaSaQEz
@@ -259,6 +272,9 @@ dependencies:
       selection:
         id: e8iYxxI3
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: sdaSaQEz
     title: Almost Unified
   analog-audio:
     content: mod
@@ -303,6 +319,7 @@ dependencies:
       project:
         project: iMAVG2nH
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: iMAVG2nH
@@ -310,6 +327,9 @@ dependencies:
       selection:
         id: BshMjyFt
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: iMAVG2nH
     title: Analog Audio
   appleskin:
     content: mod
@@ -354,6 +374,7 @@ dependencies:
       project:
         project: EsAfCjCV
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: EsAfCjCV
@@ -361,6 +382,9 @@ dependencies:
       selection:
         id: uAKA6Laj
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: EsAfCjCV
     title: AppleSkin
   architectury-api:
     content: mod
@@ -405,6 +429,7 @@ dependencies:
       project:
         project: lhGA9TYQ
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: lhGA9TYQ
@@ -412,6 +437,9 @@ dependencies:
       selection:
         id: 1IiqEQGl
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: lhGA9TYQ
     title: Architectury API
   azimuth-api:
     content: mod
@@ -455,6 +483,7 @@ dependencies:
       project:
         project: RpH8tmT1
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: RpH8tmT1
@@ -462,6 +491,9 @@ dependencies:
       selection:
         id: dxtZVosY
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: RpH8tmT1
     title: Azimuth API
   bellsandwhistles:
     content: mod
@@ -506,6 +538,7 @@ dependencies:
       project:
         project: gJ5afkVv
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: gJ5afkVv
@@ -513,6 +546,9 @@ dependencies:
       selection:
         id: w0mifib8
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: gJ5afkVv
     title: "Create: Bells & Whistles"
   bsl-shaders:
     content: shader-pack
@@ -556,6 +592,7 @@ dependencies:
       project:
         project: Q1vvjJYV
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: Q1vvjJYV
@@ -563,6 +600,9 @@ dependencies:
       selection:
         id: Y68yiql9
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: Q1vvjJYV
     title: BSL Shaders
   c2me-neoforge:
     content: mod
@@ -607,6 +647,7 @@ dependencies:
       project:
         project: COlSi5iR
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: COlSi5iR
@@ -614,6 +655,9 @@ dependencies:
       selection:
         id: avwWYPbG
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: COlSi5iR
     title: Concurrent Chunk Management Engine (NeoForge)
   cable-facades:
     content: mod
@@ -658,6 +702,7 @@ dependencies:
       project:
         project: twipgzWx
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: twipgzWx
@@ -665,6 +710,9 @@ dependencies:
       selection:
         id: XWCAtdzJ
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: twipgzWx
     title: Cable Facades
   carry-on:
     content: mod
@@ -709,6 +757,7 @@ dependencies:
       project:
         project: joEfVgkn
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: joEfVgkn
@@ -716,6 +765,9 @@ dependencies:
       selection:
         id: PV8oLZ1q
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: joEfVgkn
     title: Carry On
   cloth-config:
     content: mod
@@ -760,6 +812,7 @@ dependencies:
       project:
         project: 9s6osm5g
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: 9s6osm5g
@@ -767,6 +820,9 @@ dependencies:
       selection:
         id: izKINKFg
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: 9s6osm5g
     title: Cloth Config API
   complementary-unbound:
     content: shader-pack
@@ -811,6 +867,7 @@ dependencies:
       project:
         project: R6NEzAwj
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: R6NEzAwj
@@ -818,6 +875,9 @@ dependencies:
       selection:
         id: B1kyfoUZ
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: R6NEzAwj
     title: Complementary Shaders - Unbound
   connector:
     content: mod
@@ -862,6 +922,7 @@ dependencies:
       project:
         project: u58R1TMW
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: u58R1TMW
@@ -869,6 +930,9 @@ dependencies:
       selection:
         id: IITF0PRC
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: u58R1TMW
     title: Sinytra Connector
   copycats:
     content: mod
@@ -913,6 +977,7 @@ dependencies:
       project:
         project: UT2M39wf
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: UT2M39wf
@@ -920,6 +985,9 @@ dependencies:
       selection:
         id: bPYeUWZx
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: UT2M39wf
     title: "Create: Copycats+"
   create:
     content: mod
@@ -964,6 +1032,7 @@ dependencies:
       project:
         project: LNytGWDc
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: LNytGWDc
@@ -971,6 +1040,9 @@ dependencies:
       selection:
         id: UjX6dr61
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: LNytGWDc
     title: Create
   create-accessories-compat:
     content: mod
@@ -1015,6 +1087,7 @@ dependencies:
       project:
         project: 2MhMVi7C
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: 2MhMVi7C
@@ -1022,6 +1095,9 @@ dependencies:
       selection:
         id: 2r7hvkCQ
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: 2MhMVi7C
     title: Create Accessories Compat
   create-aero-cables:
     content: mod
@@ -1065,6 +1141,7 @@ dependencies:
       project:
         project: AHTfty0S
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: AHTfty0S
@@ -1072,6 +1149,9 @@ dependencies:
       selection:
         id: Wn81ihHo
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: AHTfty0S
     title: "Create: Aero Cables"
   create-aeronautics:
     content: mod
@@ -1116,6 +1196,7 @@ dependencies:
       project:
         project: oWaK0Q19
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: oWaK0Q19
@@ -1123,6 +1204,9 @@ dependencies:
       selection:
         id: 44pLdPGg
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: oWaK0Q19
     title: Create Aeronautics
   create-aeronautics-climbable-rope:
     content: mod
@@ -1130,25 +1214,25 @@ dependencies:
     - acquisition:
         downloads:
         - >-
-          https://cdn.modrinth.com/data/jImqv1M5/versions/fk5DMIYY/climbable_ropes-2.1.4.jar
+          https://cdn.modrinth.com/data/jImqv1M5/versions/TTGedLb3/climbable_ropes-2.2.0.jar
         kind: provider
         pin:
           project:
             project: jImqv1M5
             provider: modrinth
           selection:
-            id: fk5DMIYY
+            id: TTGedLb3
             provider: modrinth
-        slot: climbable_ropes-2.1.4.jar
+        slot: climbable_ropes-2.2.0.jar
       expected:
         accepted-observation: null
         digests:
-          sha1: 7b830925ecde368f0848470d52d840f6b74a6de8
+          sha1: a28fcd4441c4a78db98479e8010559ce7f210660
           sha512: >-
-            c25839624e204267a7ed82f413a1b2448a508ca554d451d37c2ca89420972002a565ccbc91e63d1b4f8aa76552287dd8c9c6f66769be7384c815c8a62f0a9eb2
-        size: 256035
+            ec8055e9b54a747aaabbf8a6a1f8c3df92d24015aa113669b3f4a166e89c3aa49815d7bd5f7b500581cc7ec8764a11daad7c21cbc03628f6a3d5791b4b19dde3
+        size: 103098
       placements:
-      - destination: mods/climbable_ropes-2.1.4.jar
+      - destination: mods/climbable_ropes-2.2.0.jar
         environment:
           client: required
           server: required
@@ -1156,9 +1240,9 @@ dependencies:
       provenance:
         conversions: []
         declared-digests:
-          sha1: 7b830925ecde368f0848470d52d840f6b74a6de8
+          sha1: a28fcd4441c4a78db98479e8010559ce7f210660
           sha512: >-
-            c25839624e204267a7ed82f413a1b2448a508ca554d451d37c2ca89420972002a565ccbc91e63d1b4f8aa76552287dd8c9c6f66769be7384c815c8a62f0a9eb2
+            ec8055e9b54a747aaabbf8a6a1f8c3df92d24015aa113669b3f4a166e89c3aa49815d7bd5f7b500581cc7ec8764a11daad7c21cbc03628f6a3d5791b4b19dde3
         location: jImqv1M5
         source: provider-catalog
       slot: primary
@@ -1167,13 +1251,17 @@ dependencies:
       project:
         project: jImqv1M5
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: jImqv1M5
         provider: modrinth
       selection:
-        id: fk5DMIYY
+        id: TTGedLb3
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: jImqv1M5
     title: Climbable Ropes for Create Aeronautics
   create-aeronautics-covers:
     content: mod
@@ -1218,6 +1306,7 @@ dependencies:
       project:
         project: eWrKPy9E
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: eWrKPy9E
@@ -1225,6 +1314,9 @@ dependencies:
       selection:
         id: R35biaZf
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: eWrKPy9E
     title: "Create Aeronautics: Covers"
   create-aeronautics-rechiseled-compatibility:
     content: mod
@@ -1259,7 +1351,9 @@ dependencies:
     identity:
       key: create-aeronautics-rechiseled-compatibility
       kind: url
+    incompatibilities: []
     selection: null
+    source-selector: null
     title: create-aeronautics-rechiseled-compatibility
   create-aeronautics-throwable-rope-connector:
     content: mod
@@ -1294,7 +1388,9 @@ dependencies:
     identity:
       key: create-aeronautics-throwable-rope-connector
       kind: url
+    incompatibilities: []
     selection: null
+    source-selector: null
     title: create-aeronautics-throwable-rope-connector
   create-aeroworks:
     content: mod
@@ -1338,6 +1434,7 @@ dependencies:
       project:
         project: P26k79kP
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: P26k79kP
@@ -1345,6 +1442,9 @@ dependencies:
       selection:
         id: 6kk7ruR3
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: P26k79kP
     title: "Create: Aeroworks"
   create-ballast:
     content: mod
@@ -1388,6 +1488,7 @@ dependencies:
       project:
         project: 5ypXYrfG
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: 5ypXYrfG
@@ -1395,6 +1496,9 @@ dependencies:
       selection:
         id: XzlV3NlT
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: 5ypXYrfG
     title: "Create: Ballast"
   create-big-cannons:
     content: mod
@@ -1439,6 +1543,7 @@ dependencies:
       project:
         project: GWp4jCJj
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: GWp4jCJj
@@ -1446,6 +1551,9 @@ dependencies:
       selection:
         id: bOiDu0LS
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: GWp4jCJj
     title: Create Big Cannons
   create-bits-n-bobs:
     content: mod
@@ -1489,6 +1597,7 @@ dependencies:
       project:
         project: T8bvmqVZ
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: T8bvmqVZ
@@ -1496,6 +1605,9 @@ dependencies:
       selection:
         id: g9Lmjjc5
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: T8bvmqVZ
     title: "Create: Bits 'n' Bobs"
   create-confectionery:
     content: mod
@@ -1540,6 +1652,7 @@ dependencies:
       project:
         project: WPE5gRs9
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: WPE5gRs9
@@ -1547,6 +1660,9 @@ dependencies:
       selection:
         id: ndnETBEN
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: WPE5gRs9
     title: Create Confectionery
   create-connected:
     content: mod
@@ -1591,6 +1707,7 @@ dependencies:
       project:
         project: Vg5TIO6d
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: Vg5TIO6d
@@ -1598,6 +1715,9 @@ dependencies:
       selection:
         id: Xe7EqzfQ
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: Vg5TIO6d
     title: "Create: Connected"
   create-deco:
     content: mod
@@ -1641,6 +1761,7 @@ dependencies:
       project:
         project: sMvUb4Rb
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: sMvUb4Rb
@@ -1648,6 +1769,9 @@ dependencies:
       selection:
         id: qrcMVoBD
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: sMvUb4Rb
     title: Create Deco
   create-design-n-decor:
     content: mod
@@ -1692,6 +1816,7 @@ dependencies:
       project:
         project: x49wilh8
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: x49wilh8
@@ -1699,6 +1824,9 @@ dependencies:
       selection:
         id: uQsIRky8
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: x49wilh8
     title: "Create: Design n' Decor"
   create-factory:
     content: mod
@@ -1743,6 +1871,7 @@ dependencies:
       project:
         project: j6Zt3N7W
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: j6Zt3N7W
@@ -1750,6 +1879,9 @@ dependencies:
       selection:
         id: OA9Dvj5m
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: j6Zt3N7W
     title: "Create: Factory"
   create-power-loader:
     content: mod
@@ -1794,6 +1926,7 @@ dependencies:
       project:
         project: wPQ6GgFE
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: wPQ6GgFE
@@ -1801,6 +1934,9 @@ dependencies:
       selection:
         id: 3Y4r0ItR
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: wPQ6GgFE
     title: "Create: Power Loader"
   create-radars:
     content: mod
@@ -1845,6 +1981,7 @@ dependencies:
       project:
         project: BLu2Yqfq
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: BLu2Yqfq
@@ -1852,6 +1989,9 @@ dependencies:
       selection:
         id: AntNFNAx
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: BLu2Yqfq
     title: "Create: Radars"
   create-transmission:
     content: mod
@@ -1896,6 +2036,7 @@ dependencies:
       project:
         project: QFCkBuIh
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: QFCkBuIh
@@ -1903,6 +2044,9 @@ dependencies:
       selection:
         id: dOsq88jX
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: QFCkBuIh
     title: "Create: Transmission!"
   create-vibrant-vaults:
     content: mod
@@ -1937,7 +2081,9 @@ dependencies:
     identity:
       key: create-vibrant-vaults
       kind: url
+    incompatibilities: []
     selection: null
+    source-selector: null
     title: create-vibrant-vaults
   createaddoncompatibility:
     content: mod
@@ -1963,7 +2109,7 @@ dependencies:
             dd00b322526454c60c088e1e50e9473fa3a3eb3bcb5fbaf2cd9b0ba41121d4b0458b49ecca15c0f0fa0b863bd2775741362da249eca11422955648c2722d99c3
         size: 158395
       placements:
-      - destination: mods/createaddoncompatibility-neoforge-1.21.1-1.0.0.jar
+      - destination: mods/createaddoncompatibility.jar
         environment:
           client: required
           server: required
@@ -1976,12 +2122,13 @@ dependencies:
             dd00b322526454c60c088e1e50e9473fa3a3eb3bcb5fbaf2cd9b0ba41121d4b0458b49ecca15c0f0fa0b863bd2775741362da249eca11422955648c2722d99c3
         location: QgrK9rtJ
         source: provider-catalog
-      slot: filename:createaddoncompatibility-neoforge-1.21.1-1.0.0.jar
+      slot: primary
     identity:
       kind: provider
       project:
         project: QgrK9rtJ
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: QgrK9rtJ
@@ -1989,6 +2136,9 @@ dependencies:
       selection:
         id: tL1Tayuh
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: QgrK9rtJ
     title: "Create: Addon Compatibility"
   curios:
     content: mod
@@ -2014,7 +2164,7 @@ dependencies:
             5981a267686b744e7e3c227f78cbcd5267c14ac6979a28e814695f4589273998563147207fef4a5cdb7cdbdc39797cd95d9e4abadb55869f18e02a38d0654ae5
         size: 410690
       placements:
-      - destination: mods/curios-neoforge-9.5.1+1.21.1.jar
+      - destination: mods/curios.jar
         environment:
           client: required
           server: required
@@ -2027,12 +2177,13 @@ dependencies:
             5981a267686b744e7e3c227f78cbcd5267c14ac6979a28e814695f4589273998563147207fef4a5cdb7cdbdc39797cd95d9e4abadb55869f18e02a38d0654ae5
         location: vvuO3ImH
         source: provider-catalog
-      slot: filename:curios-neoforge-9.5.1+1.21.1.jar
+      slot: primary
     identity:
       kind: provider
       project:
         project: vvuO3ImH
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: vvuO3ImH
@@ -2040,6 +2191,9 @@ dependencies:
       selection:
         id: yohfFbgD
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: vvuO3ImH
     title: Curios API
   defaultworldtype:
     content: mod
@@ -2084,6 +2238,7 @@ dependencies:
       project:
         project: kZvO1mDq
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: kZvO1mDq
@@ -2091,6 +2246,9 @@ dependencies:
       selection:
         id: CCrwlupr
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: kZvO1mDq
     title: Default World Type
   dh-polygon-fix:
     content: mod
@@ -2125,7 +2283,9 @@ dependencies:
     identity:
       key: dh-polygon-fix
       kind: url
+    incompatibilities: []
     selection: null
+    source-selector: null
     title: dh-polygon-fix
   distanthorizons:
     content: mod
@@ -2170,6 +2330,7 @@ dependencies:
       project:
         project: uCdwusMi
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: uCdwusMi
@@ -2177,6 +2338,9 @@ dependencies:
       selection:
         id: 9w34y8ai
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: uCdwusMi
     title: Distant Horizons
   distraction-free-recipes:
     content: mod
@@ -2202,7 +2366,7 @@ dependencies:
             e32874486193ae21abe4b0afc03b8864a1e01173192bd26a1df258823ac27867101dcffa526e69a4370d008fe13755234ec18725a87bbe3c338173100f58d7ce
         size: 58044
       placements:
-      - destination: mods/distraction_free_recipes-neoforge-1.2.1-1.21.1.jar
+      - destination: mods/distraction-free-recipes.jar
         environment:
           client: required
           server: unsupported
@@ -2215,12 +2379,13 @@ dependencies:
             e32874486193ae21abe4b0afc03b8864a1e01173192bd26a1df258823ac27867101dcffa526e69a4370d008fe13755234ec18725a87bbe3c338173100f58d7ce
         location: gbJLUhZP
         source: provider-catalog
-      slot: filename:distraction_free_recipes-neoforge-1.2.1-1.21.1.jar
+      slot: primary
     identity:
       kind: provider
       project:
         project: gbJLUhZP
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: gbJLUhZP
@@ -2228,6 +2393,9 @@ dependencies:
       selection:
         id: H0rFJIiC
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: gbJLUhZP
     title: Distraction Free Recipes (EMI / REI / JEI)
   dynamic-fps:
     content: mod
@@ -2253,7 +2421,7 @@ dependencies:
             8eb18a280b265e598540306275b51a165836f4b14c6c703b6ced11fcac50bfab439e4deb69e222f62614a9f15fa0ef58e5bd84e20e37ae57755d9c2f8b134057
         size: 220193
       placements:
-      - destination: mods/dynamic-fps-3.11.4+minecraft-1.21.0-neoforge.jar
+      - destination: mods/dynamic-fps.jar
         environment:
           client: required
           server: unsupported
@@ -2266,12 +2434,13 @@ dependencies:
             8eb18a280b265e598540306275b51a165836f4b14c6c703b6ced11fcac50bfab439e4deb69e222f62614a9f15fa0ef58e5bd84e20e37ae57755d9c2f8b134057
         location: LQ3K71Q1
         source: provider-catalog
-      slot: filename:dynamic-fps-3.11.4+minecraft-1.21.0-neoforge.jar
+      slot: primary
     identity:
       kind: provider
       project:
         project: LQ3K71Q1
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: LQ3K71Q1
@@ -2279,6 +2448,9 @@ dependencies:
       selection:
         id: T238FZpQ
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: LQ3K71Q1
     title: Dynamic FPS
   effortless-building:
     content: mod
@@ -2323,6 +2495,7 @@ dependencies:
       project:
         project: DYtfQEYj
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: DYtfQEYj
@@ -2330,6 +2503,9 @@ dependencies:
       selection:
         id: YxnBXtLv
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: DYtfQEYj
     title: Effortless Building
   emi:
     content: mod
@@ -2374,6 +2550,7 @@ dependencies:
       project:
         project: fRiHVvU7
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: fRiHVvU7
@@ -2381,6 +2558,9 @@ dependencies:
       selection:
         id: 5sIPA1To
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: fRiHVvU7
     title: EMI
   emi-loot:
     content: mod
@@ -2425,6 +2605,7 @@ dependencies:
       project:
         project: qbbO7Jns
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: qbbO7Jns
@@ -2432,6 +2613,9 @@ dependencies:
       selection:
         id: QXkODMCT
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: qbbO7Jns
     title: EMI Loot
   entityculling:
     content: mod
@@ -2476,6 +2660,7 @@ dependencies:
       project:
         project: NNAgCjsB
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: NNAgCjsB
@@ -2483,6 +2668,9 @@ dependencies:
       selection:
         id: eieYbWYb
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: NNAgCjsB
     title: Entity Culling
   escalated:
     content: mod
@@ -2527,6 +2715,7 @@ dependencies:
       project:
         project: LyOBYG8Q
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: LyOBYG8Q
@@ -2534,6 +2723,9 @@ dependencies:
       selection:
         id: vJ49zRJl
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: LyOBYG8Q
     title: "Create: Escalated"
   euphoria-patches:
     content: mod
@@ -2578,6 +2770,7 @@ dependencies:
       project:
         project: 4H6sumDB
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: 4H6sumDB
@@ -2585,6 +2778,9 @@ dependencies:
       selection:
         id: QMsRXtSJ
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: 4H6sumDB
     title: Euphoria Patches
   exposure:
     content: mod
@@ -2629,6 +2825,7 @@ dependencies:
       project:
         project: hB899VmG
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: hB899VmG
@@ -2636,6 +2833,9 @@ dependencies:
       selection:
         id: iBvaR6AK
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: hB899VmG
     title: Exposure
   ferrite-core:
     content: mod
@@ -2680,6 +2880,7 @@ dependencies:
       project:
         project: uXXizFIs
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: uXXizFIs
@@ -2687,6 +2888,9 @@ dependencies:
       selection:
         id: x7kQWVju
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: uXXizFIs
     title: FerriteCore
   forgified-fabric-api:
     content: mod
@@ -2731,6 +2935,7 @@ dependencies:
       project:
         project: Aqlf1Shp
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: Aqlf1Shp
@@ -2738,6 +2943,9 @@ dependencies:
       selection:
         id: C4eskNuR
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: Aqlf1Shp
     title: Forgified Fabric API
   fusion-connected-textures:
     content: mod
@@ -2782,6 +2990,7 @@ dependencies:
       project:
         project: p19vrgc2
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: p19vrgc2
@@ -2789,6 +2998,9 @@ dependencies:
       selection:
         id: AYDaLPK8
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: p19vrgc2
     title: Fusion (Connected Textures)
   fzzy-config:
     content: mod
@@ -2814,7 +3026,7 @@ dependencies:
             ef03b411b0e1b241a9952e1a8fdac61979665953eb5f28116aac06530964e7378eb20a78594a47ba4d942c74dfa20d550c292014b5de8e63c42b882a33aef5a5
         size: 2392693
       placements:
-      - destination: mods/fzzy_config-0.7.7+1.21+neoforge.jar
+      - destination: mods/fzzy-config.jar
         environment:
           client: required
           server: required
@@ -2827,12 +3039,13 @@ dependencies:
             ef03b411b0e1b241a9952e1a8fdac61979665953eb5f28116aac06530964e7378eb20a78594a47ba4d942c74dfa20d550c292014b5de8e63c42b882a33aef5a5
         location: hYykXjDp
         source: provider-catalog
-      slot: filename:fzzy_config-0.7.7+1.21+neoforge.jar
+      slot: primary
     identity:
       kind: provider
       project:
         project: hYykXjDp
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: hYykXjDp
@@ -2840,6 +3053,9 @@ dependencies:
       selection:
         id: uG7oHgw6
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: hYykXjDp
     title: Fzzy Config
   hoofprint:
     content: mod
@@ -2874,7 +3090,9 @@ dependencies:
     identity:
       key: hoofprint
       kind: url
+    incompatibilities: []
     selection: null
+    source-selector: null
     title: hoofprint
   immediatelyfast:
     content: mod
@@ -2919,6 +3137,7 @@ dependencies:
       project:
         project: 5ZwdcRci
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: 5ZwdcRci
@@ -2926,6 +3145,9 @@ dependencies:
       selection:
         id: EJzmEPZV
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: 5ZwdcRci
     title: ImmediatelyFast
   interiors:
     content: mod
@@ -2970,6 +3192,7 @@ dependencies:
       project:
         project: r4Knci2k
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: r4Knci2k
@@ -2977,6 +3200,9 @@ dependencies:
       selection:
         id: gBrfZy6S
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: r4Knci2k
     title: "Create: Interiors"
   iris:
     content: mod
@@ -3021,6 +3247,7 @@ dependencies:
       project:
         project: YL57xq9U
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: YL57xq9U
@@ -3028,6 +3255,9 @@ dependencies:
       selection:
         id: KduFYu4t
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: YL57xq9U
     title: Iris Shaders
   jade:
     content: mod
@@ -3072,6 +3302,7 @@ dependencies:
       project:
         project: nvQzSEkH
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: nvQzSEkH
@@ -3079,6 +3310,9 @@ dependencies:
       selection:
         id: eYz2YBGT
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: nvQzSEkH
     title: Jade 🔍
   jade-addons-forge:
     content: mod
@@ -3123,6 +3357,7 @@ dependencies:
       project:
         project: xuDOzCLy
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: xuDOzCLy
@@ -3130,6 +3365,9 @@ dependencies:
       selection:
         id: O3F6Dkle
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: xuDOzCLy
     title: Jade Addons (Neo/Forge)
   jade-sable-compat:
     content: mod
@@ -3173,6 +3411,7 @@ dependencies:
       project:
         project: jCrJ4iGH
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: jCrJ4iGH
@@ -3180,6 +3419,9 @@ dependencies:
       selection:
         id: cxUohR7A
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: jCrJ4iGH
     title: Jade Sable Compat
   jei:
     content: mod
@@ -3224,6 +3466,7 @@ dependencies:
       project:
         project: u6dRKJwZ
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: u6dRKJwZ
@@ -3231,6 +3474,9 @@ dependencies:
       selection:
         id: iv3KiVkE
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: u6dRKJwZ
     title: Just Enough Items (JEI)
   kotlin-for-forge:
     content: mod
@@ -3275,6 +3521,7 @@ dependencies:
       project:
         project: ordsPcFz
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: ordsPcFz
@@ -3282,6 +3529,9 @@ dependencies:
       selection:
         id: uhJhCT7X
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: ordsPcFz
     title: Kotlin for Forge
   lets-do-camping:
     content: mod
@@ -3326,6 +3576,7 @@ dependencies:
       project:
         project: uJXTNuf0
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: uJXTNuf0
@@ -3333,6 +3584,9 @@ dependencies:
       selection:
         id: GdYcZwHn
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: uJXTNuf0
     title: "[Let's Do] Camping"
   lets-do-emi-compat:
     content: mod
@@ -3377,6 +3631,7 @@ dependencies:
       project:
         project: k6hi4lMv
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: k6hi4lMv
@@ -3384,6 +3639,9 @@ dependencies:
       selection:
         id: j1Vdf01b
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: k6hi4lMv
     title: "[Let's Do Addon] EMI Compat"
   lithium:
     content: mod
@@ -3428,6 +3686,7 @@ dependencies:
       project:
         project: gvQqBUqZ
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: gvQqBUqZ
@@ -3435,6 +3694,9 @@ dependencies:
       selection:
         id: DDUrRVCA
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: gvQqBUqZ
     title: Lithium
   lootr:
     content: mod
@@ -3479,6 +3741,7 @@ dependencies:
       project:
         project: EltpO5cN
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: EltpO5cN
@@ -3486,6 +3749,9 @@ dependencies:
       selection:
         id: SPOrIzX8
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: EltpO5cN
     title: Lootr
   macaws-bridges:
     content: mod
@@ -3530,6 +3796,7 @@ dependencies:
       project:
         project: GURcjz8O
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: GURcjz8O
@@ -3537,6 +3804,9 @@ dependencies:
       selection:
         id: aQ7rY7ng
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: GURcjz8O
     title: Macaw's Bridges
   macaws-doors:
     content: mod
@@ -3581,6 +3851,7 @@ dependencies:
       project:
         project: kNxa8z3e
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: kNxa8z3e
@@ -3588,6 +3859,9 @@ dependencies:
       selection:
         id: u7BRX44F
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: kNxa8z3e
     title: Macaw's Doors
   macaws-fences-and-walls:
     content: mod
@@ -3632,6 +3906,7 @@ dependencies:
       project:
         project: GmwLse2I
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: GmwLse2I
@@ -3639,6 +3914,9 @@ dependencies:
       selection:
         id: jVdb0r4W
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: GmwLse2I
     title: Macaw's Fences and Walls
   macaws-lights-and-lamps:
     content: mod
@@ -3683,6 +3961,7 @@ dependencies:
       project:
         project: w4an97C2
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: w4an97C2
@@ -3690,6 +3969,9 @@ dependencies:
       selection:
         id: 5U2kQZIL
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: w4an97C2
     title: Macaw's Lights and Lamps
   macaws-paths-and-pavings:
     content: mod
@@ -3734,6 +4016,7 @@ dependencies:
       project:
         project: VRLhWB91
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: VRLhWB91
@@ -3741,6 +4024,9 @@ dependencies:
       selection:
         id: tlymsxUG
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: VRLhWB91
     title: Macaw's Paths and Pavings
   macaws-stairs:
     content: mod
@@ -3785,6 +4071,7 @@ dependencies:
       project:
         project: iP3wH1ha
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: iP3wH1ha
@@ -3792,6 +4079,9 @@ dependencies:
       selection:
         id: 4t8L0dGP
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: iP3wH1ha
     title: Macaw's Stairs
   macaws-trapdoors:
     content: mod
@@ -3836,6 +4126,7 @@ dependencies:
       project:
         project: n2fvCDlM
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: n2fvCDlM
@@ -3843,6 +4134,9 @@ dependencies:
       selection:
         id: StnP0RNi
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: n2fvCDlM
     title: Macaw's Trapdoors
   macaws-windows:
     content: mod
@@ -3887,6 +4181,7 @@ dependencies:
       project:
         project: C7I0BCni
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: C7I0BCni
@@ -3894,6 +4189,9 @@ dependencies:
       selection:
         id: rQUE4LCz
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: C7I0BCni
     title: Macaw's Windows
   mcqoy:
     content: mod
@@ -3928,7 +4226,9 @@ dependencies:
     identity:
       key: mcqoy
       kind: url
+    incompatibilities: []
     selection: null
+    source-selector: null
     title: mcqoy
   mezzconfig:
     content: mod
@@ -3973,6 +4273,7 @@ dependencies:
       project:
         project: 7tEfOcA7
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: 7tEfOcA7
@@ -3980,6 +4281,7 @@ dependencies:
       selection:
         id: idpM3DKC
         provider: modrinth
+    source-selector: null
     title: MezzConfig
   modernfix:
     content: mod
@@ -4024,6 +4326,7 @@ dependencies:
       project:
         project: nmDcB62a
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: nmDcB62a
@@ -4031,6 +4334,9 @@ dependencies:
       selection:
         id: 7Jy58lnT
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: nmDcB62a
     title: ModernFix
   moreculling:
     content: mod
@@ -4075,6 +4381,7 @@ dependencies:
       project:
         project: 51shyZVL
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: 51shyZVL
@@ -4082,6 +4389,9 @@ dependencies:
       selection:
         id: 5M4T2FfG
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: 51shyZVL
     title: More Culling
   owo-lib:
     content: mod
@@ -4107,7 +4417,7 @@ dependencies:
             fc843ef350c4af6748d9fd6ecd3c28f96262cf46d46a8329029f49ea4f9eb87238113a8a415e8bba2c4f346c718bf450194f6f5823dfbf1ae7312529a81c3e5c
         size: 1223197
       placements:
-      - destination: mods/owo-lib-neoforge-0.12.15.6-beta.1+1.21.jar
+      - destination: mods/owo-lib.jar
         environment:
           client: required
           server: required
@@ -4120,12 +4430,13 @@ dependencies:
             fc843ef350c4af6748d9fd6ecd3c28f96262cf46d46a8329029f49ea4f9eb87238113a8a415e8bba2c4f346c718bf450194f6f5823dfbf1ae7312529a81c3e5c
         location: ccKDOlHs
         source: provider-catalog
-      slot: filename:owo-lib-neoforge-0.12.15.6-beta.1+1.21.jar
+      slot: primary
     identity:
       kind: provider
       project:
         project: ccKDOlHs
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: ccKDOlHs
@@ -4133,6 +4444,9 @@ dependencies:
       selection:
         id: wbdHEItB
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: ccKDOlHs
     title: oωo (owo-lib)
   playeranimator:
     content: mod
@@ -4177,6 +4491,7 @@ dependencies:
       project:
         project: gedNE4y2
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: gedNE4y2
@@ -4184,6 +4499,9 @@ dependencies:
       selection:
         id: HJZB6bmA
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: gedNE4y2
     title: playerAnimator
   polymorph:
     content: mod
@@ -4209,7 +4527,7 @@ dependencies:
             dce77fffebae80532fec39d35c9c8b5817ba756bb03569022cc0854a8a6cf1868690f91451b587bd60d813e8403b5de91adbc324796bc423ef28deecfb13c775
         size: 172671
       placements:
-      - destination: mods/polymorph-neoforge-1.2.0+1.21.1.jar
+      - destination: mods/polymorph.jar
         environment:
           client: required
           server: required
@@ -4222,12 +4540,13 @@ dependencies:
             dce77fffebae80532fec39d35c9c8b5817ba756bb03569022cc0854a8a6cf1868690f91451b587bd60d813e8403b5de91adbc324796bc423ef28deecfb13c775
         location: tagwiZkJ
         source: provider-catalog
-      slot: filename:polymorph-neoforge-1.2.0+1.21.1.jar
+      slot: primary
     identity:
       kind: provider
       project:
         project: tagwiZkJ
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: tagwiZkJ
@@ -4235,6 +4554,9 @@ dependencies:
       selection:
         id: 9yWvrF5o
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: tagwiZkJ
     title: Polymorph
   power-grid:
     content: mod
@@ -4279,6 +4601,7 @@ dependencies:
       project:
         project: eWiBLJ9R
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: eWiBLJ9R
@@ -4286,6 +4609,9 @@ dependencies:
       selection:
         id: jCkPHjmP
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: eWiBLJ9R
     title: "Create: Power Grid"
   rechiseled:
     content: mod
@@ -4320,7 +4646,9 @@ dependencies:
     identity:
       key: rechiseled
       kind: url
+    incompatibilities: []
     selection: null
+    source-selector: null
     title: rechiseled
   rechiseled-create:
     content: mod
@@ -4355,7 +4683,9 @@ dependencies:
     identity:
       key: rechiseled-create
       kind: url
+    incompatibilities: []
     selection: null
+    source-selector: null
     title: rechiseled-create
   reddens-stone-lanterns:
     content: mod
@@ -4400,6 +4730,7 @@ dependencies:
       project:
         project: plgWdsGJ
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: plgWdsGJ
@@ -4407,6 +4738,9 @@ dependencies:
       selection:
         id: uehlsDrT
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: plgWdsGJ
     title: Redden's Stone Lanterns
   reliable-emi:
     content: mod
@@ -4451,6 +4785,7 @@ dependencies:
       project:
         project: N9WucjHL
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: N9WucjHL
@@ -4458,6 +4793,9 @@ dependencies:
       selection:
         id: 2TeI2Zyn
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: N9WucjHL
     title: Reliable EMI (REMI)
   rpl:
     content: mod
@@ -4502,6 +4840,7 @@ dependencies:
       project:
         project: B3pb093D
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: B3pb093D
@@ -4509,6 +4848,9 @@ dependencies:
       selection:
         id: hZ6B2Z0x
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: B3pb093D
     title: Ritchie's Projectile Library
   sable:
     content: mod
@@ -4553,6 +4895,7 @@ dependencies:
       project:
         project: T9PomCSv
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: T9PomCSv
@@ -4560,6 +4903,9 @@ dependencies:
       selection:
         id: fg9dTRz9
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: T9PomCSv
     title: Sable
   simulated-copycats:
     content: mod
@@ -4603,6 +4949,7 @@ dependencies:
       project:
         project: NYBH9vVY
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: NYBH9vVY
@@ -4610,6 +4957,9 @@ dependencies:
       selection:
         id: 6zbD44Qe
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: NYBH9vVY
     title: "Aeronautics: simulated copycats"
   sky-archipelago:
     content: mod
@@ -4654,6 +5004,7 @@ dependencies:
       project:
         project: sHFNUlBU
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: sHFNUlBU
@@ -4661,6 +5012,9 @@ dependencies:
       selection:
         id: RwLz4CJb
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: sHFNUlBU
     title: Sky Archipelago
   sodium:
     content: mod
@@ -4705,6 +5059,7 @@ dependencies:
       project:
         project: AANobbMI
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: AANobbMI
@@ -4712,6 +5067,9 @@ dependencies:
       selection:
         id: uMOpc5uV
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: AANobbMI
     title: Sodium
   sodium-extra:
     content: mod
@@ -4737,7 +5095,7 @@ dependencies:
             b930a9c6364bdbac42da7175f9fa71360053cd046d2f1e9a99d712e5942299882bfb585e5b661490b791e219b5dd6b9f064fb94f169d7a32a9934c1dc2b85edf
         size: 472060
       placements:
-      - destination: mods/sodium-extra-neoforge-0.9.4+mc1.21.1.jar
+      - destination: mods/sodium-extra.jar
         environment:
           client: required
           server: unsupported
@@ -4750,12 +5108,13 @@ dependencies:
             b930a9c6364bdbac42da7175f9fa71360053cd046d2f1e9a99d712e5942299882bfb585e5b661490b791e219b5dd6b9f064fb94f169d7a32a9934c1dc2b85edf
         location: PtjYWJkn
         source: provider-catalog
-      slot: filename:sodium-extra-neoforge-0.9.4+mc1.21.1.jar
+      slot: primary
     identity:
       kind: provider
       project:
         project: PtjYWJkn
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: PtjYWJkn
@@ -4763,6 +5122,9 @@ dependencies:
       selection:
         id: ufpcXU9c
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: PtjYWJkn
     title: Sodium Extra
   sound-physics-remastered:
     content: mod
@@ -4807,6 +5169,7 @@ dependencies:
       project:
         project: qyVF9oeo
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: qyVF9oeo
@@ -4814,6 +5177,9 @@ dependencies:
       selection:
         id: Dd2tmpsk
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: qyVF9oeo
     title: Sound Physics Remastered
   spyglass-improvements:
     content: mod
@@ -4858,6 +5224,7 @@ dependencies:
       project:
         project: Z6ykjRlM
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: Z6ykjRlM
@@ -4865,6 +5232,9 @@ dependencies:
       selection:
         id: F2s6rUr5
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: Z6ykjRlM
     title: Spyglass Improvements
   ssrd:
     content: mod
@@ -4898,7 +5268,9 @@ dependencies:
     identity:
       key: ssrd
       kind: url
+    incompatibilities: []
     selection: null
+    source-selector: null
     title: ssrd
   strut-your-stuff:
     content: mod
@@ -4942,6 +5314,7 @@ dependencies:
       project:
         project: sHO3MhQx
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: sHO3MhQx
@@ -4949,6 +5322,9 @@ dependencies:
       selection:
         id: BOTN7zzN
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: sHO3MhQx
     title: Strut Your Stuff (Struts)
   supermartijn642s-config-lib:
     content: mod
@@ -4993,6 +5369,7 @@ dependencies:
       project:
         project: LN9BxssP
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: LN9BxssP
@@ -5000,6 +5377,9 @@ dependencies:
       selection:
         id: qKL9jM75
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: LN9BxssP
     title: SuperMartijn642's Config Lib
   supermartijn642s-core-lib:
     content: mod
@@ -5044,6 +5424,7 @@ dependencies:
       project:
         project: rOUBggPv
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: rOUBggPv
@@ -5051,6 +5432,9 @@ dependencies:
       selection:
         id: OG6Edgmm
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: rOUBggPv
     title: SuperMartijn642's Core Lib
   surveyor:
     content: mod
@@ -5085,7 +5469,9 @@ dependencies:
     identity:
       key: surveyor
       kind: url
+    incompatibilities: []
     selection: null
+    source-selector: null
     title: surveyor
   travelersbackpack:
     content: mod
@@ -5130,6 +5516,7 @@ dependencies:
       project:
         project: rlloIFEV
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: rlloIFEV
@@ -5137,6 +5524,9 @@ dependencies:
       selection:
         id: LcOq0PxG
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: rlloIFEV
     title: Traveler's Backpack
   treechop:
     content: mod
@@ -5181,6 +5571,7 @@ dependencies:
       project:
         project: gHoB7SHO
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: gHoB7SHO
@@ -5188,6 +5579,9 @@ dependencies:
       selection:
         id: iLXWmfax
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: gHoB7SHO
     title: HT's TreeChop
   txnilib:
     content: mod
@@ -5213,7 +5607,7 @@ dependencies:
             656cd5746fe1b3a2cc7c516619d9f88556f37387e672bb0f362c8aecefc6f1d06705d3a84564c8779856fbbf69fee67b6038a24ffcf46f36f2c478a1aff43a57
         size: 6276522
       placements:
-      - destination: mods/txnilib-neoforge-1.0.24-1.21.1.jar
+      - destination: mods/txnilib.jar
         environment:
           client: required
           server: required
@@ -5226,12 +5620,13 @@ dependencies:
             656cd5746fe1b3a2cc7c516619d9f88556f37387e672bb0f362c8aecefc6f1d06705d3a84564c8779856fbbf69fee67b6038a24ffcf46f36f2c478a1aff43a57
         location: vBbPDuOs
         source: provider-catalog
-      slot: filename:txnilib-neoforge-1.0.24-1.21.1.jar
+      slot: primary
     identity:
       kind: provider
       project:
         project: vBbPDuOs
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: vBbPDuOs
@@ -5239,6 +5634,9 @@ dependencies:
       selection:
         id: M1CyD3Uu
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: vBbPDuOs
     title: TxniLib
   yacl:
     content: mod
@@ -5283,6 +5681,7 @@ dependencies:
       project:
         project: 1eAoo2KR
         provider: modrinth
+    incompatibilities: []
     selection:
       project:
         project: 1eAoo2KR
@@ -5290,6 +5689,9 @@ dependencies:
       selection:
         id: 7TVdVtxF
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: 1eAoo2KR
     title: YetAnotherConfigLib (YACL)
   zfastnoise:
     content: mod
@@ -5315,7 +5717,7 @@ dependencies:
             23c50dc3d75da96d87b065381e32a979528017f872d056bf1cb012e085122734ab218ea8af7b5570403d83c88ebfb53296969af47198fdb637058753d3974278
         size: 39526
       placements:
-      - destination: mods/zfastnoise-1.0.13+1.21.1+neoforge.jar
+      - destination: mods/zfastnoise.jar
         environment:
           client: required
           server: required
@@ -5328,12 +5730,25 @@ dependencies:
             23c50dc3d75da96d87b065381e32a979528017f872d056bf1cb012e085122734ab218ea8af7b5570403d83c88ebfb53296969af47198fdb637058753d3974278
         location: OnlVIpq5
         source: provider-catalog
-      slot: filename:zfastnoise-1.0.13+1.21.1+neoforge.jar
+      slot: primary
     identity:
       kind: provider
       project:
         project: OnlVIpq5
         provider: modrinth
+    incompatibilities:
+    - project:
+        project: sml2FMaA
+        provider: modrinth
+      selection: null
+    - project:
+        project: KOHu7RCS
+        provider: modrinth
+      selection: null
+    - project:
+        project: hasdd01q
+        provider: modrinth
+      selection: null
     selection:
       project:
         project: OnlVIpq5
@@ -5341,8 +5756,11 @@ dependencies:
       selection:
         id: 9vSFkDAr
         provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: OnlVIpq5
     title: Fast Noise
-intent-revision: d91b9f5bffbc217bb04f241a42d0bfb137ef885733eac057b9a8d669ef537633
+intent-revision: bf9da6f3aad4f833d972dda93368b32382ebc9a93b10ea47db7d6114e9e860d5
 required-edges:
   accessories:
   - owo-lib
@@ -5369,7 +5787,6 @@ required-edges:
   - sable
   create-aeronautics-climbable-rope:
   - create
-  - playeranimator
   - sable
   create-aeronautics-covers:
   - cable-facades
@@ -5424,9 +5841,9 @@ required-edges:
   - yacl
   sodium-extra:
   - sodium
-resolver: empack-initialize-v0.5
+resolver: empack-synchronization-v0.5
 runtime:
   loader: neoforge
-  loader-version: "21.1.263"
+  loader-version: "21.1.264"
   minecraft: "1.21.1"
-schema: 1
+schema: 2

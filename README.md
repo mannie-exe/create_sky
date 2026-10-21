@@ -4,7 +4,7 @@ A Minecraft modpack about sky islands, airships and engineering, built around
 Create, Create Aeronautics, Sable and Sky Archipelago. By **mannie-exe** and
 **TimdoesLive**. Survival progression and ship interactions are still being tested.
 
-Minecraft **1.21.1** · NeoForge **21.1.263** · Java **21**
+Minecraft **1.21.1** · NeoForge **21.1.264** · Java **21**
 
 ## Installation
 
@@ -14,7 +14,7 @@ Select Java 21 for the instance. The Prism profile allows up to 8 GiB of RAM.
 
 New worlds default to Sky Islands. Shaders are optional; Complementary, Euphoria
 and BSL settings are included. Distant Horizons rendering
-is enabled by default in v0.1.4; v0.1.3 requires enabling it manually.
+is enabled by default since v0.1.4; v0.1.3 requires enabling it manually.
 
 ## Player and server guides
 
@@ -22,11 +22,11 @@ is enabled by default in v0.1.4; v0.1.3 requires enabling it manually.
 - [Distant Horizons, shaders and missing terrain](docs/players/graphics.md)
 - [Server setup and maintenance](docs/players/server.md)
 - [Included mods and shaders](docs/MODLIST.md)
-- [v0.1.4 release notes](docs/RELEASE_NOTES.md)
+- [v0.1.5 release notes](docs/RELEASE_NOTES.md)
 
 ## Development
 
-Builds use empack **0.7.1-beta**. Start with the [build and release guide](docs/development/build.md).
+Builds use empack **0.8.1-beta**. Start with the [build and release guide](docs/development/build.md).
 The [documentation index](docs/README.md) separates player instructions from
 maintainer references and historical test evidence.
 

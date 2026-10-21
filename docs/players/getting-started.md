@@ -1,6 +1,6 @@
 # Installation and worlds
 
-Create Sky runs on Minecraft 1.21.1, NeoForge 21.1.263 and Java 21.
+Create Sky runs on Minecraft 1.21.1, NeoForge 21.1.264 and Java 21.
 
 ## Client installation
 
@@ -39,7 +39,7 @@ replacing its files. Use a fresh instance for a clean client test, and retain an
 single-player saves and personal settings you want to carry over.
 
 Replace the mod set rather than adding new JARs alongside obsolete versions.
-For v0.1.3 and v0.1.4, install only DH Polygon Fix 1.0.1 with the original DH 3.3.3 JAR.
+For v0.1.3 through v0.1.5, install only DH Polygon Fix 1.0.1 with the original DH 3.3.3 JAR.
 Remove any 1.0.0 fix JAR. Shader presets are separate files, so a JAR-only update
 will not apply the pack's graphics settings.
 

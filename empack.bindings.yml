@@ -1,22 +1,5 @@
+schema: 1
 bindings:
-  accessories:
-    placement:
-      files:
-        "filename:accessories-neoforge-1.1.0-beta.54+1.21.1.jar":
-        - destination: mods/accessories-neoforge-1.1.0-beta.54+1.21.1.jar
-          environment:
-            client: required
-            server: required
-          layer: common
-  accessories-compat-layer:
-    placement:
-      files:
-        "filename:accessories_compat_layer-neoforge-0.1.13+1.21.1.jar":
-        - destination: mods/accessories_compat_layer-neoforge-0.1.13+1.21.1.jar
-          environment:
-            client: required
-            server: required
-          layer: common
   create-aeronautics-rechiseled-compatibility:
     placement:
       files:
@@ -44,24 +27,6 @@ bindings:
             client: required
             server: required
           layer: common
-  createaddoncompatibility:
-    placement:
-      files:
-        "filename:createaddoncompatibility-neoforge-1.21.1-1.0.0.jar":
-        - destination: mods/createaddoncompatibility-neoforge-1.21.1-1.0.0.jar
-          environment:
-            client: required
-            server: required
-          layer: common
-  curios:
-    placement:
-      files:
-        "filename:curios-neoforge-9.5.1+1.21.1.jar":
-        - destination: mods/curios-neoforge-9.5.1+1.21.1.jar
-          environment:
-            client: required
-            server: required
-          layer: common
   dh-polygon-fix:
     placement:
       files:
@@ -71,33 +36,6 @@ bindings:
             client: required
             server: unsupported
           layer: client
-  distraction-free-recipes:
-    placement:
-      files:
-        "filename:distraction_free_recipes-neoforge-1.2.1-1.21.1.jar":
-        - destination: mods/distraction_free_recipes-neoforge-1.2.1-1.21.1.jar
-          environment:
-            client: required
-            server: unsupported
-          layer: client
-  dynamic-fps:
-    placement:
-      files:
-        "filename:dynamic-fps-3.11.4+minecraft-1.21.0-neoforge.jar":
-        - destination: mods/dynamic-fps-3.11.4+minecraft-1.21.0-neoforge.jar
-          environment:
-            client: required
-            server: unsupported
-          layer: client
-  fzzy-config:
-    placement:
-      files:
-        "filename:fzzy_config-0.7.7+1.21+neoforge.jar":
-        - destination: mods/fzzy_config-0.7.7+1.21+neoforge.jar
-          environment:
-            client: required
-            server: required
-          layer: common
   hoofprint:
     placement:
       files:
@@ -116,24 +54,6 @@ bindings:
             client: required
             server: unsupported
           layer: client
-  owo-lib:
-    placement:
-      files:
-        "filename:owo-lib-neoforge-0.12.15.6-beta.1+1.21.jar":
-        - destination: mods/owo-lib-neoforge-0.12.15.6-beta.1+1.21.jar
-          environment:
-            client: required
-            server: required
-          layer: common
-  polymorph:
-    placement:
-      files:
-        "filename:polymorph-neoforge-1.2.0+1.21.1.jar":
-        - destination: mods/polymorph-neoforge-1.2.0+1.21.1.jar
-          environment:
-            client: required
-            server: required
-          layer: common
   rechiseled:
     placement:
       files:
@@ -152,15 +72,6 @@ bindings:
             client: required
             server: required
           layer: common
-  sodium-extra:
-    placement:
-      files:
-        "filename:sodium-extra-neoforge-0.9.4+mc1.21.1.jar":
-        - destination: mods/sodium-extra-neoforge-0.9.4+mc1.21.1.jar
-          environment:
-            client: required
-            server: unsupported
-          layer: client
   ssrd:
     placement:
       files:
@@ -179,11 +90,101 @@ bindings:
             client: required
             server: required
           layer: common
+  accessories:
+    placement:
+      files:
+        primary:
+        - destination: mods/accessories.jar
+          environment:
+            client: required
+            server: required
+          layer: common
+  accessories-compat-layer:
+    placement:
+      files:
+        primary:
+        - destination: mods/accessories-compat-layer.jar
+          environment:
+            client: required
+            server: required
+          layer: common
+  createaddoncompatibility:
+    placement:
+      files:
+        primary:
+        - destination: mods/createaddoncompatibility.jar
+          environment:
+            client: required
+            server: required
+          layer: common
+  curios:
+    placement:
+      files:
+        primary:
+        - destination: mods/curios.jar
+          environment:
+            client: required
+            server: required
+          layer: common
+  distraction-free-recipes:
+    placement:
+      files:
+        primary:
+        - destination: mods/distraction-free-recipes.jar
+          environment:
+            client: required
+            server: unsupported
+          layer: client
+  dynamic-fps:
+    placement:
+      files:
+        primary:
+        - destination: mods/dynamic-fps.jar
+          environment:
+            client: required
+            server: unsupported
+          layer: client
+  fzzy-config:
+    placement:
+      files:
+        primary:
+        - destination: mods/fzzy-config.jar
+          environment:
+            client: required
+            server: required
+          layer: common
+  owo-lib:
+    placement:
+      files:
+        primary:
+        - destination: mods/owo-lib.jar
+          environment:
+            client: required
+            server: required
+          layer: common
+  polymorph:
+    placement:
+      files:
+        primary:
+        - destination: mods/polymorph.jar
+          environment:
+            client: required
+            server: required
+          layer: common
+  sodium-extra:
+    placement:
+      files:
+        primary:
+        - destination: mods/sodium-extra.jar
+          environment:
+            client: required
+            server: unsupported
+          layer: client
   txnilib:
     placement:
       files:
-        "filename:txnilib-neoforge-1.0.24-1.21.1.jar":
-        - destination: mods/txnilib-neoforge-1.0.24-1.21.1.jar
+        primary:
+        - destination: mods/txnilib.jar
           environment:
             client: required
             server: required
@@ -191,10 +192,9 @@ bindings:
   zfastnoise:
     placement:
       files:
-        "filename:zfastnoise-1.0.13+1.21.1+neoforge.jar":
-        - destination: mods/zfastnoise-1.0.13+1.21.1+neoforge.jar
+        primary:
+        - destination: mods/zfastnoise.jar
           environment:
             client: required
             server: required
           layer: common
-schema: 1

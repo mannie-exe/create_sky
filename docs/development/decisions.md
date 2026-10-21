@@ -268,3 +268,40 @@ no test instrumentation or diagnostic logs were added to distributed content.
 The rendering default relies on the owner's prior testing and the earlier
 recorded patch/shader tests. Packaging checks do not establish new gameplay
 coverage or fix the separately observed DH download errors.
+
+
+## 2026-10-20 - Prepare Create Sky 0.1.5
+
+**Decision:** release the migrated empack 0.8.1-beta pack after the owner's initial
+client playtest. Keep Minecraft 1.21.1, update NeoForge to 21.1.264 and Climbable
+Ropes to 2.2.0, and retain all other exact mod/shader selections. Author schema 5,
+lock schema 2 and explicit bindings replace the previous authoring format.
+The owner reports that the regenerated client is running well so far.
+
+**Tested snapshot:** based on `b5d0e2d56c6c0f092125ffbaae6cf25eec60e607`, with
+pack version 0.1.5 and author state `e41358d29c86aed46c56a733c92d7897b91c0be54dd8764b26df03cdbdc707ff`.
+`empack sync --yes` and, with Java 21,
+`empack build --profile prism --profile modrinth --profile server --yes --optional-defaults`
+passed. The runtime and every exact dependency record match the migrated snapshot
+that previously reached dedicated-server readiness and exited cleanly. The release
+preparation changed no installed client/server files or player worlds.
+
+**Archive checks:** all three CRC checks passed. The Prism archive contains 104
+mod JARs and 106 verified managed placements; the server contains 85 mod JARs and
+85 verified placements. All payload digests match the lock. The Modrinth pack's
+106 references match the bundled payload hashes, sizes and declared environments.
+Minecraft/NeoForge metadata matches 1.21.1/21.1.264. The server excludes shaders
+and DH Polygon Fix and retains Sky Islands and enforced-whitelist defaults.
+
+**Release checks:** actionlint passed both workflows. The CI helper accepts the
+schema-2 explanation and all three profiles and rejects a mismatched tag before
+building or publishing. All 25 checked local documentation targets exist; the
+archived v0.1.4 notes match the previous commit. `git diff --check` passed.
+The release workflow remains responsible for building and publishing all three
+formats with SHA-256 sums; published assets are checked after CI completes.
+
+**Limits:** the client's positive report is initial playtesting, not a full
+regression test or benchmark. No additional game session was launched during
+release preparation; the owner's running instance was left untouched. Minecraft,
+world-generation configuration, shader presets and DH patch compatibility remain
+pinned. Stable JEI stays selected despite a newer compatible beta.
