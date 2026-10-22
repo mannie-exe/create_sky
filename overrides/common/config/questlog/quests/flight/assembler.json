@@ -1,0 +1,28 @@
+{
+  "title": "Physics assembler",
+  "description": "Have at least 1 Physics assembler in your inventory at once. Placed blocks and items in containers do not count.",
+  "chapter": "questlog:flight",
+  "sort_order": 0,
+  "icon": {
+    "item": "simulated:physics_assembler"
+  },
+  "requirements": [],
+  "objectives": [
+    {
+      "type": "questlog:item_obtain",
+      "item": "simulated:physics_assembler",
+      "required_amount": 1,
+      "name": "Physics assembler"
+    }
+  ],
+  "rewards": [],
+  "include_in_main": false,
+  "toast_on_unlock": false,
+  "toast_on_complete": false,
+  "show_popup_on_unlock": false,
+  "details_open_by_default": true,
+  "text_color": "#273238",
+  "title_color": "#18242b",
+  "completed_text_color": "#356b52",
+  "progress_text_color": "#435b68"
+}

@@ -1,6 +1,6 @@
 # Included content
 
-Create Sky 0.1.5, checked 2026-10-20. Climbable Ropes is updated to 2.2.0; other content versions remain unchanged from 0.1.4. 104 top-level client mod JARs and two base shader ZIPs. Euphoria generates its patched shader at launch. Bundled libraries are additional to this top-level list.
+Create Sky 0.1.5 plus unreleased local additions, checked 2026-10-21. 110 top-level client mod JARs and two base shader ZIPs. Minecraft remains 1.21.1 and NeoForge remains 21.1.264. Euphoria generates its patched shader at launch. Bundled libraries are additional to this list.
 
 | Project | Version | Source |
 |---|---|---|
@@ -84,6 +84,7 @@ Create Sky 0.1.5, checked 2026-10-20. Climbable Ropes is updated to 2.2.0; other
 | oωo (owo-lib) | 0.12.15.6-beta.1+1.21 | [Exact version](https://modrinth.com/mod/owo-lib/version/wbdHEItB) |
 | playerAnimator | 2.0.4+1.21.1-forge | [Exact version](https://modrinth.com/mod/playeranimator/version/HJZB6bmA) |
 | Polymorph | 1.2.0+1.21.1 | [Exact version](https://modrinth.com/mod/polymorph/version/9yWvrF5o) |
+| Questlog | 3.4.1-1.21.1-neoforge | [Exact version](https://modrinth.com/mod/questlog/version/6ZFtauOf) |
 | Rechiseled | 1.2.6-neoforge-mc1.21 | [Exact version](https://modrinth.com/mod/rechiseled/version/6muGRqvu) |
 | Rechiseled: Create | 1.1.1-neoforge-mc1.21 | [Exact version](https://modrinth.com/mod/rechiseled-create/version/VnOezhJR) |
 | Redden's Stone Lanterns | 1.0.4 | [Exact version](https://modrinth.com/mod/reddens-stone-lanterns/version/uehlsDrT) |
@@ -110,3 +111,8 @@ Create Sky 0.1.5, checked 2026-10-20. Climbable Ropes is updated to 2.2.0; other
 | Sound Physics Remastered | neoforge-1.21.1-1.5.1 | [Exact version](https://modrinth.com/version/Dd2tmpsk) |
 | Default World Type | 1.21-5.0.4 | [Exact version](https://modrinth.com/version/CCrwlupr) |
 | MezzConfig | 0.6.8 | [Exact version](https://modrinth.com/version/idpM3DKC) |
+| Reliable Gliders | 2.0.0+1.21.1-neoforge | [Exact version](https://modrinth.com/mod/reliable-gliders/version/aOgcvBAo) |
+| Create: Hostile Skies | 0.2.6 | [Exact version](https://modrinth.com/mod/create-hostile-skies/version/HaZ4GxKd) |
+| Aeronautics Delivery Quests | 1.1.1 | [Exact version](https://modrinth.com/mod/aeronautics-delivery-quests/version/GBzcF6Il) |
+| Create Propulsion: Simulated | 1.1.5 | [Exact version](https://modrinth.com/mod/create-propulsion-simulated/version/H13U56dc) |
+| Create Sky resources | 0.1.0 (local) | [Maintained sources](../pack-fixes/) |

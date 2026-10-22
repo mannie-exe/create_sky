@@ -1,0 +1,28 @@
+{
+  "title": "Circuit design table",
+  "description": "Have at least 1 Circuit design table in your inventory at once. Placed blocks and items in containers do not count.",
+  "chapter": "questlog:electricity",
+  "sort_order": 0,
+  "icon": {
+    "item": "powergrid:circuit_design_table"
+  },
+  "requirements": [],
+  "objectives": [
+    {
+      "type": "questlog:item_obtain",
+      "item": "powergrid:circuit_design_table",
+      "required_amount": 1,
+      "name": "Circuit design table"
+    }
+  ],
+  "rewards": [],
+  "include_in_main": false,
+  "toast_on_unlock": false,
+  "toast_on_complete": false,
+  "show_popup_on_unlock": false,
+  "details_open_by_default": true,
+  "text_color": "#273238",
+  "title_color": "#18242b",
+  "completed_text_color": "#356b52",
+  "progress_text_color": "#435b68"
+}

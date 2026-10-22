@@ -9,9 +9,10 @@ record what was tested at the time; they do not define current defaults.
 | Guide | Contents |
 | --- | --- |
 | [Getting started](players/getting-started.md) | Installation, world creation and updates |
+| [Journal](players/journal.md) | Local quest conditions and controls |
 | [Graphics](players/graphics.md) | DH rendering, shader choices and missing LODs |
 | [Servers](players/server.md) | Hosting, world preservation and DH generation |
-| [Included content](MODLIST.md) | Exact mods and shaders for v0.1.5 |
+| [Included content](MODLIST.md) | Exact mods and shaders, including unreleased local additions |
 | [Release notes](RELEASE_NOTES.md) | v0.1.5 changes; [v0.1.4 archive](releases/0.1.4.md) |
 
 ## Development and maintenance
@@ -20,6 +21,10 @@ record what was tested at the time; they do not define current defaults.
 | --- | --- |
 | [Build and release](development/build.md) | Source layout, empack commands and CI |
 | [Compatibility and verification](development/compatibility.md) | Dependency constraints, shader evidence and test scope |
+| [Journal definitions](development/journal.md) | Conditions, authoring and implementation evidence |
+| [World generation](development/worldgen.md) | Candidate spacing and biome compatibility |
+| [Progression review](development/progression.md) | Routes, overlaps and remaining play checks |
+| [Upstream findings](development/upstream.md) | Known reports and candidates for submission |
 | [Decision history](development/decisions.md) | Dated decisions, commands and earlier findings |
 
 ## Source and release defaults

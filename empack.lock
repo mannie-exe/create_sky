@@ -2,6 +2,7 @@ acceptable-versions: []
 coverage:
   accessories: complete
   accessories-compat-layer: complete
+  aeronautics-delivery-quests: complete
   almostunified: complete
   analog-audio: complete
   appleskin: complete
@@ -33,7 +34,9 @@ coverage:
   create-deco: complete
   create-design-n-decor: complete
   create-factory: complete
+  create-hostile-skies: unknown
   create-power-loader: complete
+  create-propulsion-simulated: complete
   create-radars: complete
   create-transmission: complete
   create-vibrant-vaults: unknown
@@ -84,10 +87,12 @@ coverage:
   playeranimator: complete
   polymorph: complete
   power-grid: complete
+  questlog: complete
   rechiseled: unknown
   rechiseled-create: unknown
   reddens-stone-lanterns: complete
   reliable-emi: complete
+  reliable-gliders: complete
   rpl: complete
   sable: complete
   simulated-copycats: complete
@@ -221,6 +226,61 @@ dependencies:
       provider: modrinth
       selector: ySnjMzLg
     title: Accessories Compatibility Layer
+  aeronautics-delivery-quests:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/tEL1KmWB/versions/GBzcF6Il/aeronautics_delivery_quests-1.1.1.jar
+        kind: provider
+        pin:
+          project:
+            project: tEL1KmWB
+            provider: modrinth
+          selection:
+            id: GBzcF6Il
+            provider: modrinth
+        slot: aeronautics_delivery_quests-1.1.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 6e5dc125bb40cc25e7ffc4b572ac1abdd37d3376
+          sha512: >-
+            c306dc046c3245a10a7a9eb8a888b1a33f7fdb5f64a277bde1df862ce1113b62f28145124b5e161b07759f9e0b4df9a1047ed74c1de974c2727a4a2472bee61d
+        size: 117173
+      placements:
+      - destination: mods/aeronautics_delivery_quests-1.1.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 6e5dc125bb40cc25e7ffc4b572ac1abdd37d3376
+          sha512: >-
+            c306dc046c3245a10a7a9eb8a888b1a33f7fdb5f64a277bde1df862ce1113b62f28145124b5e161b07759f9e0b4df9a1047ed74c1de974c2727a4a2472bee61d
+        location: tEL1KmWB
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: tEL1KmWB
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: tEL1KmWB
+        provider: modrinth
+      selection:
+        id: GBzcF6Il
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: aeronautics-delivery-quests
+    title: Aeronautics Delivery Quests
   almostunified:
     content: mod
     files:
@@ -1883,6 +1943,42 @@ dependencies:
       provider: modrinth
       selector: j6Zt3N7W
     title: "Create: Factory"
+  create-hostile-skies:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/78hqRjWm/versions/HaZ4GxKd/hostile_skies-0.2.6.jar
+        kind: url
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 25eadcdcf4db40b5e5e33f3aa7080f71fe4033ee
+          sha512: >-
+            aacb60d2392aa2cf36417d60f95afd4ee334e5c4e3d0a426dfd3db1c5ff09ee012cc942995bd9f89c67b08ed19cf946c467431386e97dc893199804a817d9343
+        size: null
+      placements:
+      - destination: mods/hostile_skies-0.2.6.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 25eadcdcf4db40b5e5e33f3aa7080f71fe4033ee
+          sha512: >-
+            aacb60d2392aa2cf36417d60f95afd4ee334e5c4e3d0a426dfd3db1c5ff09ee012cc942995bd9f89c67b08ed19cf946c467431386e97dc893199804a817d9343
+        location: null
+        source: url-file
+      slot: primary
+    identity:
+      key: create-hostile-skies
+      kind: url
+    incompatibilities: []
+    selection: null
+    source-selector: null
+    title: create-hostile-skies
   create-power-loader:
     content: mod
     files:
@@ -1938,6 +2034,61 @@ dependencies:
       provider: modrinth
       selector: wPQ6GgFE
     title: "Create: Power Loader"
+  create-propulsion-simulated:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/ApkoHNO9/versions/H13U56dc/createpropulsion-1.1.5.jar
+        kind: provider
+        pin:
+          project:
+            project: ApkoHNO9
+            provider: modrinth
+          selection:
+            id: H13U56dc
+            provider: modrinth
+        slot: createpropulsion-1.1.5.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 928e9428ee92d07426c296b04a7fffb1e737e290
+          sha512: >-
+            6096c9c5cb220219a0b58b56f9fefd63f8b79a0967d326727b4206d62df1813da73956aeae2fa5b839160a1bb5af8e099726d12d2d93f10e5f157beb85bb9c52
+        size: 1707765
+      placements:
+      - destination: mods/createpropulsion-1.1.5.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 928e9428ee92d07426c296b04a7fffb1e737e290
+          sha512: >-
+            6096c9c5cb220219a0b58b56f9fefd63f8b79a0967d326727b4206d62df1813da73956aeae2fa5b839160a1bb5af8e099726d12d2d93f10e5f157beb85bb9c52
+        location: ApkoHNO9
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: ApkoHNO9
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: ApkoHNO9
+        provider: modrinth
+      selection:
+        id: H13U56dc
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: create-propulsion-simulated
+    title: "Create Propulsion: Simulated"
   create-radars:
     content: mod
     files:
@@ -4613,6 +4764,61 @@ dependencies:
       provider: modrinth
       selector: eWiBLJ9R
     title: "Create: Power Grid"
+  questlog:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/ufQYCY6N/versions/6ZFtauOf/questlog-neoforge-1.21.1-3.4.1.jar
+        kind: provider
+        pin:
+          project:
+            project: ufQYCY6N
+            provider: modrinth
+          selection:
+            id: 6ZFtauOf
+            provider: modrinth
+        slot: questlog-neoforge-1.21.1-3.4.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 698b51460f52d951809679135725c03d30dc2864
+          sha512: >-
+            6331d580ebf6a204a51d4dc948f08f070c9af1f1b18930774bf761221318462f14744fae692d6f864f7b2866e771b91ace32f11b0801e3cf16f91b8b32aeb671
+        size: 515962
+      placements:
+      - destination: mods/questlog-neoforge-1.21.1-3.4.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 698b51460f52d951809679135725c03d30dc2864
+          sha512: >-
+            6331d580ebf6a204a51d4dc948f08f070c9af1f1b18930774bf761221318462f14744fae692d6f864f7b2866e771b91ace32f11b0801e3cf16f91b8b32aeb671
+        location: ufQYCY6N
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: ufQYCY6N
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: ufQYCY6N
+        provider: modrinth
+      selection:
+        id: 6ZFtauOf
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: questlog
+    title: Questlog
   rechiseled:
     content: mod
     files:
@@ -4797,6 +5003,61 @@ dependencies:
       provider: modrinth
       selector: N9WucjHL
     title: Reliable EMI (REMI)
+  reliable-gliders:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/pVIWsXir/versions/aOgcvBAo/reliable_gliders-2.0.0%2B1.21.1-neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: pVIWsXir
+            provider: modrinth
+          selection:
+            id: aOgcvBAo
+            provider: modrinth
+        slot: reliable_gliders-2.0.0+1.21.1-neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: cf0d67058657f47d6116ce4bbfff3d7d155dc564
+          sha512: >-
+            2ff24bb00538b9020651cd731a5bb411215894673403bd6e4da608a1a5ac6ccc9643980b1a6f9fa21a0f1fabc679a06605fee8bbb882249ea81ec020bcdcdd0e
+        size: 60292
+      placements:
+      - destination: mods/reliable_gliders-2.0.0+1.21.1-neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: cf0d67058657f47d6116ce4bbfff3d7d155dc564
+          sha512: >-
+            2ff24bb00538b9020651cd731a5bb411215894673403bd6e4da608a1a5ac6ccc9643980b1a6f9fa21a0f1fabc679a06605fee8bbb882249ea81ec020bcdcdd0e
+        location: pVIWsXir
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: pVIWsXir
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: pVIWsXir
+        provider: modrinth
+      selection:
+        id: aOgcvBAo
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: reliable-gliders
+    title: Reliable Gliders
   rpl:
     content: mod
     files:
@@ -5760,7 +6021,7 @@ dependencies:
       provider: modrinth
       selector: OnlVIpq5
     title: Fast Noise
-intent-revision: bf9da6f3aad4f833d972dda93368b32382ebc9a93b10ea47db7d6114e9e860d5
+intent-revision: 01554d2d8a8596868dd1163808e0af062e6c1b8c99fc68e611632dc9f35bf35e
 required-edges:
   accessories:
   - owo-lib
@@ -5768,6 +6029,9 @@ required-edges:
   - accessories
   - curios
   - owo-lib
+  aeronautics-delivery-quests:
+  - create
+  - create-aeronautics
   azimuth-api:
   - create
   bellsandwhistles:
@@ -5836,6 +6100,8 @@ required-edges:
   power-grid:
   - architectury-api
   - create
+  questlog:
+  - cloth-config
   reliable-emi:
   - emi
   - yacl

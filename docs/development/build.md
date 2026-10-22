@@ -24,9 +24,10 @@ lists, raw logs and machine-specific paths out of distributed overrides.
 ## Local builds
 
 After editing dependency intent, synchronize and materialize the selected files,
-then build all supported exports:
+then rebuild maintained resources and build all supported exports:
 
 ```sh
+python3 scripts/build-fixes.py
 empack status
 empack sync --materialize --yes
 empack build --profile prism --profile modrinth --profile server --yes --optional-defaults
@@ -84,6 +85,8 @@ by `build --explain --json`. It normalizes filenames before hashing and publishe
 a draft only after uploads succeed. Published names use hyphens for spaces,
 such as `Create-Sky-0.1.5-prism-bundled.zip`.
 
+Both workflows rebuild maintained resources before packaging.
+
 Retain these choices when refreshing the scaffold:
 
 - `EMPACK_RELEASE_NOTES` points to `docs/RELEASE_NOTES.md` and uses `--notes-file`.
@@ -95,3 +98,10 @@ Retain these choices when refreshing the scaffold:
 Windows server launchers support `EMPACK_NO_PAUSE=1` for unattended tests.
 A successful build verifies packaging; it does not establish gameplay or GPU
 compatibility.
+
+## Maintained resources
+
+`pack-fixes/` contains the resource-only fixes mod and journal client assets.
+Rebuild it before exporting. The generated JAR is an ignored build artifact;
+its source files are maintained. Quest definitions ship from common config and
+client presentation settings ship from client config. See [journal authoring](journal.md).

@@ -116,3 +116,72 @@ Do not conflate that report with the confirmed DH polygon-buffer defect.
 Survival resource access, structures, moving-ship interactions and acoustics still
 need broader gameplay coverage. The owner's testing supports enabling DH by
 default; it is not a cross-platform performance benchmark.
+
+## Unreleased local integration
+
+Reliable Gliders 2.0.0, Hostile Skies 0.2.6, Aeronautics Delivery Quests 1.1.1,
+Create Propulsion: Simulated 1.1.5 and Questlog 3.4.1 are installed locally after
+0.1.5. Minecraft 1.21.1, NeoForge 21.1.264 and Java 21 remain pinned.
+
+Hostile Skies automatic raids and departure explosions are disabled; capture is
+enabled. Delivery Quests uses village destinations, four offers, 500 to 2,000
+block routes and 120-minute deadlines. These target structures, not a simulated
+village economy. Glider defaults and membrane requirements are retained. Flywheel
+storage and structure-generation tuning remain deferred.
+
+### Resource fixes
+
+Build `createskyfixes` 0.1.0 from `pack-fixes/` with `python3 scripts/build-fixes.py`.
+It contains these maintained upstream resource overrides:
+
+| Resource | Correction |
+| --- | --- |
+| Create Deco placard | White-dye ingredient uses `item`, not `id` |
+| Three TFMG distillation recipes | Require the optional `tfmg` mod |
+| Three Aero Cables recipes | Require their respective optional cable mods |
+| 32 Interiors chair recoloring recipes | Use `c:dyes/<color>` |
+| Bells & Whistles metro window | Use `c:glass_blocks` |
+| Design n' Decor industrial cogwheel tag | Include the uncolored cogwheel |
+| Propulsion wings and platinum casing | Four loot tables use the singular `loot_table` directory |
+
+Almost Unified separately prefers Create Deco zinc sheets through
+`overrides/common/config/almostunified/unification/materials.json`. Existing Power
+Grid sheets remain registered and usable through shared ingredient tags.
+
+An isolated server validated repaired recipe inputs and rolled the four corrected
+block loot tables with a diamond pickaxe. Zero recipe parsing errors remain.
+Optional-content loot-table errors, Analog Audio's movement hook and Sable's
+missing `copycats:copycat_catwalk` physics-tag warnings remain separate issues.
+See [upstream findings](upstream.md) for reports and inspection limits.
+
+Questlog's 48 definitions and 66 objective branches passed native handler checks,
+negative inputs, count thresholds and NBT restoration on 2026-10-21. Source and
+condition semantics are in [journal definitions](journal.md). A real client UI,
+flight, cargo-delivery and raid session has not been exercised by these checks.
+The Atlas owns runtime snapshots, selective-sync receipts and its verification
+record; these are local evidence, not distributed player files.
+
+## Candidate world-generation compatibility
+
+The unreleased candidate disables Zfastnoise's biome optimization to allow Sky
+Archipelago's Deep Dark projection redirect to apply. The isolated capture no
+longer logs that redirect conflict; chunk-level biome and structure validation
+remains pending. Noise optimization stays enabled. The local instances now carry this configuration for a new random-world review;
+the previous server world is archived.
+See [world generation](worldgen.md) for exact settings and evidence.
+
+## 2026-10-22 profile synchronization
+
+Rebuilt all three profiles using empack 0.8.1-beta and the unchanged 0.1.5 version.
+The local Prism/server mod sets match the archive contents; both use Minecraft
+1.21.1 and NeoForge 21.1.264. Both received the common Sky Archipelago config,
+`eee` preset and Zfastnoise biome workaround. The resource JAR rebuild retained
+SHA-256 `4caf00251fecd6fc880fc1350c31670324344c4488e8415ddcdfb5a5adcb78e2`.
+
+Preserved DH installation IDs, client graphics/shader choices, runtime-added
+configuration entries and Prism Java/UI metadata. These deliberate local values
+are not byte-identical to distribution defaults. All mod JARs and the generation
+candidate files match. The stopped server's old world/config archive passed full
+file verification and was rechecked before removing the redundant world copy.
+The active world path is absent; `level-seed` remains blank. No replacement world
+was launched. Pregen and gameplay verification remain the next step.

@@ -84,18 +84,18 @@ veryHighBandCenterOffset = 12
 #Average spacing between island clusters in blocks.
 # Default: 96
 # Range: 32 ~ 2000
-clusterSpacing = 96
+clusterSpacing = 1494
 #Cluster spacing mode. CONSISTENT uses fixed spacing. DYNAMIC picks deterministic per-world spacing from min/max.
 #Allowed Values: CONSISTENT, DYNAMIC
-clusterSpacingMode = "DYNAMIC"
+clusterSpacingMode = "CONSISTENT"
 #Dynamic spacing mode: minimum cluster spacing in blocks.
 # Default: 96
 # Range: 32 ~ 2000
-minClusterSpacing = 32
+minClusterSpacing = 1494
 #Dynamic spacing mode: maximum cluster spacing in blocks.
 # Default: 96
 # Range: 32 ~ 2000
-maxClusterSpacing = 1500
+maxClusterSpacing = 1494
 #Multiplier for island top-surface height variation. Higher values create rougher, less flat tops.
 # Default: 1.0
 # Range: 0.0 ~ 40.0

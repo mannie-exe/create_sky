@@ -1,0 +1,28 @@
+{
+  "title": "Turpentine bucket",
+  "description": "Have at least 1 Turpentine bucket in your inventory at once. Placed blocks and items in containers do not count.",
+  "chapter": "questlog:fuel",
+  "sort_order": 20,
+  "icon": {
+    "item": "createpropulsion:turpentine_bucket"
+  },
+  "requirements": [],
+  "objectives": [
+    {
+      "type": "questlog:item_obtain",
+      "item": "createpropulsion:turpentine_bucket",
+      "required_amount": 1,
+      "name": "Turpentine bucket"
+    }
+  ],
+  "rewards": [],
+  "include_in_main": false,
+  "toast_on_unlock": false,
+  "toast_on_complete": false,
+  "show_popup_on_unlock": false,
+  "details_open_by_default": true,
+  "text_color": "#273238",
+  "title_color": "#18242b",
+  "completed_text_color": "#356b52",
+  "progress_text_color": "#435b68"
+}

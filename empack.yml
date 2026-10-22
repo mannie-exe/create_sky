@@ -13,6 +13,14 @@ runtime:
   minecraft: 1.21.1
   java: 21
 dependencies:
+  create-hostile-skies:
+    source:
+      kind: url
+      downloads:
+      - https://cdn.modrinth.com/data/78hqRjWm/versions/HaZ4GxKd/hostile_skies-0.2.6.jar
+    digests:
+      sha1: 25eadcdcf4db40b5e5e33f3aa7080f71fe4033ee
+      sha512: aacb60d2392aa2cf36417d60f95afd4ee334e5c4e3d0a426dfd3db1c5ff09ee012cc942995bd9f89c67b08ed19cf946c467431386e97dc893199804a817d9343
   accessories:
     source: modrinth:jtmvUHXj
     pin: dy9BbDEy
@@ -434,6 +442,18 @@ dependencies:
     environment:
       client: required
       server: required
+  reliable-gliders:
+    pin: aOgcvBAo
+    source: modrinth:reliable-gliders
+  aeronautics-delivery-quests:
+    pin: GBzcF6Il
+    source: modrinth:aeronautics-delivery-quests
+  create-propulsion-simulated:
+    pin: H13U56dc
+    source: modrinth:create-propulsion-simulated
+  questlog:
+    pin: 6ZFtauOf
+    source: modrinth:questlog
 build:
   default:
   - prism

@@ -1,0 +1,24 @@
+{
+  "title": "Interact with delivery table",
+  "description": "Right-click delivery table. Completion checks the block interaction, not a completed delivery.",
+  "chapter": "questlog:logistics",
+  "sort_order": 15,
+  "icon": {
+    "item": "aeronautics_delivery_quests:delivery_quests_table"
+  },
+  "requirements": [],
+  "objectives": [
+    {
+      "type": "questlog:block_interact",
+      "block": "aeronautics_delivery_quests:delivery_quests_table",
+      "required_amount": 1,
+      "name": "Right-click table"
+    }
+  ],
+  "rewards": [],
+  "include_in_main": false,
+  "toast_on_unlock": false,
+  "toast_on_complete": false,
+  "show_popup_on_unlock": false,
+  "details_open_by_default": true
+}

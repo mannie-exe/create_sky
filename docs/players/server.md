@@ -56,3 +56,31 @@ or use SQLite's backup API for a consistent snapshot.
 
 The client-only polygon fix and shader presets are excluded from server exports.
 An update to those alone does not require changing the server's mod set.
+
+The unreleased generation candidate fixes cluster spacing to 1494 and disables
+a conflicting biome optimization. Existing installations retain their settings;
+normal pack updates should preserve worlds and LODs. See the
+[generation review](../development/worldgen.md) before deliberately creating a
+replacement world. The published 0.1.5 defaults remain historical release settings.
+
+## Fresh random-world pregen
+
+After stopping the server and verifying a complete world/config backup, remove
+the previous world from the configured `level-name` path. Leave `level-seed=`
+blank to let Minecraft choose a random seed at next launch. Do not copy the old
+`level.dat`, region files or DH databases into the new world. Keep installation
+identity, whitelist and operator settings.
+
+With this pack's DH `CHUNKS_ONLY` / `INTERNAL_SERVER` configuration, start the
+server and enter these commands in its console (without a leading slash):
+
+```text
+dh pregen start minecraft:overworld 0 0 1024
+dh pregen status
+```
+
+The radius is 1024 chunks (16,384 blocks), centered at block coordinates 0, 0.
+`dh pregen stop` cancels the job. The installed DH 3.3.3 command implementation
+accepts dimension, X/Z origin and chunk radius. This run generates real chunks
+and LODs; allow sufficient disk space. The previous world occupied about 18 GiB,
+which is a reference measurement, not a guarantee for a different seed.

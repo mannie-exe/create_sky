@@ -3,7 +3,9 @@
     "minecraft",
     "create"
   ],
-  "priority_overrides": {},
+  "priority_overrides": {
+    "c:plates/zinc": "createdeco"
+  },
   "stone_variants": [
     "stone",
     "andesite",

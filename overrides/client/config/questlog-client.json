@@ -1,0 +1,39 @@
+{
+  "button": {
+    "enabled": true,
+    "showBadge": false,
+    "relativeToInventory": true,
+    "x": 2,
+    "y": -26,
+    "badgeX": 24,
+    "badgeY": 0,
+    "bobbingBadge": false
+  },
+  "gui": {
+    "mainPanelX": 0,
+    "mainPanelY": 0,
+    "searchBarX": 0,
+    "searchBarY": 0,
+    "chapterButtonsX": 0,
+    "chapterButtonsY": 0
+  },
+  "colors": {
+    "textColor": 2568760,
+    "titleColor": 1582123,
+    "completedTextColor": 3500882,
+    "failedTextColor": 9583669,
+    "uncollectedTextColor": 4414312,
+    "progressTextColor": 4414312,
+    "hoveredTextColor": 2568760,
+    "searchTextColor": 2568760,
+    "noQuestsColor": 4414312,
+    "hoverFillColor": 812486296,
+    "toastTitleColor": 1582123,
+    "toastDescriptionColor": 2568760
+  },
+  "preferences": {
+    "hideCompleted": false,
+    "descriptionsCondensed": true,
+    "lastOpenChapter": ""
+  }
+}

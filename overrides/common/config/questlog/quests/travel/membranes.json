@@ -1,0 +1,28 @@
+{
+  "title": "Phantom membranes",
+  "description": "Have at least 2 Phantom membranes in your inventory at once. Placed blocks and items in containers do not count.",
+  "chapter": "questlog:travel",
+  "sort_order": 0,
+  "icon": {
+    "item": "minecraft:phantom_membrane"
+  },
+  "requirements": [],
+  "objectives": [
+    {
+      "type": "questlog:item_obtain",
+      "item": "minecraft:phantom_membrane",
+      "required_amount": 2,
+      "name": "Phantom membranes"
+    }
+  ],
+  "rewards": [],
+  "include_in_main": false,
+  "toast_on_unlock": false,
+  "toast_on_complete": false,
+  "show_popup_on_unlock": false,
+  "details_open_by_default": true,
+  "text_color": "#273238",
+  "title_color": "#18242b",
+  "completed_text_color": "#356b52",
+  "progress_text_color": "#435b68"
+}

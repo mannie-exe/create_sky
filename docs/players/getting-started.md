@@ -23,8 +23,9 @@ Keep the Sky Archipelago preset and configuration with the world. This version
 can resolve stock saved generator settings through the current default preset;
 changing it can affect newly generated terrain in an existing world.
 
-The authored terrain uses random island sizing with radii from 10 to 500 blocks,
-island-center heights from Y -32 to 300, and dynamic spacing from 32 to 1500 blocks.
+The published 0.1.5 terrain uses random island sizing with radius settings from
+10 to 500, island-center heights from Y -32 to 300, and DYNAMIC spacing from
+32 to 1500. DYNAMIC selects one spacing per world; it is not a per-gap range.
 The ocean layer is off and islands are skipped over ocean biomes. Saved size bands
 apply only when SPECIFIC sizing is selected; RANDOM is the current default.
 
@@ -54,3 +55,9 @@ and the relevant log or crash report. Mention any changed mods or shader setting
 For missing distant terrain, follow the [LOD checks](graphics.md#missing-distant-terrain)
 first. For a native JVM crash, include the `hs_err_pid*.log` file as well as
 Minecraft's log.
+
+The unreleased generation candidate fixes cluster spacing to 1494 and disables
+a conflicting biome optimization. Existing installations retain their settings;
+normal pack updates should preserve worlds and LODs. See the
+[generation review](../development/worldgen.md) before deliberately creating a
+replacement world. The published 0.1.5 defaults remain historical release settings.

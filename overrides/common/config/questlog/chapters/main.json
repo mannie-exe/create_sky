@@ -1,0 +1,9 @@
+{
+  "name": "Materials",
+  "icon": {
+    "item": "create:andesite_alloy"
+  },
+  "order": 0,
+  "default_chapter": true,
+  "hidden": false
+}

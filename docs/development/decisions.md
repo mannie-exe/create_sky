@@ -305,3 +305,22 @@ regression test or benchmark. No additional game session was launched during
 release preparation; the owner's running instance was left untouched. Minecraft,
 world-generation configuration, shader presets and DH patch compatibility remain
 pinned. Stable JEI stays selected despite a newer compatible beta.
+
+## 2026-10-21: fixed cluster scale for the next candidate
+
+Select CONSISTENT 1494 for Sky Archipelago. The existing seed's DYNAMIC value is
+1494; the old 32 to 1500 range chooses one distance per world and makes density
+vary too widely between seeds. Native comparisons retain the sampled layout for
+this seed. Stock spacing 96 would substantially alter it. Keep biome/structure
+and survival validation separate from this layout check. Disable Zfastnoise's
+conflicting biome optimization in the candidate only. See
+[world generation](worldgen.md) for the owning configuration record.
+
+## 2026-10-21: random-world review and source push
+
+The owner superseded the proposed same-seed regeneration with a random-world
+review. Preserve the verified compressed world/config backup, clear the active
+world path and leave `level-seed` blank. Sync the local profiles with the current
+pack while preserving installation identity and player-owned client data. Do not
+launch the world or start pregen automatically. Commit and push source only;
+keep the version at 0.1.5 and do not create a release tag.

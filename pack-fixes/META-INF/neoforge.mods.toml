@@ -1,0 +1,27 @@
+modLoader="lowcodefml"
+loaderVersion="[1,)"
+license="MIT"
+[[mods]]
+modId="createskyfixes"
+version="0.1.0"
+displayName="Create Sky resources"
+description='''Resource repairs and journal presentation for Create Sky.'''
+[[dependencies.createskyfixes]]
+modId="createdeco"
+type="required"
+versionRange="[0,)"
+ordering="AFTER"
+side="BOTH"
+[[dependencies.createskyfixes]]
+modId="createaddoncompatibility"
+type="optional"
+versionRange="[0,)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.createskyfixes]]
+modId="questlog"
+type="optional"
+versionRange="[3.4.1,)"
+ordering="AFTER"
+side="BOTH"

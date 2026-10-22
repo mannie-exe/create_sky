@@ -1,0 +1,12 @@
+{
+  "key.questlog.open": "Open journal",
+  "questlog.gui.open": "Journal",
+  "questlog.gui.open_notification": "Journal (%s)",
+  "questlog.toast.quest_completed": "Completed",
+  "questlog.toast.quest_added": "Available",
+  "questlog.button.read": "Open",
+  "questlog.objective.in_progress_singular": "Incomplete",
+  "questlog.no_quests": "No entries",
+  "questlog.info.objectives": "Conditions",
+  "questlog.info.details": "Conditions"
+}

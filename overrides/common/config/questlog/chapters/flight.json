@@ -1,0 +1,9 @@
+{
+  "name": "Flight equipment",
+  "icon": {
+    "item": "aeronautics:white_envelope"
+  },
+  "order": 4,
+  "default_chapter": false,
+  "hidden": false
+}

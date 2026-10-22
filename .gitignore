@@ -24,3 +24,6 @@ Thumbs.db
 /docs/config-audit/
 /docs/**/*.json
 /docs/TASK.md
+
+# Rebuilt resource-only pack fixes; sources live in pack-fixes/.
+/overrides/common/mods/*.jar
