@@ -21,6 +21,11 @@ objective's meaning needs an explicit migration or a new ID.
 
 ## Conditions and routing
 
+All 48 English entries have explanatory descriptions, normally two paragraphs.
+They describe the component's function, related production route and relevant
+operating constraints. Full completion requirements and disclaimers remain
+separate from those explanations and from short objective labels. Flavor is empty.
+
 All entries have empty requirements. Chapters and sort order organize the routes;
 they do not impose crafting order. This accepts existing equipment and avoids
 losing interaction events while a prerequisite is locked. Crossings and flight

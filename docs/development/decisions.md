@@ -366,3 +366,33 @@ The original 1024-radius world's seed was recovered from the first verified
 archive and set only in local server properties for another generation test.
 The original and random worlds remain preserved. See [world generation](worldgen.md)
 for current generation choices and [pack authoring](authoring.md) for editing.
+
+## 2026-10-22 - Journal descriptions and workbench
+
+All 48 English journal entries now have authored descriptions, comprising 97
+paragraphs. Full requirements, disclaimers, titles and short objective labels are
+unchanged from `9508255`. Quest and chapter mechanics are unchanged. The app now
+provides a searchable chapter list, fields alongside it and a preview below.
+
+Descriptions were checked against the local recipe snapshot and installed
+Create 6.0.10, Simulated/Aeronautics 1.3.2, Propulsion 1.1.5 and Power Grid 0.6.2
+language and Ponder resources. These explain component roles and assembly needs,
+including the 21-crafter crushing-wheel arrangement, generator excitation and
+thruster inputs. Propulsion's existing larger-thruster Ponder scenes are recorded
+in [journal integrations](journal-integrations.md). This is source inspection,
+not a playtest of those assemblies.
+
+`python3 scripts/generate-journal.py --check` matched all 57 outputs.
+`python3 -m unittest discover -s tests -v` passed six tests, including mechanics
+preservation. `python3 scripts/audit-changes.py` matched all 196 registered files
+with no missing or unregistered paths. A comparison with the previous locale
+confirmed that only descriptions changed. The English locale SHA-256 is
+`a9a77c003f7c982e5113d7a174eab74ffefdfb873f5417cfc076cf17ec728aae`.
+
+`python3 scripts/build-fixes.py` rebuilt the resource JAR; its English translations
+match the generated source byte for byte. JAR SHA-256:
+`0b95b9888b972cff8d77af262ae12351ed51840bea04101e58d43059f0868d59`.
+Profile exports and native game checks were not repeated for this prose change.
+No dependencies, recipes, configurations or completion rules changed, and no
+journal resources were installed into playing instances. Version 0.1.5 remains
+unreleased; source publication does not authorize a release or site deployment.

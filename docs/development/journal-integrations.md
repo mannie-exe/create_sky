@@ -71,6 +71,13 @@ condition. That should be validated against a working mixer before narration
 claims production behavior. Aircraft controls and return crossings are later
 candidates requiring actual flight testing.
 
+The subsequent description review also found existing Propulsion scenes for
+2x2x2 and 3x3x3 liquid-thruster assemblies. The installed 1.1.5 language resources
+describe eight- and 27-block assemblies and rear fluid intake; the pack's
+`multiblockThruster` configuration defines their thrust and fuel modifiers.
+These are existing examples to link through a future bridge, not new scenes the
+pack needs to author. Assembly and fuel behavior still need an in-game check.
+
 The [Create Ponder guide](https://github.com/Creators-of-Create/Create/wiki/Internal---Ponder-UI)
 describes the storyboard concept but predates the installed package layout.
 The current API finding above comes from `javap` on Create's bundled Ponder JAR.

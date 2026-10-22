@@ -41,8 +41,9 @@ survey-backed resource assumptions. Quartz still blocks the normal electron-tube
 mechanical-crafter and crushing-wheel bootstrap in that scenario. Consequently,
 platinum washing and turpentine remain later processes even with early brass.
 This is a graph finding; it does not assert every source interaction is modeled.
-The three-crafter journal checkpoint records one crafting batch, not the complete
-crafter arrangement needed to produce crushing wheels.
+The three-crafter journal checkpoint checks inventory possession. The current
+crushing-wheel recipe needs 21 crafters in a five-by-five arrangement with the
+corners missing; the checkpoint does not establish that this setup is complete.
 
 ## Overlaps
 
