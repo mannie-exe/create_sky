@@ -1,0 +1,8 @@
+.cache/
+.astro/
+.wrangler/
+dist/
+node_modules/
+data/generated/
+public/generated/
+pnpm-lock.yaml

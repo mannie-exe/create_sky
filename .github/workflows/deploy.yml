@@ -1,0 +1,21 @@
+name: Prepare deployment
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: pnpm/action-setup@v6.1.0
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm deploy:preview
+      # Deliberately stops at dry-run. Add a reviewed snapshot, access policy,
+      # environment and Cloudflare credentials before enabling publication.

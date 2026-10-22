@@ -1,0 +1,69 @@
+schema: 1
+records:
+  - id: travel/glider
+    title: Glide and climb local updrafts
+    inputs: [[reliable_gliders:glider]]
+    outputs: []
+    evidence: implementation
+    detail: Hold the glider; durability drains during use. Default updraft height 15, strength 0.7; repair and updraft block tags are editable. Flight range needs measured launch altitude and descent rate.
+    sources:
+      ['https://github.com/evanbones/Reliable-Gliders', 'reliable_gliders.json']
+  - id: travel/rope
+    title: Establish a short crossing
+    inputs: []
+    outputs: []
+    evidence: implementation
+    detail: Throwable connector ranges are 10 blocks by hand, 20 with launcher, 40 mounted; Simulated ropes max 40. Plunger range 64, with backtank air supported. These are nearby crossing tools, not universal long-range bridges.
+    sources:
+      [
+        'throwable rope connector config',
+        'simulated-server.toml',
+        'climbable_ropes-server.toml',
+      ]
+  - id: logistics/docking
+    title: Dock and transfer cargo
+    inputs: []
+    outputs: []
+    evidence: implementation
+    detail: Simulated docking connectors transfer items and fluids between inventories/tanks; matching pose and physical access matter. Includes comparator progress. A moving industrial base can have a purpose beyond passenger transport.
+    sources: ['Simulated bundled Ponder translations', 'simulated-server.toml']
+  - id: logistics/delivery
+    title: Village delivery contracts
+    inputs: []
+    outputs: []
+    evidence: implementation
+    detail: Quest board creates physical schematic cargo and route compasses. Village mode targets structure positions, not a simulated village economy or NPC demand. Four available quests, 500–2000 block routes, 120-minute deadline. Damaged cargo reduces payout. Destination validity in sparse sky terrain still requires a live flight test.
+    sources:
+      [
+        'https://modrinth.com/mod/aeronautics-delivery-quests',
+        'aeronautics_delivery_quests.toml',
+      ]
+  - id: propulsion/solid
+    title: Solid-fuel thrust
+    inputs: [[createpropulsion:solid_fuel_thruster]]
+    outputs: []
+    evidence: implementation
+    detail: Present in released 1.1.5, with a copper/iron-sheet, andesite-alloy, chute and pipe recipe. Potential early propulsion role; preserve distinct endurance/control tradeoffs before changing recipes.
+    sources:
+      [
+        'createpropulsion:crafting/solid_fuel_thruster',
+        'createpropulsion-common.toml',
+      ]
+  - id: propulsion/liquid
+    title: Turpentine supplies liquid thrusters
+    inputs: [[createpropulsion:thruster]]
+    outputs: []
+    evidence: implementation
+    detail: Native turpentine is a valid fuel; another industrial mod is not required. Default full-throttle consumption 1 mB/tick and tank 1000 mB imply 50 seconds at 20 TPS for the standard tank, before other modifiers.
+    sources:
+      [
+        'createpropulsion:thruster_fuels/turpentine.json',
+        'createpropulsion-common.toml',
+      ]
+  - id: power/ion
+    title: Electrical propulsion and persistent power infrastructure
+    inputs: [[createpropulsion:ion_thruster]]
+    outputs: []
+    evidence: implementation
+    detail: Default 40 FE/tick at full throttle and 4000 FE internal buffer give five seconds at 20 TPS without supply. Power Grid and docking can make charging infrastructure meaningful; actual ship power transfer needs flight testing.
+    sources: ['createpropulsion-common.toml', 'simulated-server.toml']

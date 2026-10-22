@@ -1,0 +1,27 @@
+schema: 1
+description: Potential acquisition depth, not proof of survival accessibility. OR choices inside each ingredient slot, AND across slots. Machine requirements are explicit authored assumptions. Unknown routes stay unresolved.
+roots: []
+machines:
+  minecraft:smelting: minecraft:furnace
+  minecraft:blasting: minecraft:blast_furnace
+  minecraft:smoking: minecraft:smoker
+  minecraft:stonecutting: minecraft:stonecutter
+  minecraft:smithing_transform: minecraft:smithing_table
+  minecraft:smithing_trim: minecraft:smithing_table
+  create:pressing: create:mechanical_press
+  create:mixing: create:mechanical_mixer
+  create:compacting: create:mechanical_press
+  create:crushing: create:crushing_wheel
+  create:milling: create:millstone
+  create:cutting: create:mechanical_saw
+  create:deploying: create:deployer
+  create:filling: create:spout
+  create:emptying: create:item_drain
+  create:splashing: create:encased_fan
+  create:haunting: create:encased_fan
+  create:mechanical_crafting: create:mechanical_crafter
+limitations:
+  - Environmental gates and conditions are defined in acquisition.yml. Sampled resources are not guaranteed spawn-island supplies.
+  - Machines alone do not establish working power, heat, fluid plumbing, tool durability, Nether access or safe travel.
+  - Unresolved routes are classified by missing adapters, blocked dependencies, or explicit internal/creative exclusions.
+  - A multi-output recipe does not promise every output; retain each probability and condition.

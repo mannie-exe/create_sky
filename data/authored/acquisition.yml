@@ -1,0 +1,492 @@
+schema: 1
+records:
+  - id: access/overworld
+    title: Overworld access
+    detail: Starting environment. Sampled resources are potential destinations, not guaranteed starting-island supplies. The survey includes structures and existing builds.
+    roots: [atlas:overworld]
+  - id: access/exploration
+    title: Exploration and structure access
+    inputs: [[atlas:overworld]]
+    outputs: [atlas:exploration, atlas:villagers]
+    detail: Conditional access, not a free item. Finding traversable islands, structures and living villagers is unresolved geography. Village trades also need profession, level, stock and currency.
+  - id: access/combat
+    title: Combat capability
+    inputs: [[minecraft:wooden_sword, minecraft:stone_axe]]
+    outputs: [atlas:combat]
+    detail: Authored practical assumption; not a survival or damage check. Bosses and event mobs have additional explicit requirements.
+  - id: access/nether
+    title: Nether portal
+    inputs: [[minecraft:obsidian], [minecraft:flint_and_steel]]
+    outputs: [atlas:nether]
+    detail: Requires a complete portal frame, ignition and safe travel. Counts are not represented by depth. Existing ruined portals and lava casting provide alternative frame acquisition.
+    sources: ['Minecraft 1.21.1 portal and bucket behavior']
+  - id: access/end
+    title: End portal
+    inputs: [[minecraft:ender_eye], [atlas:exploration]]
+    outputs: [atlas:end]
+    detail: Find a stronghold and fill its portal frame; eye consumption, frame counts and safe return are not solved.
+  - id: access/heat
+    title: Furnace fuel
+    inputs:
+      [
+        [
+          minecraft:coal,
+          minecraft:charcoal,
+          minecraft:oak_planks,
+          minecraft:spruce_planks,
+        ],
+      ]
+    outputs: [atlas:heat]
+    detail: Representative vanilla fuels; full burn-time accounting is not modeled.
+  - id: access/blaze-heat
+    title: Fueled Blaze Burner
+    inputs: [[create:blaze_burner], [atlas:heat]]
+    outputs: [atlas:heated]
+    detail: A captured Blaze Burner needs ordinary fuel for heated processing. Position it below the basin; this route retains the separate blaze-capture requirement.
+    sources: ['Create 6.0.10 HeatCondition and BlazeBurnerBlockEntity']
+  - id: access/blaze-superheat
+    title: Blaze cake heat
+    inputs: [[create:blaze_burner], [create:blaze_cake]]
+    outputs: [atlas:heated, atlas:superheated]
+    detail: Blaze cake supplies the seething heat state. Ordinary furnace fuel does not superheat a Blaze Burner.
+    sources: ['Create 6.0.10 HeatCondition and BlazeBurnerBlockEntity']
+  - id: access/solid-burner-heat
+    title: Coal-fired solid burner
+    inputs: [[createpropulsion:solid_burner], [minecraft:coal], [create:basin]]
+    outputs: [atlas:heated, atlas:superheated]
+    detail: Propulsion 1.1.5 with Burners power heated mixers enabled. A basin above requests fuel through the thermostat. The isolated native check accepted eight coal, reached heated at manual tick 128 and superheated at tick 380. The unfueled burner remained cold. These are heat-predicate checks, not a running mixer or sustained-throughput test; fuel budget and heat load remain conditional. Liquid-burner fuel routes are not yet independently verified.
+    sources:
+      [
+        'runtime/heat_checks.json',
+        'Propulsion AbstractBurnerBlockEntity and Create BasinBlockEntity',
+        'config/createpropulsion-common.toml',
+      ]
+  - id: access/rotation
+    title: Kinetic power
+    inputs:
+      [
+        [
+          create:hand_crank,
+          create:water_wheel,
+          create:large_water_wheel,
+          create:windmill_bearing,
+        ],
+      ]
+    outputs: [atlas:rotation]
+    detail: Potential kinetic source. Stress capacity, RPM, attachment and water/sail construction must be checked in game; a hand crank does not establish sufficient power for every machine.
+  - id: access/silk
+    title: Silk Touch equipment
+    inputs:
+      [
+        [minecraft:enchanting_table],
+        [minecraft:lapis_lazuli],
+        [minecraft:diamond_pickaxe],
+      ]
+    outputs: [atlas:silk_touch]
+    detail: Conditional enchanted-tool access. Requires XP, appropriate bookshelves and rolling Silk Touch. Loot and librarian books are alternatives not exhaustively modeled.
+  - id: fluid/water
+    title: Collect water
+    inputs: [[atlas:overworld], [minecraft:bucket]]
+    outputs: [fluid:minecraft/water]
+    detail: Water was observed in the surveyed world; reach a source block and collect it.
+    sources: ['world survey']
+  - id: fluid/lava
+    title: Collect lava
+    inputs: [[atlas:overworld], [minecraft:bucket]]
+    outputs: [fluid:minecraft/lava]
+    detail: Lava was observed in the surveyed world; safe source access is required.
+    sources: ['world survey']
+  - id: interaction/cast-obsidian
+    title: Cast and mine obsidian
+    inputs:
+      [
+        [fluid:minecraft/lava],
+        [fluid:minecraft/water],
+        [minecraft:diamond_pickaxe],
+      ]
+    outputs: [minecraft:obsidian]
+    detail: Water converts a lava source to obsidian, which requires a diamond-tier pickaxe to collect. Portal casting can bypass collection but is not represented as an item route.
+  - id: interaction/water-bottle
+    title: Fill a water bottle
+    inputs: [[minecraft:glass_bottle], [fluid:minecraft/water]]
+    outputs: [potion:minecraft/potion/minecraft/water, minecraft:potion]
+    detail: Bottle a water source. Potion state is retained for brewing.
+  - id: interaction/milk
+    title: Milk a cow
+    inputs: [[atlas:overworld], [minecraft:bucket]]
+    outputs: [minecraft:milk_bucket]
+    detail: Requires a living cow or mooshroom; no mob consumption. Finding or breeding livestock remains conditional.
+  - id: interaction/egg
+    title: Chicken egg laying
+    inputs: [[atlas:overworld]]
+    outputs: [minecraft:egg]
+    detail: A loaded adult chicken periodically lays eggs. Not a guaranteed initial supply.
+  - id: interaction/honey
+    title: Harvest a full bee nest
+    inputs: [[minecraft:bee_nest, minecraft:beehive], [minecraft:shears]]
+    outputs: [minecraft:honeycomb]
+    detail: Requires living bees, flowers and honey level 5; smoke prevents anger. The nest is reusable.
+  - id: interaction/honey-bottle
+    title: Bottle honey
+    inputs: [[minecraft:bee_nest, minecraft:beehive], [minecraft:glass_bottle]]
+    outputs: [minecraft:honey_bottle]
+    detail: Requires living bees, flowers and honey level 5; smoke prevents anger.
+  - id: interaction/blaze-capture
+    title: Capture a blaze
+    inputs: [[create:empty_blaze_burner], [atlas:nether], [atlas:combat]]
+    outputs: [create:blaze_burner]
+    detail: Use an empty burner on a blaze or blaze spawner. Fuel, heat and superheat are separate requirements.
+    sources: ['Create bundled Ponder text; EmptyBlazeBurnerBlockItem']
+  - id: interaction/mud
+    title: Wet dirt
+    inputs: [[minecraft:dirt], [potion:minecraft/potion/minecraft/water]]
+    outputs: [minecraft:mud]
+    detail: Use a water bottle on dirt. Coarse and rooted dirt are additional valid inputs not needed for first access.
+  - id: interaction/snow
+    title: Collect snowballs
+    inputs: [[atlas:overworld], [minecraft:wooden_shovel]]
+    outputs: [minecraft:snowball]
+    detail: Requires reachable snow layers or a snow golem trail; biome/temperature matters.
+  - id: interaction/sheep
+    title: Shear sheep
+    inputs: [[atlas:overworld], [minecraft:shears]]
+    outputs: [minecraft:white_wool]
+    detail: Requires a living white sheep; sheep can regrow wool on grass.
+  - id: interaction/firework
+    title: Flight rocket
+    inputs:
+      [[minecraft:paper], [minecraft:gunpowder], [minecraft:crafting_table]]
+    outputs: [minecraft:firework_rocket]
+    detail: Vanilla special recipe; gunpowder count sets flight duration. Stars add explosion payload and are separate.
+    sources: ['net.minecraft.world.item.crafting.FireworkRocketRecipe']
+  - id: interaction/pot
+    title: Decorated pot
+    inputs: [[minecraft:brick], [minecraft:crafting_table]]
+    outputs: [minecraft:decorated_pot]
+    detail: Four bricks make an undecorated pot; pottery sherds select face designs. Item-level map groups those component variants.
+  - id: interaction/peace-treaty
+    title: Librarian peace treaty
+    inputs: [[atlas:villagers], [minecraft:emerald], [minecraft:diamond]]
+    outputs: [hostile_skies:peace_treaty]
+    detail: Novice librarian offer costs 32 emeralds and 3 diamonds. Resets captain kill progression, not village safety or raid immunity. Requires the offer to be selected.
+    sources: ['Hostile Skies 0.2.6 villager trade event']
+  - id: environment/nether
+    title: Nether terrain
+    gate: atlas:nether
+    blocks:
+      [
+        minecraft:netherrack,
+        minecraft:crimson_stem,
+        minecraft:warped_stem,
+        minecraft:crimson_fungus,
+        minecraft:warped_fungus,
+        minecraft:soul_sand,
+        minecraft:soul_soil,
+        minecraft:basalt,
+        minecraft:blackstone,
+        minecraft:glowstone,
+        minecraft:nether_quartz_ore,
+        minecraft:nether_gold_ore,
+        minecraft:ancient_debris,
+        minecraft:nether_wart,
+        minecraft:shroomlight,
+        minecraft:twisting_vines,
+        minecraft:weeping_vines,
+        minecraft:nether_sprouts,
+      ]
+    detail: Vanilla terrain/structure resources; Nether has not been surveyed. Biomes, height and safe navigation constrain access. Ancient debris requires diamond-tier mining.
+    sources: ['Minecraft 1.21.1 configured features and fortress generation']
+  - id: environment/end
+    title: End terrain
+    gate: atlas:end
+    blocks:
+      [
+        minecraft:end_stone,
+        minecraft:chorus_plant,
+        minecraft:chorus_flower,
+        minecraft:purpur_block,
+      ]
+    entities: [minecraft:shulker]
+    detail: Outer island terrain and End cities. Reaching the outer islands is additional travel; not a guaranteed arrival-island source.
+  - id: environment/special-overworld
+    title: Conditional Overworld mobs
+    gate: atlas:overworld
+    entities:
+      [
+        minecraft:phantom,
+        minecraft:iron_golem,
+        minecraft:ravager,
+        minecraft:evoker,
+        minecraft:vindicator,
+        minecraft:breeze,
+      ]
+    detail: Phantom needs insomnia and spawn conditions; golems require villages or construction; illagers require structures or raids; breeze requires trial chambers. These are potential encounters, not ordinary biome spawns.
+  - id: environment/fortress
+    title: Nether fortress encounters
+    gate: atlas:nether
+    entities: [minecraft:blaze, minecraft:wither_skeleton]
+    detail: Fortress spawns and blaze spawners; requires locating a fortress and fighting its mobs. Not a general Nether biome spawn.
+  - id: interaction/turtle-growth
+    title: Turtle scutes
+    inputs: [[atlas:overworld], [minecraft:seagrass]]
+    outputs: [minecraft:turtle_scute]
+    detail: Breed turtles on their home beach, protect eggs, and let babies mature. Adult turtles do not drop scutes on death. Ocean-island suppression may make suitable habitat scarce.
+  - id: interaction/scute-brushing
+    title: Armadillo scutes
+    inputs: [[atlas:overworld], [minecraft:brush]]
+    outputs: [minecraft:armadillo_scute]
+    detail: Brush a living armadillo; it also sheds scutes periodically. Requires the animal and brush durability.
+  - id: interaction/farming-wheat
+    title: Grow wheat
+    inputs: [[minecraft:wheat_seeds], [minecraft:wooden_hoe], [minecraft:dirt]]
+    outputs: [minecraft:wheat]
+    detail: Till farmland, plant and wait for growth with adequate light. Hydration and bone meal change time, not initial seed access.
+  - id: interaction/farming-beetroot
+    title: Grow beetroot
+    inputs:
+      [[minecraft:beetroot_seeds], [minecraft:wooden_hoe], [minecraft:dirt]]
+    outputs: [minecraft:beetroot]
+    detail: Plant in lit farmland and harvest mature crops; retain seeds for renewal.
+  - id: interaction/farming-melon
+    title: Grow melons
+    inputs: [[minecraft:melon_seeds], [minecraft:wooden_hoe], [minecraft:dirt]]
+    outputs: [minecraft:melon, minecraft:melon_slice]
+    detail: Mature stems need a free adjacent growth space. Whole melon collection requires Silk Touch; the graph output melon represents reconstruction from slices, not a free whole-block drop.
+  - id: interaction/farming-pumpkin
+    title: Grow pumpkins
+    inputs:
+      [[minecraft:pumpkin_seeds], [minecraft:wooden_hoe], [minecraft:dirt]]
+    outputs: [minecraft:pumpkin]
+    detail: Mature stems need a free adjacent growth space.
+  - id: interaction/carving
+    title: Carve a pumpkin
+    inputs: [[minecraft:pumpkin], [minecraft:shears]]
+    outputs: [minecraft:carved_pumpkin, minecraft:pumpkin_seeds]
+    detail: Use shears on a placed pumpkin; four seeds are ejected.
+  - id: classification/vanilla
+    title: Vanilla operator and internal items
+    excluded:
+      [
+        minecraft:air,
+        minecraft:barrier,
+        minecraft:bedrock,
+        minecraft:command_block,
+        minecraft:chain_command_block,
+        minecraft:repeating_command_block,
+        minecraft:structure_block,
+        minecraft:structure_void,
+        minecraft:jigsaw,
+        minecraft:light,
+        minecraft:debug_stick,
+        minecraft:knowledge_book,
+        minecraft:reinforced_deepslate,
+        minecraft:end_portal_frame,
+        minecraft:spawner,
+        minecraft:trial_spawner,
+        minecraft:vault,
+        minecraft:budding_amethyst,
+        minecraft:player_head,
+      ]
+    detail: No standard survival item acquisition. World blocks can exist without being collectible. These are kept visible and excluded from missing-link totals; modded exceptions require an explicit reviewed route.
+  - id: access/wither
+    title: Summon and defeat the Wither
+    inputs:
+      [
+        [minecraft:wither_skeleton_skull],
+        [minecraft:soul_sand, minecraft:soul_soil],
+        [atlas:combat],
+      ]
+    outputs: [atlas:wither]
+    detail: Requires three skulls, four soul blocks, a safe arena and a successful boss fight. The map does not evaluate combat readiness.
+  - id: environment/wither
+    title: Wither drops
+    gate: atlas:wither
+    entities: [minecraft:wither]
+    detail: Kill the summoned Wither for its loot; not a natural encounter.
+  - id: environment/monument
+    title: Ocean monument encounters
+    gate: atlas:overworld
+    entities: [minecraft:elder_guardian]
+    blocks: [minecraft:wet_sponge]
+    detail: Requires a generated ocean monument. Ocean-island suppression makes availability uncertain; this source has not been surveyed in the Nether or End and is not guaranteed in the Overworld sample.
+  - id: interaction/dragon-breath
+    title: Bottle dragon breath
+    inputs: [[atlas:end], [minecraft:glass_bottle], [atlas:combat]]
+    outputs: [minecraft:dragon_breath]
+    detail: Use an empty bottle in an Ender Dragon breath cloud. Requires a live dragon; no dragon kill is needed for this interaction.
+  - id: interaction/end-ship
+    title: End ship equipment
+    inputs: [[atlas:end], [atlas:exploration]]
+    outputs: [minecraft:elytra, minecraft:dragon_head]
+    detail: Find an End city with a ship. Elytra is an item-frame reward, not chest loot; the dragon head is part of the ship.
+  - id: interaction/dragon-egg
+    title: First dragon kill
+    inputs: [[atlas:end], [atlas:combat], [minecraft:piston, minecraft:torch]]
+    outputs: [minecraft:dragon_egg]
+    detail: Defeat the first dragon and collect the egg using a piston or falling-block method. Only one initial egg per Java world.
+  - id: interaction/wither-rose
+    title: Wither kill conversion
+    inputs: [[atlas:wither]]
+    outputs: [minecraft:wither_rose]
+    detail: Have the Wither kill another eligible living mob. The flower can be placed or dropped depending on block suitability.
+  - id: interaction/sniffer-crops
+    title: Grow ancient crops
+    inputs:
+      [[minecraft:torchflower_seeds], [minecraft:wooden_hoe], [minecraft:dirt]]
+    outputs: [minecraft:torchflower]
+    detail: Plant in farmland and grow to maturity. Sniffer digging supplies initial seeds.
+  - id: interaction/pitcher
+    title: Grow pitcher plants
+    inputs: [[minecraft:pitcher_pod], [minecraft:wooden_hoe], [minecraft:dirt]]
+    outputs: [minecraft:pitcher_plant]
+    detail: Grow a pitcher crop to maturity in farmland and harvest.
+  - id: interaction/map
+    title: Initialize a map
+    inputs: [[minecraft:map], [atlas:overworld]]
+    outputs: [minecraft:filled_map]
+    detail: Use an empty map. Map ID, center, scale and exploration contents are component-level state.
+  - id: interaction/book
+    title: Sign a book
+    inputs: [[minecraft:writable_book]]
+    outputs: [minecraft:written_book]
+    detail: Enter text and sign the book; title, author and pages are component state.
+  - id: interaction/powder-snow
+    title: Collect powder snow
+    inputs: [[minecraft:bucket], [atlas:overworld]]
+    outputs: [minecraft:powder_snow_bucket]
+    detail: Requires powder snow in mountain terrain or a cauldron filling in snowfall.
+  - id: interaction/fish-buckets
+    title: Collect aquatic mobs
+    inputs: [[minecraft:water_bucket], [atlas:overworld]]
+    outputs:
+      [
+        minecraft:salmon_bucket,
+        minecraft:cod_bucket,
+        minecraft:pufferfish_bucket,
+        minecraft:tropical_fish_bucket,
+        minecraft:axolotl_bucket,
+        minecraft:tadpole_bucket,
+      ]
+    detail: Use a water bucket on the matching living aquatic mob. Each result has a different habitat requirement; these are alternatives, not simultaneous outputs.
+  - id: interaction/charged-creeper
+    title: Charged creeper head drops
+    inputs:
+      [
+        [atlas:overworld],
+        [atlas:combat],
+        [minecraft:trident],
+        [minecraft:enchanting_table],
+      ]
+    outputs:
+      [minecraft:creeper_head, minecraft:zombie_head, minecraft:skeleton_skull]
+    detail: Conditional route through Channeling during a thunderstorm, charging a creeper and having its explosion kill the matching mob. Natural lightning is an alternate; one head per charged explosion.
+  - id: interaction/trident
+    title: Drowned equipment drop
+    inputs: [[atlas:overworld], [atlas:combat]]
+    outputs: [minecraft:trident]
+    detail: Kill a drowned that spawned holding a trident. Equipment probability and drop chance apply; converting a zombie does not grant a trident.
+  - id: interaction/coral-growth
+    title: Coral from bone meal
+    inputs:
+      [
+        [minecraft:bone_meal],
+        [fluid:minecraft/water],
+        [atlas:overworld],
+        [atlas:silk_touch],
+      ]
+    outputs:
+      [
+        minecraft:tube_coral,
+        minecraft:brain_coral,
+        minecraft:bubble_coral,
+        minecraft:fire_coral,
+        minecraft:horn_coral,
+        minecraft:tube_coral_fan,
+        minecraft:brain_coral_fan,
+        minecraft:bubble_coral_fan,
+        minecraft:fire_coral_fan,
+        minecraft:horn_coral_fan,
+      ]
+    detail: Bone meal underwater in a warm ocean biome can grow coral. Collection requires Silk Touch; obtaining a warm-ocean habitat remains unverified with ocean islands disabled.
+  - id: interaction/azalea-growth
+    title: Azalea tree leaves
+    inputs:
+      [
+        [minecraft:azalea, minecraft:flowering_azalea],
+        [minecraft:bone_meal],
+        [minecraft:shears],
+      ]
+    outputs: [minecraft:azalea_leaves, minecraft:flowering_azalea_leaves]
+    detail: Grow an azalea tree with bone meal and shear its leaves. Space and substrate are required.
+  - id: environment/nether-flora
+    title: Nether vegetation
+    gate: atlas:nether
+    blocks:
+      [
+        minecraft:warped_nylium,
+        minecraft:warped_roots,
+        minecraft:warped_wart_block,
+      ]
+    detail: Requires the matching Nether biome. Nylium collection requires Silk Touch, as encoded by its loot table.
+  - id: interaction/circuit-design
+    title: Write a circuit schematic
+    inputs: [[powergrid:circuit_design_table], [create:empty_schematic]]
+    outputs: [powergrid:circuit_schematic]
+    detail: Design a circuit at the table and write it onto an empty schematic. The table consumes one blank from slot 1 and produces a configured schematic in slot 2; circuit contents are component state. Copying an existing schematic is a separate deploying route.
+    sources:
+      [
+        'Power Grid installed JAR: CircuitDesignTableBlockEntity#writeToItem; CircuitDesignTableMenu$2#mayPlace; SaveSchematicC2SPacket#handle',
+      ]
+  - id: interaction/wither-star
+    title: Wither death reward
+    inputs: [[atlas:wither], [atlas:combat]]
+    outputs: [minecraft:nether_star]
+    detail: Defeat the Wither. The star is emitted by custom death logic, not its ordinary loot table.
+    sources: ['Minecraft 1.21.1 WitherBoss#dropCustomDeathLoot']
+  - id: access/new-terrain
+    title: Newly generated terrain
+    inputs: [[atlas:exploration]]
+    outputs: [atlas:new_terrain]
+    detail: Travel beyond already generated chunks. Current feature settings apply there; no regeneration or retrogen is performed by this project. This is conditional access, not a measured ore deposit.
+  - id: environment/platinum
+    title: Platinum in new terrain
+    gate: atlas:new_terrain
+    blocks:
+      [createpropulsion:platinum_ore, createpropulsion:deepslate_platinum_ore]
+    detail: Current Propulsion biome modifiers add four platinum features to Overworld biomes. No platinum was observed in the existing pregen sample. Sky terrain intersects height bands unevenly. Gold washing provides a separate 5% nugget route without new chunks.
+    sources:
+      [
+        'createpropulsion:neoforge/biome_modifier/add_ore_platinum.json',
+        'createpropulsion:worldgen/configured_feature/ore_platinum.json',
+        'create:splashing/crushed_raw_gold',
+      ]
+  - id: interaction/cobweb
+    title: Collect a cobweb
+    inputs: [[atlas:exploration], [minecraft:shears]]
+    outputs: [minecraft:cobweb]
+    detail: Shears collect cobwebs found in mineshafts and other structures. Sword harvesting produces string instead; the generic correct-tool tag adapter does not cover this ability exception.
+  - id: interaction/firework-star
+    title: Craft a firework star
+    inputs:
+      [
+        [minecraft:gunpowder],
+        [
+          minecraft:red_dye,
+          minecraft:blue_dye,
+          minecraft:yellow_dye,
+          minecraft:white_dye,
+        ],
+      ]
+    outputs: [minecraft:firework_star]
+    detail: Vanilla dynamic recipe with gunpowder and at least one dye. Optional shape/trail/twinkle ingredients set components; these do not change base item access.
+  - id: classification/zinc
+    title: Unified zinc sheet
+    aliases:
+      - id: powergrid:zinc_sheet
+        canonical: createdeco:zinc_sheet
+    detail: Almost Unified explicitly prefers Create Deco for c:plates/zinc. Old Power Grid sheets remain registered and accepted by tag ingredients, while new production uses the canonical sheet. The map keeps both registry entries.
+    sources:
+      [
+        'config/almostunified/unification/materials.json',
+        'runtime pressing recipes and item tags',
+      ]

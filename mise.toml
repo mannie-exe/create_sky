@@ -1,0 +1,9 @@
+[tools]
+node = "24.22.0"
+python = "3.15.0"
+
+[tasks.setup]
+run = ["pnpm install --frozen-lockfile", "pnpm setup:python"]
+
+[tasks.verify]
+run = ["pnpm verify", "pnpm test:python"]

@@ -1,0 +1,44 @@
+{
+  "name": "create-skyweave-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.14.0",
+  "engines": {
+    "node": ">=24.16.0 <25"
+  },
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro check && astro build",
+    "preview": "astro preview --host 127.0.0.1",
+    "check": "astro check",
+    "test": "node --test tests/*.test.mjs",
+    "verify": "pnpm lint && pnpm test && pnpm build",
+    "setup:python": "python3 -m venv .cache/python && .cache/python/bin/python -m pip install -r requirements.txt",
+    "test:python": ".cache/python/bin/python -m unittest discover -s tests -p 'test_*.py'",
+    "data:check": "node scripts/verify_snapshot.mjs",
+    "data:runtime": "python3 scripts/runtime.py",
+    "data:extract": "python3 scripts/extract.py",
+    "data:world": ".cache/python/bin/python scripts/world.py",
+    "data:compile": "node scripts/compile.mjs",
+    "data:refresh": "pnpm data:runtime && pnpm data:extract && pnpm data:compile",
+    "deploy:preview": "wrangler deploy --dry-run",
+    "deploy": "wrangler deploy",
+    "format": "prettier --write .",
+    "lint": "prettier --check .",
+    "test:browser": "playwright test"
+  },
+  "dependencies": {
+    "astro": "7.4.2",
+    "yaml": "2.9.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@playwright/test": "1.64.1",
+    "@types/node": "^24.19.1",
+    "prettier": "^3.9.10",
+    "prettier-plugin-astro": "^1.1.1",
+    "typescript": "6.0.3",
+    "wrangler": "4.151.3"
+  }
+}
