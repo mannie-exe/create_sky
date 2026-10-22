@@ -1,0 +1,151 @@
+.authoring {
+  padding: 20px;
+  max-width: 1600px;
+  margin: auto;
+}
+.authoring .actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.authoring .scope {
+  color: var(--muted);
+}
+.authoring-actions {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 10px 0;
+  background: var(--surface);
+}
+.authoring .workbench {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 28px;
+}
+.authoring .entry-browser {
+  position: sticky;
+  top: 76px;
+  align-self: start;
+}
+.authoring #entries {
+  max-height: calc(100dvh - 260px);
+  min-height: 180px;
+  overflow-y: auto;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--panel);
+}
+.authoring #entries h2 {
+  margin: 12px 8px 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.authoring #entries button {
+  display: block;
+  text-align: left;
+  width: 100%;
+  border-color: transparent;
+  overflow-wrap: anywhere;
+  margin: 2px 0;
+}
+.authoring #entries button[aria-current='true'] {
+  background: var(--tint);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.authoring #entries small {
+  display: block;
+  color: var(--muted);
+}
+.authoring .entry-editor {
+  min-width: 0;
+}
+.authoring #entry-heading {
+  margin: 0;
+  font-size: 21px;
+}
+.authoring #entry-id {
+  margin-top: 4px;
+  font-family: var(--mono);
+}
+.authoring label {
+  display: grid;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+.authoring textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--ink);
+  background: var(--panel);
+}
+.authoring select,
+.authoring input {
+  max-width: 100%;
+  min-width: 0;
+}
+.authoring #source-text {
+  font-family: var(--mono);
+}
+.authoring .preview-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 18px;
+  overflow-wrap: anywhere;
+}
+.authoring .table-scroll {
+  overflow: auto;
+}
+.authoring table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.authoring th,
+.authoring td {
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.authoring fieldset {
+  border: 1px solid var(--line);
+  min-width: 0;
+}
+.authoring details {
+  margin-top: 24px;
+  overflow-wrap: anywhere;
+}
+.authoring #conditions {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.authoring h2 {
+  font-size: 18px;
+}
+.authoring [aria-pressed='true'] {
+  border-color: var(--accent);
+}
+@media (max-width: 800px) {
+  .authoring .workbench {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .authoring .entry-browser {
+    position: static;
+  }
+  .authoring #entries {
+    min-height: 0;
+    max-height: 240px;
+  }
+  .authoring {
+    padding: 12px;
+  }
+}

@@ -1,0 +1,59 @@
+<section id="journal-panel">
+  <div class="actions">
+    <label>
+      Locale <select id="locale"></select>
+    </label>
+    <span id="drafts"></span>
+  </div>
+  <div class="workbench">
+    <aside class="entry-browser">
+      <label>
+        Find entry{' '}
+        <input id="entry-search" type="search" placeholder="Title or ID" />
+      </label>
+      <nav id="entries" aria-label="Journal entries"></nav>
+      <p id="entry-count" class="scope" role="status"></p>
+    </aside>
+    <div class="entry-editor">
+      <h1 id="entry-heading">Journal entry</h1>
+      <p id="entry-id" class="scope"></p>
+      <form id="entry-form" onsubmit="return false">
+        <label>
+          Title <input id="title" />
+        </label>
+        <label>
+          Flavor / quote (optional) <textarea id="flavor" rows="2"></textarea>
+        </label>
+        <label>
+          Requirements (left-hand description){' '}
+          <textarea id="requirements" rows="3"></textarea>
+        </label>
+        <label>
+          Description (separate paragraphs with a blank line){' '}
+          <textarea id="description" rows="8"></textarea>
+        </label>
+        <label>
+          Disclaimer <select id="disclaimer"></select>
+        </label>
+        <fieldset>
+          <legend>Short objective labels (right-hand panel)</legend>
+          <div id="labels"></div>
+        </fieldset>
+        <details>
+          <summary>Completion rules</summary>
+          <pre id="conditions"></pre>
+        </details>
+      </form>
+      <div>
+        <h2>Text preview</h2>
+        <p class="scope">
+          Section order and labels; Minecraft font wrapping is not reproduced.
+        </p>
+        <div class="preview-columns">
+          <article id="preview"></article>
+          <aside id="objectives"></aside>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

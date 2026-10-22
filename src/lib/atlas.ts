@@ -1,3 +1,4 @@
+import { requestJSON as fetchJSON } from './http'
 import { detailBucket } from './graph.mjs'
 type Node = {
   id: string
@@ -29,11 +30,6 @@ const escape = (value: unknown) =>
 const pretty = (value: unknown) =>
   `<pre>${escape(JSON.stringify(value, null, 2))}</pre>`
 const nf = new Intl.NumberFormat('en-US')
-const fetchJSON = async (url: string) => {
-  const response = await fetch(url, { cache: 'no-store' })
-  if (!response.ok) throw new Error(`${url}: ${response.status}`)
-  return response.json()
-}
 let nodes: Node[] = [],
   filtered: Node[] = [],
   meta: RecordData = {},
@@ -579,14 +575,11 @@ el('save-editor').addEventListener('click', async () => {
   button.disabled = true
   el('editor-status').textContent = 'Validating and rebuilding…'
   try {
-    const text = el<HTMLTextAreaElement>('domain-editor').value,
-      response = await fetch(`/__atlas/domain/${name}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text, revision: editorFiles[name].revision }),
-      }),
-      result = await response.json()
-    if (!response.ok) throw new Error(result.error)
+    const text = el<HTMLTextAreaElement>('domain-editor').value
+    const result = await fetchJSON(`/__atlas/domain/${name}`, {
+      text,
+      revision: editorFiles[name].revision,
+    })
     editorFiles[name] = { text, revision: result.revision }
     domainData = null
     detailCache.clear()
@@ -601,13 +594,7 @@ el('save-editor').addEventListener('click', async () => {
 })
 el('export-patch').addEventListener('click', async () => {
   try {
-    const response = await fetch('/__atlas/export', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: '{}',
-      }),
-      result = await response.json()
-    if (!response.ok) throw new Error(result.error)
+    const result = await fetchJSON('/__atlas/export', {})
     const link = document.createElement('a')
     link.href = result.url
     link.download = 'create-sky-atlas-patch.zip'
@@ -643,13 +630,7 @@ el('refresh-data').addEventListener('click', async () => {
   el('editor-status').textContent =
     'Capturing isolated runtime; this can take a minute…'
   try {
-    const response = await fetch('/__atlas/refresh', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: '{}',
-      }),
-      result = await response.json()
-    if (!response.ok) throw new Error(result.error)
+    await fetchJSON('/__atlas/refresh', {})
     domainData = null
     detailCache.clear()
     await loadCatalog()

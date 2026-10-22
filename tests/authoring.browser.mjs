@@ -1,5 +1,51 @@
 import { test, expect } from '@playwright/test'
 
+test('entry workbench filters, protects drafts and places the preview below fields', async ({
+  page,
+}) => {
+  await page.goto('/authoring')
+  await expect(page.locator('#status')).toHaveText('Source loaded')
+  await expect(page.locator('#entries button')).toHaveCount(48)
+  await expect(page.locator('#drafts')).toHaveText(
+    '0 entries without descriptions',
+  )
+  await page.locator('#entry-search').fill('membranes')
+  await expect(page.locator('#entries button')).toHaveCount(1)
+  await page.locator('[data-entry="travel/membranes"]').click()
+  await expect(page.locator('#entry-id')).toHaveText('travel/membranes')
+  await expect(page.locator('#description')).toHaveValue(/Glider recipe/)
+  await page.locator('#requirements').fill('Unsaved condition')
+  await page.locator('#entry-search').fill('crafters')
+  page.once('dialog', (dialog) => dialog.dismiss())
+  await page.locator('[data-entry="components/crafters"]').click()
+  await expect(page.locator('#entry-id')).toHaveText('travel/membranes')
+  await expect(page.locator('#requirements')).toHaveValue('Unsaved condition')
+  page.once('dialog', (dialog) => dialog.accept())
+  await page.locator('[data-entry="components/crafters"]').click()
+  await expect(page.locator('#description')).toHaveValue(/21 crafters/)
+  await expect(
+    page.locator('#entries button[aria-current="true"]'),
+  ).toHaveAttribute('data-entry', 'components/crafters')
+  const list = await page.locator('.entry-browser').boundingBox()
+  const fields = await page.locator('#entry-form').boundingBox()
+  const preview = await page.locator('.preview-columns').boundingBox()
+  expect(list.x + list.width).toBeLessThan(fields.x)
+  expect(preview.y).toBeGreaterThan(fields.y + fields.height)
+  await page.locator('#entry-search').fill('no-such-entry')
+  await expect(page.locator('#entry-count')).toHaveText('No matching entries')
+  await expect(page.locator('#entry-id')).toHaveText('components/crafters')
+  await page.locator('#entry-search').fill('')
+  await page.setViewportSize({ width: 390, height: 844 })
+  expect(
+    await page
+      .locator('#entries')
+      .evaluate((node) => node.scrollHeight > node.clientHeight),
+  ).toBe(true)
+  expect(
+    await page.evaluate(() => document.body.scrollWidth <= innerWidth),
+  ).toBe(true)
+})
+
 test('real config audit and local write boundaries', async ({
   page,
   request,

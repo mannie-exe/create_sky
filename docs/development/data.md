@@ -157,11 +157,38 @@ added. A malformed survey still fails compilation instead of being treated as ab
 
 [`src/lib/atlas.ts`](../../src/lib/atlas.ts) renders only cells near the viewport,
 loads details as needed and handles search, filters, hover details and canvas world
-plots. [`index.astro`](../../src/pages/index.astro) owns the static shell;
-[`atlas.css`](../../src/styles/atlas.css) owns presentation. There is no database,
+plots. [`index.astro`](../../src/pages/index.astro) composes the map views;
+[`atlas.css`](../../src/styles/atlas.css) owns shared and map presentation. There is no database,
 account system, React runtime or production application server.
 
-## Local editing boundary
+## Page and component structure
+
+The structure follows the sibling inherent.design site and cfgate.io examples:
+Astro layouts own the document, pages compose feature components, and TypeScript
+controllers own browser interactions. The existing Astro 7, TypeScript 6, pnpm,
+CSS and local Node/Python tooling remain appropriate for this internal app.
+The review did not introduce a UI framework, public-site metadata, or a deployment
+service into the local editing path.
+
+- `src/layouts/Base.astro` owns document metadata, the favicon and shared CSS.
+- `src/components/AppHeader.astro` owns identity and navigation structure, with
+  slots for each page's controls and snapshot status.
+- `src/components/authoring/` owns the journal workbench, config audit and JSON
+  editor. `src/components/map/ScenarioEditor.astro` owns the YAML scenario editor.
+- `src/components/SourceText.astro` shares source-text input markup between both
+  editors. Each editor retains its own save semantics and source authority.
+- `src/lib/atlas.ts` and `src/lib/authoring.ts` own their page controllers.
+  `src/lib/http.ts` shares JSON requests and error handling, including valid null
+  snapshots and explicit JSON writes.
+- `src/styles/authoring.css` owns styles scoped beneath `.authoring`. Header
+  navigation rules are scoped to `.topbar` so entry-list navigation stays vertical.
+
+Keep page markup and rendering components separate from filesystem operations in
+`scripts/workspace.mjs` and `scripts/authoring.mjs`. Dependencies and formatter
+settings retain the app's existing conventions; framework changes are not required
+to share layouts and components.
+
+## Filesystem boundary
 
 [`scripts/workspace.mjs`](../../scripts/workspace.mjs) adds `/__atlas/` endpoints
 only to the development server. Requests require loopback addresses and hosts;

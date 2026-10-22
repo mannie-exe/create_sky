@@ -95,17 +95,18 @@ a {
   font-size: 32px;
   color: var(--accent);
 }
-nav {
+.topbar nav {
   display: flex;
   gap: 5px;
 }
-nav button {
+.topbar nav button {
   border: 0;
   background: none;
   font-size: 13px;
   color: var(--muted);
 }
-nav button.active {
+.topbar nav button.active,
+.topbar nav button[aria-pressed='true'] {
   background: var(--tint);
   color: var(--accent);
 }
@@ -612,11 +613,11 @@ th {
   .identity {
     width: 100%;
   }
-  nav {
+  .topbar nav {
     width: 100%;
     overflow: auto;
   }
-  nav button {
+  .topbar nav button {
     white-space: nowrap;
     padding: 6px 8px;
     font-size: 11px;

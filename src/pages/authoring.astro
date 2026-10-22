@@ -1,237 +1,51 @@
 ---
-import '../styles/atlas.css'
+import Base from '../layouts/Base.astro'
+import AppHeader from '../components/AppHeader.astro'
+import JournalWorkbench from '../components/authoring/JournalWorkbench.astro'
+import ConfigAudit from '../components/authoring/ConfigAudit.astro'
+import SourceEditor from '../components/authoring/SourceEditor.astro'
+import '../styles/authoring.css'
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="robots" content="noindex,nofollow" />
-    <title>Pack authoring · Create Skyweave</title>
-  </head>
-  <body>
-    <header class="topbar">
-      <a href="/">Create Skyweave / Map</a>
-      <nav aria-label="Authoring views">
-        <button data-mode="journal" aria-pressed="true">
-          Journal
-        </button>
-        <button data-mode="audit" aria-pressed="false">
-          Config audit
-        </button>
-        <button data-mode="source" aria-pressed="false">
-          Source JSON
-        </button>
-      </nav>
-    </header>
-    <main class="authoring">
-      <div class="actions">
-        <button id="reload">Reload source</button>
-        <button id="save" disabled>
-          Save source
-        </button>
-        <button id="generate" disabled>
-          Generate Questlog files
-        </button>
-        <span id="status" role="status">
-          Loading local source…
-        </span>
-      </div>
-      <p class="scope">
-        Generation writes pack files. Build and instance installation are
-        separate steps.
-      </p>
-      <section id="journal-panel">
-        <div class="actions">
-          <label>
-            Locale <select id="locale"></select>
-          </label>
-          <label>
-            Entry <select id="entry"></select>
-          </label>
-          <span id="drafts"></span>
-        </div>
-        <div class="columns">
-          <form id="entry-form" onsubmit="return false">
-            <label>
-              Title <input id="title" />
-            </label>
-            <label>
-              Flavor / quote (optional){' '}
-              <textarea id="flavor" rows="2"></textarea>
-            </label>
-            <label>
-              Requirements (left-hand description){' '}
-              <textarea id="requirements" rows="3"></textarea>
-            </label>
-            <label>
-              Description (separate paragraphs with a blank line){' '}
-              <textarea id="description" rows="8"></textarea>
-            </label>
-            <label>
-              Disclaimer <select id="disclaimer"></select>
-            </label>
-            <fieldset>
-              <legend>Short objective labels (right-hand panel)</legend>
-              <div id="labels"></div>
-            </fieldset>
-            <details>
-              <summary>Completion rules</summary>
-              <pre id="conditions"></pre>
-            </details>
-          </form>
-          <div>
-            <h2>Text preview</h2>
-            <p class="scope">
-              Section order and labels; Minecraft font wrapping is not
-              reproduced.
-            </p>
-            <div class="preview-columns">
-              <article id="preview"></article>
-              <aside id="objectives"></aside>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="audit-panel" hidden>
-        <div class="actions">
-          <label>
-            Category{' '}
-            <select id="category">
-              <option value="">All categories</option>
-            </select>
-          </label>
-          <button id="check-audit">Check files</button>
-        </div>
-        <p id="audit-summary"></p>
-        <div class="table-scroll">
-          <table>
-            <thead>
-              <tr>
-                <th>File</th>
-                <th>State</th>
-                <th>Review</th>
-                <th>Reason / reference</th>
-              </tr>
-            </thead>
-            <tbody id="audit-rows"></tbody>
-          </table>
-        </div>
-      </section>
-      <section id="source-panel" hidden>
-        <label>
-          Source file <select id="source-file"></select>
-        </label>
-        <p class="scope">
-          Mechanics, shared text and audit records. Preserve quest IDs and
-          objective order for existing progress.
-        </p>
-        <textarea
-          id="source-text"
-          rows="28"
-          spellcheck="false"
-          aria-label="Source JSON"
-        ></textarea>
-      </section>
-      <details>
-        <summary id="generation-summary">Generated files</summary>
-        <ul id="generation-files"></ul>
-      </details>
-    </main>
-    <script>
-      import '../lib/authoring'
-    </script>
-  </body>
-</html>
-<style>
-  .authoring {
-    padding: 20px;
-    max-width: 1600px;
-    margin: auto;
-  }
-  .actions {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 14px;
-  }
-  .scope {
-    color: var(--muted);
-  }
-  .columns {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 28px;
-  }
-  .authoring :global(label) {
-    display: grid;
-    gap: 5px;
-    margin-bottom: 12px;
-  }
-  textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    color: var(--ink);
-    background: var(--panel);
-  }
-  select,
-  input {
-    max-width: 100%;
-    min-width: 0;
-  }
-  #source-text {
-    font-family: var(--mono);
-  }
-  .preview-columns {
-    display: grid;
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-    gap: 16px;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    padding: 18px;
-    overflow-wrap: anywhere;
-  }
-  .table-scroll {
-    overflow: auto;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  th,
-  .authoring :global(td) {
-    padding: 10px;
-    border-bottom: 1px solid var(--line);
-    text-align: left;
-    vertical-align: top;
-  }
-  fieldset {
-    border: 1px solid var(--line);
-  }
-  details {
-    margin-top: 24px;
-    overflow-wrap: anywhere;
-  }
-  #conditions {
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-  }
-  h2 {
-    font-size: 18px;
-  }
-  [aria-pressed='true'] {
-    border-color: var(--accent);
-  }
-  @media (max-width: 800px) {
-    .columns {
-      grid-template-columns: 1fr;
-    }
-    .authoring {
-      padding: 12px;
-    }
-  }
-</style>
+<Base title="Pack authoring · Create Skyweave">
+  <AppHeader label="Authoring views">
+    <button data-mode="journal" aria-pressed="true">
+      Journal
+    </button>
+    <button data-mode="audit" aria-pressed="false">
+      Config audit
+    </button>
+    <button data-mode="source" aria-pressed="false">
+      Source JSON
+    </button>
+    <a href="/">Item map</a>
+  </AppHeader>
+  <main class="authoring">
+    <div class="actions authoring-actions">
+      <button id="reload">Reload source</button>
+      <button id="save" disabled>
+        Save source
+      </button>
+      <button id="generate" disabled>
+        Generate Questlog files
+      </button>
+      <span id="status" role="status">
+        Loading local source…
+      </span>
+    </div>
+    <p class="scope">
+      Generation writes pack files. Build and instance installation are separate
+      steps.
+    </p>
+    <JournalWorkbench />
+    <ConfigAudit />
+    <SourceEditor />
+    <details>
+      <summary id="generation-summary">Generated files</summary>
+      <ul id="generation-files"></ul>
+    </details>
+  </main>
+  <script>
+    import '../lib/authoring'
+  </script>
+</Base>

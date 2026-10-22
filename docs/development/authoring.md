@@ -7,7 +7,13 @@ Static builds do not provide filesystem editing or generation endpoints.
 
 ## Controls
 
-**Journal** selects a locale and entry. Its form separates optional flavor,
+**Journal** selects a locale and presents a searchable entry list grouped by
+chapter, using the pack's chapter and quest ordering. Select an entry on the left
+to edit its fields on the right; the preview appears below the fields. On narrow
+screens the list sits above the editor and scrolls independently. Search matches
+titles, IDs and chapter names without changing the selected entry.
+
+The form separates optional flavor,
 left-hand requirements, description paragraphs and a disclaimer from the short
 right-hand objective labels. The preview preserves that order. Character counts
 help compare label lengths but do not predict Minecraft wrapping. Completion
@@ -63,6 +69,6 @@ support additional languages, but language switching and panel layout still need
 a game-client check. The editor supports existing files; locale creation,
 multi-file draft staging and a diff/merge UI are future additions.
 
-Most entries still need explanatory description paragraphs. Empty descriptions
-are shown as unfinished content rather than padded with generic copy. Recipe and
-Ponder actions require a client bridge and are not presented as working links.
+All 48 English entries have explanatory descriptions. Future entries with empty
+descriptions are marked in the list and counted above it. Recipe and Ponder
+actions require a client bridge and are not presented as working links.

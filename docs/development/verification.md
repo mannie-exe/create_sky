@@ -4,6 +4,42 @@ This record distinguishes source inspection, isolated runtime checks and live
 instance synchronization. No flight, delivery, raid or real-client journal UI
 session was performed by these checks.
 
+## Journal workbench and shared components, 2026-10-22
+
+Tested source follows app `255d69f` and pack `9508255`. The app source digest is
+`9853caa939f4412c30231807fa282dde640be4a2a8f9e3dd6b88b075f85bac0d`,
+using the path-and-byte method described below. The pack's English locale SHA-256
+is `a9a77c003f7c982e5113d7a174eab74ffefdfb873f5417cfc076cf17ec728aae`.
+All 48 entries now have descriptions; requirements and short labels are unchanged.
+
+The architecture review compared the inherent.design site and cfgate.io layouts,
+pages and components. Shared page metadata, navigation, source text controls and
+JSON requests now have single owners. Authoring panels and the map scenario editor
+are composed components. The existing Astro, TypeScript and CSS stack is retained;
+no dependency or deployment configuration changed.
+
+- `pnpm verify` passed formatting, 25 JavaScript tests, Astro checks with zero
+  diagnostics and the two-page static build.
+- `pnpm test:python` passed all six existing tests.
+- `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser` passed all eight tests. The added
+  workbench case covers searching, selection, discarded-edit confirmation,
+  unchanged drafts after cancellation, field/preview placement and mobile width.
+  Existing tests still cover map behavior, source saves, conflicts and generation.
+- Desktop and mobile screenshots were inspected. The entry list scrolls separately,
+  the fields follow the selection, and the preview sits below the fields. At 390px
+  viewport width, document width is also 390px. Temporary screenshots were removed.
+
+Checks caught two regressions before the passing run: global navigation CSS applied
+to the entry list, and the shared request helper rejected valid JSON without a
+Content-Type header. Navigation styling is now scoped to the header; requests parse
+JSON independently of that header, with a regression test for a null world snapshot.
+
+Browser writes remain intercepted; no playing instance or world was modified.
+The generated journal resources were rebuilt in the pack but not installed into
+client/server instances. Minecraft text wrapping and the described assemblies still
+need in-game review. Runtime snapshots and world surveys were not refreshed for
+these prose and interface changes.
+
 ## Pack authoring, 2026-10-22
 
 Tested source follows app `b716b009` and pack `b5465d2`. The app source digest is

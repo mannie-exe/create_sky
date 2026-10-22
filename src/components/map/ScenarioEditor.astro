@@ -1,0 +1,22 @@
+---
+import SourceText from '../SourceText.astro'
+---
+
+<section id="editor-view" class="view" hidden>
+  <div class="toolbar">
+    <select id="edit-domain" aria-label="Edit domain"></select>
+    <button id="reload-editor">Reload from disk</button>
+    <button id="save-editor" class="primary">
+      Save & rebuild map
+    </button>
+    <button id="refresh-data">Refresh data</button>
+    <button id="export-patch">Export recipe datapack</button>
+    <span id="editor-status" role="status"></span>
+  </div>
+  <p class="editor-hint">
+    Files: <code>data/authored/*.yml</code> · Recipe edits are scenarios until
+    their exported datapack is installed and a fresh runtime capture confirms
+    them. Regeneration never overwrites these files.
+  </p>
+  <SourceText id="domain-editor" label="Domain YAML editor" />
+</section>

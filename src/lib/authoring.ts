@@ -1,4 +1,4 @@
-export {}
+import { requestJSON } from './http'
 type File = { text: string; revision: string }
 type Entry = {
   title: string
@@ -8,7 +8,11 @@ type Entry = {
   disclaimer: string | null
   labels: Record<string, string>
 }
-type Locale = { shared: Record<string, string>; entries: Record<string, Entry> }
+type Locale = {
+  shared: Record<string, string>
+  chapters?: Record<string, string>
+  entries: Record<string, Entry>
+}
 type Snapshot = {
   files: Record<string, File>
   revision: string
@@ -33,6 +37,7 @@ let snapshot: Snapshot,
   mode = 'journal',
   dirty = false,
   busy = false
+let activeEntry = ''
 let records: AuditRecord[] = []
 let unregistered: string[] = []
 const status = (text: string) => {
@@ -45,6 +50,11 @@ function controls() {
     >('.authoring input, .authoring textarea, .authoring select')
     .forEach((input) => {
       input.disabled = busy || !snapshot
+    })
+  document
+    .querySelectorAll<HTMLButtonElement>('#entries button')
+    .forEach((item) => {
+      item.disabled = busy
     })
   button('save').disabled = !dirty || busy || mode === 'audit'
   button('generate').disabled =
@@ -69,25 +79,8 @@ function options(
   )
   if (values.some(([value]) => value === current)) select(id).value = current
 }
-async function request(url: string, body?: unknown) {
-  const response = await fetch(
-    '/__atlas/authoring' + url,
-    body === undefined
-      ? undefined
-      : {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        },
-  )
-  if (!response.headers.get('content-type')?.includes('application/json'))
-    throw new Error(
-      'Local authoring requires pnpm dev and a configured pack directory.',
-    )
-  const value = await response.json()
-  if (!response.ok) throw new Error(value.error || 'Request failed')
-  return value
-}
+const request = (url: string, body?: unknown) =>
+  requestJSON('/__atlas/authoring' + url, body)
 async function action(work: () => Promise<void>) {
   busy = true
   controls()
@@ -102,7 +95,7 @@ async function action(work: () => Promise<void>) {
 }
 const localeFile = () => 'journal/locales/' + select('locale').value + '.json'
 function preview() {
-  const entry = locale.entries[select('entry').value]
+  const entry = locale.entries[activeEntry]
   const title = document.createElement('h3')
   title.textContent = entry.title
   const paragraphs = [
@@ -128,8 +121,10 @@ function preview() {
   )
 }
 function renderEntry() {
-  const entry = locale.entries[select('entry').value]
-  const [chapter, id] = select('entry').value.split('/')
+  const entry = locale.entries[activeEntry]
+  element('entry-heading').textContent = entry.title
+  element('entry-id').textContent = activeEntry
+  const [chapter, id] = activeEntry.split('/')
   const source = snapshot.files[`journal/chapters/${chapter}.json`]
   const definition =
     source &&
@@ -168,15 +163,91 @@ function renderEntry() {
   )
   preview()
 }
+function renderEntries() {
+  const query = field('entry-search').value.trim().toLowerCase()
+  const chapters = new Map<string, [string, Entry][]>()
+  const all = Object.entries(locale.entries)
+  for (const [id, entry] of all) {
+    const chapter = id.split('/')[0]
+    if (
+      ![id, entry.title, locale.chapters?.[chapter] || chapter]
+        .join(' ')
+        .toLowerCase()
+        .includes(query)
+    )
+      continue
+    if (!chapters.has(chapter)) chapters.set(chapter, [])
+    chapters.get(chapter)!.push([id, entry])
+  }
+  const order = (chapter: string) => {
+    const source = snapshot.files[`journal/chapters/${chapter}.json`]
+    return source ? (JSON.parse(source.text).chapter.order ?? 0) : 0
+  }
+  const groups = [...chapters].sort(
+    ([a], [b]) => order(a) - order(b) || a.localeCompare(b),
+  )
+  const scroll = element('entries').scrollTop
+  element('entries').replaceChildren(
+    ...groups.map(([chapter, entries]) => {
+      const source = snapshot.files[`journal/chapters/${chapter}.json`]
+      const definitions = source ? JSON.parse(source.text).entries : []
+      const entryOrder = (id: string) =>
+        definitions.find((item: { id: string }) => item.id === id.split('/')[1])
+          ?.definition.sort_order ?? 0
+      entries.sort(
+        ([a], [b]) => entryOrder(a) - entryOrder(b) || a.localeCompare(b),
+      )
+      if (!activeEntry) activeEntry = entries[0][0]
+      const section = document.createElement('section'),
+        heading = document.createElement('h2')
+      heading.textContent = locale.chapters?.[chapter] || chapter
+      section.append(heading)
+      for (const [id, entry] of entries) {
+        const item = document.createElement('button')
+        item.type = 'button'
+        item.dataset.entry = id
+        item.textContent = entry.title
+        item.setAttribute('aria-current', String(id === activeEntry))
+        item.disabled = busy
+        if (!entry.description.length) {
+          const note = document.createElement('small')
+          note.textContent = 'Description missing'
+          item.append(note)
+        }
+        item.addEventListener('click', () => {
+          if (busy || id === activeEntry || !discard()) return
+          dirty = false
+          locale = JSON.parse(snapshot.files[localeFile()].text)
+          activeEntry = id
+          renderEntry()
+          renderEntries()
+          document
+            .querySelector<HTMLButtonElement>(
+              '#entries button[aria-current="true"]',
+            )
+            ?.focus({ preventScroll: true })
+          status('Source loaded')
+          controls()
+        })
+        section.append(item)
+      }
+      return section
+    }),
+  )
+  element('entries').scrollTop = scroll
+  const count = [...chapters.values()].reduce(
+    (sum, entries) => sum + entries.length,
+    0,
+  )
+  element('entry-count').textContent = count
+    ? `${count} of ${all.length} entries`
+    : 'No matching entries'
+}
 function renderLocale() {
   locale = JSON.parse(snapshot.files[localeFile()].text)
-  options(
-    'entry',
-    Object.entries(locale.entries).map(([id, entry]) => [
-      id,
-      id.split('/')[0] + ' / ' + entry.title,
-    ]),
-  )
+  if (!locale.entries[activeEntry]) activeEntry = ''
+  renderEntries()
+  if (!activeEntry) activeEntry = Object.keys(locale.entries)[0]
   const empty = Object.values(locale.entries).filter(
     (entry) => !entry.description.length,
   ).length
@@ -272,7 +343,7 @@ document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach((item) =>
     if (mode === 'audit') void action(checkAudit)
   }),
 )
-for (const name of ['locale', 'entry', 'source-file']) {
+for (const name of ['locale', 'source-file']) {
   let previous = ''
   select(name).addEventListener('focus', () => {
     previous = select(name).value
@@ -285,14 +356,7 @@ for (const name of ['locale', 'entry', 'source-file']) {
     dirty = false
     if (name === 'source-file')
       field('source-text').value = snapshot.files[select(name).value].text
-    else {
-      const selected = select('entry').value
-      renderLocale()
-      if (name === 'entry') {
-        select('entry').value = selected
-        renderEntry()
-      }
-    }
+    else renderLocale()
     previous = select(name).value
     controls()
   })
@@ -305,7 +369,7 @@ for (const key of [
   'disclaimer',
 ] as const) {
   element(key).addEventListener('input', () => {
-    const entry = locale.entries[select('entry').value]
+    const entry = locale.entries[activeEntry]
     if (key === 'description')
       entry.description = field(key)
         .value.split(/\n\s*\n/)
@@ -318,6 +382,7 @@ for (const key of [
   })
 }
 field('source-text').addEventListener('input', changed)
+field('entry-search').addEventListener('input', renderEntries)
 button('reload').addEventListener('click', () => {
   if (discard()) void action(load)
 })
