@@ -68,6 +68,36 @@ class AuthoringTests(unittest.TestCase):
             with self.assertRaises(ValueError): compile_journal(self.root)
             shutil.copyfile(ROOT / 'authoring/journal/locales/en_us.json', self.root / 'authoring/journal/locales/en_us.json')
 
+    def test_shared_disclaimer_updates_propagate_and_unused_messages_can_be_deleted(self):
+        text = self.locale()
+        text['shared']['inventory'] = 'Updated shared inventory message.'
+        text['shared']['new_message'] = 'A separate message.'
+        text['entries']['travel/membranes']['disclaimer'] = 'new_message'
+        self.write_locale(text)
+        output = json.loads(compile_journal(self.root)['pack-fixes/assets/createsky/lang/en_us.json'])
+        for id, entry in text['entries'].items():
+            if entry['disclaimer']:
+                self.assertTrue(output['createsky.journal.' + id.replace('/', '.') + '.description'].endswith(text['shared'][entry['disclaimer']]))
+        text['entries']['travel/membranes']['disclaimer'] = None
+        del text['shared']['new_message']
+        self.write_locale(text)
+        compile_journal(self.root)
+
+    def test_invalid_disclaimers_and_dangling_references_are_rejected(self):
+        original = self.locale()
+        for shared in [None, [], {'bad-key': 'Message'}, {'empty': '  '}, {'number': 1}, {}]:
+            with self.subTest(shared=shared):
+                text = copy.deepcopy(original)
+                text['shared'] = shared
+                self.write_locale(text)
+                with self.assertRaises(ValueError): compile_journal(self.root)
+        for reference in ['missing', [], 3]:
+            with self.subTest(reference=reference):
+                text = copy.deepcopy(original)
+                text['entries']['travel/membranes']['disclaimer'] = reference
+                self.write_locale(text)
+                with self.assertRaises(ValueError): compile_journal(self.root)
+
     def test_bad_identifier_and_duplicate_entry_rejected(self):
         path = self.root / 'authoring/journal/chapters/travel.json'
         original = json.loads(path.read_text())

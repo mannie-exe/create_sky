@@ -396,3 +396,26 @@ Profile exports and native game checks were not repeated for this prose change.
 No dependencies, recipes, configurations or completion rules changed, and no
 journal resources were installed into playing instances. Version 0.1.5 remains
 unreleased; source publication does not authorize a release or site deployment.
+
+## 2026-10-22 - Shared disclaimer editing
+
+Keep the existing locale `shared` registry and entry disclaimer keys. The app now
+exposes them through a dedicated workbench, with creation, message editing,
+reference lists and deletion of unused keys. Inventory text serves 43 entries;
+the two interaction disclaimers each serve one. Three entries have no disclaimer.
+No message text or entry reference changed in this implementation.
+
+The generator now validates disclaimer key syntax and nonempty string values,
+including unused messages. Missing or malformed entry references are rejected.
+`python3 -m unittest discover -s tests -v` passed eight tests, including shared
+message propagation, new references, removal of unused messages and rejection of
+invalid registries or dangling references. `python3 scripts/generate-journal.py
+--check` matched all 57 outputs; `python3 scripts/audit-changes.py` matched all
+196 registered files with none missing or unregistered.
+
+Tested source follows `eea69e4`. SHA-256 for the sorted relative paths, NUL, bytes,
+NUL of `scripts/generate-journal.py` and `tests/test_authoring.py` is
+`41d34c5ae7938546e10f82dcace162a0c661192c32fd7d94eafd299c812b412d`.
+The generated resources are unchanged, so no resource JAR rebuild, profile export
+or live-instance installation was needed. No gameplay or runtime claim follows
+from these authoring checks.

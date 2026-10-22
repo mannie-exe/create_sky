@@ -41,6 +41,13 @@ def compile_journal(root=ROOT):
             entries[id] = entry
     for locale, text in locales.items():
         assert text['schema'] == 1
+        shared = text.get('shared')
+        if not isinstance(shared, dict):
+            raise ValueError(f'{locale}: shared disclaimers must be keyed messages')
+        for key, message in shared.items():
+            identifier(key)
+            if not isinstance(message, str) or not message.strip():
+                raise ValueError(f'{locale}/{key}: disclaimer message must be nonempty text')
         if set(text['entries']) != set(entries) or set(text['chapters']) != set(chapters):
             raise ValueError(f'{locale}: locale IDs must match mechanics exactly')
         lang = languages[locale]
@@ -58,7 +65,7 @@ def compile_journal(root=ROOT):
             if any(not isinstance(p, str) or not p.strip() for p in words['description']):
                 raise ValueError(f'{locale}/{id}: empty description paragraph')
             disclaimer = words['disclaimer']
-            if disclaimer is not None and disclaimer not in text['shared']:
+            if disclaimer is not None and (not isinstance(disclaimer, str) or disclaimer not in shared):
                 raise ValueError(f'{locale}/{id}: unknown disclaimer')
             key = 'createsky.journal.' + id.replace('/', '.')
             lang[key + '.title'] = words['title']

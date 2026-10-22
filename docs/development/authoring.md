@@ -21,6 +21,19 @@ Descriptions normally contain one to five paragraphs of two or three sentences.
 An empty array marks unfinished explanatory text and is allowed during authoring;
 the editor counts those entries. Sentence counts are editorial guidance.
 
+Each locale's `shared` object maps disclaimer keys to nonempty messages. Entries
+reference those keys through `disclaimer`; they do not own copies of the text.
+The existing `inventory` message serves 43 entries, while `delivery_interaction`
+and `circuit_interaction` each serve one. Similar interaction messages stay
+separate because they describe different completion checks.
+
+The app's **Disclaimers** tab creates, edits and deletes these shared messages.
+Keys use lowercase letters, numbers and underscores. The editor keeps existing
+keys fixed and lists referring entries; reassign those entries before deletion.
+The generator rejects invalid keys, blank messages and missing references, including
+edits made through Source JSON or external tools. Messages and references belong
+to the selected locale. Editing English does not rewrite another locale.
+
 `requirements` here is prose in the **left-hand description**. It does not change
 native Questlog's `requirements` array, which controls unlocking. `labels` owns
 the short **right-hand objective labels**, indexed by stable objective positions
