@@ -5,13 +5,13 @@ export default defineConfig({
   testMatch: '**/*.browser.mjs',
   workers: 1,
   use: {
-    baseURL: 'http://127.0.0.1:4321',
+    baseURL: 'http://127.0.0.1:4322',
     channel: process.env.PLAYWRIGHT_CHANNEL || 'chromium',
     viewport: { width: 1440, height: 1000 },
   },
   webServer: {
-    command: 'pnpm dev',
-    url: 'http://127.0.0.1:4321',
-    reuseExistingServer: true,
+    command: 'pnpm dev --port 4322 --ignore-lock',
+    url: 'http://127.0.0.1:4322',
+    reuseExistingServer: false,
   },
 })

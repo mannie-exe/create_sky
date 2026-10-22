@@ -6,6 +6,7 @@
 | Install tools, capture data or run checks                    | [Setup](development/setup.md)               |
 | Understand sources, textures, schemas and editing boundaries | [Data pipeline](development/data.md)        |
 | Check tested behavior and remaining limitations              | [Verification](development/verification.md) |
+| Edit journal text and inspect pack configuration changes     | [Pack authoring](development/authoring.md)  |
 
 Setup owns commands and prerequisites. The data reference owns source authority
 and implementation behavior. Verification records dated checks and their limits.

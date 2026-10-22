@@ -5,6 +5,7 @@ import { execFile } from 'node:child_process'
 import { promisify } from 'node:util'
 import { domains, validateDomain } from '../src/lib/domains.mjs'
 import { compile, root } from './compile.mjs'
+import { authoring, configuredPack } from './authoring.mjs'
 const hash = (text) => crypto.createHash('sha256').update(text).digest('hex')
 
 export function workspace() {
@@ -36,6 +37,13 @@ export function workspace() {
         )
           return send(403, { error: 'Same-origin requests required' })
         try {
+          if (req.method === 'GET' && req.url === '/__atlas/authoring')
+            return send(200, await authoring(await configuredPack(root)).read())
+          if (req.method === 'GET' && req.url === '/__atlas/authoring/audit')
+            return send(
+              200,
+              await authoring(await configuredPack(root)).audit(),
+            )
           if (req.method === 'GET' && req.url === '/__atlas/workspace') {
             const files = {}
             for (const name of domains) {
@@ -83,6 +91,24 @@ export function workspace() {
             return send(409, {
               error: 'Another edit is compiling; retry after refresh',
             })
+          if (
+            ['/__atlas/authoring/save', '/__atlas/authoring/generate'].includes(
+              req.url,
+            )
+          ) {
+            busy = true
+            try {
+              const editor = authoring(await configuredPack(root))
+              return send(
+                200,
+                req.url.endsWith('/save')
+                  ? await editor.save(input)
+                  : await editor.generate(input),
+              )
+            } finally {
+              busy = false
+            }
+          }
           if (req.url === '/__atlas/refresh') {
             busy = true
             try {

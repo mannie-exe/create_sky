@@ -4,6 +4,39 @@ This record distinguishes source inspection, isolated runtime checks and live
 instance synchronization. No flight, delivery, raid or real-client journal UI
 session was performed by these checks.
 
+## Pack authoring, 2026-10-22
+
+Tested source follows app `b716b009` and pack `b5465d2`. The app source digest is
+`c178c5d80496b5d674f93108aedfdcc32e0b33736079a93481a915214d8ae60a`.
+It covers sorted files under `src`, `scripts` and `tests` (excluding Python
+bytecode), plus package/lock, Astro and Playwright configuration. SHA-256 input is
+each relative path, NUL, file bytes, NUL. Pack build evidence belongs in its
+`docs/development/decisions.md`.
+
+- `pnpm verify`: formatting, 22 JavaScript tests, Astro diagnostics and two-page
+  static build passed with no diagnostics.
+- `pnpm test:python`: all six existing Python tests passed.
+- `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser`: all seven tests passed. These
+  cover existing map behavior, real config audit reads, same-origin/path rejection,
+  separate full requirements and short labels, staged save/generation, conflict
+  retention and mobile width. Browser write actions use intercepted endpoints;
+  the backend tests write only temporary fixture directories.
+- The local port-4321 authoring endpoint returned 18 source files. A desktop
+  screenshot was inspected for field grouping, preview order and objective labels.
+  The screenshot and failed-run output were removed after review.
+
+The first browser invocation lacked Playwright's downloaded Chromium; installed
+Chrome was used instead. Reusing a pre-existing dev server initially exercised
+stale middleware. Tests now use port 4322 and `--ignore-lock`, which also prevents
+Astro's agent-detected background mode from exiting the test server launcher.
+Initial TypeScript global-name collisions were corrected before the passing build.
+
+Only English is authored; a temporary German fixture verifies independent locale
+output and deferred translation components. No actual Minecraft language switch,
+new journal layout, EMI bridge or Ponder link was exercised. The generated pack
+content was not synced into the playing instances. The Atlas runtime/world
+snapshots were not refreshed and remain dated evidence from the prior capture.
+
 ## Acquisition and fixes, 2026-10-21
 
 Baseline: pack commit `b70bfa866f2056b3ca6de7d10dd41639fb64bdb5` (0.1.5) plus local

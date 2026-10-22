@@ -108,6 +108,15 @@ Alternatively, install Chromium with `pnpm exec playwright install chromium`,
 then run `pnpm test:browser`. `mise run verify` combines app and Python checks;
 browser and game-dependent checks remain explicit.
 
+Browser tests start their own foreground dev server on port 4322 with
+`--ignore-lock`. Keep that port free. The normal editor runs on port 4321;
+tests do not reuse its potentially stale middleware. Restart a running normal
+dev server after changing workspace middleware.
+
+The [pack authoring editor](authoring.md) uses the configured pack's generator
+and audit scripts. It requires no runtime export to edit journal source. After
+changing `data/local.json`, reload source in the editor.
+
 ## Output and cleanup
 
 | Location                                                               | Lifecycle                                                                   |

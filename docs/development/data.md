@@ -184,7 +184,9 @@ recipe scenarios never install themselves into a Minecraft instance.
 The exporter writes native quest definitions and handler checks to
 `data/generated/runtime/journal.json`. This is retained verification evidence;
 the UI currently indexes authored journal notes rather than a dedicated quest graph.
-Questlog JSON in the pack remains authoritative. Player quest progress is not read
+The pack's `authoring/journal/` owns mechanics and locale text; native Questlog JSON
+is generated. The separate [pack authoring editor](authoring.md) edits that source
+and inspects categorized configuration drift. Player quest progress is not read
 or edited by the app.
 
 The pack's `docs/development/journal.md` owns quest conditions and authoring;
