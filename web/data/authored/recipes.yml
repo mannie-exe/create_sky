@@ -1,0 +1,4 @@
+schema: 1
+# Full replacement JSON or disabled: true. Export produces a datapack; never edits a live world.
+# Example: changes: [{id: createdeco:placard, json: {...complete recipe...}}]
+changes: []

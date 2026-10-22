@@ -38,7 +38,7 @@ For the current seed, original DYNAMIC and candidate CONSISTENT produced identic
 16 island descriptors within the 2048-block preview query and identical 81 sampled
 column profiles. All 64 comparison seeds used 1494 in CONSISTENT mode. The probe
 verified that `level.dat` bytes did not change. Its receipt is
-`create_skyweave-web/data/generated/runtime/worldgen_review.json`.
+`web/data/generated/runtime/worldgen_review.json`.
 
 These are layout comparisons, not a regenerated chunk survey. Preview radii and
 horizontal bounds are generator descriptors, not measured traversable terrain.

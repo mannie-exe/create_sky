@@ -1,0 +1,30 @@
+schema: 1
+notes:
+  reliable_gliders:glider:
+    text: The released recipe requires two phantom membranes, three leather and three sticks. Early travel route through phantom encounters after several sleepless nights, or other membrane sources. The journal includes membrane and glider inventory checks. Recipe and membrane repairs remain unchanged.
+    status: progression-review
+    sources: ['reliable_gliders:glider', 'minecraft:entities/phantom']
+  createpropulsion:platinum_nugget:
+    text: Existing pregen need not be discarded to obtain platinum. The active crushed-gold washing recipe adds one platinum nugget at 5% chance. New platinum ore is a separate new-chunk source; no retro-generation was performed.
+    status: verified-alternate-route
+    sources: ['create:splashing/crushed_raw_gold', 'runtime/recipes.json']
+  powergrid:zinc_sheet:
+    text: Unified to createdeco:zinc_sheet for new production. Existing Power Grid sheets remain registered and accepted by shared tag ingredients. The duplicate pressing recipe is removed by Almost Unified.
+    status: verified-unification
+    sources: ['runtime item tags', 'overrides/common/config/almostunified']
+  bits_n_bobs:flywheel_bearing:
+    text: Do not gate a disposable intermediate tier around this. Flywheel storage is currently disabled in Bits 'n' Bobs; evaluate useful buffering against persistent batteries after mapping demand.
+    status: decision-pending
+    sources: ['bits_n_bobs-server.toml', 'create_connected-server.toml']
+  create_factory:spread_bucket:
+    text: The upstream spread recipe requires Ecologics walnuts and is disabled because Ecologics is absent. The registered bucket and fluid remain visible. This is optional integration content, not a missing core progression ingredient.
+    status: optional-integration-disabled
+    sources: ['create_factory:recipe/spread.json', 'runtime registered recipes']
+  interiors:seatwood_planks:
+    text: No producing route is indexed for this item. It appears in many generic seat recipes, while wood-specific alternatives produce the corresponding furniture. Keep it flagged for source review; its high use count does not prove that all those furniture items are blocked.
+    status: source-review
+    sources: ['runtime/recipes.json', 'runtime/items.json']
+  hostile_skies:captains_orders:
+    text: Automatic raids are disabled in this pack. Captain orders therefore lack a normal enabled spawn route; manual administrator-triggered raids remain available for testing. This is an intentional setting constraint, not a reason to enable random player-targeted raids.
+    status: intentional-access-limit
+    sources: ['hostile_skies-common.toml', 'data/authored/mobs.yml']

@@ -1,0 +1,36 @@
+# Adapted from Toptal gitignore.io (2026-10-22):
+# https://www.toptal.com/developers/gitignore/api/node,python
+# OS, editor and Python cache rules are shared by the parent pack's .gitignore.
+# Keep src/lib, public source assets, tool configuration and pnpm-lock.yaml tracked.
+
+# Node and TypeScript
+node_modules/
+.pnpm-store/
+.npm/
+.pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+*.tsbuildinfo
+.node_repl_history
+.eslintcache
+.stylelintcache
+.nyc_output/
+coverage/
+*.lcov
+report.[0-9]*.[0-9]*.[0-9]*.json
+
+# Astro, Cloudflare and local test output
+/dist/
+/.astro/
+/.wrangler/
+/.cache/
+/test-results/
+/playwright-report/
+/blob-report/
+
+# Extracted game assets, observations and machine-specific paths
+/public/generated/
+/data/generated/
+/data/local.json

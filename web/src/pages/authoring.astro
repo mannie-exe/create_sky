@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro'
+import AppHeader from '../components/AppHeader.astro'
+import JournalWorkbench from '../components/authoring/JournalWorkbench.astro'
+import DisclaimerWorkbench from '../components/authoring/DisclaimerWorkbench.astro'
+import ConfigAudit from '../components/authoring/ConfigAudit.astro'
+import SourceEditor from '../components/authoring/SourceEditor.astro'
+import '../styles/authoring.css'
+---
+
+<Base title="Pack authoring · Create Skyweave">
+  <AppHeader label="Authoring views">
+    <button data-mode="journal" aria-pressed="true">
+      Journal
+    </button>
+    <button data-mode="disclaimers" aria-pressed="false">
+      Disclaimers
+    </button>
+    <button data-mode="audit" aria-pressed="false">
+      Config audit
+    </button>
+    <button data-mode="source" aria-pressed="false">
+      Source JSON
+    </button>
+    <a href="/">Item map</a>
+  </AppHeader>
+  <main class="authoring">
+    <div class="actions authoring-actions">
+      <button id="reload">Reload source</button>
+      <button id="save" disabled>
+        Save source
+      </button>
+      <button id="generate" disabled>
+        Generate Questlog files
+      </button>
+      <span id="status" role="status">
+        Loading local source…
+      </span>
+    </div>
+    <p class="scope">
+      Generation writes pack files. Build and instance installation are separate
+      steps.
+    </p>
+    <div id="locale-controls" class="actions">
+      <label>
+        Locale <select id="locale"></select>
+      </label>
+      <span id="drafts"></span>
+    </div>
+    <JournalWorkbench />
+    <DisclaimerWorkbench />
+    <ConfigAudit />
+    <SourceEditor />
+    <details>
+      <summary id="generation-summary">Generated files</summary>
+      <ul id="generation-files"></ul>
+    </details>
+  </main>
+  <script>
+    import '../lib/authoring'
+  </script>
+</Base>

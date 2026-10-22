@@ -1,0 +1,34 @@
+# Create Skyweave Atlas
+
+Internal item, recipe and progression map for the Create Sky modpack.
+
+## Local development
+
+From the pack repository root, use the Node version in `web/.node-version` and
+pnpm version in `web/package.json`.
+
+```sh
+cd web
+pnpm install --frozen-lockfile
+pnpm dev
+```
+
+Open <http://127.0.0.1:4321>. An existing local snapshot loads immediately; a fresh
+checkout shows an empty shell until you [configure and capture game data](../docs/development/web/setup.md).
+The app binds loopback and is not deployed.
+
+## Documentation
+
+- [Documentation index](../docs/development/web/README.md)
+- [Map and editing guide](../docs/development/web/usage.md)
+- [Setup, refresh and checks](../docs/development/web/setup.md)
+- [Data pipeline, textures and recipe modeling](../docs/development/web/data.md)
+- [Verification and limits](../docs/development/web/verification.md)
+
+Astro serves a static page and browser code. A local development plugin provides
+YAML editing and refresh commands. Minecraft runtime exports, JAR resources and
+authored domains compile into ignored JSON and image files under `public/generated`.
+Static builds support browsing; editing requires the local development server.
+
+This is a private workspace. No distribution license is selected. Extracted game
+assets retain their upstream licenses and are excluded from version control.

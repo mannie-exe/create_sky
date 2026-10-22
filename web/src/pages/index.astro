@@ -1,0 +1,193 @@
+---
+import Base from '../layouts/Base.astro'
+import AppHeader from '../components/AppHeader.astro'
+import ScenarioEditor from '../components/map/ScenarioEditor.astro'
+---
+
+<Base title="Create Skyweave · Atlas">
+  <AppHeader label="Atlas views">
+    <button data-view="map" class="active">
+      Item map
+    </button>
+    <button data-view="world">World &amp; ores</button>
+    <button data-view="evidence">Evidence</button>
+    <button data-view="editor">Edit data</button>
+    <a href="/authoring">Pack authoring</a>
+    <span slot="status" id="snapshot" class="snapshot">
+      Loading…
+    </span>
+  </AppHeader>
+  <main>
+    <section id="map-view" class="view">
+      <div class="toolbar">
+        <label class="search">
+          <span>⌕</span>
+          <input
+            id="search"
+            type="search"
+            placeholder="Search items…"
+            aria-label="Search items"
+          />
+        </label>
+        <select id="mod-filter" aria-label="Filter by mod">
+          <option value="">All mods</option>
+        </select>
+        <select id="route-filter" aria-label="Filter by route">
+          <option value="">All routes</option>
+          <option value="known">Mapped route</option>
+          <option value="unknown">Unresolved route</option>
+          <option value="blocked">Blocked dependencies</option>
+          <option value="unmapped">No acquisition adapter</option>
+          <option value="excluded">Internal / creative</option>
+          <option value="unified">Unified variants</option>
+          <option value="notes">Has review note</option>
+        </select>
+        <label class="zoom">
+          Scale{' '}
+          <input
+            id="zoom"
+            type="range"
+            min="0.55"
+            max="1.4"
+            step="0.05"
+            value="1"
+          />
+        </label>
+        <button id="reset-map" class="subtle">
+          Origin ↖
+        </button>
+      </div>
+      <div id="coverage-summary" class="summary-strip"></div>
+      <div class="map-meta">
+        <span id="counts">Loading item registry…</span>
+        <span>
+          <i class="dot mapped"></i> Mapped route <i class="dot unresolved"></i>{' '}
+          Unresolved <i class="dot noted"></i> Review note
+        </span>
+        <span>Select an item for routes</span>
+      </div>
+      <div class="map-shell">
+        <div class="axis-label">
+          ROUTE DEPTH → <span>Minimum modeled steps · conditions apply</span>
+        </div>
+        <div
+          id="viewport"
+          tabindex="0"
+          aria-label="Scrollable two-dimensional item map"
+        >
+          <div id="grid" role="grid" aria-label="Items by route depth"></div>
+        </div>
+        <div id="tooltip" role="tooltip" hidden></div>
+      </div>
+      <footer class="map-footer">
+        <span id="position">0 / 0</span>
+        <span>
+          Scroll in both directions · Shift + wheel to move horizontally · / to
+          search · Esc to close
+        </span>
+        <button id="layout-help">Layout</button>
+      </footer>
+    </section>
+    <section id="world-view" class="view" hidden>
+      <div id="world-summary" class="summary-strip"></div>
+      <div id="world-layout" class="world-layout">
+        <div class="panel">
+          <div class="panel-heading">
+            <h2>Overworld survey</h2>
+            <select id="ore-map" aria-label="World map metric">
+              <option value="land">Land column fraction</option>
+            </select>
+          </div>
+          <canvas
+            id="world-canvas"
+            width="900"
+            height="660"
+            aria-label="Region survey heatmap"
+          ></canvas>
+          <p id="world-hover" class="muted">
+            Hover a region for its coordinates and sample coverage.
+          </p>
+          <p class="muted">
+            Each square is a 32 × 32 chunk region. Color reflects its sample,
+            not an exact island outline.
+          </p>
+        </div>
+        <div class="panel">
+          <h2>Ore availability</h2>
+          <div id="ore-table"></div>
+          <h2>Vertical ore profile</h2>
+          <div id="ore-profile"></div>
+          <h2>Travel estimate</h2>
+          <label>
+            Route distance (blocks)
+            <input id="distance" type="number" value="1000" min="0" />
+          </label>
+          <label>
+            Measured speed (blocks/second)
+            <input id="speed" type="number" value="5" min="0.1" step="0.1" />
+          </label>
+          <p id="travel-result"></p>
+          <p class="muted">
+            Constant-speed estimate only. Enter a measured vehicle speed; stops,
+            climbing, acceleration and loading are extra.
+          </p>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Generation and sampling limits</h2>
+        <div id="world-notes"></div>
+      </div>
+    </section>
+    <section id="evidence-view" class="view" hidden>
+      <div class="toolbar">
+        <select id="evidence-domain" aria-label="Evidence domain">
+          <option value="coverage">Coverage gaps</option>
+          <option value="acquisition">Acquisition routes</option>
+          <option value="brewing">Brewing</option>
+          <option value="trades">Trade samples</option>
+          <option value="interactions">Interactions & movement</option>
+          <option value="mobs">Mobs & hostile skies</option>
+          <option value="hooks">Interaction implementation index</option>
+          <option value="fluids">Registered fluids</option>
+          <option value="entities">All registered entities</option>
+          <option value="loot">All loot tables</option>
+          <option value="recipes">All active recipes</option>
+          <option value="advancements">Advancements</option>
+          <option value="conflicts">Crafting collisions</option>
+          <option value="blockRecipes">Cannon block recipes</option>
+          <option value="duplicates">Material overlap</option>
+          <option value="configs">Configuration</option>
+          <option value="resources">Worldgen, tags & data</option>
+          <option value="blocks">Blocks without items</option>
+          <option value="diagnostics">Runtime diagnostics</option>
+          <option value="configuration">Coverage & decisions</option>
+        </select>
+        <input
+          id="evidence-search"
+          type="search"
+          placeholder="Search identifiers or content…"
+          aria-label="Search evidence"
+        />
+        <span id="evidence-count"></span>
+      </div>
+      <div id="evidence-list"></div>
+      <button id="more-evidence" hidden>
+        Load next 100
+      </button>
+    </section>
+    <ScenarioEditor />
+  </main>
+  <aside id="inspector" aria-label="Item details" hidden>
+    <div class="inspector-top">
+      <span>ITEM DETAILS</span>
+      <button id="close-inspector" aria-label="Close item details">
+        ✕
+      </button>
+    </div>
+    <div id="detail"></div>
+  </aside>
+  <div id="notice" role="status" hidden></div>
+  <script>
+    import '../lib/atlas'
+  </script>
+</Base>

@@ -1,0 +1,10 @@
+---
+interface Props {
+  id: string
+  label: string
+  rows?: number
+}
+const { id, label, rows } = Astro.props
+---
+
+<textarea {id} {rows} spellcheck="false" aria-label={label}></textarea>

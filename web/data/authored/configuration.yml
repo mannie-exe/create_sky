@@ -1,0 +1,97 @@
+schema: 1
+records:
+  - id: empack/hostile-skies-pin
+    title: Provider dependency pin conflicts with compatible installed Sable
+    evidence: reproduced
+    detail: empack 0.8.1-beta dry-run add create-hostile-skies --version-id HaZ4GxKd rejected required dependency evidence with IncompatibleRequirement for Sable version e11C0I1A (2.0.3), while the shipped JAR accepts Sable 2.0.3 or newer and this pack runs 2.0.6. Hostile Skies is tracked by its exact CDN URL and SHA-1/SHA-512 to retain Sable. UX opportunity—show human-readable required/installed versions and the originating metadata, distinguish provider exact pins from loader version ranges, and offer an explicit audited URL binding when appropriate. Do not silently downgrade a shared dependency.
+    sources:
+      [
+        'empack 0.8.1-beta dry-run, 2026-10-21',
+        'empack.yml create-hostile-skies',
+        'hostile_skies-0.2.6.jar!/META-INF/neoforge.mods.toml',
+      ]
+  - id: identity
+    title: Meaningful persistent roles
+    evidence: decision
+    detail: Map before gating. Keep natural resource, geography, travel and operating-cost constraints visible. Do not turn flywheel, gliding, ropes or combustion into arbitrary disposable stepping stones.
+    sources:
+      ['user direction, 2026-10-21', 'skyweave/docs/development/vision.md']
+  - id: coverage
+    title: Executable data is broad; arbitrary Java interactions need curated evidence
+    evidence: limitation
+    detail: All runtime item, block, recipe, entity, loot and advancement records are exported. Arbitrary Java event handlers, AI, crafting-special logic and probabilistic loot outcomes cannot be completely inferred from JSON. Villager offers are now runtime samples rather than a complete enumeration. Curated interaction records identify reviewed mechanics; unreviewed behavior remains a gap.
+    sources: ['tools/exporter/AtlasExporter.java']
+  - id: fixes/recipes
+    title: Recipe repairs
+    evidence: isolated-server-verified
+    detail: Fixed Create Deco's white-placard ingredient; gated six optional integration recipes on their actual dependencies; corrected 32 Interiors chair recoloring dye tags and the metro-window glass tag. The audit server loads the recipes without the original seven parsing errors. No new technology gate or ingredient cost was introduced.
+    sources:
+      [
+        '~/Minecraft/create_sky/pack-fixes/data',
+        'runtime/recipes.json',
+        'runtime/resources.json',
+      ]
+  - id: fixes/cogwheel
+    title: Industrial cogwheel recoloring loop
+    evidence: isolated-server-verified
+    detail: The plural industrial_cogwheels tag originally contained only dyed variants. Adding the uncolored industrial cogwheel supplies a survival starting input to all 16 recoloring recipes. Recipes, quantities and existing colored items are retained.
+    sources:
+      ['dndecor:tags/item/industrial_cogwheels.json', 'runtime item tags']
+  - id: fixes/zinc
+    title: Canonical zinc sheets
+    evidence: isolated-server-verified
+    detail: Almost Unified now prefers createdeco for c:plates/zinc. Runtime recipes retain one zinc pressing output and remove the duplicate Power Grid pressing recipe. Both item IDs remain registered; existing stacks remain usable in tag-based ingredients.
+    sources:
+      [
+        'config/almostunified/unification/materials.json',
+        'runtime/recipes.json',
+      ]
+  - id: fixes/propulsion-loot
+    title: Restored Propulsion block drops
+    evidence: actual-loot-rolls
+    detail: Three copycat wing variants and the platinum casing had tables only under the obsolete loot_tables directory. The fixes mod copies those four upstream tables into loot_table. Runtime loot rolls with a diamond pickaxe return each expected block item. The obsolete propeller table is omitted because that item is not registered.
+    sources:
+      ['runtime/patch_checks.json', 'createpropulsion-1.1.5 JAR resource paths']
+  - id: coverage/acquisition
+    title: Acquisition coverage and limits
+    evidence: runtime-and-authored
+    detail: Runtime adapters cover Rechiseled groups, sequenced assembly, fluids and potion states, brewing, sampled villager and wandering-trader offers, Big Cannons block recipes, native tool/copper transformations and composting. Loot routes retain conditions, references and functions. Environmental, farming, boss and special interaction routes are explicitly authored assumptions. Reachability is potential access, not a quantity, probability, travel-time or working-machine proof.
+    sources:
+      [
+        'src/lib/acquisition.mjs',
+        'data/authored/acquisition.yml',
+        'tools/exporter/AtlasExporter.java',
+      ]
+  - id: coverage/collisions
+    title: Crafting collisions
+    evidence: exact-resolved-input-comparison
+    detail: The Evidence view groups identical resolved crafting inputs, including mirrored shaped patterns. Empty or component-dependent ingredients are excluded from this comparison. Some alternatives are intentional conversions or choices exposed by Polymorph; no blanket deletion was applied.
+    sources: ['public/generated/domains.json conflicts']
+  - id: guidance/journal
+    title: Questlog journal
+    evidence: runtime
+    detail: Questlog 3.4.1 provides 48 entries in eight chapters. Inventory thresholds and two block-interaction events are checked by the shipped handlers; all 66 branches pass negative and positive cases and NBT restoration. Entries grant no rewards or recipe unlocks. All entries are available immediately; no flight, production-throughput or successful-delivery detector is implied.
+    sources:
+      - runtime/journal.json
+      - overrides/common/config/questlog
+      - docs/development/journal.md
+  - id: fixes/biome-redirect
+    title: Sky Archipelago biome projection
+    evidence: isolated-server-verified
+    detail: Zfastnoise's biome redirect displaced Sky Archipelago's Deep Dark projection. The candidate disables mixin.perf.biome while retaining mixin.perf.noise; the isolated boot no longer logs the redirect conflict. Actual regenerated biome and structure placement remain untested. Local generation settings are synchronized for the pending random-world review.
+    sources:
+      [
+        'pack docs/development/worldgen.md',
+        'zfastnoise.mixin.properties',
+        'runtime diagnostics',
+      ]
+  - id: fixes/heat-model
+    title: Propulsion heat routes
+    evidence: native-heat-predicate
+    detail: The mapper previously forced a Blaze Burner and blaze cake for heated and superheated recipes. The installed solid burner beneath a basin reaches both states on coal with the existing heated-mixers option enabled. The map now keeps fuel and setup requirements while permitting that route. No recipe or burner balance setting changed. Liquid-burner fuel alternatives remain an adapter gap; no running mixer or fuel throughput was tested.
+    sources:
+      [
+        'runtime/heat_checks.json',
+        'src/lib/acquisition.mjs',
+        'data/authored/acquisition.yml',
+      ]

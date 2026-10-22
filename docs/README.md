@@ -23,6 +23,7 @@ record what was tested at the time; they do not define current defaults.
 | [Compatibility and verification](development/compatibility.md) | Dependency constraints, shader evidence and test scope |
 | [Journal definitions](development/journal.md) | Conditions, authoring and implementation evidence |
 | [Pack authoring](development/authoring.md) | Journal generation, locale editing and categorized configuration audit |
+| [Web map and authoring](development/web/README.md) | App setup, editor controls, data pipeline and verification |
 | [Journal integrations](development/journal-integrations.md) | EMI/JEI, translation and Ponder findings |
 | [World generation](development/worldgen.md) | Candidate spacing and biome compatibility |
 | [Progression review](development/progression.md) | Routes, overlaps and remaining play checks |

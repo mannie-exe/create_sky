@@ -1,7 +1,9 @@
 # Pack authoring
 
 The pack owns journal source and the configuration register. The local Atlas app
-edits those files; it does not own a second copy or install changes into Minecraft.
+in [`web/`](../../web/README.md) edits those files; it does not own a second copy
+or install changes into Minecraft. The [editor guide](web/authoring.md) describes
+the journal and disclaimer workbenches.
 
 ## Journal source
 

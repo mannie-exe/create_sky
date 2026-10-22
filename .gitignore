@@ -1,30 +1,115 @@
-# Generated distributions and machine-local files
-/dist/
-/.empack-cache/
-/.host-state/
+# Adapted from Toptal gitignore.io (2026-10-22):
+# https://www.toptal.com/developers/gitignore/api/macos,windows,linux,visualstudiocode,jetbrains,python,vim,emacs
+# Keep shared editor configuration, lockfiles and authored pack content tracked.
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder/
+Temporary Items/
+.apdisk
+*.icloud
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+.fuse_hidden*
+.directory
+.Trash-*/
+.nfs*
+
+# Editor backups and local state (Vim, Emacs, VS Code, JetBrains)
+*~
+*.swp
+*.swo
+*.swx
+[._]*.un~
+.netrwhist
+Session.vim
+Sessionx.vim
+\#*\#
+.\#*
+.emacs.desktop
+.emacs.desktop.lock
+.history/
+.vscode-test/
+**/.vscode/*
+!**/.vscode/settings.json
+!**/.vscode/tasks.json
+!**/.vscode/launch.json
+!**/.vscode/extensions.json
+!**/.vscode/*.code-snippets
+**/.idea/**/workspace.xml
+**/.idea/**/tasks.xml
+**/.idea/**/usage.statistics.xml
+**/.idea/**/dictionaries/
+**/.idea/**/shelf/
+**/.idea/**/aws.xml
+**/.idea/**/dataSources/
+**/.idea/**/dataSources.ids
+**/.idea/**/dataSources.local.xml
+**/.idea/**/sqlDataSources.xml
+**/.idea/**/httpRequests/
+**/.idea/**/sonarlint/
+**/.idea/**/sonarIssues.xml
+*.iws
+
+# Python tools, local credentials and run output
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+__pypackages__/
+.tox/
+.nox/
+.pytest_cache/
+.hypothesis/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.cache/
 .env
 .env.*
 !.env.example
+!.env.*.example
 *.log
-*.swp
-*~
-.DS_Store
-Thumbs.db
-# Keep empack.yml, empack.lock, pack/, overrides/ and templates/ in version control
 
-# Reacquired exact provider payloads; retained custom overlays stay tracked.
+# Generated distributions and empack host state
+/dist/
+/.empack-cache/
+/.host-state/
+
+# Exact provider payloads are reacquired; custom resource sources stay tracked.
 /pack/mods/*.jar
 /pack/shaderpacks/*.zip
 /overrides/client/mods/*.jar
 /overrides/server/mods/*.jar
-# Local runtime evidence can contain machine/user details.
-/docs/config-audit/evidence/
+/overrides/common/mods/*.jar
 
-# Local import/audit evidence includes host paths and source settings.
+# Local audit evidence can contain host paths and source settings.
 /docs/config-audit/
 /docs/**/*.json
 /docs/TASK.md
-
-# Rebuilt resource-only pack fixes; sources live in pack-fixes/.
-/overrides/common/mods/*.jar
-__pycache__/

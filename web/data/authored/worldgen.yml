@@ -1,0 +1,22 @@
+schema: 1
+records:
+  - id: islands/current
+    title: Current Sky Archipelago configuration
+    evidence: configuration
+    detail: Candidate uses CONSISTENT cluster spacing 1494, matching the current seed's effective DYNAMIC value. The former DYNAMIC 32 to 1500 range selects one spacing per world. RANDOM size mode, radius settings 10 to 500, density 0.4, center Y -32 to 300, thickness 300, VOID overlap and disabled ocean-biome islands are unchanged. Size settings are not hard bounds on every scaled island descriptor. Local instances now use the candidate settings. The old server world is archived; next launch selects a random seed because level-seed is blank.
+    sources:
+      [
+        'sky_archipelago-common.toml',
+        'pack docs/development/worldgen.md',
+        'runtime/worldgen_review.json',
+      ]
+  - id: ores/pregen
+    title: Archived terrain baseline
+    evidence: measured
+    detail: This survey describes the archived world, not the pending random world. Refresh it after pregen. Region headers were counted exhaustively; blocks are sampled reproducibly within every populated region. Air volume changes per-world-area yields, while vertical terrain availability changes which ore bands survive. A recipe or configured ore feature alone does not guarantee obtainable quantities.
+    sources: ['scripts/world.py', 'data/generated/world.json']
+  - id: structures/deferred
+    title: Structure generation tuning is a separate pass
+    evidence: decision
+    detail: Do not add Structures Arise or retune existing structure spacing in this pass. Delivery quests rely on finding actual village structures; sparse placement can leave the board empty.
+    sources: ['user direction, 2026-10-21']

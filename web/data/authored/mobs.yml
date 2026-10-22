@@ -1,0 +1,37 @@
+schema: 1
+records:
+  - id: hostile-skies/settings
+    title: Scheduler, escalation and ship configuration
+    evidence: implementation
+    detail: Upstream defaults attempt a spawn every 15 minutes, starting at 10% and adding 4 percentage points after failure up to 50%. Blocked attempts add 1 point. Players within 200 blocks are grouped; personal cooldown is 10 minutes. Captain-kill thresholds are 8, 25 and 50 for tiers 2–4; Bad Omen selects the highest unlocked tier rather than inventing a settlement threat. Pack automatic spawning is OFF, active-raid limit is 1 and departure explosions are OFF. The 14-minute patrol setting, ship-specific spawn offsets, terrain clearance, steering, crew, loot and departure parameters remain inspectable in Configuration and Worldgen/tags/data.
+    sources:
+      [
+        'hostile_skies-common.toml',
+        'https://github.com/TheBlueTaco/Hostile-Skies/blob/main/src/main/java/dev/thebluetaco/hostileskies/raid/RaidConfig.java',
+      ]
+  - id: hostile-skies/patrols
+    title: Hostile Skies encounters are disabled by default
+    evidence: implementation
+    detail: Tick scheduler rolls player-group patrols, weighted by progression and Bad Omen. No settlement happiness, resource scarcity, trade-route or socioeconomic trigger. Six packaged ship definitions across tiers 1–3 in 0.2.6. Automatic spawn toggle returns before all scheduled attempts, including Bad Omen targeting; deliberate operator spawns remain separate.
+    sources:
+      [
+        'https://github.com/TheBlueTaco/Hostile-Skies/blob/main/src/main/java/dev/thebluetaco/hostileskies/raid/RaidSpawnSystem.java',
+        'hostile_skies-common.toml',
+      ]
+  - id: hostile-skies/villagers
+    title: Librarians sell a peace treaty
+    evidence: implementation
+    detail: Adds a novice librarian trade costing 32 emeralds and 3 diamonds, one use, 30 villager XP. Consuming the treaty resets that player's captain kill count; it does not provide immunity or village protection. Crews use vanilla hostile entity types; village targeting/protection is not an explicit contextual spawn system. Do not infer villagers are safe from vanilla illager AI.
+    sources:
+      [
+        'https://github.com/TheBlueTaco/Hostile-Skies/blob/main/src/main/java/dev/thebluetaco/hostileskies/HostileSkies.java',
+      ]
+  - id: hostile-skies/capture
+    title: Capture, loot and departure
+    evidence: implementation
+    detail: Kill the captain, obtain orders and unlock the helm to capture a ship. Captains drive tier unlocks. Crew/loot multiplier settings and individual ship JSON control encounter composition. Departure explosions disabled in this pack; other combat damage is not disabled. No generic Big Cannons combat support is assumed.
+    sources:
+      [
+        'https://modrinth.com/mod/create-hostile-skies',
+        'hostile_skies-common.toml',
+      ]

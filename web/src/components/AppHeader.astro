@@ -1,0 +1,20 @@
+---
+interface Props {
+  label: string
+}
+const { label } = Astro.props
+---
+
+<header class="topbar">
+  <a class="identity" href="/" aria-label="Create Skyweave atlas">
+    <span class="mark">⌘</span>
+    <span>
+      CREATE <b>SKYWEAVE</b>
+      <small>PROGRESSION ATLAS / INTERNAL</small>
+    </span>
+  </a>
+  <nav aria-label={label}>
+    <slot />
+  </nav>
+  <slot name="status" />
+</header>

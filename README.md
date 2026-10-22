@@ -27,6 +27,8 @@ is enabled by default since v0.1.4; v0.1.3 requires enabling it manually.
 ## Development
 
 Builds use empack **0.8.1-beta**. Start with the [build and release guide](docs/development/build.md).
+The [local web map and authoring app](web/README.md) lives in `web/`. Its
+[setup guide](docs/development/web/setup.md) covers installation and game data.
 The [documentation index](docs/README.md) separates player instructions from
 maintainer references and historical test evidence.
 

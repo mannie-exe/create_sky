@@ -15,12 +15,18 @@ clients or servers.
 | `authoring/` | Journal source and categorized configuration register |
 | `overrides/client/` | Client-only content and shader presets |
 | `templates/` | Prism memory settings and server properties |
+| `web/` | Internal map and journal editor; excluded from pack payloads |
 | `docs/players/` | Player and server-owner instructions |
 | `docs/development/` | Maintainer procedures and dated evidence |
 | `docs/RELEASE_NOTES.md` | Notes consumed by release CI |
 
 Generated JARs and archives are ignored by Git. Keep worlds, credentials, server
 lists, raw logs and machine-specific paths out of distributed overrides.
+
+The root `.gitignore` adapts Toptal templates for macOS, Windows, Linux, common
+editors and Python tools. `web/.gitignore` adds Node, Astro and extracted game
+data. Shared editor settings, dependency locks, `web/src/lib/` and Minecraft tag
+files remain trackable; generated assets and local credentials stay ignored.
 
 ## Local builds
 
@@ -77,8 +83,8 @@ release is prepared and publication is authorized.
 
 ## CI maintenance
 
-Both workflows select `modrinth`, `prism` and `server`, use Temurin 21, and pin
-GitHub Actions to commits. `.github/scripts/empack-ci.py` comes from the empack
+The pack validation and release workflows select `modrinth`, `prism` and `server`,
+use Temurin 21, and pin GitHub Actions to commits. `.github/scripts/empack-ci.py` comes from the empack
 0.7.1-beta scaffold, source tag `v0.7.1-beta` at `4d1ef04`, with a project-specific
 release-notes option. Its build-explanation check now expects schema 2 for empack 0.8.1.
 
@@ -88,7 +94,10 @@ by `build --explain --json`. It normalizes filenames before hashing and publishe
 a draft only after uploads succeed. Published names use hyphens for spaces,
 such as `Create-Sky-0.1.5-prism-bundled.zip`.
 
-Both workflows rebuild maintained resources before packaging.
+Both pack workflows rebuild maintained resources before packaging. The separate
+web workflows run from `web/`; [web setup](web/setup.md) describes their checks
+and deployment dry run. Pack profiles assemble `pack/`, `overrides/` and
+`templates/`, so the app and its local generated assets are outside their inputs.
 
 Retain these choices when refreshing the scaffold:
 
