@@ -173,8 +173,10 @@ service into the local editing path.
 - `src/layouts/Base.astro` owns document metadata, the favicon and shared CSS.
 - `src/components/AppHeader.astro` owns identity and navigation structure, with
   slots for each page's controls and snapshot status.
-- `src/components/authoring/` owns the journal workbench, config audit and JSON
-  editor. `src/components/map/ScenarioEditor.astro` owns the YAML scenario editor.
+- `src/components/authoring/` owns the journal and disclaimer workbenches, config
+  audit and JSON editor. Both workbenches share the list/editor layout in
+  `Workbench.astro`. `src/components/map/ScenarioEditor.astro` owns the YAML
+  scenario editor.
 - `src/components/SourceText.astro` shares source-text input markup between both
   editors. Each editor retains its own save semantics and source authority.
 - `src/lib/atlas.ts` and `src/lib/authoring.ts` own their page controllers.

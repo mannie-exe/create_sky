@@ -38,6 +38,8 @@ let snapshot: Snapshot,
   dirty = false,
   busy = false
 let activeEntry = ''
+let activeDisclaimer = ''
+let creatingDisclaimer = false
 let records: AuditRecord[] = []
 let unregistered: string[] = []
 const status = (text: string) => {
@@ -52,11 +54,22 @@ function controls() {
       input.disabled = busy || !snapshot
     })
   document
-    .querySelectorAll<HTMLButtonElement>('#entries button')
+    .querySelectorAll<HTMLButtonElement>('.entry-list button')
     .forEach((item) => {
       item.disabled = busy
     })
-  button('save').disabled = !dirty || busy || mode === 'audit'
+  button('save').disabled =
+    !dirty ||
+    busy ||
+    mode === 'audit' ||
+    (mode === 'disclaimers' && !!disclaimerError())
+  button('new-disclaimer').disabled = busy || !snapshot
+  button('delete-disclaimer').disabled =
+    busy ||
+    !locale ||
+    creatingDisclaimer ||
+    !activeDisclaimer ||
+    disclaimerReferences().length > 0
   button('generate').disabled =
     dirty || busy || !snapshot || !snapshot.generation.changed.length
   button('reload').disabled = busy
@@ -139,7 +152,13 @@ function renderEntry() {
   field('description').value = entry.description.join('\n\n')
   options(
     'disclaimer',
-    [['', 'None'], ...Object.entries(locale.shared)],
+    [
+      ['', 'None'],
+      ...Object.entries(locale.shared).map(([key, text]): [string, string] => [
+        key,
+        `${key}: ${text}`,
+      ]),
+    ],
     entry.disclaimer || '',
   )
   element('labels').replaceChildren(
@@ -253,6 +272,95 @@ function renderLocale() {
   ).length
   element('drafts').textContent = empty + ' entries without descriptions'
   renderEntry()
+  creatingDisclaimer = false
+  if (!Object.hasOwn(locale.shared, activeDisclaimer))
+    activeDisclaimer = Object.keys(locale.shared)[0] || ''
+  renderDisclaimers()
+  renderDisclaimer()
+}
+function disclaimerReferences() {
+  return Object.entries(locale.entries).filter(
+    ([, entry]) => entry.disclaimer === activeDisclaimer,
+  )
+}
+function disclaimerError() {
+  if (!creatingDisclaimer && !activeDisclaimer) return ''
+  const key = field('disclaimer-key').value
+  if (!/^[a-z0-9_]+$/.test(key))
+    return 'Use lowercase letters, numbers and underscores for the key.'
+  if (creatingDisclaimer && Object.hasOwn(locale.shared, key))
+    return 'This key already exists.'
+  if (!field('disclaimer-message').value.trim()) return 'Enter a message.'
+  return ''
+}
+function renderDisclaimers() {
+  const query = field('disclaimer-search').value.trim().toLowerCase()
+  const all = Object.entries(locale.shared).sort(([a], [b]) =>
+    a.localeCompare(b),
+  )
+  const visible = all.filter(([key, text]) =>
+    `${key} ${text}`.toLowerCase().includes(query),
+  )
+  const scroll = element('disclaimers').scrollTop
+  element('disclaimers').replaceChildren(
+    ...visible.map(([key]) => {
+      const item = document.createElement('button')
+      item.type = 'button'
+      item.textContent = key
+      item.dataset.disclaimer = key
+      item.setAttribute(
+        'aria-current',
+        String(!creatingDisclaimer && key === activeDisclaimer),
+      )
+      item.disabled = busy
+      item.addEventListener('click', () => {
+        if (
+          busy ||
+          (!creatingDisclaimer && key === activeDisclaimer) ||
+          !discard()
+        )
+          return
+        dirty = false
+        activeDisclaimer = key
+        renderLocale()
+        element('disclaimers')
+          .querySelector<HTMLButtonElement>('[aria-current="true"]')
+          ?.focus({ preventScroll: true })
+        status('Source loaded')
+        controls()
+      })
+      return item
+    }),
+  )
+  element('disclaimers').scrollTop = scroll
+  element('disclaimer-count').textContent = visible.length
+    ? `${visible.length} of ${all.length} disclaimers`
+    : all.length
+      ? 'No matching disclaimers'
+      : 'No disclaimers'
+}
+function renderDisclaimer() {
+  const empty = !creatingDisclaimer && !activeDisclaimer
+  element('disclaimer-empty').hidden = !empty
+  element('disclaimer-editor').hidden = empty
+  field('disclaimer-key').value = creatingDisclaimer ? '' : activeDisclaimer
+  field('disclaimer-key').readOnly = !creatingDisclaimer
+  field('disclaimer-message').value = creatingDisclaimer
+    ? ''
+    : locale.shared[activeDisclaimer] || ''
+  element('disclaimer-error').textContent = ''
+  element('disclaimer-preview').textContent = field('disclaimer-message').value
+  const references = creatingDisclaimer ? [] : disclaimerReferences()
+  element('disclaimer-usage').textContent = references.length
+    ? `Used by ${references.length} journal entries in this locale. Reassign them before deleting.`
+    : 'No journal entries use this message in this locale.'
+  element('disclaimer-references').replaceChildren(
+    ...references.map(([id, entry]) => {
+      const item = document.createElement('li')
+      item.textContent = `${entry.title} (${id})`
+      return item
+    }),
+  )
 }
 async function load() {
   snapshot = await request('')
@@ -331,8 +439,12 @@ document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach((item) =>
     if (busy || !snapshot || !discard()) return
     dirty = false
     mode = item.dataset.mode!
-    for (const name of ['journal', 'audit', 'source'])
+    for (const name of ['journal', 'disclaimers', 'audit', 'source'])
       element(name + '-panel').hidden = name !== mode
+    element('locale-controls').hidden = !['journal', 'disclaimers'].includes(
+      mode,
+    )
+    element('drafts').hidden = mode !== 'journal'
     document
       .querySelectorAll<HTMLButtonElement>('[data-mode]')
       .forEach((tab) => tab.setAttribute('aria-pressed', String(tab === item)))
@@ -383,6 +495,43 @@ for (const key of [
 }
 field('source-text').addEventListener('input', changed)
 field('entry-search').addEventListener('input', renderEntries)
+field('disclaimer-search').addEventListener('input', renderDisclaimers)
+button('new-disclaimer').addEventListener('click', () => {
+  if (busy || !discard()) return
+  dirty = false
+  renderLocale()
+  creatingDisclaimer = true
+  activeDisclaimer = ''
+  renderDisclaimers()
+  renderDisclaimer()
+  status('Enter a key and message, then save source.')
+  controls()
+  field('disclaimer-key').focus()
+})
+for (const id of ['disclaimer-key', 'disclaimer-message']) {
+  field(id).addEventListener('input', () => {
+    if (!creatingDisclaimer && activeDisclaimer)
+      locale.shared[activeDisclaimer] = field('disclaimer-message').value
+    element('disclaimer-preview').textContent =
+      field('disclaimer-message').value
+    element('disclaimer-error').textContent = disclaimerError()
+    changed()
+  })
+}
+button('delete-disclaimer').addEventListener('click', () => {
+  if (
+    busy ||
+    creatingDisclaimer ||
+    !activeDisclaimer ||
+    disclaimerReferences().length
+  )
+    return
+  delete locale.shared[activeDisclaimer]
+  activeDisclaimer = Object.keys(locale.shared)[0] || ''
+  renderDisclaimers()
+  renderDisclaimer()
+  changed()
+})
 button('reload').addEventListener('click', () => {
   if (discard()) void action(load)
 })
@@ -390,17 +539,31 @@ button('save').addEventListener(
   'click',
   () =>
     void action(async () => {
-      const name =
-        mode === 'journal' ? localeFile() : select('source-file').value
-      const text =
-        mode === 'journal'
-          ? JSON.stringify(locale, null, 2) + '\n'
-          : field('source-text').value
+      if (mode === 'disclaimers' && disclaimerError())
+        throw new Error(disclaimerError())
+      const localeMode = mode === 'journal' || mode === 'disclaimers'
+      const source =
+        mode === 'disclaimers' && creatingDisclaimer
+          ? {
+              ...locale,
+              shared: {
+                ...locale.shared,
+                [field('disclaimer-key').value]:
+                  field('disclaimer-message').value,
+              },
+            }
+          : locale
+      const name = localeMode ? localeFile() : select('source-file').value
+      const text = localeMode
+        ? JSON.stringify(source, null, 2) + '\n'
+        : field('source-text').value
       await request('/save', {
         name,
         text,
         revision: snapshot.files[name].revision,
       })
+      if (mode === 'disclaimers' && creatingDisclaimer)
+        activeDisclaimer = field('disclaimer-key').value
       await load()
       status('Source saved. Generate to update Questlog files.')
     }),

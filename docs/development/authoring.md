@@ -19,6 +19,18 @@ right-hand objective labels. The preview preserves that order. Character counts
 help compare label lengths but do not predict Minecraft wrapping. Completion
 rules are available beside the prose for checking quantities and item IDs.
 
+**Disclaimers** manages the selected locale's shared messages. Search by key or
+message, select a key on the left, and edit its message on the right. The preview
+and referring entries appear below. Editing one message updates every entry that
+references its key when Questlog files are regenerated.
+
+Use **New disclaimer**, enter a unique key and message, then **Save source**.
+Keys use lowercase letters, numbers and underscores. Existing keys are fixed;
+to replace a key, create the replacement and reassign entries in **Journal**.
+The journal's disclaimer selector shows both the key and message; **None** removes
+the reference. **Delete disclaimer** stages deletion only when no entry in the
+selected locale uses that key. Save to persist it. Other locales are independent.
+
 **Save source** validates and saves the selected locale or JSON source file.
 It does not generate native quests. **Generate Questlog files** acts on saved
 source and lists which outputs differ. Installation into Minecraft and the
@@ -35,7 +47,7 @@ edit the related chapter and locale files together, validate, then reload. The
 single-file save intentionally refuses an inconsistent set of locale/objective
 IDs. It is not a complete multi-file staging editor.
 
-Unsaved edits require confirmation before switching entries or views. Stale saves
+Unsaved edits require confirmation before switching entries, disclaimers or views. Stale saves
 fail without replacing either disk content or the form text. Reload discards the
 local draft after confirmation; copy any needed text before reloading a conflict.
 Save validation checks structure and references represented in the source, not

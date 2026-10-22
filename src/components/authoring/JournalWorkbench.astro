@@ -1,20 +1,18 @@
+---
+import Workbench from './Workbench.astro'
+---
+
 <section id="journal-panel">
-  <div class="actions">
-    <label>
-      Locale <select id="locale"></select>
-    </label>
-    <span id="drafts"></span>
-  </div>
-  <div class="workbench">
-    <aside class="entry-browser">
+  <Workbench>
+    <Fragment slot="browser">
       <label>
         Find entry{' '}
         <input id="entry-search" type="search" placeholder="Title or ID" />
       </label>
-      <nav id="entries" aria-label="Journal entries"></nav>
+      <nav id="entries" class="entry-list" aria-label="Journal entries"></nav>
       <p id="entry-count" class="scope" role="status"></p>
-    </aside>
-    <div class="entry-editor">
+    </Fragment>
+    <Fragment>
       <h1 id="entry-heading">Journal entry</h1>
       <p id="entry-id" class="scope"></p>
       <form id="entry-form" onsubmit="return false">
@@ -54,6 +52,6 @@
           <aside id="objectives"></aside>
         </div>
       </div>
-    </div>
-  </div>
+    </Fragment>
+  </Workbench>
 </section>

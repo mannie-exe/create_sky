@@ -4,6 +4,33 @@ This record distinguishes source inspection, isolated runtime checks and live
 instance synchronization. No flight, delivery, raid or real-client journal UI
 session was performed by these checks.
 
+## Shared disclaimer editor, 2026-10-22
+
+Tested source follows app `3b817ed` and pack `eea69e4`. App source SHA-256 is
+`07c7c2bdcf2ad0e08e2fcc089d139b17ae72e5b9e806c9c7d5e96cc0e233eeea`,
+using the sorted path-and-byte method below.
+
+`pnpm verify` passed formatting, 25 JavaScript tests, Astro checks with zero
+diagnostics and the two-page build. `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser`
+passed all ten tests. New cases cover shared-message edits, creation, duplicate
+and invalid keys, blank messages, per-locale isolation, journal reassignment,
+blocked deletion while referenced, deletion after removing references, empty
+registries, cancelled navigation and failed saves retaining drafts. Browser saves
+use intercepted endpoints; existing backend tests cover validation and atomic
+writes in temporary directories.
+
+The pack's eight Python tests passed, including propagation through generated
+translations and rejection of malformed messages or dangling references. Its
+57 generated journal outputs remain unchanged. A desktop screenshot of the real
+inventory disclaimer was inspected; it shows 43 referring entries. The two other
+messages each have one reference, and three entries have no disclaimer. Browser
+checks also covered the mobile viewport. Temporary run output was removed.
+
+The UI retains the existing locale `shared` registry and entry keys. Existing
+keys are fixed in the form; changing an ID requires creating a replacement and
+reassigning entries. No game content, instance, world or dependency changed.
+No in-game checks or runtime extraction were needed for this authoring change.
+
 ## Journal workbench and shared components, 2026-10-22
 
 Tested source follows app `255d69f` and pack `9508255`. The app source digest is

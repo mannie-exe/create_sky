@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro'
 import AppHeader from '../components/AppHeader.astro'
 import JournalWorkbench from '../components/authoring/JournalWorkbench.astro'
+import DisclaimerWorkbench from '../components/authoring/DisclaimerWorkbench.astro'
 import ConfigAudit from '../components/authoring/ConfigAudit.astro'
 import SourceEditor from '../components/authoring/SourceEditor.astro'
 import '../styles/authoring.css'
@@ -11,6 +12,9 @@ import '../styles/authoring.css'
   <AppHeader label="Authoring views">
     <button data-mode="journal" aria-pressed="true">
       Journal
+    </button>
+    <button data-mode="disclaimers" aria-pressed="false">
+      Disclaimers
     </button>
     <button data-mode="audit" aria-pressed="false">
       Config audit
@@ -37,7 +41,14 @@ import '../styles/authoring.css'
       Generation writes pack files. Build and instance installation are separate
       steps.
     </p>
+    <div id="locale-controls" class="actions">
+      <label>
+        Locale <select id="locale"></select>
+      </label>
+      <span id="drafts"></span>
+    </div>
     <JournalWorkbench />
+    <DisclaimerWorkbench />
     <ConfigAudit />
     <SourceEditor />
     <details>

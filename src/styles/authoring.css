@@ -30,7 +30,7 @@
   top: 76px;
   align-self: start;
 }
-.authoring #entries {
+.authoring .entry-list {
   max-height: calc(100dvh - 260px);
   min-height: 180px;
   overflow-y: auto;
@@ -39,12 +39,12 @@
   border-radius: 5px;
   background: var(--panel);
 }
-.authoring #entries h2 {
+.authoring .entry-list h2 {
   margin: 12px 8px 6px;
   font-size: 13px;
   color: var(--muted);
 }
-.authoring #entries button {
+.authoring .entry-list button {
   display: block;
   text-align: left;
   width: 100%;
@@ -52,19 +52,19 @@
   overflow-wrap: anywhere;
   margin: 2px 0;
 }
-.authoring #entries button[aria-current='true'] {
+.authoring .entry-list button[aria-current='true'] {
   background: var(--tint);
   border-color: var(--accent);
   color: var(--accent);
 }
-.authoring #entries small {
+.authoring .entry-list small {
   display: block;
   color: var(--muted);
 }
 .authoring .entry-editor {
   min-width: 0;
 }
-.authoring #entry-heading {
+.authoring .entry-editor h1 {
   margin: 0;
   font-size: 21px;
 }
@@ -141,11 +141,22 @@
   .authoring .entry-browser {
     position: static;
   }
-  .authoring #entries {
+  .authoring .entry-list {
     min-height: 0;
     max-height: 240px;
   }
   .authoring {
     padding: 12px;
   }
+}
+
+.authoring .message-preview {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  padding: 18px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+.authoring .field-error {
+  color: var(--accent);
 }
