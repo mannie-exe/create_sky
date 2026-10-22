@@ -1,6 +1,6 @@
 # Included content
 
-Create Sky 0.1.6, checked 2026-10-22. 110 top-level client mod JARs and two base shader ZIPs. Minecraft remains 1.21.1 and NeoForge remains 21.1.264. Euphoria generates its patched shader at launch. Bundled libraries are additional to this list.
+Create Sky 0.1.7, checked 2026-10-22. 110 top-level client mod JARs and two base shader ZIPs. Minecraft remains 1.21.1 and NeoForge remains 21.1.264. Euphoria generates its patched shader at launch. Bundled libraries are additional to this list.
 
 | Project | Version | Source |
 |---|---|---|

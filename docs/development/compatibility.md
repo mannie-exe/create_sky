@@ -185,3 +185,90 @@ candidate files match. The stopped server's old world/config archive passed full
 file verification and was rechecked before removing the redundant world copy.
 The active world path is absent; `level-seed` remains blank. No replacement world
 was launched. Pregen and gameplay verification remain the next step.
+
+## 2026-10-22: 0.1.6 reference-instance migration
+
+Installed the published 0.1.6 recipes into the existing Prism Create Sky client
+and local dedicated server using empack 0.8.2-beta. The existing mod sets already
+matched the release. Explicit installation adopted the matching managed files;
+seed policies retained local configuration, graphics choices and shader settings.
+
+The running server received SIGINT and completed its player, world, Sable and DH
+shutdown before installation. All 11,345 saved server-world files and three client
+LOD files matched their pre-installation SHA-256 hashes afterward. Server properties,
+seed, access lists, EULA, JVM settings and DH installation IDs were unchanged.
+The server remains stopped and ready for the owner's next launch.
+
+Prism now has release preparation and launch hooks, using the absolute local empack
+path so a GUI launch does not depend on Bash's environment. Its Java and UI settings
+remain unchanged. Server scripts use the reference lifecycle, retain Java 21 and
+add the local executable directory to PATH.
+
+`empack instance inspect` reports 0.1.6 for both instances. Repeated preparation
+reported zero file changes; all 114 client and 192 server managed files matched
+the release hashes. All 206 client and 201 server seeded files were preserved.
+The launch guards passed with `/usr/bin/true`; this does not test Minecraft gameplay.
+The server preparation script also passed with an initial `/usr/bin:/bin` PATH.
+
+Bash already sources `.bash_env` from `.bash_profile`, and `.bash_env` adds
+`~/.local/bin`. A fresh login shell resolved empack 0.8.2-beta without changes.
+
+### Launch failures found after synchronization
+
+The owner's first interactive launches exposed two cases absent from the earlier
+noninteractive checks. Both have local fixes; the published 0.1.6 assets are unchanged.
+
+**Prism icon:** Prism 11.1.1 writes `icon.png` in `createLaunchTask`, before the
+pre-launch hook ([source](https://github.com/PrismLauncher/PrismLauncher/blob/11.1.1/launcher/minecraft/MinecraftInstance.cpp#L1041)).
+The managed icon caused `ModifiedManagedFile`. Added `icon.png: seed` to bindings
+and synchronized the lock without changing dependency selections. A temporary
+build/installation preserved the launcher-written icon through preparation and
+the launch guard. Installed that policy-only local release into the playing client:
+`133dabd23980db91c9bda13f2d1816af316502c3bdd945270c7fec2397b43aaa`.
+Only the icon policy differs from the published Prism recipe. Its descriptor lives
+next to the original as `.minecraft/.empack-consumer/release-icon-seed.json`, sharing
+the same immutable assets. The original launch hook still verifies its published
+recipe and correctly retains the newer installed recipe; repeated preparation and
+`instance launch -- /usr/bin/true` pass. A full graphical launch remains owner-tested.
+
+**Server terminal:** empack 0.8.2-beta's `execute_inherited` calls
+`command.process_group(0)` without transferring terminal foreground control
+(`crates/empack-lib/src/application/process_runtime.rs:210`). The Java and `stty`
+processes were stopped (`T`), with PGID 80416 and terminal foreground group 79414
+(the empack parent). This explains the apparent stall after `Generating keypair`.
+SIGTERM followed by SIGCONT allowed that launch to shut down.
+
+The local server's `foreground-runtime.py` temporarily ignores SIGTTOU while
+calling `tcsetpgrp`, restores the signal disposition, then execs the selected Java
+process. Both local Unix start scripts select this helper through empack and set
+`CREATE_SKY_JAVA`; the instance lease and runtime guard remain active. The official
+empack binary and repository are unchanged. This workaround needs Python 3 and
+is local to this installation pending an upstream terminal-handling fix.
+
+A real PTY test confirmed foreground ownership and input. The actual server then
+reached readiness in 13.499 seconds, answered `list` with zero players, accepted
+`stop`, saved all dimensions and DH databases, and exited successfully. It was
+left stopped for the owner's terminal. No world replacement or regeneration was
+performed; normal startup/shutdown can update saved data.
+
+## 0.1.7 packaging verification, 2026-10-22
+
+All three reference distributions built with empack 0.8.2-beta. The post-build
+step patched the Unix server launchers before checksums; Windows scripts,
+preparation and immutable release content remain unchanged. Source lock SHA-256:
+`9845e94b1ceadb19f09e5c8fe4c1c40c818657dab31007a7f1316cc7aed11529`.
+
+Fresh Prism/server installations verified 320 and
+393 selected file hashes. A launcher-written icon
+survived repeated preparation and the client launch guard. The server reached
+readiness in 19.49 seconds with a real PTY, answered `list`,
+accepted `stop`, saved every dimension, and exited successfully. Tests used a
+disposable flat world; no live instance or world was modified in this release task.
+
+Packaging unit tests cover idempotence, preserved payloads and rejection of
+unrecognized scripts/helpers. Workflow syntax checks passed. The shared helper
+also passed actual empack PTY Ctrl-C, direct SIGINT and non-TTY checks. These tests
+do not establish graphical client, shader or survival-progression coverage.
+
+Both published packs retain reference delivery. Unix server recipients need
+Python 3 for the included helper until the empack terminal fix is adopted.

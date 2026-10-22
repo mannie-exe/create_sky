@@ -6,7 +6,8 @@ Use the server archive from the same Create Sky release as your clients.
 
 1. Extract `server-references.zip` into its own directory. Install
    [empack 0.8.2-beta](https://github.com/inherent-design/empack/releases/tag/v0.8.2-beta)
-   on `PATH`. The launch scripts prepare the exact pack before starting Java;
+   on `PATH`. On macOS/Linux, also install Python 3 for the temporary terminal
+   workaround. Keep `foreground-runtime.py` beside the launch scripts. The launch scripts prepare the exact pack before starting Java;
    first preparation needs network access.
 2. Set `JAVA_HOME` to a Java 21 installation, or make Java 21 the `java` on your
    `PATH`. Run `start.sh` on macOS/Linux or `start.bat` on Windows and confirm the

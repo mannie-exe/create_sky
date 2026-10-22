@@ -1,6 +1,6 @@
 # Journal
 
-Create Sky 0.1.6 includes Questlog. Press grave accent (`) or select the
+Create Sky 0.1.7 includes Questlog. Press grave accent (`) or select the
 journal button above the inventory. Change the key in Controls under Miscellaneous,
 Open journal. No book item is required.
 

@@ -200,6 +200,7 @@ bindings:
           layer: common
 
 policies:
+  icon.png: seed
   options.txt: seed
   "shaderpacks/BSL_v10.1.8.zip.txt": seed
   "shaderpacks/ComplementaryUnbound_r5.9.3 + EuphoriaPatches_1.10.5.txt": seed

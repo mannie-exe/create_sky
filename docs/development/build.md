@@ -30,8 +30,9 @@ files remain trackable; generated assets and local credentials stay ignored.
 
 ## Editable installation defaults
 
-`empack.bindings.yml` marks `options.txt` and the authored shader preset TXT files as `seed`: initial installation writes
-the default, while later preparation preserves player settings. Server properties
+`empack.bindings.yml` marks `icon.png`, `options.txt` and the authored shader preset
+TXT files as `seed`: initial installation writes the default, while later preparation
+preserves edits. Prism rewrites `icon.png` before its pre-launch hook. Server properties
 come from the server template and remain installation-local.
 
 ## Local builds
@@ -46,6 +47,7 @@ python3 scripts/build-fixes.py
 empack status
 empack sync --materialize --yes
 empack build --profile prism --profile modrinth --profile server --yes --optional-defaults
+python3 scripts/patch-server-archives.py
 ```
 
 The defaults build reference Modrinth, Prism and server archives under `dist/`.
@@ -102,7 +104,7 @@ The helper verifies the downloaded empack binary against GitHub's asset digest,
 rejects stale locks and tag/version mismatches, and stages only the outputs named
 by `build --explain --json`. It normalizes filenames before hashing and publishes
 a draft only after uploads succeed. Published names use hyphens for spaces,
-such as `Create-Sky-0.1.6-prism-references.zip`.
+such as `Create-Sky-0.1.7-prism-references.zip`.
 
 Both pack workflows rebuild maintained resources before packaging. The separate
 web workflows run from `web/`; [web setup](web/setup.md) describes their checks
@@ -127,3 +129,33 @@ compatibility.
 Rebuild it before exporting. The generated JAR is an ignored build artifact;
 its source files are maintained. Quest definitions ship from common config and
 client presentation settings ship from client config. See [journal authoring](journal.md).
+
+## Temporary Unix terminal workaround
+
+Empack 0.8.2-beta starts runtimes in a separate process group without transferring
+foreground terminal control. An interactive Java server can consequently stop
+while initializing its console. The pack retains empack preparation and runtime
+supervision and adds a small terminal-handoff helper until the upstream fix lands.
+
+After every local build, run:
+
+```sh
+python3 scripts/patch-server-archives.py
+```
+
+This selects the current default server reference ZIP from `empack build --explain`.
+Explicit archive paths are also accepted. It checks the exact generated scripts,
+adds `foreground-runtime.py`, and replaces only the Unix runtime command. Unknown
+scripts or helpers fail without modifying the archive; rerunning is a no-op.
+The immutable release recipe, game content, Windows launchers and preparation
+script remain byte-identical. CI runs the same step before staging and checksums.
+
+Unix server recipients need Python 3 in addition to Java and empack. The helper
+hands the terminal to its process group before replacing itself with Java; the
+runtime lease and process-tree supervision remain active. It skips terminal work
+when stdin is not a TTY and does not take the terminal from an unrelated foreground
+job. Windows and Modrinth installations do not use this helper.
+
+Remove this packaging step only after an empack upgrade passes real terminal
+input, Ctrl-C and shutdown checks. The patcher deliberately rejects unfamiliar
+launcher templates rather than silently accommodating an upstream change.

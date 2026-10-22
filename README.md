@@ -24,7 +24,7 @@ is enabled by default since v0.1.4; v0.1.3 requires enabling it manually.
 - [Distant Horizons, shaders and missing terrain](docs/players/graphics.md)
 - [Server setup and maintenance](docs/players/server.md)
 - [Included mods and shaders](docs/MODLIST.md)
-- [v0.1.6 release notes](docs/RELEASE_NOTES.md)
+- [v0.1.7 release notes](docs/RELEASE_NOTES.md)
 
 ## Development
 
