@@ -1,4 +1,4 @@
-# Create Skyweave Atlas
+# Create Sky Atlas
 
 Internal item, recipe and progression map for the Create Sky modpack.
 

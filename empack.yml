@@ -1,11 +1,11 @@
 schema: 5
 pack:
   name: Create Sky
-  version: 0.1.5
+  version: 0.1.6
   id: create_sky
   authors:
-  - mannie-exe
-  - TimdoesLive
+    - mannie-exe
+    - TimdoesLive
 runtime:
   loader:
     kind: neoforge
@@ -17,7 +17,7 @@ dependencies:
     source:
       kind: url
       downloads:
-      - https://cdn.modrinth.com/data/78hqRjWm/versions/HaZ4GxKd/hostile_skies-0.2.6.jar
+        - https://cdn.modrinth.com/data/78hqRjWm/versions/HaZ4GxKd/hostile_skies-0.2.6.jar
     digests:
       sha1: 25eadcdcf4db40b5e5e33f3aa7080f71fe4033ee
       sha512: aacb60d2392aa2cf36417d60f95afd4ee334e5c4e3d0a426dfd3db1c5ff09ee012cc942995bd9f89c67b08ed19cf946c467431386e97dc893199804a817d9343
@@ -100,7 +100,7 @@ dependencies:
   create-aeronautics-rechiseled-compatibility:
     source:
       downloads:
-      - https://cdn.modrinth.com/data/ub0jAGhg/versions/b6O6XLL6/create-aeronautics-rechiseled-compat-1.21.1-1.2.2.jar
+        - https://cdn.modrinth.com/data/ub0jAGhg/versions/b6O6XLL6/create-aeronautics-rechiseled-compat-1.21.1-1.2.2.jar
       kind: url
     digests:
       sha1: 80083f94d278ddba23d43a92cd8a0de584a5a087
@@ -108,7 +108,7 @@ dependencies:
   create-aeronautics-throwable-rope-connector:
     source:
       downloads:
-      - https://cdn.modrinth.com/data/9xiCbKmM/versions/EDzeTV17/create_aeronautics_throwable_rope_connector-0.4.3.jar
+        - https://cdn.modrinth.com/data/9xiCbKmM/versions/EDzeTV17/create_aeronautics_throwable_rope_connector-0.4.3.jar
       kind: url
     digests:
       sha1: 63fcbbc960461d42a59b417665fb938c79919514
@@ -152,7 +152,7 @@ dependencies:
   create-vibrant-vaults:
     source:
       downloads:
-      - https://cdn.modrinth.com/data/hddN8ksR/versions/t17qYXjn/create_vibrant_vaults-0.3.2.jar
+        - https://cdn.modrinth.com/data/hddN8ksR/versions/t17qYXjn/create_vibrant_vaults-0.3.2.jar
       kind: url
     digests:
       sha1: d0dbdde6318c4dd4ede1d2c091f1a64896ba872a
@@ -178,7 +178,7 @@ dependencies:
     source:
       kind: url
       downloads:
-      - https://github.com/mannie-exe/dh-polygon-fix/releases/download/v1.0.1/dh-polygon-fix-1.0.1-mc1.21.1-neoforge.jar
+        - https://github.com/mannie-exe/dh-polygon-fix/releases/download/v1.0.1/dh-polygon-fix-1.0.1-mc1.21.1-neoforge.jar
     digests:
       sha1: 09fb384e78a2312266aec3831ad74c63ae100541
       sha512: ae3cff2976c7e34b08bb3b0a71989d430e9c169176d54dc69ceccce100175aa7efac36da5d20c9f771877a9f592c72490099e95836d0e0b1e102e0d1cbb4dd5b
@@ -240,7 +240,7 @@ dependencies:
     side: client
     source:
       downloads:
-      - https://cdn.modrinth.com/data/8O6iJpuJ/versions/YQxLELnA/hoofprint-1.3.0%2B1.21.jar
+        - https://cdn.modrinth.com/data/8O6iJpuJ/versions/YQxLELnA/hoofprint-1.3.0%2B1.21.jar
       kind: url
     digests:
       sha1: d2395ad821239db36507fc6946d185fd10e81d3c
@@ -313,7 +313,7 @@ dependencies:
     side: client
     source:
       downloads:
-      - https://cdn.modrinth.com/data/tNmWwdI2/versions/nfqfeKsL/mcqoy-0.4.1%2Bneo-1.21.jar
+        - https://cdn.modrinth.com/data/tNmWwdI2/versions/nfqfeKsL/mcqoy-0.4.1%2Bneo-1.21.jar
       kind: url
     digests:
       sha1: 98a771b14c1f4ead12ffcd99a90b1c91b25cca8d
@@ -346,7 +346,7 @@ dependencies:
   rechiseled:
     source:
       downloads:
-      - https://cdn.modrinth.com/data/B0g2vT6l/versions/6muGRqvu/rechiseled-1.2.6-neoforge-mc1.21.jar
+        - https://cdn.modrinth.com/data/B0g2vT6l/versions/6muGRqvu/rechiseled-1.2.6-neoforge-mc1.21.jar
       kind: url
     digests:
       sha1: a7ca83d2f99520233bfa9ce769a157fe05201639
@@ -354,7 +354,7 @@ dependencies:
   rechiseled-create:
     source:
       downloads:
-      - https://cdn.modrinth.com/data/E6867niZ/versions/VnOezhJR/rechiseledcreate-1.1.1-neoforge-mc1.21.jar
+        - https://cdn.modrinth.com/data/E6867niZ/versions/VnOezhJR/rechiseledcreate-1.1.1-neoforge-mc1.21.jar
       kind: url
     digests:
       sha1: 6f7e53f39eb477d7cee8e21af215cd3db698deda
@@ -399,7 +399,7 @@ dependencies:
   ssrd:
     source:
       downloads:
-      - https://cdn.modrinth.com/data/fJ183v3D/versions/iZflRKdV/SSRD-1.8.7-1.21.1.jar
+        - https://cdn.modrinth.com/data/fJ183v3D/versions/iZflRKdV/SSRD-1.8.7-1.21.1.jar
       kind: url
     digests:
       sha1: 7da02fc5f783bedb55a29268e4c8ba7b0c3c9e6f
@@ -416,7 +416,7 @@ dependencies:
   surveyor:
     source:
       downloads:
-      - https://cdn.modrinth.com/data/4KjqhPc9/versions/egJBsDTn/surveyor-1.2.4%2B1.21.jar
+        - https://cdn.modrinth.com/data/4KjqhPc9/versions/egJBsDTn/surveyor-1.2.4%2B1.21.jar
       kind: url
     digests:
       sha1: 77e9d3996c11eed104fe224c3ba706be1c759303
@@ -456,8 +456,9 @@ dependencies:
     source: modrinth:questlog
 build:
   default:
-  - prism
-  - server
+    - modrinth
+    - prism
+    - server
   profiles:
     modrinth:
       target: modrinth
@@ -467,21 +468,21 @@ build:
       updates: snapshot
     prism:
       target: prism
-      delivery: bundled
+      delivery: references
       environment: client
       format: zip
       updates: snapshot
     server:
       target: server
-      delivery: bundled
+      delivery: references
       environment: server
       format: zip
       updates: snapshot
 sources:
   exclude:
-  - '**/*.pw.toml'
-  - pack.toml
-  - index.toml
-  - .packwizignore
-  - '**/.DS_Store'
-  - '**/*.mrpack'
+    - '**/*.pw.toml'
+    - pack.toml
+    - index.toml
+    - .packwizignore
+    - '**/.DS_Store'
+    - '**/*.mrpack'

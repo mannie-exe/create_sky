@@ -1,6 +1,6 @@
 # Progression review
 
-This review concerns the unreleased working tree after 0.1.5. The Atlas combines
+This review covers the progression included in 0.1.6. The Atlas combines
 registered recipes and loot with authored environmental assumptions. A mapped
 route establishes potential acquisition, not starting-island availability,
 affordable quantities, operating power or safe travel.

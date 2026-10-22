@@ -8,12 +8,9 @@ concurrency:
   group: pack-release-${{ github.ref }}
   cancel-in-progress: false
 env:
-  EMPACK_VERSION: v0.8.1-beta
-  # Empty selects build.default; otherwise list profile names, one per line.
-  EMPACK_PROFILES: |
-    modrinth
-    prism
-    server
+  EMPACK_VERSION: v0.8.2-beta
+  # Build the reference profiles in build.default.
+  EMPACK_PROFILES: ''
   JAVA_VERSION: '21'
   EMPACK_RELEASE_NOTES: docs/RELEASE_NOTES.md
 jobs:

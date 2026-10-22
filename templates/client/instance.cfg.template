@@ -2,7 +2,7 @@
 ConfigVersion=1.2
 InstanceType=OneSix
 ExportAuthor={{ini_quote AUTHOR}}
-# Deliberate pack override; empack 0.7.1 otherwise inherits launcher memory.
+; Deliberate pack memory override; otherwise Prism inherits launcher settings.
 OverrideMemory=true
 MaxMemAlloc=8192
 MinMemAlloc=512

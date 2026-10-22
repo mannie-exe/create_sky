@@ -4,6 +4,30 @@ This record distinguishes source inspection, isolated runtime checks and live
 instance synchronization. No flight, delivery, raid or real-client journal UI
 session was performed by these checks.
 
+## Create Sky naming, 2026-10-22
+
+Tested uncommitted naming changes based on `23d271c`. The app source digest,
+using the sorted path-and-byte method below, is
+`e283e848db724b4c2d5d09bb3a7dbd03928b895416dbf92ea81302c91fa9db79`.
+Headers, page titles, package and deployment names, and the development exporter's
+ID and filename now use Create Sky. The authored reference to the separate
+Skyweave vision document remains. Existing runtime receipts retain the exporter
+identity observed when they were captured.
+
+From `web/`, `pnpm verify` passed 25 JavaScript tests, formatting, zero Astro
+diagnostics and the static build. `pnpm test:python` passed six tests;
+`pnpm data:check` passed the existing snapshot assertions. Compiled the exporter
+with the configured Java 21 `javac -proc:none` and installed libraries in a
+temporary directory, then checked that its packaged annotation and TOML both use
+`create_sky_atlas_exporter`. Compilation reported the existing deprecated-API note.
+The temporary classes and JAR were removed.
+
+HTTP checks of `/` and `/authoring` confirmed the new titles, visible heading and
+accessible label. The first exact HTML assertion omitted Astro's development
+attributes; an attribute-aware assertion passed. No interaction behavior changed,
+so browser interaction tests were not repeated. No game runtime capture or live
+instance changes were needed; compilation does not establish runtime loading.
+
 ## Repository consolidation, 2026-10-22
 
 Tested the combined working tree based on pack `30ba712` and app `52bad95`.

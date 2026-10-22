@@ -4,7 +4,10 @@ Use the server archive from the same Create Sky release as your clients.
 
 ## First launch
 
-1. Extract `server-bundled.zip` into its own directory.
+1. Extract `server-references.zip` into its own directory. Install
+   [empack 0.8.2-beta](https://github.com/inherent-design/empack/releases/tag/v0.8.2-beta)
+   on `PATH`. The launch scripts prepare the exact pack before starting Java;
+   first preparation needs network access.
 2. Set `JAVA_HOME` to a Java 21 installation, or make Java 21 the `java` on your
    `PATH`. Run `start.sh` on macOS/Linux or `start.bat` on Windows and confirm the
    Java version in the startup output.
@@ -57,7 +60,7 @@ or use SQLite's backup API for a consistent snapshot.
 The client-only polygon fix and shader presets are excluded from server exports.
 An update to those alone does not require changing the server's mod set.
 
-The unreleased generation candidate fixes cluster spacing to 1494 and disables
+Version 0.1.6 fixes cluster spacing to 1494 and disables
 a conflicting biome optimization. Existing installations retain their settings;
 normal pack updates should preserve worlds and LODs. See the
 [generation review](../development/worldgen.md) before deliberately creating a

@@ -59,10 +59,10 @@ cache are not export defaults.
   its patched shader at launch; its generated folder name determines the preset filename.
 - JEI remains alongside EMI for recipe integrations.
 - Connector and Forgified Fabric API support the Hoofprint/Surveyor/McQoy stack.
-- Nine URL pins handle provider metadata conflicts involving old exact versions,
+- Ten URL pins handle provider metadata conflicts involving old exact versions,
   Connector/Forgified Fabric API and client-only dependencies. Check runtime
   metadata before replacing them with provider roots or downgrading dependencies.
-- The tenth URL pin is the published DH Polygon Fix binary with content digests.
+- The eleventh URL pin is the published DH Polygon Fix binary with content digests.
 - Carry On excludes Lootr containers and Aeronautics/Sable objects and retains
   the generated Create/Copycats exclusions. These exclusions do not verify every
   carried entity or ship-storage interaction.
@@ -117,11 +117,11 @@ Survival resource access, structures, moving-ship interactions and acoustics sti
 need broader gameplay coverage. The owner's testing supports enabling DH by
 default; it is not a cross-platform performance benchmark.
 
-## Unreleased local integration
+## Version 0.1.6 integration
 
 Reliable Gliders 2.0.0, Hostile Skies 0.2.6, Aeronautics Delivery Quests 1.1.1,
-Create Propulsion: Simulated 1.1.5 and Questlog 3.4.1 are installed locally after
-0.1.5. Minecraft 1.21.1, NeoForge 21.1.264 and Java 21 remain pinned.
+Create Propulsion: Simulated 1.1.5 and Questlog 3.4.1 are included in
+0.1.6. Minecraft 1.21.1, NeoForge 21.1.264 and Java 21 remain pinned.
 
 Hostile Skies automatic raids and departure explosions are disabled; capture is
 enabled. Delivery Quests uses village destinations, four offers, 500 to 2,000
@@ -161,9 +161,9 @@ flight, cargo-delivery and raid session has not been exercised by these checks.
 The Atlas owns runtime snapshots, selective-sync receipts and its verification
 record; these are local evidence, not distributed player files.
 
-## Candidate world-generation compatibility
+## World-generation compatibility in 0.1.6
 
-The unreleased candidate disables Zfastnoise's biome optimization to allow Sky
+Version 0.1.6 disables Zfastnoise's biome optimization to allow Sky
 Archipelago's Deep Dark projection redirect to apply. The isolated capture no
 longer logs that redirect conflict; chunk-level biome and structure validation
 remains pending. Noise optimization stays enabled. The local instances now carry this configuration for a new random-world review;

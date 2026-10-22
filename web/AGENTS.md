@@ -1,4 +1,4 @@
-# Create Skyweave Atlas
+# Create Sky Atlas
 
 Maintain the internal Create Sky progression map. Start with `../docs/development/web/README.md` and
 read only the setup, data or verification sections needed for the task.

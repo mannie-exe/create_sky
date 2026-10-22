@@ -1,6 +1,6 @@
 # Build and release maintenance
 
-Use empack **0.8.1-beta** and Java **21** from the repository root. Builds use the
+Use empack **0.8.2-beta** and Java **21** from the repository root. Builds use the
 recorded lock and explicit distribution profiles. They do not update installed
 clients or servers.
 
@@ -28,6 +28,12 @@ editors and Python tools. `web/.gitignore` adds Node, Astro and extracted game
 data. Shared editor settings, dependency locks, `web/src/lib/` and Minecraft tag
 files remain trackable; generated assets and local credentials stay ignored.
 
+## Editable installation defaults
+
+`empack.bindings.yml` marks `options.txt` and the authored shader preset TXT files as `seed`: initial installation writes
+the default, while later preparation preserves player settings. Server properties
+come from the server template and remain installation-local.
+
 ## Local builds
 
 After editing dependency intent, synchronize and materialize the selected files,
@@ -42,9 +48,11 @@ empack sync --materialize --yes
 empack build --profile prism --profile modrinth --profile server --yes --optional-defaults
 ```
 
-The outputs are a bundled Prism client, a reference-based Modrinth pack and a
-bundled server under `dist/`. Without explicit profiles, the local defaults are
-Prism and server. Check placement and archive contents as well as command success.
+The defaults build reference Modrinth, Prism and server archives under `dist/`.
+Prism and server recipients need empack 0.8.2-beta on `PATH`; the generated hooks
+prepare and verify exact files before launch. Modrinth-compatible launchers handle
+the `.mrpack` downloads. Authored files remain included, and empack includes prepared
+server-runtime assets. Check content sources and installation as well as archive integrity.
 
 Local edits can change an export without changing its filename. Use the published
 release's checksums to identify released bytes; a local rebuild is not a substitute
@@ -53,9 +61,11 @@ for verifying downloaded release assets.
 ## Dependency updates
 
 Read [compatibility constraints](compatibility.md) before changing pins.
-Provider-backed selections use exact versions. Ten content-pinned URL sources
-need manual upstream checks: nine provider-metadata exceptions and DH Polygon
-Fix. `empack outdated` alone does not cover them.
+Provider-backed selections use exact versions. Eleven content-pinned URL sources
+need manual upstream checks: ten metadata/compatibility exceptions and DH Polygon
+Fix. `empack outdated --strict --json` reports incomplete provider evidence and
+continues independent checks after malformed records; it does not assess URL pins
+or loader upgrades. Retain compatibility constraints when selecting updates.
 
 When a URL asset changes, update its digests and explicit placement filename in
 `empack.bindings.yml`, then synchronize. Changing only the URL can preserve an
@@ -85,14 +95,14 @@ release is prepared and publication is authorized.
 
 The pack validation and release workflows select `modrinth`, `prism` and `server`,
 use Temurin 21, and pin GitHub Actions to commits. `.github/scripts/empack-ci.py` comes from the empack
-0.7.1-beta scaffold, source tag `v0.7.1-beta` at `4d1ef04`, with a project-specific
-release-notes option. Its build-explanation check now expects schema 2 for empack 0.8.1.
+scaffold, reviewed against `v0.8.2-beta` at `f29064dc`, with a project-specific
+release-notes option. Its build-explanation check expects schema 2.
 
 The helper verifies the downloaded empack binary against GitHub's asset digest,
 rejects stale locks and tag/version mismatches, and stages only the outputs named
 by `build --explain --json`. It normalizes filenames before hashing and publishes
 a draft only after uploads succeed. Published names use hyphens for spaces,
-such as `Create-Sky-0.1.5-prism-bundled.zip`.
+such as `Create-Sky-0.1.6-prism-references.zip`.
 
 Both pack workflows rebuild maintained resources before packaging. The separate
 web workflows run from `web/`; [web setup](web/setup.md) describes their checks
@@ -102,7 +112,7 @@ and deployment dry run. Pack profiles assemble `pack/`, `overrides/` and
 Retain these choices when refreshing the scaffold:
 
 - `EMPACK_RELEASE_NOTES` points to `docs/RELEASE_NOTES.md` and uses `--notes-file`.
-- All three export profiles are selected explicitly in CI.
+- All three reference profiles are selected through `build.default`; CI uses that default.
 - Prism overrides memory to 512 MiB minimum and 8192 MiB maximum.
 - Servers enforce the whitelist and create Sky Islands worlds.
 - Checkout credentials are not persisted.

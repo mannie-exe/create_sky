@@ -12,8 +12,8 @@ record what was tested at the time; they do not define current defaults.
 | [Journal](players/journal.md) | Local quest conditions and controls |
 | [Graphics](players/graphics.md) | DH rendering, shader choices and missing LODs |
 | [Servers](players/server.md) | Hosting, world preservation and DH generation |
-| [Included content](MODLIST.md) | Exact mods and shaders, including unreleased local additions |
-| [Release notes](RELEASE_NOTES.md) | v0.1.5 changes; [v0.1.4 archive](releases/0.1.4.md) |
+| [Included content](MODLIST.md) | Exact mods and shaders in v0.1.6 |
+| [Release notes](RELEASE_NOTES.md) | v0.1.6 changes; [v0.1.5 archive](releases/0.1.5.md) |
 
 ## Development and maintenance
 

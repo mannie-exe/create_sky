@@ -1,6 +1,6 @@
 # World generation
 
-The unreleased candidate uses Sky Archipelago 1.3.6 with `CONSISTENT` cluster
+Create Sky 0.1.6 uses Sky Archipelago 1.3.6 with `CONSISTENT` cluster
 spacing of **1494**. Both the common TOML and `eee` preset carry this value;
 minimum and maximum spacing are also 1494 to avoid an accidental mode change
 restoring the old range. Other island settings are unchanged.

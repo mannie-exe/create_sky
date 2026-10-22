@@ -9,7 +9,9 @@ Minecraft **1.21.1** · NeoForge **21.1.264** · Java **21**
 ## Installation
 
 Download a [release](https://github.com/mannie-exe/create_sky/releases). Import the
-`prism-bundled.zip` into Prism Launcher, or the `.mrpack` into a compatible launcher.
+`prism-references.zip` into Prism Launcher, or the `.mrpack` into a compatible launcher.
+Prism and server reference packs require empack **0.8.2-beta** on `PATH` to prepare
+the released files before launch. The Modrinth pack uses its launcher for downloads.
 Select Java 21 for the instance. The Prism profile allows up to 8 GiB of RAM.
 
 New worlds default to Sky Islands. Shaders are optional; Complementary, Euphoria
@@ -22,11 +24,11 @@ is enabled by default since v0.1.4; v0.1.3 requires enabling it manually.
 - [Distant Horizons, shaders and missing terrain](docs/players/graphics.md)
 - [Server setup and maintenance](docs/players/server.md)
 - [Included mods and shaders](docs/MODLIST.md)
-- [v0.1.5 release notes](docs/RELEASE_NOTES.md)
+- [v0.1.6 release notes](docs/RELEASE_NOTES.md)
 
 ## Development
 
-Builds use empack **0.8.1-beta**. Start with the [build and release guide](docs/development/build.md).
+Builds use empack **0.8.2-beta**. Start with the [build and release guide](docs/development/build.md).
 The [local web map and authoring app](web/README.md) lives in `web/`. Its
 [setup guide](docs/development/web/setup.md) covers installation and game data.
 The [documentation index](docs/README.md) separates player instructions from

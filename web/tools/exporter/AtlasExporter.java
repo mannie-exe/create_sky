@@ -16,7 +16,7 @@ import java.nio.file.*;
 import java.util.*;
 
 /** Developer instrumentation, installed only in the disposable audit server. */
-@Mod("skyweave_atlas_exporter")
+@Mod("create_sky_atlas_exporter")
 public final class AtlasExporter {
   private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().create();
   public AtlasExporter() { NeoForge.EVENT_BUS.addListener(this::started); }

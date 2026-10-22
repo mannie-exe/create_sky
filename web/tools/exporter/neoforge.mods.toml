@@ -2,6 +2,6 @@ modLoader="javafml"
 loaderVersion="[4,)"
 license="MIT"
 [[mods]]
-modId="skyweave_atlas_exporter"
+modId="create_sky_atlas_exporter"
 version="0.1.0"
-displayName="Skyweave Atlas Exporter (development only)"
+displayName="Create Sky Atlas Exporter (development only)"

@@ -419,3 +419,64 @@ NUL of `scripts/generate-journal.py` and `tests/test_authoring.py` is
 The generated resources are unchanged, so no resource JAR rebuild, profile export
 or live-instance installation was needed. No gameplay or runtime claim follows
 from these authoring checks.
+
+## 2026-10-22 - Prepare Create Sky 0.1.6 reference distributions
+
+Tested working tree based on `23d271c`, including the pending Create Sky naming
+changes. Author manifest SHA-256: `352f657eae81f2862b68c3aef63ae5587ea1b79bac37fd720e3857b46d2b1c04`.
+Lock SHA-256: `067e0fce7dea6f7820cb0051b6429b276e779f4d44f911372cb5a6515c22f20b`.
+Bindings SHA-256: `11ae95e5e1ccb9e176e6b088343630fa9be847fbefb2191a38446840330a40f2`.
+
+Installed empack 0.8.2-beta from the official Apple ARM64 archive, verified against
+GitHub's SHA-256 `8c50f141e60cac0528412261a470221254a6f7d7cf8c2b06c8c156017206d22f`.
+The release tag resolves to `f29064dc`. Author schema 5 and lock schema 2 remain
+supported; no document recreation was required. Explicit reference recipes replace
+bundled delivery, and `build.default` selects Modrinth, Prism and server. CI pins
+the new executable and uses those defaults. The custom Prism template retains
+8 GiB memory and both preparation hooks, with a semicolon comment for Prism parsing.
+Explicit seed policies preserve edited client options and shader presets after
+initial installation. Before the policy fix, editing `options.txt` reproduced
+`ModifiedManagedFile` and blocked preparation.
+
+`empack --net-timeout 1200 outdated --strict --json` completed with 99 provider
+roots and 11 manual sources. The two newer compatible provider candidates are
+JEI 19.69.0.457 and Sound Physics 1.5.2, both betas. Stable selections remain.
+The ten Modrinth URL sources and DH Polygon Fix release were checked separately;
+SSRD 1.8.6 would downgrade the installed 1.8.7 beta and was retained. Official
+NeoForge metadata still lists 21.1.264 for Minecraft 1.21.1. Neither game nor loader
+changed. This assessment is catalog evidence, not proof of runtime compatibility.
+
+Checks and scope:
+
+- `python3 -m unittest discover -s tests -v`: eight tests passed.
+- `python3 scripts/generate-journal.py --check`: 57 outputs, zero changes.
+- `python3 scripts/audit-changes.py`: 196 files, no drift or missing/unregistered files.
+- `python3 scripts/build-fixes.py` rebuilt the maintained resource mod.
+- `empack sync --materialize --yes` and
+  `empack build --yes --optional-defaults` completed for all three reference profiles.
+- ZIP integrity, native asset SHA-256/size assertions, Modrinth references, runtime
+  versions and client/server placement were inspected. Third-party mod content uses
+  provider/URL sources; only the maintained resource mod is embedded as mod content.
+  The native server archive still includes prepared runtime assets. No web assets,
+  worlds or LOD databases are included.
+- Extracted the reference Prism/server archives into new test directories and ran
+  `empack instance prepare` with each release's digest, layout and side. Both
+  preparations succeeded and installed file hashes matched their release records.
+- Final policy-aware archives were installed into new directories again: 320 client
+  files and 393 server files matched their release digests. Edited client options,
+  all three shader presets and server properties survived repeated preparation.
+  The launch guard also accepted these local changes with `/usr/bin/true`; that
+  command checks instance policy, not Minecraft rendering.
+- `empack instance launch --server` reached Minecraft's readiness marker and shut
+  down cleanly after `stop` in 25.2 seconds using Java 21 and a disposable flat world.
+- From `web/`, `pnpm verify` passed 25 tests, formatting, zero Astro diagnostics and
+  the static build. `pnpm data:refresh` ran the renamed exporter in its isolated
+  audit server, and `pnpm data:check` passed: 10,119 items, 9,235 recipes and 48
+  journal entries. No terrain survey was repeated.
+- `mise exec aqua:rhysd/actionlint@1.7.12 -- actionlint .github/workflows/*.yml`
+  passed; updated documentation links and `git diff --check` also passed.
+
+Playing instances, worlds and LODs were not updated by these checks. Client GPU
+behavior, shader pipelines, ship interactions and complete survival progression
+were not retested. Published artifact verification is performed after the release
+workflow; the local build alone does not identify published bytes.

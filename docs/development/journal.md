@@ -1,7 +1,7 @@
 # Journal definitions
 
 Questlog 3.4.1 for Minecraft 1.21.1 / NeoForge is installed locally and pinned to
-Modrinth version `6ZFtauOf`. This is unreleased pack content.
+Modrinth version `6ZFtauOf`. Included in Create Sky 0.1.6.
 
 ## Ownership
 
