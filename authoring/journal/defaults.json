@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "display": {
+    "include_in_main": false,
+    "toast_on_unlock": false,
+    "toast_on_complete": false,
+    "show_popup_on_unlock": false,
+    "details_open_by_default": true
+  }
+}

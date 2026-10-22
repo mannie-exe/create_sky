@@ -1,9 +1,10 @@
 {
-  "name": "Components",
   "icon": {
     "item": "create:precision_mechanism"
   },
   "order": 3,
   "default_chapter": false,
-  "hidden": false
+  "hidden": false,
+  "name": "createsky.journal.chapter.components",
+  "translatable": true
 }

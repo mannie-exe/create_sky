@@ -55,10 +55,14 @@ Deep Dark terrain and structure placement remain untested.
 
 ## Regeneration review
 
-The current server world was archived and removed from the active `game/world`
-path on 2026-10-21. Client and server now use the candidate generation settings.
-The next server launch creates a new random world: `level-seed` remains blank.
-The owner explicitly selected random generation instead of reusing the old seed.
+The original server world was archived and removed from the active `game/world`
+path on 2026-10-21. Client and server use the candidate generation settings.
+A random-seed world was then generated for review. On 2026-10-22 that world was
+also archived and moved out, after verifying all 1,019 archived files. The owner
+requested a comparison using the original 1024-radius world's seed. It was
+recovered from the verified first archive and set only in the local server's
+properties; the next launch was prepared to generate a fresh comparison world.
+The distributed template remains seed-free. Neither archive was discarded.
 The previous seed comparison above remains historical evidence for choosing the
 1494 spacing scale, not a prediction of the next world's terrain.
 

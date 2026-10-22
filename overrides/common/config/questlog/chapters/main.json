@@ -1,9 +1,10 @@
 {
-  "name": "Materials",
   "icon": {
     "item": "create:andesite_alloy"
   },
   "order": 0,
   "default_chapter": true,
-  "hidden": false
+  "hidden": false,
+  "name": "createsky.journal.chapter.main",
+  "translatable": true
 }

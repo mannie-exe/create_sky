@@ -1,7 +1,10 @@
 """Build the maintained resource-only mod; does not touch instances or worlds."""
 from pathlib import Path
 import zipfile
+import subprocess
+import sys
 root = Path(__file__).resolve().parent.parent
+subprocess.run([sys.executable, str(root / 'scripts/generate-journal.py'), '--check'], check=True)
 output = root / 'overrides/common/mods/create-sky-fixes-0.1.0.jar'
 output.parent.mkdir(parents=True, exist_ok=True)
 with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_DEFLATED) as jar:

@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "baseline": "b5465d2aaf4b685baa46093fc805da0a51047bd9",
+  "records": [
+    {
+      "path": "overrides/client/config/questlog-client.json",
+      "sha256": "7823ec8afc75bcb10927d2e9dd0bce90fdb5a02f97f219326eaeb471d69b890e",
+      "review": "reviewed",
+      "reason": "Bookless journal access and compact labels; generated quest content is checked separately.",
+      "reference": "docs/development/journal.md"
+    }
+  ]
+}

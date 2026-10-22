@@ -5,13 +5,15 @@ Modrinth version `6ZFtauOf`. This is unreleased pack content.
 
 ## Ownership
 
-- `overrides/common/config/questlog/chapters/` owns the eight chapter definitions.
-- `overrides/common/config/questlog/quests/<chapter>/` owns the 48 native quest JSON files.
+- `authoring/journal/chapters/` owns the eight chapters and 48 quest mechanics definitions.
+- `authoring/journal/locales/` owns entry sections and short objective labels by locale.
+- `overrides/common/config/questlog/` contains generated native quest and chapter JSON.
 - `overrides/client/config/questlog-client.json` owns inventory access, colors and display defaults.
 - `pack-fixes/assets/questlog/` owns original flat panel artwork and journal wording.
 - `scripts/build-fixes.py` packages those assets with the maintained data fixes.
 
-The native JSON files are authoritative and directly editable. Quest IDs are
+See [pack authoring](authoring.md) for editing, generation and locale rules.
+Native JSON is generated and should not be edited directly. Quest IDs are
 `questlog:<relative path without .json>`; the loader fixes the namespace to
 `questlog`. Keep IDs and objective order stable after players begin tracking them.
 Questlog serializes objective progress by list position, so changing an existing

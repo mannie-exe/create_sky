@@ -1,0 +1,166 @@
+{
+  "schema": 1,
+  "chapter": {
+    "icon": {
+      "item": "create:mechanical_press"
+    },
+    "order": 2,
+    "default_chapter": false,
+    "hidden": false
+  },
+  "entries": [
+    {
+      "id": "fan",
+      "definition": {
+        "chapter": "questlog:machines",
+        "sort_order": 50,
+        "icon": {
+          "item": "create:encased_fan"
+        },
+        "requirements": [],
+        "objectives": [
+          {
+            "type": "questlog:item_obtain",
+            "item": "create:encased_fan",
+            "required_amount": 1
+          }
+        ],
+        "rewards": [],
+        "text_color": "#273238",
+        "title_color": "#18242b",
+        "completed_text_color": "#356b52",
+        "progress_text_color": "#435b68"
+      }
+    },
+    {
+      "id": "millstone",
+      "definition": {
+        "chapter": "questlog:machines",
+        "sort_order": 30,
+        "icon": {
+          "item": "create:millstone"
+        },
+        "requirements": [],
+        "objectives": [
+          {
+            "type": "questlog:item_obtain",
+            "item": "create:millstone",
+            "required_amount": 1
+          }
+        ],
+        "rewards": [],
+        "text_color": "#273238",
+        "title_color": "#18242b",
+        "completed_text_color": "#356b52",
+        "progress_text_color": "#435b68"
+      }
+    },
+    {
+      "id": "mixer",
+      "definition": {
+        "chapter": "questlog:machines",
+        "sort_order": 40,
+        "icon": {
+          "item": "create:mechanical_mixer"
+        },
+        "requirements": [],
+        "objectives": [
+          {
+            "type": "questlog:item_obtain",
+            "item": "create:mechanical_mixer",
+            "required_amount": 1
+          }
+        ],
+        "rewards": [],
+        "text_color": "#273238",
+        "title_color": "#18242b",
+        "completed_text_color": "#356b52",
+        "progress_text_color": "#435b68"
+      }
+    },
+    {
+      "id": "press",
+      "definition": {
+        "chapter": "questlog:machines",
+        "sort_order": 10,
+        "icon": {
+          "item": "create:mechanical_press"
+        },
+        "requirements": [],
+        "objectives": [
+          {
+            "type": "questlog:item_obtain",
+            "item": "create:mechanical_press",
+            "required_amount": 1
+          }
+        ],
+        "rewards": [],
+        "text_color": "#273238",
+        "title_color": "#18242b",
+        "completed_text_color": "#356b52",
+        "progress_text_color": "#435b68"
+      }
+    },
+    {
+      "id": "sheets",
+      "definition": {
+        "chapter": "questlog:machines",
+        "sort_order": 20,
+        "icon": {
+          "item": "create:iron_sheet"
+        },
+        "requirements": [],
+        "objectives": [
+          {
+            "type": "questlog:item_obtain",
+            "item": "create:iron_sheet",
+            "required_amount": 4
+          }
+        ],
+        "rewards": [],
+        "text_color": "#273238",
+        "title_color": "#18242b",
+        "completed_text_color": "#356b52",
+        "progress_text_color": "#435b68"
+      }
+    },
+    {
+      "id": "wheel",
+      "definition": {
+        "chapter": "questlog:machines",
+        "sort_order": 0,
+        "icon": {
+          "item": "create:water_wheel"
+        },
+        "requirements": [],
+        "objectives": [
+          {
+            "type": "questlog:or",
+            "objectives": [
+              {
+                "type": "questlog:item_obtain",
+                "item": "create:water_wheel",
+                "required_amount": 1
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "create:large_water_wheel",
+                "required_amount": 1
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "create:windmill_bearing",
+                "required_amount": 1
+              }
+            ]
+          }
+        ],
+        "rewards": [],
+        "text_color": "#273238",
+        "title_color": "#18242b",
+        "completed_text_color": "#356b52",
+        "progress_text_color": "#435b68"
+      }
+    }
+  ]
+}

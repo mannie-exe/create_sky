@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "baseline": "b5465d2aaf4b685baa46093fc805da0a51047bd9",
+  "records": [
+    {
+      "path": "overrides/client/shaderpacks/BSL_v10.1.8.zip.txt",
+      "sha256": "8a51d3ea74f1e8e550ad9ed68bd8953a3b81b413e40f49f56bc44e5616e391ef",
+      "review": "reviewed",
+      "reason": "Reduce sampler pressure and shadow distance while retaining the tested shader effects.",
+      "reference": "docs/development/compatibility.md"
+    },
+    {
+      "path": "overrides/client/shaderpacks/ComplementaryUnbound_r5.9.3 + EuphoriaPatches_1.10.5.txt",
+      "sha256": "59aa3745efc02e43d6303514f82f4820cbe97227d231183816ce668e574b8e04",
+      "review": "reviewed",
+      "reason": "Reduce sampler pressure and shadow distance while retaining the tested shader effects.",
+      "reference": "docs/development/compatibility.md"
+    },
+    {
+      "path": "overrides/client/shaderpacks/ComplementaryUnbound_r5.9.3.zip.txt",
+      "sha256": "9d46fe6f5f19cb1809fbc0bdde799b9e306b99e63f072a6c450c9cbcd507e999",
+      "review": "reviewed",
+      "reason": "Reduce sampler pressure and shadow distance while retaining the tested shader effects.",
+      "reference": "docs/development/compatibility.md"
+    },
+    {
+      "path": "overrides/common/config/iris-excluded.json",
+      "sha256": "4d3264b58c502afaeca3f44e8d2db0843c54b8ba957afd21a2d450fe10dafefb",
+      "review": "inherited",
+      "reason": "Retained from the imported pack. Individual setting intent has not been reviewed.",
+      "reference": "docs/development/decisions.md"
+    },
+    {
+      "path": "overrides/common/config/iris.properties",
+      "sha256": "a78a8f89aad9bc6dcc3e815d3ce555e9bcff365613ac1a13acbaed6aa475f503",
+      "review": "inherited",
+      "reason": "Retained from the imported pack. Individual setting intent has not been reviewed.",
+      "reference": "docs/development/decisions.md"
+    }
+  ]
+}

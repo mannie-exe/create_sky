@@ -1,9 +1,10 @@
 {
-  "name": "Processing",
   "icon": {
     "item": "create:mechanical_press"
   },
   "order": 2,
   "default_chapter": false,
-  "hidden": false
+  "hidden": false,
+  "name": "createsky.journal.chapter.machines",
+  "translatable": true
 }

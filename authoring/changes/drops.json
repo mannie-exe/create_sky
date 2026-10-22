@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "baseline": "b5465d2aaf4b685baa46093fc805da0a51047bd9",
+  "records": [
+    {
+      "path": "pack-fixes/data/createpropulsion/loot_table/blocks/copycat_wing.json",
+      "sha256": "334562860115ce3e921eda459a071a4ff885ef1a42c2b990d1eb3a103ea1a885",
+      "review": "reviewed",
+      "reason": "Maintained resource correction; inspect the resource and progression reference for the affected recipe, tag or drop.",
+      "reference": "docs/development/progression.md"
+    },
+    {
+      "path": "pack-fixes/data/createpropulsion/loot_table/blocks/copycat_wing_12.json",
+      "sha256": "afe3554f50dd230dc9a245717766bffa4cf30720562932583e95023bfeed9441",
+      "review": "reviewed",
+      "reason": "Maintained resource correction; inspect the resource and progression reference for the affected recipe, tag or drop.",
+      "reference": "docs/development/progression.md"
+    },
+    {
+      "path": "pack-fixes/data/createpropulsion/loot_table/blocks/copycat_wing_8.json",
+      "sha256": "b98118e9e00cfed12e09e7d49ea221f8799efdab1d8a474ded05574124683291",
+      "review": "reviewed",
+      "reason": "Maintained resource correction; inspect the resource and progression reference for the affected recipe, tag or drop.",
+      "reference": "docs/development/progression.md"
+    },
+    {
+      "path": "pack-fixes/data/createpropulsion/loot_table/blocks/platinum_casing.json",
+      "sha256": "7b207d39a799c3e2a3aab3c0551ccebed01a75bae67ac7936543c22409cde493",
+      "review": "reviewed",
+      "reason": "Maintained resource correction; inspect the resource and progression reference for the affected recipe, tag or drop.",
+      "reference": "docs/development/progression.md"
+    }
+  ]
+}

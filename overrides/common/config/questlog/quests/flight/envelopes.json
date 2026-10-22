@@ -1,6 +1,9 @@
 {
-  "title": "Envelopes",
-  "description": "Have at least 4 envelopes of the same color in your inventory at once. Any color qualifies; mixed colors do not combine toward the count.",
+  "include_in_main": false,
+  "toast_on_unlock": false,
+  "toast_on_complete": false,
+  "show_popup_on_unlock": false,
+  "details_open_by_default": true,
   "chapter": "questlog:flight",
   "sort_order": 10,
   "icon": {
@@ -10,115 +13,132 @@
   "objectives": [
     {
       "type": "questlog:or",
-      "name": "One envelope color",
       "objectives": [
         {
           "type": "questlog:item_obtain",
           "item": "aeronautics:white_envelope",
           "required_amount": 4,
-          "name": "White envelope"
+          "name": "createsky.journal.flight.envelopes.objective.0.0",
+          "translatable": true
         },
         {
           "type": "questlog:item_obtain",
           "item": "aeronautics:orange_envelope",
           "required_amount": 4,
-          "name": "Orange envelope"
+          "name": "createsky.journal.flight.envelopes.objective.0.1",
+          "translatable": true
         },
         {
           "type": "questlog:item_obtain",
           "item": "aeronautics:magenta_envelope",
           "required_amount": 4,
-          "name": "Magenta envelope"
+          "name": "createsky.journal.flight.envelopes.objective.0.2",
+          "translatable": true
         },
         {
           "type": "questlog:item_obtain",
           "item": "aeronautics:light_blue_envelope",
           "required_amount": 4,
-          "name": "Light blue envelope"
+          "name": "createsky.journal.flight.envelopes.objective.0.3",
+          "translatable": true
         },
         {
           "type": "questlog:item_obtain",
           "item": "aeronautics:yellow_envelope",
           "required_amount": 4,
-          "name": "Yellow envelope"
+          "name": "createsky.journal.flight.envelopes.objective.0.4",
+          "translatable": true
         },
         {
           "type": "questlog:item_obtain",
           "item": "aeronautics:lime_envelope",
           "required_amount": 4,
-          "name": "Lime envelope"
+          "name": "createsky.journal.flight.envelopes.objective.0.5",
+          "translatable": true
         },
         {
           "type": "questlog:item_obtain",
           "item": "aeronautics:pink_envelope",
           "required_amount": 4,
-          "name": "Pink envelope"
+          "name": "createsky.journal.flight.envelopes.objective.0.6",
+          "translatable": true
         },
         {
           "type": "questlog:item_obtain",
           "item": "aeronautics:gray_envelope",
           "required_amount": 4,
-          "name": "Gray envelope"
+          "name": "createsky.journal.flight.envelopes.objective.0.7",
+          "translatable": true
         },
         {
           "type": "questlog:item_obtain",
           "item": "aeronautics:light_gray_envelope",
           "required_amount": 4,
-          "name": "Light gray envelope"
+          "name": "createsky.journal.flight.envelopes.objective.0.8",
+          "translatable": true
         },
         {
           "type": "questlog:item_obtain",
           "item": "aeronautics:cyan_envelope",
           "required_amount": 4,
-          "name": "Cyan envelope"
+          "name": "createsky.journal.flight.envelopes.objective.0.9",
+          "translatable": true
         },
         {
           "type": "questlog:item_obtain",
           "item": "aeronautics:purple_envelope",
           "required_amount": 4,
-          "name": "Purple envelope"
+          "name": "createsky.journal.flight.envelopes.objective.0.10",
+          "translatable": true
         },
         {
           "type": "questlog:item_obtain",
           "item": "aeronautics:blue_envelope",
           "required_amount": 4,
-          "name": "Blue envelope"
+          "name": "createsky.journal.flight.envelopes.objective.0.11",
+          "translatable": true
         },
         {
           "type": "questlog:item_obtain",
           "item": "aeronautics:brown_envelope",
           "required_amount": 4,
-          "name": "Brown envelope"
+          "name": "createsky.journal.flight.envelopes.objective.0.12",
+          "translatable": true
         },
         {
           "type": "questlog:item_obtain",
           "item": "aeronautics:green_envelope",
           "required_amount": 4,
-          "name": "Green envelope"
+          "name": "createsky.journal.flight.envelopes.objective.0.13",
+          "translatable": true
         },
         {
           "type": "questlog:item_obtain",
           "item": "aeronautics:red_envelope",
           "required_amount": 4,
-          "name": "Red envelope"
+          "name": "createsky.journal.flight.envelopes.objective.0.14",
+          "translatable": true
         },
         {
           "type": "questlog:item_obtain",
           "item": "aeronautics:black_envelope",
           "required_amount": 4,
-          "name": "Black envelope"
+          "name": "createsky.journal.flight.envelopes.objective.0.15",
+          "translatable": true
         }
-      ]
+      ],
+      "name": "createsky.journal.flight.envelopes.objective.0",
+      "translatable": true
     }
   ],
   "rewards": [],
-  "include_in_main": false,
-  "toast_on_unlock": false,
-  "toast_on_complete": false,
-  "show_popup_on_unlock": false,
-  "details_open_by_default": true,
   "text_color": "#273238",
   "title_color": "#18242b",
   "completed_text_color": "#356b52",
-  "progress_text_color": "#435b68"
+  "progress_text_color": "#435b68",
+  "title": "createsky.journal.flight.envelopes.title",
+  "translatable": true,
+  "description": {
+    "translate": "createsky.journal.flight.envelopes.description"
+  }
 }

@@ -12,6 +12,7 @@ clients or servers.
 | `empack.lock` | Resolved content and hashes |
 | `empack.bindings.yml` | Selected files, names and placement |
 | `overrides/common/` | Shared authored configuration |
+| `authoring/` | Journal source and categorized configuration register |
 | `overrides/client/` | Client-only content and shader presets |
 | `templates/` | Prism memory settings and server properties |
 | `docs/players/` | Player and server-owner instructions |
@@ -27,6 +28,8 @@ After editing dependency intent, synchronize and materialize the selected files,
 then rebuild maintained resources and build all supported exports:
 
 ```sh
+python3 scripts/generate-journal.py --check
+python3 scripts/audit-changes.py
 python3 scripts/build-fixes.py
 empack status
 empack sync --materialize --yes

@@ -1,6 +1,9 @@
 {
-  "title": "Interact with circuit design table",
-  "description": "Right-click circuit design table. Completion checks the block interaction, not a completed circuit.",
+  "include_in_main": false,
+  "toast_on_unlock": false,
+  "toast_on_complete": false,
+  "show_popup_on_unlock": false,
+  "details_open_by_default": true,
   "chapter": "questlog:electricity",
   "sort_order": 15,
   "icon": {
@@ -12,13 +15,14 @@
       "type": "questlog:block_interact",
       "block": "powergrid:circuit_design_table",
       "required_amount": 1,
-      "name": "Right-click table"
+      "name": "createsky.journal.electricity.use_design.objective.0",
+      "translatable": true
     }
   ],
   "rewards": [],
-  "include_in_main": false,
-  "toast_on_unlock": false,
-  "toast_on_complete": false,
-  "show_popup_on_unlock": false,
-  "details_open_by_default": true
+  "title": "createsky.journal.electricity.use_design.title",
+  "translatable": true,
+  "description": {
+    "translate": "createsky.journal.electricity.use_design.description"
+  }
 }

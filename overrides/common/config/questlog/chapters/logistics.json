@@ -1,9 +1,10 @@
 {
-  "name": "Cargo",
   "icon": {
     "item": "simulated:docking_connector"
   },
   "order": 6,
   "default_chapter": false,
-  "hidden": false
+  "hidden": false,
+  "name": "createsky.journal.chapter.logistics",
+  "translatable": true
 }

@@ -22,6 +22,8 @@ record what was tested at the time; they do not define current defaults.
 | [Build and release](development/build.md) | Source layout, empack commands and CI |
 | [Compatibility and verification](development/compatibility.md) | Dependency constraints, shader evidence and test scope |
 | [Journal definitions](development/journal.md) | Conditions, authoring and implementation evidence |
+| [Pack authoring](development/authoring.md) | Journal generation, locale editing and categorized configuration audit |
+| [Journal integrations](development/journal-integrations.md) | EMI/JEI, translation and Ponder findings |
 | [World generation](development/worldgen.md) | Candidate spacing and biome compatibility |
 | [Progression review](development/progression.md) | Routes, overlaps and remaining play checks |
 | [Upstream findings](development/upstream.md) | Known reports and candidates for submission |

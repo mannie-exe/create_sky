@@ -1,0 +1,533 @@
+{
+  "schema": 1,
+  "shared": {
+    "inventory": "Placed blocks and items in containers do not count.",
+    "delivery_interaction": "Completion checks the block interaction, not a completed delivery.",
+    "circuit_interaction": "Completion checks the block interaction, not a completed circuit."
+  },
+  "chapters": {
+    "components": "Components",
+    "electricity": "Electricity",
+    "flight": "Flight equipment",
+    "fuel": "Fuel systems",
+    "logistics": "Cargo",
+    "machines": "Processing",
+    "main": "Materials",
+    "travel": "Local travel"
+  },
+  "entries": {
+    "components/crafters": {
+      "title": "Mechanical crafters",
+      "flavor": "",
+      "requirements": "Have at least 3 Mechanical crafters in your inventory at once.",
+      "description": [
+        "Mechanical crafters combine a shaped arrangement into one recipe. This entry records one batch of three crafters; the crushing-wheel recipe needs a larger arrangement."
+      ],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Mechanical crafters"
+      }
+    },
+    "components/deployer": {
+      "title": "Deployer",
+      "flavor": "",
+      "requirements": "Have at least 1 Deployer in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Deployer"
+      }
+    },
+    "components/platinum": {
+      "title": "Platinum nugget",
+      "flavor": "",
+      "requirements": "Have at least 1 Platinum nugget in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Platinum nugget"
+      }
+    },
+    "components/precision": {
+      "title": "Precision mechanism",
+      "flavor": "",
+      "requirements": "Have at least 1 Precision mechanism in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Precision mechanism"
+      }
+    },
+    "components/tube": {
+      "title": "Electron tube",
+      "flavor": "",
+      "requirements": "Have at least 1 Electron tube in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Electron tube"
+      }
+    },
+    "components/wheels": {
+      "title": "Crushing wheels",
+      "flavor": "",
+      "requirements": "Have at least 2 Crushing wheels in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Crushing wheels"
+      }
+    },
+    "electricity/battery": {
+      "title": "Battery",
+      "flavor": "",
+      "requirements": "Have at least 1 Battery in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Battery"
+      }
+    },
+    "electricity/design": {
+      "title": "Circuit design table",
+      "flavor": "",
+      "requirements": "Have at least 1 Circuit design table in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Circuit design table"
+      }
+    },
+    "electricity/ion": {
+      "title": "Ion thruster",
+      "flavor": "",
+      "requirements": "Have at least 1 Ion thruster in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Ion thruster"
+      }
+    },
+    "electricity/motor": {
+      "title": "Electric motor",
+      "flavor": "",
+      "requirements": "Have at least 1 Electric motor in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Electric motor"
+      }
+    },
+    "electricity/rotor": {
+      "title": "Generator induction rotor",
+      "flavor": "",
+      "requirements": "Have at least 1 Generator induction rotor in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Induction rotor"
+      }
+    },
+    "electricity/use_design": {
+      "title": "Interact with circuit design table",
+      "flavor": "",
+      "requirements": "Right-click circuit design table.",
+      "description": [],
+      "disclaimer": "circuit_interaction",
+      "labels": {
+        "0": "Right-click table"
+      }
+    },
+    "electricity/wire": {
+      "title": "Wire connectors",
+      "flavor": "",
+      "requirements": "Have at least 2 Wire connectors in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Wire connectors"
+      }
+    },
+    "flight/assembler": {
+      "title": "Physics assembler",
+      "flavor": "",
+      "requirements": "Have at least 1 Physics assembler in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Physics assembler"
+      }
+    },
+    "flight/bearing": {
+      "title": "Propeller bearing",
+      "flavor": "",
+      "requirements": "Have at least 1 Propeller bearing in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Propeller bearing"
+      }
+    },
+    "flight/burner": {
+      "title": "Adjustable burner",
+      "flavor": "",
+      "requirements": "Have at least 1 Adjustable burner in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Adjustable burner"
+      }
+    },
+    "flight/envelopes": {
+      "title": "Envelopes",
+      "flavor": "",
+      "requirements": "Have at least 4 envelopes of the same color in your inventory at once. Any color qualifies; mixed colors do not combine toward the count.",
+      "description": [],
+      "disclaimer": null,
+      "labels": {
+        "0": "One envelope color",
+        "0.0": "White envelope",
+        "0.1": "Orange envelope",
+        "0.2": "Magenta envelope",
+        "0.3": "Light blue envelope",
+        "0.4": "Yellow envelope",
+        "0.5": "Lime envelope",
+        "0.6": "Pink envelope",
+        "0.7": "Gray envelope",
+        "0.8": "Light gray envelope",
+        "0.9": "Cyan envelope",
+        "0.10": "Purple envelope",
+        "0.11": "Blue envelope",
+        "0.12": "Brown envelope",
+        "0.13": "Green envelope",
+        "0.14": "Red envelope",
+        "0.15": "Black envelope"
+      }
+    },
+    "flight/propeller": {
+      "title": "Propeller",
+      "flavor": "",
+      "requirements": "Have at least 1 Andesite Propeller or 1 Wooden Propeller in your inventory. Either item completes this condition.",
+      "description": [],
+      "disclaimer": null,
+      "labels": {
+        "0": "Either propeller",
+        "0.0": "Andesite propeller",
+        "0.1": "Wooden propeller"
+      }
+    },
+    "flight/steering": {
+      "title": "Steering wheel",
+      "flavor": "",
+      "requirements": "Have at least 1 Steering wheel in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Steering wheel"
+      }
+    },
+    "fuel/liquid": {
+      "title": "Liquid thruster",
+      "flavor": "",
+      "requirements": "Have at least 1 Liquid thruster in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Liquid thruster"
+      }
+    },
+    "fuel/resin": {
+      "title": "Pine resin",
+      "flavor": "",
+      "requirements": "Have at least 4 Pine resin in your inventory at once.",
+      "description": [
+        "Crushing spruce logs can produce pine resin. A millstone does not replace the crushing wheels required by this route, so check spruce access and the crafter chain before planning resin production."
+      ],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Pine resin"
+      }
+    },
+    "fuel/solid": {
+      "title": "Solid-fuel thruster",
+      "flavor": "",
+      "requirements": "Have at least 1 Solid-fuel thruster in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Solid-fuel thruster"
+      }
+    },
+    "fuel/stirling": {
+      "title": "Stirling engine",
+      "flavor": "",
+      "requirements": "Have at least 1 Stirling engine in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Stirling engine"
+      }
+    },
+    "fuel/tank": {
+      "title": "Fluid tank",
+      "flavor": "",
+      "requirements": "Have at least 1 Fluid tank in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Fluid tank"
+      }
+    },
+    "fuel/turpentine": {
+      "title": "Turpentine bucket",
+      "flavor": "",
+      "requirements": "Have at least 1 Turpentine bucket in your inventory at once.",
+      "description": [
+        "Turpentine is made by heated mixing of pine resin and water. This liquid fuel depends on the crushing route for resin; obtaining one bucket does not verify a sustained supply."
+      ],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Turpentine bucket"
+      }
+    },
+    "logistics/board": {
+      "title": "Delivery table",
+      "flavor": "",
+      "requirements": "Have at least 1 Delivery table in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Delivery table"
+      }
+    },
+    "logistics/diagram": {
+      "title": "Contraption diagram",
+      "flavor": "",
+      "requirements": "Have at least 1 Contraption diagram in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Contraption diagram"
+      }
+    },
+    "logistics/dock": {
+      "title": "Docking connectors",
+      "flavor": "",
+      "requirements": "Have at least 2 Docking connectors in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Docking connectors"
+      }
+    },
+    "logistics/filter": {
+      "title": "Filter",
+      "flavor": "",
+      "requirements": "Have at least 1 Filter in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Filter"
+      }
+    },
+    "logistics/funnel": {
+      "title": "Andesite funnel",
+      "flavor": "",
+      "requirements": "Have at least 1 Andesite funnel in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Andesite funnel"
+      }
+    },
+    "logistics/use_board": {
+      "title": "Interact with delivery table",
+      "flavor": "",
+      "requirements": "Right-click delivery table.",
+      "description": [
+        "Delivery offers use generated villages in this pack. Opening the table does not prove that it can find a reachable destination or that a delivery has been completed."
+      ],
+      "disclaimer": "delivery_interaction",
+      "labels": {
+        "0": "Right-click table"
+      }
+    },
+    "machines/fan": {
+      "title": "Encased fan",
+      "flavor": "",
+      "requirements": "Have at least 1 Encased fan in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Encased fan"
+      }
+    },
+    "machines/millstone": {
+      "title": "Millstone",
+      "flavor": "",
+      "requirements": "Have at least 1 Millstone in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Millstone"
+      }
+    },
+    "machines/mixer": {
+      "title": "Mechanical mixer",
+      "flavor": "",
+      "requirements": "Have at least 1 Mechanical mixer in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Mechanical mixer"
+      }
+    },
+    "machines/press": {
+      "title": "Mechanical press",
+      "flavor": "",
+      "requirements": "Have at least 1 Mechanical press in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Mechanical press"
+      }
+    },
+    "machines/sheets": {
+      "title": "Iron sheets",
+      "flavor": "",
+      "requirements": "Have at least 4 Iron sheets in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Iron sheets"
+      }
+    },
+    "machines/wheel": {
+      "title": "Rotation source",
+      "flavor": "",
+      "requirements": "Have at least 1 Water Wheel, 1 Large Water Wheel, or 1 Windmill Bearing in your inventory. Any one item completes this condition; it does not need to be placed or powered.",
+      "description": [],
+      "disclaimer": null,
+      "labels": {
+        "0": "Any rotation source",
+        "0.0": "Water wheel",
+        "0.1": "Large water wheel",
+        "0.2": "Windmill bearing"
+      }
+    },
+    "main/alloy": {
+      "title": "Andesite alloy",
+      "flavor": "",
+      "requirements": "Have at least 2 Andesite alloy in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Andesite alloy"
+      }
+    },
+    "main/brass": {
+      "title": "Brass ingots",
+      "flavor": "",
+      "requirements": "Have at least 2 Brass ingots in your inventory at once.",
+      "description": [
+        "Brass opens components such as brass casings and propeller bearings. A fueled Propulsion solid burner can supply the heated state below a basin, so this pack does not require blaze capture for the normal brass recipe."
+      ],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Brass ingots"
+      }
+    },
+    "main/iron": {
+      "title": "Iron ingots",
+      "flavor": "",
+      "requirements": "Have at least 3 Iron ingots in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Iron ingots"
+      }
+    },
+    "main/kelp": {
+      "title": "Kelp",
+      "flavor": "",
+      "requirements": "Have at least 1 Kelp in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Kelp"
+      }
+    },
+    "main/quartz": {
+      "title": "Quartz",
+      "flavor": "",
+      "requirements": "Have at least 1 Quartz in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Quartz"
+      }
+    },
+    "main/water": {
+      "title": "Water bucket",
+      "flavor": "",
+      "requirements": "Have at least 1 Water bucket in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Water bucket"
+      }
+    },
+    "travel/connector": {
+      "title": "Throwable rope connector",
+      "flavor": "",
+      "requirements": "Have at least 1 Throwable rope connector in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Rope connector"
+      }
+    },
+    "travel/coupling": {
+      "title": "Rope coupling",
+      "flavor": "",
+      "requirements": "Have at least 1 Rope coupling in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Rope coupling"
+      }
+    },
+    "travel/glider": {
+      "title": "Glider",
+      "flavor": "",
+      "requirements": "Have at least 1 Glider in your inventory at once.",
+      "description": [
+        "The glider uses height to extend a crossing. It does not establish a way back to a higher departure island, so plan a return route before leaving."
+      ],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Glider"
+      }
+    },
+    "travel/membranes": {
+      "title": "Phantom membranes",
+      "flavor": "",
+      "requirements": "Have at least 2 Phantom membranes in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Phantom membranes"
+      }
+    },
+    "travel/winch": {
+      "title": "Rope winch",
+      "flavor": "",
+      "requirements": "Have at least 1 Rope winch in your inventory at once.",
+      "description": [],
+      "disclaimer": "inventory",
+      "labels": {
+        "0": "Rope winch"
+      }
+    }
+  }
+}

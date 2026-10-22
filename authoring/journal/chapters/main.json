@@ -1,0 +1,151 @@
+{
+  "schema": 1,
+  "chapter": {
+    "icon": {
+      "item": "create:andesite_alloy"
+    },
+    "order": 0,
+    "default_chapter": true,
+    "hidden": false
+  },
+  "entries": [
+    {
+      "id": "alloy",
+      "definition": {
+        "chapter": "questlog:main",
+        "sort_order": 10,
+        "icon": {
+          "item": "create:andesite_alloy"
+        },
+        "requirements": [],
+        "objectives": [
+          {
+            "type": "questlog:item_obtain",
+            "item": "create:andesite_alloy",
+            "required_amount": 2
+          }
+        ],
+        "rewards": [],
+        "text_color": "#273238",
+        "title_color": "#18242b",
+        "completed_text_color": "#356b52",
+        "progress_text_color": "#435b68"
+      }
+    },
+    {
+      "id": "brass",
+      "definition": {
+        "chapter": "questlog:main",
+        "sort_order": 50,
+        "icon": {
+          "item": "create:brass_ingot"
+        },
+        "requirements": [],
+        "objectives": [
+          {
+            "type": "questlog:item_obtain",
+            "item": "create:brass_ingot",
+            "required_amount": 2
+          }
+        ],
+        "rewards": [],
+        "text_color": "#273238",
+        "title_color": "#18242b",
+        "completed_text_color": "#356b52",
+        "progress_text_color": "#435b68"
+      }
+    },
+    {
+      "id": "iron",
+      "definition": {
+        "chapter": "questlog:main",
+        "sort_order": 0,
+        "icon": {
+          "item": "minecraft:iron_ingot"
+        },
+        "requirements": [],
+        "objectives": [
+          {
+            "type": "questlog:item_obtain",
+            "item": "minecraft:iron_ingot",
+            "required_amount": 3
+          }
+        ],
+        "rewards": [],
+        "text_color": "#273238",
+        "title_color": "#18242b",
+        "completed_text_color": "#356b52",
+        "progress_text_color": "#435b68"
+      }
+    },
+    {
+      "id": "kelp",
+      "definition": {
+        "chapter": "questlog:main",
+        "sort_order": 30,
+        "icon": {
+          "item": "minecraft:kelp"
+        },
+        "requirements": [],
+        "objectives": [
+          {
+            "type": "questlog:item_obtain",
+            "item": "minecraft:kelp",
+            "required_amount": 1
+          }
+        ],
+        "rewards": [],
+        "text_color": "#273238",
+        "title_color": "#18242b",
+        "completed_text_color": "#356b52",
+        "progress_text_color": "#435b68"
+      }
+    },
+    {
+      "id": "quartz",
+      "definition": {
+        "chapter": "questlog:main",
+        "sort_order": 40,
+        "icon": {
+          "item": "minecraft:quartz"
+        },
+        "requirements": [],
+        "objectives": [
+          {
+            "type": "questlog:item_obtain",
+            "item": "minecraft:quartz",
+            "required_amount": 1
+          }
+        ],
+        "rewards": [],
+        "text_color": "#273238",
+        "title_color": "#18242b",
+        "completed_text_color": "#356b52",
+        "progress_text_color": "#435b68"
+      }
+    },
+    {
+      "id": "water",
+      "definition": {
+        "chapter": "questlog:main",
+        "sort_order": 20,
+        "icon": {
+          "item": "minecraft:water_bucket"
+        },
+        "requirements": [],
+        "objectives": [
+          {
+            "type": "questlog:item_obtain",
+            "item": "minecraft:water_bucket",
+            "required_amount": 1
+          }
+        ],
+        "rewards": [],
+        "text_color": "#273238",
+        "title_color": "#18242b",
+        "completed_text_color": "#356b52",
+        "progress_text_color": "#435b68"
+      }
+    }
+  ]
+}

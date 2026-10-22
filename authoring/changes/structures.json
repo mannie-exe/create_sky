@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "baseline": "b5465d2aaf4b685baa46093fc805da0a51047bd9",
+  "note": "Structure placement has not received its dedicated tuning pass. Sky Archipelago settings are registered under worldgen; no separate structure changes are asserted here.",
+  "records": []
+}

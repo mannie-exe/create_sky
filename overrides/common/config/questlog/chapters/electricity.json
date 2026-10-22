@@ -1,9 +1,10 @@
 {
-  "name": "Electricity",
   "icon": {
     "item": "powergrid:battery"
   },
   "order": 7,
   "default_chapter": false,
-  "hidden": false
+  "hidden": false,
+  "name": "createsky.journal.chapter.electricity",
+  "translatable": true
 }

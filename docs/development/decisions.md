@@ -324,3 +324,45 @@ world path and leave `level-seed` blank. Sync the local profiles with the curren
 pack while preserving installation identity and player-owned client data. Do not
 launch the world or start pregen automatically. Commit and push source only;
 keep the version at 0.1.5 and do not create a release tag.
+
+## 2026-10-22 - Journal authoring and configuration register
+
+Split journal mechanics by chapter and prose by locale. Generated descriptions
+preserve optional flavor, full requirements, explanatory paragraphs and disclaimer
+as separate source fields. Short objective labels remain independent. English is
+the only authored locale; six entries have explanatory paragraphs and 42 remain
+explicit drafts. No flavor text, new completion rules or integration mod was added.
+
+Compared with `b5465d2aaf4b685baa46093fc805da0a51047bd9`, all 48 quest mechanics,
+eight chapter mechanics and 69 objective/group labels are unchanged. The generated
+files now use translation keys. The resource JAR SHA-256 is
+`67dcf8383e637c186a768c6c0203ae0fbf0b7269eb04354cdaf4ef1e889604c8`.
+The tested authoring/scripts/tests/resource-source digest is
+`9e9c2c156199068cf9abc3b60de7c665a2c06f226b612638053ca503ee31f0e9`;
+it hashes sorted relative paths, NUL, bytes, NUL, excluding Python bytecode.
+
+`python3 -m unittest discover -s tests -v` passed six tests covering mechanics
+preservation, section order, locale/label separation, invalid source and audit
+drift/path rejection. `python3 scripts/generate-journal.py --check` passed for
+57 outputs. `python3 scripts/audit-changes.py` matched all 196 registered files
+with no missing or unregistered paths. Register matches are not upstream-default
+or gameplay verification; inherited settings remain marked for review.
+
+`python3 scripts/build-fixes.py` and `empack build --profile prism --profile
+modrinth --profile server --yes --optional-defaults` passed with Java 21. All
+three archives passed CRC checks and contained the exact resource JAR, English
+translations and 48 native quest files. Authoring source was not included in
+exports. `empack status --json` reported valid author and lock state. No dependency
+versions changed, release was published, or generated journal content installed
+into the running client/server. Client language switching and panel layout still
+need playtesting; prior native handler checks are not a test of this translation
+change. Maintained app and pack tests remain; disposable output was removed.
+
+The random comparison world was independently archived and all 1,019 files
+verified before moving its folder out of the active server path. Its compressed
+archive SHA-256 is
+`d7354f26a33e9e6ed5200298d5355c3665297e57242eb450d9f824424fe1ea7e`.
+The original 1024-radius world's seed was recovered from the first verified
+archive and set only in local server properties for another generation test.
+The original and random worlds remain preserved. See [world generation](worldgen.md)
+for current generation choices and [pack authoring](authoring.md) for editing.

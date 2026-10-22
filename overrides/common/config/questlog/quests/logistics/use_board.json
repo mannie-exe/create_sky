@@ -1,6 +1,9 @@
 {
-  "title": "Interact with delivery table",
-  "description": "Right-click delivery table. Completion checks the block interaction, not a completed delivery.",
+  "include_in_main": false,
+  "toast_on_unlock": false,
+  "toast_on_complete": false,
+  "show_popup_on_unlock": false,
+  "details_open_by_default": true,
   "chapter": "questlog:logistics",
   "sort_order": 15,
   "icon": {
@@ -12,13 +15,14 @@
       "type": "questlog:block_interact",
       "block": "aeronautics_delivery_quests:delivery_quests_table",
       "required_amount": 1,
-      "name": "Right-click table"
+      "name": "createsky.journal.logistics.use_board.objective.0",
+      "translatable": true
     }
   ],
   "rewards": [],
-  "include_in_main": false,
-  "toast_on_unlock": false,
-  "toast_on_complete": false,
-  "show_popup_on_unlock": false,
-  "details_open_by_default": true
+  "title": "createsky.journal.logistics.use_board.title",
+  "translatable": true,
+  "description": {
+    "translate": "createsky.journal.logistics.use_board.description"
+  }
 }

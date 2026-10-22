@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "baseline": "b5465d2aaf4b685baa46093fc805da0a51047bd9",
+  "records": [
+    {
+      "path": "overrides/client/config/defaultworldtype/client-config.toml",
+      "sha256": "5140e8d0e9eded87eb884b4df175ebe8adc17b2220dd58fc898d857fa9ad7ceb",
+      "review": "reviewed",
+      "reason": "Sky-island generation, consistent cluster spacing and biome redirect compatibility. Some unrelated inherited keys remain.",
+      "reference": "docs/development/worldgen.md"
+    },
+    {
+      "path": "overrides/common/config/sky_archipelago-common.toml",
+      "sha256": "8cb453c7b5d16fb34ef4289f78966a9d65c8806d86941c6497502ae2df52703a",
+      "review": "reviewed",
+      "reason": "Sky-island generation, consistent cluster spacing and biome redirect compatibility. Some unrelated inherited keys remain.",
+      "reference": "docs/development/worldgen.md"
+    },
+    {
+      "path": "overrides/common/config/sky_archipelago-server.toml",
+      "sha256": "461dc6f6f7171b7607acbb5668342ff446d741147a3018ead657af606ce002d5",
+      "review": "reviewed",
+      "reason": "Sky-island generation, consistent cluster spacing and biome redirect compatibility. Some unrelated inherited keys remain.",
+      "reference": "docs/development/worldgen.md"
+    },
+    {
+      "path": "overrides/common/config/sky_archipelago/default-preset.toml",
+      "sha256": "2a00dc239a4089e9be35b2f2d9b08c3f01c019c4c6594e22f138244897352785",
+      "review": "reviewed",
+      "reason": "Sky-island generation, consistent cluster spacing and biome redirect compatibility. Some unrelated inherited keys remain.",
+      "reference": "docs/development/worldgen.md"
+    },
+    {
+      "path": "overrides/common/config/sky_archipelago/presets/eee.json",
+      "sha256": "a5a5a27b281ff2cece2e824391fdb16c523913f77588b1c6c3260e5b8693043a",
+      "review": "reviewed",
+      "reason": "Sky-island generation, consistent cluster spacing and biome redirect compatibility. Some unrelated inherited keys remain.",
+      "reference": "docs/development/worldgen.md"
+    },
+    {
+      "path": "overrides/common/config/zfastnoise.mixin.properties",
+      "sha256": "faae1c9f11a61265939fe82ce13ff5c80a23f90f3531a56340e359a2a59664de",
+      "review": "reviewed",
+      "reason": "Sky-island generation, consistent cluster spacing and biome redirect compatibility. Some unrelated inherited keys remain.",
+      "reference": "docs/development/worldgen.md"
+    }
+  ]
+}
