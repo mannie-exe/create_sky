@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "baseline": "b5465d2aaf4b685baa46093fc805da0a51047bd9",
-  "note": "Sky Villages integration and scarce foundation minerals. Distribution, biome eligibility, chest loot and crop mix retain upstream defaults pending measured review.",
+  "note": "Sky Villages placement beside island terrain and scarce foundation minerals. Candidate frequency, biome eligibility, chest loot and crop mix retain upstream defaults.",
   "records": [
     {
       "path": "pack-fixes/data/skyvillages/worldgen/template_pool/skyvillage_bridges.json",
@@ -43,6 +43,13 @@
       "sha256": "46252ddb404549c95d960f5bc1f77371a800969732276fd2f981264e6d0c707e",
       "review": "reviewed",
       "reason": "Use one ordered stone replacement pass for aggregate diamond 0.025%, emerald 0.15% and diorite 20%; preserve crop rules and generated-jukebox repair.",
+      "reference": "docs/development/structures.md"
+    },
+    {
+      "path": "overrides/common/config/sky_village_neighbors-common.toml",
+      "sha256": "62c399b92b12f395a010263eb14c63666f56b2fc5f68519bd1066953bc0866f6",
+      "review": "reviewed",
+      "reason": "Keep village footprints over void with a 64-block minimum terrain gap, a sampled host within 512 blocks and native host radius at least 96. Preserve existing structures and upstream height/loot.",
       "reference": "docs/development/structures.md"
     }
   ]

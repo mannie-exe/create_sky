@@ -1,11 +1,9 @@
 # Included content
 
-Create Sky 0.1.7, checked 2026-10-22. 110 top-level client mod JARs and two base shader ZIPs. Minecraft remains 1.21.1 and NeoForge remains 21.1.264. Euphoria generates its patched shader at launch. Bundled libraries are additional to this list.
-
-Unreleased source and the local playtest instances additionally include
-[Sky Villages 1.0.6](https://modrinth.com/mod/sky-villages/version/3InSHTOp).
-See [structure configuration](development/structures.md). The published 0.1.7
-artifacts do not include this addition.
+Create Sky 0.1.9 source (unreleased). Minecraft remains 1.21.1 and NeoForge
+remains 21.1.264. Euphoria generates its patched shader at launch. Bundled
+libraries are additional to this list. Published 0.1.8 artifacts do not include
+Sky Village Neighbors or DH Polygon Fix 1.0.2.
 
 | Project | Version | Source |
 |---|---|---|
@@ -52,7 +50,7 @@ artifacts do not include this addition.
 | Create: Vibrant Vaults | 0.3.2 | [Exact version](https://modrinth.com/mod/create-vibrant-vaults/version/t17qYXjn) |
 | Curios API | 9.5.1+1.21.1 | [Exact version](https://modrinth.com/mod/curios/version/yohfFbgD) |
 | Distant Horizons | 3.3.3-1.21.1 | [Exact version](https://modrinth.com/mod/distanthorizons/version/9w34y8ai) |
-| Distant Horizons Polygon Fix (client) | 1.0.1 | [Exact release](https://github.com/mannie-exe/dh-polygon-fix/releases/tag/v1.0.1) |
+| Distant Horizons Polygon Fix (client) | 1.0.2 | [Exact release](https://github.com/mannie-exe/dh-polygon-fix/releases/tag/v1.0.2) |
 | Distraction Free Recipes (EMI / REI / JEI) | 1.2.1 | [Exact version](https://modrinth.com/mod/distraction-free-recipes/version/H0rFJIiC) |
 | Dynamic FPS | 3.11.4 | [Exact version](https://modrinth.com/mod/dynamic-fps/version/T238FZpQ) |
 | Effortless Building | 4.2 | [Exact version](https://modrinth.com/mod/effortless-building/version/YxnBXtLv) |
@@ -99,6 +97,8 @@ artifacts do not include this addition.
 | Separate Sable Render Distance (Create Aeronautics Addon) | 1.8.7 | [Exact version](https://modrinth.com/mod/ssrd/version/iZflRKdV) |
 | Sinytra Connector | 2.0.0-beta.17+1.21.1 | [Exact version](https://modrinth.com/mod/connector/version/IITF0PRC) |
 | Sky Archipelago | 1.3.6 | [Exact version](https://modrinth.com/mod/sky-archipelago/version/RwLz4CJb) |
+| Sky Village Neighbors | 0.1.0 | [Exact release](https://github.com/mannie-exe/sky-village-neighbors/releases/tag/v0.1.0) |
+| Sky Villages | 1.0.6 | [Exact version](https://modrinth.com/mod/sky-villages/version/3InSHTOp) |
 | Sodium | mc1.21.1-0.8.13-neoforge | [Exact version](https://modrinth.com/mod/sodium/version/uMOpc5uV) |
 | Sodium Extra | mc1.21.1-0.9.4+neoforge | [Exact version](https://modrinth.com/mod/sodium-extra/version/ufpcXU9c) |
 | Strut Your Stuff (Struts) | 1.3.1 | [Exact version](https://modrinth.com/mod/strut-your-stuff/version/BOTN7zzN) |

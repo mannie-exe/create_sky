@@ -8,7 +8,7 @@ Player instructions belong in [graphics](../players/graphics.md) and
 
 ## DH Polygon Fix
 
-Clients include [DH Polygon Fix 1.0.1](https://github.com/mannie-exe/dh-polygon-fix/releases/tag/v1.0.1)
+Clients include [DH Polygon Fix 1.0.2](https://github.com/mannie-exe/dh-polygon-fix/releases/tag/v1.0.2)
 with the original DH 3.3.3 JAR. It backports upstream !126's two-integer
 polygon-mode query. The earlier scalar query overwrote an adjacent canary on
 Apple OpenGL and Linux/Mesa and could cause delayed native JVM crashes.
@@ -17,8 +17,8 @@ The patch requires exactly DH 3.3.3. Remove it when upgrading DH and verify the
 replacement includes the upstream fix. Keep it client-only across supported
 platforms; dedicated servers do not need it. SSRD interfaces are unchanged.
 
-Version 1.0.1 uses `design.inherent`; the runtime query implementation is otherwise
-unchanged from 1.0.0. Transformation, missing/duplicate target, server exclusion,
+Version 1.0.2 retains the 1.0.1 runtime implementation and adds documentation and
+release-tool checks. Version 1.0.1 moved the namespace to `design.inherent`. Transformation, missing/duplicate target, server exclusion,
 three-OS builds and Apple/Mesa native probes passed. See the
 [release evidence](decisions.md#2026-10-19---release-dh-maintenance-update-in-create-sky-013)
 for the tested scope.
@@ -62,7 +62,9 @@ cache are not export defaults.
 - Ten URL pins handle provider metadata conflicts involving old exact versions,
   Connector/Forgified Fabric API and client-only dependencies. Check runtime
   metadata before replacing them with provider roots or downgrading dependencies.
-- The eleventh URL pin is the published DH Polygon Fix binary with content digests.
+- Two further URL pins select published DH Polygon Fix and Sky Village Neighbors
+  binaries with content digests. Sky Village Neighbors requires exactly Sky
+  Archipelago 1.3.6 and Sky Villages 1.0.6. Review both pins together before updates.
 - Carry On excludes Lootr containers and Aeronautics/Sable objects and retains
   the generated Create/Copycats exclusions. These exclusions do not verify every
   carried entity or ship-storage interaction.

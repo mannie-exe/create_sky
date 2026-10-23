@@ -63,9 +63,9 @@ for verifying downloaded release assets.
 ## Dependency updates
 
 Read [compatibility constraints](compatibility.md) before changing pins.
-Provider-backed selections use exact versions. Eleven content-pinned URL sources
-need manual upstream checks: ten metadata/compatibility exceptions and DH Polygon
-Fix. `empack outdated --strict --json` reports incomplete provider evidence and
+Provider-backed selections use exact versions. Twelve content-pinned URL sources
+need manual upstream checks: ten metadata/compatibility exceptions, DH Polygon
+Fix and Sky Village Neighbors. `empack outdated --strict --json` reports incomplete provider evidence and
 continues independent checks after malformed records; it does not assess URL pins
 or loader upgrades. Retain compatibility constraints when selecting updates.
 

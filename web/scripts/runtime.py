@@ -26,7 +26,7 @@ if mods.exists():
 mods.mkdir()
 for source in sorted((p['server'] / 'mods').glob('*.jar')):
     (mods / source.name).symlink_to(source)
-for pattern in ['reliable_gliders-*.jar', 'hostile_skies-*.jar', 'aeronautics_delivery_quests-*.jar', 'createpropulsion-*.jar', 'questlog-*.jar']:
+for pattern in ['reliable_gliders-*.jar', 'hostile_skies-*.jar', 'aeronautics_delivery_quests-*.jar', 'createpropulsion-*.jar', 'questlog-*.jar', 'sky-village-neighbors-*.jar']:
     for source in (p['pack'] / 'pack/mods').glob(pattern):
         target = mods / source.name
         target.unlink(missing_ok=True)

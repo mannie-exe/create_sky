@@ -14,6 +14,7 @@ owns their hashes and purpose. Build with `python3 scripts/build-fixes.py`.
 | Height | Uniform absolute start Y 160–224; no heightmap projection or terrain adaptation |
 | Layout | Upstream jigsaw depth 7 and maximum distance 128 blocks |
 | Distribution | Upstream spacing 70 and separation 65 chunks; salt 23734816 |
+| Island proximity | Sky Village Neighbors: minimum gap 64, maximum host distance 512, minimum host radius 96 |
 | Biomes | Ocean, river, jungle and forest tags, plus dark forest |
 | Pools | Installed templates and explicit empty entries only |
 | Village discovery | Include `skyvillages:skyvillage` in `#minecraft:village` |
@@ -86,22 +87,100 @@ and the mason template includes a spruce sapling. That sapling can start renewab
 resin production; it is not necessary to find a natural taiga first if this
 building is present and reachable. None of these templates is guaranteed per village.
 
-## Tuning candidates
+## Location and density review
 
-These are proposals; chest loot, biomes and spacing remain unchanged.
+The intended placement is floating **beside** island clusters, with a horizontal
+void gap. Regular villages and ground structures belong on the terrain. Floating
+above an island does not satisfy this placement goal.
 
-- Give libraries and farms appropriate loot through per-template processor
-  assignments. A global weaponsmith-table edit would also affect real smithies.
-  Preserve useful salvage; review it as a supply route, not just decoration.
-- Consider 70/35 spacing/separation instead of 70/65. The current random-spread
-  layout chooses offsets in only five chunks per 70-chunk cell: a 64-block span
-  around an approximately 1,120-block grid. The proposal widens the offset span
-  to 544 blocks while retaining one candidate per cell. It changes clustering and
-  nearest-neighbor distances, not the candidate count; biome rejection still matters.
-- Consider adding the taiga biome tag, giving spruce/fuel exploration and villages
-  a shared destination. Do not enable every biome merely to fill delivery boards.
-- Test usable pickup/dropoff positions in naturally placed villages before widening
-  delivery search ranges. A structure lookup does not prove a safe landing site.
+Sky Archipelago 1.3.6 deliberately lets SKY structures generate without island
+anchoring. Its [changelog](https://modrinth.com/mod/sky-archipelago/version/1.3.6)
+confirms that behavior. `StructurePlacementPolicy.categoryFor` classifies
+`skyvillages:skyvillage` as SKY through the `sky` token, before its village-name
+rule. `StructureRoutingPolicy.shouldRouteSkyToV2` selects the SKY engine before
+the legacy whitelist branch.
+
+The installed implementation has these relevant controls and limits:
+
+| Control | Effect on Sky Villages |
+| --- | --- |
+| `customStructureRulesEnabled = true` | Enables the custom placement pipeline; disabling it supplies no island-proximity constraint |
+| `skyStructureCategoryTokens` / `skyStructureCategoryOverrides` | Select a placement category; `DEFAULT` still routes to SKY when its ID matches a sky token |
+| `skyStructureWhitelist` | Adding this village skips its SKY air-clearance validation; it does not enable the later legacy nearby-terrain guard |
+| Ground category overrides | Select ground support/anchoring behavior, not floating placement beside terrain |
+| `supportSampleGridSize = 5` | Controls footprint clearance sampling, not minimum or maximum island distance |
+| Datapack height, biome and random-spread settings | Control candidate height, eligibility and frequency, not distance to island edges |
+
+`StructureSupportValidator.evaluateSkyAirPlacement` rejects sampled terrain
+columns when `structure.minY - column.topY <= 8`. Nine blocks of clearance passes,
+including directly above an island. Its `skyNearbyIslandColumns` field counts
+terrain samples in a center ±96-block square at 16-block intervals, but that count
+is diagnostic: zero nearby terrain does not reject a layout. Neither the eight
+block threshold nor that diagnostic radius is a configuration setting.
+
+A disposable NeoForge probe against the installed 1.3.6 / Sky Villages 1.0.6 JARs
+verified those branches using the native methods and the saved world's decoded
+generator/settings. Clearance 0 and 8 failed; 9 passed; isolated void with zero
+nearby samples passed. A native village layout ran SKY air validation normally
+and bypassed it when explicitly whitelisted. `DEFAULT` with the current tokens
+still selected SKY. The probe read `level.dat` without changing it and generated
+no chunks in the live world. These checks establish current behavior, not a tested
+compatibility patch.
+
+Ocean biome eligibility compounds the visual effect: villages can pass their
+biome check where this pack suppresses natural terrain islands. Removing ocean
+eligibility would not establish a distance band or prevent above-island layouts.
+
+Read-only inspection of the stopped 2026-10-23 horseshoe-spawn world found two
+saved village layouts within 1,000 blocks of spawn, seven within 2,000, sixteen
+within 3,000 and twenty-nine within 4,000. The nearest centers were about 524 and
+843 blocks away. The scan read 1,600 possible original start chunks around spawn;
+these are recorded layouts, not an exhaustive terrain-clearance or loot survey.
+The world's seed is preserved privately beside the local backups.
+
+Current spacing gives one candidate per 1,120 × 1,120-block cell before biome
+and placement rejection. The 65-chunk separation leaves only five possible chunk
+offsets per axis. Counts are independent of player count and cluster occupancy.
+Changing separation alone spreads candidate positions but does not reduce their
+number. The earlier four-seed generation survey measured a 74% valid-start rate;
+that is a sample, not a universal density guarantee.
+
+The source pack adds [Sky Village Neighbors 0.1.0](https://github.com/mannie-exe/sky-village-neighbors/releases/tag/v0.1.0)
+with common configuration in `sky_village_neighbors-common.toml`. This is unreleased
+Create Sky source beyond 0.1.8; the existing live instances and saved villages are
+unchanged until an explicit sync and generation of new chunks.
+
+The rule retains SKY placement and requires a 64-block horizontal gap from the
+full village footprint to island terrain, a host terrain sample within 512 blocks,
+and a native host radius of at least 96. Clearance checks every column in the
+exclusion band. The 16-block host-search grid can conservatively miss a narrow
+eligible edge. Candidate layouts are filtered without relocating pieces or
+changing height or loot. Settings require a world/server restart.
+
+The compatibility mod's native tests checked 48 layouts on four seeds, then 147
+natural candidate chunks across three seeds and six complete villages. Default
+512-block runs retained 14/49 and 8/49 starts; a 384-block configuration retained
+10/49 on another seed. These samples do not establish a universal density or a
+village quota per cluster. Its repository owns detailed implementation evidence.
+
+Further tuning:
+
+- After location filtering, remeasure density before reducing it further. If
+  needed, compare 90/50 spacing/separation against 70/65: about 40% fewer candidate
+  cells with wider positional variation. This is not a guaranteed 40% reduction
+  in actual villages, and may leave some clusters underserved.
+- Keep the current foundation rates while reviewing repeated chest loot and
+  salvage. Give libraries, farms and alchemist buildings appropriate loot through
+  per-template processors; preserve weaponsmith loot for actual smithies. Keep
+  crops and villager access useful instead of adding artificial recipe gates.
+- Check Fortune, multiplayer Lootr yields and usable delivery endpoints before
+  changing payout or trade rules. Delivery contracts move supplied cargo rather
+  than consuming the player's agricultural output.
+
+The proximity filter changes which candidates survive. Candidate spacing, biomes,
+loot, crops and progression settings otherwise remain unchanged.
+Existing chunks remain intact. The same seed reproduces terrain only while the
+relevant generator version and resolved settings also remain the same.
 
 ## Verification scope
 

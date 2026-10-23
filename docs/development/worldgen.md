@@ -66,10 +66,12 @@ The distributed template remains seed-free. Neither archive was discarded.
 The previous seed comparison above remains historical evidence for choosing the
 1494 spacing scale, not a prediction of the next world's terrain.
 
-For the 0.1.8 playtest, the owner requested deletion of the current comparison
-world without another backup. Its matching client Overworld LOD cache was also
-cleared. The existing archives and original seed are retained; the local server
-is stopped with no `game/world`, ready to generate at its next launch.
+The 0.1.8 random-seed playtest produced the horseshoe-shaped spawn island. Its
+seed is now saved beside the local backups and pinned in the local server's
+`server.properties`. The server is stopped with this world and its LODs retained.
+Only the seed was backed up for this test; no additional world archive was made.
+The distributed server template remains seed-free. Keep the generator version
+and resolved settings unchanged when comparing regenerated terrain.
 
 For gameplay validation, check spawn resources and a feasible outward and return
 crossing, brass production with a solid burner, village delivery availability,

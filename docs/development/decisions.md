@@ -5,6 +5,31 @@ instructions belong in [compatibility reference](compatibility.md) and
 [build guide](build.md). Raw logs and imported config snapshots are local
 backup evidence, not distributed pack content.
 
+## 2026-10-23 - Floating village compatibility candidate 0.1.9
+
+Add Sky Village Neighbors 0.1.0 from its GitHub prerelease and update the
+client-only DH Polygon Fix to 1.0.2. Both three-platform release workflows passed;
+downloaded binaries matched release manifests and the locally tested artifacts.
+The mod source commits are `2c980c8` and `c6db1c1`, respectively. Modrinth publication
+is deferred. [Structures](structures.md) owns the placement rule and tuning limits.
+
+`empack sync --materialize --yes` recorded 113 selections without changing
+Minecraft 1.21.1, NeoForge 21.1.264 or other mod versions. The new common config
+uses gap 64, host distance 512 and host radius 96; exports treat it as an editable
+seed file. All three reference profiles built, ZIP integrity and exact hashes
+passed, and the server archive retained its terminal-handoff patch. Client exports
+include both patches; server exports include only Sky Village Neighbors.
+
+The isolated Atlas runtime loaded the released compatibility JAR and retained
+10,119 items, 9,249 recipes and 48 journal entries. Extraction, map compilation and
+snapshot checks passed. Configuration audit covered 209 files without drift;
+11 pack tests, 25 Atlas JavaScript tests, six Python tests, formatting and the
+Astro build passed. Native placement evidence is owned by the compatibility mod's
+verification document; no additional survival or multiplayer playtest was run.
+
+This prepares unreleased Create Sky 0.1.9 source and local exports. No pack release
+tag, live-instance sync, world reset or LOD deletion is part of this update.
+
 ## 2026-10-22 - Settlement and journal release 0.1.8
 
 Release the reviewed Sky Villages integration, scarce foundation minerals,

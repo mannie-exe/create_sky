@@ -1,7 +1,7 @@
 schema: 5
 pack:
   name: Create Sky
-  version: 0.1.8
+  version: 0.1.9
   id: create_sky
   authors:
     - mannie-exe
@@ -178,10 +178,10 @@ dependencies:
     source:
       kind: url
       downloads:
-        - https://github.com/mannie-exe/dh-polygon-fix/releases/download/v1.0.1/dh-polygon-fix-1.0.1-mc1.21.1-neoforge.jar
+        - https://github.com/mannie-exe/dh-polygon-fix/releases/download/v1.0.2/dh-polygon-fix-1.0.2-mc1.21.1-neoforge.jar
     digests:
-      sha1: 09fb384e78a2312266aec3831ad74c63ae100541
-      sha512: ae3cff2976c7e34b08bb3b0a71989d430e9c169176d54dc69ceccce100175aa7efac36da5d20c9f771877a9f592c72490099e95836d0e0b1e102e0d1cbb4dd5b
+      sha1: e5931d2ed1990c98b40bb60555362fb1b761447d
+      sha512: b59f30e1541b6138ffee2efe7d7f1a639118799124925b57e58dbcb67a994144435882a7e40e25eaba3dc299536c92c3dcdf01ff3476d5ab99b7985a94317e99
   distanthorizons:
     source: modrinth:uCdwusMi
     pin: 9w34y8ai
@@ -457,6 +457,18 @@ dependencies:
   sky-villages:
     pin: 3InSHTOp
     source: modrinth:sky-villages
+  sky-village-neighbors:
+    source:
+      kind: url
+      downloads:
+        - https://github.com/mannie-exe/sky-village-neighbors/releases/download/v0.1.0/sky-village-neighbors-0.1.0-mc1.21.1-neoforge.jar
+    digests:
+      sha1: d1304e06b00bc53a20461d0a3494841b64a732f3
+      sha512: 4b0be2964c69772a1dc411637226d2b5e3b325aa1c27cc216f7324aa278d965e38a52d9d7d66deb4f36297ab8e8d6c74075c40ea37377d8e9d9a608ffe66a60d
+    environment:
+      client: required
+      server: required
+
 build:
   default:
     - modrinth
