@@ -21,6 +21,19 @@ The owner authorized local profile synchronization, commit/push and publication.
 This update does not reset worlds or LODs. Moving-ship controls and shader
 performance remain gameplay checks, not established compatibility guarantees.
 
+Published tag `v0.1.9` points to `30f2bbb`. [Pack validation](https://github.com/mannie-exe/create_sky/actions/runs/39935326647),
+[web validation](https://github.com/mannie-exe/create_sky/actions/runs/39935326686)
+and [release CI](https://github.com/mannie-exe/create_sky/actions/runs/39935330480)
+passed. Downloaded assets matched `SHA256SUMS`; published payloads matched the
+locally tested exports, including the server launcher workaround.
+
+Both local profiles were updated from those published snapshots. Repeated client
+and server preparation reported zero changes. Managed-file hashes matched;
+existing configs, server properties, access lists, Java settings and world/LOD
+file sizes and modification times were preserved. Only the six new resource packs
+were appended to the client's existing selection. The active pregeneration server
+was stopped for synchronization and left stopped; no world or LOD reset occurred.
+
 ## 2026-10-23 - Floating village compatibility candidate 0.1.9
 
 Add Sky Village Neighbors 0.1.0 from its GitHub prerelease and update the
