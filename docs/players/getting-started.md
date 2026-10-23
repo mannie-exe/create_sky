@@ -16,6 +16,24 @@ Create Sky runs on Minecraft 1.21.1, NeoForge 21.1.264 and Java 21.
 Use [graphics settings](graphics.md) to enable shaders or configure distant terrain.
 The server archive is for [hosting](server.md), not client installation.
 
+## Controls in 0.1.9 source
+
+Use **Options → Controls → Key Binds** to search bindings with Controlling.
+Better Third Person separates walking direction from the third-person camera.
+Do a Barrel Roll adds pitch/yaw/roll controls during elytra flight; its settings
+allow disabling the controls, and additional thrust is off. These controls do
+not replace the glider or ship-control systems.
+
+InvMove permits movement in ordinary inventories. Focused text fields, Ponder,
+books, advancements and unrecognized mod screens keep movement disabled. This
+includes the journal by default. Sneaking is retained when opening an inventory;
+inventory input does not dismount a seated player.
+
+Ping Wheel uses its **Ping Location** binding, initially Mouse 5; remap it here
+if your mouse has no side buttons. Pings last ten seconds with reduced volume.
+Hold Shift over a shulker box for its contents preview. Clean Tooltips displays
+durability and enchantments without extra blank lines between sections.
+
 ## Client garbage collection
 
 Prism exports from 0.1.8 default to Generational ZGC on Java 21 to reduce garbage

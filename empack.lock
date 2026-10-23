@@ -1,5 +1,8 @@
 acceptable-versions: []
 coverage:
+  3d-crops: complete
+  3d-ladders: complete
+  3d-sugar-cane: complete
   accessories: complete
   accessories-compat-layer: complete
   aeronautics-delivery-quests: complete
@@ -9,13 +12,19 @@ coverage:
   architectury-api: complete
   azimuth-api: complete
   bellsandwhistles: complete
+  better-climbing: complete
+  better-third-person: complete
   bsl-shaders: complete
   c2me-neoforge: complete
   cable-facades: complete
   carry-on: complete
+  chat-heads: complete
+  clean-tooltips: complete
   cloth-config: complete
+  collective: complete
   complementary-unbound: complete
   connector: complete
+  controlling: complete
   copycats: complete
   create: complete
   create-accessories-compat: complete
@@ -46,21 +55,30 @@ coverage:
   dh-polygon-fix: unknown
   distanthorizons: complete
   distraction-free-recipes: complete
+  do-a-barrel-roll: complete
   dynamic-fps: complete
+  easy-anvils: complete
+  easy-magic: complete
   effortless-building: complete
   emi: complete
   emi-loot: complete
+  entity-model-features: complete
   entityculling: complete
+  entitytexturefeatures: complete
   escalated: complete
   euphoria-patches: complete
   exposure: complete
   ferrite-core: complete
   forgified-fabric-api: complete
+  fresh-animations: complete
   fusion-connected-textures: complete
   fzzy-config: complete
   hoofprint: unknown
   immediatelyfast: complete
   interiors: complete
+  inventory-totem: complete
+  invmove: complete
+  invmovecompats: complete
   iris: complete
   jade: complete
   jade-addons-forge: complete
@@ -84,17 +102,23 @@ coverage:
   modernfix: complete
   moreculling: complete
   owo-lib: complete
+  ping-wheel: complete
   playeranimator: complete
   polymorph: complete
   power-grid: complete
+  puzzles-lib: complete
   questlog: complete
   rechiseled: unknown
   rechiseled-create: unknown
   reddens-stone-lanterns: complete
+  redstone-tweaks: complete
   reliable-emi: complete
   reliable-gliders: complete
   rpl: complete
   sable: complete
+  searchables: complete
+  shulkerboxtooltip: complete
+  simple-3d-iron-bars: complete
   simulated-copycats: complete
   sky-archipelago: complete
   sky-village-neighbors: unknown
@@ -114,6 +138,169 @@ coverage:
   yacl: complete
   zfastnoise: complete
 dependencies:
+  3d-crops:
+    content: resource-pack
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/PgpTtNoI/versions/iKYRZwnm/crops-3d%282%29.zip
+        kind: provider
+        pin:
+          project:
+            project: PgpTtNoI
+            provider: modrinth
+          selection:
+            id: iKYRZwnm
+            provider: modrinth
+        slot: crops-3d(2).zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 233e886a3aed43cb48d01f87b8d68f43eb66b970
+          sha512: >-
+            57073e45b1499cb7c4e6e40f9314fa6bb24716f116ef83a65914c86a7999bb26d28c023afd502e2bdbce60312c225199c4e46a3194e8dbe7bb60121894338996
+        size: 483678
+      placements:
+      - destination: resourcepacks/crops-3d(2).zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 233e886a3aed43cb48d01f87b8d68f43eb66b970
+          sha512: >-
+            57073e45b1499cb7c4e6e40f9314fa6bb24716f116ef83a65914c86a7999bb26d28c023afd502e2bdbce60312c225199c4e46a3194e8dbe7bb60121894338996
+        location: PgpTtNoI
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: PgpTtNoI
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: PgpTtNoI
+        provider: modrinth
+      selection:
+        id: iKYRZwnm
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: 3d-crops
+    title: 3D crops Revamped
+  3d-ladders:
+    content: resource-pack
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/ti9eZ3CP/versions/44oYkyYv/%C2%A7l3D%C2%A7f%2BLadders%2Bv1.2%28mc-1.21%29.zip
+        kind: provider
+        pin:
+          project:
+            project: ti9eZ3CP
+            provider: modrinth
+          selection:
+            id: 44oYkyYv
+            provider: modrinth
+        slot: §l3D§f+Ladders+v1.2(mc-1.21).zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: fcc4ecd1a465fdc26d90e9259c529b89d9072fce
+          sha512: >-
+            815c65d2bc3e0ad5683d88b897530c726867f6fd23feeac21b1bc15a92ef0b00eddebac579cf6d08b128e27fa8bda4fbc7063824046de29d0f7d29402905b63a
+        size: 12502
+      placements:
+      - destination: resourcepacks/§l3D§f+Ladders+v1.2(mc-1.21).zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: fcc4ecd1a465fdc26d90e9259c529b89d9072fce
+          sha512: >-
+            815c65d2bc3e0ad5683d88b897530c726867f6fd23feeac21b1bc15a92ef0b00eddebac579cf6d08b128e27fa8bda4fbc7063824046de29d0f7d29402905b63a
+        location: ti9eZ3CP
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: ti9eZ3CP
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: ti9eZ3CP
+        provider: modrinth
+      selection:
+        id: 44oYkyYv
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: 3d-ladders
+    title: 3D Ladders
+  3d-sugar-cane:
+    content: resource-pack
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/pT71mSWA/versions/sU6FmyoH/3D%20Sugar%20Cane.zip
+        kind: provider
+        pin:
+          project:
+            project: pT71mSWA
+            provider: modrinth
+          selection:
+            id: sU6FmyoH
+            provider: modrinth
+        slot: 3D Sugar Cane.zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 95cf29263f55885b0bf2a46b2ccdf7687d21e4e1
+          sha512: >-
+            bcedaa9917ab97bd5795bdef91eb5e3a42448397023d3d1b12e4cc3aedd134b3953a3e043266353ce21d784fa8f8bd6a5bf009d7397d6622b6f3cc643a7facd4
+        size: 243187
+      placements:
+      - destination: resourcepacks/3D Sugar Cane.zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 95cf29263f55885b0bf2a46b2ccdf7687d21e4e1
+          sha512: >-
+            bcedaa9917ab97bd5795bdef91eb5e3a42448397023d3d1b12e4cc3aedd134b3953a3e043266353ce21d784fa8f8bd6a5bf009d7397d6622b6f3cc643a7facd4
+        location: pT71mSWA
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: pT71mSWA
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: pT71mSWA
+        provider: modrinth
+      selection:
+        id: sU6FmyoH
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: 3d-sugar-cane
+    title: 3D Sugar Cane
   accessories:
     content: mod
     files:
@@ -612,6 +799,116 @@ dependencies:
       provider: modrinth
       selector: gJ5afkVv
     title: "Create: Bells & Whistles"
+  better-climbing:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/ZucWZEBV/versions/RJgDIKSn/better_climbing-neoforge-4.jar
+        kind: provider
+        pin:
+          project:
+            project: ZucWZEBV
+            provider: modrinth
+          selection:
+            id: RJgDIKSn
+            provider: modrinth
+        slot: better_climbing-neoforge-4.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 3e5f07639bab5084b492cd7d66b9bfea740ec244
+          sha512: >-
+            ad1f5603a6f401f4e6ac4e911a002cc3121b7f41e0224e8fb5ea1555b9560ef64795b81aa5d1bad2fa03a7302776fa88767a12dc79b2aa32749ead91eeed5ec4
+        size: 7127
+      placements:
+      - destination: mods/better_climbing-neoforge-4.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 3e5f07639bab5084b492cd7d66b9bfea740ec244
+          sha512: >-
+            ad1f5603a6f401f4e6ac4e911a002cc3121b7f41e0224e8fb5ea1555b9560ef64795b81aa5d1bad2fa03a7302776fa88767a12dc79b2aa32749ead91eeed5ec4
+        location: ZucWZEBV
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: ZucWZEBV
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: ZucWZEBV
+        provider: modrinth
+      selection:
+        id: RJgDIKSn
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: better-climbing
+    title: Better Climbing
+  better-third-person:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/G1s2WpNo/versions/aG5y4JUQ/BetterThirdPerson-neoforge-1.9.0.jar
+        kind: provider
+        pin:
+          project:
+            project: G1s2WpNo
+            provider: modrinth
+          selection:
+            id: aG5y4JUQ
+            provider: modrinth
+        slot: BetterThirdPerson-neoforge-1.9.0.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: e91af996b413bb498e276bf410d0deff52a34a74
+          sha512: >-
+            053acb813940aac69578810558056942966f2f0a24006a3a5de545c82888f8190b3bdc27a2401d0f70200dc4c927c0f84a45bf17821fb94fb9b886d633644619
+        size: 60941
+      placements:
+      - destination: mods/BetterThirdPerson-neoforge-1.9.0.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: e91af996b413bb498e276bf410d0deff52a34a74
+          sha512: >-
+            053acb813940aac69578810558056942966f2f0a24006a3a5de545c82888f8190b3bdc27a2401d0f70200dc4c927c0f84a45bf17821fb94fb9b886d633644619
+        location: G1s2WpNo
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: G1s2WpNo
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: G1s2WpNo
+        provider: modrinth
+      selection:
+        id: aG5y4JUQ
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: better-third-person
+    title: Better Third Person
   bsl-shaders:
     content: shader-pack
     files:
@@ -831,6 +1128,116 @@ dependencies:
       provider: modrinth
       selector: joEfVgkn
     title: Carry On
+  chat-heads:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/Wb5oqrBJ/versions/ZPylso9i/chat_heads-0.15.7-neoforge-1.21.jar
+        kind: provider
+        pin:
+          project:
+            project: Wb5oqrBJ
+            provider: modrinth
+          selection:
+            id: ZPylso9i
+            provider: modrinth
+        slot: chat_heads-0.15.7-neoforge-1.21.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 536b2af675229d2a33eb4cf5afbe7148a62d5f3f
+          sha512: >-
+            97ec4a08ffe54917591e7e05ba5ed9359e591719e4f3246745de36923a8080e68332aff28be437997c40a215b7aebc3537df892c99db4de6a5348ac7b4995144
+        size: 91948
+      placements:
+      - destination: mods/chat_heads-0.15.7-neoforge-1.21.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 536b2af675229d2a33eb4cf5afbe7148a62d5f3f
+          sha512: >-
+            97ec4a08ffe54917591e7e05ba5ed9359e591719e4f3246745de36923a8080e68332aff28be437997c40a215b7aebc3537df892c99db4de6a5348ac7b4995144
+        location: Wb5oqrBJ
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: Wb5oqrBJ
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: Wb5oqrBJ
+        provider: modrinth
+      selection:
+        id: ZPylso9i
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: chat-heads
+    title: Chat Heads
+  clean-tooltips:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/vMoHe8uI/versions/F8TicG1p/clean_tooltips-1.1-neoforge-1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: vMoHe8uI
+            provider: modrinth
+          selection:
+            id: F8TicG1p
+            provider: modrinth
+        slot: clean_tooltips-1.1-neoforge-1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 36b42f526885c45a62546cc9888ac63012ee3f87
+          sha512: >-
+            935f2a18528ae722a628098a33a6d7512f3f029271637738810fc6ed8f5589cd715435a2e66dbd70911e4ddebfd7ea9df17a9766fe4d7ae876dff31b248649fc
+        size: 24652
+      placements:
+      - destination: mods/clean_tooltips-1.1-neoforge-1.21.1.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 36b42f526885c45a62546cc9888ac63012ee3f87
+          sha512: >-
+            935f2a18528ae722a628098a33a6d7512f3f029271637738810fc6ed8f5589cd715435a2e66dbd70911e4ddebfd7ea9df17a9766fe4d7ae876dff31b248649fc
+        location: vMoHe8uI
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: vMoHe8uI
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: vMoHe8uI
+        provider: modrinth
+      selection:
+        id: F8TicG1p
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: clean-tooltips
+    title: Clean Tooltips
   cloth-config:
     content: mod
     files:
@@ -886,6 +1293,59 @@ dependencies:
       provider: modrinth
       selector: 9s6osm5g
     title: Cloth Config API
+  collective:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/e0M1UDsY/versions/d78uVgbq/collective-1.21.1-8.65.jar
+        kind: provider
+        pin:
+          project:
+            project: e0M1UDsY
+            provider: modrinth
+          selection:
+            id: d78uVgbq
+            provider: modrinth
+        slot: collective-1.21.1-8.65.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 1dae6347808f50485e281624260dbd9c8ee146eb
+          sha512: >-
+            30308b0db57475caaa5d60ac2d5e7b4438238a334e5ced81385587080e9626fb5d7b080f4c7fc9f40de9b5069a60ceed078c6289664ce09903123fe523ea6397
+        size: 1309960
+      placements:
+      - destination: mods/collective-1.21.1-8.65.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 1dae6347808f50485e281624260dbd9c8ee146eb
+          sha512: >-
+            30308b0db57475caaa5d60ac2d5e7b4438238a334e5ced81385587080e9626fb5d7b080f4c7fc9f40de9b5069a60ceed078c6289664ce09903123fe523ea6397
+        location: e0M1UDsY
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: e0M1UDsY
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: e0M1UDsY
+        provider: modrinth
+      selection:
+        id: d78uVgbq
+        provider: modrinth
+    source-selector: null
+    title: Collective
   complementary-unbound:
     content: shader-pack
     files:
@@ -996,6 +1456,61 @@ dependencies:
       provider: modrinth
       selector: u58R1TMW
     title: Sinytra Connector
+  controlling:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/xv94TkTM/versions/FaNppCJJ/Controlling-neoforge-1.21.1-19.0.5.jar
+        kind: provider
+        pin:
+          project:
+            project: xv94TkTM
+            provider: modrinth
+          selection:
+            id: FaNppCJJ
+            provider: modrinth
+        slot: Controlling-neoforge-1.21.1-19.0.5.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 8a34424fc1428778be2fdbfa4da67b21b70bcbfe
+          sha512: >-
+            bd01b2a38a869ea38e5f2a8fcd601e67ea9b132b9883c6ae752bc35dff6e94f6d47b965e31c1ee5c2f6a1221653549680da779fcb5319d199aec261d221d179e
+        size: 77555
+      placements:
+      - destination: mods/Controlling-neoforge-1.21.1-19.0.5.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 8a34424fc1428778be2fdbfa4da67b21b70bcbfe
+          sha512: >-
+            bd01b2a38a869ea38e5f2a8fcd601e67ea9b132b9883c6ae752bc35dff6e94f6d47b965e31c1ee5c2f6a1221653549680da779fcb5319d199aec261d221d179e
+        location: xv94TkTM
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: xv94TkTM
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: xv94TkTM
+        provider: modrinth
+      selection:
+        id: FaNppCJJ
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: controlling
+    title: Controlling
   copycats:
     content: mod
     files:
@@ -2550,6 +3065,61 @@ dependencies:
       provider: modrinth
       selector: gbJLUhZP
     title: Distraction Free Recipes (EMI / REI / JEI)
+  do-a-barrel-roll:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/6FtRfnLg/versions/Zj604q5O/do_a_barrel_roll-neoforge-3.7.3%2B1.21.jar
+        kind: provider
+        pin:
+          project:
+            project: 6FtRfnLg
+            provider: modrinth
+          selection:
+            id: Zj604q5O
+            provider: modrinth
+        slot: do_a_barrel_roll-neoforge-3.7.3+1.21.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 6a3cc7dc17fb701087a9705b06d75d9bb5f09065
+          sha512: >-
+            dc4a76eacc44b17c444368fdf012c5b06cd9f88463f562cc1d275e2b4e8e15b5f141373fc65de9b56167355d7a406b1dbee691b6cf20a4026b61faadb1d93c17
+        size: 465787
+      placements:
+      - destination: mods/do_a_barrel_roll-neoforge-3.7.3+1.21.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 6a3cc7dc17fb701087a9705b06d75d9bb5f09065
+          sha512: >-
+            dc4a76eacc44b17c444368fdf012c5b06cd9f88463f562cc1d275e2b4e8e15b5f141373fc65de9b56167355d7a406b1dbee691b6cf20a4026b61faadb1d93c17
+        location: 6FtRfnLg
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: 6FtRfnLg
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: 6FtRfnLg
+        provider: modrinth
+      selection:
+        id: Zj604q5O
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: do-a-barrel-roll
+    title: Do a Barrel Roll
   dynamic-fps:
     content: mod
     files:
@@ -2605,6 +3175,116 @@ dependencies:
       provider: modrinth
       selector: LQ3K71Q1
     title: Dynamic FPS
+  easy-anvils:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/OZBR5JT5/versions/fSQSKhdF/EasyAnvils-v21.1.0-1.21.1-NeoForge.jar
+        kind: provider
+        pin:
+          project:
+            project: OZBR5JT5
+            provider: modrinth
+          selection:
+            id: fSQSKhdF
+            provider: modrinth
+        slot: EasyAnvils-v21.1.0-1.21.1-NeoForge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 376c02e44dfcb44b79a494b1dba87b2ffb24277f
+          sha512: >-
+            366eed1f4831e4044566833e07e5f6201ef1d178d0b30938b8a8a34bcac08c904c95ca0afe87bd55ea06b87cce85ee70c95d0cddd0ae053b1302d288252fe98f
+        size: 152297
+      placements:
+      - destination: mods/EasyAnvils-v21.1.0-1.21.1-NeoForge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 376c02e44dfcb44b79a494b1dba87b2ffb24277f
+          sha512: >-
+            366eed1f4831e4044566833e07e5f6201ef1d178d0b30938b8a8a34bcac08c904c95ca0afe87bd55ea06b87cce85ee70c95d0cddd0ae053b1302d288252fe98f
+        location: OZBR5JT5
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: OZBR5JT5
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: OZBR5JT5
+        provider: modrinth
+      selection:
+        id: fSQSKhdF
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: easy-anvils
+    title: Easy Anvils
+  easy-magic:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/9hx3AbJM/versions/MxbfrOEv/EasyMagic-v21.1.4-1.21.1-NeoForge.jar
+        kind: provider
+        pin:
+          project:
+            project: 9hx3AbJM
+            provider: modrinth
+          selection:
+            id: MxbfrOEv
+            provider: modrinth
+        slot: EasyMagic-v21.1.4-1.21.1-NeoForge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: bbd1d7afd2b803f6c8055b5342d581ea542e132e
+          sha512: >-
+            30c7383c0f3b6d767652fa58c3b4e4ee7169c28f1e7653493db1cd62289447cd0698967453c4fa09dc1327b322e7c7ad8476d24a557ac0cb521d08e8ab5fc8da
+        size: 143992
+      placements:
+      - destination: mods/EasyMagic-v21.1.4-1.21.1-NeoForge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: bbd1d7afd2b803f6c8055b5342d581ea542e132e
+          sha512: >-
+            30c7383c0f3b6d767652fa58c3b4e4ee7169c28f1e7653493db1cd62289447cd0698967453c4fa09dc1327b322e7c7ad8476d24a557ac0cb521d08e8ab5fc8da
+        location: 9hx3AbJM
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: 9hx3AbJM
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: 9hx3AbJM
+        provider: modrinth
+      selection:
+        id: MxbfrOEv
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: easy-magic
+    title: Easy Magic
   effortless-building:
     content: mod
     files:
@@ -2770,6 +3450,61 @@ dependencies:
       provider: modrinth
       selector: qbbO7Jns
     title: EMI Loot
+  entity-model-features:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/4I1XuqiY/versions/197m3VoU/entity_model_features-3.3.12-1.21-neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: 4I1XuqiY
+            provider: modrinth
+          selection:
+            id: 197m3VoU
+            provider: modrinth
+        slot: entity_model_features-3.3.12-1.21-neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: e9a163b77243cdfcb0ad3d698dc48a60cb8710e9
+          sha512: >-
+            b18bde755c6719c62579d65c96e6e768c99b25fba9f987dc843b2a64ce4d713ba2f8151da4a98efe76d854550f40356ac4fdfa952568cf1fb11771353dfc70e8
+        size: 656382
+      placements:
+      - destination: mods/entity_model_features-3.3.12-1.21-neoforge.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: e9a163b77243cdfcb0ad3d698dc48a60cb8710e9
+          sha512: >-
+            b18bde755c6719c62579d65c96e6e768c99b25fba9f987dc843b2a64ce4d713ba2f8151da4a98efe76d854550f40356ac4fdfa952568cf1fb11771353dfc70e8
+        location: 4I1XuqiY
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: 4I1XuqiY
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: 4I1XuqiY
+        provider: modrinth
+      selection:
+        id: 197m3VoU
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: entity-model-features
+    title: "[EMF] Entity Model Features"
   entityculling:
     content: mod
     files:
@@ -2825,6 +3560,61 @@ dependencies:
       provider: modrinth
       selector: NNAgCjsB
     title: Entity Culling
+  entitytexturefeatures:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/BVzZfTc1/versions/lwNx1nD1/entity_texture_features-7.2.6-1.21-neoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: BVzZfTc1
+            provider: modrinth
+          selection:
+            id: lwNx1nD1
+            provider: modrinth
+        slot: entity_texture_features-7.2.6-1.21-neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 1a77ddb156daa4125c205424f05f0fa861517d9c
+          sha512: >-
+            0e349c235b509de605ef4175a60e87ee78eab208b554ebc1dfa756b18ab2b531ce4641bfdc1c4542cb3c24d45b81698ca1413fcd001d589d82cbad6cea346f46
+        size: 807089
+      placements:
+      - destination: mods/entity_texture_features-7.2.6-1.21-neoforge.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 1a77ddb156daa4125c205424f05f0fa861517d9c
+          sha512: >-
+            0e349c235b509de605ef4175a60e87ee78eab208b554ebc1dfa756b18ab2b531ce4641bfdc1c4542cb3c24d45b81698ca1413fcd001d589d82cbad6cea346f46
+        location: BVzZfTc1
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: BVzZfTc1
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: BVzZfTc1
+        provider: modrinth
+      selection:
+        id: lwNx1nD1
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: entitytexturefeatures
+    title: "[ETF] Entity Texture Features"
   escalated:
     content: mod
     files:
@@ -3100,6 +3890,61 @@ dependencies:
       provider: modrinth
       selector: Aqlf1Shp
     title: Forgified Fabric API
+  fresh-animations:
+    content: resource-pack
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/50dA9Sha/versions/aQjwvDfY/FreshAnimations_v1.11.1_1.20%2B.zip
+        kind: provider
+        pin:
+          project:
+            project: 50dA9Sha
+            provider: modrinth
+          selection:
+            id: aQjwvDfY
+            provider: modrinth
+        slot: FreshAnimations_v1.11.1_1.20+.zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: eaf28f57dee43c469534953517501a021d28cf21
+          sha512: >-
+            641a03d55c36920cc9a70d891bcca3347b196968bcb5637781f21b417b1ff893ce60652abcf02be872872fc1130ccc6785155ea3b19a0ed484de714b6229c922
+        size: 743793
+      placements:
+      - destination: resourcepacks/FreshAnimations_v1.11.1_1.20+.zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: eaf28f57dee43c469534953517501a021d28cf21
+          sha512: >-
+            641a03d55c36920cc9a70d891bcca3347b196968bcb5637781f21b417b1ff893ce60652abcf02be872872fc1130ccc6785155ea3b19a0ed484de714b6229c922
+        location: 50dA9Sha
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: 50dA9Sha
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: 50dA9Sha
+        provider: modrinth
+      selection:
+        id: aQjwvDfY
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: fresh-animations
+    title: Fresh Animations
   fusion-connected-textures:
     content: mod
     files:
@@ -3357,6 +4202,171 @@ dependencies:
       provider: modrinth
       selector: r4Knci2k
     title: "Create: Interiors"
+  inventory-totem:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/yQj7xqEM/versions/lgjs8TXC/inventorytotem-1.21.1-3.6.jar
+        kind: provider
+        pin:
+          project:
+            project: yQj7xqEM
+            provider: modrinth
+          selection:
+            id: lgjs8TXC
+            provider: modrinth
+        slot: inventorytotem-1.21.1-3.6.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 23cee130791d2238dc32a2a96243a046a39fcf37
+          sha512: >-
+            2f20d70d68b684b5edc1c2244ee757ba21909727776d94aa057929b81a3aa594bdbb195c5b60c513376929e9db46aaf3ac7ad9ef9dba0ccf9ab7dc43b80a8962
+        size: 29690
+      placements:
+      - destination: mods/inventorytotem-1.21.1-3.6.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 23cee130791d2238dc32a2a96243a046a39fcf37
+          sha512: >-
+            2f20d70d68b684b5edc1c2244ee757ba21909727776d94aa057929b81a3aa594bdbb195c5b60c513376929e9db46aaf3ac7ad9ef9dba0ccf9ab7dc43b80a8962
+        location: yQj7xqEM
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: yQj7xqEM
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: yQj7xqEM
+        provider: modrinth
+      selection:
+        id: lgjs8TXC
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: inventory-totem
+    title: Inventory Totem
+  invmove:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/REfW2AEX/versions/C7ePwvWW/InvMove-0.9.3%2B1.21.1-NeoForge.jar
+        kind: provider
+        pin:
+          project:
+            project: REfW2AEX
+            provider: modrinth
+          selection:
+            id: C7ePwvWW
+            provider: modrinth
+        slot: InvMove-0.9.3+1.21.1-NeoForge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 536c78c3b97beb0f947b9f3765842ec990a873d8
+          sha512: >-
+            54daa1d39fc0319354f54c2e75b1261468e2f0d0bf36ec39a03921dbe07010cc07c73a9e3fdf6e803ce7cb66fe1df3c5a9ba209ec615bb8678163e378d4a7aa5
+        size: 87005
+      placements:
+      - destination: mods/InvMove-0.9.3+1.21.1-NeoForge.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 536c78c3b97beb0f947b9f3765842ec990a873d8
+          sha512: >-
+            54daa1d39fc0319354f54c2e75b1261468e2f0d0bf36ec39a03921dbe07010cc07c73a9e3fdf6e803ce7cb66fe1df3c5a9ba209ec615bb8678163e378d4a7aa5
+        location: REfW2AEX
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: REfW2AEX
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: REfW2AEX
+        provider: modrinth
+      selection:
+        id: C7ePwvWW
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: invmove
+    title: InvMove
+  invmovecompats:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/6IpcGP7T/versions/GjTuFGdp/InvMoveCompats-0.5.0%2B1.21.8-NeoForge.jar
+        kind: provider
+        pin:
+          project:
+            project: 6IpcGP7T
+            provider: modrinth
+          selection:
+            id: GjTuFGdp
+            provider: modrinth
+        slot: InvMoveCompats-0.5.0+1.21.8-NeoForge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 6cd72da74b8af439c3240e95ae9b0989a2509af1
+          sha512: >-
+            483a2068957b0b59682b9bc40648709e687d1ea8743403f1a37d8a889939ace70a834c49e8bc875073f50130cb6e4ad793e38b5855930d4c80a021609931fd42
+        size: 103185
+      placements:
+      - destination: mods/InvMoveCompats-0.5.0+1.21.8-NeoForge.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 6cd72da74b8af439c3240e95ae9b0989a2509af1
+          sha512: >-
+            483a2068957b0b59682b9bc40648709e687d1ea8743403f1a37d8a889939ace70a834c49e8bc875073f50130cb6e4ad793e38b5855930d4c80a021609931fd42
+        location: 6IpcGP7T
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: 6IpcGP7T
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: 6IpcGP7T
+        provider: modrinth
+      selection:
+        id: GjTuFGdp
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: invmovecompats
+    title: InvMoveCompats
   iris:
     content: mod
     files:
@@ -4601,6 +5611,61 @@ dependencies:
       provider: modrinth
       selector: ccKDOlHs
     title: oωo (owo-lib)
+  ping-wheel:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/QQXAdCzh/versions/Zrh2Fmn9/Ping-Wheel-1.12.2-neoforge-1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: QQXAdCzh
+            provider: modrinth
+          selection:
+            id: Zrh2Fmn9
+            provider: modrinth
+        slot: Ping-Wheel-1.12.2-neoforge-1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: bfc416a7bc2edde6ff98672a7df43a3d9930a396
+          sha512: >-
+            d9f289464fa85c8af34bc57044a6f03abc0ccf4d93bc67451d1e68386be0e3b55524a68dcbf529773859f9166e09cf1fe848c83f1c0c1d10a374819d120d2554
+        size: 153528
+      placements:
+      - destination: mods/Ping-Wheel-1.12.2-neoforge-1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: bfc416a7bc2edde6ff98672a7df43a3d9930a396
+          sha512: >-
+            d9f289464fa85c8af34bc57044a6f03abc0ccf4d93bc67451d1e68386be0e3b55524a68dcbf529773859f9166e09cf1fe848c83f1c0c1d10a374819d120d2554
+        location: QQXAdCzh
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: QQXAdCzh
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: QQXAdCzh
+        provider: modrinth
+      selection:
+        id: Zrh2Fmn9
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: ping-wheel
+    title: Ping Wheel
   playeranimator:
     content: mod
     files:
@@ -4766,6 +5831,59 @@ dependencies:
       provider: modrinth
       selector: eWiBLJ9R
     title: "Create: Power Grid"
+  puzzles-lib:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/QAGBst4M/versions/kiX1lfse/puzzleslib-v21.1.65-mc1.21.1%2Bneoforge.jar
+        kind: provider
+        pin:
+          project:
+            project: QAGBst4M
+            provider: modrinth
+          selection:
+            id: kiX1lfse
+            provider: modrinth
+        slot: puzzleslib-v21.1.65-mc1.21.1+neoforge.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: cc24aa9f22a3c9e55f1ce461625bccb7b5fb09c7
+          sha512: >-
+            9ed93c75df6f61e83945944a036304a974a3e09eab34acbe9edbb499a575396dbc789ddc2a81174168a77113b09eef2cdfcb493728f73c6081da3f27630bdea2
+        size: 1451117
+      placements:
+      - destination: mods/puzzleslib-v21.1.65-mc1.21.1+neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: cc24aa9f22a3c9e55f1ce461625bccb7b5fb09c7
+          sha512: >-
+            9ed93c75df6f61e83945944a036304a974a3e09eab34acbe9edbb499a575396dbc789ddc2a81174168a77113b09eef2cdfcb493728f73c6081da3f27630bdea2
+        location: QAGBst4M
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: QAGBst4M
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: QAGBst4M
+        provider: modrinth
+      selection:
+        id: kiX1lfse
+        provider: modrinth
+    source-selector: null
+    title: Puzzles Lib
   questlog:
     content: mod
     files:
@@ -4950,6 +6068,61 @@ dependencies:
       provider: modrinth
       selector: plgWdsGJ
     title: Redden's Stone Lanterns
+  redstone-tweaks:
+    content: resource-pack
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/RvfAlf4Z/versions/acYT0fGm/Redstone%20Tweaks%202.4.5.zip
+        kind: provider
+        pin:
+          project:
+            project: RvfAlf4Z
+            provider: modrinth
+          selection:
+            id: acYT0fGm
+            provider: modrinth
+        slot: Redstone Tweaks 2.4.5.zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 97d2f15baec689366899ee50f7d206e2e013fd94
+          sha512: >-
+            794b11827b6f8b60e519ab9abc853d2d1d39e3f453bff728c49b6f9abf0a413a959f4ad496340f802d9f90eb64de6c2efb138ad0871fa916dc6067d162376499
+        size: 985370
+      placements:
+      - destination: resourcepacks/Redstone Tweaks 2.4.5.zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 97d2f15baec689366899ee50f7d206e2e013fd94
+          sha512: >-
+            794b11827b6f8b60e519ab9abc853d2d1d39e3f453bff728c49b6f9abf0a413a959f4ad496340f802d9f90eb64de6c2efb138ad0871fa916dc6067d162376499
+        location: RvfAlf4Z
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: RvfAlf4Z
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: RvfAlf4Z
+        provider: modrinth
+      selection:
+        id: acYT0fGm
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: redstone-tweaks
+    title: Redstone Tweaks
   reliable-emi:
     content: mod
     files:
@@ -5170,6 +6343,170 @@ dependencies:
       provider: modrinth
       selector: T9PomCSv
     title: Sable
+  searchables:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/fuuu3xnx/versions/iEE85X0w/Searchables-neoforge-1.21.1-1.0.2.jar
+        kind: provider
+        pin:
+          project:
+            project: fuuu3xnx
+            provider: modrinth
+          selection:
+            id: iEE85X0w
+            provider: modrinth
+        slot: Searchables-neoforge-1.21.1-1.0.2.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 5b8a0b43a474c066371b2e16f9bfb88622552a74
+          sha512: >-
+            d0824bac1900142ac9a53e68f7ec3b4c0d33d9366bbd3f1d0d93eed860e5eb6b5e6f5a215a69bfffa70bcb48573ff49b5a12bbaa96096ceac6636000d506027a
+        size: 77326
+      placements:
+      - destination: mods/Searchables-neoforge-1.21.1-1.0.2.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 5b8a0b43a474c066371b2e16f9bfb88622552a74
+          sha512: >-
+            d0824bac1900142ac9a53e68f7ec3b4c0d33d9366bbd3f1d0d93eed860e5eb6b5e6f5a215a69bfffa70bcb48573ff49b5a12bbaa96096ceac6636000d506027a
+        location: fuuu3xnx
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: fuuu3xnx
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: fuuu3xnx
+        provider: modrinth
+      selection:
+        id: iEE85X0w
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: searchables
+    title: Searchables
+  shulkerboxtooltip:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/2M01OLQq/versions/IuqNIoAi/shulkerboxtooltip-neoforge-5.1.9%2B1.21.1.jar
+        kind: provider
+        pin:
+          project:
+            project: 2M01OLQq
+            provider: modrinth
+          selection:
+            id: IuqNIoAi
+            provider: modrinth
+        slot: shulkerboxtooltip-neoforge-5.1.9+1.21.1.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: bddbccd689529f7f7ab04479e62c5e09b0be6be5
+          sha512: >-
+            805e4566c63d240d9ec01fa0b785e1b6d5be323db9476a041b96cb026e19496f00d5a14d3a94ce999884e44bc5cd7e725ece6f13f7d5952acc274ffb1fc183ab
+        size: 381204
+      placements:
+      - destination: mods/shulkerboxtooltip-neoforge-5.1.9+1.21.1.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: bddbccd689529f7f7ab04479e62c5e09b0be6be5
+          sha512: >-
+            805e4566c63d240d9ec01fa0b785e1b6d5be323db9476a041b96cb026e19496f00d5a14d3a94ce999884e44bc5cd7e725ece6f13f7d5952acc274ffb1fc183ab
+        location: 2M01OLQq
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: 2M01OLQq
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: 2M01OLQq
+        provider: modrinth
+      selection:
+        id: IuqNIoAi
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: shulkerboxtooltip
+    title: Shulker Box Tooltip
+  simple-3d-iron-bars:
+    content: resource-pack
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/p5Kdm58p/versions/harPhc3X/simple-3d-iron-bars.zip
+        kind: provider
+        pin:
+          project:
+            project: p5Kdm58p
+            provider: modrinth
+          selection:
+            id: harPhc3X
+            provider: modrinth
+        slot: simple-3d-iron-bars.zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: f4eeacbdd0f1a3f0147666681a0a9f51513490ef
+          sha512: >-
+            8e27b80d57cc3cf679cb48ed2c2dd6debd06bed94af4dfef1cd6dc15e671e545f8c8542250857d2f8c1157ede82639975ac12f64e53baae86ae83f4f46553b46
+        size: 5463
+      placements:
+      - destination: resourcepacks/simple-3d-iron-bars.zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: f4eeacbdd0f1a3f0147666681a0a9f51513490ef
+          sha512: >-
+            8e27b80d57cc3cf679cb48ed2c2dd6debd06bed94af4dfef1cd6dc15e671e545f8c8542250857d2f8c1157ede82639975ac12f64e53baae86ae83f4f46553b46
+        location: p5Kdm58p
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: p5Kdm58p
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: p5Kdm58p
+        provider: modrinth
+      selection:
+        id: harPhc3X
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: simple-3d-iron-bars
+    title: Simple 3D Bars
   simulated-copycats:
     content: mod
     files:
@@ -6115,7 +7452,7 @@ dependencies:
       provider: modrinth
       selector: OnlVIpq5
     title: Fast Noise
-intent-revision: 67c11dde5db58a758a2a5454954beb80f11d2bf673ab765efc4b8e6c605c7dc7
+intent-revision: 7748c149b23467a372aec23cfbaf2b6acf3f23ad0600603ae6578cb231a399c4
 required-edges:
   accessories:
   - owo-lib
@@ -6132,6 +7469,8 @@ required-edges:
   - create
   connector:
   - forgified-fabric-api
+  controlling:
+  - searchables
   copycats:
   - create
   create-accessories-compat:
@@ -6176,13 +7515,28 @@ required-edges:
   - create
   distraction-free-recipes:
   - txnilib
+  do-a-barrel-roll:
+  - forgified-fabric-api
+  easy-anvils:
+  - puzzles-lib
+  easy-magic:
+  - puzzles-lib
   emi-loot:
   - emi
   - fzzy-config
+  entity-model-features:
+  - entitytexturefeatures
   escalated:
   - create
   fzzy-config:
   - kotlin-for-forge
+  inventory-totem:
+  - collective
+  invmove:
+  - cloth-config
+  invmovecompats:
+  - cloth-config
+  - invmove
   jade-addons-forge:
   - jade
   jei:

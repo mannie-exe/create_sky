@@ -3,7 +3,7 @@
 Create Sky 0.1.9 source (unreleased). Minecraft remains 1.21.1 and NeoForge
 remains 21.1.264. Euphoria generates its patched shader at launch. Bundled
 libraries are additional to this list. Published 0.1.8 artifacts do not include
-Sky Village Neighbors or DH Polygon Fix 1.0.2.
+the 0.1.9 additions or DH Polygon Fix 1.0.2.
 
 | Project | Version | Source |
 |---|---|---|
@@ -121,3 +121,27 @@ Sky Village Neighbors or DH Polygon Fix 1.0.2.
 | Aeronautics Delivery Quests | 1.1.1 | [Exact version](https://modrinth.com/mod/aeronautics-delivery-quests/version/GBzcF6Il) |
 | Create Propulsion: Simulated | 1.1.5 | [Exact version](https://modrinth.com/mod/create-propulsion-simulated/version/H13U56dc) |
 | Create Sky resources | 0.1.0 (local) | [Maintained sources](../pack-fixes/) |
+| 3D crops Revamped | 3 | [Exact version](https://modrinth.com/resourcepack/3d-crops/version/iKYRZwnm) |
+| 3D Ladders | 1.2+1.21 | [Exact version](https://modrinth.com/resourcepack/3d-ladders/version/44oYkyYv) |
+| 3D Sugar Cane | 2.0 | [Exact version](https://modrinth.com/resourcepack/3d-sugar-cane/version/sU6FmyoH) |
+| [EMF] Entity Model Features | 3.3.12-neoforge-1.21 | [Exact version](https://modrinth.com/mod/entity-model-features/version/197m3VoU) |
+| [ETF] Entity Texture Features | 7.2.6-neoforge-1.21 | [Exact version](https://modrinth.com/mod/entitytexturefeatures/version/lwNx1nD1) |
+| Better Climbing | 4-neoforge | [Exact version](https://modrinth.com/mod/better-climbing/version/RJgDIKSn) |
+| Better Third Person | 1.9.0 | [Exact version](https://modrinth.com/mod/better-third-person/version/aG5y4JUQ) |
+| Chat Heads | 0.15.7 | [Exact version](https://modrinth.com/mod/chat-heads/version/ZPylso9i) |
+| Clean Tooltips | 1.1 | [Exact version](https://modrinth.com/mod/clean-tooltips/version/F8TicG1p) |
+| Collective | 1.21.1-8.65-fabric+forge+neo | [Exact version](https://modrinth.com/mod/collective/version/d78uVgbq) |
+| Controlling | 19.0.5 | [Exact version](https://modrinth.com/mod/controlling/version/FaNppCJJ) |
+| Do a Barrel Roll | 3.7.3+1.21-neoforge | [Exact version](https://modrinth.com/mod/do-a-barrel-roll/version/Zj604q5O) |
+| Easy Anvils | v21.1.0-1.21.1-NeoForge | [Exact version](https://modrinth.com/mod/easy-anvils/version/fSQSKhdF) |
+| Easy Magic | v21.1.4-1.21.1-NeoForge | [Exact version](https://modrinth.com/mod/easy-magic/version/MxbfrOEv) |
+| Fresh Animations | 1.11.1 | [Exact version](https://modrinth.com/resourcepack/fresh-animations/version/aQjwvDfY) |
+| Inventory Totem | 1.21.1-3.6-fabric+forge+neo | [Exact version](https://modrinth.com/mod/inventory-totem/version/lgjs8TXC) |
+| InvMove | 0.9.3+1.21.1-neoforge | [Exact version](https://modrinth.com/mod/invmove/version/C7ePwvWW) |
+| InvMoveCompats | 0.5.0+1.21.8-neoforge | [Exact version](https://modrinth.com/mod/invmovecompats/version/GjTuFGdp) |
+| Ping Wheel | 1.12.2 | [Exact version](https://modrinth.com/mod/ping-wheel/version/Zrh2Fmn9) |
+| Puzzles Lib | 21.1.65 | [Exact version](https://modrinth.com/mod/puzzles-lib/version/kiX1lfse) |
+| Redstone Tweaks | 2.4.5 | [Exact version](https://modrinth.com/resourcepack/redstone-tweaks/version/acYT0fGm) |
+| Searchables | 1.0.2 | [Exact version](https://modrinth.com/mod/searchables/version/iEE85X0w) |
+| Shulker Box Tooltip | 5.1.9+1.21.1-neoforge | [Exact version](https://modrinth.com/mod/shulkerboxtooltip/version/IuqNIoAi) |
+| Simple 3D Bars | 1.0.3 | [Exact version](https://modrinth.com/resourcepack/simple-3d-iron-bars/version/harPhc3X) |

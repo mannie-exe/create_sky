@@ -582,6 +582,48 @@
       "review": "reviewed",
       "reason": "Own the six stock delivery templates with direct descriptions; preserve cargo schematics, masses, rewards and automatic endpoints. Do not imply simulated scarcity, guarded cargo or NPC demand.",
       "reference": "docs/development/progression.md"
+    },
+    {
+      "path": "overrides/common/config/do_a_barrel_roll-server.json",
+      "sha256": "e1158c7ecbed6b4b35204e5d6f645874787ac637110ef426e1b57e954117ffcf",
+      "review": "reviewed",
+      "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+    },
+    {
+      "path": "overrides/common/config/easyanvils-common.toml",
+      "sha256": "1c1f72154cd2a25cda17b09650a1c46d8c08d6e524c4fdfcd685ae6fbc936074",
+      "review": "reviewed",
+      "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+    },
+    {
+      "path": "overrides/common/config/easyanvils-server.toml",
+      "sha256": "61228450bef35c2871f9438b12f4dfba2f52aa740038a8a27ffbf2fc659592a2",
+      "review": "reviewed",
+      "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+    },
+    {
+      "path": "overrides/common/config/easymagic-common.toml",
+      "sha256": "e5764e002f97dee7943fcd556c36ac425959787f245ed3ef6a4138b8b54dc7f3",
+      "review": "reviewed",
+      "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+    },
+    {
+      "path": "overrides/common/config/easymagic-server.toml",
+      "sha256": "637680dcc102387df862afb9ba7e82082e04b6b6abca326efa55cf508497f4b5",
+      "review": "reviewed",
+      "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+    },
+    {
+      "path": "overrides/common/config/pingwheel.server.json",
+      "sha256": "821d5d12d0c096996c82d1a65349ac803adffcc25b89420a146c727fb92b381a",
+      "review": "reviewed",
+      "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
     }
   ]
 }

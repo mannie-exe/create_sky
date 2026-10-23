@@ -35,6 +35,26 @@ configured bands are also low; new-terrain access and usable ore quantities rema
 unmeasured. Gold washing supplies a separate 5% platinum-nugget chance. At that
 rate, one ingot takes 180 crushed-gold washes on average, not a guaranteed batch.
 
+## Equipment maintenance in 0.1.9 source
+
+Easy Anvils retains repair-material and XP costs, but removes the 40-level cap,
+ignores prior-work penalties for repairs/renames and limits penalty growth when
+adding enchantments. Book application costs are halved. Renaming is free; repair
+materials restore 25% durability per unit. Iron blocks repair anvil damage, with
+dispenser support. These defaults support keeping useful equipment instead of
+replacing it solely because accumulated penalties make repairs impractical.
+
+Easy Magic retains 15 bookshelves for maximum power. A reroll costs one lapis and
+five XP points, not five levels. All offered enchantments are visible; rerolls
+remain paid. Bookshelves behind non-full collision blocks still count, and facing
+chiseled bookshelves supply power from stored books. Existing vanilla workstations
+remain usable; new placements and generated replacements use the enhanced blocks.
+
+Inventory Totem allows a totem in the main inventory to satisfy an ordinary totem
+save. It consumes the totem and does not create a rescue item, teleport route or
+return journey. Repair, enchanting and totem acquisition still depend on existing
+resources. No new mandatory journal step or crafting gate was added.
+
 ## Production and travel
 
 | System | Current behavior | Design implication |

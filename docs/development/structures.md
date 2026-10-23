@@ -145,10 +145,9 @@ Changing separation alone spreads candidate positions but does not reduce their
 number. The earlier four-seed generation survey measured a 74% valid-start rate;
 that is a sample, not a universal density guarantee.
 
-The source pack adds [Sky Village Neighbors 0.1.0](https://github.com/mannie-exe/sky-village-neighbors/releases/tag/v0.1.0)
-with common configuration in `sky_village_neighbors-common.toml`. This is unreleased
-Create Sky source beyond 0.1.8; the existing live instances and saved villages are
-unchanged until an explicit sync and generation of new chunks.
+Create Sky 0.1.9 adds [Sky Village Neighbors 0.1.0](https://github.com/mannie-exe/sky-village-neighbors/releases/tag/v0.1.0)
+with common configuration in `sky_village_neighbors-common.toml`. Updating the
+pack affects future structure starts; existing villages remain unchanged.
 
 The rule retains SKY placement and requires a 64-block horizontal gap from the
 full village footprint to island terrain, a host terrain sample within 512 blocks,

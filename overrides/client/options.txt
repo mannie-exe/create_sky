@@ -48,7 +48,7 @@ mouseSensitivity:0.5
 damageTiltStrength:1.0
 highContrast:false
 narratorHotkey:true
-resourcePacks:["vanilla","fabric","mod_resources","mod/analogaudio:resourcepacks/3d_cassettes"]
+resourcePacks:["vanilla","fabric","mod_resources","mod/analogaudio:resourcepacks/3d_cassettes","file/3D Sugar Cane.zip","file/FreshAnimations_v1.11.1_1.20+.zip","file/Redstone Tweaks 2.4.5.zip","file/crops-3d(2).zip","file/simple-3d-iron-bars.zip","file/§l3D§f+Ladders+v1.2(mc-1.21).zip"]
 incompatibleResourcePacks:[]
 lang:en_us
 chatVisibility:0

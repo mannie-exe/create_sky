@@ -69,6 +69,63 @@ cache are not export defaults.
   the generated Create/Copycats exclusions. These exclusions do not verify every
   carried entity or ship-storage interaction.
 
+## Controls and resource packs in 0.1.9 source
+
+Do a Barrel Roll, Better Climbing, Ping Wheel, Easy Anvils, Easy Magic and
+Inventory Totem ship on both sides. Camera/UI/rendering mods and the six resource
+packs are client-only. EMF/ETF support Fresh Animations; Puzzles Lib, Collective
+and Searchables satisfy the other new dependencies. Existing dependency versions,
+Minecraft and NeoForge are unchanged. Exact selections are in [MODLIST](../MODLIST.md).
+
+| Domain | Authored choice |
+| --- | --- |
+| Flight camera | Barrel Roll uses vanilla activation with thrust disabled. The server disallows thrust for ordinary players and does not force the camera mode. Operators can bypass the mod's server policy. Better Third Person's independent elytra camera stays off. |
+| Inventory movement | Preserve sneaking and prevent dismounting. Text focus disables movement. Unknown screens default off; books, advancements and all Ponder browsing views also disable movement. EMI/JEI compatibility modules remain enabled. |
+| Communication | Ping Wheel keeps its range, channel and rate-limit defaults, with ten-second markers and 50% volume. Chat Heads retains its defaults. |
+| Tooltips | Keep durability/enchantment information, omit extra blank-line spacing. Shulker Box Tooltip retains its native preview defaults. |
+| Workstations | Keep generated Easy Anvils costs and maintenance settings. Easy Magic shows all enchantments while retaining paid rerolls. Do not disable old vanilla workstations. |
+| Visual resources | Enable six packs in new-installation options. Keep base Fresh Animations without extensions; retain generated EMF/ETF defaults. Existing options remain seed-managed and are not overwritten. |
+
+Better Climbing and Inventory Totem expose no generated tuning file in this
+version. Their native behavior is retained. InvMoveCompats and Ping Wheel are
+published as beta builds; InvMoveCompats' `1.21.8` filename covers 1.21.1 according
+to both its version metadata and native loader range.
+
+Disposable Java 21/NeoForge clients and servers were installed from the reference
+exports on 2026-10-23, against the 0.1.9 working tree based on `25a5a209`.
+The client joined the isolated server, loaded all six packs, rendered Fresh
+Animations villagers/golems and showed a shulker preview containing three diamonds.
+An inventory-only totem survived 100 generic damage, granted Postmortal and was
+consumed with both hands empty. InvMove moved the player in an inventory; typing
+in focused EMI search left the teleported position unchanged.
+
+Native configuration loading accepted the authored new settings. A server runtime
+export completed without exporter errors. Existing Create Radar model warnings,
+Propulsion compass-model warnings and other inherited content warnings remain;
+the matching Radar warnings also occur in the prior local client log. Successful
+startup does not establish moving-ship camera compatibility, flight feel, every
+modded inventory, all crop/Copycat geometry or shader performance. Those need
+playtesting. Live profiles and the running server were not changed by this pass.
+
+The final source passed these checks from the repository root:
+
+```sh
+python3 scripts/generate-journal.py --check
+python3 scripts/audit-changes.py
+python3 -m unittest discover -s tests -v
+python3 scripts/build-fixes.py
+empack --yes sync --materialize
+empack --yes build --profile prism --profile server --profile modrinth --optional-defaults
+python3 scripts/patch-server-archives.py
+git diff --check
+```
+
+The audit covered 230 files without drift; all 11 tests passed. All three
+reference exports built. Archive inspection checked dependency placement against
+the lock, authored config bytes and seed policies, and MRpack environment parity.
+The 113 previous dependency selections and digests were unchanged; 24 selections
+were added, including supporting dependencies and resource packs.
+
 ## Shader verification
 
 The Apple M4 Pro reference client exposes 16 texture units; Iris

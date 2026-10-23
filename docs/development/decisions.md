@@ -5,6 +5,22 @@ instructions belong in [compatibility reference](compatibility.md) and
 [build guide](build.md). Raw logs and imported config snapshots are local
 backup evidence, not distributed pack content.
 
+## 2026-10-23 - Controls and equipment release 0.1.9
+
+Release the floating-village compatibility candidate together with the selected
+camera, inventory, equipment and resource-pack additions. Minecraft 1.21.1,
+NeoForge 21.1.264 and all 113 prior dependency selections remain unchanged;
+24 selections bring the lock to 137. Configuration choices and isolated native
+client/server checks are recorded in [compatibility](compatibility.md#controls-and-resource-packs-in-019-source).
+
+The source builds on `25a5a209`. Journal generation, the 230-file configuration
+audit and all 11 pack tests passed. All three reference exports built with empack
+0.8.2-beta; archive checks verified dependency sides, config bytes, seed policies
+and MRpack environments. The server export retains the Unix terminal workaround.
+The owner authorized local profile synchronization, commit/push and publication.
+This update does not reset worlds or LODs. Moving-ship controls and shader
+performance remain gameplay checks, not established compatibility guarantees.
+
 ## 2026-10-23 - Floating village compatibility candidate 0.1.9
 
 Add Sky Village Neighbors 0.1.0 from its GitHub prerelease and update the

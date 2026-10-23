@@ -17,8 +17,23 @@ radius increases the amount of terrain the client needs to load and render.
 Cave culling remains enabled in pack defaults. If low islands disappear, try
 turning it off in DH's settings (`enableCaveCulling = false`).
 
-Keep DH Polygon Fix 1.0.1 installed with DH 3.3.3 on clients, including macOS.
+Keep the release's DH Polygon Fix installed with DH 3.3.3 on clients, including macOS.
 The fix is version-specific; remove it when upgrading DH.
+
+## Resource packs in 0.1.9 source
+
+Fresh installations enable Simple 3D Iron Bars, 3D Ladders, Redstone Tweaks,
+Fresh Animations, 3D Crops and 3D Sugar Cane. Existing installations keep their
+saved selection; enable individual packs in **Options → Resource Packs**.
+
+Fresh Animations needs the included Entity Model Features and Entity Texture
+Features mods. The base animation pack is included without its optional extensions
+or player-model replacements. Redstone Tweaks displays additional block-state
+information; disable that pack if you prefer the original appearance.
+
+The model packs target selected vanilla blocks. They do not restyle every modded
+counterpart. Large crop farms, Copycats and moving ship geometry still need wider
+visual/performance testing. These selections may change after further review.
 
 ## Shader selection
 

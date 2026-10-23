@@ -468,6 +468,145 @@ dependencies:
     environment:
       client: required
       server: required
+  better-climbing:
+    source: modrinth:better-climbing
+    pin: RJgDIKSn
+    environment:
+      client: required
+      server: required
+  better-third-person:
+    source: modrinth:better-third-person
+    pin: aG5y4JUQ
+    environment:
+      client: required
+      server: unsupported
+  chat-heads:
+    source: modrinth:chat-heads
+    pin: ZPylso9i
+    environment:
+      client: required
+      server: unsupported
+  clean-tooltips:
+    source: modrinth:clean-tooltips
+    pin: F8TicG1p
+    environment:
+      client: required
+      server: unsupported
+  controlling:
+    source: modrinth:controlling
+    pin: FaNppCJJ
+    environment:
+      client: required
+      server: unsupported
+  do-a-barrel-roll:
+    source: modrinth:do-a-barrel-roll
+    pin: Zj604q5O
+    environment:
+      client: required
+      server: required
+  easy-anvils:
+    source: modrinth:easy-anvils
+    pin: fSQSKhdF
+    environment:
+      client: required
+      server: required
+  easy-magic:
+    source: modrinth:easy-magic
+    pin: MxbfrOEv
+    environment:
+      client: required
+      server: required
+  entity-model-features:
+    source: modrinth:entity-model-features
+    pin: 197m3VoU
+    environment:
+      client: required
+      server: unsupported
+  entitytexturefeatures:
+    source: modrinth:entitytexturefeatures
+    pin: lwNx1nD1
+    environment:
+      client: required
+      server: unsupported
+  inventory-totem:
+    source: modrinth:inventory-totem
+    pin: lgjs8TXC
+    environment:
+      client: required
+      server: required
+  invmove:
+    source: modrinth:invmove
+    pin: C7ePwvWW
+    environment:
+      client: required
+      server: unsupported
+  invmovecompats:
+    source: modrinth:invmovecompats
+    pin: GjTuFGdp
+    environment:
+      client: required
+      server: unsupported
+  ping-wheel:
+    source: modrinth:ping-wheel
+    pin: Zrh2Fmn9
+    environment:
+      client: required
+      server: required
+  shulkerboxtooltip:
+    source: modrinth:shulkerboxtooltip
+    pin: IuqNIoAi
+    environment:
+      client: required
+      server: unsupported
+  3d-crops:
+    source: modrinth:3d-crops
+    pin: iKYRZwnm
+    type: resource-pack
+    environment:
+      client: required
+      server: unsupported
+  3d-ladders:
+    source: modrinth:3d-ladders
+    pin: 44oYkyYv
+    type: resource-pack
+    environment:
+      client: required
+      server: unsupported
+  3d-sugar-cane:
+    source: modrinth:3d-sugar-cane
+    pin: sU6FmyoH
+    type: resource-pack
+    environment:
+      client: required
+      server: unsupported
+  fresh-animations:
+    source: modrinth:fresh-animations
+    pin: aQjwvDfY
+    type: resource-pack
+    environment:
+      client: required
+      server: unsupported
+  redstone-tweaks:
+    source: modrinth:redstone-tweaks
+    pin: acYT0fGm
+    type: resource-pack
+    environment:
+      client: required
+      server: unsupported
+  simple-3d-iron-bars:
+    source: modrinth:simple-3d-iron-bars
+    pin: harPhc3X
+    type: resource-pack
+    environment:
+      client: required
+      server: unsupported
+
+  searchables:
+    source: modrinth:searchables
+    pin: iEE85X0w
+    environment:
+      client: required
+      server: unsupported
 
 build:
   default:

@@ -104,6 +104,7 @@ coverage.xml
 
 # Exact provider payloads are reacquired; custom resource sources stay tracked.
 /pack/mods/*.jar
+/pack/resourcepacks/*.zip
 /pack/shaderpacks/*.zip
 /overrides/client/mods/*.jar
 /overrides/server/mods/*.jar
