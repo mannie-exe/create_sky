@@ -97,6 +97,7 @@ coverage:
   sable: complete
   simulated-copycats: complete
   sky-archipelago: complete
+  sky-villages: complete
   sodium: complete
   sodium-extra: complete
   sound-physics-remastered: complete
@@ -5277,6 +5278,61 @@ dependencies:
       provider: modrinth
       selector: sHFNUlBU
     title: Sky Archipelago
+  sky-villages:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/mb68eIfx/versions/3InSHTOp/SkyVillages-1.0.6-1.21.x-neoforge-release.jar
+        kind: provider
+        pin:
+          project:
+            project: mb68eIfx
+            provider: modrinth
+          selection:
+            id: 3InSHTOp
+            provider: modrinth
+        slot: SkyVillages-1.0.6-1.21.x-neoforge-release.jar
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 645eb49d4019e5550afd4055f380c26edd126611
+          sha512: >-
+            e5c1c2030714b2dfb2349edd1c2666df1b3d6b7644708089f6fda89cede3aa0390c357b912adc7a92adc33db0dcc272a7256af2a2299e159570791c8854666b4
+        size: 246630
+      placements:
+      - destination: mods/SkyVillages-1.0.6-1.21.x-neoforge-release.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 645eb49d4019e5550afd4055f380c26edd126611
+          sha512: >-
+            e5c1c2030714b2dfb2349edd1c2666df1b3d6b7644708089f6fda89cede3aa0390c357b912adc7a92adc33db0dcc272a7256af2a2299e159570791c8854666b4
+        location: mb68eIfx
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: mb68eIfx
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: mb68eIfx
+        provider: modrinth
+      selection:
+        id: 3InSHTOp
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: sky-villages
+    title: Sky Villages
   sodium:
     content: mod
     files:
@@ -6021,7 +6077,7 @@ dependencies:
       provider: modrinth
       selector: OnlVIpq5
     title: Fast Noise
-intent-revision: 25f006791c922ef5c14bac674a92c76434aec2105cefb87b11b8ede553f51125
+intent-revision: 9455a7d85d56d8a0ed8bc7a7988b23537056824bb9df0d0f349147af4f464b42
 required-edges:
   accessories:
   - owo-lib
@@ -6105,6 +6161,8 @@ required-edges:
   reliable-emi:
   - emi
   - yacl
+  sky-villages:
+  - architectury-api
   sodium-extra:
   - sodium
 resolver: empack-synchronization-v0.5

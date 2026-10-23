@@ -24,7 +24,9 @@ objective's meaning needs an explicit migration or a new ID.
 All 48 English entries have explanatory descriptions, normally two paragraphs.
 They describe the component's function, related production route and relevant
 operating constraints. Full completion requirements and disclaimers remain
-separate from those explanations and from short objective labels. Flavor is empty.
+separate from those explanations and from short objective labels. Flavor is empty. The 0.1.8 review clarifies supplied delivery cargo, resin yields,
+turpentine quantities and early quartz access. All inventory objectives share the
+inventory disclaimer, including entries with alternative items.
 
 All entries have empty requirements. Chapters and sort order organize the routes;
 they do not impose crafting order. This accepts existing equipment and avoids

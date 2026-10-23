@@ -25,7 +25,7 @@ the editor counts those entries. Sentence counts are editorial guidance.
 
 Each locale's `shared` object maps disclaimer keys to nonempty messages. Entries
 reference those keys through `disclaimer`; they do not own copies of the text.
-The existing `inventory` message serves 43 entries, while `delivery_interaction`
+The existing `inventory` message serves 46 entries, while `delivery_interaction`
 and `circuit_interaction` each serve one. Similar interaction messages stay
 separate because they describe different completion checks.
 
@@ -96,8 +96,9 @@ The checker reports drift, missing files and files absent from the register.
 It covers distributed client/common config, shader settings, client options,
 resource recipes/tags/drops and the server properties template. Generated journal
 files have their own semantic check. Dependency selection, live-instance settings,
-worlds, LOD caches and private seeds are outside this register. Structure tuning
-is deferred; the empty structures register states that explicitly.
+worlds, LOD caches and private seeds are outside this register. The structures
+register covers the Sky Villages integration; broader density tuning remains
+deferred. See [structures](structures.md).
 
 The checker is read-only. It does not restore files, generate arbitrary mod
 configuration, or accept new hashes automatically. Whole-file hashing is sensitive

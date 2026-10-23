@@ -3,7 +3,7 @@ records:
   - id: islands/current
     title: Current Sky Archipelago configuration
     evidence: configuration
-    detail: Candidate uses CONSISTENT cluster spacing 1494, matching the current seed's effective DYNAMIC value. The former DYNAMIC 32 to 1500 range selects one spacing per world. RANDOM size mode, radius settings 10 to 500, density 0.4, center Y -32 to 300, thickness 300, VOID overlap and disabled ocean-biome islands are unchanged. Size settings are not hard bounds on every scaled island descriptor. Local instances now use the candidate settings. The old server world is archived; next launch selects a random seed because level-seed is blank.
+    detail: The pack uses CONSISTENT cluster spacing 1494, matching the current seed's effective DYNAMIC value. The former DYNAMIC 32 to 1500 range selects one spacing per world. RANDOM size mode, radius settings 10 to 500, density 0.4, center Y -32 to 300, thickness 300, VOID overlap and disabled ocean-biome islands are unchanged. Size settings are not hard bounds on every scaled island descriptor. Both earlier worlds were archived. The local comparison world was deleted by request for the 0.1.8 playtest; its original seed is retained for generation at the next launch. The distributed server template remains seed-free.
     sources:
       [
         'sky_archipelago-common.toml',
@@ -13,10 +13,20 @@ records:
   - id: ores/pregen
     title: Archived terrain baseline
     evidence: measured
-    detail: This survey describes the archived world, not the pending random world. Refresh it after pregen. Region headers were counted exhaustively; blocks are sampled reproducibly within every populated region. Air volume changes per-world-area yields, while vertical terrain availability changes which ore bands survive. A recipe or configured ore feature alone does not guarantee obtainable quantities.
+    detail: This survey describes the archived world, not the replacement world awaiting generation. Refresh it after pregen. Region headers were counted exhaustively; blocks are sampled reproducibly within every populated region. Air volume changes per-world-area yields, while vertical terrain availability changes which ore bands survive. A recipe or configured ore feature alone does not guarantee obtainable quantities.
     sources: ['scripts/world.py', 'data/generated/world.json']
   - id: structures/deferred
     title: Structure generation tuning is a separate pass
     evidence: decision
-    detail: Do not add Structures Arise or retune existing structure spacing in this pass. Delivery quests rely on finding actual village structures; sparse placement can leave the board empty.
+    detail: Sky Villages is installed with bounded absolute height, repaired pools and village-tag membership. Its default 70/65-chunk candidate distribution and biome eligibility remain unchanged. Structures Arise and the broader structure-density pass remain deferred. Delivery availability still depends on valid reachable endpoints.
     sources: ['user direction, 2026-10-21']
+  - id: structures/sky-village-resources
+    title: Village foundations and crops
+    evidence: native-placement-survey
+    detail: One ordered foundation pass targets 0.025% diamond ore, 0.15% emerald ore and 20% diorite. Across 24 controlled villages on four seeds, diamond ore ranged 0–5 (median 2), emerald ore 5–33 (median 17). Crops and chest loot are unchanged. Natural Sky Archipelago checks found 74 valid starts in 100 candidate cells; eight fully generated villages had no shielded placement failures. Controlled counts exclude terrain; natural bounding-box counts do not. Fortune, multiplayer loot, safe approaches and completed deliveries need playtesting. See World & ores for the dated survey and per-village counts.
+    sources:
+      [
+        'pack docs/development/structures.md',
+        'Sky Villages 1.0.6 templates and house_processor',
+        'Minecraft 1.21.1 RuleProcessor',
+      ]

@@ -19,6 +19,14 @@ The pack enables and enforces the whitelist. The default port is 25565, normal
 view distance is 12 chunks, and simulation distance is 10 chunks. Server files
 live under `game/`; the default world is `game/world`.
 
+## Garbage collection
+
+Keep Java 21's default G1 collector as the server baseline. The client ZGC setting
+does not apply to the dedicated server. Before changing collectors, measure GC
+pauses alongside tick times during normal play and pre-generation. Test ZGC only
+if collection pauses contribute to stalls, and compare tick times, CPU use and
+memory use with the same workload. No server-specific GC tuning is shipped.
+
 ## Terrain and distant generation
 
 New dedicated worlds use `sky_archipelago:sky_islands`. The common Sky Archipelago

@@ -2,6 +2,11 @@
 
 Create Sky 0.1.7, checked 2026-10-22. 110 top-level client mod JARs and two base shader ZIPs. Minecraft remains 1.21.1 and NeoForge remains 21.1.264. Euphoria generates its patched shader at launch. Bundled libraries are additional to this list.
 
+Unreleased source and the local playtest instances additionally include
+[Sky Villages 1.0.6](https://modrinth.com/mod/sky-villages/version/3InSHTOp).
+See [structure configuration](development/structures.md). The published 0.1.7
+artifacts do not include this addition.
+
 | Project | Version | Source |
 |---|---|---|
 | [Let's Do Addon] EMI Compat | 2.0.3 | [Exact version](https://modrinth.com/mod/lets-do-emi-compat/version/j1Vdf01b) |

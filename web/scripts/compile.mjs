@@ -16,6 +16,7 @@ import {
   fluidNode,
 } from '../src/lib/acquisition.mjs'
 import { domains, validateDomain } from '../src/lib/domains.mjs'
+import { configuredPack } from './authoring.mjs'
 
 export const root = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -359,6 +360,23 @@ export async function compile() {
   await write('recipes', active)
   await write('loot', loot)
   await write('world', world)
+  const structures = await read('structures').catch((error) => {
+    if (error.code === 'ENOENT') return null
+    throw error
+  })
+  if (structures) {
+    const processor = await fs.readFile(
+      path.join(
+        await configuredPack(root),
+        'pack-fixes/data/skyvillages/worldgen/processor_list/house_processor.json',
+      ),
+    )
+    structures.stale =
+      structures.sourceFingerprint !== snapshot.sourceFingerprint ||
+      structures.processorSha256 !==
+        crypto.createHash('sha256').update(processor).digest('hex')
+  }
+  await write('structures', structures)
   await fs.writeFile(
     path.join(root, 'public/generated/authored.json'),
     JSON.stringify(authored),

@@ -1,80 +1,120 @@
 # Progression review
 
-This review covers the progression included in 0.1.6. The Atlas combines
-registered recipes and loot with authored environmental assumptions. A mapped
-route establishes potential acquisition, not starting-island availability,
-affordable quantities, operating power or safe travel.
+The current source combines island exploration, Create production and Aeronautics
+transport. The Atlas records potential acquisition; it does not prove affordable
+quantities, working machinery or a safe outward and return journey. The archived
+terrain survey predates the active comparison world and Sky Villages.
 
-## Journal
+## Resources and processing
 
-All 48 entries retain their IDs, objective order and detectable conditions.
-Short objective labels identify the item or action; the main description states
-the full quantity and condition. Inventory objectives require the count at once,
-not cumulative crafting or possession of placed machines. The two interaction
-entries check a right-click, not a completed delivery or functioning circuit.
+Keep geological variants distinct while unifying interchangeable manufactured
+materials. Almost Unified previously replaced specific ore inputs with broad ore
+tags: stone and deepslate iron matched both crushing recipes despite different
+outputs and durations. Ore tags are now excluded from unification; ingots,
+plates and the Create Deco zinc-sheet preference remain unified.
 
-The 69 displayed objective labels fit the inspected default-font text budgets.
-All 66 leaf branches pass native negative/positive checks and progress restoration.
-No quest target is unresolved in the current map. This does not test the actual
-client's GUI or prove every item can be reached from a particular spawn.
+Platinum uses Create's existing crushing family. The three overlapping Propulsion
+ore/raw-block recipes are disabled through native data-load conditions. This
+chooses consistent metal and XP yields rather than leaving recipe selection to
+resolve conflicting alternatives. Propulsion still owns platinum items, worldgen,
+washing, smelting and other processing. The spruce-log and copycat-wing recipes
+also now use Create 6's `processing_time` field, preserving their authored
+150- and 50-tick work durations. These are recipe work values, not fixed wall time
+independent of machine speed.
 
-## Routes and remaining checks
+Native exports verified that exact-input crushing collision groups fell from nine
+to zero. This does not establish that all partial overlaps across every recipe
+system are gone. Existing crafting alternatives, including copycat shapes and
+vault conversions, remain selectable through Polymorph; no blanket recipe removal
+was applied to decorative choices.
 
-| Route | Finding | Next useful check |
+The archived survey supports vertical resource specialization: iron and coal were
+common, while diamonds and most redstone were concentrated in deepslate. Preserve
+that reason to visit lower islands before increasing global ore rates. Platinum's
+configured bands are also low; new-terrain access and usable ore quantities remain
+unmeasured. Gold washing supplies a separate 5% platinum-nugget chance. At that
+rate, one ingot takes 180 crushed-gold washes on average, not a guaranteed batch.
+
+## Production and travel
+
+| System | Current behavior | Design implication |
 | --- | --- | --- |
-| Gliding | Two phantom membranes remain a normal insomnia/combat route; no artificial Nether gate or replacement recipe is needed. | Test a return route as well as the first downhill crossing. |
-| Ropes | Rope couplings are simple; throwable connectors also depend on processed iron and machinery. | Confirm that the early crossing plan uses equipment players can actually produce. |
-| Heat and brass | The old map incorrectly required a Blaze Burner for all heated processing. The installed coal-fired solid burner below a basin reaches heated and superheated states, verified through native ticks and Create's predicate. | Test a fueled burner under a working basin/mixer before treating a graph route as production proof. |
-| Flight | Adjustable burners and solid-fuel thrusters have distinct material routes; an inventory checklist does not verify a controllable aircraft. | Assemble, fuel, steer, land and return with an actual craft. |
-| Liquid fuel | Pine resin comes from crushing spruce logs, then turpentine needs heated mixing with water. | Confirm spruce access, crushing-wheel production and sustained fuel output. |
-| Platinum | Gold washing has a 5% nugget route; new platinum ore is an alternative. | Measure useful yield before changing scarcity. Regeneration is not required just to obtain platinum. |
-| Deliveries | Village mode requires real villages. The configured 500 to 2000 delivery distance and 1000 minimum player search radius may leave sparse areas without offers. | Find two reachable villages and complete a delivery. An empty board is a risk, not yet a reproduced defect. |
-| Hostile Skies | Automatic raids remain disabled. Captain orders therefore lack a normal enabled encounter route; no journal entry requires them. | Design deliberate encounters separately; do not enable random raids to improve a coverage number. |
+| Early brass | A fueled Propulsion Solid Burner supplies basin heat without blaze capture. | Metalworking can precede the Nether; fuel and a working mixer still matter. |
+| Superheat | Native heat checks accept a coal-fired solid burner as superheated. | This overlaps blaze cakes. The steam-engine superheat switch is not a basin-specific control. Do not pretend a cake gate exists. |
+| Turpentine | Crushing spruce logs gives resin at 60%; one resin and 250 mB water mix into 250 mB fuel without heat. | Spruce access and Crushing Wheels matter; a heated fuel refinery is not required. |
+| Liquid thrust | A standard 1,000 mB tank at full throttle lasts about 33.3 s on turpentine or 50 s on lava at 20 TPS. Turpentine has 100% thrust, lava 75%. | Turpentine is stronger but currently slightly worse in thrust per fuel volume. These budgets exclude multiblocks/oxidizer and do not measure flight range. |
+| Gliding | Membranes supply crafting and repair; tagged heat blocks provide a 15-block updraft range. | Gliders suit local crossings and prepared ascent points. Sleeping habits affect membrane encounters; no artificial membrane gate is needed. |
+| Ropes | Connector ranges are 10/20/40 blocks by hand/launcher/mount; the plunger reaches 64. | Useful for docking and nearby gaps, not for crossing whole cluster intervals. |
+| Flywheel Bearing | The block is enabled, but kinetic storage is disabled. Its recipe already requires brass. | It currently has no storage role. Do not describe it as an early energy buffer until that feature is enabled and tested. |
+| Backpacks | Base storage is 27 slots, with larger tiers and portable processing upgrades. | Ships need roles beyond carrying a player's normal inventory: mounted machines, bulk flows and physical delivery cargo. |
 
-The current spawn is high relative to several nearby island descriptors. This
-makes loss of altitude and return travel more relevant than horizontal distance
-alone. The preview does not establish actual landing surfaces or glider range.
+The quartz bootstrap deserves a practical check. Crushing diorite and washing
+crushed gold provide later quartz routes, but Crushing Wheels themselves require
+mechanical crafters and electron tubes. The Atlas's restricted no-exploration,
+no-Nether scenario still blocks that bootstrap. An early Nether trip is a valid
+route; adding an alternate quartz source would be a progression choice, not an
+obvious missing-recipe repair. The journal's three-crafter checkpoint also does
+not satisfy the 21-crafter crushing-wheel arrangement.
 
-In a restricted map scenario without exploration, villages, new terrain, Nether
-or End access edges, gliding, brass and propeller bearings remain reachable through
-survey-backed resource assumptions. Quartz still blocks the normal electron-tube,
-mechanical-crafter and crushing-wheel bootstrap in that scenario. Consequently,
-platinum washing and turpentine remain later processes even with early brass.
-This is a graph finding; it does not assert every source interaction is modeled.
-The three-crafter journal checkpoint checks inventory possession. The current
-crushing-wheel recipe needs 21 crafters in a five-by-five arrangement with the
-corners missing; the checkpoint does not establish that this setup is complete.
+## Settlements and deliveries
 
-## Overlaps
+[Sky Villages](structures.md) adds destinations, crops, villagers and salvage.
+Scarce foundation minerals now give a finite exploration reward: the 24-village
+survey found medians of two diamond ore and 17 emerald ore. Keep chest loot,
+salvage and Fortune in the comparison with repeatable delivery rewards; these
+measurements do not establish mining/travel time or simulated settlement demand.
 
-Seven exact-input recipe collision groups were identified. Three yield identical
-outputs. Four preserve selectable alternatives: copycat step/stair conversions,
-vault conversion, and brass-sheet uses. Polymorph is installed. No recipes were
-deleted merely because inputs overlap; verify selection in the actual crafting
-UI and any intended automation before consolidating them.
+Delivery Quests is in `CUSTOM` mode. The pack now owns its six stock templates in
+`config/aeronautics_delivery_quests/custom_quests.json`, with direct titles and
+descriptions. Schematics, masses, rewards and automatic endpoints are unchanged.
+The mod previously generated this file locally; it was not an absent-file
+procedural fallback after first launch. The available jobs award 15–50 emeralds
+plus items, including one Mechanical Arm for a medium machinery shipment.
 
-Coal-fired superheat is a meaningful balance overlap: if confirmed in a working
-mixer, it reduces the special role of blaze cakes as well as blaze capture. The
-native heat predicate accepts it, but sustained production was not tested. Keep
-this visible for play review rather than adding a new recipe gate. The existing
-"Burners power heated mixers" switch covers burner participation; the separate
-superheat switch in this config concerns steam engines, not a dedicated basin
-superheat policy. Upstream also treats pre-Nether brass as a pack balance choice
-([Propulsion #92](https://github.com/Propulsion-Team/create-propulsion-simulated/issues/92)).
+These contracts transport supplied schematic cargo; they do not buy the player's
+farm output or simulate village consumption. Do not design a farming economy on
+that assumption. Existing villager trades are the actual item-demand mechanism.
+Village lookup, safe pickup placement and delivery completion remain separate
+checks. Routes remain 500–2,000 blocks with a 120-minute limit and four offers.
+Hostile Skies automatic raids remain disabled; captain orders are intentionally
+outside normal progression until deliberate encounters are designed.
 
-The journal intentionally has no mandatory chapter gates, item rewards or
-abstract flight/delivery-completion claims. A solid-burner introduction could be
-useful now that the heat route is explicit. Adding one is a content decision,
-not required to repair the current labels. Flywheel tuning and structure
-generation remain separate work; neither was silently made a prerequisite.
+## Candidates for playtesting
 
-## Release boundary
+These are proposals, not applied settings or verified builds:
 
-Automated checks support the candidate for a new random-seed generation review. They
-do not establish a complete survival playthrough or general seed viability.
-The remaining hands-on checks above should determine whether the candidate is
-ready to publish. The old world is archived and the active world path is clear. No replacement
-world was launched and no release was published.
+- Give settlements value as places to revisit. Test the scarce foundation rates
+  alongside building-specific loot before increasing payouts or restricting
+  trades. Keep crop variety; there is no reason to gate basic carrots.
+- Compare one renewable turpentine route with a lava supply route. A turpentine
+  burn-rate reduction from 150% to 125% would yield 40 seconds per internal tank
+  while retaining stronger thrust; first measure loaded round-trip costs.
+- Build one modest powered cargo ship with separate fuel reserve, dock transfer
+  and a stock delivery crate. This tests whether logistics has a useful role
+  alongside backpacks without nerfing personal inventory convenience.
+- Try a campfire/updraft landing tower for repeatable short crossings. Its purpose
+  is to recover local altitude and connect docks, not replace long-distance flight.
+- Test Flywheel Bearing storage separately before enabling it. A persistent role
+  could be short power bursts or operations while a fueled engine is stopped.
+  Brass access is already a natural constraint; an extra recipe gate is unnecessary.
 
-See [world generation](worldgen.md), [journal definitions](journal.md), and the
-Atlas `docs/development/verification.md` for configuration and check evidence.
+## Journal and verification
+
+The journal remains optional and bookless. Its 48 entries retain IDs, objective
+order and detectable conditions. Inventory goals require simultaneous possession;
+interaction goals do not claim a working machine or completed delivery. Turpentine
+and mixer descriptions now match the unheated recipe. No quest mechanics changed.
+
+The review used the installed 1.21.1 / NeoForge 21.1.264 artifacts and native
+runtime exports on 2026-10-22. `python3 scripts/generate-journal.py --check`,
+`python3 scripts/audit-changes.py`, the existing Python tests, resource build and
+Atlas refresh/check validate source consistency and the loaded recipes. Native
+Sky Villages processor sampling and its limits are recorded in
+[structures](structures.md). Runtime behavior was checked in a disposable server;
+no flight, delivery or full survival playthrough was performed.
+All three empack reference distributions built successfully; the server archive
+retains its existing launch workaround.
+
+The review changes ship in 0.1.8. An ordinary update does not regenerate worlds. See [build and release](build.md) for installation,
+[world generation](worldgen.md) for terrain settings, and
+[Atlas verification](web/verification.md) for map limitations.

@@ -70,6 +70,9 @@ test('coverage filters, blocked routes and editable acquisition domain', async (
 })
 
 test('missing world survey has an explicit empty state', async ({ page }) => {
+  await page.route('**/generated/structures.json', (route) =>
+    route.fulfill({ json: null }),
+  )
   const errors = []
   page.on('pageerror', (error) => errors.push(error.message))
   await page.route('**/generated/world.json', (route) =>
@@ -82,5 +85,70 @@ test('missing world survey has an explicit empty state', async ({ page }) => {
   )
   await expect(page.locator('#world-layout')).toBeHidden()
   await expect(page.locator('#world-notes')).toContainText('pnpm data:world')
+  await expect(page.locator('#structure-survey')).toContainText(
+    'No village survey',
+  )
   expect(errors).toEqual([])
+})
+
+test('village survey is independent of terrain data and labels stale results', async ({
+  page,
+}) => {
+  await page.route('**/generated/world.json', (route) =>
+    route.fulfill({ json: null }),
+  )
+  await page.route('**/generated/structures.json', (route) =>
+    route.fulfill({
+      json: {
+        capturedAt: '2026-10-23',
+        stale: true,
+        limitations: ['No survival travel test.'],
+        runs: [
+          {
+            mode: 'controlled',
+            seed: 1,
+            placementFailures: [],
+            samples: [
+              {
+                pieces: 37,
+                blocks: { 'minecraft:emerald_ore': 11 },
+                lootItems: {},
+              },
+            ],
+          },
+          {
+            mode: 'natural',
+            seed: 1,
+            placementFailures: [],
+            samples: [{ validStart: true, placed: {} }, { validStart: false }],
+          },
+        ],
+      },
+    }),
+  )
+  await page.goto('/')
+  await page.getByRole('button', { name: 'World & ores', exact: true }).click()
+  const panel = page.locator('#structure-survey')
+  await expect(panel).toContainText('Stale inputs')
+  await expect(panel.locator('tbody').first().locator('td')).toHaveText([
+    '1 / 1',
+    '37',
+    '0',
+    '11',
+    '0',
+    '0',
+  ])
+  await expect(panel.locator('tbody').last().locator('td')).toHaveText([
+    '1',
+    '2',
+    '1',
+    '1',
+    '0',
+  ])
+  await panel.getByText('Method and limits').click()
+  await expect(panel).toContainText('No survival travel test.')
+  await page.setViewportSize({ width: 390, height: 844 })
+  expect(
+    await page.evaluate(() => document.body.scrollWidth <= innerWidth),
+  ).toBe(true)
 })

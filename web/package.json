@@ -26,7 +26,8 @@
     "deploy": "wrangler deploy",
     "format": "prettier --write . ../docs/development/web",
     "lint": "prettier --check . ../docs/development/web",
-    "test:browser": "playwright test"
+    "test:browser": "playwright test",
+    "data:structures": "python3 scripts/structures.py"
   },
   "dependencies": {
     "astro": "7.4.2",

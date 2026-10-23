@@ -66,7 +66,12 @@ The distributed template remains seed-free. Neither archive was discarded.
 The previous seed comparison above remains historical evidence for choosing the
 1494 spacing scale, not a prediction of the next world's terrain.
 
-Before publication, check spawn resources and a feasible outward and return
+For the 0.1.8 playtest, the owner requested deletion of the current comparison
+world without another backup. Its matching client Overworld LOD cache was also
+cleared. The existing archives and original seed are retained; the local server
+is stopped with no `game/world`, ready to generate at its next launch.
+
+For gameplay validation, check spawn resources and a feasible outward and return
 crossing, brass production with a solid burner, village delivery availability,
 and ore/structure distribution across both high and low islands. Check several
 seeds for spawn viability before claiming general seed robustness. Keep structure
@@ -76,3 +81,7 @@ an archived baseline until a new read-only survey is captured after pregen.
 Source artifact: Sky Archipelago 1.3.6 SHA-256
 `6bc4deeb1bc2be716d29e76837b179104009a73e9a32d6d097a415b08ac174e1`.
 See [progression review](progression.md) for the gameplay checks.
+
+The 0.1.8 Sky Villages addition uses bounded absolute structure height;
+see [structures](structures.md) for placement overrides and remaining checks.
+It does not change the Sky Archipelago spacing decision above.

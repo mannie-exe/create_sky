@@ -92,3 +92,36 @@ has not been established and no report was submitted.
 Sky Archipelago DYNAMIC spacing is explicitly seed-wide in the installed code
 and config comment. Choosing CONSISTENT for this pack is a policy decision,
 not a demonstrated upstream defect.
+
+## Sky Villages placement, 2026-10-22
+
+Sky Villages 1.0.6 with the current 1.21.1 pack reproduced a shielded natural
+placement failure: `JukeboxBlockEntity#setTheItem:129` dereferences a null `level`
+while loading a generated jukebox. Clearing generated record NBT through the
+house processor removed the error in a fresh same-seed repeat. The loaded-area
+structure command also succeeded. See [structures](structures.md) for the
+artifact and workaround.
+
+This is a report candidate, not an isolated attribution to Sky Villages, vanilla
+Minecraft or another mod. Existing upstream coverage has not been checked and
+no report was submitted. A minimal reproduction should include a record-bearing
+template and compare vanilla/NeoForge, Sky Archipelago and the pack's optimizers.
+
+Its ore processor also masks its own diamond rule: separate rule processors use
+the same position seed, so the 20% diorite pass consumes every candidate for the
+later 0.5% diamond pass. Native sampling and a positive ore-pass-only control
+confirm this. The pack now uses a single ordered pass with scarce mineral rates;
+see [structures](structures.md) for whole-village measurements. This has not been
+reported upstream.
+
+## Processing compatibility
+
+Propulsion 1.1.5 uses `processingTime` in five Create recipes, while the installed
+Create codec reads `processing_time`. Native exports omit those durations until
+corrected. The pack repairs the spruce-log and copycat-wing keys; overlapping
+platinum recipes instead defer to Create's existing family. Separately, broad
+ore unification erased Create's stone/deepslate input distinctions. That is a
+pack configuration problem, repaired by retaining geological ore identity.
+See [progression](progression.md) for the resulting policy and validation.
+Existing upstream coverage of the duration issue has not been checked and no
+report was submitted.

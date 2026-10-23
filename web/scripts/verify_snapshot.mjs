@@ -23,6 +23,11 @@ assert.equal(
   items.length,
   'Every registered item must be on the map',
 )
+assert.equal(
+  catalog.meta.counts.recipes,
+  recipes.length,
+  'Recompile the map after changing the runtime recipe snapshot',
+)
 assert(
   byRecipe
     .get('createdeco:placard')
@@ -54,6 +59,51 @@ assert.equal(
 assert.equal(
   byRecipe.get('createdeco:pressing/zinc_sheet').output,
   'createdeco:zinc_sheet',
+)
+for (const material of [
+  'copper',
+  'iron',
+  'zinc',
+  'lapis',
+  'gold',
+  'diamond',
+  'emerald',
+]) {
+  const namespace = material === 'zinc' ? 'create' : 'minecraft'
+  for (const variant of ['', 'deepslate_']) {
+    const name = `${variant}${material}_ore`
+    assert.deepEqual(
+      byRecipe.get(`create:crushing/${name}`).ingredients,
+      [[`${namespace}:${name}`]],
+      `${name} must retain its geological input`,
+    )
+  }
+}
+for (const item of [
+  'platinum_ore',
+  'deepslate_platinum_ore',
+  'raw_platinum_block',
+]) {
+  assert.equal(
+    recipes.filter(
+      (r) =>
+        r.type === 'create:crushing' &&
+        r.ingredients.some((g) => g.includes(`createpropulsion:${item}`)),
+    ).length,
+    1,
+    `${item} must have one crushing route`,
+  )
+}
+for (const [id, duration] of [
+  ['createpropulsion:crushing/spruce_log', 150],
+  ['createpropulsion:cutting/copycat_wing', 50],
+])
+  assert.equal(byRecipe.get(id).json.processing_time, duration, id)
+assert.equal(
+  byRecipe.get('createpropulsion:mixing/turpentine').json.heat_requirement ??
+    'none',
+  'none',
+  'Turpentine must not acquire an implicit heat gate',
 )
 for (const [name, stacks] of Object.entries(drops))
   assert(

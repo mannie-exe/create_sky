@@ -1,0 +1,12 @@
+{
+  "name": "skyvillages:skyvillage_deco",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 5,
+      "element": {
+        "element_type": "minecraft:empty_pool_element"
+      }
+    }
+  ]
+}

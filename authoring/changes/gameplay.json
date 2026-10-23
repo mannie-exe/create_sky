@@ -575,6 +575,13 @@
       "review": "reviewed",
       "reason": "Server export defaults include the sky world preset and whitelist. Playing-world seeds belong only in local instance configuration.",
       "reference": "docs/players/server.md"
+    },
+    {
+      "path": "overrides/common/config/aeronautics_delivery_quests/custom_quests.json",
+      "sha256": "c789f31b50aa9c9206fc216de210ec0d642a6a64daa7af893ee65be8e90ac9a4",
+      "review": "reviewed",
+      "reason": "Own the six stock delivery templates with direct descriptions; preserve cargo schematics, masses, rewards and automatic endpoints. Do not imply simulated scarcity, guarded cargo or NPC demand.",
+      "reference": "docs/development/progression.md"
     }
   ]
 }

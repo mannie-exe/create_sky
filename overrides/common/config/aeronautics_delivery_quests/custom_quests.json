@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Machinery shipment",
+    "description": "Transport the cargo to the marked destination. Missing cargo reduces the reward.",
+    "schematicName": "medium_machinery_pallet",
+    "weightClass": "Medium",
+    "actualWeight": 3500.0,
+    "rewards": [
+      "minecraft:emerald:35",
+      "create:mechanical_arm:1"
+    ],
+    "pickupPos": "",
+    "dropoffPos": ""
+  },
+  {
+    "name": "Secure container",
+    "description": "Transport the cargo to the marked destination. Missing cargo reduces the reward.",
+    "schematicName": "heavy_secure_container",
+    "weightClass": "Heavy",
+    "actualWeight": 9000.0,
+    "rewards": [
+      "minecraft:emerald:50",
+      "minecraft:gold_ingot:8"
+    ],
+    "pickupPos": "",
+    "dropoffPos": ""
+  },
+  {
+    "name": "Food shipment",
+    "description": "Transport the cargo to the marked destination. Missing cargo reduces the reward.",
+    "schematicName": "light_food_crate",
+    "weightClass": "Light",
+    "actualWeight": 1200.0,
+    "rewards": [
+      "minecraft:emerald:15",
+      "minecraft:bread:16"
+    ],
+    "pickupPos": "",
+    "dropoffPos": ""
+  },
+  {
+    "name": "Copper shipment",
+    "description": "Transport the cargo to the marked destination. Missing cargo reduces the reward.",
+    "schematicName": "medium_ore_crate",
+    "weightClass": "Medium",
+    "actualWeight": 4000.0,
+    "rewards": [
+      "minecraft:emerald:25",
+      "create:copper_casing:4"
+    ],
+    "pickupPos": "",
+    "dropoffPos": ""
+  },
+  {
+    "name": "Boiler shipment",
+    "description": "Transport the cargo to the marked destination. Missing cargo reduces the reward.",
+    "schematicName": "heavy_industrial_boiler",
+    "weightClass": "Heavy",
+    "actualWeight": 11000.0,
+    "rewards": [
+      "minecraft:emerald:45",
+      "create:fluid_tank:2"
+    ],
+    "pickupPos": "",
+    "dropoffPos": ""
+  },
+  {
+    "name": "Cargo shipment",
+    "description": "Transport the cargo to the marked destination. Missing cargo reduces the reward.",
+    "schematicName": "light_cargo_crate",
+    "weightClass": "Light",
+    "actualWeight": 1500.0,
+    "rewards": [
+      "minecraft:emerald:20",
+      "create:cogwheel:4"
+    ],
+    "pickupPos": "",
+    "dropoffPos": ""
+  }
+]

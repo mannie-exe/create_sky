@@ -22,7 +22,7 @@
       "requirements": "Have at least 3 Mechanical crafters in your inventory at once.",
       "description": [
         "Mechanical Crafters work together to craft recipes larger than a crafting table allows. Each crafter holds an ingredient, and the connected arrangement passes those ingredients toward its output.",
-        "Crushing wheels require 21 crafters arranged in a five-by-five square with the corners missing. The three crafters required here introduce the component; they are not enough for that complete arrangement."
+        "The Crushing Wheels recipe needs 21 crafters arranged in a five-by-five square with the corners missing. Crafters are made three at a time, so seven batches supply that arrangement; the three required here are one batch."
       ],
       "disclaimer": "inventory",
       "labels": {
@@ -48,7 +48,7 @@
       "requirements": "Have at least 1 Platinum nugget in your inventory at once.",
       "description": [
         "Platinum nuggets are used in Propulsion cables, cable relays and Vector Thrusters. Washing crushed raw gold has a small chance to produce a platinum nugget, so platinum can be obtained without finding newly generated platinum ore.",
-        "The gold-washing route requires crushing and an Encased Fan blowing through water. Platinum ore offers another source when exploration reaches terrain containing it."
+        "Crush raw gold, then wash the crushed material with an Encased Fan blowing through water. Platinum ore is another source: it can be smelted directly or crushed and processed through the installed platinum recipes."
       ],
       "disclaimer": "inventory",
       "labels": {
@@ -232,7 +232,7 @@
         "Envelope blocks form the enclosure of an Aeronautics balloon. Lift comes from the enclosed volume filled with hot air, rather than from owning or placing a particular number of envelope blocks.",
         "Gaps let the enclosure fail to contain hot air, and blocks inside the balloon reduce its available volume. Build the envelope around a useful empty space and provide a hot-air source."
       ],
-      "disclaimer": null,
+      "disclaimer": "inventory",
       "labels": {
         "0": "One envelope color",
         "0.0": "White envelope",
@@ -261,7 +261,7 @@
         "Wooden and Andesite Propellers produce thrust when spun. They offer a propulsion option driven by Create rotation instead of a thruster's fuel or electrical input.",
         "Thrust direction and placement matter to the craft as a whole. A propulsion layout needs to account for turning and balance as well as forward movement."
       ],
-      "disclaimer": null,
+      "disclaimer": "inventory",
       "labels": {
         "0": "Either propeller",
         "0.0": "Andesite propeller",
@@ -287,7 +287,7 @@
       "requirements": "Have at least 1 Liquid thruster in your inventory at once.",
       "description": [
         "The Liquid Thruster produces directional thrust when supplied with turpentine and enabled by redstone. Pipes can replenish its fuel supply from storage.",
-        "Turpentine production depends on pine resin, water and heated mixing. A fuel tank can support a trip, but repeated travel also needs a way to make and load more fuel.",
+        "Turpentine production depends on pine resin, water and mixing in a Basin. A fuel tank can support a trip, but repeated travel also needs a way to make and load more fuel.",
         "Groups of eight or 27 Liquid Thrusters can form larger thruster assemblies. These assemblies accept fluid through their rear intake, so reserve that side for fuel delivery."
       ],
       "disclaimer": "inventory",
@@ -300,8 +300,8 @@
       "flavor": "",
       "requirements": "Have at least 4 Pine resin in your inventory at once.",
       "description": [
-        "Pine resin is obtained by crushing spruce logs and is an ingredient for turpentine. This route requires Crushing Wheels; a Millstone does not process the logs into resin.",
-        "A spruce supply can support repeated fuel production after the crushing setup is built. Reserve some of that supply for processing rather than turning every log into building materials."
+        "Crushing a spruce log has a 60% chance to produce one Pine Resin. This route requires Crushing Wheels; a Millstone does not process logs into resin.",
+        "Spruce saplings make the wood supply renewable. The mason building in Sky Villages can contain a spruce sapling, providing another exploration route when nearby islands lack spruce trees; that building is not guaranteed in every village."
       ],
       "disclaimer": "inventory",
       "labels": {
@@ -352,8 +352,8 @@
       "flavor": "",
       "requirements": "Have at least 1 Turpentine bucket in your inventory at once.",
       "description": [
-        "Turpentine is a liquid fuel made by heated mixing of pine resin and water. Pine resin comes from crushing spruce logs, so this fuel route depends on both crushing and heated mixing.",
-        "Tanks and pipes let you store the result and feed Liquid Thrusters. Size the fuel reserve around the journeys you intend to make, including a return trip."
+        "Mix one Pine Resin with 250 mB of water in a Basin to make 250 mB of turpentine. The recipe needs a powered Mechanical Mixer but no heat; four successful batches fill one bucket.",
+        "Tanks and pipes store the fuel and supply Liquid Thrusters. Resin production still needs Crushing Wheels and spruce logs, so establish that supply before relying on turpentine for repeated journeys."
       ],
       "disclaimer": "inventory",
       "labels": {
@@ -365,8 +365,8 @@
       "flavor": "",
       "requirements": "Have at least 1 Delivery table in your inventory at once.",
       "description": [
-        "The Delivery Table offers cargo deliveries through Aeronautics Delivery Quests. This pack uses village destinations, so offers depend on villages being available within the table's search range.",
-        "The table gives transport a purpose beyond moving your own supplies. A usable route still needs a way to reach the destination and handle the cargo there."
+        "The Delivery Table offers jobs to transport supplied schematic cargo. The pack uses six cargo templates and village destinations; these jobs do not purchase items from your farms or storage.",
+        "Sky Villages is included in village discovery. Offers still depend on suitable destinations within the configured search range, and a discovered village does not guarantee a clear approach or unloading area."
       ],
       "disclaimer": "inventory",
       "labels": {
@@ -430,8 +430,8 @@
       "flavor": "",
       "requirements": "Right-click delivery table.",
       "description": [
-        "Interact with the Delivery Table to inspect the offers available at that location. In village mode, the surrounding villages determine which destinations can be offered.",
-        "Read the requested cargo and destination before choosing a delivery. The journey needs a workable unloading point and a way to continue travelling afterward."
+        "Right-click the Delivery Table to inspect the available jobs. Check the supplied cargo, pickup point, destination and reward before accepting a shipment.",
+        "Transport the supplied cargo to its destination; missing cargo reduces the reward. Allow space and lifting capacity for the load, and keep enough fuel or another means of travel for the return journey."
       ],
       "disclaimer": "delivery_interaction",
       "labels": {
@@ -456,8 +456,8 @@
       "flavor": "",
       "requirements": "Have at least 1 Millstone in your inventory at once.",
       "description": [
-        "A Millstone uses rotational power to grind items through its supported recipes. It provides an early processing station before the larger Crushing Wheel setup is available.",
-        "Millstone and crushing recipes are not interchangeable. Check the recipe for the material you need; pine resin from spruce logs specifically belongs to the Crushing Wheels route."
+        "A Millstone uses rotational power to grind items through its supported recipes. Its compact layout remains useful for a dedicated processing line even after Crushing Wheels are available.",
+        "Milling and crushing recipes can have different inputs and outputs. Check the recipe for the material you need; pine resin from spruce logs specifically requires Crushing Wheels."
       ],
       "disclaimer": "inventory",
       "labels": {
@@ -470,7 +470,7 @@
       "requirements": "Have at least 1 Mechanical mixer in your inventory at once.",
       "description": [
         "A Mechanical Mixer processes ingredients in a Basin beneath it when supplied with sufficient rotational speed. Recipes can combine items and fluids, and some also require heat below the Basin.",
-        "Brass and turpentine both use heated mixing in this pack. The installed Propulsion Solid Burner can supply the required heated state when fueled and placed below the Basin."
+        "Brass requires heated mixing; turpentine does not. For brass, the installed Propulsion Solid Burner can supply the heated state when fueled and placed below the Basin."
       ],
       "disclaimer": "inventory",
       "labels": {
@@ -509,9 +509,9 @@
       "requirements": "Have at least 1 Water Wheel, 1 Large Water Wheel, or 1 Windmill Bearing in your inventory. Any one item completes this condition; it does not need to be placed or powered.",
       "description": [
         "Water Wheels and Windmill Bearings provide rotational power for Create machinery. Water wheels use flowing water, while a windmill needs an assembled sail-bearing structure.",
-        "These are continuing power sources for processing and transport, not disposable steps toward another machine. Use shafts and gearing to deliver the speed and direction required by each connected device."
+        "Use shafts and gearing to deliver the speed and direction each machine needs. A source can continue powering a dedicated workshop while other sources supply separate machinery or transport equipment."
       ],
-      "disclaimer": null,
+      "disclaimer": "inventory",
       "labels": {
         "0": "Any rotation source",
         "0.0": "Water wheel",
@@ -577,7 +577,7 @@
       "requirements": "Have at least 1 Quartz in your inventory at once.",
       "description": [
         "Quartz is used with redstone to make rose quartz, which is polished for Electron Tubes. Those tubes are part of the Mechanical Crafter recipe, linking quartz access to Crushing Wheels and their processing routes.",
-        "Obtaining quartz can therefore matter before you intend to build electrical machinery. Retain enough for the tubes required by the crafting arrangement you plan to construct."
+        "Mining Nether quartz ore provides a route before Crushing Wheels are available. Later processing routes can supply more quartz, but do not assume they can supply the first tubes needed to build those wheels."
       ],
       "disclaimer": "inventory",
       "labels": {

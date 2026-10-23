@@ -7,6 +7,12 @@ version="0.1.0"
 displayName="Create Sky resources"
 description='''Resource repairs and journal presentation for Create Sky.'''
 [[dependencies.createskyfixes]]
+modId="skyvillages"
+type="optional"
+versionRange="[1.0.6,)"
+ordering="AFTER"
+side="BOTH"
+[[dependencies.createskyfixes]]
 modId="createdeco"
 type="required"
 versionRange="[0,)"

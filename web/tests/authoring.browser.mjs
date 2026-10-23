@@ -235,7 +235,10 @@ test('real config audit and local write boundaries', async ({
   expect(await page.locator('#audit-rows tr').count()).toBeGreaterThan(0)
   await page.locator('#category').selectOption('structures')
   await expect(page.locator('#audit-summary')).toContainText(
-    'dedicated tuning pass',
+    '0 changed or missing',
+  )
+  await expect(page.locator('#audit-rows')).toContainText(
+    'pack-fixes/data/skyvillages/worldgen/processor_list/house_processor.json',
   )
   const data = { name: '../../outside', revision: '', text: '{}' }
   const foreign = await request.post('/__atlas/authoring/save', {

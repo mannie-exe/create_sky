@@ -14,7 +14,7 @@ clients or servers.
 | `overrides/common/` | Shared authored configuration |
 | `authoring/` | Journal source and categorized configuration register |
 | `overrides/client/` | Client-only content and shader presets |
-| `templates/` | Prism memory settings and server properties |
+| `templates/` | Prism memory and Java arguments, and server properties |
 | `web/` | Internal map and journal editor; excluded from pack payloads |
 | `docs/players/` | Player and server-owner instructions |
 | `docs/development/` | Maintainer procedures and dated evidence |
@@ -116,6 +116,8 @@ Retain these choices when refreshing the scaffold:
 - `EMPACK_RELEASE_NOTES` points to `docs/RELEASE_NOTES.md` and uses `--notes-file`.
 - All three reference profiles are selected through `build.default`; CI uses that default.
 - Prism overrides memory to 512 MiB minimum and 8192 MiB maximum.
+- Prism defaults to Java 21 Generational ZGC through `OverrideJavaArgs=true` and
+  `JvmArgs=-XX:+UseZGC -XX:+ZGenerational`; retain player overrides in existing installs.
 - Servers enforce the whitelist and create Sky Islands worlds.
 - Checkout credentials are not persisted.
 

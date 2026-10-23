@@ -54,7 +54,7 @@ records:
     inputs: [[createpropulsion:thruster]]
     outputs: []
     evidence: implementation
-    detail: Native turpentine is a valid fuel; another industrial mod is not required. Default full-throttle consumption 1 mB/tick and tank 1000 mB imply 50 seconds at 20 TPS for the standard tank, before other modifiers.
+    detail: 'Turpentine needs unheated basin mixing of pine resin and water. A single standard thruster consumes a base 1 mB/tick multiplied by the fuel burn rate: 150% for turpentine, 100% for lava. A 1000 mB tank therefore lasts about 33.3 seconds on turpentine or 50 seconds on lava at full throttle and 20 TPS, without multiblock or oxidizer modifiers. Turpentine provides 100% thrust versus lava at 75%; these are fuel budgets, not flight-range measurements.'
     sources:
       [
         'createpropulsion:thruster_fuels/turpentine.json',
@@ -67,3 +67,10 @@ records:
     evidence: implementation
     detail: Default 40 FE/tick at full throttle and 4000 FE internal buffer give five seconds at 20 TPS without supply. Power Grid and docking can make charging infrastructure meaningful; actual ship power transfer needs flight testing.
     sources: ['createpropulsion-common.toml', 'simulated-server.toml']
+  - id: power/flywheel-storage
+    title: Flywheel Bearing storage is disabled
+    inputs: [[bits_n_bobs:flywheel_bearing]]
+    outputs: []
+    evidence: configuration
+    detail: The block is available and its recipe requires a Brass Casing, but flywheelBearingStorageCapability is false. It currently provides no kinetic-storage route. A proposed persistent role is burst power or engine-off operation; enable and test storage before claiming that role.
+    sources: ['bits_n_bobs-common.toml', 'bits_n_bobs-server.toml']

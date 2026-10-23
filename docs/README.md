@@ -26,6 +26,7 @@ record what was tested at the time; they do not define current defaults.
 | [Web map and authoring](development/web/README.md) | App setup, editor controls, data pipeline and verification |
 | [Journal integrations](development/journal-integrations.md) | EMI/JEI, translation and Ponder findings |
 | [World generation](development/worldgen.md) | Candidate spacing and biome compatibility |
+| [Structures](development/structures.md) | Sky Villages placement, loot and delivery integration |
 | [Progression review](development/progression.md) | Routes, overlaps and remaining play checks |
 | [Upstream findings](development/upstream.md) | Known reports and candidates for submission |
 | [Decision history](development/decisions.md) | Dated decisions, commands and earlier findings |

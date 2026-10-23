@@ -1,5 +1,6 @@
 import { requestJSON as fetchJSON } from './http'
 import { detailBucket } from './graph.mjs'
+import { renderStructureSurvey } from './structures'
 type Node = {
   id: string
   name: string
@@ -373,6 +374,7 @@ el('more-evidence').addEventListener('click', () => {
   loadEvidence(false)
 })
 async function loadWorld() {
+  await renderStructureSurvey()
   if (!world) world = await fetchJSON('/generated/world.json')
   el('world-layout').hidden = !world
   if (!world) {

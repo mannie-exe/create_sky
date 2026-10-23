@@ -226,6 +226,22 @@ implementation details here. See [setup](setup.md) for capture commands and
 
 ## Heat and generation evidence
 
+`scripts/structures.py` builds `tools/structures/StructureSurvey.java` as a
+temporary server mod. Controlled samples use native jigsaw generation and
+placement above flat terrain, then count surviving blocks and roll native chest
+loot. Natural samples use Sky Archipelago's generator and normal biome checks:
+candidate starts are counted separately from fully generated bounding boxes.
+Natural block counts include terrain; they must not be called foundation yields.
+The runner records shielded placement failures and removes disposable servers.
+
+`data/generated/structures.json` retains seeds, bounds, piece counts, resource
+counts and input provenance. Compilation compares its fingerprint with the
+runtime snapshot and its processor hash with the current source. Differences
+mark it stale; the general workspace status still owns changes since runtime
+capture. `StructureSurvey.astro` and `src/lib/structures.ts` render this separate
+dataset even when no saved-world survey exists. Chest rolls do not verify Lootr
+multiplayer entitlements, safe landings, deliveries or survival progression.
+
 Heated processing uses `atlas:heated` and `atlas:superheated` capability nodes.
 Authored routes supply them through fueled Blaze Burners or the installed
 Propulsion solid burner. The latter requires coal and a basin to request heat

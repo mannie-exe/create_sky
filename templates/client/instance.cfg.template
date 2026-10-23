@@ -6,6 +6,9 @@ ExportAuthor={{ini_quote AUTHOR}}
 OverrideMemory=true
 MaxMemAlloc=8192
 MinMemAlloc=512
+; Java 21 client default; players can override this in instance settings.
+OverrideJavaArgs=true
+JvmArgs=-XX:+UseZGC -XX:+ZGenerational
 name={{ini_quote NAME}}
 iconKey=empack_icon
 AutoUpdate=false

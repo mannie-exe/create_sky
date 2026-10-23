@@ -39,9 +39,9 @@
     },
     {
       "path": "overrides/common/config/almostunified/unification/materials.json",
-      "sha256": "2d7f28a23b448a2e8982a28d52175237d45e6d78b4b6aa9cbd88fa8ccf01e827",
+      "sha256": "9e4447a8f46b45f76d81c10fd175388f11821cda0ef83f89ed0745de571ab965",
       "review": "reviewed",
-      "reason": "Unify overlapping material variants; keep native ore generation and inspect tag/recipe consequences.",
+      "reason": "Keep geological ore variants distinct so Create crushing yields and times retain their intended inputs; continue processed-material and zinc-sheet unification.",
       "reference": "docs/development/progression.md"
     },
     {
@@ -329,6 +329,41 @@
       "sha256": "746e543a3542a51d6848a258d8ffac33712a44a93c7aadfc7b3f9ce7849beaf5",
       "review": "reviewed",
       "reason": "Maintained resource correction; inspect the resource and progression reference for the affected recipe, tag or drop.",
+      "reference": "docs/development/progression.md"
+    },
+    {
+      "path": "pack-fixes/data/createpropulsion/recipe/crushing/platinum_ore.json",
+      "sha256": "21b11674b18c3fb0d8292095cf7c12bca82ef4054ec3f1cd8d1e0222d1655629",
+      "review": "reviewed",
+      "reason": "Use the existing Create platinum crushing family consistently; suppress overlapping Propulsion inputs with conflicting metal/XP yields.",
+      "reference": "docs/development/progression.md"
+    },
+    {
+      "path": "pack-fixes/data/createpropulsion/recipe/crushing/deepslate_platinum_ore.json",
+      "sha256": "21b11674b18c3fb0d8292095cf7c12bca82ef4054ec3f1cd8d1e0222d1655629",
+      "review": "reviewed",
+      "reason": "Use the existing Create platinum crushing family consistently; suppress overlapping Propulsion inputs with conflicting metal/XP yields.",
+      "reference": "docs/development/progression.md"
+    },
+    {
+      "path": "pack-fixes/data/createpropulsion/recipe/crushing/raw_platinum_block.json",
+      "sha256": "21b11674b18c3fb0d8292095cf7c12bca82ef4054ec3f1cd8d1e0222d1655629",
+      "review": "reviewed",
+      "reason": "Use the existing Create platinum crushing family consistently; suppress overlapping Propulsion inputs with conflicting metal/XP yields.",
+      "reference": "docs/development/progression.md"
+    },
+    {
+      "path": "pack-fixes/data/createpropulsion/recipe/crushing/spruce_log.json",
+      "sha256": "9fd09a04ab19deecf3a0d0f53a6e5ca94d9c2ad39780c9d0866ecc363dcca494",
+      "review": "reviewed",
+      "reason": "Use the Create 6 processing_time field so the shipped recipe duration is recognized; retain ingredients and outputs.",
+      "reference": "docs/development/progression.md"
+    },
+    {
+      "path": "pack-fixes/data/createpropulsion/recipe/cutting/copycat_wing.json",
+      "sha256": "9ecbbcbcc0934987f55e4582dfb775a115295510b25b8eaaa7b81a7f9415e60e",
+      "review": "reviewed",
+      "reason": "Use the Create 6 processing_time field so the shipped recipe duration is recognized; retain ingredients and outputs.",
       "reference": "docs/development/progression.md"
     }
   ]

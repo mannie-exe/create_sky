@@ -29,6 +29,11 @@ a region, not an island boundary. Ore estimates include void chunks. The travel
 calculator divides distance by a supplied speed; it does not find a route or
 simulate a vehicle. Without a survey, the view states that measurements are absent.
 
+The separate Village survey compares controlled foundation/chest yields with
+natural candidate starts and fully generated samples. Expand Method and limits
+for provenance and full block counts. A stale warning means the survey needs to
+be repeated against the current runtime and processor inputs.
+
 ## Editing
 
 Edit data exposes the eight files in `data/authored`. Save & rebuild validates

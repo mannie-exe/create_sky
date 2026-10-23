@@ -16,6 +16,28 @@ Create Sky runs on Minecraft 1.21.1, NeoForge 21.1.264 and Java 21.
 Use [graphics settings](graphics.md) to enable shaders or configure distant terrain.
 The server archive is for [hosting](server.md), not client installation.
 
+## Client garbage collection
+
+Prism exports from 0.1.8 default to Generational ZGC on Java 21 to reduce garbage
+collection pauses. Versions before 0.1.8 do not include this setting. Existing
+instances and Modrinth imports can set these Java arguments in their launcher:
+
+```text
+-XX:+UseZGC -XX:+ZGenerational
+```
+
+In Prism, open **Edit instance → Settings → Java**, enable the Java arguments
+override, and enter both flags. Restart the game after changing them. Keep the
+memory limits separate in Prism's memory settings; start with the pack's 8 GiB
+maximum and adjust based on actual usage. Do not combine these flags with another
+collector selection or `-XX:+DisableExplicitGC`.
+
+These defaults are specific to Java 21. Existing player choices remain local;
+normal empack preparation does not replace launcher arguments. ZGC cannot address
+rendering or chunk-generation bottlenecks, and its gameplay performance still
+needs comparison with G1 in this pack. See the
+[Java 21 GC guide](https://docs.oracle.com/en/java/javase/21/gctuning/hotspot-virtual-machine-garbage-collection-tuning-guide.pdf).
+
 ## New worlds
 
 New single-player worlds default to **Sky Islands** using the saved **eee**
@@ -43,7 +65,7 @@ replacing its files. Use a fresh instance for a clean client test, and retain an
 single-player saves and personal settings you want to carry over.
 
 Replace the mod set rather than adding new JARs alongside obsolete versions.
-For v0.1.3 through v0.1.7, install only DH Polygon Fix 1.0.1 with the original DH 3.3.3 JAR.
+For v0.1.3 through v0.1.8, install only DH Polygon Fix 1.0.1 with the original DH 3.3.3 JAR.
 Remove any 1.0.0 fix JAR. Shader presets are separate files, so a JAR-only update
 will not apply the pack's graphics settings.
 

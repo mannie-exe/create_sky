@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro'
 import AppHeader from '../components/AppHeader.astro'
 import ScenarioEditor from '../components/map/ScenarioEditor.astro'
+import StructureSurvey from '../components/map/StructureSurvey.astro'
 ---
 
 <Base title="Create Sky · Atlas">
@@ -137,6 +138,7 @@ import ScenarioEditor from '../components/map/ScenarioEditor.astro'
         <h2>Generation and sampling limits</h2>
         <div id="world-notes"></div>
       </div>
+      <StructureSurvey />
     </section>
     <section id="evidence-view" class="view" hidden>
       <div class="toolbar">

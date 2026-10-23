@@ -71,6 +71,23 @@ pnpm data:world
 pnpm data:compile
 ```
 
+For village placement and resources, use a separate disposable-world survey:
+
+```sh
+pnpm data:structures
+pnpm data:compile
+```
+
+This refreshes runtime/assets, then tests four fixed seeds with six controlled
+villages and 25 natural candidate cells per seed. Two valid natural starts per
+seed are fully generated. It uses up to 6 GiB of Java heap and a 15-minute limit
+per world. A shorter check is `pnpm data:structures --seeds 1 --samples 2
+--natural-samples 1` (on one line). It requires the same installed server inputs
+and accepted EULA as runtime capture. Do not run it alongside another capture.
+Temporary worlds and server logs are removed on success or failure. The compact
+`data/generated/structures.json` snapshot is retained; World & ores shows its
+counts and limitations. This never opens or changes the playing world.
+
 This reads existing Overworld chunks under the configured server's `world/`.
 Without a survey, the map omits terrain-derived acquisition routes. Explicit
 YAML gathering assumptions still apply. To inspect every stored chunk:

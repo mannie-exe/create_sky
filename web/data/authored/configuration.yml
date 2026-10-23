@@ -95,3 +95,13 @@ records:
         'src/lib/acquisition.mjs',
         'data/authored/acquisition.yml',
       ]
+  - id: fixes/processing-inputs
+    title: Preserve ore identity and consistent processing
+    evidence: isolated-server-verified
+    detail: Geological ores are excluded from Almost Unified replacement so stone, deepslate and Nether ore recipes retain distinct inputs. Processed-material unification and the zinc-sheet preference remain. Platinum uses one Create crushing family; conflicting Propulsion variants are disabled. Spruce resin and copycat-wing processing use the recognized duration field. Exact-input crushing conflict groups fell from nine to zero in the native recipe export.
+    sources:
+      [
+        'pack docs/development/progression.md',
+        'runtime/recipes.json',
+        'config/almostunified/unification/materials.json',
+      ]

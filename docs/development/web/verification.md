@@ -4,6 +4,34 @@ This record distinguishes source inspection, isolated runtime checks and live
 instance synchronization. No flight, delivery, raid or real-client journal UI
 session was performed by these checks.
 
+## Village resources and placement, 2026-10-22
+
+Tested the uncommitted candidate based on pack `df12fe5`, Minecraft 1.21.1,
+NeoForge 21.1.264 and Sky Villages 1.0.6. The tested processor SHA-256 is
+`46252ddb404549c95d960f5bc1f77371a800969732276fd2f981264e6d0c707e`.
+[Structures](../structures.md) owns the measured quantities and balance decision.
+
+From `web/`, `pnpm data:structures` completed 24 controlled villages, 100 natural
+candidate cells and eight fully generated natural samples across four seeds.
+`pnpm data:compile` and `pnpm data:check` passed with 10,119 items, 9,249 recipes
+and 48 journal entries. `pnpm test` passed 25 tests, `pnpm test:python` passed six,
+and `pnpm build` completed with no Astro diagnostics.
+`PLAYWRIGHT_CHANNEL=chrome pnpm test:browser atlas.browser.mjs` passed five tests,
+including the village table, stale warning, absent-data handling and mobile width.
+The installed Chrome channel was used because bundled Chromium was unavailable.
+
+At pack root, `python3 -m unittest discover -s tests` passed 11 tests;
+`python3 scripts/audit-changes.py` found 208 registered files with no drift or
+unregistered changes. `python3 scripts/generate-journal.py --check` found no
+changed outputs. All three reference profiles built with empack; the server
+archive was patched through `scripts/patch-server-archives.py`.
+
+The survey removes disposable worlds, classes and server logs, retaining only
+the generated Atlas snapshot. Source and local distribution changes have not
+been synced to play instances, committed or released. No live world or LOD data
+was opened. Counts do not prove landing safety, a completed delivery, survival
+progression or multiplayer Lootr behavior.
+
 ## Create Sky naming, 2026-10-22
 
 Tested uncommitted naming changes based on `23d271c`. The app source digest,

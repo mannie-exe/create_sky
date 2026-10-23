@@ -21,7 +21,6 @@
     "c:gems/{material}",
     "c:ingots/{material}",
     "c:nuggets/{material}",
-    "c:ores/{material}",
     "c:plates/{material}",
     "c:raw_materials/{material}",
     "c:rods/{material}",

@@ -5,6 +5,33 @@ instructions belong in [compatibility reference](compatibility.md) and
 [build guide](build.md). Raw logs and imported config snapshots are local
 backup evidence, not distributed pack content.
 
+## 2026-10-22 - Settlement and journal release 0.1.8
+
+Release the reviewed Sky Villages integration, scarce foundation minerals,
+ore/processing repairs, authored delivery templates, journal clarifications,
+Prism ZGC defaults and Atlas village survey. Minecraft 1.21.1 and NeoForge
+21.1.264 remain pinned. [Structures](structures.md) owns the balance measurements;
+[progression](progression.md) owns the connected resource and travel decisions.
+
+The source candidate is based on `df12fe5`. `empack sync --materialize --yes`
+recorded 112 selections; all three reference profiles built and the server archive
+was patched. Config audit covers 208 files without drift. Pack tests passed 11
+cases; Atlas tests passed 25 JavaScript and six Python cases, with clean formatting
+and Astro/build checks. Native refresh/check retained 10,119 items, 9,249 recipes
+and 48 journal entries. Browser checks covered the Atlas and authoring pages;
+the structure-audit assertion was updated for the now-populated register.
+
+The owner authorized commit, push, publication, local instance sync and deletion
+of the current comparison world without another backup. The local server seed
+is retained for the next launch, and the matching client Overworld LOD cache is
+cleared. Existing world archives, installation settings and access lists remain.
+Normal release updates do not reset anyone else's world. The server is left
+stopped so its replacement world can be generated during the owner's next run.
+
+No flight, cargo delivery, multiplayer Lootr session or survival playthrough was
+performed for this release. Native generation and recipe/objective checks support
+the documented limits rather than a claim of complete gameplay verification.
+
 ## 2026-10-18 - Import and first release
 
 **Decision:** use the friend's Create/Aeronautics pack as Create Sky's foundation.
