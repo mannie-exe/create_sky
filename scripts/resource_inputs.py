@@ -39,4 +39,3 @@ def inputs(root, *, download=True, recipe=None):
                 data = response.read()
         archives[key] = zipfile.ZipFile(io.BytesIO(verify_bytes(data, source)))
     return archives
-
