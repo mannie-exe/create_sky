@@ -1,4 +1,7 @@
 import { requestJSON as fetchJSON } from './http'
+import { scrollNavigation } from './minimap'
+import '../styles/recipes.css'
+import { recipeHTML as renderRecipe, safeIcon } from './recipe-view.mjs'
 import { detailBucket } from './graph.mjs'
 import { renderStructureSurvey } from './structures'
 type Node = {
@@ -41,10 +44,15 @@ let scale = 1,
   renderQueued = false,
   editorFiles: RecordData = {},
   domainReady = false
+let itemCatalog = new Map<string, Node>()
 const detailCache = new Map<string, RecordData>()
 const viewport = el('viewport'),
   grid = el('grid'),
   tooltip = el('tooltip')
+const mapNavigation = scrollNavigation(
+  viewport,
+  el<HTMLCanvasElement>('map-minimap'),
+)
 function notice(message: string) {
   el('notice').textContent = message
   el('notice').hidden = false
@@ -55,6 +63,7 @@ function notice(message: string) {
 async function loadCatalog() {
   const data = await fetchJSON('/generated/catalog.json')
   nodes = data.nodes
+  itemCatalog = new Map(nodes.map((n) => [n.id, n]))
   meta = data.meta
   el('snapshot').textContent =
     `MC ${meta.minecraft} · ${String(meta.capturedAt).slice(0, 10)}\n${String(meta.lockSha256).slice(0, 12)}`
@@ -118,10 +127,19 @@ function filter() {
       viewport.scrollTop = Math.max(0, first.y * 100 * scale - 25)
     }
   }
+  mapNavigation.setScene(
+    { x1: 0, y1: 0, x2: grid.offsetWidth, y2: grid.offsetHeight },
+    filtered.map((n) => ({
+      x: (n.x + 0.5) * 108 * scale,
+      y: (n.y + 0.5) * 100 * scale,
+      color: n.depth === null ? '#b18645' : n.hasNote ? '#6e9c74' : '#91a8c7',
+    })),
+  )
   render()
 }
 function render() {
   renderQueued = false
+  mapNavigation.draw()
   const cw = 108 * scale,
     ch = 100 * scale,
     left = viewport.scrollLeft,
@@ -211,7 +229,7 @@ document.addEventListener('keydown', (event) => {
     !['INPUT', 'TEXTAREA'].includes((event.target as HTMLElement).tagName)
   ) {
     event.preventDefault()
-    el('search').focus()
+    el(el('graph-view').hidden ? 'search' : 'graph-search').focus()
   }
 })
 function sourceLinks(sources: unknown[] = []) {
@@ -224,7 +242,7 @@ function sourceLinks(sources: unknown[] = []) {
     .join('<br/>')
 }
 function recipeHTML(recipe: RecordData) {
-  return `<details class="record"><summary><b>${escape(recipe.type)}</b><br/><span class="id">${escape(recipe.id)}</span>${recipe.scenario ? ' <span class="badge">SCENARIO</span>' : ''}</summary><p>${(recipe.ingredients ?? []).map((group: string[]) => group.map((id) => `<button class="relation" data-inspect="${escape(id)}">${escape(id)}</button>`).join(' OR ')).join('<br/>AND ')}</p>${recipe.source?.length ? `<p class="sources">${sourceLinks(recipe.source)}</p>` : ''}${pretty(recipe.json ?? recipe)}</details>`
+  return `<details class="record"><summary>${escape(recipe.id)}</summary>${renderRecipe(recipe, itemCatalog)}</details>`
 }
 function relation(id: string) {
   const node = nodes.find((n) => n.id === id)
@@ -247,7 +265,7 @@ function pathHTML(detail: RecordData) {
           : 'Mapped potential route'
   if (c.status === 'unified')
     return `<h3>Unified variant</h3><p>New production uses ${relation(c.canonical)}. Existing items retain their tags and recipe compatibility.</p>`
-  let html = `<h3>${status}</h3>`
+  let html = `<h3>${status}</h3><button id="view-item-route">View route graph</button>`
   if (detail.path?.length)
     html += `<p class="muted">One minimum-depth path. OR alternatives, quantities, probability and environmental conditions can change the practical route.</p><ol class="route-path">${detail.path.map((step: RecordData) => `<li>${relation(step.id)}${step.root ? ' · environment' : `<details><summary>${escape(step.route)}</summary><p>${step.inputs?.map(relation).join(' + ') ?? ''}</p>${pretty(detail.pathRoutes[step.route])}</details>`}</li>`).join('')}</ol>`
   else if (c.status === 'excluded')
@@ -286,7 +304,7 @@ async function inspect(id: string) {
     if (selected !== id) return
     const detail = detailCache.get(key)![id]
     el('detail').innerHTML =
-      `${node.icon ? `<img class="detail-icon" src="${node.icon}" alt="${escape(node.name)} texture preview"/>` : ''}<h2>${escape(node.name)}</h2><div class="id">${escape(id)}</div><span class="badge">${node.depth === null ? 'UNRESOLVED' : `DEPTH ${node.depth}`}</span><span class="badge">${escape(detail.class.split('.').pop())}</span><p class="muted">Texture preview from game assets; custom and 3D inventory rendering may differ.</p>${detail.note ? `<div class="warning">${escape(detail.note.text)}<p>${sourceLinks(detail.note.sources)}</p></div>` : ''}${pathHTML(detail)}<h3>Acquisition · ${detail.acquisition.length} routes</h3>${detail.acquisition.map(routeHTML).join('')}<h3>Recipes · ${detail.recipes.length}</h3>${detail.recipes.length ? detail.recipes.map(recipeHTML).join('') : '<p class="muted">No producing recipe in RecipeManager. Other routes are listed above.</p>'}<h3>Used by · ${detail.uses.length} recipes</h3>${detail.uses.slice(0, 80).map(recipeHTML).join('')}${detail.uses.length > 80 ? '<p class="muted">First 80 shown here; search All active recipes for the complete set.</p>' : ''}<h3>Potential drops · ${detail.drops.length} tables</h3>${detail.drops.map((drop: RecordData) => `<details class="record"><summary>${escape(drop.id)}</summary><p class="muted">Full conditions and functions below. This is not an unconditional drop rate.</p>${pretty(drop.json)}</details>`).join('')}<h3>Tags & tool requirements</h3>${pretty({ tags: detail.tags, block: detail.block })}<h3>Interactions & implementation hooks</h3>${pretty({ transformations: detail.interactions, hooks: detail.hooks })}<h3>Native interaction documentation</h3>${Object.keys(detail.ponder).length ? pretty(detail.ponder) : '<p class="muted">No matching Ponder text indexed. Arbitrary Java interactions require source review.</p>'}<details class="record"><summary>Registry and asset provenance</summary>${pretty({ components: detail.components, stack: detail.stack, class: detail.class, icon: detail.icon })}</details><button id="edit-item-note">Edit item notes in workspace</button>`
+      `${safeIcon(node.icon) ? `<img class="detail-icon" src="${node.icon}" alt="${escape(node.name)} texture preview"/>` : ''}<h2>${escape(node.name)}</h2><div class="id">${escape(id)}</div><span class="badge">${node.depth === null ? 'UNRESOLVED' : `DEPTH ${node.depth}`}</span><span class="badge">${escape(detail.class.split('.').pop())}</span><p class="muted">Texture preview from game assets; custom and 3D inventory rendering may differ.</p>${detail.note ? `<div class="warning">${escape(detail.note.text)}<p>${sourceLinks(detail.note.sources)}</p></div>` : ''}${pathHTML(detail)}<h3>Acquisition · ${detail.acquisition.length} routes</h3>${detail.acquisition.map(routeHTML).join('')}<h3>Recipes · ${detail.recipes.length}</h3>${detail.recipes.length ? detail.recipes.map(recipeHTML).join('') : '<p class="muted">No producing recipe in RecipeManager. Other routes are listed above.</p>'}<h3>Used by · ${detail.uses.length} recipes</h3>${detail.uses.slice(0, 80).map(recipeHTML).join('')}${detail.uses.length > 80 ? '<p class="muted">First 80 shown here; search All active recipes for the complete set.</p>' : ''}<h3>Potential drops · ${detail.drops.length} tables</h3>${detail.drops.map((drop: RecordData) => `<details class="record"><summary>${escape(drop.id)}</summary><p class="muted">Full conditions and functions below. This is not an unconditional drop rate.</p>${pretty(drop.json)}</details>`).join('')}<h3>Tags & tool requirements</h3>${pretty({ tags: detail.tags, block: detail.block })}<h3>Interactions & implementation hooks</h3>${pretty({ transformations: detail.interactions, hooks: detail.hooks })}<h3>Native interaction documentation</h3>${Object.keys(detail.ponder).length ? pretty(detail.ponder) : '<p class="muted">No matching Ponder text indexed. Arbitrary Java interactions require source review.</p>'}<details class="record"><summary>Registry and asset provenance</summary>${pretty({ components: detail.components, stack: detail.stack, class: detail.class, icon: detail.icon })}</details><button id="edit-item-note">Edit item notes in workspace</button>`
     el('detail')
       .querySelectorAll<HTMLElement>('[data-inspect]')
       .forEach((button) =>
@@ -294,6 +312,12 @@ async function inspect(id: string) {
           inspect(button.dataset.inspect!),
         ),
       )
+    document
+      .getElementById('view-item-route')
+      ?.addEventListener('click', async () => {
+        await showView('graph')
+        graph?.openItem(id, true)
+      })
     el('edit-item-note').addEventListener('click', () => {
       showView('editor')
       el<HTMLSelectElement>('edit-domain').value = 'items'
@@ -307,6 +331,8 @@ async function domains() {
   if (!domainData) domainData = await fetchJSON('/generated/domains.json')
   return domainData!
 }
+let graph: ReturnType<typeof import('./atlas-graph').createGraph> | undefined
+let graphStale = true
 async function showView(name: string) {
   document
     .querySelectorAll<HTMLElement>('.view')
@@ -319,6 +345,14 @@ async function showView(name: string) {
   el('inspector').hidden = true
   tooltip.hidden = true
   try {
+    if (name === 'graph') {
+      graph ??= (await import('./atlas-graph')).createGraph(inspect)
+      graph.show()
+      if (graphStale) {
+        await graph.load()
+        graphStale = false
+      }
+    }
     if (name === 'world') await loadWorld()
     if (name === 'evidence') await loadEvidence()
     if (name === 'editor') await initEditor()
@@ -360,13 +394,20 @@ async function loadEvidence(reset = true) {
   el('evidence-count').textContent = `${nf.format(matches.length)} records`
   el('evidence-list').innerHTML = matches
     .slice(0, evidenceLimit)
-    .map(
-      (row) =>
-        `<article class="record"><h3>${escape(row.title ?? row.id ?? row.tag ?? row.path ?? 'Diagnostic')}</h3>${row.status ? `<p>${escape(row.status)} · ${row.downstream} consuming routes</p>` : ''}${row.evidence ? `<span class="badge">${escape(row.evidence)}</span>` : ''}${row.detail ? `<p>${escape(row.detail)}</p>` : ''}${row.sources ? `<p class="sources">${sourceLinks(row.sources)}</p>` : ''}<details><summary>Source data</summary>${pretty(row)}</details></article>`,
+    .map((row) =>
+      kind === 'recipes'
+        ? recipeHTML(row)
+        : `<article class="record"><h3>${escape(row.title ?? row.id ?? row.tag ?? row.path ?? 'Diagnostic')}</h3>${row.status ? `<p>${escape(row.status)} · ${row.downstream} consuming routes</p>` : ''}${row.evidence ? `<span class="badge">${escape(row.evidence)}</span>` : ''}${row.detail ? `<p>${escape(row.detail)}</p>` : ''}${row.sources ? `<p class="sources">${sourceLinks(row.sources)}</p>` : ''}<details><summary>Source data</summary>${pretty(row)}</details></article>`,
     )
     .join('')
   el('more-evidence').hidden = matches.length <= evidenceLimit
 }
+el('evidence-list').addEventListener('click', (event) => {
+  const target = (event.target as Element).closest<HTMLElement>(
+    '[data-inspect]',
+  )
+  if (target) void inspect(target.dataset.inspect!)
+})
 for (const id of ['evidence-domain', 'evidence-search'])
   el(id).addEventListener('input', () => loadEvidence())
 el('more-evidence').addEventListener('click', () => {
@@ -584,6 +625,7 @@ el('save-editor').addEventListener('click', async () => {
     })
     editorFiles[name] = { text, revision: result.revision }
     domainData = null
+    graphStale = true
     detailCache.clear()
     await loadCatalog()
     el('editor-status').textContent =
@@ -634,6 +676,7 @@ el('refresh-data').addEventListener('click', async () => {
   try {
     await fetchJSON('/__atlas/refresh', {})
     domainData = null
+    graphStale = true
     detailCache.clear()
     await loadCatalog()
     await freshness()
@@ -647,5 +690,5 @@ el('refresh-data').addEventListener('click', async () => {
 })
 if (import.meta.env.DEV) {
   setTimeout(freshness, 1500)
-  setInterval(freshness, 30000)
+  // Refresh is explicit; avoid launching fingerprint processes in the background.
 }

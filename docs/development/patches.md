@@ -14,7 +14,7 @@ The manifest and lock own exact selections. This guide owns update procedures;
 | Worldgen configuration | `overrides/common/config/sky_archipelago*`, `zfastnoise.mixin.properties` | Sky Archipelago, Zfastnoise and generation/optimization mods | Keep CONSISTENT 1494 in both TOML and preset. Recheck the biome redirect and native layouts before generating new terrain. |
 | Shared data fixes | `pack-fixes/data/` → `create-sky-fixes-0.1.0.jar` | Mods owning the replaced recipe, loot, tag or processor resources | Compare new upstream JSON by exact resource ID. Remove bug overrides only when the installed artifact contains the fix; retain deliberate pack policy. Run native recipe/loot checks. |
 | Journal | `authoring/journal/` → Questlog config and language assets in the shared JAR | Questlog, item IDs, condition handlers and UI configuration | Generate, validate native handlers/counts/NBT restoration and check labels in the game UI. Locale edits alone do not change mechanics. |
-| Visual model patch | `authoring/resource-patches.json`, `build-resource-patches.py` → client ZIP | Fresh Flower Pots, 3D Crops, Better Lanterns, Macaw's Lights and Lamps, Create Deco, Fresh Objects, EMF and Lootr | Exact versions/hashes and model contracts must pass. Compare pots/chains, bar connections, lantern variants and chest motion in Resource Review. |
+| Visual model patch | `authoring/resource-patches.json`, `build-resource-patches.py` → client ZIP | Fresh Flower Pots, 3D Crops, Better Lanterns, Macaw's Lights and Lamps, Create, Create Deco, DnD, Macaw’s Bridges, Fresh Animations/Details/Objects, EMF and Lootr | Exact versions/hashes and model contracts must pass. Compare pots/chains, bar connections, lantern variants and chest motion in Resource Review. |
 | Server terminal wrapper | `foreground-runtime.py`, `patch-server-archives.py` → Unix launch scripts | empack 0.8.2-beta and its generated launch templates | Unknown templates must fail. Remove only after an upgraded empack passes real terminal input, Ctrl-C, direct SIGINT, non-TTY execution and clean shutdown. |
 | Atlas exporter | `web/tools/exporter/` and runtime/extraction scripts | Minecraft/NeoForge, Create recipe codecs and queried mod APIs | Align the installed server with the selected pack, compile with Java 21, capture into the isolated audit server and run `pnpm data:check`. Never install the exporter in play instances. |
 
@@ -108,6 +108,69 @@ It preserves holes in the alpha mask, merges front/back regions and emits expose
 perimeter faces. Test native connection rotations, stacking and moving geometry
 before selecting an output. Artwork fitting changes selected model UVs and bounds,
 without rewriting a shared texture or replacing vanilla parent models globally.
+
+Extrusion also supports horizontal planes, per-plane element rotation and explicit
+retained body elements. Child texture keys remain intact for cage materials and
+frontlight variants. The vanilla iron overlay input is the SHA-512-pinned official
+Minecraft client JAR; review its version alongside the pack's Minecraft pin.
+
+### Window connections and Copycat panels
+
+Create 6.0.10 owns its glass connections through `AllSpriteShifts` and window/pane
+CT behaviours. Framed glass uses omnidirectional connections; wood windows use
+vertical connections; industrial and weathered iron use rectangular connections.
+Weathered iron also selects among four target sprites. Their remaining mullions
+are not evidence that connected textures are absent. Create Deco 2.1.3 registers
+horizontal window connections. Rechiseled Create 1.1.1 supplies separate Fusion
+connecting variants with state predicates.
+
+Midnighttigger's pack supplies Fusion models and texture metadata for vanilla
+resources. It does not automatically extend to another namespace. Adding Fusion
+to a block that already has Create CT would introduce a second model-processing
+path; inspect and test the native system before replacing it. The current selected
+packs do not override these window assets. Keep intentional frame patterns and
+mixed-material boundaries unless a specific artwork change is selected.
+
+Create's standard Copycat Panel sends bar materials through `CopycatBarsModel`,
+which transfers their sprite onto special flat panel geometry. Normal bar model
+overrides therefore do not change that panel. The client dependency
+[Copycat Bar Extrusion](https://github.com/mannie-exe/copycat-bar-extrusion)
+applies Minecraft's native item-mask extrusion
+to supported bar materials, preserves the panel envelope and bounds its mesh cache.
+Create Deco uses its full bar sheet instead of its narrow particle/post sprite.
+Missing sheets, textures above 64×64 and meshes above 2,048 quads retain native
+rendering. The patch adds no blocks or saved data.
+It does not provide general arbitrary-model support for Copycats+ shapes.
+
+### Authored model composition
+
+Fitting recipes can omit explicit template elements and append selected elements
+from another pinned model through `attachments`. Attachment texture keys must be
+bound without replacing unrelated bindings. `additional_elements` holds small
+explicit cuboids such as the cage's eight 45-degree corner connectors. The generator
+validates the complete model after composition; source templates remain unchanged.
+
+The new tavern, chain and striped lantern recipes reuse the fitted detailed body.
+Eight wall variants retain Macaw's bracket and attachment position. The DnD hood
+uses two plates extending two and one pixels, with the outer plate inset one pixel
+at each side. Cage connectors bridge the transition between side struts and top
+struts. These are authored cuboids and texture-mask extrusion, not boolean geometry.
+The combined models were inspected in Resource Review with shaders off and with
+Complementary Unbound/Euphoria; see [verification](compatibility.md#visual-compatibility-pass).
+
+### Fresh Details and mooshrooms
+
+`fresh_details.py` adapts adult/baby Details models to FA's current `cow_animations.jpm`.
+It retains Details geometry and textures, takes the root and head flags from the
+pinned base model, and supplies small ear/tail motions using stable CEM inputs.
+The `fresh_details_mooshroom` switch controls inclusion. Update both input pins and
+review the rig contract together; copying the old missing JPM forward would retain
+expressions written for a different base rig.
+
+Review red/brown adults and babies, grounded poses and motion after updates. This
+adapter does not repair every Details model: inspected references for elder guardian,
+mule, wandering trader, sheep undercoat and villager variants also need a separate
+compatibility pass. Do not advertise the entire extension as verified.
 
 ### Lootr and Fresh Objects
 

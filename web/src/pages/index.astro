@@ -5,6 +5,8 @@ import ViewTabs from '../components/ViewTabs.astro'
 import '../styles/atlas.css'
 import ScenarioEditor from '../components/map/ScenarioEditor.astro'
 import StructureSurvey from '../components/map/StructureSurvey.astro'
+import Minimap from '../components/map/Minimap.astro'
+import ProgressionGraph from '../components/map/ProgressionGraph.astro'
 ---
 
 <Base title="Create Sky · Atlas">
@@ -16,6 +18,9 @@ import StructureSurvey from '../components/map/StructureSurvey.astro'
   <ViewTabs label="Atlas views">
     <button data-view="map" aria-pressed="true">
       Item map
+    </button>
+    <button data-view="graph" aria-pressed="false">
+      Progression graph
     </button>
     <button data-view="world" aria-pressed="false">
       World &amp; ores
@@ -92,12 +97,17 @@ import StructureSurvey from '../components/map/StructureSurvey.astro'
       <footer class="map-footer">
         <span id="position">0 / 0</span>
         <span>
-          Scroll in both directions · Shift + wheel to move horizontally · / to
-          search · Esc to close
+          Drag or scroll in both directions · Minimap to navigate · / to search
+          · Esc to close
         </span>
         <button id="layout-help">Layout</button>
+        <Minimap
+          id="map-minimap"
+          label="Item map minimap. Click or drag to navigate; arrow keys pan, Home returns to origin."
+        />
       </footer>
     </section>
+    <ProgressionGraph />
     <section id="world-view" class="view" hidden>
       <div id="world-summary" class="summary-strip"></div>
       <div id="world-layout" class="world-layout">

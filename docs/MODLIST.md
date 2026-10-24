@@ -1,9 +1,8 @@
 # Included content
 
-Current working-tree selections, including unreleased changes after
-v0.1.9. Minecraft is 1.21.1 and NeoForge is 21.1.264. The manifest/lock are
-authoritative; this list excludes libraries bundled inside mods. Euphoria builds
-its patched shader at launch. See [published notes](releases/0.1.9.md) for v0.1.9.
+Create Sky 0.1.11 selections. Minecraft is 1.21.1 and NeoForge is 21.1.264.
+The manifest/lock are authoritative; this list excludes libraries bundled inside
+mods. Euphoria builds its patched shader at launch. See [release notes](RELEASE_NOTES.md).
 
 | Project | Version | Source |
 | --- | --- | --- |
@@ -36,6 +35,7 @@ its patched shader at launch. See [published notes](releases/0.1.9.md) for v0.1.
 | Complementary Unbound | r5.9.3 | [Exact version](https://modrinth.com/version/B1kyfoUZ) |
 | Concurrent Chunk Management Engine (NeoForge) | 0.4.0-alpha.0.123+1.21.1 | [Exact version](https://modrinth.com/mod/c2me-neoforge/version/avwWYPbG) |
 | Controlling | 19.0.5 | [Exact version](https://modrinth.com/mod/controlling/version/FaNppCJJ) |
+| Copycat Bar Extrusion | 0.1.0 | [Exact release](https://github.com/mannie-exe/copycat-bar-extrusion/releases/tag/v0.1.0) |
 | Create Accessories Compat | 1.0 | [Exact version](https://modrinth.com/mod/create-accessories-compat/version/2r7hvkCQ) |
 | Create Aeronautics | 1.3.2+mc1.21.1 | [Exact version](https://modrinth.com/mod/create-aeronautics/version/44pLdPGg) |
 | Create Aeronautics: Covers | 1.0.1 | [Exact version](https://modrinth.com/mod/create-aeronautics-covers/version/R35biaZf) |

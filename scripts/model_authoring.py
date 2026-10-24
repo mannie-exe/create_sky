@@ -32,7 +32,7 @@ def numbers(values, size, low, high, label):
 
 
 def rgba(data):
-    """Decode bounded RGBA8 or indexed PNGs without adding a build dependency.
+    """Decode bounded RGBA8, grayscale8 or indexed PNGs without adding a build dependency.
 
     Other PNG encodings deliberately require an adapter instead of silently
     interpreting their alpha as geometry. No source artwork is rewritten.
@@ -54,8 +54,8 @@ def rgba(data):
     width, height, depth, color, compression, filtering, interlace = struct.unpack('>IIBBBBB', chunks[b'IHDR'][0])
     require(0 < width <= 256 and 0 < height <= 4096, 'Texture exceeds model-authoring limits')
     require((compression, filtering, interlace) == (0, 0, 0)
-            and ((depth, color) == (8, 6) or color == 3 and depth in (1, 2, 4, 8)),
-            'Model authoring requires non-interlaced RGBA8 or indexed textures')
+            and (depth == 8 and color in (0, 6) or color == 3 and depth in (1, 2, 4, 8)),
+            'Model authoring requires non-interlaced RGBA8, grayscale8 or indexed textures')
     bpp = 4 if color == 6 else 1
     stride = width * 4 if color == 6 else (width * depth + 7) // 8
     palette = b''.join(chunks.get(b'PLTE', []))
@@ -78,6 +78,10 @@ def rgba(data):
             row[i] = (row[i] + predictor) & 255
         if color == 6:
             rows.append([tuple(row[x:x + 4]) for x in range(0, len(row), 4)])
+        elif color == 0:
+            require(len(transparency) in (0, 2), 'Invalid grayscale transparency')
+            transparent = int.from_bytes(transparency, 'big') if transparency else -1
+            rows.append([(v, v, v, 0 if v == transparent else 255) for v in row])
         else:
             pixels = []
             for x in range(width):
@@ -149,7 +153,7 @@ def rectangles(mask):
 def extrude(part, texture, threshold, depth):
     numbers(part['uv'], 4, 0, 16, 'UV crop')
     numbers(part['span'], 4, -16, 32, 'Plane bounds')
-    require(part['axis'] in ('x', 'z'), 'Extrusion axis must be x or z')
+    require(part['axis'] in ('x', 'y', 'z'), 'Extrusion axis must be x, y or z')
     require(type(part['center']) in (int, float) and math.isfinite(part['center'])
             and -16 + depth / 2 <= part['center'] <= 32 - depth / 2, 'Invalid plane center')
     u0, v0, u1, v1 = part['uv']
@@ -171,23 +175,25 @@ def extrude(part, texture, threshold, depth):
     def point(u, v, d):
         a = a0 + (u - left) / (right - left) * (a1 - a0)
         y = y1 - (v - top) / (bottom - top) * (y1 - y0)
-        return [d, y, a] if part['axis'] == 'x' else [a, y, d]
+        return [d, y, a] if part['axis'] == 'x' else [a, d, y] if part['axis'] == 'y' else [a, y, d]
     def box(x0, yy0, x1, yy1, faces):
         p, q = point(x0, yy1, near), point(x1, yy0, far)
-        return {'from': p, 'to': q, 'faces': faces}
+        return {'from': [min(a, b) for a, b in zip(p, q)],
+                'to': [max(a, b) for a, b in zip(p, q)], 'faces': faces}
     def face(uv):
         return {'uv': uv, 'texture': '#surface'}
     def uv(x0, yy0, x1, yy1):
         return [x0 * 16 / width, yy0 * 16 / height, x1 * 16 / width, yy1 * 16 / height]
     elements = []
-    front, back = ('west', 'east') if part['axis'] == 'x' else ('south', 'north')
+    front, back = {'x': ('west', 'east'), 'y': ('up', 'down'), 'z': ('south', 'north')}[part['axis']]
     for x0, yy0, x1, yy1 in rectangles(mask):
         normal = uv(x0, yy0, x1, yy1)
         mirrored = [normal[2], normal[1], normal[0], normal[3]]
         elements.append(box(x0, yy0, x1, yy1, {front: face(normal), back: face(mirrored)}))
     # Emit only exposed perimeter. Merge contiguous runs, sampling the adjacent
     # opaque texel strip across the depth. Shared interior faces never enter JSON.
-    sides = [('up', 0, -1), ('down', 0, 1),
+    sides = [('south' if part['axis'] == 'y' else 'up', 0, -1),
+             ('north' if part['axis'] == 'y' else 'down', 0, 1),
              ('north' if part['axis'] == 'x' else 'west', -1, 0),
              ('south' if part['axis'] == 'x' else 'east', 1, 0)]
     for direction, dx, dy in sides:
@@ -202,8 +208,9 @@ def extrude(part, texture, threshold, depth):
             for x0, yy0, x1, yy1 in rectangles(group):
                 element = box(x0, yy0, x1, yy1, {direction: face(uv(x0, yy0, x1, yy1))})
                 if dy:
-                    plane = point(x0, yy0 if dy < 0 else yy1, near)[1]
-                    element['from'][1] = element['to'][1] = plane
+                    vertical = 2 if part['axis'] == 'y' else 1
+                    plane = point(x0, yy0 if dy < 0 else yy1, near)[vertical]
+                    element['from'][vertical] = element['to'][vertical] = plane
                 else:
                     axis = 2 if part['axis'] == 'x' else 0
                     plane = point(x0 if dx < 0 else x1, yy0, near)[axis]
@@ -219,6 +226,11 @@ def validate_model(model):
         numbers(element['from'], 3, -16, 32, 'Element start')
         numbers(element['to'], 3, -16, 32, 'Element end')
         require(all(a <= b for a, b in zip(element['from'], element['to'])), 'Reversed element bounds')
+        if 'rotation' in element:
+            rotation = element['rotation']
+            numbers(rotation['origin'], 3, -16, 32, 'Rotation origin')
+            require(rotation['axis'] in ('x', 'y', 'z') and rotation['angle'] in (-45, -22.5, 0, 22.5, 45),
+                    'Invalid element rotation')
         for direction, face in element['faces'].items():
             require(direction in ('north', 'south', 'east', 'west', 'up', 'down'), 'Unknown face')
             numbers(face['uv'], 4, 0, 16, 'Face UV')
@@ -228,7 +240,7 @@ def validate_model(model):
 
 def generate(document, archives):
     require(document.get('schema') == 1, 'Unsupported model recipe schema')
-    require(isinstance(document.get('recipes'), list) and len(document['recipes']) <= 64, 'Expected up to 64 recipes')
+    require(isinstance(document.get('recipes'), list) and len(document['recipes']) <= 256, 'Expected up to 256 recipes')
     assets, outputs, previews, ids = Assets(archives), {}, [], set()
     for recipe in document['recipes']:
         identifier = recipe['id']
@@ -251,9 +263,17 @@ def generate(document, archives):
                 binding = part.get('texture', recipe['texture'])
                 current = assets.texture(binding['source'], binding['id']) if 'texture' in part else texture
                 textures[binding['id']] = current
-                key = f'plane{index}'
+                key = part.get('key', f'plane{index}')
+                require(isinstance(key, str) and re.fullmatch(r'[a-zA-Z0-9_]+', key), 'Invalid plane texture key')
+                require(key not in model['textures'] or model['textures'][key] == binding['id'], 'Conflicting plane texture key')
                 model['textures'][key] = binding['id']
                 for element in extrude(part, current, recipe['threshold'], recipe['depth']):
+                    if 'rotation' in part:
+                        rotation = part['rotation']
+                        numbers(rotation['origin'], 3, -16, 32, 'Rotation origin')
+                        require(rotation['axis'] in ('x', 'y', 'z') and rotation['angle'] in (-45, -22.5, 0, 22.5, 45),
+                                'Invalid plane rotation')
+                        element['rotation'] = copy.deepcopy(rotation)
                     for face in element['faces'].values():
                         face['texture'] = '#' + key
                     model['elements'].append(element)
@@ -264,9 +284,28 @@ def generate(document, archives):
                 for element in model['elements']:
                     element['faces'] = {k: v for k, v in element['faces'].items() if k in recipe['faces']}
                 model['elements'] = [e for e in model['elements'] if e['faces']]
+            if 'base' in recipe:
+                base = recipe['base']
+                template = assets.model(base['model']['source'], base['model']['id'])
+                require(template.get('parent') in (None, 'block/block', 'minecraft:block/block'),
+                        'Base requires explicit geometry')
+                selected = base['elements']
+                require(isinstance(selected, list) and len(selected) == len(set(selected))
+                        and all(type(i) is int and 0 <= i < len(template['elements']) for i in selected),
+                        'Invalid retained elements')
+                for key, binding in base['textures'].items():
+                    require(key in template['textures'], 'Unknown retained texture key')
+                    require(key == 'particle' or key not in model['textures'] or model['textures'][key] == binding['id'], 'Conflicting retained texture')
+                    template['textures'][key] = binding['id']
+                    textures[binding['id']] = assets.texture(binding['source'], binding['id'])
+                model['textures'].update(template['textures'])
+                model['elements'].extend(template['elements'][i] for i in selected)
+                if 'display' in template:
+                    model['display'] = template['display']
         elif recipe['kind'] == 'fitting':
             model = assets.model(recipe['model']['source'], recipe['model']['id'])
-            require('parent' not in model and 'elements' in model, 'Fitting requires an explicit template model')
+            require(model.get('parent') in (None, 'block/block', 'minecraft:block/block') and 'elements' in model,
+                    'Fitting requires an explicit template model')
             model['textures'] = {key: recipe['texture']['id'] for key in model['textures']}
             model['render_type'] = 'minecraft:cutout'
             require(isinstance(recipe['edits'], list) and len(recipe['edits']) <= 128, 'Too many element edits')
@@ -282,11 +321,47 @@ def generate(document, archives):
                 for key in ('from', 'to'):
                     if key in edit:
                         element[key] = copy.deepcopy(edit[key])
+                if 'rotation' in edit:
+                    rotation = edit['rotation']
+                    numbers(rotation['origin'], 3, -16, 32, 'Rotation origin')
+                    require(rotation['axis'] in ('x', 'y', 'z') and rotation['angle'] in (-45, -22.5, 0, 22.5, 45),
+                            'Invalid element rotation')
+                    element['rotation'] = copy.deepcopy(rotation)
                 for direction, face in edit.get('faces', {}).items():
                     require(direction in element['faces'] and set(face) <= {'uv', 'rotation'}, 'Unknown fitting face field')
                     element['faces'][direction].update(copy.deepcopy(face))
         else:
             raise ValueError('Unknown model recipe kind')
+        omitted = recipe.get('omit_elements', [])
+        require(isinstance(omitted, list) and len(omitted) == len(set(omitted))
+                and all(type(i) is int and 0 <= i < len(model['elements']) for i in omitted),
+                'Invalid omitted elements')
+        model['elements'] = [e for i, e in enumerate(model['elements']) if i not in omitted]
+        attachments = recipe.get('attachments', [])
+        require(isinstance(attachments, list) and len(attachments) <= 8, 'Too many attachments')
+        for attachment in attachments:
+            template = assets.model(attachment['model']['source'], attachment['model']['id'])
+            require(template.get('parent') in (None, 'block/block', 'minecraft:block/block')
+                    and 'elements' in template, 'Attachment requires explicit geometry')
+            indices = attachment['elements']
+            require(isinstance(indices, list) and len(indices) == len(set(indices))
+                    and all(type(i) is int and 0 <= i < len(template['elements']) for i in indices),
+                    'Invalid attachment elements')
+            for key, binding in attachment['textures'].items():
+                require(isinstance(key, str) and re.fullmatch(r'[a-zA-Z0-9_]+', key), 'Invalid attachment texture key')
+                require(key not in model['textures'] or model['textures'][key] == binding['id'],
+                        'Conflicting attachment texture')
+                model['textures'][key] = binding['id']
+                textures[binding['id']] = assets.texture(binding['source'], binding['id'])
+            for i in indices:
+                element = copy.deepcopy(template['elements'][i])
+                # Some upstream exports retain distant pivots on no-op rotations.
+                if element.get('rotation', {}).get('angle') == 0:
+                    element.pop('rotation')
+                model['elements'].append(element)
+        additions = recipe.get('additional_elements', [])
+        require(isinstance(additions, list) and len(additions) <= 128, 'Too many authored elements')
+        model['elements'].extend(copy.deepcopy(additions))
         validate_model(model)
         output = resource(recipe['output'], 'models', '.json')
         require(output not in outputs, 'Duplicate generated model')

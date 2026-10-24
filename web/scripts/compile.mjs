@@ -152,6 +152,7 @@ export async function compile() {
       authored.progression.machines,
       fluidTags,
     )
+    route.scenario = Boolean(recipe.scenario)
     recipe.outputs = route.outputs
     recipe.ingredients = route.inputs
     recipe.source =

@@ -73,6 +73,14 @@ class SourcesAndFitting(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'checksum'):
             rgba(bytes(changed))
 
+    def test_grayscale_png_retains_opacity_and_transparent_sample(self):
+        def chunk(kind, body):
+            return struct.pack('>I', len(body)) + kind + body + struct.pack('>I', zlib.crc32(kind + body) & 0xffffffff)
+        header = chunk(b'IHDR', struct.pack('>IIBBBBB', 2, 1, 8, 0, 0, 0, 0))
+        pixels = chunk(b'IDAT', zlib.compress(bytes([0, 24, 128])))
+        data = b'\x89PNG\r\n\x1a\n' + header + chunk(b'tRNS', bytes([0, 24])) + pixels + chunk(b'IEND', b'')
+        self.assertEqual(rgba(data), (2, 1, [[(24, 24, 24, 0), (128, 128, 128, 255)]]))
+
     def test_resource_path_boundaries(self):
         for identifier in ['../../etc/passwd', 'a:../bad', 'a:/bad', 'a:foo//bar', 'a:foo/./bar']:
             with self.assertRaises(ValueError):
@@ -99,6 +107,14 @@ class SourcesAndFitting(unittest.TestCase):
             self.assertEqual(result['elements'][0]['faces']['south'], model['elements'][0]['faces']['south'])
             self.assertEqual(doc, original)
             self.assertEqual(generate(doc, {'test': archive}), (output, previews))
+            recipe['attachments'] = [{'model': recipe['model'], 'elements': [0],
+                                      'textures': {'lantern': recipe['texture']}}]
+            combined, _ = generate(doc, {'test': archive})
+            self.assertEqual(len(next(iter(combined.values()))['elements']), 2)
+            recipe['attachments'][0]['elements'] = [9]
+            with self.assertRaisesRegex(ValueError, 'attachment elements'):
+                generate(doc, {'test': archive})
+            del recipe['attachments']
             doc['recipes'][0]['enabled'] = False
             self.assertEqual(generate(doc, {'test': archive})[0], {})
             doc['recipes'][0]['edits'][0]['name'] = 'Changed template'

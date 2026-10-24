@@ -48,10 +48,47 @@
       "path": "pack/mods/lootr-neoforge-1.21.1-1.11.38.127.jar",
       "sha512": "7496051c1ba98f8801b8eb81773d1baec16166c3d2c5682476bd6f9433f794095099cea609fd5610525edb7c450b1bacd0011a31763e91c77c9a0034c8245ca3",
       "url": "https://cdn.modrinth.com/data/EltpO5cN/versions/SPOrIzX8/lootr-neoforge-1.21.1-1.11.38.127.jar"
+    },
+    "create": {
+      "version": "UjX6dr61",
+      "path": "pack/mods/create-1.21.1-6.0.10.jar",
+      "sha512": "11cc8fc049d2f67f6548c7abfada6b82a3adb5c7ca410a742de04bbca76e03862c518721b88d806f6e6d768a4d68531fdb903a85859b25d1484d550cc7bafd4b",
+      "url": "https://cdn.modrinth.com/data/LNytGWDc/versions/UjX6dr61/create-1.21.1-6.0.10.jar"
+    },
+    "macaws-bridges": {
+      "version": "aQ7rY7ng",
+      "path": "pack/mods/mcw-bridges-3.1.2-mc1.21.1neoforge.jar",
+      "sha512": "e98e476324229564132288f0a59bfcc897cff4cda7d12fe218563ca48d382d880662375687c69d1b4619144262ae09cbef130f4330474d8eacd37a21e8e9afb4",
+      "url": "https://cdn.modrinth.com/data/GURcjz8O/versions/aQ7rY7ng/mcw-bridges-3.1.2-mc1.21.1neoforge.jar"
+    },
+    "create-design-n-decor": {
+      "version": "uQsIRky8",
+      "path": "pack/mods/Design-n-Decor-1.21.1-2.2b.jar",
+      "sha512": "d888553c8a254c3654f8da2ae2cae0bb642594546c71988739c93bf6b18668145e0ce5b1c20ae0544b9b6019f17e4da944bd5bc17e4c6b73e7f1374cfa2c9db9",
+      "url": "https://cdn.modrinth.com/data/x49wilh8/versions/uQsIRky8/Design-n-Decor-1.21.1-2.2b.jar"
+    },
+    "fresh-animations": {
+      "version": "aQjwvDfY",
+      "path": "pack/resourcepacks/FreshAnimations_v1.11.1_1.20+.zip",
+      "sha512": "641a03d55c36920cc9a70d891bcca3347b196968bcb5637781f21b417b1ff893ce60652abcf02be872872fc1130ccc6785155ea3b19a0ed484de714b6229c922",
+      "url": "https://cdn.modrinth.com/data/50dA9Sha/versions/aQjwvDfY/FreshAnimations_v1.11.1_1.20%2B.zip"
+    },
+    "fresh-animations-details": {
+      "version": "tGydmcT3",
+      "path": "pack/resourcepacks/FA+Details-v2.2.1.zip",
+      "sha512": "f5f84645c2665e772d6db80a201e7dda0feb570a82445b72e7012665b6df238357a8b62e6d2655a43146fd309c36125ed18d9512ee924f89587ef627c6f3c753",
+      "url": "https://cdn.modrinth.com/data/lctgpCsu/versions/tGydmcT3/FA%2BDetails-v2.2.1.zip"
+    },
+    "minecraft": {
+      "version": "1.21.1",
+      "path": ".cache/resource-inputs/minecraft-1.21.1.jar",
+      "url": "https://piston-data.mojang.com/v1/objects/30c73b1c5da787909b2f73340419fdf13b9def88/client.jar",
+      "sha512": "a63c09e9b8cfe80bd5815c88818291d54cbe7c9ffcd806be6365376e865c44d5aa85e8348467e6ded8f4d9722047d3c5b075f755047a982c2e75223d2b9f68ac"
     }
   },
   "compatibility": {
-    "lootr_fresh_objects": true
+    "lootr_fresh_objects": true,
+    "fresh_details_mooshroom": true
   },
   "credits": [
     "Fresh Flower Pots — BlueHDGaming: https://modrinth.com/resourcepack/fresh-flower-pots",
@@ -61,6 +98,10 @@
     "Create Deco — talrey, Ordana and Baileybun: https://modrinth.com/mod/create-deco",
     "Fresh Animations: Objects — FreshLX: https://modrinth.com/resourcepack/fresh-animations-objects",
     "Compatibility adaptations and generated geometry — Create Sky",
-    "Original assets remain subject to their respective authors’ terms. Required source packs/mods supply textures; this patch includes no textures."
+    "Original assets remain subject to their respective authors’ terms. Required source packs/mods supply textures; this patch includes no textures.",
+    "Create — simibubi and contributors: https://modrinth.com/mod/create",
+    "Macaw’s Bridges — sketch_macaw: https://modrinth.com/mod/macaws-bridges",
+    "Design n’ Decor — LopyLuna and contributors: https://modrinth.com/mod/create-design-n-decor",
+    "Fresh Animations and Details — FreshLX: https://modrinth.com/resourcepack/fresh-animations-details"
   ]
 }

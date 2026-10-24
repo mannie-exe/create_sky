@@ -3,7 +3,11 @@
 ## Item grid
 
 Search by item name or identifier, filter by namespace or route status, and scroll
-in both directions. Hover for a summary; select an item for its acquisition paths,
+in both directions. Drag with the mouse to pan; touch and trackpad scrolling remain
+available. Scrollbars are hidden. Click or drag the minimap to move across the grid;
+arrow keys pan while the grid or minimap is focused, Home returns to the origin,
+and End moves to the far corner. The minimap scales the two grid axes independently
+to keep both directions usable across the tall layout. Hover for a summary; select an item for its acquisition paths,
 recipes, uses, drops, tags, implementation hooks and source records.
 
 Horizontal position follows minimum modeled acquisition depth. Rows sort by
@@ -16,6 +20,68 @@ Coverage distinguishes mapped routes, blocked prerequisites, missing adapters,
 internal/creative exclusions and unified variants. A mapped path shows potential
 access under its listed assumptions. Quantities, success probabilities, working
 machinery, travel and combat remain separate constraints.
+
+## Progression graph
+
+Open **Progression graph** beside Item map. Its tabs answer separate questions:
+
+- **Systems:** possible cross-mod inputs and outputs around a selected namespace.
+  Arrow labels count contributing routes, including possible OR ingredients.
+  They are not mandatory dependencies or quantities.
+- **Processing:** input and output items for a selected machine. Each connection
+  retains the routes that mention both. The inputs and outputs summarize separate
+  recipes; they are not one combined recipe. Machine requirements come from the
+  authored progression model, including machines used in multi-step routes.
+- **Item routes:** vertical acquisition diagrams with item icons. **Single route**
+  shows acquisition or use alternatives; **Minimum-depth path** expands one finite
+  chain from the existing solver. The item inspector's **View route graph** opens
+  that path directly. Long paths open near the target at a readable scale; use Fit
+  for the overview or the minimap to move through earlier steps. Dashed edges are OR choices; ALL input groups feeding an
+  operation are required. Separate routes are alternatives, not sequential tasks.
+  Single routes show up to four choices per group and twelve outputs. Paths show
+  the chosen input per group and at most the last 80 steps; other choices remain
+  in group details. Counts state omissions. Empty groups and scenarios stay explicit.
+  An unresolved path can still have candidate routes in Single route mode.
+- **Coverage:** counts and items by mapping status and namespace. A missing route
+  is an atlas gap, not proof that the item is unobtainable in-game.
+
+Systems and Coverage show the top 12 connections by default. Processing splits
+that limit between inputs and outputs. Choose Top 24 or All to expand; counts state
+how much is shown. The item list is searchable, with 100 entries initially and
+Show more for the rest. Selecting an item opens its routes; Processing's list
+instead selects the machine. Item details opens the shared inspector with paths,
+quantities, conditions and provenance.
+
+Drag the canvas to pan, use the wheel or +/− controls to zoom, and click or drag the
+minimap below it to navigate. On the canvas or minimap, arrow keys pan, +/− zoom,
+and Home fits the scene. Fit frames the current scene. Reset view clears the item
+search and refits the current view. Tab switches remember each camera. `/` focuses
+the active map's search. The selectors below the canvas provide keyboard access
+to every displayed node and connection, including contributing route records.
+
+Reload data preserves selections and camera while rereading compiled JSON. Direct
+source edits require compilation first; saves through Edit data rebuild the projection
+and refresh it on the next graph visit. Refresh the page to recheck the runtime
+fingerprint after external changes.
+
+The canvas mounts a bounded viewport projection. Large scenes simplify at low zoom;
+the footer reports visible nodes and connections and any omitted edges. Connections
+with off-screen endpoints are not drawn. Full source records remain available;
+a summary or partial canvas does not establish a complete production chain.
+
+## Recipe displays
+
+Item details, Evidence recipes and graph route selections share slot displays.
+Click an icon to inspect the item; open an OR group for tag alternatives. Counts,
+fluid amounts, probabilistic outputs and processing conditions come from recipe
+JSON. Cooking/processing times are Minecraft ticks. Operating requirements list
+machines and capabilities separately from consumed slots.
+
+Supported layouts include shaped/shapeless crafting, mechanical crafting, cooking,
+stonecutting, smithing transforms and common Create processing recipes. These are
+browser reconstructions using extracted icons, not running game GUIs. Sequenced
+assembly and other unsupported custom layouts retain an explicit source-record
+fallback. Components, source packs and conditions remain available in every record.
 
 ## Evidence and world survey
 

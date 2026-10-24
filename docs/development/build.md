@@ -73,6 +73,18 @@ Keep this generated pack above its inputs. Unknown versions or model structures
 stop generation for review; follow the [update procedure](patches.md#update-sequence). CI runs
 the same generator, downloading exact inputs when they are not materialized.
 
+### Copycat renderer
+
+[Copycat Bar Extrusion](https://github.com/mannie-exe/copycat-bar-extrusion) is a
+client-only URL dependency pinned by release and SHA-1/SHA-512 in `empack.yml`.
+Empack materializes it like the other referenced mods; clean CI needs no local
+source checkout or hand-copied override. Do not keep another copy in client overrides.
+
+Its source repository owns the Java 21 Gradle build, exact Create artifact check,
+transform tests and native rendering evidence. Review that hook before upgrading
+Create. The [compatibility guide](compatibility.md#visual-compatibility-pass) identifies
+the tested JAR and limits; no server installation or saved-data migration is needed.
+
 ## Dependency updates
 
 Use [dependency and patch maintenance](patches.md) for coupled versions, URL pins,

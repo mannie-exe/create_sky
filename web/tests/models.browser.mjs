@@ -1,4 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { readFileSync } from 'node:fs'
+
+const recipes = JSON.parse(
+  readFileSync(new URL('../../authoring/model-recipes.json', import.meta.url)),
+).recipes
 
 test('model workbench previews extrusion and fitting without saving', async ({
   page,
@@ -7,7 +12,7 @@ test('model workbench previews extrusion and fitting without saving', async ({
   page.on('pageerror', (error) => errors.push(error.message))
   await page.goto('/model-authoring')
   await expect(page.locator('#models-status')).toHaveText('Source loaded')
-  await expect(page.locator('#model-list button')).toHaveCount(8)
+  await expect(page.locator('#model-list button')).toHaveCount(recipes.length)
   await expect(page.locator('#model-canvas')).toHaveAttribute(
     'data-ready',
     'industrial-bars-post',

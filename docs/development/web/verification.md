@@ -1,5 +1,58 @@
 # Verification
 
+## Authoring jobs and atlas navigation, 2026-10-24
+
+Working tree based on `7cf5797`. The checked web source digest is
+`50e4de1dedad7f0dfbd64efb0540a90d9392d0536eadc8f6b730403d342dd0dd`: SHA-256 of sorted relative paths, NUL,
+bytes, NUL for `web/src`, `web/scripts`, `web/tests` (excluding Python bytecode),
+package/lock files and Astro/Playwright configuration.
+
+- `pnpm verify`: formatting, 45 Node tests, Astro diagnostics and the four-page
+  static build pass. The existing large Three.js bundle warning remains.
+- `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser`: 25 tests pass, including existing
+  workbenches, model preview/config audit, job serialization and both map views.
+  After the final minimap sizing change, the four graph/grid browser checks passed again.
+- The earlier job pass ran `pnpm test:python` (nine passing tests),
+  `pnpm data:compile` and `pnpm data:check`. No Python or compiler changes were
+  made during the navigation redesign, so those checks were not repeated.
+
+The populated snapshot has 10,119 items and 12,503 modeled routes. Systems initially
+shows Create with 12 of its 31 connected namespaces: 13 nodes and 22 connections.
+Processing initially shows Mechanical Press with 62 contributing routes, six of
+65 inputs and six of 87 outputs. Coverage exposes 326 unmapped items; these are
+missing modeled acquisition routes, not established gameplay defects.
+
+Browser checks exercise all four graph tabs, machine selection, contributing routes,
+item inspection, acquisition/uses, an item with no modeled route, coverage filters,
+keyboard navigation, camera preservation across tabs/reload, minimap navigation,
+mouse panning, bounded mounted elements, literal source strings and mobile width.
+Grid checks exercise both pan axes, keyboard/minimap movement, click-versus-drag,
+filtering, empty results and bounded item rendering. The checks found a minimap
+covering the last filtered item; both minimaps now sit outside their content areas.
+Desktop and mobile layouts were also inspected in Chrome captures.
+
+Projection tests preserve AND input groups, OR alternatives, empty groups, source
+records and scenario markers. They check directed summary counts, machine records,
+a 500-alternative route and culling of a synthetic 10,000-node scene. Cytoscape is
+limited to 1,200 nodes and 3,000 edges. Large scenes simplify at low zoom; off-screen
+connections are omitted. The complete indexes remain in browser memory.
+
+A local headless Chrome sample at 1440×1000 displayed the default Systems view in
+145 ms and reported 1.4 ms for its 13-node projection update. These are single local
+samples, not a sustained frame-rate or hardware guarantee. Small focused scenes
+replace the former full dependency layout; All can still produce a dense view.
+
+Job checks cover fixed names/inputs, a real journal generator in a disposable
+source copy, failure recovery, byte limits, timeout escalation, overlap rejection,
+exact-ID cancellation and descendant termination. Publishing jobs reject manual
+cancellation. Windows process-tree termination remains unverified. Request locking
+covers one development server, not separate command-line processes or other servers.
+
+The graphs use existing runtime evidence and authored interpretation. They do not
+resolve acquisition gaps, establish resource budgets or verify gameplay balance.
+Source freshness warnings remain meaningful. No playing instance, world or release
+was changed during this app work.
+
 ## Release checks, 2026-10-24
 
 Create Sky 0.1.10 preparation, based on `9bef645`, passed 26 root Python tests,
@@ -216,6 +269,94 @@ These checks cover placed models and one local player's chest interactions.
 Moving Create/Sable contraptions, distant LOD appearance, multiplayer state,
 other shaders and performance require separate tests. Existing upstream double-chest
 animation warnings are not fixed by the single-chest Lootr adapter.
+
+## Visual compatibility pass — 2026-10-24
+
+Tested the worktree based on `7cf5797`, with 73 model recipes and the mooshroom
+adapter enabled. The generated and installed client ZIP both have SHA-256
+`25b066c28400062abcb69f761c5048ef4aafbcc272872e33f56874a411adaf81`.
+The Prism reference snapshot installed through empack is
+`e6fc49c6229c0befeeb9aad337279cd59cfa13ebcf79165a159da07f4a06e77c`;
+only the visual ZIP changed among game files. Server content did not change.
+
+Commands and outcomes:
+
+- `python3 scripts/model-workbench.py --validate` and
+  `python3 scripts/build-resource-patches.py --check`: valid/current.
+- Root Python discovery: 26 passed. `pnpm test:python`: 9 passed.
+- `pnpm data:compile`, `pnpm data:check` and `pnpm verify`: passed;
+  44 JavaScript tests, zero Astro diagnostics. Existing bundle-size warning remains.
+- `PLAYWRIGHT_CHANNEL=chrome pnpm exec playwright test tests/models.browser.mjs`:
+  3 passed. Bundled Chromium was unavailable; installed Chrome was used.
+  The existing browser check reads the recipe count instead of assuming eight;
+  original recipe labels were retained. No geometry regression tests were added.
+- Harness fixture discovery: 4 passed. After normal Minecraft shutdown,
+  `verify_world.py` checked 4,586 blocks, 32 equipment slots and 27 original
+  stationary specimens without mismatches. A separate read-only saved-NBT inspection
+  confirmed chest halves, nine applied Copycat materials, both storage controllers
+  and 16-item transfers, stair mounting, and grounded NoAI specimens.
+
+Native captures remain in the harness's
+`projects/create-sky-resources/images/2026-10-24-visual-pass/`, not a new Atlas gallery.
+The retained world has the matching revision-6 builder. Views cover Create/Deco
+bar families and overlays, standing/hanging lanterns, bridge/stair mounting,
+cage lamps and representative lit/unlit, rotated and no-base frontlights.
+Eight registered frontlight materials have identical alpha masks in the pinned
+input; the shared hood retains their child texture bindings. Shader comparisons
+used the existing Complementary/Euphoria configuration and its disabled state.
+
+The mooshroom clip records idle movement; red/brown adults and babies render with
+Details geometry. It does not establish every locomotion, rare variant or creature
+rig. Other missing Details animation references remain documented in
+[patch maintenance](../patches.md#fresh-details-and-mooshrooms).
+Moving contraptions, multiplayer, other shaders and performance were not tested.
+
+## Route diagrams and compatibility — 2026-10-24
+
+Tested the uncommitted worktree based on `7cf5797`. The current model source has
+87 recipes. This pass extends the earlier model review; native rendering evidence
+and artifact hashes are owned by [compatibility](../compatibility.md#visual-compatibility-pass).
+
+The shared recipe renderer, vertical scene builder and graph controller have these
+SHA-256 values (in that order):
+
+- `src/lib/recipe-view.mjs`: `970503d6fd3800dc40caeec7f4a1322706809145dcf9d35a7450e88be0c329b4`
+- `src/lib/graph-views.mjs`: `571293ea5ebde7bedc5d369d2869a40bf823b8147a5f9289268b1ea3b32af79c`
+- `src/lib/atlas-graph.ts`: `15b38e2710353c98986db0c07385ffddf9c8aa8f0c412a4006b1ff48a5243044`
+
+Commands and outcomes:
+
+- `pnpm verify`: formatting, 50 JavaScript tests, Astro diagnostics and production
+  build passed. The existing large-chunk warning remains.
+- `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser`: 27 passed. After the final path
+  camera and capability-description adjustments, the six tests in
+  `tests/graph.browser.mjs` passed again; `pnpm check` had no diagnostics.
+- `pnpm data:compile` and `pnpm data:check`: passed with 10,119 items and 9,249
+  active recipes. Coverage counts remain 9,690 mapped, 326 unmapped and one blocked.
+- Browser inspection covered the Glider's repeated shaped slots, empty slot and
+  item icons; brass mixing quantities/heat; unsupported sequenced assembly; item
+  links; path access from the item map; minimap/navigation; and narrow-screen fit.
+  Long paths open near their target at readable scale; Fit retains the overview.
+  Native GUI execution, arbitrary custom recipe interfaces and quantitative
+  production planning are outside this renderer.
+
+The modpack check/build commands were `python3 scripts/model-workbench.py --validate`,
+`python3 scripts/build-resource-patches.py --check`, root Python discovery (27 passed),
+and the separate Copycat adapter's `./gradlew check build` (two transform tests).
+Harness safety tests passed (four). Its saved-world verifier checked 4,828 blocks,
+32 equipment slots and 27 stationary specimens without mismatches.
+
+Reference archives were rebuilt with `empack build --profile prism --profile server
+--yes --optional-defaults`, followed by `python3 scripts/patch-server-archives.py`.
+The client installed snapshot
+`9271e0af4fdc19efc3a2ebd5c9ea39feb8e3a1b7190e38e94c32a8dcf63e968e`;
+the existing pre-launch preparation reported zero further changes. The server
+already matched `8782059f76657cbf8b2624208f3ccdea2fe96d7ed99f6bbb770ec43fe82ffc73`.
+World/LOD file sizes and modification times across 39,910 files were unchanged
+during sync; saved settings/access-list hashes were also unchanged. Only the
+Resource Review datapack was then updated for its scoped revision-7 repair on load.
+The server world and seed were preserved. Release builds resolve the client
+adapter through empack's URL dependency and recorded hashes; see [build maintenance](../build.md#copycat-renderer).
 
 ## Limits
 

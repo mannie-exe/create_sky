@@ -38,6 +38,14 @@ Each plane selects a texture, UV crop, axis, center and rectangular bounds. The
 recipe sets depth and an alpha threshold. UV coordinates run from 0 to 16 and
 must align with source pixels; model coordinates use Minecraft's block units.
 Individual planes may bind different textures, such as Deco's post and side.
+X/Z planes use horizontal/vertical bounds; Y planes use X/Z bounds. The axis
+selector and labels follow that distinction.
+
+Recipe JSON exposes optional `key` and `rotation` fields on a plane, plus a `base`
+with an explicit model, retained element indices and texture bindings. These keep
+lamp bodies and child texture variables while replacing only cage or hood surfaces.
+Fitting edits also accept element rotations. Inspect the pinned template before
+changing indices or bindings; the ordinary form preserves these JSON fields.
 
 Opaque pixels become a mask. The generator merges adjacent occupied regions into
 rectangles for the front and back surfaces, then emits only the exposed perimeter.

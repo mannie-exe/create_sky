@@ -1,4 +1,5 @@
 ---
+import JobStatus from './JobStatus.astro'
 interface Props {
   page: 'atlas' | 'authoring' | 'resources'
 }
@@ -27,3 +28,5 @@ const pages = [
   </nav>
   <slot name="status" />
 </header>
+
+{import.meta.env.DEV && <JobStatus />}

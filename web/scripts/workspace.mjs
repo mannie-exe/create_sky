@@ -1,12 +1,11 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import crypto from 'node:crypto'
-import { execFile } from 'node:child_process'
-import { promisify } from 'node:util'
 import { domains, validateDomain } from '../src/lib/domains.mjs'
 import { compile, root } from './compile.mjs'
 import { authoring, configuredPack } from './authoring.mjs'
 import { modelAuthoring } from './model-authoring.mjs'
+import { jobs, jobRegistry, JobError } from './jobs.mjs'
 const hash = (text) => crypto.createHash('sha256').update(text).digest('hex')
 
 export function workspace() {
@@ -23,8 +22,11 @@ export function workspace() {
           })
           res.end(JSON.stringify(value))
         }
-        const address = req.socket.remoteAddress
-        if (!['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(address))
+        if (
+          !['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(
+            req.socket.remoteAddress,
+          )
+        )
           return send(403, { error: 'Local workspace only' })
         if (
           !/^(127\.0\.0\.1|localhost|\[::1\])(:\d+)?$/.test(
@@ -37,66 +39,92 @@ export function workspace() {
           req.headers.origin !== `http://${req.headers.host}`
         )
           return send(403, { error: 'Same-origin requests required' })
+        let acquired = false
         try {
-          if (req.method === 'GET' && req.url === '/__atlas/models')
-            return send(
-              200,
-              await modelAuthoring(await configuredPack(root)).read(),
-            )
-          if (req.method === 'GET' && req.url === '/__atlas/authoring')
-            return send(200, await authoring(await configuredPack(root)).read())
-          if (req.method === 'GET' && req.url === '/__atlas/authoring/audit')
-            return send(
-              200,
-              await authoring(await configuredPack(root)).audit(),
-            )
-          if (req.method === 'GET' && req.url === '/__atlas/workspace') {
-            const files = {}
-            for (const name of domains) {
-              const text = await fs.readFile(
-                path.join(root, 'data/authored', name + '.yml'),
-                'utf8',
-              )
-              files[name] = { text, revision: hash(text) }
-            }
-            return send(200, { files })
-          }
-          if (req.method === 'GET' && req.url === '/__atlas/status') {
-            const snapshot = JSON.parse(
-              await fs.readFile(
-                path.join(root, 'data/generated/runtime/snapshot.json'),
-                'utf8',
-              ),
-            )
-            const current = await promisify(execFile)(
-              'python3',
-              [path.join(root, 'scripts/fingerprint.py')],
-              { cwd: root },
-            )
+          // Status and cancellation remain available while another request owns the workspace.
+          if (req.method === 'GET' && req.url === '/__atlas/jobs')
             return send(200, {
-              stale: current.stdout.trim() !== snapshot.sourceFingerprint,
-              changedDuringExport: snapshot.sourceChangedDuringExport,
+              ...jobs.snapshot(),
               busy,
+              definitions: Object.entries(jobRegistry).map(([name, job]) => ({
+                name,
+                cwd: job.cwd,
+                inputs: job.inputs,
+                outputs: job.outputs,
+                timeoutMs: job.timeoutMs,
+                maxBytes: job.maxBytes,
+                cancellable: job.cancellable && process.platform !== 'win32',
+              })),
             })
+          let input = {}
+          if (req.method !== 'GET') {
+            if (
+              req.method !== 'POST' ||
+              req.headers['content-type'] !== 'application/json'
+            )
+              return send(405, { error: 'Use JSON POST' })
+            if (!req.headers.origin)
+              return send(403, { error: 'Origin header required for writes' })
+            const chunks = []
+            let size = 0
+            for await (const chunk of req) {
+              size += chunk.length
+              if (size > 1100000)
+                return send(413, { error: 'Request too large' })
+              chunks.push(chunk)
+            }
+            input = JSON.parse(Buffer.concat(chunks).toString('utf8'))
+            if (!input || typeof input !== 'object' || Array.isArray(input))
+              return send(400, { error: 'Expected a JSON object' })
           }
-          if (
-            req.method !== 'POST' ||
-            req.headers['content-type'] !== 'application/json'
-          )
-            return send(405, { error: 'Use JSON POST' })
-          if (!req.headers.origin)
-            return send(403, { error: 'Origin header required for writes' })
-          let body = ''
-          for await (const chunk of req) {
-            body += chunk
-            if (Buffer.byteLength(body) > 1100000)
-              return send(413, { error: 'Request too large' })
+          if (req.method === 'POST' && req.url === '/__atlas/jobs/cancel') {
+            if (
+              Object.keys(input).join() !== 'id' ||
+              typeof input.id !== 'string'
+            )
+              return send(400, { error: 'Expected a job ID' })
+            return send(200, jobs.cancel(input.id))
           }
-          const input = JSON.parse(body)
           if (busy)
-            return send(409, {
-              error: 'Another edit is compiling; retry after refresh',
-            })
+            throw new JobError(
+              'Another authoring operation is running; retry when it finishes',
+              'busy',
+            )
+          busy = acquired = true
+          const context = { web: root, pack: await configuredPack(root) }
+          if (req.method === 'GET') {
+            if (req.url === '/__atlas/models')
+              return send(200, await modelAuthoring(context.pack).read())
+            if (req.url === '/__atlas/authoring')
+              return send(200, await authoring(context.pack).read())
+            if (req.url === '/__atlas/authoring/audit')
+              return send(200, await authoring(context.pack).audit())
+            if (req.url === '/__atlas/workspace') {
+              const files = {}
+              for (const name of domains) {
+                const text = await fs.readFile(
+                  path.join(root, 'data/authored', name + '.yml'),
+                  'utf8',
+                )
+                files[name] = { text, revision: hash(text) }
+              }
+              return send(200, { files })
+            }
+            if (req.url === '/__atlas/status') {
+              const snapshot = JSON.parse(
+                await fs.readFile(
+                  path.join(root, 'data/generated/runtime/snapshot.json'),
+                  'utf8',
+                ),
+              )
+              const current = await jobs.run('snapshot.fingerprint', context)
+              return send(200, {
+                stale: current.stdout.trim() !== snapshot.sourceFingerprint,
+                changedDuringExport: snapshot.sourceChangedDuringExport,
+              })
+            }
+            return send(404, { error: 'Unknown workspace endpoint' })
+          }
           if (
             [
               '/__atlas/models/preview',
@@ -104,71 +132,46 @@ export function workspace() {
               '/__atlas/models/generate',
             ].includes(req.url)
           ) {
-            busy = true
-            try {
-              const editor = modelAuthoring(await configuredPack(root))
-              const action = req.url.split('/').at(-1)
-              return send(
-                200,
-                await editor[action](
-                  action === 'preview' ? input.document : input,
-                ),
-              )
-            } finally {
-              busy = false
-            }
+            const action = req.url.split('/').at(-1)
+            return send(
+              200,
+              await modelAuthoring(context.pack)[action](
+                action === 'preview' ? input.document : input,
+              ),
+            )
           }
           if (
             ['/__atlas/authoring/save', '/__atlas/authoring/generate'].includes(
               req.url,
             )
-          ) {
-            busy = true
-            try {
-              const editor = authoring(await configuredPack(root))
-              return send(
-                200,
-                req.url.endsWith('/save')
-                  ? await editor.save(input)
-                  : await editor.generate(input),
-              )
-            } finally {
-              busy = false
-            }
-          }
+          )
+            return send(
+              200,
+              await authoring(context.pack)[
+                req.url.endsWith('/save') ? 'save' : 'generate'
+              ](input),
+            )
           if (req.url === '/__atlas/refresh') {
-            busy = true
-            try {
-              for (const script of ['runtime.py', 'extract.py'])
-                await promisify(execFile)(
-                  'python3',
-                  [path.join(root, 'scripts', script)],
-                  { cwd: root, timeout: 660000, maxBuffer: 2 * 1024 * 1024 },
-                )
-              await compile()
-              return send(200, { refreshed: true })
-            } finally {
-              busy = false
-            }
+            if (Object.keys(input).length)
+              throw new Error('Refresh accepts no inputs')
+            await jobs.run('snapshot.capture', context)
+            await jobs.run('snapshot.extract', context)
+            await compile()
+            return send(200, { refreshed: true })
           }
           if (req.url === '/__atlas/export') {
-            const text = await fs.readFile(
-              path.join(root, 'data/authored/recipes.yml'),
-              'utf8',
+            if (Object.keys(input).length)
+              throw new Error('Export accepts no inputs')
+            validateDomain(
+              'recipes',
+              await fs.readFile(
+                path.join(root, 'data/authored/recipes.yml'),
+                'utf8',
+              ),
             )
-            validateDomain('recipes', text)
-            busy = true
-            try {
-              await compile()
-              await promisify(execFile)(
-                'python3',
-                [path.join(root, 'scripts/export_patch.py')],
-                { cwd: root },
-              )
-              return send(200, { url: '/generated/create-sky-atlas-patch.zip' })
-            } finally {
-              busy = false
-            }
+            await compile()
+            await jobs.run('scenario.export', context)
+            return send(200, { url: '/generated/create-sky-atlas-patch.zip' })
           }
           const name = req.url.slice('/__atlas/domain/'.length)
           if (
@@ -176,30 +179,39 @@ export function workspace() {
             !domains.includes(name)
           )
             return send(404, { error: 'Unknown domain' })
+          if (
+            typeof input.text !== 'string' ||
+            Buffer.byteLength(input.text) > 1000000
+          )
+            throw new Error('Invalid source text')
           validateDomain(name, input.text)
-          const file = path.join(root, 'data/authored', name + '.yml'),
-            before = await fs.readFile(file, 'utf8')
+          const file = path.join(root, 'data/authored', name + '.yml')
+          if ((await fs.realpath(file)) !== file)
+            throw new Error('Authored symlinks are not supported')
+          const before = await fs.readFile(file, 'utf8')
           if (hash(before) !== input.revision)
             return send(409, {
               error: 'File changed on disk. Reload before saving.',
             })
-          busy = true
+          await fs.writeFile(file + '.tmp', input.text, { flag: 'wx' })
           try {
-            await fs.writeFile(file + '.tmp', input.text)
             await fs.rename(file + '.tmp', file)
-            try {
-              await compile()
-            } catch (error) {
-              await fs.writeFile(file, before)
-              await compile().catch(() => {})
-              throw error
-            }
-            return send(200, { revision: hash(input.text) })
-          } finally {
-            busy = false
+          } catch (error) {
+            await fs.unlink(file + '.tmp')
+            throw error
           }
+          try {
+            await compile()
+          } catch (error) {
+            await fs.writeFile(file, before)
+            await compile().catch(() => {})
+            throw error
+          }
+          return send(200, { revision: hash(input.text) })
         } catch (error) {
-          send(400, { error: error.message })
+          send(error.code === 'busy' ? 409 : 400, { error: error.message })
+        } finally {
+          if (acquired) busy = false
         }
       })
     },

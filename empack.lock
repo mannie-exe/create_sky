@@ -25,6 +25,7 @@ coverage:
   complementary-unbound: complete
   connector: complete
   controlling: complete
+  copycat-bar-extrusion: unknown
   copycats: complete
   create: complete
   create-accessories-compat: complete
@@ -1521,6 +1522,43 @@ dependencies:
       provider: modrinth
       selector: controlling
     title: Controlling
+  copycat-bar-extrusion:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://github.com/mannie-exe/copycat-bar-extrusion/releases/download/v0.1.0/copycat-bar-extrusion-0.1.0.jar
+        kind: url
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 6453e2496835b439a433c444442d79f6f52e4525
+          sha512: >-
+            a8cc2bbeee0eef84e0180e146c17dcd320c8f0ad07afd530c500a87dd98014f6cce29cb07935098d1b13097705fb5fa3ef4fa2bbabae9ac3e07ef36ba0278083
+        size: null
+      placements:
+      - destination: mods/copycat-bar-extrusion-0.1.0.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 6453e2496835b439a433c444442d79f6f52e4525
+          sha512: >-
+            a8cc2bbeee0eef84e0180e146c17dcd320c8f0ad07afd530c500a87dd98014f6cce29cb07935098d1b13097705fb5fa3ef4fa2bbabae9ac3e07ef36ba0278083
+        location: null
+        source: url-file
+      slot: primary
+    identity:
+      key: copycat-bar-extrusion
+      kind: url
+    incompatibilities: []
+    selection: null
+    source-selector: null
+    title: copycat-bar-extrusion
   copycats:
     content: mod
     files:
@@ -8008,7 +8046,7 @@ dependencies:
       provider: modrinth
       selector: OnlVIpq5
     title: Fast Noise
-intent-revision: 2c7608f4fc05b2906b92511aeeb017662e67b2fac4cf9b2f968a0d9f1dcb2e08
+intent-revision: a4985e0d50ccd8e880a6f5b5dc8c2d8d72cde683a623cf47df4461765e90f7fb
 required-edges:
   accessories:
   - owo-lib

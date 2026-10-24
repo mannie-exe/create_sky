@@ -163,6 +163,59 @@ plots. [`index.astro`](../../../web/src/pages/index.astro) composes the map view
 [`atlas.css`](../../../web/src/styles/atlas.css) owns map presentation. There is no database,
 account system, React runtime or production application server.
 
+## Graph projection and rendering
+
+`src/lib/graph-views.mjs` indexes compiled routes by input and output, then builds
+four focused projections: namespace relationships, machine processing, one item
+route, and coverage counts. Namespace edges count each route once per directed
+mod pair. Possible OR ingredients contribute to these summaries; they do not become
+mandatory dependencies. Processing uses the machine IDs in authored
+`progression.yml`, not inferred machinery capabilities. Coverage uses catalog statuses.
+
+Single-route projections preserve AND input groups and OR alternatives. They show
+up to four alternatives per group and twelve outputs, retaining all omitted IDs in
+the underlying records. The vertical path projection reads the existing detail
+bucket's finite solver witness, looks up full route records, and displays at most
+its last 80 steps. Only the chosen alternative is drawn per group; all alternatives
+remain inspectable. Missing records and omitted steps are counted. Scenarios remain
+labeled. These views do not run another
+reachability solver, change acquisition semantics or lay out the entire dependency
+graph. Catalog, routes and indexes remain in browser memory.
+
+`src/lib/atlas-graph.ts` lazily loads Cytoscape.js, handles view state and connects
+item selection to the existing inspector. `src/lib/graph-scene.mjs` indexes scene
+positions into 512-unit spatial bins. Only a viewport plus a 100-unit margin is
+mounted, capped at 1,200 nodes and 3,000 edges. Scenes above 200 nodes simplify
+below zoom 0.35; an over-cap viewport also uses overview markers. Small summaries
+keep their labels at fit scale. Edges require both endpoints in the mounted set.
+Unchanged elements are retained during pan; this is rendering virtualization, not
+streaming storage. Source records and selectors remain available outside the canvas.
+
+Both views use `components/map/Minimap.astro` and `src/lib/minimap.ts` for cached
+point overviews, viewport outlines and pointer/keyboard navigation. The item grid
+keeps native scrolling and its existing visible-cell rendering, with mouse drag
+panning and hidden scrollbars. The graph uses Cytoscape's camera; its minimap sits
+below the canvas so it cannot cover nodes. The grid minimap also sits outside its
+viewport and scales each axis independently; graph minimaps preserve scene proportions.
+
+## Recipe presentation
+
+`src/lib/recipe-view.mjs` owns the shared HTML renderer and layout adapters;
+`src/styles/recipes.css` owns their styling. Item details, Evidence and graph
+selection use the same renderer. Layout uses `recipe.json.type`, since the registry
+recipe type may describe a broader category. Shaped slots follow pattern symbols
+and key insertion order; exported ingredient groups supply resolved tag choices.
+Appended machine/capability groups are operating requirements, not consumed slots.
+Quantities, fluid amounts, components, probabilities and conditions remain attached
+to their source JSON. Source records are always available.
+
+Adapters cover crafting, mechanical crafting, cooking, stonecutting, smithing
+transforms and common Create processing. Unsupported types, including sequenced
+assembly's weighted outcomes, get a source fallback rather than guessed GUI logic.
+Cards cap visual slots, outputs and expanded alternatives, with explicit omissions.
+All labels/records are HTML-escaped and icons accept only generated local PNG paths.
+No additional Java exporter or execution of mod UI code is involved.
+
 ## Page and component structure
 
 The structure follows the sibling inherent.design site and cfgate.io examples:
@@ -173,7 +226,8 @@ The local editor uses no UI framework, database or deployment service.
 
 - `src/layouts/Base.astro` owns document metadata, the favicon and shared CSS.
 - `src/components/AppHeader.astro` owns identity and navigation structure, with
-  one ordered page-link list and a snapshot-status slot.
+  one ordered page-link list and a snapshot-status slot. `JobStatus.astro` shares
+  bounded process feedback and cancellation across local pages.
   `ViewTabs.astro` supplies separate, labeled local view controls.
 - `src/components/authoring/` owns the journal and disclaimer workbenches, config
   audit and JSON editor. Both workbenches share the list/editor layout in
@@ -201,9 +255,13 @@ writes require a matching Origin and JSON content type. Domain names are allowli
 Saves validate YAML shape and compare revision hashes before replacing a file.
 A failed compile restores the previous authored file and attempts to rebuild it.
 Compilation publishes individual files, not one atomic snapshot transaction.
+`jobs.mjs` centralizes fixed Python processes; the workspace serializes entire
+operations, including temporary validation and subsequent source publication.
+Status/cancellation endpoints remain available while the operation lock is held.
+[Setup](setup.md#named-authoring-jobs) owns job registration and execution limits.
 
-The status endpoint compares file sizes/mtimes and the lock hash every 30 seconds
-while the app is open. This detects selected input changes, not every asset or
+The status endpoint compares file sizes/mtimes and the lock hash when the map
+loads and after an explicit implementation refresh. This detects selected input changes, not every asset or
 configuration change; it is not a live game connection. Loaded JAR content hashes
 are captured separately. Refresh explicitly runs runtime capture, extraction and
 compilation. World sampling is a separate operation.

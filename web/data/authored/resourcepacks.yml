@@ -1,5 +1,5 @@
 schema: 1
-reviewed: 2026-10-23
+reviewed: 2026-10-24
 candidates:
   - id: fresh-animations
     category: Entities
@@ -43,7 +43,9 @@ candidates:
     concern:
       The pinned file declares format 55 despite its 1.21.1 tag. Minecraft
       silently deselects it without explicit acceptance; the default options now
-      retain that acceptance. Dedicated Sugar Cane remains above it.
+      retain that acceptance. Dedicated Sugar Cane remains above it. Lily pads,
+      kelp, seagrass and pitcher plants have no replacement geometry in the
+      selected stack, including active overlays.
     nextCheck:
       Resource Review includes crop ages, stems and aquatic plants. The captured
       registry has no additional modded crop blocks; large farms remain untested.
@@ -64,11 +66,11 @@ candidates:
     description: Adds depth to vanilla iron bars.
     fit: A restrained model change using familiar materials.
     concern:
-      Create Deco inherits these vanilla parents, but its industrial iron artwork
-      does not match their crossbar and edge UV assumptions. Inherited depth is
-      not the same as a model fitted to that texture.
-    nextCheck: Use the post, corner and intersection displays to develop
-      texture-aware geometry with separate post and side profiles.
+      Create Deco inherits vanilla parents with different UV assumptions. The
+      maintained patch now extrudes each Create/Deco bar family and Deco overlay
+      from its own masks, preserving native connection blockstates.
+    nextCheck: Posts, corners, crossings and stacks were reviewed in Resource
+      Review. Moving contraptions and large installations remain untested.
   - id: create-touch-ups
     category: Create
     status: installed
@@ -94,8 +96,11 @@ candidates:
     concern: Fusion override assets must be counted, not just the ZIP root.
       Connected vanilla materials do not imply matching behavior for every
       Copycat or decorative glass block.
-    nextCheck: Compare panes, corners, waterlogged glass, copper grates and
-      Copycats, including on an airship.
+    nextCheck:
+      Native Create, Create Deco and Rechiseled Create glass connections
+      were checked at corners, panes and mixed boundaries with shaders off/on.
+      Keep their material patterns; no competing Fusion override is installed.
+      Waterlogged cases and moving airships remain unverified.
   - id: rays-3d-ladders
     category: Models
     status: installed
@@ -170,9 +175,10 @@ candidates:
       Uses the EMF/ETF stack already selected and follows the same base animation
       style.
     concern:
-      Intentionally overrides Fresh Animations resources. Includes occasional
-      joke variants as well as extra anatomy; modded mobs retain their own
-      styling.
+      Details 2.2.1 references animation files removed in FA 1.11.1. The maintained
+      patch repairs adult/baby mooshrooms using the current cow rig; red/brown
+      variants and idle motion were reviewed. Other missing rig references
+      remain unresolved. Modded mobs retain their own styling.
     nextCheck: Review villagers, golems, livestock and rare variants in villages
       before adopting the whole extension.
   - id: fresh-animations-objects
@@ -284,11 +290,16 @@ candidates:
     status: installed
     description: Adds depth to lanterns and chains.
     fit: A small decoration change that retains the vanilla visual vocabulary.
-    concern: The maintained patch restores chain colors and fits covered/bell
-      lantern artwork to the standing/hanging geometry. These families pass
-      local shader-off/on checks; other Macaw styles are not covered by that result.
-    nextCheck: Use Model authoring for UV/geometry edits. Review other lamp
-      families and moving ships separately.
+    concern: The maintained patch restores chain colors and fits covered, bell,
+      cross, festive, tavern, chain and striped lanterns, including wall variants.
+      Bridge/stair and wall mounts retain their attachment geometry. Deco cage
+      bends use joined beveled connectors; DnD hoods use a shorter overlapping
+      two-plate shell. Representative shader-off/on views passed native review.
+      The client Copycat Bar Extrusion mod gives normal Create panels fitted bar
+      materials; it does not substitute arbitrary resource-pack models.
+    nextCheck: Use Model authoring for UV/geometry edits. Moving contraptions,
+      multiplayer, other shaders and performance remain unverified. Copycat Bar Extrusion 0.1.0 is a
+      hash-pinned client dependency; its scope is standard Create panels.
   - id: fresh-flower-pots-compats
     category: Models
     status: defer

@@ -1,0 +1,32 @@
+---
+interface Props {
+  id: string
+  label: string
+}
+const { id, label } = Astro.props
+---
+
+<canvas
+  id={id}
+  class="minimap"
+  width="220"
+  height="150"
+  tabindex="0"
+  role="group"
+  aria-label={label}
+></canvas>
+<style>
+  .minimap {
+    width: 140px;
+    height: 96px;
+    flex-shrink: 0;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    cursor: crosshair;
+    touch-action: none;
+  }
+  .minimap:focus-visible {
+    outline: 2px solid var(--accent);
+  }
+</style>

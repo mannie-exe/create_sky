@@ -1,44 +1,41 @@
-# Create Sky v0.1.10
+# Create Sky v0.1.11
 
-Minecraft 1.21.1, NeoForge 21.1.264 and Java 21 remain pinned. See [v0.1.9 notes](releases/0.1.9.md) for the previous release.
+Minecraft 1.21.1, NeoForge 21.1.264 and Java 21 remain pinned.
+See [v0.1.10 notes](releases/0.1.10.md) for the previous release.
 
-## Flight
+## Visual compatibility
 
-Remove Do a Barrel Roll and its client/server configuration after reported flight
-jitter. Retain vanilla elytra steering and firework propulsion. No replacement
-flight overhaul is added.
+Expand the generated model patch across Create/Create Deco bars and overlays,
+Macaw lanterns and wall variants, Create Deco cage lamps and DnD frontlights.
+Lantern artwork follows the fitted models; cage bends join through clipped corners,
+and frontlight hoods use a shorter overlapping two-plate shell.
+Fresh Details mooshrooms retain their geometry with adapted animation references.
 
-## Resource selection
+Add Copycat Bar Extrusion 0.1.0 on clients. Standard Create Copycat Panels gain
+texture-mask depth for supported iron, Create and Create Deco bar materials.
+Other materials keep native rendering. This is not general custom-model support
+for every Copycats+ shape. Existing Create/Deco/Rechiseled window connections and
+intentional frame patterns remain in place.
 
-Replace 3D Ladders with RAY's ladders. Add RAY's rails, Midnighttigger's Default
-Connected Textures, Low Shield, Soft Weather, Cubic Sun & Moon, Fresh Flower Pots,
-Create Touch-Ups, Low On Fire, Fresh Animations Details/Objects and Better Lanterns.
-Icons is excluded. Keep the selected packs' materials close to vanilla and inspect
-modded counterparts separately.
+## Atlas and authoring
 
-The generated client patch combines four 3D Crops mushrooms/fungi with Fresh pots,
-restores Macaw's chain colors, fits bell/covered lantern artwork, extrudes Deco's
-industrial bars and adds Fresh Objects motion to Lootr chests. Its inputs
-are version/hash pinned. Dedicated cane and rails retain priority; the patch
-loads last. The inspected Crops archive is explicitly accepted despite its format
-metadata mismatch. Existing player selections are preserved unless explicitly synced.
+Add vertical acquisition paths with item icons, bounded graph rendering and minimap
+navigation. Item details, Evidence and graph selection share recipe displays with
+slot layouts, quantities, ingredient alternatives and processing conditions.
+Unsupported custom recipe layouts retain their source records.
 
-## Authoring and maintenance
+Authoring uses named jobs with bounded output, cancellation and serialized writes.
+Model recipes support retained attachments and small composed elements. Saving,
+generating resources and installing a pack remain separate actions.
 
-The Atlas includes resource-pack decisions, sourced galleries and catalog searches.
-Page navigation and view controls are shared across the map, authoring and review
-pages. Pack resource generators support read-only checks and preserve unchanged
-archive bytes and timestamps. Dependency and patch update procedures are centralized
-in the [maintenance guide](development/patches.md).
+## Verification and limits
 
-The [model workbench](development/web/models.md) edits extrusion planes, texture
-regions, UV mappings and element bounds with a textured preview. Recipe saves,
-resource generation and instance installation remain separate actions.
+Native checks cover representative placed models, Copycat materials in six facings,
+adjacent panels, resource reload and shaders off/on with Complementary/Euphoria.
+Moving contraptions, multiplayer, other shaders and performance remain unverified.
+Mapped paths describe potential acquisition, not resource budgets or elapsed time.
 
-## Verification limits
-
-Isolated checks cover potted plants, sampled lanterns/chains, bar connections,
-Lootr motion/state and glass. The model pass includes Complementary/Euphoria
-shader checks. Moving ships, Copycats, multiplayer and other shader combinations
-remain untested. The combined patch remains a playtest selection.
-See [verification](development/web/verification.md) for current checks and evidence.
+Modrinth, Prism and server exports retain referenced dependencies. No world reset,
+seed change or local player-settings replacement is part of this release.
+See [verification](development/web/verification.md) and
+[patch maintenance](development/patches.md) for the tested scope.

@@ -62,9 +62,11 @@ uses up to a 4 GiB Java heap, and allows ten minutes for the isolated server.
 `data:check` exercises the current pack's recipe, loot, coverage and journal
 assertions; it is intentionally specific to this pack.
 
-The same refresh is available in Edit data. Do not run concurrent captures or
-command-line compiles while the editor is saving. The plugin serializes its own
-writes, but does not lock separate shell processes.
+The same refresh is available in Edit data. The plugin serializes authoring
+operations, including reads that run validation or previews. Run one authoring
+server per pack; it does not lock separate shell processes or other dev servers.
+Do not run concurrent captures or command-line compiles while the editor is saving.
+See [named jobs](#named-authoring-jobs) for process limits and cancellation.
 
 World sampling is optional and has its own timestamp:
 
@@ -140,6 +142,47 @@ dev server after changing workspace middleware.
 The [pack authoring editor](authoring.md) uses the configured pack's generator
 and audit scripts. It requires no runtime export to edit journal source. After
 changing `data/local.json`, reload source in the editor.
+
+## Named authoring jobs
+
+`scripts/jobs.mjs` owns the registry and process runner for web-launched Python.
+Workbench handlers call a registered name with server-owned directory context;
+requests cannot choose a program, shell command, script path or argument vector.
+The registry records input validation, fixed arguments, working-directory role,
+expected outputs, timeout, output cap and cancellation policy.
+
+| Jobs                                                           | Inputs and output                                                                                                                 | Limits                                                    |
+| -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| `journal.preview`, `journal.validate`, `journal.generate`      | No process inputs; read configured or temporary journal source; generate native quests and language resources only when requested | 30 s, 2 MiB                                               |
+| `config.audit`, `config.validate`                              | No inputs; inspect the register or validate its temporary source copy                                                             | 30 s, 2 MiB                                               |
+| `models.preview`, `models.validate`                            | Model document on stdin, at most 1 MB; return preview JSON or validation                                                          | 30 s; 8 MiB for preview, 2 MiB for validation             |
+| `resources.generate`                                           | No inputs; generate the selected client resource ZIP                                                                              | 180 s, 2 MiB                                              |
+| `snapshot.fingerprint`, `snapshot.capture`, `snapshot.extract` | No inputs; fingerprint or explicitly regenerate implementation evidence                                                           | 30 s for fingerprint, 660 s for capture/extraction; 2 MiB |
+| `scenario.export`                                              | No inputs; export the validated recipe scenario                                                                                   | 30 s, 2 MiB                                               |
+
+The header shows the current or last job, bounded diagnostics and Cancel when
+available. Status polling keeps only one current job and one result in memory;
+there is no persisted history or work queue. Audit exit code 1 means differences
+were found and is returned as an audit result, rather than an execution failure.
+
+Preview and validation jobs support cancellation on macOS/Linux. Cancellation or
+timeout terminates the process group and escalates to KILL after 500 ms. Output
+beyond the cap is discarded and stops the job. Publishing jobs do not offer Cancel:
+interruption can leave partial generated output, particularly during capture or
+multi-file journal generation. Resolve failures and rerun the owning generator.
+These are trusted repository scripts, not a sandbox for arbitrary code.
+
+To add a workbench process, add a registry entry, validate its inputs, specify its
+outputs and limits, and call `jobs.run` from a protected workspace handler. Keep
+revision checks and any source publication in that handler. Add execution/failure
+tests and UI feedback; avoid another `spawn` or `execFile` wrapper. To remove a
+job, remove its callers, registry entry and applicable tests/docs together.
+Restart `pnpm dev` after changing the registry or middleware.
+
+Saving source, generating output and installing into Minecraft remain distinct.
+After generation, reload another open view if it uses the changed files. Direct
+YAML edits still need `pnpm data:compile`; the graph's Reload data button
+only rereads existing browser JSON. It does not capture or compile anything.
 
 ## Output and cleanup
 

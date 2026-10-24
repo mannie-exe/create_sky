@@ -1,7 +1,7 @@
 schema: 5
 pack:
   name: Create Sky
-  version: 0.1.10
+  version: 0.1.11
   id: create_sky
   authors:
     - mannie-exe
@@ -13,6 +13,15 @@ runtime:
   minecraft: 1.21.1
   java: 21
 dependencies:
+  copycat-bar-extrusion:
+    side: client
+    source:
+      kind: url
+      downloads:
+        - https://github.com/mannie-exe/copycat-bar-extrusion/releases/download/v0.1.0/copycat-bar-extrusion-0.1.0.jar
+    digests:
+      sha1: 6453e2496835b439a433c444442d79f6f52e4525
+      sha512: a8cc2bbeee0eef84e0180e146c17dcd320c8f0ad07afd530c500a87dd98014f6cce29cb07935098d1b13097705fb5fa3ef4fa2bbabae9ac3e07ef36ba0278083
   create-hostile-skies:
     source:
       kind: url

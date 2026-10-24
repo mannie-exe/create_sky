@@ -3,7 +3,7 @@
 | Task                                                         | Document                                        |
 | ------------------------------------------------------------ | ----------------------------------------------- |
 | Compare resource-pack candidates and source galleries        | [Resource-pack review](usage.md#resource-packs) |
-| Browse items, routes and evidence                            | [Map guide](usage.md)                           |
+| Browse the item grid, progression graph and evidence         | [Map guide](usage.md)                           |
 | Install tools, capture data or run checks                    | [Setup](setup.md)                               |
 | Understand sources, textures, schemas and editing boundaries | [Data pipeline](data.md)                        |
 | Check tested behavior and remaining limitations              | [Verification](verification.md)                 |

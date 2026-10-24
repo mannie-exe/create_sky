@@ -93,11 +93,21 @@ select {
   margin-left: 20px;
 }
 #viewport {
-  height: calc(100vh - 360px);
+  height: calc(100vh - 480px);
   min-height: 320px;
   overflow: auto;
   overscroll-behavior: contain;
   position: relative;
+  scrollbar-width: none;
+  cursor: grab;
+}
+#viewport::-webkit-scrollbar {
+  display: none;
+}
+#viewport.panning,
+#viewport.panning * {
+  cursor: grabbing;
+  user-select: none;
 }
 #grid {
   position: relative;

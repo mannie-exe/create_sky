@@ -93,3 +93,25 @@ and [release checks](https://github.com/mannie-exe/create_sky/actions/runs/40079
 passed. All three downloaded release assets match `SHA256SUMS`; published client
 and server release recipes match the installed instances exactly. The published
 Prism and Modrinth payloads contain the verified visual patch and attribution.
+
+## Create Sky 0.1.11 verification
+
+The release retains Minecraft 1.21.1, NeoForge 21.1.264 and Java 21. Copycat Bar
+Extrusion 0.1.0 is the only added dependency: a client-only, hash-pinned GitHub
+artifact, replacing the local override. Its fresh-checkout build matches the
+native-tested JAR. The resource patch retains the verified
+`edce4c4265ea017caf638821d8a4b857060ca261b2c870c9c5059b282ba0691e` SHA-256.
+
+Root Python checks (27), web JavaScript checks (50), web Python checks (9), browser
+checks (27), formatting, Astro diagnostics and the production build passed.
+The configuration audit still covers 228 files without drift or unregistered
+files. Native rendering scope and exclusions are in [compatibility](compatibility.md#visual-compatibility-pass);
+Atlas behavior and evidence are in [web verification](web/verification.md).
+
+All three reference exports passed archive-integrity and critical-payload checks:
+the renderer is referenced only on clients, the visual patch matches its native-tested
+hash, and the server retains the terminal helper. The adapter's
+[Linux CI build](https://github.com/mannie-exe/copycat-bar-extrusion/actions/runs/40116091129)
+produced the same JAR as the local native-tested build. The release introduces no
+world reset, server seed change or local-instance settings replacement.
+See [release notes](../RELEASE_NOTES.md).

@@ -233,7 +233,9 @@ function fields() {
     input('model-center').value = String(part.center)
     vector(
       'model-span',
-      ['Start', 'Bottom', 'End', 'Top'],
+      part.axis === 'y'
+        ? ['Min X', 'Min Z', 'Max X', 'Max Z']
+        : ['Start', 'Bottom', 'End', 'Top'],
       part.span,
       (value) => {
         part.span = value
@@ -393,6 +395,7 @@ select('model-axis').addEventListener('change', () => {
   if (r.kind === 'extrusion') {
     r.parts[Number(select('model-plane').value)].axis =
       select('model-axis').value
+    fields()
     changed()
   }
 })

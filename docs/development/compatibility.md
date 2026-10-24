@@ -214,7 +214,7 @@ Local comparison captures are generated evidence, excluded from version control:
 
 **Resource Review** in the local client is organized by Plants, Pots, Ladders,
 Bars, Lighting, Storage, Glass, Rails and signals, Machinery, Animals, Equipment
-and Surfaces. `/function resource_lab:hub` returns to its controls. These are
+Surfaces and Lamp variants. `/function resource_lab:hub` returns to its controls. These are
 comparison categories, not a division by mod or resource-pack coverage. The
 fixture source, manifest and stopped-world checker live in
 `~/Minecraft/modpack-testing/projects/create-sky-resources/`.
@@ -231,11 +231,28 @@ checks. Static machinery and track samples do not establish working contraptions
 
 | Family | Installed behavior and remaining work |
 | --- | --- |
-| Covered and bell lanterns | Four fitting recipes bind Macaw 1.1.5 artwork to Better Lanterns 1.2 standing/hanging geometry. Frames and caps sample opaque metal; covered windows sample the opaque lower artwork. The original animated texture IDs remain unchanged. Native shader-off/on checks cover these two families, not every Macaw lamp. |
-| Industrial iron bars | Four recipes extrude Create Deco 2.1.3's own side/post masks at two model units deep. They replace post, ends, side and alternate-side models while retaining native connection blockstates. Isolated posts, corners, crossings and three-block stacks render with closed edges and retained openings in shader-off/on checks. Moving contraptions and performance remain untested. |
+| Macaw lanterns | Bell, covered, cross and festive standing/hanging variants use fitted artwork. Bridge and stair lanterns use the detailed template within their original mounting envelope. The bridge must be directly below the lantern; its state selects the elevation. Native shader-off/on views cover representative variants. Wall lanterns remain separate upstream models. |
+| Create and Deco bars | Texture-mask extrusion covers all three Create families and Deco's andesite, brass, copper, industrial iron, iron and zinc model families, including overlays. Native posts, ends, corners, crossings and three-block stacks were reviewed. Deco overlays are connected bars with additional panels, not wall decals. Connection blockstates remain upstream-owned. |
+| Cage lamps and frontlights | Deco's cage surfaces have depth while its base, light and material/color bindings remain intact. Eight DnD hood templates retain their bodies, texture bindings, rotation, lit and no-base variants. Representative straight/rotated and powered/unpowered views passed with shaders on and off. |
+| Mooshrooms | Details 2.2.1 refers to the removed `mooshroom_animations.jpm` in FA 1.11.1. The adapter retains adult/baby geometry, uses the current shared cow rig and replaces obsolete ear/tail expressions. Red/brown adults and babies render; a retained clip shows idle motion. Stationary fixture specimens also require `OnGround:1b`. Other Details rigs with missing references remain outside this fix. |
+| Aquatic plants and pitcher plant | The selected stack, including active overlays, supplies no replacement geometry for lily pads, kelp, seagrass or pitcher growth stages. Their flat surfaces are missing coverage, not a priority failure. No new plant pack was added. |
 | Barrels | Fresh Objects 2.1.2 supplies no barrel CEM model. A barrel changes its block-state model/texture when opened; it has no chest-style lid renderer. An open-state model can change the silhouette, but smooth lid motion would require a renderer and transition state. |
 | Lootr chests | The [adapter](patches.md#lootr-and-fresh-objects) supplies the exact `lootr_lootr_chest` and `lootr_lootr_trapped_chest` model names requested by EMF, with literal body/latch bindings and an isolated animation resource. Native opening/closing, body motion, generated loot, state textures and neighboring-chest independence passed locally. Lootr continues to select its own materials; `vanilla_textures` stays disabled. |
-| Other models | Copycat materials, connected glass families, cage lamps, decorative machinery and moving objects need family-specific checks. Sharing a texture or parent is not proof of matching UVs, connection rules or renderer behavior. New creature animations need a rig/part mapping; extrusion cannot infer joints or behavior from a sprite. |
+| Other models | Connected glass families, decorative machinery and moving objects need family-specific checks. Sharing a texture or parent is not proof of matching UVs, connection rules or renderer behavior. New creature animations need a rig/part mapping; extrusion cannot infer joints or behavior from a sprite. |
+
+The Bars section uses real Copycat panels with both `Material` and `Item` NBT;
+missing item data causes Create to reset the material. The directly placed internal
+`create:copycat_bars` helper is removed. Double chests form a shared 54-slot inventory.
+Vault and shipping-container automation was previously verified, but those exhibits
+are removed from the visual review: neither has a dedicated manual GUI or opening
+animation. Connections now compares native window/pane behavior, mixed boundaries,
+Rechiseled variants and six Copycat panel facings.
+
+The 2026-10-24 visual pass is retained under
+`~/Minecraft/modpack-testing/projects/create-sky-resources/images/2026-10-24-visual-pass/`.
+Filenames distinguish shader-on/off views. These checks do not establish moving
+contraption rendering, other shader compatibility or performance. No web gallery
+was added for this pass.
 
 The optional `Resource Review Prototype.zip` is a local, unselected experiment.
 Its builder is in the fixture project. The maintained patch instead uses the
@@ -280,3 +297,32 @@ Vanilla Experience+, Fresh Moves and Dramatic Skys with a selected sky renderer.
 Their archive inspection is recorded in the Atlas, but this fixture pass did not
 run those candidates. Fresh Moves needs motion/equipment checks; sky rendering
 needs day/night and shader-on/off checks, not only a still image.
+
+### Visual compatibility pass
+
+The 2026-10-24 compatibility client used Minecraft 1.21.1, NeoForge 21.1.264,
+Create 6.0.10, Copycats+ 3.0.9 and Create Deco 2.1.3. Resource patch SHA-256:
+`edce4c4265ea017caf638821d8a4b857060ca261b2c870c9c5059b282ba0691e`.
+Copycat Bar Extrusion 0.1.0 JAR SHA-256:
+`ba32ee265b9bcf838c9cc177398081759e870aadffdadee8bf41fd207bfb99eb`.
+
+Native checks covered lantern standing/hanging/wall samples, the shorter straight
+and rotated frontlight hoods, cage bends, window corners/pane intersections and
+Copycat bar depth. The renderer generated all six facings for vanilla iron,
+Create andesite/brass/copper and Deco industrial iron/zinc, with 10–40 quads per
+panel. Adjacent brass panels joined visually; stone and unfilled panels retained
+native rendering. Resource reload through the pack-selection screen rebuilt the
+meshes successfully. Shader-off and Complementary Unbound 5.9.3/Euphoria 1.10.5
+views showed the revised silhouettes without missing textures in these samples.
+
+Create framed glass removes internal frame edges; wood and iron windows retain
+intentional mullions. Rechiseled's plain and connecting variants remain separate
+choices. No competing Fusion override was added to these native connections.
+This pass does not establish moving-contraption behavior, every Copycats+ shape,
+other shader packs or performance. The patch may keep redundant faces where panels
+touch; its cache and mesh limits bound memory/geometry, not measured frame time.
+
+Selected comparison captures remain in the testing harness under
+`projects/create-sky-resources/images/2026-10-24-compat-pass/`. The fixture's native
+parser exposed an invalid Rechiseled sample ID; it now uses registered oak window
+bars, and both fill and individual placement validate registry IDs before generation.

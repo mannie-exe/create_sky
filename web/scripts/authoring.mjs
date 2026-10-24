@@ -2,10 +2,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import os from 'node:os'
 import crypto from 'node:crypto'
-import { execFile } from 'node:child_process'
-import { promisify } from 'node:util'
-
-const run = promisify(execFile)
+import { jobs } from './jobs.mjs'
 const digest = (value) =>
   crypto.createHash('sha256').update(value).digest('hex')
 const allowed =
@@ -62,14 +59,8 @@ export function authoring(pack) {
     return result
   }
   const revision = (values) => digest(JSON.stringify(values))
-  async function command(script, args = [], cwd = pack) {
-    return (
-      await run('python3', [path.join(cwd, 'scripts', script), ...args], {
-        cwd,
-        timeout: 30000,
-        maxBuffer: 2 * 1024 * 1024,
-      })
-    ).stdout
+  async function command(name, validation = pack) {
+    return (await jobs.run(name, { pack, validation })).stdout
   }
   return {
     async read() {
@@ -77,18 +68,11 @@ export function authoring(pack) {
       return {
         files: values,
         revision: revision(values),
-        generation: JSON.parse(
-          await command('generate-journal.py', ['--preview']),
-        ),
+        generation: JSON.parse(await command('journal.preview')),
       }
     },
     async audit() {
-      try {
-        return JSON.parse(await command('audit-changes.py', ['--json']))
-      } catch (error) {
-        if (error.code === 1 && error.stdout) return JSON.parse(error.stdout)
-        throw error
-      }
+      return JSON.parse(await command('config.audit'))
     },
     async save(input) {
       const destination = await filePath(input.name)
@@ -117,8 +101,8 @@ export function authoring(pack) {
             path.join(pack, 'scripts', script),
             path.join(temporary, 'scripts', script),
           )
-        await command('generate-journal.py', ['--preview'], temporary)
-        await command('audit-changes.py', ['--validate'], temporary)
+        await command('journal.validate', temporary)
+        await command('config.validate', temporary)
         if (revision(await files()) !== revision(before))
           throw new Error(
             'Source changed during validation. Reload before saving.',
@@ -140,7 +124,7 @@ export function authoring(pack) {
     async generate(input) {
       if (revision(await files()) !== input.revision)
         throw new Error('Source changed on disk. Reload before generating.')
-      const output = await command('generate-journal.py')
+      const output = await command('journal.generate')
       return { output: output.trim() }
     },
   }
