@@ -73,8 +73,8 @@ passed; downloaded assets matched checksums and tested exports. See [archived no
 
 ## Create Sky 0.1.10 verification
 
-Release preparation uses the working tree based on `9bef645`, with the exact
-Minecraft/NeoForge pins unchanged. Root tests (26), web Node tests (32), web Python
+Published [v0.1.10](https://github.com/mannie-exe/create_sky/releases/tag/v0.1.10)
+is tag `95e97e9`, with the exact Minecraft/NeoForge pins unchanged. Root tests (26), web Node tests (32), web Python
 tests (9), browser checks (19), formatting, Astro diagnostics and the static build
 pass. The configuration audit covers 228 files with no drift or unregistered files.
 The isolated native capture completed on 2026-10-24 after client/server sync; the
@@ -86,3 +86,10 @@ Lootr checks are documented in [web verification](web/verification.md); moving
 contraptions, multiplayer and other shader combinations remain unverified.
 The local update preserved player settings, access lists, saves and LODs.
 See [release notes](../RELEASE_NOTES.md) and [build commands](build.md#local-builds).
+
+[Pack validation](https://github.com/mannie-exe/create_sky/actions/runs/40079138434),
+[web validation](https://github.com/mannie-exe/create_sky/actions/runs/40079138444)
+and [release checks](https://github.com/mannie-exe/create_sky/actions/runs/40079139765)
+passed. All three downloaded release assets match `SHA256SUMS`; published client
+and server release recipes match the installed instances exactly. The published
+Prism and Modrinth payloads contain the verified visual patch and attribution.
