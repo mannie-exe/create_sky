@@ -115,3 +115,13 @@ hash, and the server retains the terminal helper. The adapter's
 produced the same JAR as the local native-tested build. The release introduces no
 world reset, server seed change or local-instance settings replacement.
 See [release notes](../RELEASE_NOTES.md).
+
+Published [v0.1.11](https://github.com/mannie-exe/create_sky/releases/tag/v0.1.11)
+is tag `25fa85e`. [Pack validation](https://github.com/mannie-exe/create_sky/actions/runs/40116433107),
+[web validation](https://github.com/mannie-exe/create_sky/actions/runs/40116433194)
+and [release checks](https://github.com/mannie-exe/create_sky/actions/runs/40116434016)
+passed. All three downloaded exports matched `SHA256SUMS` and passed archive,
+version, client/server placement and critical-payload checks. Published client
+exports retain the tested visual-patch hash and reference the verified Copycat JAR;
+the server excludes that client adapter. No local instances were modified during
+publication; the preceding playtest sync remains intact.
