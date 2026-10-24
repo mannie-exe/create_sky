@@ -1,7 +1,6 @@
 acceptable-versions: []
 coverage:
   3d-crops: complete
-  3d-ladders: complete
   3d-sugar-cane: complete
   accessories: complete
   accessories-compat-layer: complete
@@ -13,6 +12,7 @@ coverage:
   azimuth-api: complete
   bellsandwhistles: complete
   better-climbing: complete
+  better-lanterns: complete
   better-third-person: complete
   bsl-shaders: complete
   c2me-neoforge: complete
@@ -47,15 +47,16 @@ coverage:
   create-power-loader: complete
   create-propulsion-simulated: complete
   create-radars: complete
+  create-touch-ups: complete
   create-transmission: complete
   create-vibrant-vaults: unknown
   createaddoncompatibility: complete
+  cubic-sun-moon: complete
   curios: complete
   defaultworldtype: complete
   dh-polygon-fix: unknown
   distanthorizons: complete
   distraction-free-recipes: complete
-  do-a-barrel-roll: complete
   dynamic-fps: complete
   easy-anvils: complete
   easy-magic: complete
@@ -71,6 +72,9 @@ coverage:
   ferrite-core: complete
   forgified-fabric-api: complete
   fresh-animations: complete
+  fresh-animations-details: complete
+  fresh-animations-objects: complete
+  fresh-flower-pots: complete
   fusion-connected-textures: complete
   fzzy-config: complete
   hoofprint: unknown
@@ -89,6 +93,8 @@ coverage:
   lets-do-emi-compat: complete
   lithium: complete
   lootr: complete
+  low-on-fire: complete
+  low-shield-pack: complete
   macaws-bridges: complete
   macaws-doors: complete
   macaws-fences-and-walls: complete
@@ -101,6 +107,7 @@ coverage:
   mezzconfig: complete
   modernfix: complete
   moreculling: complete
+  mt-ct-d: complete
   owo-lib: complete
   ping-wheel: complete
   playeranimator: complete
@@ -108,6 +115,8 @@ coverage:
   power-grid: complete
   puzzles-lib: complete
   questlog: complete
+  rays-3d-ladders: complete
+  rays-3d-rails: complete
   rechiseled: unknown
   rechiseled-create: unknown
   reddens-stone-lanterns: complete
@@ -125,6 +134,7 @@ coverage:
   sky-villages: complete
   sodium: complete
   sodium-extra: complete
+  soft-weather: complete
   sound-physics-remastered: complete
   spyglass-improvements: complete
   ssrd: unknown
@@ -192,61 +202,6 @@ dependencies:
       provider: modrinth
       selector: 3d-crops
     title: 3D crops Revamped
-  3d-ladders:
-    content: resource-pack
-    files:
-    - acquisition:
-        downloads:
-        - >-
-          https://cdn.modrinth.com/data/ti9eZ3CP/versions/44oYkyYv/%C2%A7l3D%C2%A7f%2BLadders%2Bv1.2%28mc-1.21%29.zip
-        kind: provider
-        pin:
-          project:
-            project: ti9eZ3CP
-            provider: modrinth
-          selection:
-            id: 44oYkyYv
-            provider: modrinth
-        slot: §l3D§f+Ladders+v1.2(mc-1.21).zip
-      expected:
-        accepted-observation: null
-        digests:
-          sha1: fcc4ecd1a465fdc26d90e9259c529b89d9072fce
-          sha512: >-
-            815c65d2bc3e0ad5683d88b897530c726867f6fd23feeac21b1bc15a92ef0b00eddebac579cf6d08b128e27fa8bda4fbc7063824046de29d0f7d29402905b63a
-        size: 12502
-      placements:
-      - destination: resourcepacks/§l3D§f+Ladders+v1.2(mc-1.21).zip
-        environment:
-          client: required
-          server: unsupported
-        layer: common
-      provenance:
-        conversions: []
-        declared-digests:
-          sha1: fcc4ecd1a465fdc26d90e9259c529b89d9072fce
-          sha512: >-
-            815c65d2bc3e0ad5683d88b897530c726867f6fd23feeac21b1bc15a92ef0b00eddebac579cf6d08b128e27fa8bda4fbc7063824046de29d0f7d29402905b63a
-        location: ti9eZ3CP
-        source: provider-catalog
-      slot: primary
-    identity:
-      kind: provider
-      project:
-        project: ti9eZ3CP
-        provider: modrinth
-    incompatibilities: []
-    selection:
-      project:
-        project: ti9eZ3CP
-        provider: modrinth
-      selection:
-        id: 44oYkyYv
-        provider: modrinth
-    source-selector:
-      provider: modrinth
-      selector: 3d-ladders
-    title: 3D Ladders
   3d-sugar-cane:
     content: resource-pack
     files:
@@ -854,6 +809,61 @@ dependencies:
       provider: modrinth
       selector: better-climbing
     title: Better Climbing
+  better-lanterns:
+    content: resource-pack
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/PGGrfcvL/versions/jRAsb6KQ/Better%2BLanterns%2Bv1.2%28mc-1.21%29.zip
+        kind: provider
+        pin:
+          project:
+            project: PGGrfcvL
+            provider: modrinth
+          selection:
+            id: jRAsb6KQ
+            provider: modrinth
+        slot: Better+Lanterns+v1.2(mc-1.21).zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: fa1e0dc78b535df918dca5ba453ebbdb6415ce48
+          sha512: >-
+            e2bbb4555928f418ec5953228fe0200ae62baffa7fc3a189cf3595843061ea76f61465d591ebdb07b05d9d2f281f6b64944f55e99343d8700f2c5f475f40f745
+        size: 51529
+      placements:
+      - destination: resourcepacks/Better+Lanterns+v1.2(mc-1.21).zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: fa1e0dc78b535df918dca5ba453ebbdb6415ce48
+          sha512: >-
+            e2bbb4555928f418ec5953228fe0200ae62baffa7fc3a189cf3595843061ea76f61465d591ebdb07b05d9d2f281f6b64944f55e99343d8700f2c5f475f40f745
+        location: PGGrfcvL
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: PGGrfcvL
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: PGGrfcvL
+        provider: modrinth
+      selection:
+        id: jRAsb6KQ
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: better-lanterns
+    title: Better Lanterns
   better-third-person:
     content: mod
     files:
@@ -2661,6 +2671,61 @@ dependencies:
       provider: modrinth
       selector: BLu2Yqfq
     title: "Create: Radars"
+  create-touch-ups:
+    content: resource-pack
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/BmapKTHd/versions/aoJf3Iu6/Create%20Touch-Ups%20v1.0.zip
+        kind: provider
+        pin:
+          project:
+            project: BmapKTHd
+            provider: modrinth
+          selection:
+            id: aoJf3Iu6
+            provider: modrinth
+        slot: Create Touch-Ups v1.0.zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 8d6e637d9f9dcad4a693c9c3c460b8aef8ed5de0
+          sha512: >-
+            64f44f78f580428454f071f3af4662fd54ba8dcce5ad1d4c57b6408807214cc7c5aeb98d519a3f91f02df39b92c2f14badda4e994a5b0caacda1f67c7d40516a
+        size: 150044
+      placements:
+      - destination: resourcepacks/Create Touch-Ups v1.0.zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 8d6e637d9f9dcad4a693c9c3c460b8aef8ed5de0
+          sha512: >-
+            64f44f78f580428454f071f3af4662fd54ba8dcce5ad1d4c57b6408807214cc7c5aeb98d519a3f91f02df39b92c2f14badda4e994a5b0caacda1f67c7d40516a
+        location: BmapKTHd
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: BmapKTHd
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: BmapKTHd
+        provider: modrinth
+      selection:
+        id: aoJf3Iu6
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: create-touch-ups
+    title: Create Touch-Ups
   create-transmission:
     content: mod
     files:
@@ -2808,6 +2873,61 @@ dependencies:
       provider: modrinth
       selector: QgrK9rtJ
     title: "Create: Addon Compatibility"
+  cubic-sun-moon:
+    content: resource-pack
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/g4bSYbrU/versions/zHa4qeKn/cubic-sun-moon-v1.8.5.zip
+        kind: provider
+        pin:
+          project:
+            project: g4bSYbrU
+            provider: modrinth
+          selection:
+            id: zHa4qeKn
+            provider: modrinth
+        slot: cubic-sun-moon-v1.8.5.zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 16c5dbbe6214e5f2d7560707afaca9c71a8107fe
+          sha512: >-
+            6136c94c0c1ba8251a378f791cdca1cdce021fc486c50f4d1c928769e361dd9dadfc6267a2a06c902bd9509136a99fa24ffa88f84395869b889c2257124929af
+        size: 16194897
+      placements:
+      - destination: resourcepacks/cubic-sun-moon-v1.8.5.zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 16c5dbbe6214e5f2d7560707afaca9c71a8107fe
+          sha512: >-
+            6136c94c0c1ba8251a378f791cdca1cdce021fc486c50f4d1c928769e361dd9dadfc6267a2a06c902bd9509136a99fa24ffa88f84395869b889c2257124929af
+        location: g4bSYbrU
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: g4bSYbrU
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: g4bSYbrU
+        provider: modrinth
+      selection:
+        id: zHa4qeKn
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: cubic-sun-moon
+    title: Cubic Sun & Moon
   curios:
     content: mod
     files:
@@ -3065,61 +3185,6 @@ dependencies:
       provider: modrinth
       selector: gbJLUhZP
     title: Distraction Free Recipes (EMI / REI / JEI)
-  do-a-barrel-roll:
-    content: mod
-    files:
-    - acquisition:
-        downloads:
-        - >-
-          https://cdn.modrinth.com/data/6FtRfnLg/versions/Zj604q5O/do_a_barrel_roll-neoforge-3.7.3%2B1.21.jar
-        kind: provider
-        pin:
-          project:
-            project: 6FtRfnLg
-            provider: modrinth
-          selection:
-            id: Zj604q5O
-            provider: modrinth
-        slot: do_a_barrel_roll-neoforge-3.7.3+1.21.jar
-      expected:
-        accepted-observation: null
-        digests:
-          sha1: 6a3cc7dc17fb701087a9705b06d75d9bb5f09065
-          sha512: >-
-            dc4a76eacc44b17c444368fdf012c5b06cd9f88463f562cc1d275e2b4e8e15b5f141373fc65de9b56167355d7a406b1dbee691b6cf20a4026b61faadb1d93c17
-        size: 465787
-      placements:
-      - destination: mods/do_a_barrel_roll-neoforge-3.7.3+1.21.jar
-        environment:
-          client: required
-          server: required
-        layer: common
-      provenance:
-        conversions: []
-        declared-digests:
-          sha1: 6a3cc7dc17fb701087a9705b06d75d9bb5f09065
-          sha512: >-
-            dc4a76eacc44b17c444368fdf012c5b06cd9f88463f562cc1d275e2b4e8e15b5f141373fc65de9b56167355d7a406b1dbee691b6cf20a4026b61faadb1d93c17
-        location: 6FtRfnLg
-        source: provider-catalog
-      slot: primary
-    identity:
-      kind: provider
-      project:
-        project: 6FtRfnLg
-        provider: modrinth
-    incompatibilities: []
-    selection:
-      project:
-        project: 6FtRfnLg
-        provider: modrinth
-      selection:
-        id: Zj604q5O
-        provider: modrinth
-    source-selector:
-      provider: modrinth
-      selector: do-a-barrel-roll
-    title: Do a Barrel Roll
   dynamic-fps:
     content: mod
     files:
@@ -3945,6 +4010,169 @@ dependencies:
       provider: modrinth
       selector: fresh-animations
     title: Fresh Animations
+  fresh-animations-details:
+    content: resource-pack
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/lctgpCsu/versions/tGydmcT3/FA%2BDetails-v2.2.1.zip
+        kind: provider
+        pin:
+          project:
+            project: lctgpCsu
+            provider: modrinth
+          selection:
+            id: tGydmcT3
+            provider: modrinth
+        slot: FA+Details-v2.2.1.zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 456243af4db5e0b575b1f31c0ba5edfac24ec346
+          sha512: >-
+            f5f84645c2665e772d6db80a201e7dda0feb570a82445b72e7012665b6df238357a8b62e6d2655a43146fd309c36125ed18d9512ee924f89587ef627c6f3c753
+        size: 289745
+      placements:
+      - destination: resourcepacks/FA+Details-v2.2.1.zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 456243af4db5e0b575b1f31c0ba5edfac24ec346
+          sha512: >-
+            f5f84645c2665e772d6db80a201e7dda0feb570a82445b72e7012665b6df238357a8b62e6d2655a43146fd309c36125ed18d9512ee924f89587ef627c6f3c753
+        location: lctgpCsu
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: lctgpCsu
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: lctgpCsu
+        provider: modrinth
+      selection:
+        id: tGydmcT3
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: fresh-animations-details
+    title: "Fresh Animations: Details"
+  fresh-animations-objects:
+    content: resource-pack
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/23O9JVMV/versions/AIGgXNdl/FA%2BObjects-v2.1.2.zip
+        kind: provider
+        pin:
+          project:
+            project: 23O9JVMV
+            provider: modrinth
+          selection:
+            id: AIGgXNdl
+            provider: modrinth
+        slot: FA+Objects-v2.1.2.zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: bea6b91e4234b7223010d7ac248123d0398e7aa2
+          sha512: >-
+            61b76ed37e5ecfc4b5d25c545b011bb5bb59c49c97733d0f8b3afa725c886ed82e787d177df068f7e2fb3d5bb6fc253c5822d833658ff3ba48bd53b5c6c1ed21
+        size: 142277
+      placements:
+      - destination: resourcepacks/FA+Objects-v2.1.2.zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: bea6b91e4234b7223010d7ac248123d0398e7aa2
+          sha512: >-
+            61b76ed37e5ecfc4b5d25c545b011bb5bb59c49c97733d0f8b3afa725c886ed82e787d177df068f7e2fb3d5bb6fc253c5822d833658ff3ba48bd53b5c6c1ed21
+        location: 23O9JVMV
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: 23O9JVMV
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: 23O9JVMV
+        provider: modrinth
+      selection:
+        id: AIGgXNdl
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: fresh-animations-objects
+    title: "Fresh Animations: Objects"
+  fresh-flower-pots:
+    content: resource-pack
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/CmEN0T1m/versions/YEM2pUsf/%C2%A73Fresh%20%C2%A7bFlower%20Pots.zip
+        kind: provider
+        pin:
+          project:
+            project: CmEN0T1m
+            provider: modrinth
+          selection:
+            id: YEM2pUsf
+            provider: modrinth
+        slot: §3Fresh §bFlower Pots.zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: c441c973438f41dc5ba2493a211d1e40baf6c8c5
+          sha512: >-
+            20f6b1d45f824fd5218bb9ab0798170de158e9d58f71b0ddf3fad1e7a22c90aca8d1f08c8d9a1f1e932754d619c0f9480d81ad4ba2c1746b7c832c241cd2e817
+        size: 43374
+      placements:
+      - destination: resourcepacks/§3Fresh §bFlower Pots.zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: c441c973438f41dc5ba2493a211d1e40baf6c8c5
+          sha512: >-
+            20f6b1d45f824fd5218bb9ab0798170de158e9d58f71b0ddf3fad1e7a22c90aca8d1f08c8d9a1f1e932754d619c0f9480d81ad4ba2c1746b7c832c241cd2e817
+        location: CmEN0T1m
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: CmEN0T1m
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: CmEN0T1m
+        provider: modrinth
+      selection:
+        id: YEM2pUsf
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: fresh-flower-pots
+    title: Fresh Flower Pots
   fusion-connected-textures:
     content: mod
     files:
@@ -4916,6 +5144,115 @@ dependencies:
       provider: modrinth
       selector: EltpO5cN
     title: Lootr
+  low-on-fire:
+    content: resource-pack
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/RRxvWKNC/versions/yQdcUfnr/LowOnFire%20v26.2%C2%A78.zip
+        kind: provider
+        pin:
+          project:
+            project: RRxvWKNC
+            provider: modrinth
+          selection:
+            id: yQdcUfnr
+            provider: modrinth
+        slot: LowOnFire v26.2§8.zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 96932a034fff4cd0cad08ba12db730450c4772da
+          sha512: >-
+            713a20a8171c8249c30d9eb72342162754c627c7a86dc0971cb555faf43c322c181fd5546e0c770fc9ae922161ee846a7af951267c1d9a8a75af466a17e19d5e
+        size: 42760
+      placements:
+      - destination: resourcepacks/LowOnFire v26.2§8.zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 96932a034fff4cd0cad08ba12db730450c4772da
+          sha512: >-
+            713a20a8171c8249c30d9eb72342162754c627c7a86dc0971cb555faf43c322c181fd5546e0c770fc9ae922161ee846a7af951267c1d9a8a75af466a17e19d5e
+        location: RRxvWKNC
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: RRxvWKNC
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: RRxvWKNC
+        provider: modrinth
+      selection:
+        id: yQdcUfnr
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: low-on-fire
+    title: Low On Fire
+  low-shield-pack:
+    content: resource-pack
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/CZrLuVQo/versions/AV6Mwfm5/Low%20Shield.zip
+        kind: provider
+        pin:
+          project:
+            project: CZrLuVQo
+            provider: modrinth
+          selection:
+            id: AV6Mwfm5
+            provider: modrinth
+        slot: Low Shield.zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 33361c7a9e514b4dafade25b06051035b39b0196
+          sha512: >-
+            64a7bf7327ceed9874b9db8c82948e484b0f838e5f21fd8831758e0ef2b37052475e0ef94da3e5d645928b968541ce20b872b686a68502ed0b89a372f10cbd12
+        size: 3922
+      placements:
+      - destination: resourcepacks/Low Shield.zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 33361c7a9e514b4dafade25b06051035b39b0196
+          sha512: >-
+            64a7bf7327ceed9874b9db8c82948e484b0f838e5f21fd8831758e0ef2b37052475e0ef94da3e5d645928b968541ce20b872b686a68502ed0b89a372f10cbd12
+        location: CZrLuVQo
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: CZrLuVQo
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: CZrLuVQo
+        provider: modrinth
+      selection:
+        id: AV6Mwfm5
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: low-shield-pack
+    title: Low Shield
   macaws-bridges:
     content: mod
     files:
@@ -5556,6 +5893,61 @@ dependencies:
       provider: modrinth
       selector: 51shyZVL
     title: More Culling
+  mt-ct-d:
+    content: resource-pack
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/TjOXlt9Y/versions/UPBKvt5T/Midnighttigger%27s%20Default%20Connected%20Textures.zip
+        kind: provider
+        pin:
+          project:
+            project: TjOXlt9Y
+            provider: modrinth
+          selection:
+            id: UPBKvt5T
+            provider: modrinth
+        slot: Midnighttigger's Default Connected Textures.zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: ccff4dd7354b7fdcc241e59ec770d194ccbd2ac7
+          sha512: >-
+            ad43b77f10a58a838e6ba2e6fd8a190f3eba823df991d8c475192b5c77ffe76abb314c008fad1d92fc8d9dc2b23b20cd0c96331787b1e63d6ab61f0249386b11
+        size: 437300
+      placements:
+      - destination: resourcepacks/Midnighttigger's Default Connected Textures.zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: ccff4dd7354b7fdcc241e59ec770d194ccbd2ac7
+          sha512: >-
+            ad43b77f10a58a838e6ba2e6fd8a190f3eba823df991d8c475192b5c77ffe76abb314c008fad1d92fc8d9dc2b23b20cd0c96331787b1e63d6ab61f0249386b11
+        location: TjOXlt9Y
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: TjOXlt9Y
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: TjOXlt9Y
+        provider: modrinth
+      selection:
+        id: UPBKvt5T
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: mt-ct-d
+    title: Midnighttigger's Default Connected Textures
   owo-lib:
     content: mod
     files:
@@ -5939,6 +6331,115 @@ dependencies:
       provider: modrinth
       selector: questlog
     title: Questlog
+  rays-3d-ladders:
+    content: resource-pack
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/Uupo7yGf/versions/lfVriRcD/RAYs_3D_Ladders_v2.4.zip
+        kind: provider
+        pin:
+          project:
+            project: Uupo7yGf
+            provider: modrinth
+          selection:
+            id: lfVriRcD
+            provider: modrinth
+        slot: RAYs_3D_Ladders_v2.4.zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 12e023197352e919d776129330458d9f3b759706
+          sha512: >-
+            56f0f53da4647908a5204023470b9e81528025a4182c219482f9b32056157e4f97f00c1c92308de5d83cf71308cb738ea3f1dec3d59bd9b6884050e0480371ed
+        size: 1936943
+      placements:
+      - destination: resourcepacks/RAYs_3D_Ladders_v2.4.zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 12e023197352e919d776129330458d9f3b759706
+          sha512: >-
+            56f0f53da4647908a5204023470b9e81528025a4182c219482f9b32056157e4f97f00c1c92308de5d83cf71308cb738ea3f1dec3d59bd9b6884050e0480371ed
+        location: Uupo7yGf
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: Uupo7yGf
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: Uupo7yGf
+        provider: modrinth
+      selection:
+        id: lfVriRcD
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: rays-3d-ladders
+    title: RAY's 3D Ladders
+  rays-3d-rails:
+    content: resource-pack
+    files:
+    - acquisition:
+        downloads:
+        - https://cdn.modrinth.com/data/jKa9Ievs/versions/vTaYwBqs/RAYs_3D_Rails_v3.6.zip
+        kind: provider
+        pin:
+          project:
+            project: jKa9Ievs
+            provider: modrinth
+          selection:
+            id: vTaYwBqs
+            provider: modrinth
+        slot: RAYs_3D_Rails_v3.6.zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 648bcc967799bb3cefb1d276558f0c8630f46b95
+          sha512: >-
+            5bac9a5e994075a867b154d77aa39bf10755589683119ebbc093d7b4c6a228f44d8fafc18ffb981724fa805e79c360d95a72aaa909d58cb9fdde63a4c75e5bdb
+        size: 6228510
+      placements:
+      - destination: resourcepacks/RAYs_3D_Rails_v3.6.zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 648bcc967799bb3cefb1d276558f0c8630f46b95
+          sha512: >-
+            5bac9a5e994075a867b154d77aa39bf10755589683119ebbc093d7b4c6a228f44d8fafc18ffb981724fa805e79c360d95a72aaa909d58cb9fdde63a4c75e5bdb
+        location: jKa9Ievs
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: jKa9Ievs
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: jKa9Ievs
+        provider: modrinth
+      selection:
+        id: vTaYwBqs
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: rays-3d-rails
+    title: RAY's 3D Rails
   rechiseled:
     content: mod
     files:
@@ -6818,6 +7319,61 @@ dependencies:
       provider: modrinth
       selector: PtjYWJkn
     title: Sodium Extra
+  soft-weather:
+    content: resource-pack
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://cdn.modrinth.com/data/BBINRWgi/versions/iAb7bpl5/Soft-Weather-1.0-Universal.zip
+        kind: provider
+        pin:
+          project:
+            project: BBINRWgi
+            provider: modrinth
+          selection:
+            id: iAb7bpl5
+            provider: modrinth
+        slot: Soft-Weather-1.0-Universal.zip
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: a47863b55f54b94473295960ca69f3e35d3ba4d0
+          sha512: >-
+            d0fc4e1def1b44669df6e8e30e9a43b6eb1bbf8625166e0fa504f2b473c3d766e7a5280ec198268cfed7851d62b7ae5d67d925e944d3c54d296c7d684f4d02fb
+        size: 6534
+      placements:
+      - destination: resourcepacks/Soft-Weather-1.0-Universal.zip
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: a47863b55f54b94473295960ca69f3e35d3ba4d0
+          sha512: >-
+            d0fc4e1def1b44669df6e8e30e9a43b6eb1bbf8625166e0fa504f2b473c3d766e7a5280ec198268cfed7851d62b7ae5d67d925e944d3c54d296c7d684f4d02fb
+        location: BBINRWgi
+        source: provider-catalog
+      slot: primary
+    identity:
+      kind: provider
+      project:
+        project: BBINRWgi
+        provider: modrinth
+    incompatibilities: []
+    selection:
+      project:
+        project: BBINRWgi
+        provider: modrinth
+      selection:
+        id: iAb7bpl5
+        provider: modrinth
+    source-selector:
+      provider: modrinth
+      selector: soft-weather
+    title: Soft Weather
   sound-physics-remastered:
     content: mod
     files:
@@ -7452,7 +8008,7 @@ dependencies:
       provider: modrinth
       selector: OnlVIpq5
     title: Fast Noise
-intent-revision: 7748c149b23467a372aec23cfbaf2b6acf3f23ad0600603ae6578cb231a399c4
+intent-revision: 2c7608f4fc05b2906b92511aeeb017662e67b2fac4cf9b2f968a0d9f1dcb2e08
 required-edges:
   accessories:
   - owo-lib
@@ -7515,8 +8071,6 @@ required-edges:
   - create
   distraction-free-recipes:
   - txnilib
-  do-a-barrel-roll:
-  - forgified-fabric-api
   easy-anvils:
   - puzzles-lib
   easy-magic:
@@ -7528,6 +8082,8 @@ required-edges:
   - entitytexturefeatures
   escalated:
   - create
+  fresh-animations-details:
+  - fresh-animations
   fzzy-config:
   - kotlin-for-forge
   inventory-totem:
@@ -7545,6 +8101,8 @@ required-edges:
   - curios
   moreculling:
   - cloth-config
+  mt-ct-d:
+  - fusion-connected-textures
   power-grid:
   - architectury-api
   - create

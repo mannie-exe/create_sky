@@ -1,6 +1,8 @@
 # Upstream findings
 
-Checked 2026-10-21 against the installed versions and the cited upstream revisions.
+Issue states below were inspected on 2026-10-21 unless a later date is given.
+They are dated evidence, not a live tracker; recheck the linked artifact/issue
+before removing a workaround during an update.
 
 Read-only review of GitHub issues/PRs (open and closed), project metadata and
 selected current source files. No issue, comment or PR was published. The entries below distinguish upstream reports from local pack policy.
@@ -75,7 +77,7 @@ selected current source files. No issue, comment or PR was published. The entrie
   https://github.com/Propulsion-Team/create-propulsion-simulated/issues/92
 
 
-See [compatibility](compatibility.md) for maintained workarounds.
+See [patch maintenance](patches.md) for override ownership and update/removal checks.
 
 ## Generation compatibility, 2026-10-21
 
@@ -125,3 +127,16 @@ pack configuration problem, repaired by retaining geological ore identity.
 See [progression](progression.md) for the resulting policy and validation.
 Existing upstream coverage of the duration issue has not been checked and no
 report was submitted.
+
+## Client startup observation, 2026-10-23
+
+One isolated resource-fixture launch stopped at texture stitching with Ponder
+1.0.82, Create 6.0.10 and NeoForge 21.1.264:
+`StitchedSprite.onTextureStitchPost(StitchedSprite.java:35)` attempted
+`StitchedSprite.loadSprite(...)` on a null entry. An unchanged retry reached the
+integrated world. No cause or pack-specific attribution is established.
+
+[Ponder #92](https://github.com/Creators-of-Create/Ponder/issues/92) concerns a
+null **sprite field** in a late-created entry; this capture had a null entry in
+the stitch loop, so it is not an established duplicate. Preserve that distinction
+if reproducing or reporting it. No upstream report or workaround was submitted.

@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "sources": {
+    "fresh-flower-pots": {
+      "version": "YEM2pUsf",
+      "path": "pack/resourcepacks/§3Fresh §bFlower Pots.zip",
+      "sha512": "20f6b1d45f824fd5218bb9ab0798170de158e9d58f71b0ddf3fad1e7a22c90aca8d1f08c8d9a1f1e932754d619c0f9480d81ad4ba2c1746b7c832c241cd2e817",
+      "url": "https://cdn.modrinth.com/data/CmEN0T1m/versions/YEM2pUsf/%C2%A73Fresh%20%C2%A7bFlower%20Pots.zip"
+    },
+    "3d-crops": {
+      "version": "iKYRZwnm",
+      "path": "pack/resourcepacks/crops-3d(2).zip",
+      "sha512": "57073e45b1499cb7c4e6e40f9314fa6bb24716f116ef83a65914c86a7999bb26d28c023afd502e2bdbce60312c225199c4e46a3194e8dbe7bb60121894338996",
+      "url": "https://cdn.modrinth.com/data/PgpTtNoI/versions/iKYRZwnm/crops-3d%282%29.zip"
+    },
+    "better-lanterns": {
+      "version": "jRAsb6KQ",
+      "path": "pack/resourcepacks/Better+Lanterns+v1.2(mc-1.21).zip",
+      "sha512": "e2bbb4555928f418ec5953228fe0200ae62baffa7fc3a189cf3595843061ea76f61465d591ebdb07b05d9d2f281f6b64944f55e99343d8700f2c5f475f40f745",
+      "url": "https://cdn.modrinth.com/data/PGGrfcvL/versions/jRAsb6KQ/Better%2BLanterns%2Bv1.2%28mc-1.21%29.zip"
+    },
+    "macaws-lights-and-lamps": {
+      "version": "5U2kQZIL",
+      "path": "pack/mods/mcw-lights-1.1.5-mc1.21.1neoforge.jar",
+      "sha512": "a6e1c4419b70a3f9225ad03daafca22c8a7da432ec4939b8029455927e3b44683a20e89a3299da78f124d0438e188dad3735d2018a931ad4d553ec9d3b83a9ca",
+      "url": "https://cdn.modrinth.com/data/w4an97C2/versions/5U2kQZIL/mcw-lights-1.1.5-mc1.21.1neoforge.jar"
+    },
+    "create-deco": {
+      "version": "qrcMVoBD",
+      "path": "pack/mods/createdeco-2.1.3.jar",
+      "sha512": "c536662f9d47ad57a37419165ded14835b23ad6c3e82a920298ecd7ee074244b0b6062ef9cc7ea4501ddd35919a840faccd7fc64e43eb8df31e12076681c3c0d",
+      "url": "https://cdn.modrinth.com/data/sMvUb4Rb/versions/qrcMVoBD/createdeco-2.1.3.jar"
+    },
+    "fresh-animations-objects": {
+      "version": "AIGgXNdl",
+      "path": "pack/resourcepacks/FA+Objects-v2.1.2.zip",
+      "sha512": "61b76ed37e5ecfc4b5d25c545b011bb5bb59c49c97733d0f8b3afa725c886ed82e787d177df068f7e2fb3d5bb6fc253c5822d833658ff3ba48bd53b5c6c1ed21",
+      "url": "https://cdn.modrinth.com/data/23O9JVMV/versions/AIGgXNdl/FA%2BObjects-v2.1.2.zip"
+    },
+    "entity-model-features": {
+      "version": "197m3VoU",
+      "path": "pack/mods/entity_model_features-3.3.12-1.21-neoforge.jar",
+      "sha512": "b18bde755c6719c62579d65c96e6e768c99b25fba9f987dc843b2a64ce4d713ba2f8151da4a98efe76d854550f40356ac4fdfa952568cf1fb11771353dfc70e8",
+      "url": "https://cdn.modrinth.com/data/4I1XuqiY/versions/197m3VoU/entity_model_features-3.3.12-1.21-neoforge.jar"
+    },
+    "lootr": {
+      "version": "SPOrIzX8",
+      "path": "pack/mods/lootr-neoforge-1.21.1-1.11.38.127.jar",
+      "sha512": "7496051c1ba98f8801b8eb81773d1baec16166c3d2c5682476bd6f9433f794095099cea609fd5610525edb7c450b1bacd0011a31763e91c77c9a0034c8245ca3",
+      "url": "https://cdn.modrinth.com/data/EltpO5cN/versions/SPOrIzX8/lootr-neoforge-1.21.1-1.11.38.127.jar"
+    }
+  },
+  "compatibility": {
+    "lootr_fresh_objects": true
+  },
+  "credits": [
+    "Fresh Flower Pots — BlueHDGaming: https://modrinth.com/resourcepack/fresh-flower-pots",
+    "3D Crops Revamped — vexcenot; adapted models credit Stridey; project credits NinthWorld: https://modrinth.com/resourcepack/3d-crops",
+    "Better Lanterns — Nico4play: https://modrinth.com/resourcepack/better-lanterns",
+    "Macaw’s Lights and Lamps — sketch_macaw: https://modrinth.com/mod/macaws-lights-and-lamps",
+    "Create Deco — talrey, Ordana and Baileybun: https://modrinth.com/mod/create-deco",
+    "Fresh Animations: Objects — FreshLX: https://modrinth.com/resourcepack/fresh-animations-objects",
+    "Compatibility adaptations and generated geometry — Create Sky",
+    "Original assets remain subject to their respective authors’ terms. Required source packs/mods supply textures; this patch includes no textures."
+  ]
+}

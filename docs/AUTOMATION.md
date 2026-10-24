@@ -1,3 +1,3 @@
-# Build automation maintenance
+# Build automation
 
-This guide moved to [Build and release maintenance](development/build.md).
+See [build and release maintenance](development/build.md) and [patch updates](development/patches.md).

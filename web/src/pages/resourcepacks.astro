@@ -1,0 +1,246 @@
+---
+import Base from '../layouts/Base.astro'
+import AppHeader from '../components/AppHeader.astro'
+import Candidate from '../components/resourcepacks/Candidate.astro'
+import {
+  catalog,
+  projects,
+  reviews,
+  reviewedAt,
+  stale,
+  statuses,
+  target,
+} from '../lib/resourcepack-data'
+import '../styles/resourcepacks.css'
+const categories = [...new Set(reviews.map((r) => r.category))].sort()
+---
+
+<Base title="Resource packs · Create Sky">
+  <AppHeader page="resources" />
+  <main class="resource-review">
+    <div class="review-toolbar">
+      <h1>Resource packs</h1>
+      <label>
+        Search{' '}
+        <input
+          id="pack-search"
+          type="search"
+          placeholder="Pack, feature or mod"
+        />
+      </label>
+      <label>
+        Decision{' '}
+        <select id="pack-status">
+          <option value="">All decisions</option>
+          {Object.entries(statuses).map(([id, label]) => (
+            <option value={id}>{label}</option>
+          ))}
+        </select>
+      </label>
+      <label>
+        Scope{' '}
+        <select id="pack-category">
+          <option value="">All scopes</option>
+          {categories.map((category) => (
+            <option>{category}</option>
+          ))}
+        </select>
+      </label>
+      <button id="pack-reset" type="button">
+        Reset
+      </button>
+    </div>
+    <div class="review-summary">
+      <span id="pack-count" role="status" aria-live="polite">
+        {reviews.length} project reviews
+      </span>
+      <span>
+        {catalog.entries.length} ranked listings · Minecraft {target.minecraft}{' '}
+        · reviewed {reviewedAt}
+      </span>
+    </div>
+    {stale && (
+      <p class="review-stale" role="status">
+        The selected stack changed after the file inspection. Overlap counts
+        describe the recorded {target.pack} baseline; selection notes describe
+        the current working pack.
+      </p>
+    )}
+    <details class="review-method">
+      <summary>Coverage and limits</summary>
+      <p>{catalog.method}</p>
+      <p>
+        Shortlisted files were inspected against Create Sky {target.pack},
+        resource format {target.resourceFormat} and the installed resources.
+        Selection status is separate from that inspection baseline. “Try first”
+        means a useful next playtest, not certified compatibility.
+      </p>
+      <p>
+        Source galleries can show newer versions, shaders or optional
+        extensions. Matching a few mod assets does not mean complete mod
+        support. The priority is preserving vanilla materials, pixel scale and a
+        consistent appearance beside Create add-ons.
+      </p>
+      <p>
+        Each of these catalogs contributed 250 listings:{' '}
+        {catalog.sources.map((source, i) => (
+          <>
+            {i > 0 && ' · '}
+            <a href={source.url} target="_blank" rel="noreferrer">
+              {source.label}
+            </a>
+          </>
+        ))}
+        .
+      </p>
+      <p>
+        Broad reskins, Bedrock packs, gameplay datapacks and packs for absent
+        mods were screened separately. Selected alternatives outside those
+        rankings are included where they answer a concrete compatibility
+        question.
+      </p>
+    </details>
+    <details class="review-method">
+      <summary>Local comparisons</summary>
+      <p>
+        Open Resource Review in the client for the category displays. Use
+        /function resource_lab:hub for the controls. Prototype packs are
+        optional and unselected; captures below use shaders off.
+        <a href="/generated/resource-review/fixture-overview.png">
+          View the layout
+        </a>
+        .
+      </p>
+      <ul>
+        <li>
+          Covered lantern:
+          <a href="/generated/resource-review/covered-template-before.png">
+            selected stack
+          </a>
+          ·{' '}
+          <a href="/generated/resource-review/covered-template-isolated.png">
+            original template
+          </a>
+        </li>
+        <li>
+          Bell lantern:
+          <a href="/generated/resource-review/bell-template-before.png">
+            selected stack
+          </a>
+          ·{' '}
+          <a href="/generated/resource-review/bell-template-isolated.png">
+            original template
+          </a>
+        </li>
+        <li>
+          <a href="/generated/resource-review/deco-bars-current.png">
+            Industrial iron bars
+          </a>
+        </li>
+        <li>
+          Chest close recordings:
+          <a href="/generated/resource-review/lootr-close-baseline.mp4">
+            Lootr baseline
+          </a>
+          ·{' '}
+          <a href="/generated/resource-review/lootr-close-prototype.mp4">
+            Lootr alias
+          </a>
+          ·{' '}
+          <a href="/generated/resource-review/lootr-trapped-close-prototype.mp4">
+            trapped alias
+          </a>
+          ·{' '}
+          <a href="/generated/resource-review/vanilla-close-control.mp4">
+            normal chest
+          </a>
+          . The alias test preserves Lootr state textures but does not establish
+          animation equivalence.
+        </li>
+      </ul>
+    </details>
+    <p id="pack-empty" hidden>
+      No projects match these filters.
+    </p>
+    <div class="resource-list">
+      {reviews.map((review) => (
+        <Candidate review={review} />
+      ))}
+    </div>
+    <details class="catalog-screening">
+      <summary>Catalog screening · {catalog.entries.length} listings</summary>
+      <label>
+        Filter listings{' '}
+        <input
+          id="catalog-search"
+          type="search"
+          placeholder="Title, source or screening reason"
+        />
+      </label>
+      <p>
+        Listing screening is not an artifact or runtime compatibility test. The
+        same project can appear on several sites.
+      </p>
+      <div class="catalog-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Source / rank</th>
+              <th>Project</th>
+              <th>Screening</th>
+            </tr>
+          </thead>
+          <tbody>
+            {catalog.entries.map((entry) => (
+              <tr
+                data-catalog-search={`${entry.source} ${entry.title} ${entry.screen}`.toLowerCase()}
+              >
+                <td>
+                  {entry.source} · {entry.rank}
+                </td>
+                <td>
+                  <a href={entry.url} target="_blank" rel="noreferrer">
+                    {entry.title}
+                  </a>
+                </td>
+                <td>
+                  {'candidate' in entry && entry.candidate ? (
+                    <a href={`#${entry.candidate}`}>
+                      Review {projects[entry.candidate]?.title}
+                    </a>
+                  ) : (
+                    entry.screen
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p id="catalog-count" role="status">
+        {catalog.entries.length} listings
+      </p>
+    </details>
+  </main>
+  <dialog id="image-viewer" aria-label="Resource pack image viewer">
+    <div class="viewer-actions">
+      <button type="button" data-previous>
+        Previous
+      </button>
+      <button type="button" data-next>
+        Next
+      </button>
+      <button type="button" data-close>
+        Close
+      </button>
+    </div>
+    <img alt="" />
+    <p data-viewer-caption></p>
+    <a data-original target="_blank" rel="noreferrer">
+      Open source image ↗
+    </a>
+  </dialog>
+  <script>
+    import '../lib/resourcepacks'
+  </script>
+</Base>

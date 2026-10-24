@@ -6,6 +6,7 @@ import { promisify } from 'node:util'
 import { domains, validateDomain } from '../src/lib/domains.mjs'
 import { compile, root } from './compile.mjs'
 import { authoring, configuredPack } from './authoring.mjs'
+import { modelAuthoring } from './model-authoring.mjs'
 const hash = (text) => crypto.createHash('sha256').update(text).digest('hex')
 
 export function workspace() {
@@ -37,6 +38,11 @@ export function workspace() {
         )
           return send(403, { error: 'Same-origin requests required' })
         try {
+          if (req.method === 'GET' && req.url === '/__atlas/models')
+            return send(
+              200,
+              await modelAuthoring(await configuredPack(root)).read(),
+            )
           if (req.method === 'GET' && req.url === '/__atlas/authoring')
             return send(200, await authoring(await configuredPack(root)).read())
           if (req.method === 'GET' && req.url === '/__atlas/authoring/audit')
@@ -91,6 +97,27 @@ export function workspace() {
             return send(409, {
               error: 'Another edit is compiling; retry after refresh',
             })
+          if (
+            [
+              '/__atlas/models/preview',
+              '/__atlas/models/save',
+              '/__atlas/models/generate',
+            ].includes(req.url)
+          ) {
+            busy = true
+            try {
+              const editor = modelAuthoring(await configuredPack(root))
+              const action = req.url.split('/').at(-1)
+              return send(
+                200,
+                await editor[action](
+                  action === 'preview' ? input.document : input,
+                ),
+              )
+            } finally {
+              busy = false
+            }
+          }
           if (
             ['/__atlas/authoring/save', '/__atlas/authoring/generate'].includes(
               req.url,

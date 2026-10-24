@@ -1,7 +1,7 @@
 schema: 5
 pack:
   name: Create Sky
-  version: 0.1.9
+  version: 0.1.10
   id: create_sky
   authors:
     - mannie-exe
@@ -498,12 +498,6 @@ dependencies:
     environment:
       client: required
       server: unsupported
-  do-a-barrel-roll:
-    source: modrinth:do-a-barrel-roll
-    pin: Zj604q5O
-    environment:
-      client: required
-      server: required
   easy-anvils:
     source: modrinth:easy-anvils
     pin: fSQSKhdF
@@ -565,13 +559,6 @@ dependencies:
     environment:
       client: required
       server: unsupported
-  3d-ladders:
-    source: modrinth:3d-ladders
-    pin: 44oYkyYv
-    type: resource-pack
-    environment:
-      client: required
-      server: unsupported
   3d-sugar-cane:
     source: modrinth:3d-sugar-cane
     pin: sU6FmyoH
@@ -604,6 +591,90 @@ dependencies:
   searchables:
     source: modrinth:searchables
     pin: iEE85X0w
+    environment:
+      client: required
+      server: unsupported
+  rays-3d-ladders:
+    source: modrinth:rays-3d-ladders
+    pin: lfVriRcD
+    type: resource-pack
+    environment:
+      client: required
+      server: unsupported
+  mt-ct-d:
+    source: modrinth:mt-ct-d
+    pin: UPBKvt5T
+    type: resource-pack
+    environment:
+      client: required
+      server: unsupported
+  low-shield-pack:
+    source: modrinth:low-shield-pack
+    pin: AV6Mwfm5
+    type: resource-pack
+    environment:
+      client: required
+      server: unsupported
+  soft-weather:
+    source: modrinth:soft-weather
+    pin: iAb7bpl5
+    type: resource-pack
+    environment:
+      client: required
+      server: unsupported
+  cubic-sun-moon:
+    source: modrinth:cubic-sun-moon
+    pin: zHa4qeKn
+    type: resource-pack
+    environment:
+      client: required
+      server: unsupported
+  rays-3d-rails:
+    source: modrinth:rays-3d-rails
+    pin: vTaYwBqs
+    type: resource-pack
+    environment:
+      client: required
+      server: unsupported
+  fresh-flower-pots:
+    source: modrinth:fresh-flower-pots
+    pin: YEM2pUsf
+    type: resource-pack
+    environment:
+      client: required
+      server: unsupported
+  create-touch-ups:
+    source: modrinth:create-touch-ups
+    pin: aoJf3Iu6
+    type: resource-pack
+    environment:
+      client: required
+      server: unsupported
+  low-on-fire:
+    source: modrinth:low-on-fire
+    pin: yQdcUfnr
+    type: resource-pack
+    environment:
+      client: required
+      server: unsupported
+  fresh-animations-details:
+    source: modrinth:fresh-animations-details
+    pin: tGydmcT3
+    type: resource-pack
+    environment:
+      client: required
+      server: unsupported
+  fresh-animations-objects:
+    source: modrinth:fresh-animations-objects
+    pin: AIGgXNdl
+    type: resource-pack
+    environment:
+      client: required
+      server: unsupported
+  better-lanterns:
+    pin: jRAsb6KQ
+    source: modrinth:better-lanterns
+    type: resource-pack
     environment:
       client: required
       server: unsupported

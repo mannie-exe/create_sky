@@ -16,7 +16,7 @@ Select Java 21 for the instance. The Prism profile allows up to 8 GiB of RAM.
 
 New worlds default to Sky Islands. Shaders are optional; Complementary, Euphoria
 and BSL settings are included. Distant Horizons rendering
-is enabled by default since v0.1.4; v0.1.3 requires enabling it manually.
+is enabled by default.
 
 ## Player and server guides
 
@@ -24,7 +24,7 @@ is enabled by default since v0.1.4; v0.1.3 requires enabling it manually.
 - [Distant Horizons, shaders and missing terrain](docs/players/graphics.md)
 - [Server setup and maintenance](docs/players/server.md)
 - [Included mods and shaders](docs/MODLIST.md)
-- [Unreleased 0.1.9 notes](docs/RELEASE_NOTES.md)
+- [Release notes](docs/RELEASE_NOTES.md)
 
 ## Development
 

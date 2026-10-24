@@ -1,8 +1,13 @@
 ---
 interface Props {
-  label: string
+  page: 'atlas' | 'authoring' | 'resources'
 }
-const { label } = Astro.props
+const { page } = Astro.props
+const pages = [
+  { id: 'atlas', href: '/', label: 'Item map' },
+  { id: 'authoring', href: '/authoring', label: 'Pack authoring' },
+  { id: 'resources', href: '/resourcepacks', label: 'Resource packs' },
+]
 ---
 
 <header class="topbar">
@@ -10,11 +15,15 @@ const { label } = Astro.props
     <span class="mark">⌘</span>
     <span>
       CREATE <b>SKY</b>
-      <small>PROGRESSION ATLAS / INTERNAL</small>
+      <small>Atlas</small>
     </span>
   </a>
-  <nav aria-label={label}>
-    <slot />
+  <nav aria-label="Atlas pages">
+    {pages.map(({ id, href, label }) => (
+      <a href={href} aria-current={page === id ? 'page' : undefined}>
+        {label}
+      </a>
+    ))}
   </nav>
   <slot name="status" />
 </header>

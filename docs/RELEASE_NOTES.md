@@ -1,55 +1,44 @@
-# Create Sky v0.1.9
+# Create Sky v0.1.10
 
-Minecraft **1.21.1**, NeoForge **21.1.264** and Java **21**
-remain pinned.
+Minecraft 1.21.1, NeoForge 21.1.264 and Java 21 remain pinned. See [v0.1.9 notes](releases/0.1.9.md) for the previous release.
 
-## Floating settlements
+## Flight
 
-- Add Sky Village Neighbors 0.1.0 to filter Sky Villages beside island terrain
-- Require a 64-block minimum terrain gap, a sampled host within 512 blocks and a
-  native host radius of at least 96; expose these settings in the common config
-- Retain village height, buildings, loot, candidate spacing and biome eligibility
-- Update the Atlas's generation notes and configuration register
+Remove Do a Barrel Roll and its client/server configuration after reported flight
+jitter. Retain vanilla elytra steering and firework propulsion. No replacement
+flight overhaul is added.
 
-Existing villages are unchanged. The new rule applies to future structure starts
-and reduces how many candidates survive; it does not guarantee a village count
-per cluster. Restart the server/world after configuration changes.
+## Resource selection
 
-## Client maintenance
+Replace 3D Ladders with RAY's ladders. Add RAY's rails, Midnighttigger's Default
+Connected Textures, Low Shield, Soft Weather, Cubic Sun & Moon, Fresh Flower Pots,
+Create Touch-Ups, Low On Fire, Fresh Animations Details/Objects and Better Lanterns.
+Icons is excluded. Keep the selected packs' materials close to vanilla and inspect
+modded counterparts separately.
 
-Update DH Polygon Fix from 1.0.1 to 1.0.2. The native query fix is unchanged; this
-release improves documentation and release checks. Distant Horizons stays pinned
-to 3.3.3, and the patch remains client-only.
+The generated client patch combines four 3D Crops mushrooms/fungi with Fresh pots,
+restores Macaw's chain colors, fits bell/covered lantern artwork, extrudes Deco's
+industrial bars and adds Fresh Objects motion to Lootr chests. Its inputs
+are version/hash pinned. Dedicated cane and rails retain priority; the patch
+loads last. The inspected Crops archive is explicitly accepted despite its format
+metadata mismatch. Existing player selections are preserved unless explicitly synced.
 
-## Controls and equipment
+## Authoring and maintenance
 
-- Add Do a Barrel Roll, Better Third Person and Better Climbing; retain vanilla
-  elytra activation and keep Barrel Roll thrust disabled
-- Add Controlling, InvMove and InvMoveCompats, Chat Heads, Ping Wheel,
-  Shulker Box Tooltip and Clean Tooltips
-- Allow inventory movement while protecting text entry, Ponder and reading screens
-- Add Easy Anvils, Easy Magic and Inventory Totem: maintainable equipment,
-  paid enchantment rerolls and totems usable from the main inventory
-- Keep existing vanilla workstations usable; show all enchantment results before
-  committing while retaining the 15-bookshelf requirement and reroll costs
+The Atlas includes resource-pack decisions, sourced galleries and catalog searches.
+Page navigation and view controls are shared across the map, authoring and review
+pages. Pack resource generators support read-only checks and preserve unchanged
+archive bytes and timestamps. Dependency and patch update procedures are centralized
+in the [maintenance guide](development/patches.md).
 
-## Resource packs
+The [model workbench](development/web/models.md) edits extrusion planes, texture
+regions, UV mappings and element bounds with a textured preview. Recipe saves,
+resource generation and instance installation remain separate actions.
 
-Enable Simple 3D Iron Bars, 3D Ladders, Redstone Tweaks, Fresh Animations,
-3D Crops and 3D Sugar Cane in fresh client installations. EMF and ETF support
-Fresh Animations. Existing installations retain their resource-pack selection;
-enable the new packs in **Options → Resource Packs** after updating.
+## Verification limits
 
-These are the initial visual selections, pending the broader resource-pack review.
-Shader choices remain unchanged.
-
-## Verification
-
-The compatibility mod checked 48 native layouts across four seeds. Natural runs
-examined 147 candidate chunks across three seeds and fully generated six villages.
-Default-distance runs retained 14/49 and 8/49 starts. These samples do not establish
-universal density, safe landing approaches or multiplayer progression balance.
-
-The published mod binaries match the locally tested artifacts. Configuration,
-journal, runtime snapshot and reference-export checks are recorded in the
-maintainer documentation. Live instances and saves require a separate update.
+Isolated checks cover potted plants, sampled lanterns/chains, bar connections,
+Lootr motion/state and glass. The model pass includes Complementary/Euphoria
+shader checks. Moving ships, Copycats, multiplayer and other shader combinations
+remain untested. The combined patch remains a playtest selection.
+See [verification](development/web/verification.md) for current checks and evidence.

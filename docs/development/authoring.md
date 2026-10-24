@@ -1,9 +1,10 @@
 # Pack authoring
 
-The pack owns journal source and the configuration register. The local Atlas app
+The pack owns journal source, the configuration register and model recipes. The local Atlas app
 in [`web/`](../../web/README.md) edits those files; it does not own a second copy
 or install changes into Minecraft. The [editor guide](web/authoring.md) describes
-the journal and disclaimer workbenches.
+the journal and disclaimer workbenches; [model authoring](web/models.md) covers
+texture extrusion, UV fitting and resource-pack generation.
 
 ## Journal source
 
@@ -76,8 +77,8 @@ Generated JSON stays in Git for review. The resource JAR is rebuilt and ignored.
 The build refuses stale journal output. Removed quest or locale outputs require
 explicit deletion; generation never silently leaves an obsolete quest active.
 Review quest IDs, objective order and existing progress before removing or
-changing mechanics. The migration regression digest is tied to the pre-migration
-revision; deliberate mechanics changes require a reviewed update to that fixture.
+changing mechanics. The regression fixture records the accepted mechanics baseline; deliberate
+mechanics changes require a reviewed update to that fixture.
 
 Install native quest JSON and the rebuilt resource JAR together during an explicit
 instance update. Client translations require the JAR. A successful source build

@@ -53,3 +53,24 @@ the app does not continuously follow the running game.
 
 Editing and refresh controls work only through `pnpm dev`. Static preview and
 future static deployments provide browsing only.
+
+## Resource packs
+
+Open **Resource packs** in the header for the dated review at `/resourcepacks`.
+Search by pack, feature or mod, then narrow by decision or scope. Filters are
+stored in the URL; Reset clears them. Each row pairs the review and source links
+with an author's image gallery. Select a thumbnail or enlarge the image; arrow
+keys move through the enlarged gallery and Escape closes it.
+
+File evidence shows the exact selected version, hash, declared resource format,
+matching installed asset paths and overlaps. These are inspection results, not
+proof of correct rendering. Galleries can depict other versions, shaders and
+optional mods; they are labelled as source images rather than Create Sky tests.
+“Try first” identifies candidates for a controlled playtest, not packs to install
+together. Selected stack entries describe the current selection. Inspection overlaps retain
+the dated six-pack baseline recorded with the survey.
+
+Catalog screening retains all 750 ranked listings and their first-pass screening
+reasons. Its search is separate from the detailed review filters. Following a
+review link reveals its target even if the current filters hide it. The page is
+read-only and does not download, install or reorder resource packs.

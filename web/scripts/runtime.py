@@ -4,6 +4,7 @@ import hashlib
 import json
 import shutil
 import subprocess
+import sys
 import zipfile
 from pathlib import Path
 from paths import ROOT, paths, write_json
@@ -13,24 +14,21 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--worldgen", action="store_true", help="Read the configured world seed/settings for a chunk-free spacing comparison")
 args_cli = parser.parse_args()
 p = paths()
+subprocess.run([sys.executable, str(p['pack'] / 'scripts/build-fixes.py'), '--check'], check=True)
 source_fingerprint = fingerprint()
 audit = ROOT / '.cache/audit-server'
 audit.mkdir(parents=True, exist_ok=True)
 libraries = p['server'] / 'libraries'
 if not (audit / 'libraries').exists():
     (audit / 'libraries').symlink_to(libraries, target_is_directory=True)
-# Copy installed server selections, then overlay authored additions.
+# The installed server owns dependency selection. Sync it before capture; do not
+# silently mix selected authoring JARs into an older installed dependency set.
 mods = audit / 'mods'
 if mods.exists():
     shutil.rmtree(mods)
 mods.mkdir()
 for source in sorted((p['server'] / 'mods').glob('*.jar')):
     (mods / source.name).symlink_to(source)
-for pattern in ['reliable_gliders-*.jar', 'hostile_skies-*.jar', 'aeronautics_delivery_quests-*.jar', 'createpropulsion-*.jar', 'questlog-*.jar', 'sky-village-neighbors-*.jar']:
-    for source in (p['pack'] / 'pack/mods').glob(pattern):
-        target = mods / source.name
-        target.unlink(missing_ok=True)
-        target.symlink_to(source)
 # Overlay maintained local fixes without mounting any live save.
 for source in (p['pack'] / 'overrides/common/mods').glob('*.jar'):
     target = mods / source.name
@@ -47,6 +45,8 @@ for folder in ['config', 'defaultconfigs']:
 world_config=p['server']/'world/serverconfig'
 if world_config.exists(): shutil.copytree(world_config,audit/'audit-world/serverconfig',dirs_exist_ok=True)
 classes = ROOT / '.cache/exporter-classes'
+if classes.exists():
+    shutil.rmtree(classes)
 classpath = ':'.join(str(f) for f in [*libraries.rglob('*.jar'), *mods.glob('*.jar')])
 subprocess.run([str(p['java'] / 'javac'), '-proc:none', '-cp', classpath, '-d', str(classes), *[str(f) for f in sorted((ROOT / 'tools/exporter').glob('*.java'))]], check=True)
 with zipfile.ZipFile(mods / 'create-sky-atlas-exporter.jar', 'w') as jar:

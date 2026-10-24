@@ -1,4 +1,3 @@
-# Decisions and verification
+# Pack decisions
 
-Dated records moved to [Decision history](development/decisions.md).
-Current instructions are in the [documentation index](README.md).
+See [accepted direction](development/decisions.md) and the [documentation index](README.md).

@@ -43,7 +43,9 @@ For example, a non-Prism installation can override just the client JAR:
 ```
 
 Keep installed server selections aligned with the pack before capturing additions
-or removals. Build maintained pack resource JARs using the pack's own build guide.
+or removals. The exporter uses that complete dependency set and checks the
+maintained resource JAR before capture; it does not select newer authoring JARs
+one by one. Build maintained resources using the pack's own build guide.
 The map does not install Minecraft, accept its EULA or synchronize play instances.
 
 ## First capture and refresh
@@ -198,3 +200,33 @@ private method. Revalidate it after upgrades. It does not generate Sky Archipela
 chunks, validate structures, or replace a world survey. A normal capture without
 `--worldgen` does not refresh this optional receipt; check its associated review
 record before using it as current evidence.
+
+## Refresh resource-pack reviews
+
+Edit judgments in `data/authored/resourcepacks.yml`; update dated evidence in
+`data/research/resourcepacks/`. This is a manual research snapshot, not an
+installation queue or automatic scraper. Recheck the linked catalogs and project
+pages, choose an exact Minecraft 1.21.1 file, and compare its published SHA-512
+with the downloaded bytes before recording inspection evidence.
+
+Use a temporary directory under `.cache/resourcepacks` for downloaded archives:
+
+```sh
+python3 scripts/inspect_resourcepack.py .cache/resourcepacks/candidate.zip \
+  --format 34 --fusion --compare .cache/resourcepacks/baseline.zip
+```
+
+Repeat `--compare` for each installed baseline. Omit `--fusion` when the target
+client lacks Fusion; check the pack's minimum Fusion version separately. The
+inspector prints JSON without extracting files or modifying an instance. Preserve
+source URLs, exact file metadata, inspection output and review date in the research
+data. Recheck installed-JAR asset matches when changing that evidence; the CLI's
+overlap comparison only covers the archives supplied to it.
+
+Use images from the author's project gallery, label them as source images, and
+check the thumbnail and full-size URLs. A source gallery is not an in-pack render
+test. Research data changes reload the page during `pnpm dev`. Generated map data and
+scenario-editor domains stay excluded from automatic reloads to protect drafts. Run
+`pnpm verify`, `pnpm test:python` and `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser`.
+Remove temporary downloads and browser output after recording results in
+[verification](verification.md).

@@ -1,0 +1,53 @@
+---
+import type { GalleryImage } from '../../lib/resourcepack-data'
+interface Props {
+  title: string
+  images: GalleryImage[]
+}
+const { title, images } = Astro.props
+---
+
+<section class="pack-gallery" aria-label={`${title} gallery`} data-gallery>
+  <figure>
+    <a
+      class="gallery-open"
+      href={images[0].url}
+      data-open-image
+      aria-label={`Enlarge ${title} image`}
+    >
+      <img
+        class="gallery-main"
+        src={images[0].url}
+        alt={images[0].caption}
+        loading="lazy"
+        decoding="async"
+      />
+    </a>
+    <figcaption>
+      <span data-caption>{images[0].caption}</span>
+      <span data-image-error hidden>
+        Image unavailable. Open the source gallery below.
+      </span>
+    </figcaption>
+  </figure>
+  <div class="gallery-thumbnails" aria-label="Choose an image">
+    {images.map((image, index) => (
+      <button
+        type="button"
+        data-image={image.url}
+        data-caption={image.caption}
+        aria-label={`${title}, image ${index + 1}: ${image.caption}`}
+        aria-pressed={index === 0}
+      >
+        <img src={image.thumbnail} alt="" loading="lazy" decoding="async" />
+      </button>
+    ))}
+  </div>
+  <p class="gallery-credit">
+    <a href={images[0].source} target="_blank" rel="noreferrer">
+      Author’s source gallery
+    </a>{' '}
+    · {images.length} image{images.length === 1 ? '' : 's'} · not a Create Sky
+    test
+  </p>
+</section>

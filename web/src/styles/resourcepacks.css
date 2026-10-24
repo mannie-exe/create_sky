@@ -1,0 +1,244 @@
+.resource-review {
+  max-width: var(--page-width);
+  margin: auto;
+  padding: 24px var(--page-gutter) 60px;
+}
+.review-toolbar,
+.review-summary,
+.candidate-meta,
+.candidate-links,
+.viewer-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.review-toolbar h1 {
+  margin: 0 auto 0 0;
+  font-size: 22px;
+}
+.review-toolbar label,
+.catalog-screening > label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.review-summary {
+  margin: 14px 0;
+  color: var(--muted);
+  justify-content: space-between;
+}
+.review-method,
+.catalog-screening {
+  padding: 14px 18px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+.review-method p {
+  max-width: 100ch;
+}
+.review-stale {
+  border-left: 3px solid var(--accent);
+  padding: 12px;
+  background: var(--tint);
+}
+.resource-candidate {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 40px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 20px;
+}
+.candidate-copy {
+  max-width: 68ch;
+}
+.candidate-copy h2 {
+  margin: 12px 0;
+  font-size: 23px;
+  line-height: 1.2;
+}
+.candidate-copy h2 a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.candidate-copy h2 a:hover {
+  text-decoration: underline;
+}
+.candidate-meta {
+  color: var(--muted);
+  font-size: 12px;
+}
+.review-status {
+  border: 1px solid var(--line);
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--panel);
+  color: var(--ink);
+}
+.review-status[data-state='try'],
+.review-status[data-state='installed'] {
+  background: var(--tint);
+  border-color: var(--accent);
+}
+.candidate-description {
+  font-size: 16px;
+}
+.candidate-concern {
+  border-left: 2px solid var(--line);
+  padding-left: 12px;
+}
+.candidate-links {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0;
+}
+.candidate-evidence {
+  font-size: 12px;
+  color: var(--muted);
+}
+.candidate-evidence summary {
+  cursor: pointer;
+}
+.candidate-evidence ul {
+  padding-left: 20px;
+}
+.path-list,
+.digest,
+.file-name {
+  overflow-wrap: anywhere;
+  font-family: var(--mono);
+}
+.pack-gallery {
+  min-width: 0;
+  align-self: start;
+}
+.pack-gallery figure {
+  margin: 0;
+}
+.gallery-open {
+  display: block;
+  background: var(--tint);
+  border: 1px solid var(--line);
+}
+.gallery-main {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  display: block;
+}
+.pack-gallery figcaption {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 7px;
+  min-height: 18px;
+}
+.gallery-thumbnails {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+.gallery-thumbnails button {
+  padding: 3px;
+  width: 90px;
+  max-width: 23%;
+}
+.gallery-thumbnails button[aria-pressed='true'] {
+  border-color: var(--accent);
+  outline: 1px solid var(--accent);
+}
+.gallery-thumbnails img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+.gallery-credit {
+  font-size: 11px;
+  color: var(--muted);
+}
+.catalog-screening {
+  margin-top: 30px;
+}
+.catalog-screening > label {
+  margin-top: 18px;
+}
+.catalog-scroll {
+  overflow-x: auto;
+  max-height: 560px;
+}
+.catalog-scroll table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 12px;
+}
+.catalog-scroll th,
+.catalog-scroll td {
+  padding: 8px;
+  border-bottom: 1px solid var(--line);
+}
+.catalog-scroll th {
+  position: sticky;
+  top: 0;
+  background: var(--panel);
+}
+#image-viewer {
+  background: var(--panel);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  max-width: min(1400px, 94vw);
+  max-height: 94dvh;
+  padding: 18px;
+}
+#image-viewer::backdrop {
+  background: var(--backdrop);
+}
+.viewer-actions {
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+#image-viewer > img {
+  display: block;
+  max-width: 100%;
+  max-height: 70dvh;
+  object-fit: contain;
+  margin: auto;
+}
+#image-viewer p {
+  font-size: 12px;
+}
+@media (max-width: 760px) {
+  .resource-review {
+    padding: 18px 16px 40px;
+  }
+  .review-toolbar {
+    align-items: stretch;
+  }
+  .review-toolbar h1 {
+    flex-basis: 100%;
+  }
+  .review-toolbar label {
+    flex: 1 1 240px;
+  }
+  .review-toolbar input,
+  .review-toolbar select {
+    flex: 1;
+    min-width: 0;
+  }
+  .resource-candidate {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    padding: 25px 0;
+  }
+  .candidate-copy {
+    max-width: none;
+  }
+  .catalog-screening > label {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .catalog-scroll table {
+    min-width: 620px;
+  }
+}

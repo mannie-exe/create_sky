@@ -16,13 +16,12 @@ Create Sky runs on Minecraft 1.21.1, NeoForge 21.1.264 and Java 21.
 Use [graphics settings](graphics.md) to enable shaders or configure distant terrain.
 The server archive is for [hosting](server.md), not client installation.
 
-## Controls in 0.1.9 source
+## Controls
 
 Use **Options → Controls → Key Binds** to search bindings with Controlling.
 Better Third Person separates walking direction from the third-person camera.
-Do a Barrel Roll adds pitch/yaw/roll controls during elytra flight; its settings
-allow disabling the controls, and additional thrust is off. These controls do
-not replace the glider or ship-control systems.
+Elytra retain vanilla steering and firework propulsion. Glider and ship controls
+remain separate.
 
 InvMove permits movement in ordinary inventories. Focused text fields, Ponder,
 books, advancements and unrecognized mod screens keep movement disabled. This
@@ -36,9 +35,8 @@ durability and enchantments without extra blank lines between sections.
 
 ## Client garbage collection
 
-Prism exports from 0.1.8 default to Generational ZGC on Java 21 to reduce garbage
-collection pauses. Versions before 0.1.8 do not include this setting. Existing
-instances and Modrinth imports can set these Java arguments in their launcher:
+Prism exports default to Generational ZGC on Java 21 to reduce collection pauses.
+Existing instances and Modrinth imports can set these arguments in their launcher:
 
 ```text
 -XX:+UseZGC -XX:+ZGenerational
@@ -66,9 +64,8 @@ Keep the Sky Archipelago preset and configuration with the world. This version
 can resolve stock saved generator settings through the current default preset;
 changing it can affect newly generated terrain in an existing world.
 
-Version 0.1.6 uses random island sizing with radius settings from 10 to 500,
+The pack uses random island sizing with radius settings from 10 to 500,
 island-center heights from Y -32 to 300, and CONSISTENT cluster spacing of 1494.
-Version 0.1.5 used DYNAMIC spacing from 32 to 1500, selecting one spacing per world.
 The ocean layer is off and islands are skipped over ocean biomes. Saved size bands
 apply only when SPECIFIC sizing is selected; RANDOM is the current default.
 
@@ -82,10 +79,9 @@ Read the target release's notes before updating. Stop the client or server befor
 replacing its files. Use a fresh instance for a clean client test, and retain any
 single-player saves and personal settings you want to carry over.
 
-Replace the mod set rather than adding new JARs alongside obsolete versions.
-For v0.1.3 through v0.1.8, install only DH Polygon Fix 1.0.1 with the original DH 3.3.3 JAR.
-Remove any 1.0.0 fix JAR. Shader presets are separate files, so a JAR-only update
-will not apply the pack's graphics settings.
+Use the selected release's complete dependency set. Do not retain obsolete JARs
+beside their replacements or update DH independently of its exact-version patch.
+Shader presets are separate files, so a JAR-only update does not apply them.
 
 Server updates must retain the world and its generation configuration; see
 [server maintenance](server.md#updates). A normal pack update does not require
@@ -98,9 +94,3 @@ and the relevant log or crash report. Mention any changed mods or shader setting
 For missing distant terrain, follow the [LOD checks](graphics.md#missing-distant-terrain)
 first. For a native JVM crash, include the `hs_err_pid*.log` file as well as
 Minecraft's log.
-
-Version 0.1.6 fixes cluster spacing to 1494 and disables
-a conflicting biome optimization. Existing installations retain their settings;
-normal pack updates should preserve worlds and LODs. See the
-[generation review](../development/worldgen.md) before deliberately creating a
-replacement world. The published 0.1.5 defaults remain historical release settings.

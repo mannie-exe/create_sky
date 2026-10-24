@@ -1,6 +1,7 @@
 # Create Sky Atlas
 
-Internal item, recipe and progression map for the Create Sky modpack.
+Internal item, recipe and progression map, pack authoring and resource-pack review
+for the Create Sky modpack.
 
 ## Local development
 
@@ -15,7 +16,8 @@ pnpm dev
 
 Open <http://127.0.0.1:4321>. An existing local snapshot loads immediately; a fresh
 checkout shows an empty shell until you [configure and capture game data](../docs/development/web/setup.md).
-The app binds loopback and is not deployed.
+The resource-pack review at `/resourcepacks` uses checked-in research and works
+without a game snapshot. The app binds loopback and is not deployed.
 
 ## Documentation
 

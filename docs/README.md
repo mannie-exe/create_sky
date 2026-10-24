@@ -13,27 +13,27 @@ record what was tested at the time; they do not define current defaults.
 | [Graphics](players/graphics.md) | DH rendering, shader choices and missing LODs |
 | [Servers](players/server.md) | Hosting, world preservation and DH generation |
 | [Included content](MODLIST.md) | Exact mods, resource packs and shaders in current source |
-| [Release notes](RELEASE_NOTES.md) | Current release; [v0.1.6 archive](releases/0.1.6.md) |
+| [Release notes](RELEASE_NOTES.md) | Unreleased changes; [published v0.1.9](releases/0.1.9.md) |
 
 ## Development and maintenance
 
 | Guide | Contents |
 | --- | --- |
 | [Build and release](development/build.md) | Source layout, empack commands and CI |
+| [Dependency and patch maintenance](development/patches.md) | Coupled updates, patch ownership, checks and removal criteria |
 | [Compatibility and verification](development/compatibility.md) | Dependency constraints, shader evidence and test scope |
 | [Journal definitions](development/journal.md) | Conditions, authoring and implementation evidence |
 | [Pack authoring](development/authoring.md) | Journal generation, locale editing and categorized configuration audit |
 | [Web map and authoring](development/web/README.md) | App setup, editor controls, data pipeline and verification |
 | [Journal integrations](development/journal-integrations.md) | EMI/JEI, translation and Ponder findings |
-| [World generation](development/worldgen.md) | Candidate spacing and biome compatibility |
+| [World generation](development/worldgen.md) | Spacing policy and biome compatibility |
 | [Structures](development/structures.md) | Sky Villages placement, loot and delivery integration |
 | [Progression review](development/progression.md) | Routes, overlaps and remaining play checks |
 | [Upstream findings](development/upstream.md) | Known reports and candidates for submission |
-| [Decision history](development/decisions.md) | Dated decisions, commands and earlier findings |
+| [Decision history](development/decisions.md) | Accepted pack policies and supporting evidence |
 
-## Source and release defaults
+## Source and releases
 
-Version 0.1.4 and later enable DH rendering by default. Version 0.1.3 disables it.
-Shaders remain opt-in in both. Building source does not update a downloaded
-release or an installed instance. Current defaults live in `overrides/` and
-`templates/`; release notes describe their named release only.
+Current defaults live in `overrides/` and `templates/`. Building source does not
+update a downloaded release or an installed instance. Archived release notes
+describe their named version; the unreleased notes describe the working tree.

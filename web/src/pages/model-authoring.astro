@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro'
+import AppHeader from '../components/AppHeader.astro'
+import ModelWorkbench from '../components/authoring/ModelWorkbench.astro'
+import '../styles/authoring.css'
+import '../styles/model-authoring.css'
+---
+
+<Base title="Model authoring · Create Sky">
+  <AppHeader page="authoring" />
+  <main class="authoring">
+    <div class="actions authoring-actions">
+      <a href="/authoring">Journal and configuration</a>
+      <button id="models-reload">Reload source</button>
+      <button id="models-save" disabled>
+        Save recipes
+      </button>
+      <button id="models-generate" disabled>
+        Generate resource pack
+      </button>
+      <span id="models-status" role="status">
+        Loading model recipes…
+      </span>
+      <span id="models-drafts" class="scope"></span>
+    </div>
+    <ModelWorkbench />
+  </main>
+  <script>
+    import '../lib/model-authoring'
+  </script>
+</Base>

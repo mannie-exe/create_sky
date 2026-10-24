@@ -314,7 +314,7 @@ async function showView(name: string) {
   document
     .querySelectorAll<HTMLElement>('[data-view]')
     .forEach((button) =>
-      button.classList.toggle('active', button.dataset.view === name),
+      button.setAttribute('aria-pressed', String(button.dataset.view === name)),
     )
   el('inspector').hidden = true
   tooltip.hidden = true

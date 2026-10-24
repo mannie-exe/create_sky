@@ -1,0 +1,123 @@
+---
+import Workbench from './Workbench.astro'
+---
+
+<Workbench>
+  <Fragment slot="browser">
+    <label>
+      Find model <input id="model-search" type="search" />
+    </label>
+    <div id="model-list" class="entry-list" aria-label="Model recipes"></div>
+  </Fragment>
+  <section id="model-editor" hidden>
+    <div class="actions">
+      <label>
+        Label <input id="model-label" />
+      </label>
+      <label class="inline-field">
+        <input id="model-enabled" type="checkbox" /> Include in generated pack
+      </label>
+    </div>
+    <p id="model-output" class="model-path"></p>
+    <fieldset id="extrusion-fields" hidden>
+      <legend>Extrusion</legend>
+      <div class="model-fields">
+        <label>
+          Depth{' '}
+          <input
+            id="model-depth"
+            type="number"
+            min="0.125"
+            max="4"
+            step="0.125"
+          />
+        </label>
+        <label>
+          Alpha threshold{' '}
+          <input id="model-threshold" type="number" min="1" max="255" />
+        </label>
+        <label>
+          Plane <select id="model-plane"></select>
+        </label>
+        <label>
+          Axis{' '}
+          <select id="model-axis">
+            <option>x</option>
+            <option>z</option>
+          </select>
+        </label>
+        <label>
+          Center <input id="model-center" type="number" step="0.125" />
+        </label>
+      </div>
+      <div id="model-span" class="model-fields"></div>
+    </fieldset>
+    <fieldset id="fitting-fields" hidden>
+      <legend>Model fitting</legend>
+      <div class="model-fields">
+        <label>
+          Element <select id="model-element"></select>
+        </label>
+        <label>
+          Face <select id="model-face"></select>
+        </label>
+        <label>
+          UV rotation{' '}
+          <select id="model-rotation">
+            <option>0</option>
+            <option>90</option>
+            <option>180</option>
+            <option>270</option>
+          </select>
+        </label>
+      </div>
+      <div id="model-bounds" class="model-fields"></div>
+      <button id="model-reset-element">Reset element</button>
+    </fieldset>
+    <div class="model-previews">
+      <section>
+        <h2>Texture region</h2>
+        <div id="model-uv" class="model-fields"></div>
+        <canvas
+          id="model-texture"
+          width="256"
+          height="256"
+          aria-label="Texture UV selection"
+        ></canvas>
+        <p class="scope">
+          Drag a region or enter UV coordinates. The texture view shows the
+          first frame.
+        </p>
+      </section>
+      <section>
+        <div class="actions">
+          <h2>Model</h2>
+          <button id="model-camera">Reset view</button>
+          <label class="inline-field">
+            <input id="model-wire" type="checkbox" /> Wireframe
+          </label>
+        </div>
+        <canvas
+          id="model-canvas"
+          aria-label="Interactive model preview"
+        ></canvas>
+        <p id="model-statistics" class="scope"></p>
+        <p class="scope">
+          Drag to orbit; scroll to zoom. Game lighting, shaders, and moving
+          contraptions require an in-game check.
+        </p>
+      </section>
+    </div>
+    <details>
+      <summary>Recipe JSON</summary>
+      <label>
+        Selected recipe{' '}
+        <textarea id="model-json" rows="18" spellcheck="false"></textarea>
+      </label>
+      <button id="model-apply-json">Apply to draft</button>
+      <button id="model-discard-json" disabled>
+        Discard JSON edits
+      </button>
+    </details>
+  </section>
+</Workbench>

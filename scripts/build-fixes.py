@@ -1,17 +1,23 @@
 """Build the maintained resource-only mod; does not touch instances or worlds."""
 from pathlib import Path
-import zipfile
+import argparse
 import subprocess
 import sys
-root = Path(__file__).resolve().parent.parent
-subprocess.run([sys.executable, str(root / 'scripts/generate-journal.py'), '--check'], check=True)
-output = root / 'overrides/common/mods/create-sky-fixes-0.1.0.jar'
-output.parent.mkdir(parents=True, exist_ok=True)
-with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_DEFLATED) as jar:
-    for source in sorted((root / 'pack-fixes').rglob('*')):
-        if not source.is_file(): continue
-        entry = zipfile.ZipInfo(source.relative_to(root / 'pack-fixes').as_posix(), (2026, 10, 21, 0, 0, 0))
-        entry.compress_type = zipfile.ZIP_DEFLATED
-        entry.external_attr = 0o644 << 16
-        jar.writestr(entry, source.read_bytes())
-print(output)
+from archive_output import archive_bytes, publish
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--check', action='store_true', help='Check the existing JAR without rewriting it')
+    args = parser.parse_args()
+    root = Path(__file__).resolve().parent.parent
+    subprocess.run([sys.executable, str(root / 'scripts/generate-journal.py'), '--check'], check=True)
+    output = root / 'overrides/common/mods/create-sky-fixes-0.1.0.jar'
+    entries = {source.relative_to(root / 'pack-fixes').as_posix(): source.read_bytes()
+               for source in (root / 'pack-fixes').rglob('*') if source.is_file()}
+    changed = publish(output, archive_bytes(entries, (2026, 10, 21, 0, 0, 0)), args.check)
+    print(f'{output.relative_to(root)}: {"updated" if changed else "current"}')
+
+
+if __name__ == '__main__':
+    main()

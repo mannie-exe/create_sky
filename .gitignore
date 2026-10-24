@@ -109,6 +109,7 @@ coverage.xml
 /overrides/client/mods/*.jar
 /overrides/server/mods/*.jar
 /overrides/common/mods/*.jar
+/overrides/client/resourcepacks/*.zip
 
 # Local audit evidence can contain host paths and source settings.
 /docs/config-audit/

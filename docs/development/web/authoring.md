@@ -5,6 +5,9 @@ The editor uses the `pack` path in `data/local.json`, with the example file as i
 default. It requires the pack's `authoring/` sources and Python generator scripts.
 Static builds do not provide filesystem editing or generation endpoints.
 
+**Model authoring** opens the separate [model workbench](models.md) for texture
+extrusion, lantern UV fitting and resource-pack generation.
+
 ## Controls
 
 **Journal** selects a locale and presents a searchable entry list grouped by
@@ -74,7 +77,7 @@ owns the EMI, JEI and Ponder research.
 Atlas item textures, runtime extraction and recipe projections remain governed
 by [the data pipeline](data.md); editing journal text does not refresh that snapshot.
 
-## Remaining work
+## Limits
 
 Only English content is authored. Locale files and generated translation keys
 support additional languages, but language switching and panel layout still need

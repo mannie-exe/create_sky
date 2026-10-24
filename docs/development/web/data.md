@@ -66,21 +66,23 @@ remain after extraction; generated assets are rebuildable and excluded from Git.
 
 ## Ownership
 
-| Location                          | Authority and editing                                                           |
-| --------------------------------- | ------------------------------------------------------------------------------- |
-| `data/authored/acquisition.yml`   | Environment gates, gathering, farming, special interactions and classifications |
-| `data/authored/items.yml`         | Item notes, overlap opportunities, unresolved decisions                         |
-| `data/authored/recipes.yml`       | Full recipe replacements or disable operations; scenario until tested           |
-| `data/authored/interactions.yml`  | Reviewed mechanics and explicitly assumed gathering routes                      |
-| `data/authored/mobs.yml`          | Mob behavior, Hostile Skies architecture and settings                           |
-| `data/authored/progression.yml`   | Gathering roots, machine requirements and graph assumptions                     |
-| `data/authored/worldgen.yml`      | Geography interpretation and generation decisions                               |
-| `data/authored/configuration.yml` | Design constraints, coverage limits and operational findings                    |
-| `data/generated/runtime/`         | Exact registered game evidence; never hand-edit                                 |
-| `data/generated/world.json`       | Read-only Anvil survey and sampling method                                      |
-| `data/generated/documents.json`   | All discovered JAR resource versions and provenance                             |
-| `public/generated/`               | Rebuildable browser projection and extracted game textures                      |
-| `tools/exporter/`                 | Java 21 NeoForge development exporter, never installed in play instances        |
+| Location                          | Authority and editing                                                                        |
+| --------------------------------- | -------------------------------------------------------------------------------------------- |
+| `data/authored/acquisition.yml`   | Environment gates, gathering, farming, special interactions and classifications              |
+| `data/authored/items.yml`         | Item notes, overlap opportunities, unresolved decisions                                      |
+| `data/authored/recipes.yml`       | Full recipe replacements or disable operations; scenario until tested                        |
+| `data/authored/interactions.yml`  | Reviewed mechanics and explicitly assumed gathering routes                                   |
+| `data/authored/mobs.yml`          | Mob behavior, Hostile Skies architecture and settings                                        |
+| `data/authored/progression.yml`   | Gathering roots, machine requirements and graph assumptions                                  |
+| `data/authored/worldgen.yml`      | Geography interpretation and generation decisions                                            |
+| `data/authored/configuration.yml` | Design constraints, coverage limits and operational findings                                 |
+| `data/authored/resourcepacks.yml` | Resource-pack judgments and next playtests; edited directly, outside the map scenario editor |
+| `data/research/resourcepacks/`    | Dated catalog metadata, selected file inspections and source gallery links                   |
+| `data/generated/runtime/`         | Exact registered game evidence; never hand-edit                                              |
+| `data/generated/world.json`       | Read-only Anvil survey and sampling method                                                   |
+| `data/generated/documents.json`   | All discovered JAR resource versions and provenance                                          |
+| `public/generated/`               | Rebuildable browser projection and extracted game textures                                   |
+| `tools/exporter/`                 | Java 21 NeoForge development exporter, never installed in play instances                     |
 
 Generated data and game assets stay local and ignored by Git. Their licenses are
 unchanged. CI builds the application shell without requiring Minecraft binaries,
@@ -158,7 +160,7 @@ added. A malformed survey still fails compilation instead of being treated as ab
 [`src/lib/atlas.ts`](../../../web/src/lib/atlas.ts) renders only cells near the viewport,
 loads details as needed and handles search, filters, hover details and canvas world
 plots. [`index.astro`](../../../web/src/pages/index.astro) composes the map views;
-[`atlas.css`](../../../web/src/styles/atlas.css) owns shared and map presentation. There is no database,
+[`atlas.css`](../../../web/src/styles/atlas.css) owns map presentation. There is no database,
 account system, React runtime or production application server.
 
 ## Page and component structure
@@ -167,12 +169,12 @@ The structure follows the sibling inherent.design site and cfgate.io examples:
 Astro layouts own the document, pages compose feature components, and TypeScript
 controllers own browser interactions. The existing Astro 7, TypeScript 6, pnpm,
 CSS and local Node/Python tooling remain appropriate for this internal app.
-The review did not introduce a UI framework, public-site metadata, or a deployment
-service into the local editing path.
+The local editor uses no UI framework, database or deployment service.
 
 - `src/layouts/Base.astro` owns document metadata, the favicon and shared CSS.
 - `src/components/AppHeader.astro` owns identity and navigation structure, with
-  slots for each page's controls and snapshot status.
+  one ordered page-link list and a snapshot-status slot.
+  `ViewTabs.astro` supplies separate, labeled local view controls.
 - `src/components/authoring/` owns the journal and disclaimer workbenches, config
   audit and JSON editor. Both workbenches share the list/editor layout in
   `Workbench.astro`. `src/components/map/ScenarioEditor.astro` owns the YAML
@@ -182,8 +184,9 @@ service into the local editing path.
 - `src/lib/atlas.ts` and `src/lib/authoring.ts` own their page controllers.
   `src/lib/http.ts` shares JSON requests and error handling, including valid null
   snapshots and explicit JSON writes.
-- `src/styles/authoring.css` owns styles scoped beneath `.authoring`. Header
-  navigation rules are scoped to `.topbar` so entry-list navigation stays vertical.
+- `src/styles/base.css` owns shared tokens, document controls, navigation and tables.
+  Map, authoring and resource-review CSS is imported only by its owning page.
+  Shared `--page-width`, radius and color tokens keep those surfaces consistent.
 
 Keep page markup and rendering components separate from filesystem operations in
 `scripts/workspace.mjs` and `scripts/authoring.mjs`. Dependencies and formatter
@@ -256,3 +259,29 @@ Sky Archipelago layout calls using a read-only seed/settings input. Its descript
 are not measured island edges or crossing distances. The pack's world-generation
 document owns the candidate choice and live-instance boundary. Input fingerprints
 include `.properties` files so mixin configuration changes mark captures stale.
+
+## Resource-pack research
+
+The review page is independent of runtime map compilation. Authored
+`data/authored/resourcepacks.yml` supplies decisions and concise review text.
+`data/research/resourcepacks/catalog.json` records per-site download rankings and
+listing-level screening; `projects.json` records exact selected file metadata,
+SHA-512 hashes, inspected resource paths and author-gallery URLs. Rankings are
+not comparable between sites and cross-site listings are not unique projects.
+Neither a version tag nor a matching asset namespace establishes full support.
+
+`src/lib/resourcepack-data.ts` joins these inputs and compares the captured lock
+hash with `empack.lock`. A changed lock marks the review stale. Changes outside
+the lock, such as resource order or shader settings, still need manual review.
+The page uses `Base.astro`, `AppHeader.astro` and shared style tokens.
+`components/resourcepacks/Candidate.astro` and `Gallery.astro` own row and image
+markup; `src/lib/resourcepacks.ts` owns filters and the image dialog. External
+source images load lazily; missing images retain a link to the source gallery.
+No downloaded third-party artwork or archives are committed.
+
+The archive inspector applies overlays matching resource format 34 and can
+include Fusion override folders explicitly. It compares different bytes at the
+same effective resource path. Models and textures can replace each other;
+language keys and font providers can merge. These counts do not reproduce every
+renderer, validate model references, measure frame times or certify mod coverage.
+The selected file's exact version and the gallery's capture date remain separate.

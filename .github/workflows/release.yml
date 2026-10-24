@@ -34,6 +34,7 @@ jobs:
           python3 -m unittest discover -s tests -v
           python3 scripts/audit-changes.py
           python3 scripts/build-fixes.py
+          python3 scripts/build-resource-patches.py
       - name: Build and publish selected profiles
         env:
           GH_TOKEN: ${{ github.token }}

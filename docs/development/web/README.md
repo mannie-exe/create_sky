@@ -1,12 +1,14 @@
 # Web map and authoring
 
-| Task                                                         | Document                        |
-| ------------------------------------------------------------ | ------------------------------- |
-| Browse items, routes and evidence                            | [Map guide](usage.md)           |
-| Install tools, capture data or run checks                    | [Setup](setup.md)               |
-| Understand sources, textures, schemas and editing boundaries | [Data pipeline](data.md)        |
-| Check tested behavior and remaining limitations              | [Verification](verification.md) |
-| Edit journal text and inspect pack configuration changes     | [Pack authoring](authoring.md)  |
+| Task                                                         | Document                                        |
+| ------------------------------------------------------------ | ----------------------------------------------- |
+| Compare resource-pack candidates and source galleries        | [Resource-pack review](usage.md#resource-packs) |
+| Browse items, routes and evidence                            | [Map guide](usage.md)                           |
+| Install tools, capture data or run checks                    | [Setup](setup.md)                               |
+| Understand sources, textures, schemas and editing boundaries | [Data pipeline](data.md)                        |
+| Check tested behavior and remaining limitations              | [Verification](verification.md)                 |
+| Edit journal text and inspect pack configuration changes     | [Pack authoring](authoring.md)                  |
+| Extrude textures and fit artwork to models                   | [Model authoring](models.md)                    |
 
 Setup owns commands and prerequisites. The data reference owns source authority
 and implementation behavior. Verification records dated checks and their limits.

@@ -1,0 +1,49 @@
+.model-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 12px;
+}
+.authoring .inline-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.model-path,
+#model-json {
+  font-family: var(--mono);
+  overflow-wrap: anywhere;
+}
+.model-previews {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(0, 2fr);
+  gap: 20px;
+}
+#model-canvas {
+  display: block;
+  width: 100%;
+  height: 420px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  touch-action: none;
+}
+#model-texture {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1;
+  image-rendering: pixelated;
+  border: 1px solid var(--line);
+  background: repeating-conic-gradient(var(--tint) 0% 25%, var(--panel) 0% 50%)
+    0 0 / 16px 16px;
+  cursor: crosshair;
+  touch-action: none;
+}
+.model-previews h2 {
+  margin: 12px 0;
+}
+@media (max-width: 1100px) {
+  .model-previews {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

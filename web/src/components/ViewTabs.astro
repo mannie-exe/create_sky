@@ -1,0 +1,10 @@
+---
+interface Props {
+  label: string
+}
+const { label } = Astro.props
+---
+
+<nav class="view-tabs" aria-label={label}>
+  <slot />
+</nav>

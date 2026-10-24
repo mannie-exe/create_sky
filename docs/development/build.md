@@ -20,7 +20,8 @@ clients or servers.
 | `docs/development/` | Maintainer procedures and dated evidence |
 | `docs/RELEASE_NOTES.md` | Notes consumed by release CI |
 
-Generated JARs and archives are ignored by Git. Keep worlds, credentials, server
+Generated JARs and archives are ignored by Git. Both resource builders accept
+`--check` and preserve existing output timestamps when the bytes are unchanged. Keep worlds, credentials, server
 lists, raw logs and machine-specific paths out of distributed overrides.
 
 The root `.gitignore` adapts Toptal templates for macOS, Windows, Linux, common
@@ -46,6 +47,7 @@ python3 scripts/audit-changes.py
 python3 scripts/build-fixes.py
 empack status
 empack sync --materialize --yes
+python3 scripts/build-resource-patches.py
 empack build --profile prism --profile modrinth --profile server --yes --optional-defaults
 python3 scripts/patch-server-archives.py
 ```
@@ -60,27 +62,28 @@ Local edits can change an export without changing its filename. Use the publishe
 release's checksums to identify released bytes; a local rebuild is not a substitute
 for verifying downloaded release assets.
 
+`authoring/resource-patches.json` pins the archive inputs for the client model patch.
+`build-resource-patches.py` checks their selected empack versions and archive
+SHA-512 hashes, then writes `Create Sky Resource Patches.zip` in client overrides.
+It combines four Crops plants with Fresh Flower Pots, restores Macaw's chain
+texture bindings, and includes enabled model-authoring recipes and compatibility
+adapters. The models reference existing textures. [Model authoring](web/models.md)
+owns extrusion and artwork-fitting controls.
+Keep this generated pack above its inputs. Unknown versions or model structures
+stop generation for review; follow the [update procedure](patches.md#update-sequence). CI runs
+the same generator, downloading exact inputs when they are not materialized.
+
 ## Dependency updates
 
-Read [compatibility constraints](compatibility.md) before changing pins.
-Provider-backed selections use exact versions. Twelve content-pinned URL sources
-need manual upstream checks: ten metadata/compatibility exceptions, DH Polygon
-Fix and Sky Village Neighbors. `empack outdated --strict --json` reports incomplete provider evidence and
-continues independent checks after malformed records; it does not assess URL pins
-or loader upgrades. Retain compatibility constraints when selecting updates.
-
-When a URL asset changes, update its digests and explicit placement filename in
-`empack.bindings.yml`, then synchronize. Changing only the URL can preserve an
-obsolete destination filename. Confirm that exports contain one intended JAR,
-with the expected hash and client/server placement.
-
-Shader preset filenames must match their shader ZIP or generated folder.
-Review all three presets whenever Complementary, Euphoria or BSL changes.
+Use [dependency and patch maintenance](patches.md) for coupled versions, URL pins,
+resource overrides and required update checks. `empack outdated` reports provider
+candidates; it does not validate gameplay or replace exact-artifact review.
 
 ## Release procedure
 
-1. Update `pack.version` in `empack.yml` and write `docs/RELEASE_NOTES.md` for that
-   version. Keep unreleased behavior distinct from published behavior in guides.
+1. Review the unreleased notes and required checks in [patch maintenance](patches.md).
+   Update `pack.version` in `empack.yml` and write `docs/RELEASE_NOTES.md` for that
+   version; archive the previous published notes under `docs/releases/`. Keep unreleased behavior distinct from published behavior in guides.
 2. Synchronize and build all three profiles. Inspect client/server mod placement,
    shader presets, configuration and archive integrity. Run the relevant runtime
    checks from [verification](compatibility.md#verification-scope).
@@ -132,7 +135,7 @@ Rebuild it before exporting. The generated JAR is an ignored build artifact;
 its source files are maintained. Quest definitions ship from common config and
 client presentation settings ship from client config. See [journal authoring](journal.md).
 
-## Temporary Unix terminal workaround
+## Unix terminal wrapper
 
 Empack 0.8.2-beta starts runtimes in a separate process group without transferring
 foreground terminal control. An interactive Java server can consequently stop

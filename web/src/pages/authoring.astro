@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro'
 import AppHeader from '../components/AppHeader.astro'
+import ViewTabs from '../components/ViewTabs.astro'
 import JournalWorkbench from '../components/authoring/JournalWorkbench.astro'
 import DisclaimerWorkbench from '../components/authoring/DisclaimerWorkbench.astro'
 import ConfigAudit from '../components/authoring/ConfigAudit.astro'
@@ -9,7 +10,8 @@ import '../styles/authoring.css'
 ---
 
 <Base title="Pack authoring · Create Sky">
-  <AppHeader label="Authoring views">
+  <AppHeader page="authoring" />
+  <ViewTabs label="Authoring views">
     <button data-mode="journal" aria-pressed="true">
       Journal
     </button>
@@ -22,10 +24,10 @@ import '../styles/authoring.css'
     <button data-mode="source" aria-pressed="false">
       Source JSON
     </button>
-    <a href="/">Item map</a>
-  </AppHeader>
+  </ViewTabs>
   <main class="authoring">
     <div class="actions authoring-actions">
+      <a href="/model-authoring">Model authoring</a>
       <button id="reload">Reload source</button>
       <button id="save" disabled>
         Save source

@@ -4,10 +4,10 @@
   "records": [
     {
       "path": "overrides/client/options.txt",
-      "sha256": "e6059d74d20fa8fbb90fa6e74204f70dc53d5ba744eafe4906eed2947a12a0ed",
+      "sha256": "5512164f75b149d866080b290b04fb7f1ca9a90d8ea12dd5c391aa908e2a445a",
       "review": "reviewed",
-      "reason": "Enable the six selected resource packs for fresh installs. Other player options remain inherited; existing instances retain their selection.",
-      "reference": "docs/players/graphics.md#resource-packs-in-019-source"
+      "reason": "Select the reviewed visual stack, including Better Lanterns and the generated pot/chain overrides at highest priority. Accept the inspected 3D Crops format mismatch; dedicated cane and rails retain priority. Existing instance options are seeded, not replaced.",
+      "reference": "docs/players/graphics.md#resource-packs"
     },
     {
       "path": "overrides/common/config/DistantHorizons.toml",
@@ -364,105 +364,98 @@
       "sha256": "b575252aa76d3d513d0fea882dfe41de1dca75bda6f93f1d773ff9660bede052",
       "review": "reviewed",
       "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
-      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs"
     },
     {
       "path": "overrides/client/config/chat_heads.json5",
       "sha256": "e198750061411cf7fca624e38b894ca104ca2cf2c2940da0409ce4240dcc2503",
       "review": "reviewed",
       "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
-      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs"
     },
     {
       "path": "overrides/client/config/clean_tooltips-client.toml",
       "sha256": "fc92b91afc98e0bc40cd56af699f08ecdd0e94c6afdd1f1a2f500e9c49bf6db3",
       "review": "reviewed",
       "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
-      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
-    },
-    {
-      "path": "overrides/client/config/do_a_barrel_roll-client.json",
-      "sha256": "ee32faf303d3beaff76ee54091bc95788048046b6e948ea7795d1eb34f365607",
-      "review": "reviewed",
-      "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
-      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs"
     },
     {
       "path": "overrides/client/config/easyanvils-client.toml",
       "sha256": "60e86e56dd00882a281e8ee88800b75abd4119361edd91fc9948e7da13e2e473",
       "review": "reviewed",
       "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
-      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs"
     },
     {
       "path": "overrides/client/config/easymagic-client.toml",
       "sha256": "541675df333589853c40092d5d978861fa9dd3ba134e5670f8179ce363462698",
       "review": "reviewed",
       "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
-      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs"
     },
     {
       "path": "overrides/client/config/entity_model_features.json",
       "sha256": "4d13dfd4a71e0f9b0e6f673233856185f10bc2465916d7e43ace4e3621334067",
       "review": "reviewed",
       "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
-      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs"
     },
     {
       "path": "overrides/client/config/entity_texture_features.json",
       "sha256": "bd66edf9d1a72cd717bbe9b17b41ffd16963b089493e5ddae3d3ad69153105ba",
       "review": "reviewed",
       "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
-      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs"
     },
     {
       "path": "overrides/client/config/invmove/cloth-config.json",
       "sha256": "65242c90d0248278a7d2293b4ac8e531ba9d9981255a4c81f938b077b58c79f2",
       "review": "reviewed",
       "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
-      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs"
     },
     {
       "path": "overrides/client/config/invmove/emi.json",
       "sha256": "65242c90d0248278a7d2293b4ac8e531ba9d9981255a4c81f938b077b58c79f2",
       "review": "reviewed",
       "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
-      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs"
     },
     {
       "path": "overrides/client/config/invmove/jei.json",
       "sha256": "65242c90d0248278a7d2293b4ac8e531ba9d9981255a4c81f938b077b58c79f2",
       "review": "reviewed",
       "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
-      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs"
     },
     {
       "path": "overrides/client/config/invmove/ponder.json",
       "sha256": "2178d661d3b56e22ba3a031a768ca1c8f31607c167b9e048cedc7735ce837bc3",
       "review": "reviewed",
       "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
-      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs"
     },
     {
       "path": "overrides/client/config/invmove/vanilla.json",
       "sha256": "6595f33672384d39255ca3c35ee212583c6947d483b6770378993fccf46108e7",
       "review": "reviewed",
       "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
-      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs"
     },
     {
       "path": "overrides/client/config/invmove.json",
       "sha256": "64418b74f502b8a7115d7e32e360b35df126611cb3f6a58558ded3d1206b0e64",
       "review": "reviewed",
       "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
-      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs"
     },
     {
       "path": "overrides/client/config/pingwheel.json",
       "sha256": "1c94701ea5194d89c0bfc7bcc278a4a27d2cdd02bdbfc87c417689cc50458679",
       "review": "reviewed",
       "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
-      "reference": "docs/development/compatibility.md#controls-and-resource-packs-in-019-source"
+      "reference": "docs/development/compatibility.md#controls-and-resource-packs"
     }
   ]
 }

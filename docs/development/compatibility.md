@@ -20,7 +20,7 @@ platforms; dedicated servers do not need it. SSRD interfaces are unchanged.
 Version 1.0.2 retains the 1.0.1 runtime implementation and adds documentation and
 release-tool checks. Version 1.0.1 moved the namespace to `design.inherent`. Transformation, missing/duplicate target, server exclusion,
 three-OS builds and Apple/Mesa native probes passed. See the
-[release evidence](decisions.md#2026-10-19---release-dh-maintenance-update-in-create-sky-013)
+[release evidence](decisions.md#rendering)
 for the tested scope.
 
 ## World generation
@@ -35,19 +35,10 @@ Single-player selects the preset; dedicated servers prioritize common config.
 The current sizing mode is RANDOM. SPECIFIC size bands are dormant until that
 mode is selected. Existing vanilla worlds are not converted.
 
-SeedGen was removed after its reconstructed vanilla noise terrain failed to
-match Sky Archipelago. For installations upgrading from 0.1.1, remove its JAR
-and `config/seedgen.json` on both sides. Only consider rebuilding affected DH
-caches after confirming they contain incorrect SeedGen terrain. Stop the relevant
-process first and retain recovery copies; do not remove world region, entity,
-POI, player or Sable data.
-
-DH `serverId` is deliberately absent from authored overrides so installations
-receive independent IDs. The local October 20 investigation found an unchanged
-world key and a healthy 350,553-record server LOD database. The client renderer
-was disabled and downloads reported incomplete payloads. Enabling rendering and
-seeding the matching client cache with SQLite's backup API bypassed those issues;
-this was a local remediation, not a network fix shipped by the modpack.
+SeedGen is excluded because its reconstructed vanilla noise terrain does not
+match Sky Archipelago. Do not use it to fill missing island LODs. Preserve world
+and LOD identity when troubleshooting; renderer visibility and network transfer
+are separate problems. See [graphics](../players/graphics.md) for diagnosis.
 
 Current source enables the renderer but leaves cave culling enabled and the LOD
 radius at 256 chunks. The local test instance's disabled cave culling and seeded
@@ -69,22 +60,22 @@ cache are not export defaults.
   the generated Create/Copycats exclusions. These exclusions do not verify every
   carried entity or ship-storage interaction.
 
-## Controls and resource packs in 0.1.9 source
+## Controls and resource packs
 
-Do a Barrel Roll, Better Climbing, Ping Wheel, Easy Anvils, Easy Magic and
-Inventory Totem ship on both sides. Camera/UI/rendering mods and the six resource
+Better Climbing, Ping Wheel, Easy Anvils, Easy Magic and
+Inventory Totem ship on both sides. Camera/UI/rendering mods and resource
 packs are client-only. EMF/ETF support Fresh Animations; Puzzles Lib, Collective
 and Searchables satisfy the other new dependencies. Existing dependency versions,
 Minecraft and NeoForge are unchanged. Exact selections are in [MODLIST](../MODLIST.md).
 
 | Domain | Authored choice |
 | --- | --- |
-| Flight camera | Barrel Roll uses vanilla activation with thrust disabled. The server disallows thrust for ordinary players and does not force the camera mode. Operators can bypass the mod's server policy. Better Third Person's independent elytra camera stays off. |
+| Flight camera | Elytra retain vanilla steering and firework propulsion. Better Third Person's independent elytra camera stays off. |
 | Inventory movement | Preserve sneaking and prevent dismounting. Text focus disables movement. Unknown screens default off; books, advancements and all Ponder browsing views also disable movement. EMI/JEI compatibility modules remain enabled. |
 | Communication | Ping Wheel keeps its range, channel and rate-limit defaults, with ten-second markers and 50% volume. Chat Heads retains its defaults. |
 | Tooltips | Keep durability/enchantment information, omit extra blank-line spacing. Shulker Box Tooltip retains its native preview defaults. |
 | Workstations | Keep generated Easy Anvils costs and maintenance settings. Easy Magic shows all enchantments while retaining paid rerolls. Do not disable old vanilla workstations. |
-| Visual resources | Enable six packs in new-installation options. Keep base Fresh Animations without extensions; retain generated EMF/ETF defaults. Existing options remain seed-managed and are not overwritten. |
+| Visual resources | Use the current selection and ordering in [Graphics](../players/graphics.md#resource-packs). Retain EMF/ETF defaults. Existing options remain seed-managed; explicit syncs update only the reviewed selection. |
 
 Better Climbing and Inventory Totem expose no generated tuning file in this
 version. Their native behavior is retained. InvMoveCompats and Ping Wheel are
@@ -105,26 +96,7 @@ Propulsion compass-model warnings and other inherited content warnings remain;
 the matching Radar warnings also occur in the prior local client log. Successful
 startup does not establish moving-ship camera compatibility, flight feel, every
 modded inventory, all crop/Copycat geometry or shader performance. Those need
-playtesting. Live profiles and the running server were not changed by this pass.
-
-The final source passed these checks from the repository root:
-
-```sh
-python3 scripts/generate-journal.py --check
-python3 scripts/audit-changes.py
-python3 -m unittest discover -s tests -v
-python3 scripts/build-fixes.py
-empack --yes sync --materialize
-empack --yes build --profile prism --profile server --profile modrinth --optional-defaults
-python3 scripts/patch-server-archives.py
-git diff --check
-```
-
-The audit covered 230 files without drift; all 11 tests passed. All three
-reference exports built. Archive inspection checked dependency placement against
-the lock, authored config bytes and seed policies, and MRpack environment parity.
-The 113 previous dependency selections and digests were unchanged; 24 selections
-were added, including supporting dependencies and resource packs.
+playtesting.
 
 ## Shader verification
 
@@ -176,158 +148,135 @@ Survival resource access, structures, moving-ship interactions and acoustics sti
 need broader gameplay coverage. The owner's testing supports enabling DH by
 default; it is not a cross-platform performance benchmark.
 
-## Version 0.1.6 integration
-
-Reliable Gliders 2.0.0, Hostile Skies 0.2.6, Aeronautics Delivery Quests 1.1.1,
-Create Propulsion: Simulated 1.1.5 and Questlog 3.4.1 are included in
-0.1.6. Minecraft 1.21.1, NeoForge 21.1.264 and Java 21 remain pinned.
+## Progression and integration
 
 Hostile Skies automatic raids and departure explosions are disabled; capture is
 enabled. Delivery Quests uses village destinations, four offers, 500 to 2,000
-block routes and 120-minute deadlines. These target structures, not a simulated
-village economy. Glider defaults and membrane requirements are retained. Flywheel
-storage and structure-generation tuning remain deferred.
+block routes and 120-minute deadlines. These are structure destinations, not a
+simulated economy. Glider defaults and membrane requirements are retained.
+[Progression](progression.md) owns production/travel policy and remaining checks.
 
-### Resource fixes
+The [patch maintenance guide](patches.md) owns recipe, loot, tag and generation
+overrides and their update/removal procedures. Almost Unified retains geological
+ore identity while preferring interchangeable manufactured materials. Questlog
+mechanics and client integration are owned by [journal definitions](journal.md)
+and [journal integrations](journal-integrations.md).
 
-Build `createskyfixes` 0.1.0 from `pack-fixes/` with `python3 scripts/build-fixes.py`.
-It contains these maintained upstream resource overrides:
+## Resource interactions
 
-| Resource | Correction |
+The 2026-10-23 shader-off client fixture used Minecraft 1.21.1, NeoForge 21.1.264,
+EMF 3.3.12, ETF 7.2.6 and Fusion 1.3.16. It used a disposable superflat world,
+fixed noon/clear weather and fixed camera positions. This tests stationary
+appearance, not moving ships, multiplayer state isolation or performance.
+
+- **Crops and pots:** the tagged 3D Crops download declares format 55. Minecraft
+  removes it at startup unless `incompatibleResourcePacks` explicitly accepts it.
+  Its inspected assets use ordinary blockstates/models, and it loaded with that
+  acceptance in the lab. Fresh Flower Pots above it then applies crossed planes
+  to the replaced mushroom textures, producing visibly distorted plants. The
+  fallback order gives 3D Crops ownership of the four shared potted plants;
+  Dedicated Sugar Cane stays above Crops. Other pots retain Fresh Flower Pots.
+- **Pot composition:** a lab-only prototype removed the Fresh pot parent's
+  `#plant` planes, retained its pot/soil elements and texture bindings, and added
+  Crops elements whose faces use `#mushroom`/`#mushroom_top`. The existing stem base
+  at y=4 fits inside the soil. Brown/red mushrooms and crimson/warped fungi all
+  rendered with their 3D plant and the Fresh pot. The generated client patch now
+  includes this composition for local playtesting, above both upstream packs.
+- **Chests:** Objects overrides Redstone Tweaks' three trapped-chest textures.
+  Normal and trapped fronts are less distinct. Lootr still showed gold unopened
+  and muted opened chests and successfully opened generated loot. This does not
+  establish that Objects' custom animation model is applied to Lootr. Preserve
+  Lootr's state textures; do not enable `vanilla_textures` just to match artwork.
+- **Glass:** vanilla, Create framed and Create tiled glass connected in the
+  fixture while retaining their different borders. Midnighttigger does not
+  automatically cover arbitrary mod blocks. Target missing families individually;
+  Copycat materials and moving geometry remain untested.
+- **Better Lanterns:** replacing the vanilla chain parent made Macaw's copper and
+  golden chains look like iron. The replacement uses texture variable `1`, while
+  Macaw's children bind `all`. Two child overrides adding `1` with the
+  existing `all` value restored the correct colors on standing and hanging chains.
+  Better Lanterns and these two overrides are now selected for local playtesting.
+  The sampled lanterns rendered, but this is not coverage of all Macaw styles.
+- **Interface:** Icons was removed after user playtesting found excessive visual
+  clutter. Its temporary disc-label merger was removed too; Clean Tooltips and
+  Redstone Tweaks retain their own presentation.
+
+Local comparison captures are generated evidence, excluded from version control:
+[pots before](../../web/public/generated/resource-review/pots-selected.png),
+[composite prototype](../../web/public/generated/resource-review/pots-composite.png),
+[selected pot fallback](../../web/public/generated/resource-review/pots-crops-priority.png),
+[lanterns before](../../web/public/generated/resource-review/lanterns-better-unpatched.png),
+[chain correction](../../web/public/generated/resource-review/lanterns-better-patched.png),
+[Lootr states](../../web/public/generated/resource-review/chests-opened.png),
+[glass families](../../web/public/generated/resource-review/glass-selected.png).
+
+### Category review world
+
+**Resource Review** in the local client is organized by Plants, Pots, Ladders,
+Bars, Lighting, Storage, Glass, Rails and signals, Machinery, Animals, Equipment
+and Surfaces. `/function resource_lab:hub` returns to its controls. These are
+comparison categories, not a division by mod or resource-pack coverage. The
+fixture source, manifest and stopped-world checker live in
+`~/Minecraft/modpack-testing/projects/create-sky-resources/`.
+
+The installed registry has no non-vanilla `minecraft:crops` members or additional
+crop block implementations in the inspected plant classes. The plant displays
+therefore compare vanilla growth stages, stems, cane, fungi and aquatic plants.
+All eight ladder families are present: vanilla; Create andesite/brass/copper;
+Create Deco iron/industrial iron/zinc; and Copycat. Apply a material to the
+Copycat sample yourself. Gingerbread men sit beside the stationary animal specimens. The mosquito station
+has a Night / spawn button: Camping 2.1.6 discards swarms by day and runs its own
+movement even with `NoAI`. The equipment chest and enclosed pen support motion
+checks. Static machinery and track samples do not establish working contraptions.
+
+| Family | Installed behavior and remaining work |
 | --- | --- |
-| Create Deco placard | White-dye ingredient uses `item`, not `id` |
-| Three TFMG distillation recipes | Require the optional `tfmg` mod |
-| Three Aero Cables recipes | Require their respective optional cable mods |
-| 32 Interiors chair recoloring recipes | Use `c:dyes/<color>` |
-| Bells & Whistles metro window | Use `c:glass_blocks` |
-| Design n' Decor industrial cogwheel tag | Include the uncolored cogwheel |
-| Propulsion wings and platinum casing | Four loot tables use the singular `loot_table` directory |
+| Covered and bell lanterns | Four fitting recipes bind Macaw 1.1.5 artwork to Better Lanterns 1.2 standing/hanging geometry. Frames and caps sample opaque metal; covered windows sample the opaque lower artwork. The original animated texture IDs remain unchanged. Native shader-off/on checks cover these two families, not every Macaw lamp. |
+| Industrial iron bars | Four recipes extrude Create Deco 2.1.3's own side/post masks at two model units deep. They replace post, ends, side and alternate-side models while retaining native connection blockstates. Isolated posts, corners, crossings and three-block stacks render with closed edges and retained openings in shader-off/on checks. Moving contraptions and performance remain untested. |
+| Barrels | Fresh Objects 2.1.2 supplies no barrel CEM model. A barrel changes its block-state model/texture when opened; it has no chest-style lid renderer. An open-state model can change the silhouette, but smooth lid motion would require a renderer and transition state. |
+| Lootr chests | The [adapter](patches.md#lootr-and-fresh-objects) supplies the exact `lootr_lootr_chest` and `lootr_lootr_trapped_chest` model names requested by EMF, with literal body/latch bindings and an isolated animation resource. Native opening/closing, body motion, generated loot, state textures and neighboring-chest independence passed locally. Lootr continues to select its own materials; `vanilla_textures` stays disabled. |
+| Other models | Copycat materials, connected glass families, cage lamps, decorative machinery and moving objects need family-specific checks. Sharing a texture or parent is not proof of matching UVs, connection rules or renderer behavior. New creature animations need a rig/part mapping; extrusion cannot infer joints or behavior from a sprite. |
 
-Almost Unified separately prefers Create Deco zinc sheets through
-`overrides/common/config/almostunified/unification/materials.json`. Existing Power
-Grid sheets remain registered and usable through shared ingredient tags.
+The optional `Resource Review Prototype.zip` is a local, unselected experiment.
+Its builder is in the fixture project. The maintained patch instead uses the
+model recipes and renderer adapter described above. Source generation and
+installation are separate; consult the model-workbench verification for the tested ZIP.
 
-An isolated server validated repaired recipe inputs and rolled the four corrected
-block loot tables with a diamond pickaxe. Zero recipe parsing errors remain.
-Optional-content loot-table errors, Analog Audio's movement hook and Sable's
-missing `copycats:copycat_catwalk` physics-tag warnings remain separate issues.
-See [upstream findings](upstream.md) for reports and inspection limits.
+Shader-off comparisons use fixed noon/clear weather and matching camera poses:
+[covered before](../../web/public/generated/resource-review/covered-template-before.png),
+[original template](../../web/public/generated/resource-review/covered-template-isolated.png),
+[bell before](../../web/public/generated/resource-review/bell-template-before.png),
+[original template](../../web/public/generated/resource-review/bell-template-isolated.png),
+[industrial bars](../../web/public/generated/resource-review/deco-bars-current.png).
+The six-second clips preserve the actual chest interaction:
+[Lootr baseline](../../web/public/generated/resource-review/lootr-close-baseline.mp4),
+[Lootr alias](../../web/public/generated/resource-review/lootr-close-prototype.mp4),
+[trapped alias](../../web/public/generated/resource-review/lootr-trapped-close-prototype.mp4),
+[normal chest control](../../web/public/generated/resource-review/vanilla-close-control.mp4).
+Those earlier clips document the namespace-only experiment. Current patch checks
+and retained comparisons are in [model verification](web/verification.md#native-model-checks-2026-10-24).
+Neither set is a frame-time, audio or multiplayer test.
 
-Questlog's 48 definitions and 66 objective branches passed native handler checks,
-negative inputs, count thresholds and NBT restoration on 2026-10-21. Source and
-condition semantics are in [journal definitions](journal.md). A real client UI,
-flight, cargo-delivery and raid session has not been exercised by these checks.
-The Atlas owns runtime snapshots, selective-sync receipts and its verification
-record; these are local evidence, not distributed player files.
+### Patch generation boundary
 
-## World-generation compatibility in 0.1.6
+The [client patch builder](build.md#local-builds) pins exact source archives,
+checks empack's selected versions, and validates the pot elements and chain
+texture variables before emitting deterministic output. The pot and chain overrides
+use the inspected base paths; no active overlay changes those inputs for 1.21.1.
+The separate model recipes add explicit extrusion and UV fitting; they do not
+infer arbitrary model compatibility.
+New inputs require fresh overlay/structure inspection and visual checks.
 
-Version 0.1.6 disables Zfastnoise's biome optimization to allow Sky
-Archipelago's Deep Dark projection redirect to apply. The isolated capture no
-longer logs that redirect conflict; chunk-level biome and structure validation
-remains pending. Noise optimization stays enabled. The local instances now carry this configuration for a new random-world review;
-the previous server world is archived.
-See [world generation](worldgen.md) for exact settings and evidence.
+Additive/composite overrides can live in one top-priority pack. Vanilla resource
+filters cannot remove a path from just one named lower pack: they filter matching
+resources below them. Source-specific subtraction therefore needs filtered input
+copies or a client resource-loader adapter. Filtered copies must preserve upstream
+archives, record exact excluded paths and be rebuilt after updates. Reference
+releases also need a distribution strategy for derived third-party resources;
+do not silently replace referenced inputs with bundled modified archives.
 
-## 2026-10-22 profile synchronization
-
-Rebuilt all three profiles using empack 0.8.1-beta and the unchanged 0.1.5 version.
-The local Prism/server mod sets match the archive contents; both use Minecraft
-1.21.1 and NeoForge 21.1.264. Both received the common Sky Archipelago config,
-`eee` preset and Zfastnoise biome workaround. The resource JAR rebuild retained
-SHA-256 `4caf00251fecd6fc880fc1350c31670324344c4488e8415ddcdfb5a5adcb78e2`.
-
-Preserved DH installation IDs, client graphics/shader choices, runtime-added
-configuration entries and Prism Java/UI metadata. These deliberate local values
-are not byte-identical to distribution defaults. All mod JARs and the generation
-candidate files match. The stopped server's old world/config archive passed full
-file verification and was rechecked before removing the redundant world copy.
-The active world path is absent; `level-seed` remains blank. No replacement world
-was launched. Pregen and gameplay verification remain the next step.
-
-## 2026-10-22: 0.1.6 reference-instance migration
-
-Installed the published 0.1.6 recipes into the existing Prism Create Sky client
-and local dedicated server using empack 0.8.2-beta. The existing mod sets already
-matched the release. Explicit installation adopted the matching managed files;
-seed policies retained local configuration, graphics choices and shader settings.
-
-The running server received SIGINT and completed its player, world, Sable and DH
-shutdown before installation. All 11,345 saved server-world files and three client
-LOD files matched their pre-installation SHA-256 hashes afterward. Server properties,
-seed, access lists, EULA, JVM settings and DH installation IDs were unchanged.
-The server remains stopped and ready for the owner's next launch.
-
-Prism now has release preparation and launch hooks, using the absolute local empack
-path so a GUI launch does not depend on Bash's environment. Its Java and UI settings
-remain unchanged. Server scripts use the reference lifecycle, retain Java 21 and
-add the local executable directory to PATH.
-
-`empack instance inspect` reports 0.1.6 for both instances. Repeated preparation
-reported zero file changes; all 114 client and 192 server managed files matched
-the release hashes. All 206 client and 201 server seeded files were preserved.
-The launch guards passed with `/usr/bin/true`; this does not test Minecraft gameplay.
-The server preparation script also passed with an initial `/usr/bin:/bin` PATH.
-
-Bash already sources `.bash_env` from `.bash_profile`, and `.bash_env` adds
-`~/.local/bin`. A fresh login shell resolved empack 0.8.2-beta without changes.
-
-### Launch failures found after synchronization
-
-The owner's first interactive launches exposed two cases absent from the earlier
-noninteractive checks. Both have local fixes; the published 0.1.6 assets are unchanged.
-
-**Prism icon:** Prism 11.1.1 writes `icon.png` in `createLaunchTask`, before the
-pre-launch hook ([source](https://github.com/PrismLauncher/PrismLauncher/blob/11.1.1/launcher/minecraft/MinecraftInstance.cpp#L1041)).
-The managed icon caused `ModifiedManagedFile`. Added `icon.png: seed` to bindings
-and synchronized the lock without changing dependency selections. A temporary
-build/installation preserved the launcher-written icon through preparation and
-the launch guard. Installed that policy-only local release into the playing client:
-`133dabd23980db91c9bda13f2d1816af316502c3bdd945270c7fec2397b43aaa`.
-Only the icon policy differs from the published Prism recipe. Its descriptor lives
-next to the original as `.minecraft/.empack-consumer/release-icon-seed.json`, sharing
-the same immutable assets. The original launch hook still verifies its published
-recipe and correctly retains the newer installed recipe; repeated preparation and
-`instance launch -- /usr/bin/true` pass. A full graphical launch remains owner-tested.
-
-**Server terminal:** empack 0.8.2-beta's `execute_inherited` calls
-`command.process_group(0)` without transferring terminal foreground control
-(`crates/empack-lib/src/application/process_runtime.rs:210`). The Java and `stty`
-processes were stopped (`T`), with PGID 80416 and terminal foreground group 79414
-(the empack parent). This explains the apparent stall after `Generating keypair`.
-SIGTERM followed by SIGCONT allowed that launch to shut down.
-
-The local server's `foreground-runtime.py` temporarily ignores SIGTTOU while
-calling `tcsetpgrp`, restores the signal disposition, then execs the selected Java
-process. Both local Unix start scripts select this helper through empack and set
-`CREATE_SKY_JAVA`; the instance lease and runtime guard remain active. The official
-empack binary and repository are unchanged. This workaround needs Python 3 and
-is local to this installation pending an upstream terminal-handling fix.
-
-A real PTY test confirmed foreground ownership and input. The actual server then
-reached readiness in 13.499 seconds, answered `list` with zero players, accepted
-`stop`, saved all dimensions and DH databases, and exited successfully. It was
-left stopped for the owner's terminal. No world replacement or regeneration was
-performed; normal startup/shutdown can update saved data.
-
-## 0.1.7 packaging verification, 2026-10-22
-
-All three reference distributions built with empack 0.8.2-beta. The post-build
-step patched the Unix server launchers before checksums; Windows scripts,
-preparation and immutable release content remain unchanged. Source lock SHA-256:
-`9845e94b1ceadb19f09e5c8fe4c1c40c818657dab31007a7f1316cc7aed11529`.
-
-Fresh Prism/server installations verified 320 and
-393 selected file hashes. A launcher-written icon
-survived repeated preparation and the client launch guard. The server reached
-readiness in 19.49 seconds with a real PTY, answered `list`,
-accepted `stop`, saved every dimension, and exited successfully. Tests used a
-disposable flat world; no live instance or world was modified in this release task.
-
-Packaging unit tests cover idempotence, preserved payloads and rejection of
-unrecognized scripts/helpers. Workflow syntax checks passed. The shared helper
-also passed actual empack PTY Ctrl-C, direct SIGINT and non-TTY checks. These tests
-do not establish graphical client, shader or survival-progression coverage.
-
-Both published packs retain reference delivery. Unix server recipients need
-Python 3 for the included helper until the empack terminal fix is adopted.
+The next visual comparison group remains 3D Default, Nautilus 3D, Classic 3D,
+Vanilla Experience+, Fresh Moves and Dramatic Skys with a selected sky renderer.
+Their archive inspection is recorded in the Atlas, but this fixture pass did not
+run those candidates. Fresh Moves needs motion/equipment checks; sky rendering
+needs day/night and shader-on/off checks, not only a still image.

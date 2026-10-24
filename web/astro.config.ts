@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config'
 import { workspace } from './scripts/workspace.mjs'
+import { domains } from './src/lib/domains.mjs'
 export default defineConfig({
   output: 'static',
   server: { host: '127.0.0.1', port: 4321 },
@@ -10,7 +11,13 @@ export default defineConfig({
     // writes must not trigger reloads that discard the active editor/view.
     server: {
       watch: {
-        ignored: ['**/.cache/**', '**/data/**', '**/public/generated/**'],
+        ignored: [
+          '**/.cache/**',
+          '**/data/generated/**',
+          '**/data/local.json',
+          '**/public/generated/**',
+          ...domains.map((domain) => `**/data/authored/${domain}.yml`),
+        ],
       },
     },
   },

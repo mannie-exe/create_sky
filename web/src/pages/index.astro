@@ -1,23 +1,32 @@
 ---
 import Base from '../layouts/Base.astro'
 import AppHeader from '../components/AppHeader.astro'
+import ViewTabs from '../components/ViewTabs.astro'
+import '../styles/atlas.css'
 import ScenarioEditor from '../components/map/ScenarioEditor.astro'
 import StructureSurvey from '../components/map/StructureSurvey.astro'
 ---
 
 <Base title="Create Sky · Atlas">
-  <AppHeader label="Atlas views">
-    <button data-view="map" class="active">
-      Item map
-    </button>
-    <button data-view="world">World &amp; ores</button>
-    <button data-view="evidence">Evidence</button>
-    <button data-view="editor">Edit data</button>
-    <a href="/authoring">Pack authoring</a>
+  <AppHeader page="atlas">
     <span slot="status" id="snapshot" class="snapshot">
       Loading…
     </span>
   </AppHeader>
+  <ViewTabs label="Atlas views">
+    <button data-view="map" aria-pressed="true">
+      Item map
+    </button>
+    <button data-view="world" aria-pressed="false">
+      World &amp; ores
+    </button>
+    <button data-view="evidence" aria-pressed="false">
+      Evidence
+    </button>
+    <button data-view="editor" aria-pressed="false">
+      Edit data
+    </button>
+  </ViewTabs>
   <main>
     <section id="map-view" class="view">
       <div class="toolbar">
