@@ -1,53 +1,42 @@
-# Create Sky v0.1.12
+# Create Sky 0.1.13
 
-Minecraft 1.21.1, NeoForge 21.1.264 and Java 21 remain pinned.
-See [v0.1.11 notes](releases/0.1.11.md) for the previous release.
+## Islands and geology
 
-## Islands and integrations
+Update Create Sky Compat to 0.3.0. Main-island centers vary across Y=242–490,
+with companions above and below their hosts and at least 200 blocks of terrain
+headroom. A 4100-block cell grid keeps complete cluster envelopes at least 1500
+blocks apart. Sampled shore crossings are usually closer to 3 km.
 
-Replace Sky Village Neighbors with Create Sky Compat 0.2.0. New worlds default to
-Create Sky Islands: deep large islands with smaller companions, a build range
-from Y=-128 through 767 and room above the terrain for construction and flight.
-Selected Overworld geology follows each large island's height. Companions share
-that geological frame; small islands do not receive every ore band.
+Vanilla underground heights now map from the geological bottom to the island
+surface at reference Y=64. Shallow canyon origins follow actual local surfaces.
+Fossils, underground clay and jungle vines receive scoped placement adapters.
+Native ore counts, biome restrictions and replacement rules remain unchanged.
 
-Floating villages remain beside terrain, with zero to three allowed per cluster
-and zero most common. The preset adapts climate and Sable air pressure to the
-higher terrain. Optional ADQ integration repairs structure-route loading, distance
-checks and village landing retries. Existing recipe, crop and loot policy remains.
+Floating villages follow host altitude and retain the weighted zero-to-three
+allowance. Climate follows biome rather than absolute elevation. The continuous
+Sable pressure curve is unchanged. Delivery destination sampling reaches 6000
+blocks to suit the wider grid; the native locator can resolve farther away.
 
-The new preset requires a new world. Existing ordinary Sky Archipelago worlds
-retain their generation settings; the update does not convert saves. Keep world
-and generation-config backups before any deliberate replacement. Marked new
-worlds reject incompatible generation changes.
+## Configuration and Atlas
 
-## Rendering
+Geometry has one validated installation profile:
+`config/create_sky_compat-generation.json`. Restart after changes and use a fresh
+world. The Atlas shows center elevations, conservative cluster-envelope gaps,
+sampled shore gaps, surface openings and updated resource observations separately.
 
-Add client-only Veil Iris Fix 0.1.0. Aeronautics' propeller Ponder scene retains its
-render target with Iris shaders enabled. The independent resource fixes, visual
-patches, DH Polygon Fix and Copycat Bar Extrusion remain separate.
+## World compatibility
 
-## Atlas and journal
-
-Replace the progression canvas with React Flow. Item details embed routes with
-interactive recipe nodes, icons, ingredient alternatives, a minimap and bounded
-rendering. Shared recipe layouts keep slots aligned and support smithing trims.
-Island surveys distinguish layout predictions, sampled blocks and estimates.
-Journal descriptions clarify glider and balloon prerequisites without new gates.
+The existing `create_sky_compat:islands_v1` preset is modified in place. This update
+requires a fresh Create Sky Islands world; saved generation identity rejects old
+terrain rather than converting it. Preserve wanted saves and their original pack.
+Ordinary Sky Archipelago, Nether and End generation remain outside these adapters.
 
 ## Verification and limits
 
-Compat passed minimum/full dedicated generation and reopening checks, minimum
-client/server joining, and full-stack client rendering. Terrain/resource samples,
-village placement, climate, pressure and a controlled powered balloon crossing
-are documented. Survival fuel budgets, full delivery completion and wing-borne
-flight remain unverified. Vanilla noise caves, aquifers and large noise ore veins
-are not restored.
-
-The Veil correction passed transformed-method checks and native Ponder tests with
-shaders on/off, burner rendering, inventory and shader reload on macOS arm64.
-Other drivers/shader packs and an intermittent client shutdown stall remain outside
-that rendering claim. Both independent mods passed Linux, Windows and macOS CI.
-
-Modrinth, Prism and server exports retain referenced dependencies. The Atlas is
-an internal app; potential routes do not prove affordable quantities or play time.
+Full/minimum native generation and reopening, four-seed layout checks, two-seed
+resource samples, village placement, delivery endpoints, climate and pressure
+checks passed. An isolated shader client showed surface openings and the selected
+shader's persistent sky below the world floor; no void-rendering patch was added.
+A fresh bounded DH pregen completed with the client closed. A preceding concurrent
+client run expired requests before recovering; its cause remains unresolved.
+Survival mining/travel budgets and delivery completion remain playtest work.

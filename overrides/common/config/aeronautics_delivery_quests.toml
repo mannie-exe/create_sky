@@ -14,7 +14,7 @@
 	#Maximum distance (in blocks) between quest start and delivery location.
 	# Default: 2000
 	# Range: 500 ~ 50000
-	maxDeliveryDistance = 2000
+	maxDeliveryDistance = 6000
 	#Time limit in minutes to complete an accepted quest before failure.
 	# Default: 60
 	# Range: 5 ~ 1440

@@ -435,6 +435,20 @@ The native mod's verification guide owns resource, spawn, geode and flight
 observations. The Atlas import does not itself validate a world or certify gameplay.
 The import reads reports; it does not mutate Minecraft worlds or instances.
 
+## Expanded altitude and clearance evidence
+
+On 2026-10-25, imported the updated four-seed native density reports and two
+three-anchor generated resource surveys. The existing table now distinguishes
+anchor center heights, conservative full-cluster envelope gaps, sampled shore
+gaps and surface-opening columns. Geological reference Y=64 is explained beside
+the source methods. These are isolated Compat development samples, not the live
+server world. The saved-world survey remains historical.
+
+`pnpm verify` passed formatting, JavaScript checks, Astro diagnostics and build.
+`pnpm data:islands` and `pnpm data:compile` regenerated the local projection.
+No new interaction or graph layout was introduced; browser interaction tests and
+Python tests were not rerun for this label/type-only change.
+
 ## Limits
 
 Mapped acquisition is potential access, not a budget for quantities, chance, XP,

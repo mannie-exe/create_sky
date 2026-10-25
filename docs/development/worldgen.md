@@ -1,7 +1,7 @@
 # World generation
 
 New worlds use **Create Sky Islands**, preset `create_sky_compat:islands_v1`, from
-[Create Sky Compat 0.2.0](https://github.com/mannie-exe/create-sky-compat).
+[Create Sky Compat 0.3.0](https://github.com/mannie-exe/create-sky-compat).
 It extends Sky Archipelago 1.3.6 and replaces Sky Village Neighbors. The mod is
 required on client and server. Its optional village, physics and delivery hooks
 activate only with their supported dependencies; the minimum installation needs
@@ -9,18 +9,26 @@ Minecraft, NeoForge and Sky Archipelago.
 
 ## Terrain
 
-The preset uses Y=-128 through 767, a fixed 1600-block anchor grid with bounded
-180-block jitter, and a restricted center band of Y=470 to 490. Anchors have deep
-bodies; companion dimensions and orbits have independent controls. Across four
-native layout seeds, mean nearest-anchor distance was 1505 to 1588 blocks. Mean
-sampled anchor height was 303 to 343 blocks, interior thickness 230 to 266 blocks,
-and the lowest sampled construction clearance was 233 blocks. These are density
-predictions before decoration, not complete generated island inventories.
+The preset uses Y=-128 through 767. The geometry profile in
+`overrides/common/config/create_sky_compat-generation.json` sets 4100-block cells,
+90-block bounded jitter and activation 0.85. Safe main-island centers span
+Y=242–490; companions vary by −60 to +50 around their host where their bodies fit.
+Terrain keeps at least 32 blocks above the floor and 200 blocks of building room.
+
+The complete native support envelope includes companions and spires. Defaults
+provide at least 1508 horizontal blocks between different cluster envelopes.
+Actual 16-block footprint samples on four seeds mostly gave 2.8–3.4 km shore gaps,
+with one 4.5 km gap. This is sparser than the preferred 1.5–2.5 km crossings:
+retaining a verified minimum avoids claiming that descriptor radii are shorelines.
+Smaller spacing requires a tighter proven shape bound, not just changing a number.
+Activation remains unchanged because widening the grid already reduces density.
 
 ### Geology and features
 
-The preset maps the vanilla reference range `[-64, 320)` into each anchor's
-geological frame. Native height providers, vein geometry, replacement rules,
+Reference Y=−64 maps to the anchor geological bottom and Y=64 to its surface datum.
+Underground depth scales between them; heights above 64 retain one block per block
+above that surface. The entire vanilla build ceiling is no longer compressed into
+the island body. Native height providers, vein geometry, replacement rules,
 exposure rules and initial attempt counts remain authoritative. Companions inherit
 their cluster's frame; thin terrain does not receive a compressed complete ore
 column. Out-of-range samples are rejected instead of piled up at a boundary.
@@ -30,16 +38,19 @@ or large noise veins.
 
 The adapters cover vanilla ores and geological patches, Create zinc and striated
 Overworld deposits, and Propulsion platinum. Nether/End generation is unchanged.
-Temperature uses a separate altitude datum so temperate islands do not become
-snowy solely because they moved upward; cold biomes retain cold behavior. Portal
+Temperature queries use Y=64 so biome climate remains independent of island
+altitude, including client weather. Cold biomes retain cold behavior; altitude
+cooling above mountains is deliberately absent in this preset. Portal
 cold classification is scoped separately. The owning mod's development documents
 list feature coverage and the exact dependency coupling.
 
 Distributed generated samples across six anchors on seeds 42 and 8675309 found
-zinc, iron, copper, coal, redstone, andesite and logs on every sampled anchor. Each anchor used one
-chunk per spatial stratum in a 7×7 grid. These are sparse observed samples with
+zinc, iron, copper, coal, redstone and andesite on every sampled anchor. Logs
+were observed on five of six; sparse samples do not establish complete absence. Each anchor used one
+chunk per spatial stratum in a 7×7 grid. The updated samples also contained diamond
+and platinum on all six anchors; emerald appeared in one biome-eligible sample. These are sparse observed samples with
 separate area-weighted estimates; an unobserved rare ore is not proven absent.
-The prior dense interior checks found both diamonds and platinum. No recipe or
+The dense interior checks also found both diamonds and platinum. No recipe or
 progression changes were made to compensate for the former thin terrain.
 
 ### Villages and atmosphere
@@ -53,16 +64,20 @@ to new starts only.
 The optional ADQ integration handles ADQ 1.1.1 locate points beside void. After its native
 surface check fails, a bounded retry inside that Sky Village can find nearby dry
 ground without relaxing the original safety predicate. Both fully generated
-sample villages passed with the patch and retained their results after reopening.
+seed-42 villages passed and retained their results after reopening. Their host
+surface datums were Y=381 and 493; village bounds followed those hosts.
 It also retains the structure route's chunk tickets through finalization and uses
 horizontal distance so inconsistent locator heights cannot admit a one-block job.
-A native offer between distinct settlements was generated and accepted with
+The destination sampling offset now reaches 6000 blocks to suit the wider grid;
+the native locator can resolve farther away, so this is not a final route cap.
+The 500-block horizontal minimum and 120-minute time limit remain. In the previous
+terrain version, a native offer between distinct settlements was generated and accepted with
 ticket cleanup; its cargo spawned and was picked up before cancellation. Full
 cargo transport and successful delivery remain unverified.
 
 A scoped native Sable data record sets pressure to 1.0 at Y=508, 0.8 at 600,
 0.5 at 680 and zero at the exclusive ceiling of 768. Gravity and drag settings
-are unchanged. A connected, glued balloon with a loaded chest assembled through
+are unchanged. In the previous terrain version, a connected, glued balloon with a loaded chest assembled through
 the native lever, ascended, settled, survived saving/reopening, descended with a
 lower gas allowance, and completed an outward/return cargo crossing of roughly
 1.5 km each way using reversible propeller power. This is one
@@ -88,7 +103,7 @@ samples have independent artifact hashes, methods and limits. See
 placement. Normal updates preserve existing worlds and LODs. A deliberate world
 replacement requires a complete stopped-world backup and a fresh generation path.
 
-Remaining gameplay checks include wing-borne flight, survival power/control
+Remaining gameplay checks include new-grid flight budgets, wing-borne flight, survival power/control
 arrangements, mining access and time, and village deliveries.
 The measured results support the sampled resource paths and basic flight;
 they do not prove every seed or aircraft design is playable.
@@ -124,3 +139,13 @@ with the same seed, exact artifacts and resolved settings; sample other seeds
 before claiming reliable spawn access. Keep generation identity, sampled blocks,
 layout predictions and gameplay observations distinct. Never reuse old chunks
 under the new preset or delete an identity marker to force a world open.
+
+## Same-seed world replacement and LODs
+
+DH 3.3.3 sends a seed-derived level key when `server.levelKeyPrefix` is blank.
+Regenerating a different landscape with the same seed can therefore reuse a
+client's old LOD key. On a deliberate replacement, give that server a unique new
+`levelKeyPrefix` in its local Distant Horizons config before launch. Include a
+world-specific identifier; do not distribute one fixed prefix to unrelated worlds.
+Keep `sendLevelKeys=true`. Clients then select a separate cache while retaining
+previous LOD files. Ordinary updates that preserve terrain should preserve the key.

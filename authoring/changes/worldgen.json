@@ -43,6 +43,13 @@
       "review": "reviewed",
       "reason": "Sky-island generation, consistent cluster spacing and biome redirect compatibility. Some unrelated inherited keys remain.",
       "reference": "docs/development/worldgen.md"
+    },
+    {
+      "path": "overrides/common/config/create_sky_compat-generation.json",
+      "sha256": "6f6380f49f1af583d1f4e1ff1fcf3fa2fe0a4ba6a4ea61b0c64de1c17bad2972",
+      "review": "reviewed",
+      "reason": "Authoritative island geometry, altitude and full-cluster clearance; restart with a fresh world after changes.",
+      "reference": "docs/development/worldgen.md"
     }
   ]
 }

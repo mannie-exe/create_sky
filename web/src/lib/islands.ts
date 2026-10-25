@@ -2,7 +2,7 @@ import { requestJSON } from './http'
 import { surveyTable } from './survey-table'
 
 type Counts = Record<string, number>
-type Descriptor = { x: number; z: number; family: string }
+type Descriptor = { x: number; y?: number; z: number; family: string }
 type TerrainIsland = {
   sampledMinY: number
   sampledMaxY: number
@@ -14,6 +14,7 @@ type ResourceIsland = {
   straightRoute?: { longestVoidGapBlocks: number }
   nearestCenterDistance: number
   descriptorEdgeGap: number
+  surfaceOpeningColumns?: number
   observedHeadroom?: number
   observedAnchorColumns: number
   observedBlocks: Counts
@@ -28,12 +29,18 @@ type Survey = {
       seed: number
       adapted: boolean
       nearestAnchorDistances: number[]
+      clusterClearances?: {
+        centerY: number
+        minimumNativeEnvelopeGap: number
+      }[]
+      clusterFootprints?: { sampledShoreGap: number }[]
       descriptors: Descriptor[]
       islands: TerrainIsland[]
     }[]
   }
   resources: {
     seed: number
+    referenceSurfaceY?: number
     method: string
     limitations: string
     artifacts: Record<string, string>
@@ -79,6 +86,9 @@ export async function renderIslandSurvey() {
         'Seed / preset',
         'Anchors / companions in query',
         'Mean nearest anchor (blocks)',
+        'Anchor center Y range',
+        'Minimum support-envelope gap (blocks)',
+        'Mean sampled shore gap (blocks)',
         'Mean sampled height (blocks)',
         'Mean estimated solid volume (blocks)',
       ],
@@ -86,6 +96,19 @@ export async function renderIslandSurvey() {
         `${run.seed} / ${run.adapted ? 'expanded' : 'ordinary'}`,
         `${run.descriptors.filter((d) => d.family === 'ANCHOR_PLATEAU').length} / ${run.descriptors.filter((d) => d.family !== 'ANCHOR_PLATEAU').length}`,
         number(mean(run.nearestAnchorDistances)),
+        run.clusterClearances?.length
+          ? `${Math.min(...run.clusterClearances.map((c) => c.centerY))}–${Math.max(...run.clusterClearances.map((c) => c.centerY))}`
+          : 'Not captured',
+        run.clusterClearances?.length
+          ? number(
+              Math.min(
+                ...run.clusterClearances.map((c) => c.minimumNativeEnvelopeGap),
+              ),
+            )
+          : 'Not captured',
+        run.clusterFootprints?.length
+          ? number(mean(run.clusterFootprints.map((c) => c.sampledShoreGap)))
+          : 'Not captured',
         number(mean(run.islands.map((i) => i.sampledMaxY - i.sampledMinY + 1))),
         number(mean(run.islands.map((i) => i.estimatedSolidVolume))),
       ]),
@@ -97,19 +120,20 @@ export async function renderIslandSurvey() {
       surveyTable(
         target,
         [
-          'Anchor X, Z',
+          'Anchor X, Y, Z',
           'Native companions',
           'Sampled chunks / anchor columns',
           'Nearest center / descriptor gap (blocks)',
           'Longest sampled straight-line void gap (blocks)',
           'Sampled headroom (blocks)',
+          'Surface-opening columns',
           'Zinc observed / estimated',
           'Diamond observed / estimated',
           'Platinum observed / estimated',
           'Generation and scan (s)',
         ],
         run.islands.map((i) => [
-          `${i.descriptor.x}, ${i.descriptor.z}`,
+          `${i.descriptor.x}, ${i.descriptor.y ?? '?'}, ${i.descriptor.z}`,
           i.companionDescriptors
             ? String(i.companionDescriptors.length)
             : 'Not captured',
@@ -121,6 +145,9 @@ export async function renderIslandSurvey() {
           i.observedHeadroom === undefined
             ? 'No occupied sample'
             : number(i.observedHeadroom),
+          i.surfaceOpeningColumns === undefined
+            ? 'Not captured'
+            : number(i.surfaceOpeningColumns),
           ...['zinc', 'diamond', 'platinum'].map(
             (name) =>
               `${number(ore(i.observedBlocks, name))} / ${number(ore(i.estimatedBlocks, name))}`,
@@ -135,6 +162,10 @@ export async function renderIslandSurvey() {
       for (const text of [
         run.method,
         run.limitations,
+        run.referenceSurfaceY === 64
+          ? 'Reference −64…64 maps from geological bottom to anchor surface. Above 64, offsets retain block scale. Surface openings are generated air cuts, not verified walkable cave routes.'
+          : 'Historical height mapping; consult the source report.',
+        'Support-envelope gaps are conservative bounds. Shore gaps sample complete clusters on a 16-block grid for nearest-center pairs; they are not exact shortest crossings.',
         `Heap at scan end: ${number(run.heapUsedAtEndBytes / 1024 ** 3)} GiB; configured maximum: ${run.maximumHeap ?? 'not recorded'}. This is not peak usage. Total runtime including startup: ${number(run.wallSecondsIncludingStartup)} s.`,
         ...Object.entries(run.artifacts).map(([id, hash]) => `${id}: ${hash}`),
       ]) {

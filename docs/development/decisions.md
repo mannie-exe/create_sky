@@ -159,3 +159,24 @@ all 5,484 source files before replacement; named seeds were retained separately.
 Existing worlds are not converted.
 Survival fuel budgets, full deliveries, wing-borne flight and general seed/driver
 coverage remain unverified; [world generation](worldgen.md) owns those limits.
+
+## Create Sky 0.1.13 verification
+
+Select Create Sky Compat 0.3.0, source `fae87c2`. Its three-platform CI passed;
+the downloaded release binary matches the native-tested build, SHA-256
+`36f990b71bbddc31aff980f186b13a80265ddbc7017383c734d7673efc224c1d`.
+The owning mod's verification guide records native geometry, resource, village,
+climate, pressure and reopening checks, shader observations and the DH timeout
+limitation. [World generation](worldgen.md) owns selected parameters and tradeoffs.
+
+The root 27 Python tests, journal check and 229-file configuration audit passed.
+The visual resource builders retained the prior tested patch bytes. All three
+reference exports passed ZIP integrity checks; client/server recipes contain one
+Compat 0.3.0 JAR, no old neighbor/Compat JAR, matching geometry/ADQ defaults and
+correct Veil sidedness. The server archive retains the terminal helper.
+Atlas labels and imported native reports passed `pnpm verify` and data compilation;
+[web verification](web/verification.md) records the narrower UI scope.
+
+The release changes the existing islands preset and requires a fresh world.
+Local same-seed regeneration is separately authorized; no archive deletion or
+personal-client save removal is part of this release.

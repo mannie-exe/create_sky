@@ -97,7 +97,8 @@ Publish and verify those artifacts before updating their URL and digest pins in
 `empack.yml`. Use empack to regenerate bindings and the lock; inspect each export's
 release record for sidedness and duplicate/obsolete JARs. Keep the old neighbor
 mod out of every payload. The new common config is
-`create_sky_compat-common.toml`; client defaults and the server template select
+`create_sky_compat-common.toml`, with geometry in
+`create_sky_compat-generation.json`; client defaults and the server template select
 `create_sky_compat:islands_v1` for new worlds. Distributed seeds remain blank.
 
 For development, use a marked disposable empack workspace with local JAR inputs

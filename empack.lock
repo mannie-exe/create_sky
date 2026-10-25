@@ -48,7 +48,7 @@ coverage:
   create-power-loader: complete
   create-propulsion-simulated: complete
   create-radars: complete
-  create-sky-compat-0.2.0-mc1.21.1-neoforge: unknown
+  create-sky-compat: unknown
   create-touch-ups: complete
   create-transmission: complete
   create-vibrant-vaults: unknown
@@ -2710,23 +2710,23 @@ dependencies:
       provider: modrinth
       selector: BLu2Yqfq
     title: "Create: Radars"
-  create-sky-compat-0.2.0-mc1.21.1-neoforge:
+  create-sky-compat:
     content: mod
     files:
     - acquisition:
         downloads:
         - >-
-          https://github.com/mannie-exe/create-sky-compat/releases/download/v0.2.0/create-sky-compat-0.2.0-mc1.21.1-neoforge.jar
+          https://github.com/mannie-exe/create-sky-compat/releases/download/v0.3.0/create-sky-compat-0.3.0-mc1.21.1-neoforge.jar
         kind: url
       expected:
         accepted-observation: null
         digests:
-          sha1: f2cf2a5ae6473fc31731be547db1fdc34ed39681
+          sha1: a0d2550ccdc2e78bb7b23280889bb3a0a012f598
           sha512: >-
-            498e8cce3dc1df149e91812ea368534f77b8fb6d5a1753df2b7a0a1f11f2d55dbd8bf085359164cb8f3cafc449c13b6a7fdc17ade11ee224c7377bc38a0aead0
+            18bac04ec8405484515f60858172495c8562fd0f1b14cf7326203800370c5ab1ca6f506c53848fcb1e847ca58804bc1b3f03a6316540ed5a4fddc77051ea644f
         size: null
       placements:
-      - destination: mods/create-sky-compat-0.2.0-mc1.21.1-neoforge.jar
+      - destination: mods/create-sky-compat-0.3.0-mc1.21.1-neoforge.jar
         environment:
           client: required
           server: required
@@ -2734,19 +2734,19 @@ dependencies:
       provenance:
         conversions: []
         declared-digests:
-          sha1: f2cf2a5ae6473fc31731be547db1fdc34ed39681
+          sha1: a0d2550ccdc2e78bb7b23280889bb3a0a012f598
           sha512: >-
-            498e8cce3dc1df149e91812ea368534f77b8fb6d5a1753df2b7a0a1f11f2d55dbd8bf085359164cb8f3cafc449c13b6a7fdc17ade11ee224c7377bc38a0aead0
+            18bac04ec8405484515f60858172495c8562fd0f1b14cf7326203800370c5ab1ca6f506c53848fcb1e847ca58804bc1b3f03a6316540ed5a4fddc77051ea644f
         location: null
         source: url-file
       slot: primary
     identity:
-      key: create-sky-compat-0.2.0-mc1.21.1-neoforge
+      key: create-sky-compat
       kind: url
     incompatibilities: []
     selection: null
     source-selector: null
-    title: create-sky-compat-0.2.0-mc1.21.1-neoforge.jar
+    title: create-sky-compat
   create-touch-ups:
     content: resource-pack
     files:
@@ -8084,7 +8084,7 @@ dependencies:
       provider: modrinth
       selector: OnlVIpq5
     title: Fast Noise
-intent-revision: 04a06908bc9b233b7a7a4908e1793510ed13ee33809c2909a8147bafceb8cea1
+intent-revision: bfd7ad71cb5fc02842638e0e3f806f5a8dd007aac7fcffca54c62178094ab6e2
 required-edges:
   accessories:
   - owo-lib

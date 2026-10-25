@@ -1,7 +1,7 @@
 schema: 5
 pack:
   name: Create Sky
-  version: 0.1.12
+  version: 0.1.13
   id: create_sky
   authors:
     - mannie-exe
@@ -676,14 +676,14 @@ dependencies:
     environment:
       client: required
       server: unsupported
-  create-sky-compat-0.2.0-mc1.21.1-neoforge:
+  create-sky-compat:
     source:
       kind: url
       downloads:
-        - https://github.com/mannie-exe/create-sky-compat/releases/download/v0.2.0/create-sky-compat-0.2.0-mc1.21.1-neoforge.jar
+        - https://github.com/mannie-exe/create-sky-compat/releases/download/v0.3.0/create-sky-compat-0.3.0-mc1.21.1-neoforge.jar
     digests:
-      sha1: f2cf2a5ae6473fc31731be547db1fdc34ed39681
-      sha512: 498e8cce3dc1df149e91812ea368534f77b8fb6d5a1753df2b7a0a1f11f2d55dbd8bf085359164cb8f3cafc449c13b6a7fdc17ade11ee224c7377bc38a0aead0
+      sha1: a0d2550ccdc2e78bb7b23280889bb3a0a012f598
+      sha512: 18bac04ec8405484515f60858172495c8562fd0f1b14cf7326203800370c5ab1ca6f506c53848fcb1e847ca58804bc1b3f03a6316540ed5a4fddc77051ea644f
     environment:
       client: required
       server: required

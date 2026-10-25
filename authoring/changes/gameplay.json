@@ -39,10 +39,10 @@
     },
     {
       "path": "overrides/common/config/aeronautics_delivery_quests.toml",
-      "sha256": "0779903d892033c8273ac6b81c145964481fdc3a6548404c17114e688a3199bf",
-      "review": "inherited",
-      "reason": "Retained from the imported pack. Individual setting intent has not been reviewed.",
-      "reference": "docs/development/decisions.md"
+      "sha256": "10d5b2a8eef39efe81ac07b8dec28a8de711038bc70465b78777c05ae8ec6f4e",
+      "review": "reviewed",
+      "reason": "Village routes retain native safety checks and a 120-minute limit. Sample destination offsets up to 6000 blocks for the sparse cluster grid; this is not a hard final-route maximum.",
+      "reference": "docs/development/worldgen.md"
     },
     {
       "path": "overrides/common/config/aeroworks-common.toml",
