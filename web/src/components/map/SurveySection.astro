@@ -1,0 +1,19 @@
+---
+interface Props {
+  id: string
+  title: string
+  kind: string
+}
+const { id, title, kind } = Astro.props
+---
+
+<section id={id} class="survey-section" aria-labelledby={`${id}-title`}>
+  <header class="survey-heading">
+    <div>
+      <span class="survey-kind">{kind}</span>
+      <h2 id={`${id}-title`}>{title}</h2>
+    </div>
+    <slot name="status" />
+  </header>
+  <slot />
+</section>

@@ -6,6 +6,7 @@ import '../styles/atlas.css'
 import ScenarioEditor from '../components/map/ScenarioEditor.astro'
 import StructureSurvey from '../components/map/StructureSurvey.astro'
 import IslandSurvey from '../components/map/IslandSurvey.astro'
+import SurveySection from '../components/map/SurveySection.astro'
 import Minimap from '../components/map/Minimap.astro'
 import ProgressionGraph from '../components/map/ProgressionGraph.astro'
 ---
@@ -110,56 +111,84 @@ import ProgressionGraph from '../components/map/ProgressionGraph.astro'
     </section>
     <ProgressionGraph />
     <section id="world-view" class="view" hidden>
-      <div id="world-summary" class="summary-strip"></div>
-      <div id="world-layout" class="world-layout">
-        <div class="panel">
-          <div class="panel-heading">
-            <h2>Overworld survey</h2>
-            <select id="ore-map" aria-label="World map metric">
-              <option value="land">Land column fraction</option>
-            </select>
+      <nav class="section-links" aria-label="World evidence">
+        <a href="#terrain-survey">Saved terrain</a>
+        <a href="#generation-samples">Island samples</a>
+        <a href="#village-samples">Village samples</a>
+      </nav>
+      <SurveySection
+        id="terrain-survey"
+        title="Overworld survey"
+        kind="Saved terrain"
+      >
+        <p id="world-provenance" slot="status" class="survey-provenance"></p>
+        <div id="world-summary" class="summary-strip"></div>
+        <div id="world-layout" class="world-layout">
+          <div class="panel world-map-panel">
+            <div class="panel-heading">
+              <h3>Region map</h3>
+              <select id="ore-map" aria-label="World map metric">
+                <option value="land">Land column fraction</option>
+              </select>
+            </div>
+            <canvas
+              id="world-canvas"
+              width="900"
+              height="660"
+              aria-label="Region survey heatmap"
+            ></canvas>
+            <p id="world-hover" class="muted" aria-live="polite">
+              Hover a region for its coordinates and sample coverage.
+            </p>
+            <p class="muted">
+              One square is a 32 × 32 chunk region. Colors summarize sampled
+              chunks, not island outlines. Orange marks the origin.
+            </p>
           </div>
-          <canvas
-            id="world-canvas"
-            width="900"
-            height="660"
-            aria-label="Region survey heatmap"
-          ></canvas>
-          <p id="world-hover" class="muted">
-            Hover a region for its coordinates and sample coverage.
-          </p>
-          <p class="muted">
-            Each square is a 32 × 32 chunk region. Color reflects its sample,
-            not an exact island outline.
-          </p>
+          <div class="world-reading">
+            <div class="panel">
+              <h3>Vertical ore profile</h3>
+              <div id="ore-profile"></div>
+            </div>
+            <div class="panel">
+              <h3>Travel estimate</h3>
+              <label>
+                Route distance (blocks)
+                <input id="distance" type="number" value="1000" min="0" />
+              </label>
+              <label>
+                Measured speed (blocks/second)
+                <input
+                  id="speed"
+                  type="number"
+                  value="5"
+                  min="0.1"
+                  step="0.1"
+                />
+              </label>
+              <p id="travel-result"></p>
+              <p class="muted">
+                Time in motion only. Stops, climbing, acceleration and loading
+                are extra.
+              </p>
+            </div>
+          </div>
+          <div class="panel world-ores">
+            <h3>Ore availability</h3>
+            <p class="muted">
+              Select an ore to compare its regional distribution and height
+              profile.
+            </p>
+            <div id="ore-table"></div>
+          </div>
         </div>
-        <div class="panel">
-          <h2>Ore availability</h2>
-          <div id="ore-table"></div>
-          <h2>Vertical ore profile</h2>
-          <div id="ore-profile"></div>
-          <h2>Travel estimate</h2>
-          <label>
-            Route distance (blocks)
-            <input id="distance" type="number" value="1000" min="0" />
-          </label>
-          <label>
-            Measured speed (blocks/second)
-            <input id="speed" type="number" value="5" min="0.1" step="0.1" />
-          </label>
-          <p id="travel-result"></p>
-          <p class="muted">
-            Constant-speed estimate only. Enter a measured vehicle speed; stops,
-            climbing, acceleration and loading are extra.
-          </p>
-        </div>
-      </div>
-      <div class="panel">
-        <h2>Generation and sampling limits</h2>
-        <div id="world-notes"></div>
-      </div>
-      <StructureSurvey />
+        <details class="panel survey-method">
+          <summary>Generation and sampling limits</summary>
+          <div id="world-notes"></div>
+        </details>
+      </SurveySection>
       <IslandSurvey />
+      <StructureSurvey />
     </section>
     <section id="evidence-view" class="view" hidden>
       <div class="toolbar">

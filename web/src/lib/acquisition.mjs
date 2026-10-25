@@ -294,8 +294,7 @@ export function acquisitionRoutes({
       {
         gate: 'atlas:overworld',
         source: 'world survey',
-        detail:
-          'Observed in sampled saved chunks; location/travel and ownership are not established.',
+        detail: `Observed in sampled saved chunks${world.completedAt ? ` captured ${world.completedAt}` : ''}. ${world.provenance ? 'Source identity is recorded in World & ores.' : 'Legacy survey; world identity is not recorded.'} Location, travel and ownership are not established.`,
       },
     ]),
   )

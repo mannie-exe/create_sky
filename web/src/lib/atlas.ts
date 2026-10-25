@@ -2,11 +2,12 @@ import { recipeMounts } from './recipe-mount'
 import { requestJSON as fetchJSON } from './http'
 import { scrollNavigation } from './minimap'
 import '../styles/recipes.css'
-import { safeIcon } from './recipe-view.mjs'
+import { recipePresentation, safeIcon } from './recipe-view.mjs'
 import { detailBucket } from './graph.mjs'
 import { clearRouteData } from './route-data'
 import { renderStructureSurvey } from './structures'
 import { renderIslandSurvey } from './islands'
+import { oreProfile } from './world-profile.mjs'
 const detailRecipes = recipeMounts(),
   evidenceRecipes = recipeMounts()
 type Node = {
@@ -168,12 +169,15 @@ function render() {
   el('position').textContent =
     `X ${Math.round(left / cw)} / Y ${Math.round(top / ch)}`
 }
-viewport.addEventListener('scroll', () => {
-  tooltip.hidden = true
+function queueRender() {
   if (!renderQueued) {
     renderQueued = true
     requestAnimationFrame(render)
   }
+}
+viewport.addEventListener('scroll', () => {
+  tooltip.hidden = true
+  queueRender()
 })
 viewport.addEventListener(
   'wheel',
@@ -185,14 +189,28 @@ viewport.addEventListener(
   },
   { passive: false },
 )
-new ResizeObserver(() => render()).observe(viewport)
+new ResizeObserver(queueRender).observe(viewport)
+const viewTabs = document.querySelector<HTMLElement>('.view-tabs')!
+function positionInspector() {
+  el('inspector').style.setProperty(
+    '--inspector-top',
+    `${Math.max(0, viewTabs.getBoundingClientRect().bottom)}px`,
+  )
+}
+const navigationSize = new ResizeObserver(positionInspector)
+navigationSize.observe(viewTabs)
+navigationSize.observe(document.querySelector('.topbar')!)
+const jobStatus = document.getElementById('job-status')
+if (jobStatus) navigationSize.observe(jobStatus)
+window.addEventListener('scroll', positionInspector, { passive: true })
+positionInspector()
 grid.addEventListener('click', (event) => {
   const cell = (event.target as HTMLElement).closest<HTMLElement>('[data-id]')
   if (cell) inspect(cell.dataset.id!)
 })
 grid.addEventListener('pointerover', (event) => {
   const cell = (event.target as HTMLElement).closest<HTMLElement>('[data-id]')
-  if (!cell) return
+  if (!cell || !el('inspector').hidden) return
   const node = nodes.find((n) => n.id === cell.dataset.id)
   if (!node) return
   tooltip.textContent = `${node.name}\n${node.id}\n${node.depth === null ? 'Unresolved crafting route' : `Optimistic route depth ${node.depth}`} · ${node.recipeCount} producing recipes · ${node.usesCount} uses\nClick for sources, conditions, drops and configuration.`
@@ -253,8 +271,15 @@ function sourceLinks(sources: unknown[] = []) {
     )
     .join('<br/>')
 }
-function recipeHTML(recipe: RecordData) {
-  return `<details class="record"><summary>${escape(recipe.id)}</summary><div data-recipe-host="${escape(recipe.id)}"></div></details>`
+function recipeHTML(recipe: RecordData, open = false) {
+  const view = recipePresentation(recipe)
+  const type = view.type.split(':').at(-1).replaceAll('_', ' ')
+  const output = view.derivedOutput
+    ? 'Armor trim'
+    : recipe.output && recipe.output !== 'minecraft:air'
+      ? (itemCatalog.get(recipe.output)?.name ?? recipe.id)
+      : recipe.id
+  return `<details class="record recipe-record"${open ? ' open' : ''}><summary><span>${escape(output)}</span><span class="record-kind">${escape(type)}</span><small>${escape(recipe.id)}</small></summary><div data-recipe-host="${escape(recipe.id)}"></div></details>`
 }
 function relation(id: string) {
   const node = nodes.find((n) => n.id === id)
@@ -262,8 +287,8 @@ function relation(id: string) {
     ? `<button class="relation" data-inspect="${escape(id)}">${escape(node.name)} <small>${escape(id)}</small></button>`
     : `<code>${escape(id)}</code>`
 }
-function routeHTML(route: RecordData) {
-  return `<details class="record"><summary>${escape(route.kind ?? route.title ?? 'Interaction')} · ${escape(route.id)}</summary><p>${route.inputs.map((g: string[]) => (g.length ? g.map(relation).join(' OR ') : '<b>Unsupported or empty ingredient</b>')).join('<br/>AND ')}</p><p>${escape(route.detail)}</p>${pretty(route)}</details>`
+function routeHTML(route: RecordData, open = false) {
+  return `<details class="record acquisition-record"${open ? ' open' : ''}><summary>${escape(route.title ?? route.kind ?? 'Interaction')}<small>${escape(route.id)}</small></summary><p>${escape(route.detail)}</p>${route.inputs.length ? `<p>${route.inputs.map((g: string[]) => (g.length ? g.map(relation).join(' OR ') : '<b>Unsupported or empty ingredient</b>')).join('<br/>AND ')}</p>` : ''}<details><summary>Conditions and source</summary>${pretty(route)}</details></details>`
 }
 function pathHTML(detail: RecordData) {
   const c = detail.coverage
@@ -277,9 +302,9 @@ function pathHTML(detail: RecordData) {
           : 'Mapped potential route'
   if (c.status === 'unified')
     return `<h3>Unified variant</h3><p>New production uses ${relation(c.canonical)}. Existing items retain their tags and recipe compatibility.</p>`
-  let html = `<h3>${status}</h3><button id="view-item-route">Open full graph</button>`
+  let html = `<div class="detail-section-heading"><h3>${status}</h3><button id="view-item-route">Open full graph</button></div>`
   if (detail.path?.length)
-    html += `<p class="muted">One minimum-depth path. ALL groups are required; OR choices remain alternatives. Quantities, chance and travel are not solved.</p><div class="inline-route"></div>`
+    html += `<p class="muted">Minimum modeled path. ALL input groups are required; OR choices are alternatives. Quantities, chance and travel remain untested.</p><div class="inline-route"></div>`
   else if (c.status === 'excluded')
     html +=
       '<p>Listed in acquisition.yml as an operator, creative or internal item. Not counted as a missing survival route.</p>'
@@ -324,8 +349,41 @@ async function inspect(id: string, back = false) {
     const detail = detailCache.get(key)![id]
     const section = (key: string, label: string, body: string) =>
       `<section data-detail-panel="${key}"${key === 'acquisition' ? '' : ' hidden'} aria-label="${label}">${body}</section>`
-    el('detail').innerHTML =
-      `${inspectorHistory.length ? '<button id="item-back">← Back</button>' : ''}<header class="item-heading">${safeIcon(node.icon) ? `<img class="detail-icon" src="${node.icon}" alt=""/>` : ''}<div><h2>${escape(node.name)}</h2><div class="id">${escape(id)}</div><span class="badge">${node.depth === null ? 'UNRESOLVED' : `DEPTH ${node.depth}`}</span></div></header>${detail.note ? `<details class="item-notes"><summary>Pack notes</summary><div class="warning">${escape(detail.note.text)}<p>${sourceLinks(detail.note.sources)}</p></div></details>` : ''}<nav class="detail-tabs" aria-label="Item information"><button data-detail-tab="acquisition" aria-pressed="true">Acquisition</button><button data-detail-tab="uses" aria-pressed="false">Uses · ${detail.uses.length}</button><button data-detail-tab="evidence" aria-pressed="false">Evidence</button></nav>${section('acquisition', 'Acquisition', `${pathHTML(detail)}<h3>Producing recipes · ${detail.recipes.length}</h3>${detail.recipes.length ? detail.recipes.map(recipeHTML).join('') : '<p class="muted">No producing recipe. Check other acquisition routes below.</p>'}<h3>Other acquisition · ${detail.acquisition.length}</h3>${detail.acquisition.map(routeHTML).join('')}`)}${section('uses', 'Uses', `<h3>Used by · ${detail.uses.length} recipes</h3>${detail.uses.slice(0, 80).map(recipeHTML).join('')}${detail.uses.length > 80 ? '<p class="muted">First 80 shown; Evidence lists all active recipes.</p>' : ''}`)}${section('evidence', 'Evidence', `<h3>Potential drops · ${detail.drops.length} tables</h3>${detail.drops.map((drop: RecordData) => `<details class="record"><summary>${escape(drop.id)}</summary><p class="muted">Conditions and functions determine actual drops.</p>${pretty(drop.json)}</details>`).join('')}<details class="record"><summary>Tags & tool requirements</summary>${pretty({ tags: detail.tags, block: detail.block })}</details><details class="record"><summary>Interactions & implementation hooks</summary>${pretty({ transformations: detail.interactions, hooks: detail.hooks })}</details><details class="record"><summary>Native interaction documentation</summary>${Object.keys(detail.ponder).length ? pretty(detail.ponder) : '<p>No matching Ponder text indexed.</p>'}</details><details class="record"><summary>Registry and asset provenance</summary><p class="muted">Extracted icons can differ from custom in-game rendering.</p>${pretty({ components: detail.components, stack: detail.stack, class: detail.class, icon: detail.icon })}</details><button id="edit-item-note">Edit item notes in workspace</button>`)}`
+    const methods = `<div class="item-methods">
+      <h3>Producing recipes · ${detail.recipes.length}</h3>
+      ${detail.recipes.length ? detail.recipes.map((r: RecordData, i: number) => recipeHTML(r, i === 0)).join('') : '<p class="muted">No producing recipe is mapped. Other acquisition routes are listed below.</p>'}
+      <h3>Other acquisition · ${detail.acquisition.length}</h3>
+      ${detail.acquisition.length ? detail.acquisition.map((r: RecordData, i: number) => routeHTML(r, !detail.recipes.length && i === 0)).join('') : '<p class="muted">No other acquisition route is mapped.</p>'}
+    </div>`
+    const uses = `<h3>Used by · ${detail.uses.length} recipes</h3>
+      ${detail.uses
+        .slice(0, 80)
+        .map((r: RecordData) => recipeHTML(r))
+        .join('')}
+      ${detail.uses.length > 80 ? '<p class="muted">First 80 shown; Evidence lists all active recipes.</p>' : ''}`
+    const evidence = `<h3>Potential drops · ${detail.drops.length} tables</h3>
+      ${detail.drops.map((drop: RecordData) => `<details class="record"><summary>${escape(drop.id)}</summary><p class="muted">Conditions and functions determine actual drops.</p>${pretty(drop.json)}</details>`).join('')}
+      <details class="record"><summary>Tags & tool requirements</summary>${pretty({ tags: detail.tags, block: detail.block })}</details>
+      <details class="record"><summary>Interactions & implementation hooks</summary>${pretty({ transformations: detail.interactions, hooks: detail.hooks })}</details>
+      <details class="record"><summary>Native interaction documentation</summary>${Object.keys(detail.ponder).length ? pretty(detail.ponder) : '<p>No matching Ponder text indexed.</p>'}</details>
+      <details class="record"><summary>Registry and asset provenance</summary><p class="muted">Extracted icons can differ from custom in-game rendering.</p>${pretty({ components: detail.components, stack: detail.stack, class: detail.class, icon: detail.icon })}</details>
+      <button id="edit-item-note">Edit item notes in workspace</button>`
+    el('detail').innerHTML = `
+      ${inspectorHistory.length ? '<button id="item-back">← Back</button>' : ''}
+      <header class="item-heading">
+        ${safeIcon(node.icon) ? `<img class="detail-icon" src="${node.icon}" alt=""/>` : ''}
+        <div><h2>${escape(node.name)}</h2><div class="id">${escape(id)}</div><span class="badge">${node.depth === null ? 'UNRESOLVED' : `DEPTH ${node.depth}`}</span></div>
+      </header>
+      ${detail.note ? `<details class="item-notes"><summary>Pack notes</summary><div class="warning">${escape(detail.note.text)}<p>${sourceLinks(detail.note.sources)}</p></div></details>` : ''}
+      <nav class="detail-tabs" aria-label="Item information">
+        <button data-detail-tab="acquisition" aria-pressed="true">Acquisition</button>
+        <button data-detail-tab="uses" aria-pressed="false">Uses · ${detail.uses.length}</button>
+        <button data-detail-tab="evidence" aria-pressed="false">Evidence</button>
+      </nav>
+      ${section('acquisition', 'Acquisition', `<div class="item-acquisition">${methods}<section class="item-route" aria-label="Potential route">${pathHTML(detail)}</section></div>`)}
+      ${section('uses', 'Uses', uses)}
+      ${section('evidence', 'Evidence', evidence)}`
+    el('inspector').scrollTop = 0
     el('detail')
       .querySelectorAll<HTMLElement>('[data-detail-tab]')
       .forEach((button) =>
@@ -424,8 +482,10 @@ document
     button.addEventListener('click', () => showView(button.dataset.view!))
     button.disabled = false
   })
-let evidenceLimit = 100
+let evidenceLimit = 100,
+  evidenceRequest = 0
 async function loadEvidence(reset = true) {
+  const request = ++evidenceRequest
   if (reset) evidenceLimit = 100
   const data = await domains(),
     kind = el<HTMLSelectElement>('evidence-domain').value,
@@ -446,6 +506,7 @@ async function loadEvidence(reset = true) {
     rows = (data[kind] ?? []).map((row: unknown) =>
       typeof row === 'string' ? { detail: row } : row,
     )
+  if (request !== evidenceRequest) return
   const matches = rows.filter(
     (row) => !query || JSON.stringify(row).toLowerCase().includes(query),
   )
@@ -486,21 +547,32 @@ async function loadWorld() {
   if (!world) world = await fetchJSON('/generated/world.json')
   el('world-layout').hidden = !world
   if (!world) {
+    el('world-provenance').textContent = 'No saved-terrain evidence available.'
     el('world-summary').textContent = 'No world survey captured.'
     el('world-notes').textContent =
       'Run pnpm data:world, then pnpm data:compile. Terrain-derived acquisition routes are unavailable until a survey is captured.'
     return
   }
   const w = world!
+  const captured = w.completedAt
+    ? `Captured ${new Date(w.completedAt).toLocaleDateString('en', { dateStyle: 'medium' })}.`
+    : 'Capture date not recorded.'
+  el('world-provenance').textContent = w.provenance
+    ? `${captured} Seed ${w.provenance.seed ?? 'not recorded'} · ${w.provenance.dimensionType ?? 'unknown dimension'}. ${w.sourceChangedDuringScan ? 'Source metadata changed during this scan.' : 'Recorded source identity; this is not a live view.'}`
+    : `${captured} Legacy survey: world identity was not recorded. Do not use it to judge the current world.`
   el('world-summary').innerHTML = [
     ['Regions', w.regionCount],
     ['Populated chunks', w.populatedChunks],
     ['Sampled chunks', w.sampledChunks],
+    [
+      'Sample coverage',
+      `${((100 * w.sampledChunks) / Math.max(1, w.populatedChunks)).toFixed(2)}%`,
+    ],
     ['Read errors', w.errors.length],
   ]
     .map(
       ([label, value]) =>
-        `<div class="stat"><strong>${nf.format(value)}</strong><small>${label}</small></div>`,
+        `<div class="stat"><strong>${typeof value === 'number' ? nf.format(value) : escape(value)}</strong><small>${label}</small></div>`,
     )
     .join('')
   const oreSelect = el<HTMLSelectElement>('ore-map')
@@ -508,19 +580,28 @@ async function loadWorld() {
     for (const ore of Object.keys(w.ores).sort())
       oreSelect.add(new Option(ore, ore))
   el('ore-table').innerHTML =
-    '<table><thead><tr><th>Ore</th><th>Est. blocks/chunk</th></tr></thead><tbody>' +
+    '<div class="table-scroll"><table><thead><tr><th>Ore</th><th>Est. blocks/chunk</th><th>Approx. 95% interval</th></tr></thead><tbody>' +
     Object.entries(w.ores)
       .sort(
         ([, a], [, b]) =>
           (b as RecordData).estimatedPerChunk -
           (a as RecordData).estimatedPerChunk,
       )
-      .map(
-        ([id, value]) =>
-          `<tr><td>${escape(id.replace('minecraft:', ''))}</td><td>${(value as RecordData).estimatedPerChunk.toFixed(4)}</td></tr>`,
-      )
+      .map(([id, value]) => {
+        const v = value as RecordData
+        return `<tr><td><button class="ore-choice" data-ore="${escape(id)}" title="${escape(id)}">${escape(itemCatalog.get(id)?.name ?? id)}</button></td><td>${v.estimatedPerChunk.toFixed(4)}</td><td>${v.approx95PerChunk?.map((n: number) => n.toFixed(4)).join(' to ') ?? 'Not captured'}</td></tr>`
+      })
       .join('') +
-    '</tbody></table><p class="muted">Area-weighted estimate including void chunks. Not ore per stone block or a guarantee on an individual island. No platinum observed in this pre-addition sample.</p>'
+    '</tbody></table></div><p class="muted">Area-weighted estimates include void chunks. Intervals reflect sampling variance; sparse samples can miss rare ore entirely. These are not ore per stone block or a guarantee for one island.</p>'
+  el('ore-table')
+    .querySelectorAll<HTMLButtonElement>('[data-ore]')
+    .forEach((button) =>
+      button.addEventListener('click', () => {
+        oreSelect.value = button.dataset.ore!
+        oreSelect.dispatchEvent(new Event('change'))
+        el('ore-profile').scrollIntoView({ block: 'nearest' })
+      }),
+    )
   el('world-notes').innerHTML =
     `<p class="muted">${escape(w.method)}. ${w.fullChunksSampled} sampled chunks have full generation status. ${w.changedRegions.length} regions changed during the read.</p><p class="muted">Snapshot ${escape(w.completedAt)} · Bounds ${escape(JSON.stringify(w.boundsBlocks))}</p>` +
     w.limitations.map((text: string) => `<p>${escape(text)}</p>`).join('') +
@@ -581,23 +662,27 @@ function drawWorld() {
 function drawProfile() {
   if (!world) return
   const ore = el<HTMLSelectElement>('ore-map').value,
-    values: Record<string, number> = {}
-  for (const [id, levels] of Object.entries(world.byY))
-    if (ore === 'land' || id === ore)
-      for (const [y, n] of Object.entries(levels as Record<string, number>))
-        values[y] = (values[y] ?? 0) + n / world.populatedChunks
-  const maximum = Math.max(0.001, ...Object.values(values))
-  el('ore-profile').innerHTML =
-    `<svg viewBox="0 0 420 150" role="img" aria-label="Estimated ore blocks by Y level"><line x1="26" y1="120" x2="410" y2="120" stroke="#cbd5e5"/>${Object.entries(
-      values,
+    profile = oreProfile(world, ore)
+  el('ore-table')
+    .querySelectorAll<HTMLButtonElement>('[data-ore]')
+    .forEach((button) =>
+      button.setAttribute('aria-pressed', String(button.dataset.ore === ore)),
     )
-      .map(
-        ([y, n]) =>
-          `<rect x="${26 + Number(y) + 64}" y="${120 - (n / maximum) * 105}" width="1" height="${(n / maximum) * 105}" fill="#285de0"><title>Y ${y}: ${n.toFixed(5)} estimated blocks per chunk</title></rect>`,
-      )
-      .join(
-        '',
-      )}<text x="26" y="140" font-size="10" fill="#64718a">Y −64</text><text x="170" y="140" font-size="10" fill="#64718a">80</text><text x="375" y="140" font-size="10" fill="#64718a">319</text></svg><p class="muted">${ore === 'land' ? 'All observed ores' : escape(ore)} · peak ${maximum.toFixed(4)} estimated blocks/chunk at one Y level. Hover bars for values.</p>`
+  if (!profile) {
+    el('ore-profile').textContent = 'No sampled ore heights for this selection.'
+    return
+  }
+  const { rows, min, max, peak, recordedBounds } = profile
+  const span = Math.max(1, max - min + 1),
+    width = 368 / span
+  const x = (y: number) => 34 + ((y - min) / span) * 368
+  el('ore-profile').innerHTML =
+    `<svg viewBox="0 0 440 170" role="img" aria-label="Estimated ore blocks by Y level from ${min} to ${max}">
+    <line x1="34" y1="128" x2="402" y2="128" stroke="var(--line)"/>
+    ${rows.map(([y, n]: number[]) => `<rect x="${x(y)}" y="${128 - (n / peak) * 100}" width="${Math.max(0.4, width)}" height="${(n / peak) * 100}" fill="var(--accent)"><title>Y ${y}: ${n.toFixed(5)} estimated blocks per chunk</title></rect>`).join('')}
+    ${[min, Math.round((min + max) / 2), max].map((y, i) => `<text x="${x(y)}" y="150" text-anchor="${['start', 'middle', 'end'][i]}" font-size="11" fill="var(--muted)">Y ${y}</text>`).join('')}
+    </svg><p class="muted">${ore === 'land' ? 'All observed ores' : escape(ore)} · peak ${peak.toFixed(4)} estimated blocks/chunk at one Y level. ${recordedBounds ? 'Recorded dimension height.' : 'Observed height range; unsampled heights are unknown.'}</p>
+    <details><summary>Values by Y level</summary><div class="profile-values table-scroll"><table><thead><tr><th>World Y</th><th>Est. blocks/chunk</th></tr></thead><tbody>${rows.map(([y, n]: number[]) => `<tr><td>${y}</td><td>${n.toFixed(5)}</td></tr>`).join('')}</tbody></table></div></details>`
 }
 el('ore-map').addEventListener('change', () => {
   drawWorld()

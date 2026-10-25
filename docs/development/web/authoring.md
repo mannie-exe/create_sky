@@ -87,3 +87,11 @@ multi-file draft staging and a diff/merge UI are future additions.
 All 48 English entries have explanatory descriptions. Future entries with empty
 descriptions are marked in the list and counted above it. Recipe and Ponder
 actions require a client bridge and are not presented as working links.
+
+## Output comparison
+
+The pack-file comparison sits below the save/generate controls, before the entry
+workbench. Expand it to inspect which outputs differ from saved source. Unsaved
+drafts are explicitly excluded until saved. When nothing differs, the summary
+states that pack files match saved source. Generation still uses the existing
+revision check and named job; it does not build a release or sync instances.

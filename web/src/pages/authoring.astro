@@ -43,6 +43,11 @@ import '../styles/authoring.css'
       Generation writes pack files. Build and instance installation are separate
       steps.
     </p>
+    <details class="generation-review">
+      <summary id="generation-summary">Comparing pack files…</summary>
+      <p id="generation-note" class="scope"></p>
+      <ul id="generation-files"></ul>
+    </details>
     <div id="locale-controls" class="actions">
       <label>
         Locale <select id="locale"></select>
@@ -53,10 +58,6 @@ import '../styles/authoring.css'
     <DisclaimerWorkbench />
     <ConfigAudit />
     <SourceEditor />
-    <details>
-      <summary id="generation-summary">Generated files</summary>
-      <ul id="generation-files"></ul>
-    </details>
   </main>
   <script>
     import '../lib/authoring'

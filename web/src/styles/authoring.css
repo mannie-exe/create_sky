@@ -151,3 +151,22 @@
 .authoring .field-error {
   color: var(--accent);
 }
+
+.authoring .generation-review {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: var(--radius-panel);
+  padding: var(--space-content);
+  margin-bottom: var(--space-section);
+}
+.authoring .generation-review summary {
+  cursor: pointer;
+  font-size: 13px;
+}
+.authoring .generation-review ul {
+  max-height: 200px;
+  overflow: auto;
+  padding-left: 20px;
+  font: 12px/1.8 var(--mono);
+  overflow-wrap: anywhere;
+}

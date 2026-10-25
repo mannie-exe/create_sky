@@ -1,5 +1,54 @@
 # Verification
 
+## Atlas workbench and world evidence, 2026-10-25
+
+The worktree based on `b0ca189` reorganizes item inspection, world evidence and
+authoring output comparison. Desktop captures at 1440×1000 and narrow captures at
+390×844 were reviewed for the three views. Item acquisition methods sit beside
+the embedded route on wide screens and above it on narrow screens. The first
+producing recipe is visible; desktop view navigation remains accessible.
+
+Saved terrain displays its capture date and identity status separately from
+isolated generation and village experiments. Ore profiles support negative and
+high island heights, numeric values and missing-data states. The authoring
+comparison is adjacent to save/generate controls and distinguishes saved outputs
+from unsaved drafts. These changes retain the shared recipes, React Flow graphs,
+Astro pages and named-job authoring boundaries.
+
+Final checks:
+
+- `pnpm verify`: formatting, 54 JavaScript tests, Astro diagnostics and static build pass.
+- `pnpm test:python`: 12 tests pass, including exact large-seed serialization,
+  generation identity provenance and exclusion of player records.
+- `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser`: 33 cases pass across item/map,
+  graph/recipe, authoring, model, navigation and resource-pack interactions.
+- `pnpm data:check`: current runtime, recipe/acquisition and 48 journal-target checks pass.
+- `git diff --check`: clean.
+
+Earlier browser runs exposed covered view navigation and an out-of-order Evidence
+response; the final pass includes their fixes. An intermittent ResizeObserver
+notification remains when switching embedded/full graphs. Read-only instrumentation
+captured React Flow renderer/node measurement callbacks after a zero-to-visible
+size change, but this does not isolate the cause. The full run also emitted an
+Astro dev-toolbar audit fetch diagnostic. Interaction checks passed; neither
+diagnostic is presented as resolved or suppressed. The existing large-bundle
+build warning remains.
+
+The named capture/extract jobs refreshed implementation evidence at
+`2026-10-25T07:28:01.151764Z`: 10,119 items, 9,249 recipes and 12,503 modeled routes.
+The exporter used the installed 0.1.12 server set, including the published Compat
+JAR `084153f7…`; inputs did not change during capture. The isolated audit server
+never mounted the playing world. Its disposable outputs were removed after
+extraction and checks. The local dev server was restarted while idle to pick up
+the newly added island-survey public path; no named job was interrupted.
+
+Pregeneration was accepted around spawn X 551, Z 414 with radius 1,024 chunks
+(16,384 blocks), using the preserved seed and expanded preset. It runs independently;
+progress was not polled after acceptance. Completion remains unconfirmed, so the
+new-world Atlas import is pending. The retained saved-world survey is historical,
+not evidence for the current generated terrain. New provenance and height-range
+behavior was checked with fixtures; no claim of a completed new-world survey is made.
+
 ## Authoring and graph baseline, 2026-10-24
 
 The worktree based on `7cf5797` passed `pnpm verify` (45 JavaScript tests),

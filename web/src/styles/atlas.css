@@ -226,10 +226,12 @@ select {
 #inspector {
   position: fixed;
   right: 0;
-  top: 82px;
+  top: var(--inspector-top, 128px);
   bottom: 0;
-  width: 620px;
+  width: var(--inspector-width);
   max-width: 95vw;
+  container-type: inline-size;
+  overscroll-behavior: contain;
   background: var(--panel);
   border-left: 1px solid var(--line);
   box-shadow: -16px 0 50px #1b345314;
@@ -253,7 +255,7 @@ select {
   border: 0;
 }
 #detail {
-  padding: 24px;
+  padding: var(--space-section);
 }
 #detail h2 {
   font-size: 25px;
@@ -479,6 +481,8 @@ h2 {
   }
   #inspector {
     top: 0;
+    width: 100%;
+    max-width: 100vw;
   }
   .summary-strip {
     gap: 15px;
@@ -534,4 +538,150 @@ h2 {
 .route-preview-selection pre {
   max-height: 250px;
   overflow: auto;
+}
+
+.item-acquisition {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-section);
+  align-items: start;
+}
+.item-methods,
+.item-route {
+  min-width: 0;
+}
+.item-route {
+  padding-left: var(--space-section);
+  border-left: 1px solid var(--line);
+}
+.detail-section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-inline);
+  justify-content: space-between;
+  margin-bottom: var(--space-content);
+}
+#detail .item-acquisition h3 {
+  margin-top: 0;
+}
+#detail .item-methods > h3:not(:first-child) {
+  margin-top: var(--space-section);
+}
+#detail .detail-section-heading h3 {
+  margin: 0;
+}
+.record summary small {
+  display: block;
+  margin-top: var(--space-inline);
+  font: 10px/1.6 var(--mono);
+  color: var(--muted);
+}
+.record-kind {
+  margin-left: var(--space-inline);
+  font-size: 11px;
+  color: var(--muted);
+}
+.item-methods .recipe-card {
+  border: 0;
+  padding: 0;
+}
+.item-route .flow-navigation canvas {
+  width: 120px;
+  height: 82px;
+}
+.item-route select {
+  width: 100%;
+}
+@container (max-width: 780px) {
+  #detail {
+    padding: var(--space-content);
+  }
+  .item-acquisition {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .item-route {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding: var(--space-section) 0 0;
+  }
+}
+
+.section-links {
+  display: flex;
+  gap: var(--space-section);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-section);
+}
+.survey-section {
+  scroll-margin-top: var(--space-section);
+  margin-bottom: calc(var(--space-section) * 2);
+}
+.survey-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--space-section);
+  margin-bottom: var(--space-content);
+}
+.survey-heading h2 {
+  margin: 4px 0 0;
+  font-size: 22px;
+}
+.survey-kind {
+  color: var(--muted);
+  font-size: 12px;
+}
+.survey-provenance {
+  max-width: 54ch;
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.world-reading,
+.world-layout > * {
+  min-width: 0;
+}
+.world-ores {
+  grid-column: 1 / -1;
+}
+.world-layout h3 {
+  font-size: 14px;
+  margin-top: 0;
+}
+.world-map-panel {
+  align-self: start;
+}
+.world-map-panel .panel-heading {
+  flex-wrap: wrap;
+  gap: var(--space-inline);
+  margin-bottom: var(--space-content);
+}
+.world-ores td:not(:first-child) {
+  font-variant-numeric: tabular-nums;
+}
+.ore-choice {
+  text-align: left;
+  border-color: transparent;
+  padding: 4px 6px;
+}
+.ore-choice[aria-pressed='true'] {
+  color: var(--accent);
+  background: var(--tint);
+  border-color: var(--accent);
+}
+.profile-values {
+  max-height: 260px;
+}
+#ore-profile svg {
+  width: 100%;
+}
+.survey-method > summary {
+  font-size: 14px;
+}
+@media (max-width: 680px) {
+  .survey-heading {
+    flex-direction: column;
+    gap: var(--space-inline);
+  }
 }

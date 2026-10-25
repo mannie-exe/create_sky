@@ -91,17 +91,24 @@ pnpm data:compile
 ```
 
 This reads existing Overworld chunks under the configured server's `world/`.
-Without a survey, the map omits terrain-derived acquisition routes. Explicit
-YAML gathering assumptions still apply. To inspect every stored chunk:
+For a consistent survey, use a stopped world or a consistent copy made while the
+server was stopped. To select that copy without changing the configured server:
 
 ```sh
-pnpm data:world --samples 0
+pnpm data:world --world /path/to/world-copy
 pnpm data:compile
 ```
 
-A full survey can take substantially longer. Changes detected while reading
-regions are recorded; the result is not a consistent snapshot of a changing world.
-No chunks are generated and no world or LOD files are written.
+`--samples 0` scans every stored chunk; the default is four per region. Full scans
+can take substantially longer. Metadata and region changes detected during a scan
+are recorded, but an in-progress world read is not an atomic snapshot. No chunks
+are generated and no world or LOD files are written. Keep new-world refreshes
+pending while an unattended pregen is running; do not treat acceptance as completion.
+
+New captures include the exact seed, dimension/generator identifiers and the
+recorded Create Sky generation identity when present. Older captures lack that
+identity and are labelled as legacy. Without a survey, the map omits terrain-derived
+acquisition routes; explicit YAML gathering assumptions still apply.
 
 For village placement and resources, use a separate disposable-world survey:
 
@@ -192,7 +199,10 @@ outputs and limits, and call `jobs.run` from a protected workspace handler. Keep
 revision checks and any source publication in that handler. Add execution/failure
 tests and UI feedback; avoid another `spawn` or `execFile` wrapper. To remove a
 job, remove its callers, registry entry and applicable tests/docs together.
-Restart `pnpm dev` after changing the registry or middleware.
+Restart `pnpm dev` after changing the registry or middleware. Restart it also if
+a newly generated public file exists on disk but returns 404: generated paths are
+excluded from the watcher to protect editor drafts, and Vite can retain its earlier
+public-file index. Save drafts and wait for named jobs to finish before restarting.
 
 Saving source, generating output and installing into Minecraft remain distinct.
 After generation, reload another open view if it uses the changed files. Direct

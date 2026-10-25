@@ -151,7 +151,11 @@ The client visual patch retains its previously tested `edce4c42…` hash. Resour
 Review revision 8 rendered its burner and both Ponder buttons with shaders enabled;
 the saved local fixture passed 4,836 placements, 32 inventory slots and 27 specimens.
 
-Existing worlds are not converted. The separately authorized local replacement
-must preserve the current server's complete backup and seed before fresh generation.
+The published [0.1.12 release](https://github.com/mannie-exe/create_sky/releases/tag/v0.1.12)
+passed release, pack and web CI. Both stopped local instances were installed from
+the published reference artifacts; personal settings and access lists were retained.
+The server's previous world and configuration were archived and verified against
+all 5,484 source files before replacement; named seeds were retained separately.
+Existing worlds are not converted.
 Survival fuel budgets, full deliveries, wing-borne flight and general seed/driver
 coverage remain unverified; [world generation](worldgen.md) owns those limits.

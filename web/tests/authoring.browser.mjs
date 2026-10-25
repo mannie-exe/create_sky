@@ -51,6 +51,9 @@ async function disclaimerFixture(
   })
   await page.goto('/authoring')
   await expect(page.locator('#status')).toHaveText('Source loaded')
+  await expect(page.locator('#generation-summary')).toHaveText(
+    'Pack files match saved source',
+  )
   return state
 }
 
@@ -70,6 +73,9 @@ test('shared disclaimers support create, update, references and safe deletion pe
   await expect(page.locator('#disclaimer-references li')).toHaveCount(2)
   await expect(page.locator('#delete-disclaimer')).toBeDisabled()
   await page.locator('#disclaimer-message').fill('Shared revised disclaimer.')
+  await expect(page.locator('#generation-summary')).toContainText(
+    'Unsaved draft',
+  )
   await expect(page.locator('#disclaimer-preview')).toHaveText(
     'Shared revised disclaimer.',
   )

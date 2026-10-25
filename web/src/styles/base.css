@@ -12,7 +12,12 @@
   --radius: 5px;
   --radius-panel: 7px;
   --page-width: 1600px;
-  --page-gutter: 30px;
+  --space-unit: 4px;
+  --space-inline: calc(var(--space-unit) * 2);
+  --space-content: calc(var(--space-unit) * 4);
+  --space-section: calc(var(--space-unit) * 6);
+  --page-gutter: calc(var(--space-unit) * 7.5);
+  --inspector-width: 1040px;
   --backdrop: #17233be6;
 }
 * {

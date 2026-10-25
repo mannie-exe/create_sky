@@ -27,7 +27,9 @@ test('real snapshot, virtualized map, item provenance and world profile', async 
   await expect(page.locator('#island-survey')).toContainText(
     'Generated resource samples: seed 42',
   )
-  await page.locator('#ore-map').selectOption('create:zinc_ore')
+  await expect(page.locator('#world-provenance')).toContainText('Legacy survey')
+  await page.getByRole('button', { name: 'Zinc Ore', exact: true }).click()
+  await expect(page.locator('#ore-map')).toHaveValue('create:zinc_ore')
   await expect(page.locator('#ore-profile')).toContainText('create:zinc_ore')
   await page.setViewportSize({ width: 390, height: 844 })
   expect(
@@ -93,6 +95,9 @@ test('missing world survey has an explicit empty state', async ({ page }) => {
     'No world survey captured.',
   )
   await expect(page.locator('#world-layout')).toBeHidden()
+  await page
+    .getByText('Generation and sampling limits', { exact: true })
+    .click()
   await expect(page.locator('#world-notes')).toContainText('pnpm data:world')
   await expect(page.locator('#structure-survey')).toContainText(
     'No village survey',
@@ -156,6 +161,59 @@ test('village survey is independent of terrain data and labels stale results', a
   ])
   await panel.getByText('Method and limits').click()
   await expect(panel).toContainText('No survival travel test.')
+  await page.setViewportSize({ width: 390, height: 844 })
+  expect(
+    await page.evaluate(() => document.body.scrollWidth <= innerWidth),
+  ).toBe(true)
+})
+
+test('expanded-world profile exposes its source and keeps high ores in the chart', async ({
+  page,
+}) => {
+  await page.route('**/generated/world.json', (route) =>
+    route.fulfill({
+      json: {
+        regionCount: 1,
+        populatedChunks: 10,
+        sampledChunks: 1,
+        fullChunksSampled: 1,
+        errors: [],
+        changedRegions: [],
+        limitations: [],
+        method: 'fixture',
+        completedAt: '2026-10-25T00:00:00Z',
+        boundsBlocks: {},
+        provenance: {
+          seed: '-9007199254740993',
+          dimensionType: 'create_sky_compat:islands_v1',
+          generationIdentity: { dimension: { min_y: -128, height: 896 } },
+        },
+        regions: [
+          {
+            x: 0,
+            z: 0,
+            chunks: 10,
+            landFraction: 0.5,
+            samples: [{ ores: { 'create:zinc_ore': 20 } }],
+          },
+        ],
+        ores: { 'create:zinc_ore': { estimatedPerChunk: 2 } },
+        byY: { 'create:zinc_ore': { '-100': 10, 600: 20 } },
+      },
+    }),
+  )
+  await page.goto('/')
+  await page.locator('[data-view="world"]').click()
+  await expect(page.locator('#world-provenance')).toContainText(
+    '-9007199254740993',
+  )
+  await expect(page.locator('#ore-profile svg')).toHaveAttribute(
+    'aria-label',
+    /-128 to 767/,
+  )
+  await expect(page.locator('#ore-profile svg rect')).toHaveCount(2)
+  await page.getByText('Values by Y level', { exact: true }).click()
+  await expect(page.locator('#ore-profile tbody')).toContainText('600')
   await page.setViewportSize({ width: 390, height: 844 })
   expect(
     await page.evaluate(() => document.body.scrollWidth <= innerWidth),

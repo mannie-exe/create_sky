@@ -1,5 +1,5 @@
 """Read-only stratified Anvil survey. Header census is exact; block counts are estimates.
-Run --samples 0 for a complete scan. No seed or player data is exported.
+Run --samples 0 for a complete scan. Records generation identity and seed, never player data.
 """
 import argparse, collections, gzip, hashlib, json, math, random, struct, time, zlib
 from pathlib import Path
@@ -73,8 +73,30 @@ def chunk_metrics(chunk):
                 levels.setdefault(name, {}).update({str(sy+y):int(n) for y,n in enumerate(ys) if n})
     return {'ores': dict(ores), 'levels': levels, 'blocks': dict(blocks), 'landColumns': int(land.sum())}
 
-def scan(samples):
-    world = paths()['server']/'world'; regions = sorted((world/'region').glob('r.*.*.mca'))
+def survey_source(world):
+    level_bytes = (world/'level.dat').read_bytes()
+    data = NBT(gzip.decompress(level_bytes)).root()['Data']
+    settings = data['WorldGenSettings']
+    dimension = settings['dimensions']['minecraft:overworld']
+    marker = world/'create-sky-generation.json'
+    identity_bytes = marker.read_bytes() if marker.exists() else None
+    identity = json.loads(identity_bytes) if identity_bytes else None
+    if identity and 'seed' in identity: identity['seed'] = str(identity['seed'])
+    return {
+        'seed': str(settings['seed']),
+        'dimensionType': dimension.get('type'),
+        'generatorType': dimension['generator'].get('type'),
+        'generatorSettings': dimension['generator'].get('settings'),
+        'levelDatSha256': hashlib.sha256(level_bytes).hexdigest(),
+        'generationIdentitySha256': hashlib.sha256(identity_bytes).hexdigest() if identity_bytes else None,
+        'generationIdentity': identity,
+    }
+
+def scan(samples, source=None):
+    world = source if source is not None else paths()['server']/'world'
+    source_metadata = survey_source(world)
+    regions = sorted((world/'region').glob('r.*.*.mca'))
+    if not regions: raise ValueError('No Overworld region files in the selected source')
     result = {'method':'stratified random chunk sample per region; weights = populated chunks / sampled chunks',
               'samplesPerRegion':samples, 'startedAt':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),
               'regionCount':len(regions),'populatedChunks':0,'sampledChunks':0,'fullChunksSampled':0,
@@ -83,6 +105,7 @@ def scan(samples):
                 'Non-air blocks and land columns include builds, trees and liquids as labelled; no ore visibility or mining-access assumption.',
                 'Region samples cannot establish island connectivity or exact inter-island gaps.',
                 'No new chunks are generated; newly added ores are not retro-generated.']}
+    result['provenance'] = source_metadata
     ore_est, by_y, block_est = collections.Counter(), {}, collections.Counter()
     for index,path in enumerate(regions):
         before = path.stat(); parts=path.stem.split('.'); rx,rz=int(parts[1]),int(parts[2])
@@ -125,13 +148,18 @@ def scan(samples):
     result['blocks']={k:round(v) for k,v in block_est.items()}
     result['byY']={k:{y:round(n) for y,n in v.items()} for k,v in by_y.items()}
     populated=[r for r in result['regions'] if r['chunks']]
+    if not populated: raise ValueError('No populated chunks in the selected source')
     result['boundsBlocks']={'minX':min(r['x'] for r in populated)*512,'maxX':(max(r['x'] for r in populated)+1)*512-1,'minZ':min(r['z'] for r in populated)*512,'maxZ':(max(r['z'] for r in populated)+1)*512-1}
     result['limitations'].append('Bounds are the envelope of nonempty region files, not exact island edges. Approximate 95% intervals use within-region sample variance; four samples per region can miss rare clusters entirely.')
+    result['sourceChangedDuringScan'] = source_metadata != survey_source(world)
+    if result['sourceChangedDuringScan']: result['limitations'].append('World metadata changed during the scan; this is not a consistent snapshot.')
     result['completedAt']=time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime())
     write_json(ROOT/'data/generated/world.json',result)
     print(json.dumps({k:result[k] for k in ['regionCount','populatedChunks','sampledChunks','fullChunksSampled','boundsBlocks']}))
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(); parser.add_argument('--samples',type=int,default=4); args=parser.parse_args()
+    parser=argparse.ArgumentParser(); parser.add_argument('--samples',type=int,default=4)
+    parser.add_argument('--world', type=Path, help='Read a stopped world or consistent snapshot instead of the configured server world')
+    args=parser.parse_args()
     if args.samples<0:parser.error('--samples must be nonnegative')
-    scan(args.samples)
+    scan(args.samples, args.world)

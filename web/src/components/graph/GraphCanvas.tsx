@@ -106,9 +106,11 @@ export function cardScene(source: any) {
   const detailed = [...source.nodes.values()].some(
     (n: any) => n.type === 'route',
   )
+  const nodeHeight = (n: any) =>
+    n.type === 'route' ? (n.route?.kind === 'recipe' ? 440 : 180) : 86
   const rows = new Map<number, number>()
   for (const n of source.nodes.values())
-    rows.set(n.y, Math.max(rows.get(n.y) ?? 0, n.type === 'route' ? 440 : 86))
+    rows.set(n.y, Math.max(rows.get(n.y) ?? 0, nodeHeight(n)))
   const positions = new Map<number, number>()
   let previous: number | undefined,
     previousHeight = 0,
@@ -128,7 +130,7 @@ export function cardScene(source: any) {
         x: n.x * (detailed ? 1.25 : 1),
         y: detailed ? positions.get(n.y) : n.y,
         width: n.type === 'route' ? 380 : 190,
-        height: n.type === 'route' ? 440 : 86,
+        height: nodeHeight(n),
       },
     ]),
   )
@@ -261,9 +263,13 @@ function Canvas(props: Props) {
       const routes = [...scene.nodes.values()].filter(
         (n: any) => n.type === 'route',
       )
-      if (routes.length > 1 && (mode === 'routes' || !canvasId)) {
+      if (routes.length && (mode === 'routes' || !canvasId)) {
         const target: any = routes.at(-1)
-        center(target.x, target.y, 0.85)
+        center(
+          target.x,
+          target.y,
+          Math.max(0.02, Math.min(0.85, (size.width - 48) / target.width)),
+        )
       } else fit()
     }
   }, [source, fit, viewport])

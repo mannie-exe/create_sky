@@ -5,6 +5,7 @@ async function evidence(page, query) {
   await page.locator('[data-view="evidence"]').click()
   await page.locator('#evidence-domain').selectOption('recipes')
   await page.locator('#evidence-search').fill(query)
+  await expect(page.locator('#evidence-count')).toHaveText('1 records')
   const record = page.locator('#evidence-list > details').first()
   await record.locator(':scope > summary').click()
   return record.locator('.recipe-card')
@@ -106,6 +107,31 @@ test('inspector embeds the route, recipe selection, evidence tabs and back navig
     page.locator('.route-preview-selection .recipe-grid'),
   ).toBeVisible()
   await expect(page.locator('#graph-view')).toBeHidden()
+  const methods = page.locator('.item-methods')
+  await expect(methods.locator('.recipe-record').first()).toHaveAttribute(
+    'open',
+    '',
+  )
+  await expect(methods.locator('.recipe-grid')).toBeVisible()
+  const columns = await page.locator('.item-acquisition').evaluate((node) => {
+    const methods = node.querySelector('.item-methods').getBoundingClientRect()
+    const route = node.querySelector('.item-route').getBoundingClientRect()
+    return { methods: methods.right, route: route.left }
+  })
+  expect(columns.methods).toBeLessThan(columns.route)
+  await page.setViewportSize({ width: 390, height: 844 })
+  const narrow = await page.locator('#inspector').evaluate((node) => {
+    const methods = node.querySelector('.item-methods').getBoundingClientRect()
+    const route = node.querySelector('.item-route').getBoundingClientRect()
+    return {
+      methods: methods.bottom,
+      route: route.top,
+      overflow: node.scrollWidth > node.clientWidth,
+    }
+  })
+  expect(narrow.route).toBeGreaterThan(narrow.methods)
+  expect(narrow.overflow).toBe(false)
+  await page.setViewportSize({ width: 1440, height: 1000 })
   await page
     .locator(
       '.route-preview-selection [data-inspect="minecraft:phantom_membrane"]',

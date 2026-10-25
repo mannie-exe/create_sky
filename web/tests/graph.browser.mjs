@@ -209,7 +209,7 @@ test('item map opens vertical paths and shared recipes remain inspectable', asyn
     .locator('#detail .record')
     .filter({ has: page.locator('[data-recipe="reliable_gliders:glider"]') })
     .first()
-  await recipe.locator(':scope > summary').click()
+  await expect(recipe).toHaveAttribute('open', '')
   await expect(recipe.locator('.recipe-grid > .recipe-slot')).toHaveCount(9)
   await expect(recipe.locator('.recipe-grid .empty')).toHaveCount(1)
   await expect(recipe.locator('.recipe-grid img').first()).toBeVisible()

@@ -73,6 +73,17 @@ function controls() {
   button('generate').disabled =
     dirty || busy || !snapshot || !snapshot.generation.changed.length
   button('reload').disabled = busy
+  if (snapshot) {
+    const count = snapshot.generation.changed.length
+    element('generation-summary').textContent = dirty
+      ? 'Unsaved draft; pack-file comparison uses saved source'
+      : count
+        ? `${count} pack ${count === 1 ? 'file' : 'files'} waiting for generation`
+        : 'Pack files match saved source'
+    element('generation-note').textContent = dirty
+      ? 'Save source to update this comparison. Listed files reflect the last saved source.'
+      : `${snapshot.generation.outputs} outputs checked. Generation changes only the listed pack files; it does not install them into Minecraft.`
+  }
 }
 function changed() {
   dirty = true
@@ -380,8 +391,6 @@ async function load() {
   )
   field('source-text').value = snapshot.files[select('source-file').value].text
   renderLocale()
-  element('generation-summary').textContent =
-    `${snapshot.generation.changed.length} of ${snapshot.generation.outputs} generated files differ`
   element('generation-files').replaceChildren(
     ...snapshot.generation.changed.map((name) => {
       const li = document.createElement('li')

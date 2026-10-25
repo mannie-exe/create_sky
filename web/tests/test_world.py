@@ -1,8 +1,8 @@
-import sys, unittest
+import sys, unittest, tempfile, gzip, struct, json
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 import numpy as np
-from world import chunk_locations, palette_indices, chunk_metrics
+from world import chunk_locations, palette_indices, chunk_metrics, survey_source
 
 class WorldTests(unittest.TestCase):
     def test_empty_pregen_placeholder_is_not_1024_chunks(self):
@@ -23,5 +23,29 @@ class WorldTests(unittest.TestCase):
         self.assertEqual(result['ores']['minecraft:iron_ore'],4096)
         self.assertEqual(result['levels']['minecraft:iron_ore']['-32'],256)
         self.assertEqual(result['landColumns'],256)
+
+class ProvenanceTests(unittest.TestCase):
+    def test_seed_is_exact_and_player_data_is_not_exported(self):
+        def string(value):
+            raw=value.encode(); return struct.pack('>H',len(raw))+raw
+        def tag(name,value):
+            if isinstance(value,dict): return b'\x0a'+string(name)+b''.join(tag(k,v) for k,v in value.items())+b'\x00'
+            if isinstance(value,int): return b'\x04'+string(name)+struct.pack('>q',value)
+            return b'\x08'+string(name)+string(value)
+        seed=-9007199254740993
+        data={'Data':{'WorldGenSettings':{'seed':seed,'dimensions':{'minecraft:overworld':{'type':'create_sky_compat:islands_v1','generator':{'type':'sky_archipelago:sky_island','settings':'create_sky_compat:islands_v1'}}}},'Player':{'private':'omit'}}}
+        with tempfile.TemporaryDirectory() as temporary:
+            world=Path(temporary)
+            (world/'level.dat').write_bytes(gzip.compress(tag('',data)))
+            (world/'create-sky-generation.json').write_text(json.dumps({'seed':seed,'dimension':{'min_y':-128,'height':896}}))
+            result=survey_source(world)
+            self.assertEqual(result['seed'],str(seed))
+            self.assertEqual(result['generationIdentity']['seed'],str(seed))
+            self.assertEqual(result['dimensionType'],'create_sky_compat:islands_v1')
+            self.assertEqual(len(result['generationIdentitySha256']),64)
+            self.assertNotIn('Player',json.dumps(result))
+            self.assertNotIn('private',json.dumps(result))
+            (world/'create-sky-generation.json').unlink()
+            self.assertIsNone(survey_source(world)['generationIdentity'])
 
 if __name__=='__main__':unittest.main()

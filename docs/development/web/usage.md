@@ -23,12 +23,18 @@ machinery, travel and combat remain separate constraints.
 
 ## Item details
 
-Acquisition embeds the minimum-depth route graph and the selected operation's
-recipe. At readable zoom, recipe cards are interactive inside nodes. Select a
-node or use Inspect step to center it; Fit and the minimap expose earlier
-steps. Open full graph retains the larger browsing view. Uses lists consuming
-recipes; Evidence holds drops, tags, hooks and provenance. Pack notes are expandable.
-Back returns to the previous inspected item without leaving the map.
+Acquisition places producing recipes and other acquisition methods beside the
+minimum-depth route on wide screens, and above it on narrow screens. The first
+producing recipe opens automatically; records show the item and operation before
+the source identifier. Expand other records to compare alternatives and conditions.
+
+The embedded graph starts near the final operation at a readable scale. Select a
+node or use Inspect step to center it; Fit and the minimap expose earlier steps.
+Recipe cards are interactive inside nodes at readable zoom. Open full graph
+retains the larger browsing view. Uses lists consuming recipes; Evidence holds
+drops, tags, hooks and provenance. Pack notes are expandable. Back returns to the
+previous inspected item without leaving the map; Escape or Close dismisses details.
+Desktop view navigation remains accessible above the inspector.
 
 ## Progression graph
 
@@ -44,7 +50,7 @@ Open **Progression graph** beside Item map. Its tabs answer separate questions:
 - **Item routes:** vertical acquisition diagrams with item icons. **Single route**
   shows acquisition or use alternatives; **Minimum-depth path** expands one finite
   chain from the existing solver. The item inspector's **Open full graph** opens
-  that path directly. Long paths open near the target at a readable scale; use Fit
+  that path directly. Paths open near the target at a readable scale; use Fit
   for the overview or the minimap to move through earlier steps. Dashed edges are OR choices; ALL input groups feeding an
   operation are required. Separate routes are alternatives, not sequential tasks.
   Single routes show up to four choices per group and twelve outputs. Paths show
@@ -106,10 +112,18 @@ coverage gaps. Search within a domain and expand source data for the captured
 record. Source links and identifiers distinguish runtime evidence from authored
 interpretation.
 
-World & ores displays the dated read-only Overworld survey. Each square represents
-a region, not an island boundary. Ore estimates include void chunks. The travel
-calculator divides distance by a supplied speed; it does not find a route or
-simulate a vehicle. Without a survey, the view states that measurements are absent.
+World & ores separates saved terrain, isolated island experiments and village
+placement samples. The saved survey displays its capture date and recorded world
+identity, or an explicit legacy warning when identity was not captured. It is not
+a live view. A new server world does not automatically replace these measurements.
+
+Each map square represents a 32 × 32 chunk region. Select an ore from the metric
+menu or availability table to compare its map and vertical profile. The table
+shows area-weighted estimates and approximate sampling intervals; sparse samples
+can miss rare ore. Height charts use recorded dimension bounds or the observed
+range and include an expandable numeric table. The travel calculator estimates
+time at a supplied constant speed; it does not simulate a vehicle. Without a
+survey, the view states that measurements are absent.
 
 The separate Village survey compares controlled foundation/chest yields with
 natural candidate starts and fully generated samples. Expand Method and limits

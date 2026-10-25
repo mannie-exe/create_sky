@@ -135,14 +135,23 @@ crafting collisions are review candidates, not automatic deletion instructions.
 and deterministic random chunk sampling within each populated Overworld region.
 Estimates weight each sample by that region's populated chunk count. It records
 block counts, ore height distributions, land-column fractions, read errors and
-files that changed during the survey. The seed and player records are not exported.
+files that changed during the survey. New captures retain the seed as a decimal
+string, dimension/generator identifiers, the level.dat hash, and the Create Sky
+generation identity with its original-file hash when present. Player records and
+private source paths are not exported. An optional `--world` selects a stopped
+copy for read-only sampling; it does not change the server's configured path.
+A source-metadata change during a scan is flagged, as are changed region files.
+These checks detect some concurrent changes; they do not make a live read atomic.
 
 Bounds are nonempty region envelopes. Approximate confidence intervals can miss
 rare clustered ore; sampled zero is not proof of absence. Builds and structures
 can contribute to observed blocks. Island connectivity, precise flight routes and
 new-generation probabilities cannot be inferred from these samples. Existing
 chunks can reflect older generation settings. The survey remains a separate dated
-snapshot and is not rerun by normal content refreshes.
+snapshot and is not rerun by normal content refreshes. Legacy captures without
+identity remain labelled as such in the world view and survey-derived acquisition
+records. Ore charts use recorded dimension bounds when available, otherwise the
+observed height range; they do not assume the current pack or vanilla height.
 
 ## Browser projection
 
@@ -421,3 +430,22 @@ same effective resource path. Models and textures can replace each other;
 language keys and font providers can merge. These counts do not reproduce every
 renderer, validate model references, measure frame times or certify mod coverage.
 The selected file's exact version and the gallery's capture date remain separate.
+
+## Interface layout decisions
+
+Item details separate acquisition choices from the dependency explanation. Recipes
+and gathering methods occupy one column; the embedded route occupies the other.
+A container query stacks them when the inspector is narrow. The first producing
+recipe is visible immediately, while source records and additional recipes remain
+expandable. This changes presentation, not the solver's selected route or assumptions.
+Non-recipe graph operations reserve less height than recipe cards. Initial path
+views center the final operation; Fit still displays the entire path.
+
+The approach uses [Apple's layout guidance](https://developer.apple.com/design/human-interface-guidelines/layout)
+on grouping and hierarchy and [Google's adaptive list-detail pattern](https://developer.android.com/develop/ui/compose/layouts/adaptive/list-detail)
+on side-by-side content and narrow-screen reading order. Local inherent.design
+and cfgate examples informed semantic spacing roles and shared Astro layouts.
+[Misode's tools](https://github.com/misode/misode.github.io) are a Minecraft-specific
+reference for keeping structured input and its result close. The app retains
+Astro pages and focused React roots for recipes and graphs; this is not a new SPA
+or a second acquisition model.
