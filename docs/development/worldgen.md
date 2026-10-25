@@ -1,7 +1,7 @@
 # World generation
 
 New worlds use **Create Sky Islands**, preset `create_sky_compat:islands_v1`, from
-[Create Sky Compat 0.3.0](https://github.com/mannie-exe/create-sky-compat).
+[Create Sky Compat 0.4.0](https://github.com/mannie-exe/create-sky-compat).
 It extends Sky Archipelago 1.3.6 and replaces Sky Village Neighbors. The mod is
 required on client and server. Its optional village, physics and delivery hooks
 activate only with their supported dependencies; the minimum installation needs
@@ -10,18 +10,28 @@ Minecraft, NeoForge and Sky Archipelago.
 ## Terrain
 
 The preset uses Y=-128 through 767. The geometry profile in
-`overrides/common/config/create_sky_compat-generation.json` sets 4100-block cells,
-90-block bounded jitter and activation 0.85. Safe main-island centers span
-Y=242–490; companions vary by −60 to +50 around their host where their bodies fit.
-Terrain keeps at least 32 blocks above the floor and 200 blocks of building room.
+`overrides/common/config/create_sky_compat-generation.json` sets 2400-block cells,
+90-block bounded jitter and activation 0.85. Main islands select uniform total
+height targets of 250 to 400 blocks. Native relief and erosion affect the realized
+extent; a 16-block grid survey measured 247 to 395 across 20 anchors.
 
-The complete native support envelope includes companions and spires. Defaults
-provide at least 1508 horizontal blocks between different cluster envelopes.
-Actual 16-block footprint samples on four seeds mostly gave 2.8–3.4 km shore gaps,
-with one 4.5 km gap. This is sparser than the preferred 1.5–2.5 km crossings:
-retaining a verified minimum avoids claiming that descriptor radii are shorelines.
-Smaller spacing requires a tighter proven shape bound, not just changing a number.
-Activation remains unchanged because widening the grid already reduces density.
+Centers are requested within Y=200 to 490. The lower safe limit follows the
+selected body depth; the tallest target needs at least Y=268. Companions vary by
+-60 to +50 around their host where their bodies fit. Terrain reserves 32 blocks
+above the floor and 200 blocks of building room. The underside uses a continuous
+curved boundary rather than the native density jump that produced sliced bottoms.
+
+Explicit horizontal density supports include companions and spires and guarantee
+at least 354 blocks between clusters, replacing the former 1500-block requirement.
+Nominal island radii and companion orbits are unchanged. The support boundary can
+trim an unusually distant native fringe. Sampled shores were roughly 850 to 1650
+blocks apart in several seeds and 2400 to 2600 in a sparser seed. Missing clusters
+can create longer crossings. These are sampled nearest-center pairs, not guaranteed
+shortest routes or travel budgets.
+
+The fresh-world fallback validates generated support and headroom before setting
+spawn; its predicted surface can differ after carving and features. It does not
+move existing worlds' spawns or create a platform.
 
 ### Geology and features
 
@@ -46,9 +56,9 @@ list feature coverage and the exact dependency coupling.
 
 Distributed generated samples across six anchors on seeds 42 and 8675309 found
 zinc, iron, copper, coal, redstone and andesite on every sampled anchor. Logs
-were observed on five of six; sparse samples do not establish complete absence. Each anchor used one
+are assessed separately; sparse samples do not establish complete absence. Each anchor used one
 chunk per spatial stratum in a 7×7 grid. The updated samples also contained diamond
-and platinum on all six anchors; emerald appeared in one biome-eligible sample. These are sparse observed samples with
+and platinum on all six anchors; no emerald was observed in these sparse samples. These are sparse observed samples with
 separate area-weighted estimates; an unobserved rare ore is not proven absent.
 The dense interior checks also found both diamonds and platinum. No recipe or
 progression changes were made to compensate for the former thin terrain.
@@ -64,11 +74,11 @@ to new starts only.
 The optional ADQ integration handles ADQ 1.1.1 locate points beside void. After its native
 surface check fails, a bounded retry inside that Sky Village can find nearby dry
 ground without relaxing the original safety predicate. Both fully generated
-seed-42 villages passed and retained their results after reopening. Their host
-surface datums were Y=381 and 493; village bounds followed those hosts.
+seed-42 villages passed and retained their results after reopening. Village bounds follow their host surface datums rather than a global height band.
 It also retains the structure route's chunk tickets through finalization and uses
 horizontal distance so inconsistent locator heights cannot admit a one-block job.
-The destination sampling offset now reaches 6000 blocks to suit the wider grid;
+The destination sampling offset remains 6000 blocks: the closer grid permits
+nearer destinations without removing longer offers;
 the native locator can resolve farther away, so this is not a final route cap.
 The 500-block horizontal minimum and 120-minute time limit remain. In the previous
 terrain version, a native offer between distinct settlements was generated and accepted with
@@ -101,7 +111,8 @@ samples have independent artifact hashes, methods and limits. See
 `verification.md` in that project owns exact commands, tested hashes and observations.
 [Build maintenance](build.md#terrain-and-rendering-mods) owns publication and pack
 placement. Normal updates preserve existing worlds and LODs. A deliberate world
-replacement requires a complete stopped-world backup and a fresh generation path.
+replacement requires explicit reset authorization and a fresh generation path.
+Preserve a stopped-world backup unless discarding that world is authorized.
 
 Remaining gameplay checks include new-grid flight budgets, wing-borne flight, survival power/control
 arrangements, mining access and time, and village deliveries.

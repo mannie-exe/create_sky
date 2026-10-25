@@ -1,8 +1,11 @@
 import unittest
+import tempfile
+import json
+import hashlib
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
-from islands import resource_survey
+from islands import resource_survey, read_survey
 
 
 class IslandSurveyTests(unittest.TestCase):
@@ -10,6 +13,15 @@ class IslandSurveyTests(unittest.TestCase):
         return {'kind': 'create-sky-island-survey', 'schema': 1, 'complete': True,
                 'artifacts': {'mod.jar': 'abc'},
                 'islands': [{'observedBlocks': {'create:zinc_ore': 4}, 'estimatedBlocks': {'create:zinc_ore': 80}}]}
+
+    def test_signed_long_seeds_survive_browser_projection(self):
+        raw = json.dumps({'seed': -(2**63), 'runs': [{'seed': 2**63 - 1}]}).encode()
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'survey.json'; path.write_bytes(raw)
+            data, digest = read_survey(path)
+        self.assertEqual(data['seed'], '-9223372036854775808')
+        self.assertEqual(data['runs'][0]['seed'], '9223372036854775807')
+        self.assertEqual(digest, hashlib.sha256(raw).hexdigest())
 
     def test_preserves_observed_and_estimated_counts_separately(self):
         result = resource_survey(self.sample(), 'source-hash')

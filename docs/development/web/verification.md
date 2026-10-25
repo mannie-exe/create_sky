@@ -435,19 +435,21 @@ The native mod's verification guide owns resource, spawn, geode and flight
 observations. The Atlas import does not itself validate a world or certify gameplay.
 The import reads reports; it does not mutate Minecraft worlds or instances.
 
-## Expanded altitude and clearance evidence
+## Island thickness and clearance evidence
 
-On 2026-10-25, imported the updated four-seed native density reports and two
-three-anchor generated resource surveys. The existing table now distinguishes
-anchor center heights, conservative full-cluster envelope gaps, sampled shore
-gaps and surface-opening columns. Geological reference Y=64 is explained beside
-the source methods. These are isolated Compat development samples, not the live
-server world. The saved-world survey remains historical.
+On 2026-10-25, imported five-seed density reports and two three-anchor resource
+surveys for Compat 0.4.0. The table distinguishes target and sampled total height,
+center elevations, conservative support gaps, sampled shore gaps and surface
+openings. Earlier saved-world surveys remain historical. Native evidence and
+artifact parity are documented in Compat's verification guide.
 
-`pnpm verify` passed formatting, JavaScript checks, Astro diagnostics and build.
-`pnpm data:islands` and `pnpm data:compile` regenerated the local projection.
-No new interaction or graph layout was introduced; browser interaction tests and
-Python tests were not rerun for this label/type-only change.
+The importer preserves signed 64-bit seeds as strings so JavaScript cannot round
+them. `pnpm test:python` passed 13 checks, including both signed endpoints and
+preserved source hashes. `pnpm data:islands` and `pnpm data:compile` regenerated
+the projection. `pnpm verify` passed formatting, 54 JavaScript checks, Astro
+diagnostics and build; the existing large-chunk warning remains.
+No new interaction or graph layout was introduced; browser interaction tests
+were not rerun for these table labels and import changes.
 
 ## Limits
 

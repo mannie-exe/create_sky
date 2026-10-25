@@ -46,9 +46,9 @@
     },
     {
       "path": "overrides/common/config/create_sky_compat-generation.json",
-      "sha256": "6f6380f49f1af583d1f4e1ff1fcf3fa2fe0a4ba6a4ea61b0c64de1c17bad2972",
+      "sha256": "a90b3f91c60e90cb7a217d8892dae74ec09214e07f23864485afb4005d76558d",
       "review": "reviewed",
-      "reason": "Authoritative island geometry, altitude and full-cluster clearance; restart with a fresh world after changes.",
+      "reason": "Closer clusters, varied total island height and continuous undersides; authoritative geometry requires a fresh world.",
       "reference": "docs/development/worldgen.md"
     }
   ]

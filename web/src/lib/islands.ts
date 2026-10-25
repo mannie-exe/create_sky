@@ -4,6 +4,7 @@ import { surveyTable } from './survey-table'
 type Counts = Record<string, number>
 type Descriptor = { x: number; y?: number; z: number; family: string }
 type TerrainIsland = {
+  targetHeight?: number
   sampledMinY: number
   sampledMaxY: number
   estimatedSolidVolume: number
@@ -26,12 +27,12 @@ type Survey = {
   status: string
   terrain: {
     runs: {
-      seed: number
+      seed: string | number
       adapted: boolean
       nearestAnchorDistances: number[]
       clusterClearances?: {
         centerY: number
-        minimumNativeEnvelopeGap: number
+        minimumSupportGap: number
       }[]
       clusterFootprints?: { sampledShoreGap: number }[]
       descriptors: Descriptor[]
@@ -39,7 +40,7 @@ type Survey = {
     }[]
   }
   resources: {
-    seed: number
+    seed: string | number
     referenceSurfaceY?: number
     method: string
     limitations: string
@@ -89,6 +90,8 @@ export async function renderIslandSurvey() {
         'Anchor center Y range',
         'Minimum support-envelope gap (blocks)',
         'Mean sampled shore gap (blocks)',
+        'Target height range (blocks)',
+        'Sampled height range (blocks)',
         'Mean sampled height (blocks)',
         'Mean estimated solid volume (blocks)',
       ],
@@ -102,13 +105,17 @@ export async function renderIslandSurvey() {
         run.clusterClearances?.length
           ? number(
               Math.min(
-                ...run.clusterClearances.map((c) => c.minimumNativeEnvelopeGap),
+                ...run.clusterClearances.map((c) => c.minimumSupportGap),
               ),
             )
           : 'Not captured',
         run.clusterFootprints?.length
           ? number(mean(run.clusterFootprints.map((c) => c.sampledShoreGap)))
           : 'Not captured',
+        run.islands.every((i) => i.targetHeight !== undefined)
+          ? `${Math.min(...run.islands.map((i) => i.targetHeight!))}–${Math.max(...run.islands.map((i) => i.targetHeight!))}`
+          : 'Native',
+        `${Math.min(...run.islands.map((i) => i.sampledMaxY - i.sampledMinY + 1))}–${Math.max(...run.islands.map((i) => i.sampledMaxY - i.sampledMinY + 1))}`,
         number(mean(run.islands.map((i) => i.sampledMaxY - i.sampledMinY + 1))),
         number(mean(run.islands.map((i) => i.estimatedSolidVolume))),
       ]),

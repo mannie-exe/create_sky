@@ -12,6 +12,12 @@ def read_survey(path):
         raise ValueError('Survey exceeds 32 MB')
     raw = path.read_bytes()
     data = json.loads(raw, parse_constant=lambda value: (_ for _ in ()).throw(ValueError(f'Invalid number: {value}')))
+    # Java's signed 64-bit seeds must not pass through JavaScript's floating-point numbers.
+    if isinstance(data.get('seed'), int):
+        data['seed'] = str(data['seed'])
+    for run in data.get('runs', []):
+        if isinstance(run.get('seed'), int):
+            run['seed'] = str(run['seed'])
     return data, hashlib.sha256(raw).hexdigest()
 
 

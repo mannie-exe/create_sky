@@ -180,3 +180,30 @@ Atlas labels and imported native reports passed `pnpm verify` and data compilati
 The release changes the existing islands preset and requires a fresh world.
 Local same-seed regeneration is separately authorized; no archive deletion or
 personal-client save removal is part of this release.
+
+## Create Sky 0.1.14 verification
+
+Select Create Sky Compat 0.4.0, source `f7ac591`. Its Linux, Windows and macOS
+checks and release passed. All downloaded assets matched both checksum manifests;
+the binary is byte-identical to the native-tested artifact, SHA-256
+`8b9d52d9eb07f05b0c2cb448bd927fd12152d9fafa8afd2aa00b47a4d1f8ec9f`.
+The mod's verification guide owns five-seed density, six-anchor resource,
+full/minimal reopening, village endpoint, spawn and visual/DH observations.
+[World generation](worldgen.md) owns the selected geometry and gameplay limits.
+
+The root 27 Python checks, journal generation check and 229-file configuration
+audit passed. Both resource builders retained their prior outputs. Empack sync
+resolved only Compat's release and destination changes, preserving Minecraft and
+all other dependency pins. `manifest check` reports a current lock.
+
+All three local reference exports passed archive integrity, version, geometry,
+mod selection and visual-patch checks. Exactly one Compat 0.4.0 is present on
+each side; Veil remains client-only and the obsolete neighbor mod is absent.
+Server launch scripts retain the terminal helper and executable modes; the
+server template supplies no seed. Atlas import/compile and application checks
+passed; [web verification](web/verification.md) records their scope.
+
+This release requires fresh terrain. The separate local reset is authorized to
+discard the current server world and choose a random seed, while retaining
+personal saves, settings, LOD caches and existing backups. A fresh DH key keeps
+the replacement world's client cache separate.

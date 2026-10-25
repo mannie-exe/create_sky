@@ -1,20 +1,22 @@
 {
-  "spacing": 4100,
+  "spacing": 2400,
   "jitter": 90,
   "centerMinY": 200,
   "centerMaxY": 490,
   "anchorMinRadius": 270,
   "anchorMaxRadius": 370,
   "anchorPlateau": 28,
-  "anchorCliff": 290,
   "companionMinRadius": 40,
   "companionMaxRadius": 110,
   "companionMinOrbit": 470,
   "companionMaxOrbit": 680,
   "companionMinOffsetY": -60,
   "companionMaxOffsetY": 50,
-  "minimumClusterGap": 1500,
+  "minimumClusterGap": 350,
   "floorClearance": 32,
   "buildingHeadroom": 200,
-  "activation": 0.85
+  "activation": 0.85,
+  "anchorMinHeight": 250,
+  "anchorMaxHeight": 400,
+  "undersideTaper": 80
 }
