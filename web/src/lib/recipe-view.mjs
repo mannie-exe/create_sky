@@ -1,13 +1,5 @@
-import { fluidState, potionNode, ingredient } from './acquisition.mjs'
+import { fluidState, potionNode } from './acquisition.mjs'
 
-export const escapeHTML = (value) =>
-  String(value ?? '').replace(
-    /[&<>"']/g,
-    (c) =>
-      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[
-        c
-      ],
-  )
 export const safeIcon = (icon) =>
   typeof icon === 'string' && /^\/generated\/icons\/[a-f0-9]+\.png$/.test(icon)
     ? icon
@@ -73,7 +65,9 @@ export function recipePresentation(recipe) {
   } else if (cooking.has(type) || type === 'minecraft:stonecutting') {
     raw = [{ value: json.ingredient, resolved: recipe.ingredients?.[0] }]
     columns = 1
-  } else if (type === 'minecraft:smithing_transform') {
+  } else if (
+    ['minecraft:smithing_transform', 'minecraft:smithing_trim'].includes(type)
+  ) {
     raw = ['template', 'base', 'addition'].map((key, i) => ({
       value: json[key],
       resolved: recipe.ingredients?.[i],
@@ -90,8 +84,15 @@ export function recipePresentation(recipe) {
           ? [json.template, json.base, json.addition].filter(Boolean)
           : [])
   const requirements = supported
-    ? (recipe.ingredients ?? []).slice(declaredInputs.length)
+    ? [
+        ...new Map(
+          (recipe.ingredients ?? [])
+            .slice(declaredInputs.length)
+            .map((group) => [JSON.stringify([...group].sort()), group]),
+        ).values(),
+      ]
     : []
+  const derivedOutput = type === 'minecraft:smithing_trim'
   const declared = json.results ?? (json.result ? [json.result] : [])
   const outputs = declared.slice(0, 24).map((value) => {
     const stack = typeof value === 'string' ? { id: value } : value
@@ -113,7 +114,10 @@ export function recipePresentation(recipe) {
     shape,
     columns,
     inputs: supported ? raw : [],
-    outputs,
+    outputs: derivedOutput
+      ? [{ derived: true, value: {}, resolved: [] }]
+      : outputs,
+    derivedOutput,
     requirements,
     hiddenOutputs: Math.max(0, declared.length - 24),
     conditions: Object.fromEntries(
@@ -131,49 +135,4 @@ export function recipePresentation(recipe) {
       ),
     ),
   }
-}
-
-export function recipeHTML(recipe, catalog = new Map()) {
-  const view = recipePresentation(recipe),
-    esc = escapeHTML
-  const item = (id, count = '') => {
-    const node = catalog.get(id),
-      icon = safeIcon(node?.icon)
-    return `<button class="recipe-item" data-inspect="${esc(id)}" title="${esc(node?.name ?? id)} · ${esc(id)}">${icon ? `<img src="${icon}" alt="" loading="lazy"/>` : '<span aria-hidden="true">?</span>'}<span class="sr-only">${esc(node?.name ?? id)}</span>${count !== '' ? `<b class="recipe-count">${esc(count)}</b>` : ''}</button>`
-  }
-  const slot = (slot) => {
-    if (!slot)
-      return '<div class="recipe-slot empty" aria-label="Empty slot"></div>'
-    const value = slot.value ?? {},
-      ids = [...new Set(slot.resolved ?? ingredient(value, {}))]
-    const count =
-      value.amount !== undefined ? `${value.amount} mB` : (value.count ?? 1)
-    const note = value.tag ? `#${value.tag}` : (value.type ?? '')
-    return `<div class="recipe-slot">${ids.length ? item(ids[0], count === 1 ? '' : count) : '<span class="recipe-unknown">Unresolved</span>'}${value.chance !== undefined ? `<small>${esc(Number(value.chance) * 100)}%</small>` : ''}${
-      ids.length > 1
-        ? `<details class="recipe-alternatives"><summary>OR ${ids.length}</summary><div>${ids
-            .slice(0, 80)
-            .map((id) => item(id))
-            .join(
-              '',
-            )}</div>${ids.length > 80 ? '<p>Remaining alternatives in source record.</p>' : ''}</details>`
-        : ''
-    }${note ? `<small title="${esc(note)}">${esc(note)}</small>` : ''}${value.components || value.type || !ids.length ? `<details><summary>Ingredient data</summary><pre>${esc(JSON.stringify(value, null, 2))}</pre></details>` : ''}</div>`
-  }
-  const body = view.supported
-    ? `<div class="recipe-flow"><div><span class="recipe-caption">${view.shape === 'shaped' ? 'Pattern' : view.shape === 'shapeless' ? 'Shapeless · all slots' : 'Inputs · all slots'}</span><div class="recipe-grid" style="--recipe-columns:${view.columns}">${view.inputs.map(slot).join('')}</div></div><span class="recipe-arrow" aria-hidden="true">→</span><div><span class="recipe-caption">Outputs</span><div class="recipe-outputs">${view.outputs.map(slot).join('')}</div>${view.hiddenOutputs ? `<p>${view.hiddenOutputs} more outputs in source record.</p>` : ''}</div></div>`
-    : '<p class="muted">No visual adapter for this recipe type. Use the source record; custom GUI behavior is not simulated.</p>'
-  const requirements = view.requirements.length
-    ? `<details><summary>Operating requirements · not consumed slots</summary>${view.requirements.map((resolved) => slot({ resolved })).join('')}</details>`
-    : ''
-  return `<div class="recipe-card" data-recipe="${esc(recipe.id)}"><p class="recipe-type">${esc(view.type)}${recipe.scenario ? ' · SCENARIO' : ''}</p>${body}${requirements}${
-    Object.keys(view.conditions).length
-      ? `<dl class="recipe-conditions">${Object.entries(view.conditions)
-          .map(
-            ([key, value]) =>
-              `<dt>${esc(key)}</dt><dd>${esc(typeof value === 'object' ? JSON.stringify(value) : value)}</dd>`,
-          )
-          .join('')}</dl>`
-      : ''
-  }<details><summary>Source record</summary><pre>${esc(JSON.stringify(recipe, null, 2))}</pre></details></div>`
 }

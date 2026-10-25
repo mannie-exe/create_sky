@@ -1,10 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import {
-  recipePresentation,
-  recipeHTML,
-  safeIcon,
-} from '../src/lib/recipe-view.mjs'
+import { recipePresentation, safeIcon } from '../src/lib/recipe-view.mjs'
 
 test('shaped recipes repeat slots and separate operating requirements', () => {
   const recipe = {
@@ -37,7 +33,7 @@ test('shaped recipes repeat slots and separate operating requirements', () => {
   )
   assert.deepEqual(view.requirements, [['minecraft:crafting_table']])
   assert.equal(view.outputs[0].value.count, 3)
-  assert.match(recipeHTML(recipe), /OR 2/)
+  assert.equal(view.inputs[1].resolved.length, 2)
 })
 test('processing preserves fluids, probabilities, components and conditions', () => {
   const recipe = {
@@ -57,12 +53,12 @@ test('processing preserves fluids, probabilities, components and conditions', ()
     },
     ingredients: [['fluid:minecraft/water'], ['atlas:heated']],
   }
-  const html = recipeHTML(recipe)
-  assert.match(html, /250 mB/)
-  assert.match(html, /25%/)
-  assert.match(html, /heat_requirement/)
-  assert.match(html, /test:state/)
-  assert.equal(recipePresentation(recipe).inputs.length, 1)
+  const view = recipePresentation(recipe)
+  assert.equal(view.inputs.length, 1)
+  assert.equal(view.inputs[0].value.amount, 250)
+  assert.equal(view.outputs[0].value.chance, 0.25)
+  assert.deepEqual(view.outputs[0].value.components, { 'test:state': 'filled' })
+  assert.equal(view.conditions.heat_requirement, 'heated')
 })
 test('unsupported types keep source data without inventing a layout', () => {
   const recipe = {
@@ -74,29 +70,39 @@ test('unsupported types keep source data without inventing a layout', () => {
     },
   }
   assert.equal(recipePresentation(recipe).supported, false)
-  const html = recipeHTML(recipe)
-  assert.match(html, /No visual adapter/)
-  assert.match(html, /loops/)
-  assert.doesNotMatch(html, /12000%/)
+  assert.deepEqual(recipePresentation(recipe).inputs, [])
 })
-test('recipe strings and icon URLs cannot introduce markup or script', () => {
-  const id = '<img src=x onerror=alert(1)>'
-  const recipe = {
-    id,
-    json: {
-      type: 'minecraft:smelting',
-      ingredient: { item: id },
-      result: { id },
-    },
-  }
-  const html = recipeHTML(
-    recipe,
-    new Map([[id, { name: id, icon: 'javascript:alert(1)' }]]),
-  )
-  assert.doesNotMatch(html, /<img|javascript:/)
-  assert.match(html, /&lt;img/)
+test('icon URLs only admit generated local assets', () => {
+  assert.equal(safeIcon('javascript:alert(1)'), null)
+  assert.equal(safeIcon('https://example.com/icon.png'), null)
   assert.equal(
     safeIcon('/generated/icons/ab12.png'),
     '/generated/icons/ab12.png',
   )
+})
+
+test('smithing trim renders a modified base without a fixed sample output', () => {
+  const recipe = {
+    id: 'test:trim',
+    output: 'minecraft:iron_chestplate',
+    json: {
+      type: 'minecraft:smithing_trim',
+      template: { item: 'minecraft:bolt_armor_trim_smithing_template' },
+      base: { tag: 'minecraft:trimmable_armor' },
+      addition: { tag: 'minecraft:trim_materials' },
+    },
+    ingredients: [
+      ['minecraft:bolt_armor_trim_smithing_template'],
+      ['minecraft:leather_boots', 'minecraft:diamond_helmet'],
+      ['minecraft:quartz'],
+      ['minecraft:smithing_table'],
+      ['minecraft:smithing_table'],
+    ],
+  }
+  const view = recipePresentation(recipe)
+  assert.equal(view.supported, true)
+  assert.equal(view.derivedOutput, true)
+  assert.equal(view.inputs.length, 3)
+  assert.deepEqual(view.outputs, [{ derived: true, value: {}, resolved: [] }])
+  assert.deepEqual(view.requirements, [['minecraft:smithing_table']])
 })

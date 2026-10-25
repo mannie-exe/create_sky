@@ -10,8 +10,9 @@ The manifest and lock own exact selections. This guide owns update procedures;
 | Component | Source / output | Update together | Required check or removal condition |
 | --- | --- | --- | --- |
 | DH Polygon Fix 1.0.2 | Separate `dh-polygon-fix` repository; URL pin and placement in empack | DH 3.3.3, SSRD, Iris/Sodium and the native GL query | The patch requires DH 3.3.3. When updating DH, verify the upstream query fix and remove the incompatible patch; test native query/restore and shader pipelines. |
-| Sky Village Neighbors 0.1.0 | Separate `sky-village-neighbors` repository; URL pin; common config | Sky Archipelago 1.3.6 and Sky Villages 1.0.6 | Revalidate native layout lookup, candidate rejection, terrain gap and server/client boot. Run the mod's layout tests plus the pack's natural/controlled structure survey. |
-| Worldgen configuration | `overrides/common/config/sky_archipelago*`, `zfastnoise.mixin.properties` | Sky Archipelago, Zfastnoise and generation/optimization mods | Keep CONSISTENT 1494 in both TOML and preset. Recheck the biome redirect and native layouts before generating new terrain. |
+| Veil Iris Fix 0.1.0 | Separate `~/production/veil-iris-fix`; Java mixin JAR | Sable 2.0.6 / nested Veil 4.3.2, Iris 1.8.14-beta.1+mc1.21.1 and shader stack | Run actual-class transformation/state checks and isolated native Ponder/world/reload comparisons. Remove when the selected upstream artifact restores framebuffer state and handles GUI/shadow passes and active Iris targets. |
+| Create Sky Compat 0.2.0 | `create-sky-compat` source project; common referenced JAR | Sky Archipelago 1.3.6; optional Sky Villages 1.0.6 + Architectury 13.x, Sable 2.0.6 and ADQ 1.1.1 | Revalidate terrain, geology, climate, village footprint/count policy, pressure and generation identity. For ADQ, review private route calls, horizontal-distance checks, chunk-ticket lifetime and success/failure cleanup. Rerun native endpoint checks; retain safety predicates. Replace the old neighbor dependency rather than installing both; see [worldgen](worldgen.md). |
+| Worldgen configuration | `overrides/common/config/sky_archipelago*`, `zfastnoise.mixin.properties` | Sky Archipelago, Zfastnoise and generation/optimization mods | Preserve CONSISTENT 1494 for ordinary legacy Sky worlds. The expanded preset owns its embedded terrain settings. Recheck biome redirects and generation identity before generating new terrain. |
 | Shared data fixes | `pack-fixes/data/` → `create-sky-fixes-0.1.0.jar` | Mods owning the replaced recipe, loot, tag or processor resources | Compare new upstream JSON by exact resource ID. Remove bug overrides only when the installed artifact contains the fix; retain deliberate pack policy. Run native recipe/loot checks. |
 | Journal | `authoring/journal/` → Questlog config and language assets in the shared JAR | Questlog, item IDs, condition handlers and UI configuration | Generate, validate native handlers/counts/NBT restoration and check labels in the game UI. Locale edits alone do not change mechanics. |
 | Visual model patch | `authoring/resource-patches.json`, `build-resource-patches.py` → client ZIP | Fresh Flower Pots, 3D Crops, Better Lanterns, Macaw's Lights and Lamps, Create, Create Deco, DnD, Macaw’s Bridges, Fresh Animations/Details/Objects, EMF and Lootr | Exact versions/hashes and model contracts must pass. Compare pots/chains, bar connections, lantern variants and chest motion in Resource Review. |
@@ -21,7 +22,8 @@ The manifest and lock own exact selections. This guide owns update procedures;
 The shared fixes JAR and visual patch have different load paths. The first supplies
 server datapack resources and journal translations; the second overrides client
 models at the top of the selected resource stack. Neither replaces DH Polygon Fix
-or Sky Village Neighbors. A successful resource build cannot validate Java mixins,
+or Create Sky Compat. Veil Iris Fix is also executable Java and
+must remain separate from both resource artifacts. A successful resource build cannot validate Java mixins,
 world generation, recipe execution or GPU behavior.
 
 ## Shared data overrides

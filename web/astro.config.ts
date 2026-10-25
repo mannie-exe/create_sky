@@ -1,8 +1,10 @@
 import { defineConfig } from 'astro/config'
+import react from '@astrojs/react'
 import { workspace } from './scripts/workspace.mjs'
 import { domains } from './src/lib/domains.mjs'
 export default defineConfig({
   output: 'static',
+  integrations: [react()],
   server: { host: '127.0.0.1', port: 4321 },
   vite: {
     plugins: [workspace()],

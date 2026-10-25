@@ -138,36 +138,40 @@ within 3,000 and twenty-nine within 4,000. The nearest centers were about 524 an
 these are recorded layouts, not an exhaustive terrain-clearance or loot survey.
 The world's seed is preserved privately beside the local backups.
 
-Current spacing gives one candidate per 1,120 × 1,120-block cell before biome
+The ordinary Sky Archipelago baseline gives one candidate per 1,120 × 1,120-block cell before biome
 and placement rejection. The 65-chunk separation leaves only five possible chunk
 offsets per axis. Counts are independent of player count and cluster occupancy.
 Changing separation alone spreads candidate positions but does not reduce their
 number. The earlier four-seed generation survey measured a 74% valid-start rate;
 that is a sample, not a universal density guarantee.
 
-Create Sky 0.1.9 adds [Sky Village Neighbors 0.1.0](https://github.com/mannie-exe/sky-village-neighbors/releases/tag/v0.1.0)
-with common configuration in `sky_village_neighbors-common.toml`. Updating the
-pack affects future structure starts; existing villages remain unchanged.
+[Create Sky Compat 0.2.0](https://github.com/mannie-exe/create-sky-compat) replaces
+Sky Village Neighbors. Common placement controls live in
+`create_sky_compat-common.toml`. Its expanded preset shifts the structure altitude
+into the island band and assigns each anchor an allowance of zero to three
+villages, weighted `96:24:8:3`. Biome, layout and terrain rejection can lower the
+count. Companions share their anchor's allowance. The preset uses a separate
+24-chunk candidate grid with 12-chunk separation; the ordinary baseline's
+70/65 spacing no longer describes this preset's frequency.
 
-The rule retains SKY placement and requires a 64-block horizontal gap from the
-full village footprint to island terrain, a host terrain sample within 512 blocks,
-and a native host radius of at least 96. Clearance checks every column in the
-exclusion band. The 16-block host-search grid can conservatively miss a narrow
-eligible edge. Candidate layouts are filtered without relocating pieces or
-changing height or loot. Settings require a world/server restart.
+The neighbor rule retains SKY placement and requires a 64-block horizontal gap
+from the village footprint, a host terrain sample within 512 blocks and a native
+host radius of at least 96. Clearance checks every column in the exclusion band.
+The 16-block host-search grid can conservatively miss a narrow eligible edge.
+Existing villages are not relocated. Loot and foundation tuning remain pack-owned.
 
-The compatibility mod's native tests checked 48 layouts on four seeds, then 147
-natural candidate chunks across three seeds and six complete villages. Default
-512-block runs retained 14/49 and 8/49 starts; a 384-block configuration retained
-10/49 on another seed. These samples do not establish a universal density or a
-village quota per cluster. Its repository owns detailed implementation evidence.
+Village hooks require both Sky Villages and Architectury. ADQ's optional adapter
+retains the native dry-ground check, retries within the village, holds bounded
+chunk tickets through route finalization and checks horizontal route distance.
+Native tests generated and accepted an offer between distinct villages and
+spawned its cargo. Completed deliveries and cargo clearance still need playtesting.
+See [world generation](worldgen.md) and the mod's verification guide for samples
+and limitations.
 
 Further tuning:
 
-- After location filtering, remeasure density before reducing it further. If
-  needed, compare 90/50 spacing/separation against 70/65: about 40% fewer candidate
-  cells with wider positional variation. This is not a guaranteed 40% reduction
-  in actual villages, and may leave some clusters underserved.
+- Remeasure actual village counts per archipelago before changing the weighted
+  allowance or candidate grid. An allowance is a maximum, not a guaranteed count.
 - Keep the current foundation rates while reviewing repeated chest loot and
   salvage. Give libraries, farms and alchemist buildings appropriate loot through
   per-template processors; preserve weaponsmith loot for actual smithies. Keep
@@ -176,8 +180,8 @@ Further tuning:
   changing payout or trade rules. Delivery contracts move supplied cargo rather
   than consuming the player's agricultural output.
 
-The proximity filter changes which candidates survive. Candidate spacing, biomes,
-loot, crops and progression settings otherwise remain unchanged.
+The expanded preset changes candidate selection and altitude; biome eligibility,
+loot, crops and progression rules remain pack-owned and unchanged.
 Existing chunks remain intact. The same seed reproduces terrain only while the
 relevant generator version and resolved settings also remain the same.
 

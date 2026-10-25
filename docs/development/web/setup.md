@@ -19,6 +19,21 @@ It is needed for world sampling and Python tests. With mise and pnpm already
 available, `mise install` followed by `mise run setup` runs the equivalent setup.
 Java and Minecraft instances are configured separately.
 
+## UI dependency updates
+
+Astro, its React integration, React/React DOM and `@xyflow/react` are coupled.
+Check their official documentation, peer ranges and Node requirements together;
+keep runtime and type packages aligned in the lock. The item grid and authoring
+controllers remain TypeScript, so a graph upgrade does not require converting
+other pages to React. Keep `client:only="react"` graph islands browser-owned.
+
+After changing these dependencies, run `pnpm verify`, the browser suite and a
+private-data-free shell build. Check recipe nodes, fixed slots, narrow layouts,
+minimap/keyboard navigation, focus/disclosures across culling, Back navigation,
+and repeated graph visits. Compare representative loading and interaction costs;
+do not assume a renderer upgrade improves performance. [Data](data.md) owns the
+component and projection boundaries, and [verification](verification.md) owns results.
+
 ## Local paths
 
 Defaults live in [`data/local.example.json`](../../../web/data/local.example.json).
@@ -75,6 +90,19 @@ pnpm data:world
 pnpm data:compile
 ```
 
+This reads existing Overworld chunks under the configured server's `world/`.
+Without a survey, the map omits terrain-derived acquisition routes. Explicit
+YAML gathering assumptions still apply. To inspect every stored chunk:
+
+```sh
+pnpm data:world --samples 0
+pnpm data:compile
+```
+
+A full survey can take substantially longer. Changes detected while reading
+regions are recorded; the result is not a consistent snapshot of a changing world.
+No chunks are generated and no world or LOD files are written.
+
 For village placement and resources, use a separate disposable-world survey:
 
 ```sh
@@ -91,19 +119,6 @@ and accepted EULA as runtime capture. Do not run it alongside another capture.
 Temporary worlds and server logs are removed on success or failure. The compact
 `data/generated/structures.json` snapshot is retained; World & ores shows its
 counts and limitations. This never opens or changes the playing world.
-
-This reads existing Overworld chunks under the configured server's `world/`.
-Without a survey, the map omits terrain-derived acquisition routes. Explicit
-YAML gathering assumptions still apply. To inspect every stored chunk:
-
-```sh
-pnpm data:world --samples 0
-pnpm data:compile
-```
-
-A full survey can take substantially longer. Changes detected while reading
-regions are recorded; the result is not a consistent snapshot of a changing world.
-No chunks are generated and no world or LOD files are written.
 
 ## Commands and checks
 

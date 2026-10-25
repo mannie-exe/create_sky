@@ -228,7 +228,7 @@ select {
   right: 0;
   top: 82px;
   bottom: 0;
-  width: 460px;
+  width: 620px;
   max-width: 95vw;
   background: var(--panel);
   border-left: 1px solid var(--line);
@@ -489,13 +489,49 @@ h2 {
   }
 }
 
-.route-path {
-  padding-left: 22px;
-}
-.route-path > li {
-  margin: 12px 0;
-}
 .relation small {
   display: block;
   font-size: 9px;
+}
+
+.item-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.item-heading > div {
+  min-width: 0;
+}
+.detail-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-block: 16px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 10px;
+}
+.detail-tabs [aria-pressed='true'] {
+  background: var(--surface);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.route-preview-controls {
+  display: flex;
+  gap: 5px;
+  margin-block: 10px;
+}
+.route-preview-canvas {
+  height: 380px;
+}
+.route-preview-selection {
+  min-width: 0;
+}
+.route-preview-selection h4 {
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.route-preview-selection pre {
+  max-height: 250px;
+  overflow: auto;
 }

@@ -56,18 +56,19 @@ needs comparison with G1 in this pack. See the
 
 ## New worlds
 
-New single-player worlds default to **Sky Islands** using the saved **eee**
-preset. Dedicated servers use matching terrain settings. Existing vanilla worlds
-are not converted. Large gaps between islands are intentional.
+New single-player worlds default to **Create Sky Islands**. Dedicated-server
+creation uses the same preset. Deep large islands have smaller companions and
+wide gaps between clusters. Build bounds are Y=-128 through 767; the terrain band
+leaves room above the islands for building and flight.
 
-Keep the Sky Archipelago preset and configuration with the world. This version
-can resolve stock saved generator settings through the current default preset;
-changing it can affect newly generated terrain in an existing world.
+Ore and selected underground features follow the large island's geological
+height, rather than the absolute world height. Companions share that frame;
+small islands need not contain every resource. Floating villages appear beside
+some clusters, with at most three per cluster and zero most common.
 
-The pack uses random island sizing with radius settings from 10 to 500,
-island-center heights from Y -32 to 300, and CONSISTENT cluster spacing of 1494.
-The ocean layer is off and islands are skipped over ocean biomes. Saved size bands
-apply only when SPECIFIC sizing is selected; RANDOM is the current default.
+Create a new world to use this preset. Existing worlds are not converted. Keep
+the generation configuration with each world; changing a marked world's
+generation identity is rejected instead of silently altering future chunks.
 
 Lootr provides personal loot in supported containers; it does not add structures.
 Carry On excludes Lootr containers and Aeronautics/Sable objects. Ship storage,

@@ -1,7 +1,7 @@
 schema: 5
 pack:
   name: Create Sky
-  version: 0.1.11
+  version: 0.1.12
   id: create_sky
   authors:
     - mannie-exe
@@ -466,17 +466,6 @@ dependencies:
   sky-villages:
     pin: 3InSHTOp
     source: modrinth:sky-villages
-  sky-village-neighbors:
-    source:
-      kind: url
-      downloads:
-        - https://github.com/mannie-exe/sky-village-neighbors/releases/download/v0.1.0/sky-village-neighbors-0.1.0-mc1.21.1-neoforge.jar
-    digests:
-      sha1: d1304e06b00bc53a20461d0a3494841b64a732f3
-      sha512: 4b0be2964c69772a1dc411637226d2b5e3b325aa1c27cc216f7324aa278d965e38a52d9d7d66deb4f36297ab8e8d6c74075c40ea37377d8e9d9a608ffe66a60d
-    environment:
-      client: required
-      server: required
   better-climbing:
     source: modrinth:better-climbing
     pin: RJgDIKSn
@@ -684,6 +673,28 @@ dependencies:
     pin: jRAsb6KQ
     source: modrinth:better-lanterns
     type: resource-pack
+    environment:
+      client: required
+      server: unsupported
+  create-sky-compat-0.2.0-mc1.21.1-neoforge:
+    source:
+      kind: url
+      downloads:
+        - https://github.com/mannie-exe/create-sky-compat/releases/download/v0.2.0/create-sky-compat-0.2.0-mc1.21.1-neoforge.jar
+    digests:
+      sha1: f2cf2a5ae6473fc31731be547db1fdc34ed39681
+      sha512: 498e8cce3dc1df149e91812ea368534f77b8fb6d5a1753df2b7a0a1f11f2d55dbd8bf085359164cb8f3cafc449c13b6a7fdc17ade11ee224c7377bc38a0aead0
+    environment:
+      client: required
+      server: required
+  veil-iris-fix-0.1.0-mc1.21.1-neoforge:
+    source:
+      kind: url
+      downloads:
+        - https://github.com/mannie-exe/veil-iris-fix/releases/download/v0.1.0/veil-iris-fix-0.1.0-mc1.21.1-neoforge.jar
+    digests:
+      sha1: d8441619372050a35cbe25887794c1f0b94b7e2a
+      sha512: 8247d724c6aa983a13ac89533362f2898339d52744f2897c9dce76bf229d5a70f67e9e36c83c7163d1fdd2b6bd522856db9fa4f1690af05238d596deee8bd063
     environment:
       client: required
       server: unsupported

@@ -1,6 +1,6 @@
 # Included content
 
-Create Sky 0.1.11 selections. Minecraft is 1.21.1 and NeoForge is 21.1.264.
+Create Sky 0.1.12 selections. Minecraft is 1.21.1 and NeoForge is 21.1.264.
 The manifest/lock are authoritative; this list excludes libraries bundled inside
 mods. Euphoria builds its patched shader at launch. See [release notes](RELEASE_NOTES.md).
 
@@ -36,6 +36,7 @@ mods. Euphoria builds its patched shader at launch. See [release notes](RELEASE_
 | Concurrent Chunk Management Engine (NeoForge) | 0.4.0-alpha.0.123+1.21.1 | [Exact version](https://modrinth.com/mod/c2me-neoforge/version/avwWYPbG) |
 | Controlling | 19.0.5 | [Exact version](https://modrinth.com/mod/controlling/version/FaNppCJJ) |
 | Copycat Bar Extrusion | 0.1.0 | [Exact release](https://github.com/mannie-exe/copycat-bar-extrusion/releases/tag/v0.1.0) |
+| Create Sky Compat | 0.2.0 | [Exact release](https://github.com/mannie-exe/create-sky-compat/releases/tag/v0.2.0) |
 | Create Accessories Compat | 1.0 | [Exact version](https://modrinth.com/mod/create-accessories-compat/version/2r7hvkCQ) |
 | Create Aeronautics | 1.3.2+mc1.21.1 | [Exact version](https://modrinth.com/mod/create-aeronautics/version/44pLdPGg) |
 | Create Aeronautics: Covers | 1.0.1 | [Exact version](https://modrinth.com/mod/create-aeronautics-covers/version/R35biaZf) |
@@ -142,7 +143,6 @@ mods. Euphoria builds its patched shader at launch. See [release notes](RELEASE_
 | Simple 3D Bars | 1.0.3 | [Exact version](https://modrinth.com/resourcepack/simple-3d-iron-bars/version/harPhc3X) |
 | Sinytra Connector | 2.0.0-beta.17+1.21.1 | [Exact version](https://modrinth.com/mod/connector/version/IITF0PRC) |
 | Sky Archipelago | 1.3.6 | [Exact version](https://modrinth.com/mod/sky-archipelago/version/RwLz4CJb) |
-| Sky Village Neighbors | 0.1.0 | [Exact release](https://github.com/mannie-exe/sky-village-neighbors/releases/tag/v0.1.0) |
 | Sky Villages | 1.0.6 | [Exact version](https://modrinth.com/mod/sky-villages/version/3InSHTOp) |
 | Sodium Extra | mc1.21.1-0.9.4+neoforge | [Exact version](https://modrinth.com/mod/sodium-extra/version/ufpcXU9c) |
 | Sodium | mc1.21.1-0.8.13-neoforge | [Exact version](https://modrinth.com/mod/sodium/version/uMOpc5uV) |
@@ -155,4 +155,5 @@ mods. Euphoria builds its patched shader at launch. See [release notes](RELEASE_
 | Surveyor Map Framework | 1.2.4+1.21 | [Exact version](https://modrinth.com/mod/surveyor/version/egJBsDTn) |
 | Traveler's Backpack | 1.21.1-10.1.39 | [Exact version](https://modrinth.com/mod/travelersbackpack/version/LcOq0PxG) |
 | TxniLib | neoforge-1.21.1-1.0.24 | [Exact version](https://modrinth.com/mod/txnilib/version/M1CyD3Uu) |
+| Veil Iris Fix | 0.1.0 | [Exact release](https://github.com/mannie-exe/veil-iris-fix/releases/tag/v0.1.0) |
 | YetAnotherConfigLib (YACL) | 3.8.2+1.21.1-neoforge | [Exact version](https://modrinth.com/mod/yacl/version/7TVdVtxF) |

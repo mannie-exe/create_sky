@@ -27,11 +27,15 @@
     "format": "prettier --write . ../docs/development/web",
     "lint": "prettier --check . ../docs/development/web",
     "test:browser": "playwright test",
-    "data:structures": "python3 scripts/structures.py"
+    "data:structures": "python3 scripts/structures.py",
+    "data:islands": "python3 scripts/islands.py"
   },
   "dependencies": {
+    "@astrojs/react": "7.1.1",
+    "@xyflow/react": "12.12.0",
     "astro": "7.4.2",
-    "cytoscape": "3.34.4",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
     "three": "0.186.1",
     "yaml": "2.9.1"
   },
@@ -39,6 +43,8 @@
     "@astrojs/check": "0.9.12",
     "@playwright/test": "1.64.1",
     "@types/node": "^24.19.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
     "@types/three": "0.186.0",
     "prettier": "^3.9.10",
     "prettier-plugin-astro": "^1.1.1",

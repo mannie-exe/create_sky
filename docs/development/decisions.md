@@ -125,3 +125,33 @@ version, client/server placement and critical-payload checks. Published client
 exports retain the tested visual-patch hash and reference the verified Copycat JAR;
 the server excludes that client adapter. No local instances were modified during
 publication; the preceding playtest sync remains intact.
+
+## Create Sky 0.1.12 verification
+
+The release selects Create Sky Compat 0.2.0 instead of Sky Village Neighbors and
+adds client-only Veil Iris Fix 0.1.0. Both published artifacts passed three-platform
+CI and match their release checksum manifests. Compat SHA-256 is
+`084153f7919964d3fd5e445f3c38a0a0a0cd4df42944a8cc5c8b3b57ca4a943d`;
+Veil SHA-256 is
+`f4144a2bfef7dcd60fed8a0647dc60d356d4ab9fe3ebb36f1647a119b6a183bc`.
+Their repositories own native verification and its limits. Veil's release differs
+from the native-tested artifact only in repository URL metadata.
+
+On 2026-10-25, 27 root Python checks, the 228-file configuration audit and journal
+generation check passed. `pnpm verify` passed 52 JavaScript checks, formatting,
+Astro diagnostics and build; the 11 Python checks passed. The preceding complete
+32-case browser pass covers React Flow, recipe and authoring changes. After label
+updates, the focused item-route/world-survey browser case passed again at desktop
+and 390-pixel width. See [web verification](web/verification.md) for scope.
+
+All three local reference exports passed archive-integrity and payload checks:
+Compat on both sides, Veil only on clients, no old neighbor JAR/config, the expanded
+new-world preset and no distributed seed. The server retains the terminal helper.
+The client visual patch retains its previously tested `edce4c42…` hash. Resource
+Review revision 8 rendered its burner and both Ponder buttons with shaders enabled;
+the saved local fixture passed 4,836 placements, 32 inventory slots and 27 specimens.
+
+Existing worlds are not converted. The separately authorized local replacement
+must preserve the current server's complete backup and seed before fresh generation.
+Survival fuel budgets, full deliveries, wing-borne flight and general seed/driver
+coverage remain unverified; [world generation](worldgen.md) owns those limits.

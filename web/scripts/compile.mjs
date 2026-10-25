@@ -378,6 +378,13 @@ export async function compile() {
         crypto.createHash('sha256').update(processor).digest('hex')
   }
   await write('structures', structures)
+  await write(
+    'islands',
+    await read('islands').catch((error) => {
+      if (error.code === 'ENOENT') return null
+      throw error
+    }),
+  )
   await fs.writeFile(
     path.join(root, 'public/generated/authored.json'),
     JSON.stringify(authored),

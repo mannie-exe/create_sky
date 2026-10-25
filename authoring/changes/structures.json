@@ -46,10 +46,10 @@
       "reference": "docs/development/structures.md"
     },
     {
-      "path": "overrides/common/config/sky_village_neighbors-common.toml",
+      "path": "overrides/common/config/create_sky_compat-common.toml",
       "sha256": "62c399b92b12f395a010263eb14c63666f56b2fc5f68519bd1066953bc0866f6",
       "review": "reviewed",
-      "reason": "Keep village footprints over void with a 64-block minimum terrain gap, a sampled host within 512 blocks and native host radius at least 96. Preserve existing structures and upstream height/loot.",
+      "reason": "Floating-village clearance beside island terrain. Create Sky Compat owns the preset and cluster allowance.",
       "reference": "docs/development/structures.md"
     }
   ]

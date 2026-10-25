@@ -30,12 +30,14 @@ was applied to decorative choices.
 
 The archived survey supports vertical resource specialization: iron and coal were
 common, while diamonds and most redstone were concentrated in deepslate. Preserve
-that reason to visit lower islands before increasing global ore rates. Platinum's
-configured bands are also low; new-terrain access and usable ore quantities remain
-unmeasured. Gold washing supplies a separate 5% platinum-nugget chance. At that
+that reason to explore deeper terrain before increasing global ore rates. The
+Create Sky Compat maps those bands into each anchor's geological span;
+[generated samples](worldgen.md#geology-and-features) now confirm zinc and
+other starting resources, with diamond/platinum in deep interiors. Mining access,
+travel time and whole-island quantities remain separate gameplay checks. Gold washing supplies a separate 5% platinum-nugget chance. At that
 rate, one ingot takes 180 crushed-gold washes on average, not a guaranteed batch.
 
-## Equipment maintenance in 0.1.9 source
+## Equipment maintenance
 
 Easy Anvils retains repair-material and XP costs, but removes the 40-level cap,
 ignores prior-work penalties for repairs/renames and limits penalty growth when
@@ -56,6 +58,22 @@ return journey. Repair, enchanting and totem acquisition still depend on existin
 resources. No new mandatory journal step or crafting gate was added.
 
 ## Production and travel
+
+Basic balloon hardware does not require brass. The installed assembler, adjustable
+burner and andesite/wooden propeller use andesite alloys, iron sheets, redstone and
+wooden parts. Iron nuggets can supply the alloys without zinc. Zinc remains
+important for brass and subsequent machinery; its presence alone does not establish
+an initial aircraft route.
+
+A hand-crafted parts subtotal for one mechanical press, hand crank, eight shafts,
+assembler, adjustable burner, propeller and super glue is 20 andesite, 21 iron
+ingots, one redstone dust and two slimeballs, plus wood, stone and a burner-fire
+ingredient. An iron pickaxe adds three ingots. This uses the current one-alloy
+crafting yield and leaves spare shafts/nuggets. It excludes the envelope, hull,
+control/power system and machinery needed for an alternate slime source; it is
+not a complete flyable-ship budget. The native loaded-flight fixture used creative
+power. All six distributed island samples contained iron, andesite and redstone,
+but mining access and wool/slime acquisition still require survival playtesting.
 
 | System | Current behavior | Design implication |
 | --- | --- | --- |
@@ -95,7 +113,11 @@ These contracts transport supplied schematic cargo; they do not buy the player's
 farm output or simulate village consumption. Do not design a farming economy on
 that assumption. Existing villager trades are the actual item-demand mechanism.
 Village lookup, safe pickup placement and delivery completion remain separate
-checks. Routes remain 500–2,000 blocks with a 120-minute limit and four offers.
+checks. The structure search samples offsets from 500 to 2,000 blocks, with a
+120-minute limit and four offers. ADQ 1.1.1 checks the minimum after locating the
+nearest structure but does not enforce the configured maximum on that result;
+actual village routes can be longer. This is an implementation finding, not a
+reason to increase rewards or change settlement density automatically.
 Hostile Skies automatic raids remain disabled; captain orders are intentionally
 outside normal progression until deliberate encounters are designed.
 

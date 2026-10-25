@@ -5,6 +5,7 @@ import ViewTabs from '../components/ViewTabs.astro'
 import '../styles/atlas.css'
 import ScenarioEditor from '../components/map/ScenarioEditor.astro'
 import StructureSurvey from '../components/map/StructureSurvey.astro'
+import IslandSurvey from '../components/map/IslandSurvey.astro'
 import Minimap from '../components/map/Minimap.astro'
 import ProgressionGraph from '../components/map/ProgressionGraph.astro'
 ---
@@ -16,19 +17,19 @@ import ProgressionGraph from '../components/map/ProgressionGraph.astro'
     </span>
   </AppHeader>
   <ViewTabs label="Atlas views">
-    <button data-view="map" aria-pressed="true">
+    <button disabled data-view="map" aria-pressed="true">
       Item map
     </button>
-    <button data-view="graph" aria-pressed="false">
+    <button disabled data-view="graph" aria-pressed="false">
       Progression graph
     </button>
-    <button data-view="world" aria-pressed="false">
+    <button disabled data-view="world" aria-pressed="false">
       World &amp; ores
     </button>
-    <button data-view="evidence" aria-pressed="false">
+    <button disabled data-view="evidence" aria-pressed="false">
       Evidence
     </button>
-    <button data-view="editor" aria-pressed="false">
+    <button disabled data-view="editor" aria-pressed="false">
       Edit data
     </button>
   </ViewTabs>
@@ -158,6 +159,7 @@ import ProgressionGraph from '../components/map/ProgressionGraph.astro'
         <div id="world-notes"></div>
       </div>
       <StructureSurvey />
+      <IslandSurvey />
     </section>
     <section id="evidence-view" class="view" hidden>
       <div class="toolbar">

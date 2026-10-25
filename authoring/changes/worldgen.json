@@ -4,9 +4,9 @@
   "records": [
     {
       "path": "overrides/client/config/defaultworldtype/client-config.toml",
-      "sha256": "5140e8d0e9eded87eb884b4df175ebe8adc17b2220dd58fc898d857fa9ad7ceb",
+      "sha256": "8c656f60d20f17b267c9824231b9108ac243a4a158cf2f98b5ddb7d60d1c0174",
       "review": "reviewed",
-      "reason": "Sky-island generation, consistent cluster spacing and biome redirect compatibility. Some unrelated inherited keys remain.",
+      "reason": "Default new worlds to Create Sky Islands; keep the world-type selector available.",
       "reference": "docs/development/worldgen.md"
     },
     {

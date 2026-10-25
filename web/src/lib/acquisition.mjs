@@ -84,7 +84,14 @@ export function processingRoute(recipe, tags, machines, fluidTags = {}) {
           : (v.id ?? v.item),
     )
     .filter(Boolean)
-  if (recipe.output && recipe.output !== 'minecraft:air' && !recipe.scenario)
+  // SmithingTrimRecipe.getResultItem is a sample armor stack. Trimming changes
+  // the supplied stack's components, not its item identity or acquisition.
+  if (
+    recipe.output &&
+    recipe.output !== 'minecraft:air' &&
+    !recipe.scenario &&
+    type !== 'minecraft:smithing_trim'
+  )
     outputs.push(recipe.output)
   const requirements = (step) => {
     const machine = machines[step.type] ?? machines[recipe.type]
@@ -138,7 +145,12 @@ export function processingRoute(recipe, tags, machines, fluidTags = {}) {
     (type.includes('shapeless') && (declared?.length ?? 0) > 4)
   )
     inputs.push(['minecraft:crafting_table'])
-  if (type.startsWith('minecraft:smithing_'))
+  if (
+    type.startsWith('minecraft:smithing_') &&
+    !inputs.some(
+      (group) => group.length === 1 && group[0] === 'minecraft:smithing_table',
+    )
+  )
     inputs.push(['minecraft:smithing_table'])
   return {
     id: recipe.id,

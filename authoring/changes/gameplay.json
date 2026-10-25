@@ -571,7 +571,7 @@
     },
     {
       "path": "templates/server/game/server.properties.template",
-      "sha256": "ede841144dbb671dd778ba2fe70315f58346c3683d157097e674eb1de0a23fea",
+      "sha256": "80b64c8dcb28fc566ec0239be5c558817322f459baef9f8cc84804da4e3b9039",
       "review": "reviewed",
       "reason": "Server export defaults include the sky world preset and whitelist. Playing-world seeds belong only in local instance configuration.",
       "reference": "docs/players/server.md"

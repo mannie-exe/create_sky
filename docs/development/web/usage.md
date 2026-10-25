@@ -21,6 +21,15 @@ internal/creative exclusions and unified variants. A mapped path shows potential
 access under its listed assumptions. Quantities, success probabilities, working
 machinery, travel and combat remain separate constraints.
 
+## Item details
+
+Acquisition embeds the minimum-depth route graph and the selected operation's
+recipe. At readable zoom, recipe cards are interactive inside nodes. Select a
+node or use Inspect step to center it; Fit and the minimap expose earlier
+steps. Open full graph retains the larger browsing view. Uses lists consuming
+recipes; Evidence holds drops, tags, hooks and provenance. Pack notes are expandable.
+Back returns to the previous inspected item without leaving the map.
+
 ## Progression graph
 
 Open **Progression graph** beside Item map. Its tabs answer separate questions:
@@ -34,7 +43,7 @@ Open **Progression graph** beside Item map. Its tabs answer separate questions:
   authored progression model, including machines used in multi-step routes.
 - **Item routes:** vertical acquisition diagrams with item icons. **Single route**
   shows acquisition or use alternatives; **Minimum-depth path** expands one finite
-  chain from the existing solver. The item inspector's **View route graph** opens
+  chain from the existing solver. The item inspector's **Open full graph** opens
   that path directly. Long paths open near the target at a readable scale; use Fit
   for the overview or the minimap to move through earlier steps. Dashed edges are OR choices; ALL input groups feeding an
   operation are required. Separate routes are alternatives, not sequential tasks.
@@ -55,7 +64,7 @@ quantities, conditions and provenance.
 Drag the canvas to pan, use the wheel or +/− controls to zoom, and click or drag the
 minimap below it to navigate. On the canvas or minimap, arrow keys pan, +/− zoom,
 and Home fits the scene. Fit frames the current scene. Reset view clears the item
-search and refits the current view. Tab switches remember each camera. `/` focuses
+search and refits the current view. Graph-tab switches remember their camera and selection. `/` focuses
 the active map's search. The selectors below the canvas provide keyboard access
 to every displayed node and connection, including contributing route records.
 
@@ -72,13 +81,20 @@ a summary or partial canvas does not establish a complete production chain.
 ## Recipe displays
 
 Item details, Evidence recipes and graph route selections share slot displays.
-Click an icon to inspect the item; open an OR group for tag alternatives. Counts,
+Click an icon to inspect the item. A slot's numbered badge opens its alternatives
+in the ingredient list, outside the fixed grid. Counts,
 fluid amounts, probabilistic outputs and processing conditions come from recipe
 JSON. Cooking/processing times are Minecraft ticks. Operating requirements list
-machines and capabilities separately from consumed slots.
+machines and capabilities separately from consumed slots. Wide panels show inputs
+→ output; narrow panels stack inputs ↓ output. Large mechanical patterns retain
+their geometry with local horizontal scrolling. In the full graph, the selected
+recipe appears beside the canvas on wide screens and below it on smaller screens.
 
 Supported layouts include shaped/shapeless crafting, mechanical crafting, cooking,
-stonecutting, smithing transforms and common Create processing recipes. These are
+stonecutting, smithing transforms/trims and common Create processing recipes.
+Trimming shows the supplied armor as a modified base rather than treating the
+runtime's sample iron chestplate as a fixed output. The trim pattern itself is not
+rendered. Trims remain consuming uses and do not create item-acquisition edges. These are
 browser reconstructions using extracted icons, not running game GUIs. Sequenced
 assembly and other unsupported custom layouts retain an explicit source-record
 fallback. Components, source packs and conditions remain available in every record.

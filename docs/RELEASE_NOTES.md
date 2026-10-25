@@ -1,41 +1,53 @@
-# Create Sky v0.1.11
+# Create Sky v0.1.12
 
 Minecraft 1.21.1, NeoForge 21.1.264 and Java 21 remain pinned.
-See [v0.1.10 notes](releases/0.1.10.md) for the previous release.
+See [v0.1.11 notes](releases/0.1.11.md) for the previous release.
 
-## Visual compatibility
+## Islands and integrations
 
-Expand the generated model patch across Create/Create Deco bars and overlays,
-Macaw lanterns and wall variants, Create Deco cage lamps and DnD frontlights.
-Lantern artwork follows the fitted models; cage bends join through clipped corners,
-and frontlight hoods use a shorter overlapping two-plate shell.
-Fresh Details mooshrooms retain their geometry with adapted animation references.
+Replace Sky Village Neighbors with Create Sky Compat 0.2.0. New worlds default to
+Create Sky Islands: deep large islands with smaller companions, a build range
+from Y=-128 through 767 and room above the terrain for construction and flight.
+Selected Overworld geology follows each large island's height. Companions share
+that geological frame; small islands do not receive every ore band.
 
-Add Copycat Bar Extrusion 0.1.0 on clients. Standard Create Copycat Panels gain
-texture-mask depth for supported iron, Create and Create Deco bar materials.
-Other materials keep native rendering. This is not general custom-model support
-for every Copycats+ shape. Existing Create/Deco/Rechiseled window connections and
-intentional frame patterns remain in place.
+Floating villages remain beside terrain, with zero to three allowed per cluster
+and zero most common. The preset adapts climate and Sable air pressure to the
+higher terrain. Optional ADQ integration repairs structure-route loading, distance
+checks and village landing retries. Existing recipe, crop and loot policy remains.
 
-## Atlas and authoring
+The new preset requires a new world. Existing ordinary Sky Archipelago worlds
+retain their generation settings; the update does not convert saves. Keep world
+and generation-config backups before any deliberate replacement. Marked new
+worlds reject incompatible generation changes.
 
-Add vertical acquisition paths with item icons, bounded graph rendering and minimap
-navigation. Item details, Evidence and graph selection share recipe displays with
-slot layouts, quantities, ingredient alternatives and processing conditions.
-Unsupported custom recipe layouts retain their source records.
+## Rendering
 
-Authoring uses named jobs with bounded output, cancellation and serialized writes.
-Model recipes support retained attachments and small composed elements. Saving,
-generating resources and installing a pack remain separate actions.
+Add client-only Veil Iris Fix 0.1.0. Aeronautics' propeller Ponder scene retains its
+render target with Iris shaders enabled. The independent resource fixes, visual
+patches, DH Polygon Fix and Copycat Bar Extrusion remain separate.
+
+## Atlas and journal
+
+Replace the progression canvas with React Flow. Item details embed routes with
+interactive recipe nodes, icons, ingredient alternatives, a minimap and bounded
+rendering. Shared recipe layouts keep slots aligned and support smithing trims.
+Island surveys distinguish layout predictions, sampled blocks and estimates.
+Journal descriptions clarify glider and balloon prerequisites without new gates.
 
 ## Verification and limits
 
-Native checks cover representative placed models, Copycat materials in six facings,
-adjacent panels, resource reload and shaders off/on with Complementary/Euphoria.
-Moving contraptions, multiplayer, other shaders and performance remain unverified.
-Mapped paths describe potential acquisition, not resource budgets or elapsed time.
+Compat passed minimum/full dedicated generation and reopening checks, minimum
+client/server joining, and full-stack client rendering. Terrain/resource samples,
+village placement, climate, pressure and a controlled powered balloon crossing
+are documented. Survival fuel budgets, full delivery completion and wing-borne
+flight remain unverified. Vanilla noise caves, aquifers and large noise ore veins
+are not restored.
 
-Modrinth, Prism and server exports retain referenced dependencies. No world reset,
-seed change or local player-settings replacement is part of this release.
-See [verification](development/web/verification.md) and
-[patch maintenance](development/patches.md) for the tested scope.
+The Veil correction passed transformed-method checks and native Ponder tests with
+shaders on/off, burner rendering, inventory and shader reload on macOS arm64.
+Other drivers/shader packs and an intermittent client shutdown stall remain outside
+that rendering claim. Both independent mods passed Linux, Windows and macOS CI.
+
+Modrinth, Prism and server exports retain referenced dependencies. The Atlas is
+an internal app; potential routes do not prove affordable quantities or play time.

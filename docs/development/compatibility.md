@@ -53,9 +53,11 @@ cache are not export defaults.
 - Ten URL pins handle provider metadata conflicts involving old exact versions,
   Connector/Forgified Fabric API and client-only dependencies. Check runtime
   metadata before replacing them with provider roots or downgrading dependencies.
-- Two further URL pins select published DH Polygon Fix and Sky Village Neighbors
-  binaries with content digests. Sky Village Neighbors requires exactly Sky
-  Archipelago 1.3.6 and Sky Villages 1.0.6. Review both pins together before updates.
+- Published URL pins select DH Polygon Fix, Copycat Bar Extrusion, Create Sky
+  Compat and Veil Iris Fix with content digests. Compat requires Sky Archipelago
+  1.3.6; its optional village hooks need Sky Villages 1.0.6 and Architectury.
+  Veil Iris Fix is client-only and pins Veil 4.3.2 and Iris 1.8.14-beta.1.
+  Review coupled versions together; see [patch maintenance](patches.md).
 - Carry On excludes Lootr containers and Aeronautics/Sable objects and retains
   the generated Create/Copycats exclusions. These exclusions do not verify every
   carried entity or ship-storage interaction.
@@ -151,8 +153,9 @@ default; it is not a cross-platform performance benchmark.
 ## Progression and integration
 
 Hostile Skies automatic raids and departure explosions are disabled; capture is
-enabled. Delivery Quests uses village destinations, four offers, 500 to 2,000
-block routes and 120-minute deadlines. These are structure destinations, not a
+enabled. Delivery Quests uses village destinations, four offers and 120-minute
+deadlines. It samples search offsets from 500 to 2,000 blocks; the installed mod
+can select a farther structure. These are structure destinations, not a
 simulated economy. Glider defaults and membrane requirements are retained.
 [Progression](progression.md) owns production/travel policy and remaining checks.
 
@@ -213,8 +216,8 @@ Local comparison captures are generated evidence, excluded from version control:
 ### Category review world
 
 **Resource Review** in the local client is organized by Plants, Pots, Ladders,
-Bars, Lighting, Storage, Glass, Rails and signals, Machinery, Animals, Equipment
-Surfaces and Lamp variants. `/function resource_lab:hub` returns to its controls. These are
+Bars, Lighting, Storage, Glass, Rails and signals, Machinery, Animals, Equipment,
+Surfaces, Lamp variants and Connections. `/function resource_lab:hub` returns to its controls. These are
 comparison categories, not a division by mod or resource-pack coverage. The
 fixture source, manifest and stopped-world checker live in
 `~/Minecraft/modpack-testing/projects/create-sky-resources/`.
@@ -227,7 +230,11 @@ Create Deco iron/industrial iron/zinc; and Copycat. Apply a material to the
 Copycat sample yourself. Gingerbread men sit beside the stationary animal specimens. The mosquito station
 has a Night / spawn button: Camping 2.1.6 discards swarms by day and runs its own
 movement even with `NoAI`. The equipment chest and enclosed pen support motion
-checks. Static machinery and track samples do not establish working contraptions.
+checks. Revision 8 adds a powered adjustable burner and propeller/press Ponder
+buttons. Both buttons and the burner rendered with the selected shaders in the
+isolated full-stack client on 2026-10-24. The stopped local-world check passed
+4,836 block placements, 32 equipment slots and 27 stationary specimens. Other
+machinery and track samples do not establish working contraptions.
 
 | Family | Installed behavior and remaining work |
 | --- | --- |

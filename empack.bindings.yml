@@ -27,15 +27,6 @@ bindings:
             client: required
             server: required
           layer: common
-  sky-village-neighbors:
-    placement:
-      files:
-        content:
-        - destination: mods/sky-village-neighbors-0.1.0-mc1.21.1-neoforge.jar
-          environment:
-            client: required
-            server: required
-          layer: common
   dh-polygon-fix:
     placement:
       files:
@@ -207,6 +198,20 @@ bindings:
             client: required
             server: required
           layer: common
+  create-sky-compat-0.2.0-mc1.21.1-neoforge:
+    placement:
+    - destination: mods/create-sky-compat-0.2.0-mc1.21.1-neoforge.jar
+      environment:
+        client: required
+        server: required
+      layer: common
+  veil-iris-fix-0.1.0-mc1.21.1-neoforge:
+    placement:
+    - destination: mods/veil-iris-fix-0.1.0-mc1.21.1-neoforge.jar
+      environment:
+        client: required
+        server: unsupported
+      layer: client
 
 policies:
   icon.png: seed

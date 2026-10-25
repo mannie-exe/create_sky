@@ -71,6 +71,9 @@ test('focused views retain real routes, source records and item inspection', asy
 test('graph navigation preserves cameras and limits mounted elements', async ({
   page,
 }) => {
+  const errors = []
+  page.on('pageerror', (e) => errors.push(e.message))
+
   await openGraph(page)
   const graph = page.locator('#graph-canvas'),
     mini = page.locator('#graph-minimap')
@@ -117,6 +120,7 @@ test('graph navigation preserves cameras and limits mounted elements', async ({
   expect(
     Number(await graph.getAttribute('data-rendered-edges')),
   ).toBeLessThanOrEqual(3000)
+  expect(errors).toEqual([])
 })
 
 test('item grid pans in both axes, retains clicks and navigates through minimap', async ({
@@ -173,7 +177,7 @@ test('graph source strings render literally and missing routes remain explicit',
             depth: null,
             x: 0,
             y: 0,
-            icon: 'javascript:alert(1)',
+            icon: 'x" onerror="window.__atlasIconInjected=true',
           },
         ],
         meta: { minecraft: '1.21.1', counts: {} },
@@ -186,6 +190,8 @@ test('graph source strings render literally and missing routes remain explicit',
   await openGraph(page)
   await expect(page.locator('#graph-results')).toContainText('<img src=x')
   await expect(page.locator('#graph-results img')).toHaveCount(0)
+  await expect(page.locator('#grid img')).toHaveCount(0)
+  expect(await page.evaluate(() => window.__atlasIconInjected)).toBeUndefined()
   await page.locator('#graph-results button').click()
   await expect(page.locator('#graph-counts')).toContainText('No modeled route')
   await expect(page.locator('#graph-recipe')).toBeDisabled()
@@ -266,4 +272,63 @@ test('Evidence uses the shared recipe renderer, including fallback records', asy
   await fallback.locator(':scope > summary').click()
   await expect(fallback).toContainText('No visual adapter')
   await expect(fallback.locator('.recipe-grid')).toHaveCount(0)
+})
+
+test('recipe nodes are interactive and keep disclosure state across culling', async ({
+  page,
+}) => {
+  await page.goto('/')
+  await page.locator('#search').fill('reliable_gliders:glider')
+  await page.locator('#grid .cell').click()
+  const canvas = page.locator('#detail .route-preview-canvas')
+  const node = canvas
+    .locator('.react-flow__node')
+    .filter({ has: page.locator('[data-recipe="reliable_gliders:glider"]') })
+  await expect(node).toBeVisible()
+  const disclosure = node.locator('.recipe-ingredients')
+  await disclosure.locator(':scope > summary').click()
+  await expect(disclosure).toHaveAttribute('open', '')
+  const step = page.locator('select[aria-label="Inspect route step"]')
+  const selected = await step.inputValue()
+  await canvas.focus()
+  for (let i = 0; i < 12; i++) await page.keyboard.press('ArrowDown')
+  await expect(node).toHaveCount(0)
+  await step.selectOption(selected)
+  await expect(node).toBeVisible()
+  await expect(disclosure).toHaveAttribute('open', '')
+  await node
+    .locator('[data-inspect="minecraft:phantom_membrane"]')
+    .first()
+    .click()
+  await expect(page.locator('#detail h2')).toHaveText('Phantom Membrane')
+  await page.locator('#item-back').click()
+  await expect(page.locator('#detail h2')).toHaveText('Glider')
+  await expect(
+    canvas.locator(
+      '[data-recipe="reliable_gliders:glider"] .recipe-ingredients',
+    ),
+  ).toHaveAttribute('open', '')
+})
+
+test('initial fit uses the measured narrow viewport', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await openGraph(page)
+  await page.evaluate(
+    () =>
+      new Promise((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(resolve)),
+      ),
+  )
+  const canvas = page.locator('#graph-canvas')
+  const camera = () =>
+    canvas.evaluate((node) => [
+      Number(node.dataset.zoom),
+      Number(node.dataset.panX),
+      Number(node.dataset.panY),
+    ])
+  const initial = await camera()
+  await page.locator('#graph-fit').click()
+  const fitted = await camera()
+  for (let i = 0; i < initial.length; i++)
+    expect(initial[i]).toBeCloseTo(fitted[i], 3)
 })

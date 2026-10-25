@@ -85,6 +85,31 @@ transform tests and native rendering evidence. Review that hook before upgrading
 Create. The [compatibility guide](compatibility.md#visual-compatibility-pass) identifies
 the tested JAR and limits; no server installation or saved-data migration is needed.
 
+### Terrain and rendering mods
+
+[Create Sky Compat](https://github.com/mannie-exe/create-sky-compat) and
+[Veil Iris Fix](https://github.com/mannie-exe/veil-iris-fix) have independent Java 21
+builds and GitHub releases. Compat replaces Sky Village Neighbors and belongs on
+both sides. Veil Iris Fix belongs only on clients. Neither belongs inside the
+resource-only `create-sky-fixes` JAR.
+
+Publish and verify those artifacts before updating their URL and digest pins in
+`empack.yml`. Use empack to regenerate bindings and the lock; inspect each export's
+release record for sidedness and duplicate/obsolete JARs. Keep the old neighbor
+mod out of every payload. The new common config is
+`create_sky_compat-common.toml`; client defaults and the server template select
+`create_sky_compat:islands_v1` for new worlds. Distributed seeds remain blank.
+
+For development, use a marked disposable empack workspace with local JAR inputs
+and the same three reference profiles. Never publish its local-input manifests or
+install new generation into existing play saves. Local previews are disposable;
+published artifacts and their source repositories own release identity.
+
+The native Ponder comparison covered shaders on/off, a working Create scene,
+world burner, inventory and shader reload. Veil's README owns renderer limits;
+Compat's verification guide owns terrain, optional loading and flight evidence.
+[Patch maintenance](patches.md) owns coupled updates and removal criteria.
+
 ## Dependency updates
 
 Use [dependency and patch maintenance](patches.md) for coupled versions, URL pins,

@@ -1,13 +1,13 @@
-// Spatial index and bounded Cytoscape projection; no acquisition semantics.
+// Spatial index and bounded graph projection; no acquisition semantics.
 export function indexScene(nodes, edges) {
   const values = [...nodes.values()]
   const bounds = { x1: Infinity, y1: Infinity, x2: -Infinity, y2: -Infinity }
   const tiles = new Map()
   for (const n of values) {
-    bounds.x1 = Math.min(bounds.x1, n.x - 80)
-    bounds.x2 = Math.max(bounds.x2, n.x + 80)
-    bounds.y1 = Math.min(bounds.y1, n.y - 60)
-    bounds.y2 = Math.max(bounds.y2, n.y + 60)
+    bounds.x1 = Math.min(bounds.x1, n.x - (n.width ?? 160) / 2)
+    bounds.x2 = Math.max(bounds.x2, n.x + (n.width ?? 160) / 2)
+    bounds.y1 = Math.min(bounds.y1, n.y - (n.height ?? 120) / 2)
+    bounds.y2 = Math.max(bounds.y2, n.y + (n.height ?? 120) / 2)
     const key = `${Math.floor(n.x / 512)},${Math.floor(n.y / 512)}`
     if (!tiles.has(key)) tiles.set(key, [])
     tiles.get(key).push(n)
@@ -16,7 +16,7 @@ export function indexScene(nodes, edges) {
   return { nodes, edges, bounds, tiles }
 }
 
-export function visibleNodes(scene, extent, padding = 100) {
+export function visibleNodes(scene, extent, padding = 300) {
   const found = []
   for (
     let x = Math.floor((extent.x1 - padding) / 512);
@@ -57,7 +57,6 @@ export function renderSlice(scene, extent, zoom, maxNodes = 1200) {
     do {
       buckets.clear()
       for (const n of candidates) {
-        if (!['item', 'capability'].includes(n.type)) continue
         const key = `${Math.floor(n.x / size)},${Math.floor(n.y / size)}`
         if (!buckets.has(key))
           buckets.set(key, {

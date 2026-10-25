@@ -1,57 +1,14 @@
 # Verification
 
-## Authoring jobs and atlas navigation, 2026-10-24
+## Authoring and graph baseline, 2026-10-24
 
-Working tree based on `7cf5797`. The checked web source digest is
-`50e4de1dedad7f0dfbd64efb0540a90d9392d0536eadc8f6b730403d342dd0dd`: SHA-256 of sorted relative paths, NUL,
-bytes, NUL for `web/src`, `web/scripts`, `web/tests` (excluding Python bytecode),
-package/lock files and Astro/Playwright configuration.
-
-- `pnpm verify`: formatting, 45 Node tests, Astro diagnostics and the four-page
-  static build pass. The existing large Three.js bundle warning remains.
-- `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser`: 25 tests pass, including existing
-  workbenches, model preview/config audit, job serialization and both map views.
-  After the final minimap sizing change, the four graph/grid browser checks passed again.
-- The earlier job pass ran `pnpm test:python` (nine passing tests),
-  `pnpm data:compile` and `pnpm data:check`. No Python or compiler changes were
-  made during the navigation redesign, so those checks were not repeated.
-
-The populated snapshot has 10,119 items and 12,503 modeled routes. Systems initially
-shows Create with 12 of its 31 connected namespaces: 13 nodes and 22 connections.
-Processing initially shows Mechanical Press with 62 contributing routes, six of
-65 inputs and six of 87 outputs. Coverage exposes 326 unmapped items; these are
-missing modeled acquisition routes, not established gameplay defects.
-
-Browser checks exercise all four graph tabs, machine selection, contributing routes,
-item inspection, acquisition/uses, an item with no modeled route, coverage filters,
-keyboard navigation, camera preservation across tabs/reload, minimap navigation,
-mouse panning, bounded mounted elements, literal source strings and mobile width.
-Grid checks exercise both pan axes, keyboard/minimap movement, click-versus-drag,
-filtering, empty results and bounded item rendering. The checks found a minimap
-covering the last filtered item; both minimaps now sit outside their content areas.
-Desktop and mobile layouts were also inspected in Chrome captures.
-
-Projection tests preserve AND input groups, OR alternatives, empty groups, source
-records and scenario markers. They check directed summary counts, machine records,
-a 500-alternative route and culling of a synthetic 10,000-node scene. Cytoscape is
-limited to 1,200 nodes and 3,000 edges. Large scenes simplify at low zoom; off-screen
-connections are omitted. The complete indexes remain in browser memory.
-
-A local headless Chrome sample at 1440×1000 displayed the default Systems view in
-145 ms and reported 1.4 ms for its 13-node projection update. These are single local
-samples, not a sustained frame-rate or hardware guarantee. Small focused scenes
-replace the former full dependency layout; All can still produce a dense view.
-
-Job checks cover fixed names/inputs, a real journal generator in a disposable
-source copy, failure recovery, byte limits, timeout escalation, overlap rejection,
-exact-ID cancellation and descendant termination. Publishing jobs reject manual
-cancellation. Windows process-tree termination remains unverified. Request locking
-covers one development server, not separate command-line processes or other servers.
-
-The graphs use existing runtime evidence and authored interpretation. They do not
-resolve acquisition gaps, establish resource budgets or verify gameplay balance.
-Source freshness warnings remain meaningful. No playing instance, world or release
-was changed during this app work.
+The worktree based on `7cf5797` passed `pnpm verify` (45 JavaScript tests),
+25 browser tests and nine Python tests. Named-job checks covered fixed inputs,
+serialization, time/output limits, cancellation and descendant termination.
+Browser checks covered workbench drafts, navigation, item/grid virtualization,
+source escaping, graph semantics and narrow layouts. The native snapshot contained
+10,119 items and 12,503 modeled routes. These records predate the React Flow pass
+below; current architecture and limits belong in [data](data.md).
 
 ## Release checks, 2026-10-24
 
@@ -346,17 +303,88 @@ and the separate Copycat adapter's `./gradlew check build` (two transform tests)
 Harness safety tests passed (four). Its saved-world verifier checked 4,828 blocks,
 32 equipment slots and 27 stationary specimens without mismatches.
 
-Reference archives were rebuilt with `empack build --profile prism --profile server
---yes --optional-defaults`, followed by `python3 scripts/patch-server-archives.py`.
-The client installed snapshot
-`9271e0af4fdc19efc3a2ebd5c9ea39feb8e3a1b7190e38e94c32a8dcf63e968e`;
-the existing pre-launch preparation reported zero further changes. The server
-already matched `8782059f76657cbf8b2624208f3ccdea2fe96d7ed99f6bbb770ec43fe82ffc73`.
-World/LOD file sizes and modification times across 39,910 files were unchanged
-during sync; saved settings/access-list hashes were also unchanged. Only the
-Resource Review datapack was then updated for its scoped revision-7 repair on load.
-The server world and seed were preserved. Release builds resolve the client
-adapter through empack's URL dependency and recorded hashes; see [build maintenance](../build.md#copycat-renderer).
+## Inspector and recipe baseline, 2026-10-24
+
+The worktree based on `59aa21f` passed 52 JavaScript tests, 30 browser checks,
+Astro validation, build and snapshot checks before the React Flow replacement.
+Slots measured 48×48 with alternatives outside the grid and a responsive arrow.
+All 18 vanilla smithing-trim recipes retained consuming uses without treating the
+sample iron chestplate as a produced item. Coverage remained 9,690 mapped,
+326 unmapped and one blocked. The adapter was checked against Minecraft 1.21.1
+`SmithingTrimRecipe` source. [Data](data.md#recipe-presentation) owns the semantics.
+
+## React Flow workspace, 2026-10-24
+
+Uncommitted worktree based on `59aa21f`, preserving the earlier inspector and
+smithing changes. Web source SHA-256 is `592ead6e7e034eb0d5dfea0c777fb83636c0f699db7e82dce03ddc7a49b3863f`
+(sorted relative paths, NUL, bytes, NUL for source/scripts/tests excluding bytecode,
+package/lock and Astro/Playwright/TypeScript configuration).
+
+- `pnpm verify`: 52 JavaScript tests, formatting, zero Astro diagnostics and the
+  four-page static build passed. The existing large Three.js chunk warning remains.
+- `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser`: 31 checks passed, including
+  journal/disclaimer/model authoring, named jobs, fixed recipe slots, trim output,
+  graph navigation and the source fallback. The final 11 targeted graph/recipe
+  checks passed after the completion audit: interactive node slots, disclosure
+  state after actual culling and Back, narrow-screen initial fit and rejected
+  markup in catalog icon paths.
+- A clean source copy without generated Minecraft data passed `pnpm build`.
+- `pnpm data:check`: 10,119 items, 9,249 recipes; coverage remains 9,690 mapped,
+  326 unmapped and one blocked. No runtime/world export was needed for UI changes.
+- Resource builders passed `--check`; journal had zero changes and the config
+  audit reported 228 files, zero drift and zero unregistered files.
+
+Headless Chrome at 1440×1000, local development mode, gave representative
+page/grid, graph-open and inline-inspector times of 156/234/190 ms, compared with
+172/232/134 ms before the renderer change. Warm repeated visits measured roughly
+50/150/182 ms. These are local samples with different rendered content, not
+statistically controlled performance equivalence. The richer inline inspector
+costs more; indexes are cached across ingredient navigation.
+
+On the 153-node Processing/All scene, final median/p95 frame intervals during
+90 synthetic wheel frames were 16.7/16.7 ms, matching the earlier sample. Before
+stabilizing node/edge objects and callbacks, the p95 reached 33.4 ms. The final
+scene draws 153 nodes and 152 connections versus the old sample's 111/110, so
+neither raw heap samples nor projection timing establish an apples-to-apples
+memory/rendering advantage. Separate Node measurements were 35.2 ms to index
+routes, 0.4 ms to project the 28-node Glider path and 7.6 ms for Processing/All.
+The canvas's `data-render-ms` measures projection only, not total painting.
+
+Desktop/narrow browser captures were reviewed. An early lost-navigation click,
+repeated node remeasurement and disclosure state lost during culling were corrected.
+The completion audit also reproduced an initial-fit mismatch on a 390-pixel
+viewport (zoom 0.597 before manual Fit versus 0.287 afterward). Initial fitting
+now waits for measured dimensions; the same test passes. Grid icons use the same
+local-path validation as recipe cards; malformed attribute payloads are rejected.
+The latest targeted run had no resize-loop warnings. Astro's development toolbar
+occasionally logs a failed audit fetch during test navigation; it is not a data/API
+failure and is absent from the static production interface.
+
+The separate Veil Iris Fix's build and native rendering checks are owned by its
+README and [upstream findings](../upstream.md). Web checks do not establish
+Minecraft rendering behavior.
+
+## Candidate generation survey integration
+
+On 2026-10-24, `pnpm data:islands` imported artifact-stamped native density and
+generated-resource reports from Create Sky Compat. `pnpm data:compile` retained
+those reports separately from the archived saved-world survey. The World & ores
+panel labels the development candidate, predicted density, observed blocks and
+weighted estimates; source JSON retains depth bins, descriptors and hashes.
+Desktop capture review confirmed the tables render, and the browser viewport
+check found no document overflow at 390 pixels.
+
+`pnpm verify` passed 52 JavaScript checks, Astro diagnostics and static build;
+`pnpm test:python` passed 11 checks, including rejected incomplete/unstamped reports
+and invalid count values. `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser` passed
+32 checks, including the existing embedded routes, recipes, authoring and new
+candidate panel. The initial default-channel attempt could not launch because
+Playwright Chromium was not installed; the documented Chrome channel was used.
+The static build retains the existing large-chunk warning.
+
+The native mod's verification guide owns resource, spawn, geode and flight
+observations. The Atlas import does not itself validate a world or certify gameplay.
+The import reads reports; it does not mutate Minecraft worlds or instances.
 
 ## Limits
 

@@ -1,12 +1,12 @@
 schema: 1
 records:
   - id: islands/current
-    title: Current Sky Archipelago configuration
+    title: Create Sky Islands
     evidence: configuration
-    detail: The pack uses CONSISTENT cluster spacing 1494, matching the current seed's effective DYNAMIC value. The former DYNAMIC 32 to 1500 range selects one spacing per world. RANDOM size mode, radius settings 10 to 500, density 0.4, center Y -32 to 300, thickness 300, VOID overlap and disabled ocean-biome islands are unchanged. Size settings are not hard bounds on every scaled island descriptor. Both earlier worlds were archived. The 0.1.8 random-seed horseshoe-spawn world is now retained with its seed saved beside the local backups and pinned in local server.properties. The server is stopped; this review does not regenerate terrain. The distributed server template remains seed-free.
+    detail: New worlds default to create_sky_compat:islands_v1, with a 1600-block anchor grid and bounded 180-block jitter. The expanded preset owns its terrain settings. CONSISTENT 1494 remains for ordinary legacy Sky Archipelago worlds; the former DYNAMIC setting chose one spacing for a whole world. Distributed server templates leave the seed blank.
     sources:
       [
-        'sky_archipelago-common.toml',
+        'create_sky_compat:islands_v1',
         'pack docs/development/worldgen.md',
         'runtime/worldgen_review.json',
       ]
@@ -18,7 +18,7 @@ records:
   - id: structures/deferred
     title: Structure generation tuning is a separate pass
     evidence: decision
-    detail: Sky Villages is installed with bounded absolute height, repaired pools and village-tag membership. Its default 70/65-chunk candidate distribution and biome eligibility remain unchanged. Unreleased source adds Sky Village Neighbors with a 64-block minimum terrain gap, 512-block maximum host distance and minimum native host radius 96; existing saved villages are unaffected. Structures Arise and the broader structure-density pass remain deferred. Delivery availability still depends on valid reachable endpoints.
+    detail: Sky Villages retains the repaired pools, village-tag membership and existing crop/loot policy. Create Sky Compat replaces Sky Village Neighbors and draws zero to three villages per anchor with weights 96:24:8:3; rejection can reduce the count. Structures Arise and broader structure tuning remain deferred. Delivery availability depends on valid reachable endpoints.
     sources: ['user direction, 2026-10-21']
   - id: structures/sky-village-resources
     title: Village foundations and crops
@@ -30,3 +30,9 @@ records:
         'Sky Villages 1.0.6 templates and house_processor',
         'Minecraft 1.21.1 RuleProcessor',
       ]
+  - id: islands/compat-candidate
+    title: Island terrain and resource samples
+    evidence: native-generation-samples
+    detail: Create Sky Compat adds a -128 to 768 build envelope, deep large anchors, independently sized companions, relative geology and a scoped altitude-pressure curve. Four-seed density samples averaged 1505–1588 blocks between nearest anchors and 303–343 blocks in anchor height. Distributed generated samples on six anchors found zinc, iron, copper, coal and logs on each. Counts, estimates, descriptors and artifact hashes appear separately under World & ores. These are isolated development samples, not a survey of the personal server world or proof of survival balance.
+    sources:
+      ['pack docs/development/worldgen.md', 'data/generated/islands.json']

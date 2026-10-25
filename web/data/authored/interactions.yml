@@ -32,7 +32,7 @@ records:
     inputs: []
     outputs: []
     evidence: implementation
-    detail: Quest board creates physical schematic cargo and route compasses. Village mode targets structure positions, not a simulated village economy or NPC demand. Four available quests, 500–2000 block routes, 120-minute deadline. Damaged cargo reduces payout. Destination validity in sparse sky terrain still requires a live flight test.
+    detail: Quest board creates physical schematic cargo and route compasses. Village mode targets structure positions, not a simulated village economy or NPC demand. Four offers and a 120-minute deadline. Search offsets are 500 to 2000 blocks, but ADQ 1.1.1 does not enforce that maximum after locating a structure; actual routes can be longer. Damaged cargo reduces payout. The isolated Compat candidate retains endpoint chunks, uses horizontal route-distance checks and retries unsafe Sky Village locate points within their bounds. A native offer was generated; completed cargo delivery remains unverified.
     sources:
       [
         'https://modrinth.com/mod/aeronautics-delivery-quests',

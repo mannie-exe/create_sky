@@ -13,11 +13,20 @@ test('real snapshot, virtualized map, item provenance and world profile', async 
   await expect(page.locator('#detail h2')).toHaveText('Glider')
   await expect(page.locator('.intro')).toHaveCount(0)
   await expect(page.locator('#detail')).toContainText('Mapped potential route')
-  await expect(page.locator('#detail .route-path')).toContainText(
+  await expect(page.locator('#detail .inline-route select')).toContainText(
     'Phantom Membrane',
   )
   await expect(page.locator('#detail')).toContainText('phantom membranes')
   await page.getByRole('button', { name: 'World & ores', exact: true }).click()
+  await expect(page.locator('#island-survey')).toContainText(
+    'isolated development samples',
+  )
+  await expect(page.locator('#island-survey')).toContainText(
+    'Zinc observed / estimated',
+  )
+  await expect(page.locator('#island-survey')).toContainText(
+    'Generated resource samples: seed 42',
+  )
   await page.locator('#ore-map').selectOption('create:zinc_ore')
   await expect(page.locator('#ore-profile')).toContainText('create:zinc_ore')
   await page.setViewportSize({ width: 390, height: 844 })

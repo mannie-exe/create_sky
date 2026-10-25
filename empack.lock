@@ -48,6 +48,7 @@ coverage:
   create-power-loader: complete
   create-propulsion-simulated: complete
   create-radars: complete
+  create-sky-compat-0.2.0-mc1.21.1-neoforge: unknown
   create-touch-ups: complete
   create-transmission: complete
   create-vibrant-vaults: unknown
@@ -131,7 +132,6 @@ coverage:
   simple-3d-iron-bars: complete
   simulated-copycats: complete
   sky-archipelago: complete
-  sky-village-neighbors: unknown
   sky-villages: complete
   sodium: complete
   sodium-extra: complete
@@ -146,6 +146,7 @@ coverage:
   travelersbackpack: complete
   treechop: complete
   txnilib: complete
+  veil-iris-fix-0.1.0-mc1.21.1-neoforge: unknown
   yacl: complete
   zfastnoise: complete
 dependencies:
@@ -2709,6 +2710,43 @@ dependencies:
       provider: modrinth
       selector: BLu2Yqfq
     title: "Create: Radars"
+  create-sky-compat-0.2.0-mc1.21.1-neoforge:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://github.com/mannie-exe/create-sky-compat/releases/download/v0.2.0/create-sky-compat-0.2.0-mc1.21.1-neoforge.jar
+        kind: url
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: f2cf2a5ae6473fc31731be547db1fdc34ed39681
+          sha512: >-
+            498e8cce3dc1df149e91812ea368534f77b8fb6d5a1753df2b7a0a1f11f2d55dbd8bf085359164cb8f3cafc449c13b6a7fdc17ade11ee224c7377bc38a0aead0
+        size: null
+      placements:
+      - destination: mods/create-sky-compat-0.2.0-mc1.21.1-neoforge.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: f2cf2a5ae6473fc31731be547db1fdc34ed39681
+          sha512: >-
+            498e8cce3dc1df149e91812ea368534f77b8fb6d5a1753df2b7a0a1f11f2d55dbd8bf085359164cb8f3cafc449c13b6a7fdc17ade11ee224c7377bc38a0aead0
+        location: null
+        source: url-file
+      slot: primary
+    identity:
+      key: create-sky-compat-0.2.0-mc1.21.1-neoforge
+      kind: url
+    incompatibilities: []
+    selection: null
+    source-selector: null
+    title: create-sky-compat-0.2.0-mc1.21.1-neoforge.jar
   create-touch-ups:
     content: resource-pack
     files:
@@ -7155,43 +7193,6 @@ dependencies:
       provider: modrinth
       selector: sHFNUlBU
     title: Sky Archipelago
-  sky-village-neighbors:
-    content: mod
-    files:
-    - acquisition:
-        downloads:
-        - >-
-          https://github.com/mannie-exe/sky-village-neighbors/releases/download/v0.1.0/sky-village-neighbors-0.1.0-mc1.21.1-neoforge.jar
-        kind: url
-      expected:
-        accepted-observation: null
-        digests:
-          sha1: d1304e06b00bc53a20461d0a3494841b64a732f3
-          sha512: >-
-            4b0be2964c69772a1dc411637226d2b5e3b325aa1c27cc216f7324aa278d965e38a52d9d7d66deb4f36297ab8e8d6c74075c40ea37377d8e9d9a608ffe66a60d
-        size: null
-      placements:
-      - destination: mods/sky-village-neighbors-0.1.0-mc1.21.1-neoforge.jar
-        environment:
-          client: required
-          server: required
-        layer: common
-      provenance:
-        conversions: []
-        declared-digests:
-          sha1: d1304e06b00bc53a20461d0a3494841b64a732f3
-          sha512: >-
-            4b0be2964c69772a1dc411637226d2b5e3b325aa1c27cc216f7324aa278d965e38a52d9d7d66deb4f36297ab8e8d6c74075c40ea37377d8e9d9a608ffe66a60d
-        location: null
-        source: url-file
-      slot: content
-    identity:
-      key: sky-village-neighbors
-      kind: url
-    incompatibilities: []
-    selection: null
-    source-selector: null
-    title: sky-village-neighbors
   sky-villages:
     content: mod
     files:
@@ -7924,6 +7925,43 @@ dependencies:
       provider: modrinth
       selector: vBbPDuOs
     title: TxniLib
+  veil-iris-fix-0.1.0-mc1.21.1-neoforge:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://github.com/mannie-exe/veil-iris-fix/releases/download/v0.1.0/veil-iris-fix-0.1.0-mc1.21.1-neoforge.jar
+        kind: url
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: d8441619372050a35cbe25887794c1f0b94b7e2a
+          sha512: >-
+            8247d724c6aa983a13ac89533362f2898339d52744f2897c9dce76bf229d5a70f67e9e36c83c7163d1fdd2b6bd522856db9fa4f1690af05238d596deee8bd063
+        size: null
+      placements:
+      - destination: mods/veil-iris-fix-0.1.0-mc1.21.1-neoforge.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: client
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: d8441619372050a35cbe25887794c1f0b94b7e2a
+          sha512: >-
+            8247d724c6aa983a13ac89533362f2898339d52744f2897c9dce76bf229d5a70f67e9e36c83c7163d1fdd2b6bd522856db9fa4f1690af05238d596deee8bd063
+        location: null
+        source: url-file
+      slot: primary
+    identity:
+      key: veil-iris-fix-0.1.0-mc1.21.1-neoforge
+      kind: url
+    incompatibilities: []
+    selection: null
+    source-selector: null
+    title: veil-iris-fix-0.1.0-mc1.21.1-neoforge.jar
   yacl:
     content: mod
     files:
@@ -8046,7 +8084,7 @@ dependencies:
       provider: modrinth
       selector: OnlVIpq5
     title: Fast Noise
-intent-revision: a4985e0d50ccd8e880a6f5b5dc8c2d8d72cde683a623cf47df4461765e90f7fb
+intent-revision: 04a06908bc9b233b7a7a4908e1793510ed13ee33809c2909a8147bafceb8cea1
 required-edges:
   accessories:
   - owo-lib

@@ -161,7 +161,9 @@ added. A malformed survey still fails compilation instead of being treated as ab
 loads details as needed and handles search, filters, hover details and canvas world
 plots. [`index.astro`](../../../web/src/pages/index.astro) composes the map views;
 [`atlas.css`](../../../web/src/styles/atlas.css) owns map presentation. There is no database,
-account system, React runtime or production application server.
+account system or production application server. React islands own graph workspaces
+and shared recipe cards; Astro retains page/layout composition and the existing
+TypeScript controllers own the item grid and authoring pages.
 
 ## Graph projection and rendering
 
@@ -182,27 +184,39 @@ labeled. These views do not run another
 reachability solver, change acquisition semantics or lay out the entire dependency
 graph. Catalog, routes and indexes remain in browser memory.
 
-`src/lib/atlas-graph.ts` lazily loads Cytoscape.js, handles view state and connects
-item selection to the existing inspector. `src/lib/graph-scene.mjs` indexes scene
-positions into 512-unit spatial bins. Only a viewport plus a 100-unit margin is
-mounted, capped at 1,200 nodes and 3,000 edges. Scenes above 200 nodes simplify
-below zoom 0.35; an over-cap viewport also uses overview markers. Small summaries
-keep their labels at fit scale. Edges require both endpoints in the mounted set.
-Unchanged elements are retained during pan; this is rendering virtualization, not
-streaming storage. Source records and selectors remain available outside the canvas.
+`components/graph/GraphWorkbench.tsx` owns full-graph controls and state;
+`RoutePreview.tsx` embeds the same canvas in item details. `atlas-graph.ts` bridges
+navigation from the retained page controller; `route-preview.tsx` mounts and
+unmounts the embedded React root. `route-data.ts` caches compiled records with
+explicit invalidation. Recipe interpretation and graph projections remain independent
+of React; changing the renderer does not run a second progression solver.
 
-Both views use `components/map/Minimap.astro` and `src/lib/minimap.ts` for cached
-point overviews, viewport outlines and pointer/keyboard navigation. The item grid
-keeps native scrolling and its existing visible-cell rendering, with mouse drag
-panning and hidden scrollbars. The graph uses Cytoscape's camera; its minimap sits
-below the canvas so it cannot cover nodes. The grid minimap also sits outside its
-viewport and scales each axis independently; graph minimaps preserve scene proportions.
+`GraphCanvas.tsx` uses React Flow custom nodes with clickable item slots, recipe
+cards and expandable evidence. The existing vertical layout is expanded for
+380×440 recipe nodes and 190×86 item/source nodes. `graph-scene.mjs` indexes centers
+in 512-unit bins and queries a viewport plus a 300-unit margin. At most 400 normal
+nodes are mounted, plus an already focused node when needed to preserve focus.
+Large scenes aggregate at zoom below 0.35; recipe details appear at zoom 0.55 or
+when focused. Edges require both endpoints and remain capped at 3,000. Omitted
+records stay available through selectors and source records. This is rendering
+virtualization, not streaming storage or a complete production-planning graph.
+
+Recipe disclosure state lives outside culled nodes. Full-graph tabs retain cameras
+and selection; item-detail route state survives Back navigation while its detail
+record remains cached. A new snapshot can replace these records. Nodes and edges
+cannot be moved, connected or deleted as authored data through this view.
+
+`minimap.ts` supplies cached point overviews and pointer/keyboard navigation.
+Minimaps sit outside the canvases. The item grid retains native scrolling, visible
+cell rendering and independent axis scaling; graph minimaps preserve proportions.
 
 ## Recipe presentation
 
-`src/lib/recipe-view.mjs` owns the shared HTML renderer and layout adapters;
-`src/styles/recipes.css` owns their styling. Item details, Evidence and graph
-selection use the same renderer. Layout uses `recipe.json.type`, since the registry
+`src/lib/recipe-view.mjs` owns pure layout adapters;
+`components/recipes/RecipeCard.tsx` owns shared slots and interactive rendering.
+`recipe-mount.tsx` gives retained HTML lists explicit ownership of React recipe
+roots. Item details, Evidence and graph nodes/selection use the same component;
+`src/styles/recipes.css` owns its styling. Layout uses `recipe.json.type`, since the registry
 recipe type may describe a broader category. Shaped slots follow pattern symbols
 and key insertion order; exported ingredient groups supply resolved tag choices.
 Appended machine/capability groups are operating requirements, not consumed slots.
@@ -210,11 +224,47 @@ Quantities, fluid amounts, components, probabilities and conditions remain attac
 to their source JSON. Source records are always available.
 
 Adapters cover crafting, mechanical crafting, cooking, stonecutting, smithing
-transforms and common Create processing. Unsupported types, including sequenced
+transforms/trims and common Create processing. Unsupported types, including sequenced
 assembly's weighted outcomes, get a source fallback rather than guessed GUI logic.
 Cards cap visual slots, outputs and expanded alternatives, with explicit omissions.
 All labels/records are HTML-escaped and icons accept only generated local PNG paths.
 No additional Java exporter or execution of mod UI code is involved.
+
+Slots are fixed 48-pixel squares. Tag names, alternative lists and component data
+live outside the grid; badges link to those records without changing slot geometry.
+Container queries switch the entire input/arrow/output layout together. This is
+presentation responsive to the panel width, not a change to recipe shape.
+
+Minecraft 1.21.1's `SmithingTrimRecipe.assemble` copies the supplied base stack and
+sets its trim component; `getResultItem` returns a sample iron chestplate. The
+acquisition adapter excludes that sample from producing edges, retains all input
+uses and avoids duplicating the smithing workstation. The visual adapter labels
+the result as a modified base, without claiming to render its trim appearance.
+
+## Inspector design
+
+Organize around acquisition, uses and evidence rather than exposing every source
+field at equal weight. Keep the current item, path and recipe in context; offer
+Back for ingredient navigation and the larger graph for exploration. Use compact,
+stable slots for spatial information and expandable records for text/alternatives.
+Keyboard access and source evidence remain available alongside visual navigation.
+These are project decisions, not a claim that the sibling sites define a formal
+shared UX standard; their Astro composition and disclosure conventions are retained.
+
+The [Minecraft Wiki slot documentation](https://minecraft.wiki/w/Template:Inventory_slot)
+separates icons, counts, tooltips and alternative frames; its
+[smithing template](https://minecraft.wiki/w/Template:Smithing_Table) defines three
+input roles. The [FTB grid guide](https://ftb.fandom.com/wiki/Feed_The_Beast_Wiki:Crafting_grid_guide)
+uses machine-specific templates and shared item/ore-dictionary cells. These support
+small family adapters built from shared slots, rather than one guessed custom GUI.
+[EMI](https://modrinth.com/mod/emi) also treats tag identity as useful information.
+The Atlas uses explicit alternatives instead of automatically cycling icons.
+
+The interactive graph uses [React Flow custom nodes](https://reactflow.dev/learn/customization/custom-nodes)
+inside [Astro framework islands](https://docs.astro.build/en/guides/framework-components/).
+Follow [React Flow performance guidance](https://reactflow.dev/learn/advanced-use/performance)
+when changing node subscriptions or memoization. Keep viewport updates separate
+from data indexing and preserve the named-job execution boundary.
 
 ## Page and component structure
 
@@ -317,6 +367,34 @@ Sky Archipelago layout calls using a read-only seed/settings input. Its descript
 are not measured island edges or crossing distances. The pack's world-generation
 document owns the candidate choice and live-instance boundary. Input fingerprints
 include `.properties` files so mixin configuration changes mark captures stale.
+
+## Island generation surveys
+
+`pnpm data:islands --terrain /path/to/terrain.json --resources /path/to/islands-42.json /path/to/islands-8675309.json`
+imports the maintained Create Sky Compat native probes. Run `pnpm data:compile`
+after import. This CLI reads reports, not worlds, and does not run Java or alter
+the installed pack. `tools/probe.py --terrain --samples 4` and `--islands --seed N --heap 6G`
+in that mod project own generation and native descriptor export.
+
+`data/generated/islands.json` retains each input's SHA-256, mod/probe artifact
+hashes, seed, descriptors and method. Density predictions before features remain
+separate from observed decorated blocks and weighted estimates. The resource
+probe samples one deterministic random chunk per cell in a 7×7 spatial grid
+within twice the anchor descriptor radius. Each observed block is weighted by
+the number of chunks in its stratum; only columns dominated by that anchor count.
+Companion descriptors retain native cell membership but do not contribute to anchor estimates. Geological frames and sampled center-line void gaps are exported separately; neither descriptor radii nor those straight lines establish safe travel.
+Rare features can be missed, and sampled headroom is not a global minimum.
+
+`IslandSurvey.astro` and `islands.ts` add sampled terrain/resource tables to World & ores, using
+the same table component as structure surveys. This dataset remains visible if
+the saved-world survey is absent. Full block counts, reference-depth ore bins,
+sampled surface biomes and timing remain available in the linked source JSON.
+Timings include chunk generation and scanning on the recorded host; heap readings
+are end-of-run values, not peaks or controlled performance benchmarks.
+
+Development surveys do not automatically replace saved-world acquisition evidence.
+Import new reports after changing the owning mod; artifact hashes identify the
+measured versions but the Atlas does not monitor sibling source checkouts.
 
 ## Resource-pack research
 

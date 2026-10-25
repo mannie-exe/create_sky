@@ -13,7 +13,7 @@ record what was tested at the time; they do not define current defaults.
 | [Graphics](players/graphics.md) | DH rendering, shader choices and missing LODs |
 | [Servers](players/server.md) | Hosting, world preservation and DH generation |
 | [Included content](MODLIST.md) | Exact mods, resource packs and shaders in current source |
-| [Release notes](RELEASE_NOTES.md) | Unreleased changes; [published v0.1.9](releases/0.1.9.md) |
+| [Release notes](RELEASE_NOTES.md) | Current source notes; [previous v0.1.11](releases/0.1.11.md) |
 
 ## Development and maintenance
 

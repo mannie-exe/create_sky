@@ -471,3 +471,28 @@ test('solid burner opens heated processing without a blaze, while fuel and setup
   assert(ordinaryBlaze.depth.has('atlas:heated'))
   assert(!ordinaryBlaze.depth.has('atlas:superheated'))
 })
+
+test('trim sample output cannot manufacture armor or duplicate its workstation', () => {
+  const recipe = {
+    id: 'trim',
+    output: 'minecraft:iron_chestplate',
+    json: {
+      type: 'minecraft:smithing_trim',
+      template: { item: 'template' },
+      base: { tag: 'armor' },
+      addition: { item: 'quartz' },
+    },
+  }
+  const route = processingRoute(
+    recipe,
+    { armor: ['leather_boots', 'diamond_helmet'] },
+    { 'minecraft:smithing_trim': 'minecraft:smithing_table' },
+  )
+  assert.deepEqual(route.outputs, [])
+  assert.deepEqual(route.inputs, [
+    ['template'],
+    ['leather_boots', 'diamond_helmet'],
+    ['quartz'],
+    ['minecraft:smithing_table'],
+  ])
+})

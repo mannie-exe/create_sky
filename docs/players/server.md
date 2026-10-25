@@ -29,9 +29,10 @@ memory use with the same workload. No server-specific GC tuning is shipped.
 
 ## Terrain and distant generation
 
-New dedicated worlds use `sky_archipelago:sky_islands`. The common Sky Archipelago
-configuration mirrors the **eee** preset because dedicated servers prioritize
-that configuration. Preserve it when updating an existing world.
+New dedicated worlds use `create_sky_compat:islands_v1`. Keep Create Sky Compat
+and the generation configuration with the world. The preset requires a new world;
+changing `level-type` does not convert an existing save. Generation identity checks
+reject incompatible changes to a marked world.
 
 DH uses `CHUNKS_ONLY` with `INTERNAL_SERVER` to build LODs from the island
 generator's actual chunks. The authored worker settings are four threads and
@@ -52,7 +53,7 @@ See [missing distant terrain](graphics.md#missing-distant-terrain) for client ch
 Stop the server cleanly before replacing files. Retain:
 
 - The entire world directory, including dimension data, DH databases and Sable sublevels.
-- The world's Sky Archipelago configuration and presets.
+- The world's Sky Archipelago and Create Sky Compat configuration and presets.
 - Server-specific settings, whitelist, operators and ban lists.
 - DH's installation-specific configuration, including its generated `serverId`.
 
@@ -69,11 +70,10 @@ or use SQLite's backup API for a consistent snapshot.
 The client-only polygon fix and shader presets are excluded from server exports.
 An update to those alone does not require changing the server's mod set.
 
-Version 0.1.6 fixes cluster spacing to 1494 and disables
-a conflicting biome optimization. Existing installations retain their settings;
-normal pack updates should preserve worlds and LODs. See the
-[generation review](../development/worldgen.md) before deliberately creating a
-replacement world. The published 0.1.5 defaults remain historical release settings.
+Version 0.1.12 changes the default for **new** worlds to the expanded island
+preset. Ordinary existing Sky Archipelago worlds retain their old terrain and
+neighbor filtering. Preserve their original generation settings. See the
+[generation guide](../development/worldgen.md) before creating a replacement world.
 
 ## Fresh random-world pregen
 

@@ -48,23 +48,38 @@ export function createMinimap(
       (((e.clientY - r.top) * canvas.height) / r.height - y) / scaleY,
     )
   }
-  canvas.addEventListener('pointerdown', (e) => {
-    if (e.button !== 0) return
-    canvas.focus()
-    canvas.setPointerCapture(e.pointerId)
-    move(e)
-  })
-  canvas.addEventListener('pointermove', (e) => {
-    if (canvas.hasPointerCapture(e.pointerId)) move(e)
-  })
+  const events = new AbortController()
+  canvas.addEventListener(
+    'pointerdown',
+    (e) => {
+      if (e.button !== 0) return
+      canvas.focus()
+      canvas.setPointerCapture(e.pointerId)
+      move(e)
+    },
+    { signal: events.signal },
+  )
+  canvas.addEventListener(
+    'pointermove',
+    (e) => {
+      if (canvas.hasPointerCapture(e.pointerId)) move(e)
+    },
+    { signal: events.signal },
+  )
   const release = (e: PointerEvent) => {
     if (canvas.hasPointerCapture(e.pointerId))
       canvas.releasePointerCapture(e.pointerId)
   }
-  canvas.addEventListener('pointerup', release)
-  canvas.addEventListener('pointercancel', release)
-  canvas.addEventListener('keydown', keyboard)
-  return { setScene, draw }
+  canvas.addEventListener('pointerup', release, { signal: events.signal })
+  canvas.addEventListener('pointercancel', release, { signal: events.signal })
+  canvas.addEventListener('keydown', keyboard, { signal: events.signal })
+  return {
+    setScene,
+    draw,
+    destroy() {
+      events.abort()
+    },
+  }
 }
 
 export function scrollNavigation(
