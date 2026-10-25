@@ -48,6 +48,28 @@ per-player bandwidth limit is 500 KB/s, so a fresh client cache can take time
 to fill. A large pregen does not override the client's LOD display radius.
 See [missing distant terrain](graphics.md#missing-distant-terrain) for client checks.
 
+## Webmap
+
+Create Sky 0.1.15 includes BlueMap 5.7 in server exports only. Clients do not
+download BlueMap or its configs.
+
+On a fresh server, review BlueMap's resource-download terms and set
+`accept-download: true` in `game/config/bluemap/core.conf` if you agree, then
+restart. Existing installations retain their acceptance and operator settings.
+The enabled web server listens on TCP **8100**; open `http://localhost:8100/`
+on the host. Public access requires the owner's routing/firewall configuration.
+
+The Overworld map covers all saved chunks with no horizontal boundary, including
+unvisited pregenerated terrain, across Y -128 to 767. It does not generate terrain
+itself. One render worker limits competition with gameplay and DH. Disabling cave
+culling preserves shaded island undersides but also renders interiors and increases
+tile size. Zoom in for accurate island geometry; distant tiles remain a height field.
+
+Configuration under `game/config/bluemap/` is seeded once, so future pack installs
+preserve local edits. If upgrading the earlier local setup, remove active `min-x`,
+`max-x`, `min-z` and `max-z` from `maps/world.conf`, then restart. Use console command
+`bluemap` for status; new saved chunks are picked up automatically.
+
 ## Updates
 
 Stop the server cleanly before replacing files. Retain:

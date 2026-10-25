@@ -1,7 +1,7 @@
 schema: 5
 pack:
   name: Create Sky
-  version: 0.1.14
+  version: 0.1.15
   id: create_sky
   authors:
     - mannie-exe
@@ -13,6 +13,10 @@ runtime:
   minecraft: 1.21.1
   java: 21
 dependencies:
+  bluemap:
+    source: modrinth:swbUV1cr
+    pin: 8iJcPOHJ
+    side: server
   copycat-bar-extrusion:
     side: client
     source:
@@ -154,7 +158,7 @@ dependencies:
     pin: 3Y4r0ItR
   create-radars:
     source: modrinth:BLu2Yqfq
-    pin: AntNFNAx
+    pin: R0YpyH4w
   create-transmission:
     source: modrinth:QFCkBuIh
     pin: dOsq88jX
@@ -241,10 +245,10 @@ dependencies:
     pin: AYDaLPK8
   fzzy-config:
     source: modrinth:hYykXjDp
-    pin: uG7oHgw6
     environment:
       client: required
       server: required
+    pin: uG7oHgw6
   hoofprint:
     side: client
     source:
@@ -277,7 +281,7 @@ dependencies:
     pin: cxUohR7A
   jei:
     source: modrinth:u6dRKJwZ
-    pin: iv3KiVkE
+    pin: u8LQk1jf
   kotlin-for-forge:
     source: modrinth:ordsPcFz
     pin: uhJhCT7X
@@ -329,7 +333,7 @@ dependencies:
       sha512: 20c40e4bd4104069b65455065cbb9beac829efa314b6e9e960b269725727f0d4f9bed6946815e8b573223cd4a76feddd1e5fbfb17c7293fa6a25545299e1afbc
   modernfix:
     source: modrinth:nmDcB62a
-    pin: 7Jy58lnT
+    pin: ZDZENbHH
   moreculling:
     side: client
     source: modrinth:51shyZVL
@@ -374,7 +378,7 @@ dependencies:
   reliable-emi:
     side: client
     source: modrinth:N9WucjHL
-    pin: 2TeI2Zyn
+    pin: aMKmQMTe
   rpl:
     source: modrinth:B3pb093D
     pin: hZ6B2Z0x
@@ -393,14 +397,14 @@ dependencies:
     pin: uMOpc5uV
   sodium-extra:
     source: modrinth:PtjYWJkn
-    pin: ufpcXU9c
     environment:
       client: required
       server: unsupported
+    pin: T819dLGI
   sound-physics-remastered:
     side: client
     source: modrinth:qyVF9oeo
-    pin: Dd2tmpsk
+    pin: 85fA7L1W
   spyglass-improvements:
     side: client
     source: modrinth:Z6ykjRlM
@@ -432,7 +436,7 @@ dependencies:
       sha512: 3a91efbc596db7192792de069e814aeb3e9e1d771267ea5a5d4371b1311bef26a7f9bd02a28619026c23e4df702d99a1bbaaf732e06179dd4999dbd01aaf920c
   travelersbackpack:
     source: modrinth:rlloIFEV
-    pin: LcOq0PxG
+    pin: ZqrwMSn5
   treechop:
     source: modrinth:gHoB7SHO
     pin: iLXWmfax
@@ -461,8 +465,8 @@ dependencies:
     pin: H13U56dc
     source: modrinth:create-propulsion-simulated
   questlog:
-    pin: 6ZFtauOf
     source: modrinth:questlog
+    pin: Pykla7tJ
   sky-villages:
     pin: 3InSHTOp
     source: modrinth:sky-villages

@@ -30,6 +30,7 @@ world generation, recipe execution or GPU behavior.
 
 | Family | Intent | Recheck on update |
 | --- | --- | --- |
+| Create Radars jammer and warning receiver | Repair output, shaft item and copper-plate tag references | Registered outputs and nonempty ingredients; keep the resource JAR ordered after `create_radar` and remove overrides once upstream recipes are valid |
 | Create Deco placard; Interiors recoloring; Bells & Whistles metro window; Design n' Decor cogwheel tag | Repair ingredient/tag references | Native item/tag decoding and intended ingredient membership |
 | Aero Cables and TFMG overrides | Condition recipes on optional mods | Startup with optional mods absent; retain recipes when their dependencies are present |
 | Propulsion loot and processing | Correct singular loot paths and processing-time keys; suppress overlapping platinum crushing | Four block-drop rolls, preserved 150/50-tick work values, and no exact crushing collisions |

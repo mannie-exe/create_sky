@@ -34,11 +34,25 @@ documents relevant to the task. Runtime and dependency pins live in `empack.yml`
 - Keep journal sources in `authoring/journal`, configuration rationale/digests in
   `authoring/changes`, maintained resources in `pack-fixes`, and the Atlas in `web`.
   Regenerate derived content through its owning scripts rather than editing copies.
+- Keep static resource/data changes in pack-owned sources and generators;
+  distinguish the resource-only JAR from the visual patch resource pack. Runtime
+  geometry, framebuffer and terrain hooks belong to their independent mods.
+  Review source versions, generated outputs, attribution and removal conditions
+  together when updating a patched dependency. Do not silently edit downloaded packs.
+- Prefer vanilla-compatible visuals across vanilla and modded content. Inspect
+  model inheritance, UVs, animations and renderer ownership before adding overrides.
+  Reuse the Resource Review world and harness for visual checks; ask before taking
+  desktop focus. Preserve the useful fixture, clean up disposable runs, and report
+  source inspection separately from what was actually seen in game.
 - Verify builds and relevant runtime behavior. Separate inspection, automated
   checks and actual gameplay; report untested compatibility and progression claims.
 - Sync instances only when authorized and stopped. Preserve worlds, seeds, LODs,
   player settings and access lists. Permission to inspect or sync is not permission
   to regenerate a world. Keep test worlds and downloads disposable.
+- World resets and pregen are task-specific operations, not release defaults.
+  After an authorized pregen starts, leave it running without progress polling
+  unless a failure is observed or the user asks. Refresh Atlas world evidence from
+  the resulting saved world when requested; DH cache data is not a world save.
 - Keep existing backups and the preserved empack findings report. Remove temporary
   runs, logs and experiments after incorporating useful evidence into owning docs.
 - Do not commit, push or release without authorization. Never commit credentials,

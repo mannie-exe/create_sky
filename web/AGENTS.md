@@ -16,6 +16,29 @@ read only the setup, data or verification sections needed for the task.
 - Preserve unrelated workspace changes. Do not treat the current uncommitted tree
   as disposable bootstrap output.
 
+## Architecture and authoring
+
+Keep Astro pages and shared layouts; use React islands for interactive workbenches
+and React Flow views. Reuse components, recipe adapters and semantic style tokens
+before adding variants. Keep item slots fixed in proportion, labels outside them,
+and input/output layouts usable at narrow widths. Graph views need usable detail,
+navigation and a minimap without mounting every recipe editor at once.
+
+Run authoring through named, allowlisted jobs with bounded inputs, output and
+concurrency. Do not add arbitrary shell/Python execution or filesystem access.
+Keep source editing, generation, snapshot refresh and instance sync distinct.
+Refresh triggers are sufficient unless evidence warrants a live state system.
+
+Journal mechanics, locale prose and keyed disclaimers have separate owners.
+Preserve the distinction between left-hand requirements and short right-hand
+objective labels. Preview flavor, requirements, description and disclaimer in that
+order; optional flavor must not obscure detectable completion conditions.
+
+Show source, uncertainty and missing coverage where they help decisions. Recipe
+diagrams represent exported data, not simulated game GUIs; do not imply that a
+placeholder output proves dynamic crafting behavior. Keep controls and prose
+direct, without introductory marketing sections.
+
 ## Verification
 
 Run `pnpm verify` for application changes and `pnpm test:python` for Python changes.

@@ -216,3 +216,39 @@ integrated world. No cause or pack-specific attribution is established.
 null **sprite field** in a late-created entry; this capture had a null entry in
 the stitch loop, so it is not an established duplicate. Preserve that distinction
 if reproducing or reporting it. No upstream report or workaround was submitted.
+
+## Fzzy Config fix1 packaging
+
+The Modrinth NeoForge artifact `bp6Aw3FM` (`0.7.7+fix1+1.21+neoforge`)
+contains literal `version = "${version}"` in `META-INF/neoforge.mods.toml`.
+An isolated NeoForge 21.1.264 / Java 21.0.13 server rejected it with
+`InvalidModFileException: Illegal version number specified version`; EMI Loot then
+reported its missing Fzzy dependency. The previous `uG7oHgw6` artifact contains
+a concrete version. Keep that selection until a corrected artifact passes native
+loading. This was reproduced locally on 2026-10-25; no upstream issue was filed.
+
+[Rejected artifact](https://modrinth.com/mod/fzzy-config/version/bp6Aw3FM).
+
+## Create Radars 5.0.1 recipes
+
+The 5.0.1 artifact registers `create_radar:directional_jammer`, but its jammer
+recipe produces the absent `create_radar:jammer` and requires an empty
+`create:shaft` item tag. Its warning-receiver recipe uses `c:plates/copper` as an
+item ID rather than a tag. Native loading rejected both recipes on 2026-10-25.
+The pack fixes the jammer output and shaft ingredient, and restores the copper
+plate tag; shapes and other quantities remain upstream values. This makes the
+registered directional jammer craftable; it does not restore the removed item.
+Recheck these exact recipe IDs when updating Radars and retire the overrides when
+upstream provides valid equivalents. No upstream issue was filed.
+
+## Recipe-viewer shutdown observation, 2026-10-25
+
+Closing the isolated client while an EMI recipe screen was open logged a caught
+`NullPointerException` in `JemiPlugin.lambda$register$3`: JEI had already announced
+its runtime unavailable, while the remaining tooltip render queried that runtime.
+Recipe viewing worked before shutdown. Normal window close then stalled in
+`Minecraft.disconnect`; the integrated server remained in its tick wait, so the
+disposable test process was terminated. A causal link between that stall and
+the tooltip error has not been established. This is a shutdown-order observation with
+JEI 19.70.0.460, EMI 1.1.24 and Reliable EMI 4.8.0, not an established regression
+or gameplay failure. No upstream issue was filed.

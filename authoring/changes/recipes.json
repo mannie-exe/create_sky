@@ -365,6 +365,20 @@
       "review": "reviewed",
       "reason": "Use the Create 6 processing_time field so the shipped recipe duration is recognized; retain ingredients and outputs.",
       "reference": "docs/development/progression.md"
+    },
+    {
+      "path": "pack-fixes/data/create_radar/recipe/crafting/radar_jammer.json",
+      "sha256": "8a90d443d24ca382ab297e79fb1753c25b2fedebb308bceae7b89e8d283b47af",
+      "review": "reviewed",
+      "reason": "Restore the upstream jammer recipe using its registered directional-jammer output and the actual shaft item; the old output and shaft tag do not resolve.",
+      "reference": "docs/development/upstream.md#create-radars-501-recipes"
+    },
+    {
+      "path": "pack-fixes/data/create_radar/recipe/crafting/radar_warning_reciever.json",
+      "sha256": "6c5434cfbc384ae658474d305eccbda112c69eb3f9235ed1d82188cf98340eba",
+      "review": "reviewed",
+      "reason": "Interpret the upstream copper-plate ingredient as its intended tag, preserving the receiver recipe shape and cost.",
+      "reference": "docs/development/upstream.md#create-radars-501-recipes"
     }
   ]
 }

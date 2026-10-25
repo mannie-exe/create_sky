@@ -193,9 +193,9 @@
     },
     {
       "path": "overrides/common/config/create_radar-server.toml",
-      "sha256": "b5ea5960792361d2f2045dddd28eeaa250f88e8b887fc1be82698ccd58b19d69",
-      "review": "inherited",
-      "reason": "Retained from the imported pack. Individual setting intent has not been reviewed.",
+      "sha256": "c3e461a4c8026b03d59587b76c4b0fc7e639bfa3f85a56031df09a0793347d2c",
+      "review": "reviewed",
+      "reason": "Adopt the 5.0.1 targeting/controller schema and remove its obsolete link-range key; preserve the pack's existing radar range, vertical scan and dish-growth values.",
       "reference": "docs/development/decisions.md"
     },
     {
@@ -536,9 +536,9 @@
     },
     {
       "path": "overrides/common/config/travelersbackpack-server.toml",
-      "sha256": "5a76437c5de30a4627649b628c1729ba34bfac796af5a0b9d16af3c218e00161",
-      "review": "inherited",
-      "reason": "Retained from the imported pack. Individual setting intent has not been reviewed.",
+      "sha256": "4d7112631b449a8f39a9b987177ab0a0c888e876fe5d0a2ac15e3d0ee17ca727",
+      "review": "reviewed",
+      "reason": "Adopt the 10.1.40 schema with explicit dropped-backpack persistence, fire and explosion resistance; retain existing equipment, capacity and sleeping-bag choices.",
       "reference": "docs/development/decisions.md"
     },
     {
@@ -617,6 +617,34 @@
       "review": "reviewed",
       "reason": "Native defaults reviewed for the controls, equipment and resource-pack integration; intentional settings are described in compatibility.md.",
       "reference": "docs/development/compatibility.md#controls-and-resource-packs"
+    },
+    {
+      "path": "overrides/server/config/bluemap/core.conf",
+      "sha256": "13657b39ff5faf1b60a102563dcbae8117c65c95cd28e01ccca36e1f8ef0ddca",
+      "review": "reviewed",
+      "reason": "Limit map rendering to one worker and discover mod resources. Resource download consent belongs to each server owner.",
+      "reference": "docs/development/build.md#server-webmap"
+    },
+    {
+      "path": "overrides/server/config/bluemap/maps/world.conf",
+      "sha256": "056f56782c203dc72173a218219924e331fac99b35c632351f27fa271a5563de",
+      "review": "reviewed",
+      "reason": "Map all saved Overworld chunks across the full Compat height range, preserving island undersides without horizontal coverage limits.",
+      "reference": "docs/development/build.md#server-webmap"
+    },
+    {
+      "path": "overrides/server/config/bluemap/webapp.conf",
+      "sha256": "bd8697a41bde86cd6b1ba229adbaf766c6bd592dbd8d363888c098226e443752",
+      "review": "reviewed",
+      "reason": "Use perspective view with moderate detailed and distant view defaults; these distances do not limit map generation.",
+      "reference": "docs/development/build.md#server-webmap"
+    },
+    {
+      "path": "overrides/server/config/bluemap/webserver.conf",
+      "sha256": "23df86003bafadcabf859dee07fa781f2a0a34fe59ee9966704f8ade037d47b9",
+      "review": "reviewed",
+      "reason": "Serve the server-only webmap on TCP 8100; public routing remains an operator decision.",
+      "reference": "docs/development/build.md#server-webmap"
     }
   ]
 }

@@ -214,6 +214,10 @@ bindings:
       layer: client
 
 policies:
+  config/bluemap/core.conf: seed
+  config/bluemap/maps/world.conf: seed
+  config/bluemap/webserver.conf: seed
+  config/bluemap/webapp.conf: seed
   icon.png: seed
   options.txt: seed
   "shaderpacks/BSL_v10.1.8.zip.txt": seed

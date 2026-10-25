@@ -1,57 +1,56 @@
-# Create Sky 0.1.14
+# Create Sky 0.1.15
 
-## Islands
+## Mod updates
 
-Update Create Sky Compat to 0.4.0. Cluster cells are now 2400 blocks apart, with
-unchanged 90-block jitter and 0.85 activation. Nominal horizontal island sizes
-and companion orbits remain unchanged. Complete terrain supports retain at least
-354 blocks of clearance; sampled shore crossings ranged roughly 850 to 2600 blocks.
+Minecraft remains 1.21.1 and NeoForge remains 21.1.264.
 
-Main islands select total-height targets of 250 to 400 blocks. Each selected depth
-sets its safe placement within the requested Y200 to 490 band. A continuous curved
-underside replaces the density jump responsible for sliced-looking bottoms.
-Geology follows each island's body; native ore counts and recipes are unchanged.
-The fresh-world fallback checks actual generated support before setting spawn.
+| Mod | Previous | Updated |
+| --- | --- | --- |
+| Create: Radars | 0.4.9.4 | 5.0.1 |
+| JEI | 19.64.0.455 | 19.70.0.460 |
+| ModernFix | 5.27.26 | 5.27.27 |
+| Questlog | 3.4.1 | 3.5.0 |
+| Reliable EMI | 4.7.12 | 4.8.0 |
+| Sodium Extra | 0.9.4 | 0.9.5 |
+| Sound Physics Remastered | 1.5.1 | 1.5.2 |
+| Traveler's Backpack | 10.1.39 | 10.1.40 |
 
-## Configuration and Atlas
+These include Radars monitor fixes, recipe-viewer improvements, Questlog fixes
+and corrected sound attenuation. Traveler's Backpack adds controls for dropped
+backpack despawning, fire and explosion resistance. Existing radar ranges are retained in the updated config schema. Repair Radars’
+new jammer and warning-receiver recipes so their outputs and ingredients resolve.
+Journal requirements and other pack recipes are unchanged. See
+[included content](MODLIST.md) for exact artifacts.
 
-Geometry remains in `config/create_sky_compat-generation.json`. Height-range and
-taper fields replace the fixed cliff field. Install matching config on both sides.
-The Atlas distinguishes target/realized height and support/shore gaps, with fresh
-isolated resource samples. Imported 64-bit seeds retain exact values.
+Fzzy Config remains 0.7.7: the advertised fix1 NeoForge artifact has an unresolved
+version placeholder and fails native loading. It is excluded from this update.
 
-## World compatibility and verification
+## Server webmap
 
-This modifies `create_sky_compat:islands_v1` in place and requires a fresh world.
-Generation identity rejects incompatible chunks; it does not convert old saves.
-Keep wanted saves with their original pack. Ordinary Sky Archipelago, Nether,
-End, physics and rendering are unchanged by this pass.
+Add BlueMap 5.7 on servers only. Clients receive neither the mod nor its configs.
+The Overworld map includes all saved terrain without horizontal limits, including
+pregenerated chunks, across the full island-world height range. One render worker
+limits contention with gameplay and DH. Detailed views preserve shaded undersides;
+distant tiles still have BlueMap's height-field limitations.
 
-Full/minimal generation and reopening, five-seed density checks, two-seed resource
-samples, village endpoints and bounded DH pregen passed. Visual checks showed
-curved crescent/bowl undersides. Sampled main-island heights were 247 to 395 blocks.
-Survival mining access, travel budgets and complete deliveries remain playtest work.
+Fresh server owners must accept BlueMap's Minecraft-resource download in its core
+config before rendering starts. The web server uses TCP 8100; public routing is
+operator-managed. Existing BlueMap configuration is preserved. Owners of the early
+bounded local setup should remove its X/Z map bounds explicitly. See
+[server webmap setup](players/server.md#webmap).
 
-## Verification record
+## World compatibility
 
-Select Create Sky Compat 0.4.0, source `f7ac591`. Its Linux, Windows and macOS
-checks and release passed. All downloaded assets matched both checksum manifests;
-the binary is byte-identical to the native-tested artifact, SHA-256
-`8b9d52d9eb07f05b0c2cb448bd927fd12152d9fafa8afd2aa00b47a4d1f8ec9f`.
-The mod's verification guide owns five-seed density, six-anchor resource,
-full/minimal reopening, village endpoint, spawn and visual/DH observations.
-[World generation](development/worldgen.md) owns the selected geometry and gameplay limits.
+No world reset, seed change or LOD removal is required. Terrain settings and
+Create Sky Compat remain unchanged. Stop instances before updating, retain their
+worlds and local settings, then restart any pregeneration job with its original
+center and radius.
 
-The root 27 Python checks, journal generation check and 229-file configuration
-audit passed. Both resource builders retained their prior outputs. Empack sync
-resolved only Compat's release and destination changes, preserving Minecraft and
-all other dependency pins. `manifest check` reports a current lock.
+## Verification
 
-All three local reference exports passed archive integrity, version, geometry,
-mod selection and visual-patch checks. Exactly one Compat 0.4.0 is present on
-each side; Veil remains client-only and the obsolete neighbor mod is absent.
-Server launch scripts retain the terminal helper and executable modes; the
-server template supplies no seed. Atlas import/compile and application checks
-passed; [web verification](development/web/verification.md) records their scope.
-
-This release requires fresh terrain.
+Pack checks pass, including resource generation and configuration auditing. An
+isolated Java 21.0.13 / NeoForge 21.1.264 server exported 9,253 recipes, including
+both repaired Radars recipes, and passed all 66 objective probes across 48 journal
+entries. A separate client loaded the Resource Review world, displayed journal
+details and opened a crafting recipe through EMI with JEI and Reliable EMI loaded.
+This was a loading/UI check, not a complete gameplay or radar-system playtest.

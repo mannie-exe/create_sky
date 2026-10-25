@@ -31,3 +31,10 @@ type="optional"
 versionRange="[3.4.1,)"
 ordering="AFTER"
 side="BOTH"
+
+[[dependencies.createskyfixes]]
+modId="create_radar"
+type="optional"
+versionRange="[0,)"
+ordering="AFTER"
+side="BOTH"

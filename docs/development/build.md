@@ -111,6 +111,20 @@ world burner, inventory and shader reload. Veil's verification guide owns render
 Compat's verification guide owns terrain, optional loading and flight evidence.
 [Patch maintenance](patches.md) owns coupled updates and removal criteria.
 
+## Server webmap
+
+BlueMap is an exact Modrinth dependency with `side: server`. Its authored defaults
+live in `overrides/server/config/bluemap/`; both the JAR and config must be absent
+from Prism payloads and client requirements. Modrinth archives use server-only file
+metadata and server overrides. Check the resulting archives after dependency changes.
+
+BlueMap configuration uses empack's `seed` policy to preserve operator settings,
+including download acceptance, ports and map definitions. Fresh installs leave
+resource-download consent to the owner. The default Overworld map has no X/Z limits
+and includes the complete Compat vertical range. New local defaults do not replace
+existing seed files automatically; review and apply intended changes separately.
+See [server webmap setup](../players/server.md#webmap).
+
 ## Dependency updates
 
 Use [dependency and patch maintenance](patches.md) for coupled versions, URL pins,
