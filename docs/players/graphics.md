@@ -21,11 +21,10 @@ The fix is version-specific; remove it when upgrading DH.
 
 ## Resource packs
 
-Create Sky 0.1.10 adds RAY's ladders and rails, Midnighttigger's Fusion
+The selected stack includes RAY's ladders and rails, Midnighttigger's Fusion
 connected textures, Low Shield, Soft Weather, Cubic Sun & Moon, Fresh Flower Pots,
-Create Touch-Ups, Low On Fire, Fresh Animations Details/Objects and Better Lanterns. RAY's
-ladders replace the previous 3D Ladders. The original crops, cane, iron bars,
-Redstone Tweaks and base Fresh Animations remain selected.
+Create Touch-Ups, Low On Fire, Fresh Animations Details/Objects and Better Lanterns. Crops, sugar cane, iron bars, Redstone Tweaks and base Fresh Animations are also
+selected. The [content list](../MODLIST.md) records exact dependencies.
 
 Dedicated Sugar Cane and RAY's Rails sit above 3D Crops and
 Redstone Tweaks respectively. Keep 3D Crops above Fresh Flower Pots for the
@@ -45,26 +44,18 @@ options unless explicitly synchronized. Reordering packs changes which overlappi
 models win. These packs do not restyle every modded counterpart; moving ships,
 Copycats, large farms and shader interactions still need visual testing.
 
-## Local review world
+## Visual checks
 
-The maintainer's client has **Resource Review** in Singleplayer: a creative
-superflat scene with labeled crops, pots, storage, glass, lights, rails, bars,
-ladders, Create blocks and mob specimens. Hub buttons change time, weather and
-game mode or teleport between sections. The equipment chest supplies gliders,
-elytra, rockets, armor and held items. The equipment area has a movement pen and
-a boating pool.
-Use `/function resource_lab:hub` to return to the controls.
+Compare the same blocks with shaders enabled and disabled before changing the
+resource stack. Check connected blocks from several sides, opening and closing
+chests, animated textures and moving contraptions. The maintained patch includes
+Lootr/Fresh Objects animation bindings, mooshroom model adaptation, lantern
+artwork fitting and authored bar/lamp geometry. It does not restyle every mod.
 
-The world uses your current resource packs and shaders. It is a local testing
-save, not part of the distributed pack. Create blocks are static samples, not
-working production lines; the stationary mobs have no AI. Spawn eggs are
-available for movement checks. Use the mosquito station's **Night / spawn**
-button: those swarms disappear during daytime even with AI disabled.
-
-The Atlas resource-pack page has **Local comparisons** with screenshots and chest
-recordings. The optional **Resource Review Prototype** pack is unselected. It
-tests original Macaw lantern shapes and a Lootr animation mapping whose result
-is still inconclusive; it is not a released compatibility fix.
+Maintainers can use a disposable scene with labeled samples; the local Resource
+Review fixture and captured comparisons are described in
+[Atlas verification](../development/web/verification.md). Test saves and optional
+comparison packs are not distributed with Create Sky.
 
 ## Shader selection
 

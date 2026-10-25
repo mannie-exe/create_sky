@@ -1,5 +1,9 @@
 # Verification
 
+These records describe the stated source revisions and artifacts. They are not
+continuous checks of the current checkout. Generated evidence and comparison
+media are local, ignored files; links to them work only in a populated workspace.
+
 ## Atlas workbench and world evidence, 2026-10-25
 
 The worktree based on `b0ca189` reorganizes item inspection, world evidence and
@@ -39,15 +43,8 @@ The named capture/extract jobs refreshed implementation evidence at
 The exporter used the installed 0.1.12 server set, including the published Compat
 JAR `084153f7…`; inputs did not change during capture. The isolated audit server
 never mounted the playing world. Its disposable outputs were removed after
-extraction and checks. The local dev server was restarted while idle to pick up
-the newly added island-survey public path; no named job was interrupted.
-
-Pregeneration was accepted around spawn X 551, Z 414 with radius 1,024 chunks
-(16,384 blocks), using the preserved seed and expanded preset. It runs independently;
-progress was not polled after acceptance. Completion remains unconfirmed, so the
-new-world Atlas import is pending. The retained saved-world survey is historical,
-not evidence for the current generated terrain. New provenance and height-range
-behavior was checked with fixtures; no claim of a completed new-world survey is made.
+extraction and checks. The retained saved-world survey is historical. Provenance and height-range handling
+were checked with fixtures, not a completed survey of the replacement world.
 
 ## Authoring and graph baseline, 2026-10-24
 
@@ -116,11 +113,6 @@ authoring page also inspected at 390×844. Navigation and mobile overflow checks
 run across all pages in the browser suite. Local documentation targets and Markdown
 anchors resolve; archived 0.1.8/0.1.9 notes match their published tags.
 
-Cleanup removed about 724 MiB of obsolete exports and duplicate build output.
-Active Atlas data/textures, selected comparison captures, Resource Review, world/seed
-backups and the empack findings report remain. Capture worlds, compiler output and
-temporary validation logs are disposable after this record is updated.
-
 ## Retained game evidence
 
 | Area                 | Tested scope and limits                                                                                                                                                                                                                                                                                                                                                   |
@@ -145,7 +137,9 @@ The 2026-10-23 review uses the installed client snapshot
 The optional lantern/Lootr prototype has SHA-256
 `b608fddbdbcfabe2afe35bbc881296a7d757557ae6835dae1945d10590b14662`;
 it is unselected and absent from the release inputs. Its lantern fallback rendered
-correctly. Lootr animation equivalence remains unresolved; chest close clips are
+correctly. That namespace-only experiment did not establish Lootr animation
+equivalence; the later [native model checks](#native-model-checks-2026-10-24)
+verified the maintained adapter. chest close clips are
 linked from [resource interactions](../compatibility.md#category-review-world).
 
 - `verify_world.py WORLD`, using the Atlas Python environment after stopping
@@ -258,7 +252,7 @@ Playing instances and worlds were not changed by this check.
   and [Lootr recording](../../../web/public/generated/resource-review/models/lootr-close-range.mp4)
   both show the body shake: the left wood edge at image y=720 moves from x=572
   to x=578 and returns to x=572. This is a motion observation, not a timing or
-  performance equivalence claim. The user independently observed the shake.
+  performance equivalence claim. A separate playtest also observed the shake.
   [Trapped/shader](../../../web/public/generated/resource-review/models/combined-trapped-shader.mp4)
   and [final resource reload](../../../web/public/generated/resource-review/models/final-lootr-reload.mp4)
   clips retain working motion and materials.
@@ -276,7 +270,7 @@ Moving Create/Sable contraptions, distant LOD appearance, multiplayer state,
 other shaders and performance require separate tests. Existing upstream double-chest
 animation warnings are not fixed by the single-chest Lootr adapter.
 
-## Visual compatibility pass — 2026-10-24
+## Visual compatibility pass, 2026-10-24
 
 Tested the worktree based on `7cf5797`, with 73 model recipes and the mooshroom
 adapter enabled. The generated and installed client ZIP both have SHA-256
@@ -317,9 +311,9 @@ rig. Other missing Details animation references remain documented in
 [patch maintenance](../patches.md#fresh-details-and-mooshrooms).
 Moving contraptions, multiplayer, other shaders and performance were not tested.
 
-## Route diagrams and compatibility — 2026-10-24
+## Route diagrams and compatibility, 2026-10-24
 
-Tested the uncommitted worktree based on `7cf5797`. The current model source has
+Tested the uncommitted worktree based on `7cf5797`. The tested model source had
 87 recipes. This pass extends the earlier model review; native rendering evidence
 and artifact hashes are owned by [compatibility](../compatibility.md#visual-compatibility-pass).
 
@@ -410,7 +404,8 @@ occasionally logs a failed audit fetch during test navigation; it is not a data/
 failure and is absent from the static production interface.
 
 The separate Veil Iris Fix's build and native rendering checks are owned by its
-README and [upstream findings](../upstream.md). Web checks do not establish
+[verification guide](https://github.com/mannie-exe/veil-iris-fix/blob/main/docs/verification.md)
+and [upstream findings](../upstream.md). Web checks do not establish
 Minecraft rendering behavior.
 
 ## Candidate generation survey integration

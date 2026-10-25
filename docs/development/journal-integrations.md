@@ -14,9 +14,7 @@ checking those categories individually.
 
 Reliable EMI supplies stack groups and creative-tab organization.
 `config/emixx/remi.json` enables stack groups in the index and craftables, along
-with the group creation button and creative tabs. This is a likely explanation
-for the grouped icons described by the owner. It establishes the current settings,
-not who configured them. Stack groups organize related item variants; that is
+with the group creation button and creative tabs. Stack groups organize related item variants; that is
 distinct from grouping recipes into recipe categories.
 
 Questlog has no built-in EMI/JEI integration in the inspected source. Its screens
@@ -30,7 +28,7 @@ clickable description actions are separate work.
 Test GUI scales, compact/detail modes, search focus, scrolling, recipe hotkeys,
 back navigation, stack groups and absence of the optional integration before
 shipping. The narrowest initial bridge is recipe/use hotkeys on objective icons;
-the full sidebar can follow after layout tests. No bridge was built in this pass.
+the full sidebar can follow after layout tests. No bridge is implemented.
 See the [EMI source](https://github.com/emilyploszaj/emi/tree/1.1.24%2B1.21.1)
 and [release history](https://github.com/emilyploszaj/emi/releases).
 
@@ -71,7 +69,7 @@ condition. That should be validated against a working mixer before narration
 claims production behavior. Aircraft controls and return crossings are later
 candidates requiring actual flight testing.
 
-The subsequent description review also found existing Propulsion scenes for
+Propulsion also provides scenes for
 2x2x2 and 3x3x3 liquid-thruster assemblies. The installed 1.1.5 language resources
 describe eight- and 27-block assemblies and rear fluid intake; the pack's
 `multiblockThruster` configuration defines their thrust and fuel modifiers.

@@ -1,7 +1,7 @@
 # Journal definitions
 
-Questlog 3.4.1 for Minecraft 1.21.1 / NeoForge is installed locally and pinned to
-Modrinth version `6ZFtauOf`. Included in Create Sky 0.1.6.
+Questlog 3.4.1 for Minecraft 1.21.1 / NeoForge is pinned to Modrinth version
+`6ZFtauOf`.
 
 ## Ownership
 
@@ -24,8 +24,7 @@ objective's meaning needs an explicit migration or a new ID.
 All 48 English entries have explanatory descriptions, normally two paragraphs.
 They describe the component's function, related production route and relevant
 operating constraints. Full completion requirements and disclaimers remain
-separate from those explanations and from short objective labels. Flavor is empty. The 0.1.8 review clarifies supplied delivery cargo, resin yields,
-turpentine quantities and early quartz access. All inventory objectives share the
+separate from those explanations and from short objective labels. Flavor is empty. All inventory objectives share the
 inventory disclaimer, including entries with alternative items.
 
 All entries have empty requirements. Chapters and sort order organize the routes;
@@ -55,56 +54,60 @@ repair materials, insomnia and phantom spawning settings are unchanged.
 
 ## Definition index
 
+Quantities below must be held simultaneously in inventory; placed blocks and
+container contents do not count. The authored locale and chapter JSON remain
+authoritative for text and mechanics.
+
 | ID suffix | Entry | Condition |
 | --- | --- | --- |
-| `components/crafters` | Mechanical crafters | Have at least 3 Mechanical crafters in your inventory at once. Placed blocks and items in containers do not count. |
-| `components/deployer` | Deployer | Have at least 1 Deployer in your inventory at once. Placed blocks and items in containers do not count. |
-| `components/platinum` | Platinum nugget | Have at least 1 Platinum nugget in your inventory at once. Placed blocks and items in containers do not count. |
-| `components/precision` | Precision mechanism | Have at least 1 Precision mechanism in your inventory at once. Placed blocks and items in containers do not count. |
-| `components/tube` | Electron tube | Have at least 1 Electron tube in your inventory at once. Placed blocks and items in containers do not count. |
-| `components/wheels` | Crushing wheels | Have at least 2 Crushing wheels in your inventory at once. Placed blocks and items in containers do not count. |
-| `electricity/battery` | Battery | Have at least 1 Battery in your inventory at once. Placed blocks and items in containers do not count. |
-| `electricity/design` | Circuit design table | Have at least 1 Circuit design table in your inventory at once. Placed blocks and items in containers do not count. |
-| `electricity/ion` | Ion thruster | Have at least 1 Ion thruster in your inventory at once. Placed blocks and items in containers do not count. |
-| `electricity/motor` | Electric motor | Have at least 1 Electric motor in your inventory at once. Placed blocks and items in containers do not count. |
-| `electricity/rotor` | Generator induction rotor | Have at least 1 Generator induction rotor in your inventory at once. Placed blocks and items in containers do not count. |
+| `components/crafters` | Mechanical crafters | Inventory: 3 Mechanical crafters |
+| `components/deployer` | Deployer | Inventory: 1 Deployer |
+| `components/platinum` | Platinum nugget | Inventory: 1 Platinum nugget |
+| `components/precision` | Precision mechanism | Inventory: 1 Precision mechanism |
+| `components/tube` | Electron tube | Inventory: 1 Electron tube |
+| `components/wheels` | Crushing wheels | Inventory: 2 Crushing wheels |
+| `electricity/battery` | Battery | Inventory: 1 Battery |
+| `electricity/design` | Circuit design table | Inventory: 1 Circuit design table |
+| `electricity/ion` | Ion thruster | Inventory: 1 Ion thruster |
+| `electricity/motor` | Electric motor | Inventory: 1 Electric motor |
+| `electricity/rotor` | Generator induction rotor | Inventory: 1 Generator induction rotor |
 | `electricity/use_design` | Interact with circuit design table | Right-click circuit design table. Completion checks the block interaction, not a completed circuit. |
-| `electricity/wire` | Wire connectors | Have at least 2 Wire connectors in your inventory at once. Placed blocks and items in containers do not count. |
-| `flight/assembler` | Physics assembler | Have at least 1 Physics assembler in your inventory at once. Placed blocks and items in containers do not count. |
-| `flight/bearing` | Propeller bearing | Have at least 1 Propeller bearing in your inventory at once. Placed blocks and items in containers do not count. |
-| `flight/burner` | Adjustable burner | Have at least 1 Adjustable burner in your inventory at once. Placed blocks and items in containers do not count. |
+| `electricity/wire` | Wire connectors | Inventory: 2 Wire connectors |
+| `flight/assembler` | Physics assembler | Inventory: 1 Physics assembler |
+| `flight/bearing` | Propeller bearing | Inventory: 1 Propeller bearing |
+| `flight/burner` | Adjustable burner | Inventory: 1 Adjustable burner |
 | `flight/envelopes` | Envelopes | Have at least 4 envelopes of the same color in your inventory at once. Any color qualifies; mixed colors do not combine toward the count. |
 | `flight/propeller` | Propeller | Have at least 1 Andesite Propeller or 1 Wooden Propeller in your inventory. Either item completes this condition. |
-| `flight/steering` | Steering wheel | Have at least 1 Steering wheel in your inventory at once. Placed blocks and items in containers do not count. |
-| `fuel/liquid` | Liquid thruster | Have at least 1 Liquid thruster in your inventory at once. Placed blocks and items in containers do not count. |
-| `fuel/resin` | Pine resin | Have at least 4 Pine resin in your inventory at once. Placed blocks and items in containers do not count. |
-| `fuel/solid` | Solid-fuel thruster | Have at least 1 Solid-fuel thruster in your inventory at once. Placed blocks and items in containers do not count. |
-| `fuel/stirling` | Stirling engine | Have at least 1 Stirling engine in your inventory at once. Placed blocks and items in containers do not count. |
-| `fuel/tank` | Fluid tank | Have at least 1 Fluid tank in your inventory at once. Placed blocks and items in containers do not count. |
-| `fuel/turpentine` | Turpentine bucket | Have at least 1 Turpentine bucket in your inventory at once. Placed blocks and items in containers do not count. |
-| `logistics/board` | Delivery table | Have at least 1 Delivery table in your inventory at once. Placed blocks and items in containers do not count. |
-| `logistics/diagram` | Contraption diagram | Have at least 1 Contraption diagram in your inventory at once. Placed blocks and items in containers do not count. |
-| `logistics/dock` | Docking connectors | Have at least 2 Docking connectors in your inventory at once. Placed blocks and items in containers do not count. |
-| `logistics/filter` | Filter | Have at least 1 Filter in your inventory at once. Placed blocks and items in containers do not count. |
-| `logistics/funnel` | Andesite funnel | Have at least 1 Andesite funnel in your inventory at once. Placed blocks and items in containers do not count. |
+| `flight/steering` | Steering wheel | Inventory: 1 Steering wheel |
+| `fuel/liquid` | Liquid thruster | Inventory: 1 Liquid thruster |
+| `fuel/resin` | Pine resin | Inventory: 4 Pine resin |
+| `fuel/solid` | Solid-fuel thruster | Inventory: 1 Solid-fuel thruster |
+| `fuel/stirling` | Stirling engine | Inventory: 1 Stirling engine |
+| `fuel/tank` | Fluid tank | Inventory: 1 Fluid tank |
+| `fuel/turpentine` | Turpentine bucket | Inventory: 1 Turpentine bucket |
+| `logistics/board` | Delivery table | Inventory: 1 Delivery table |
+| `logistics/diagram` | Contraption diagram | Inventory: 1 Contraption diagram |
+| `logistics/dock` | Docking connectors | Inventory: 2 Docking connectors |
+| `logistics/filter` | Filter | Inventory: 1 Filter |
+| `logistics/funnel` | Andesite funnel | Inventory: 1 Andesite funnel |
 | `logistics/use_board` | Interact with delivery table | Right-click delivery table. Completion checks the block interaction, not a completed delivery. |
-| `machines/fan` | Encased fan | Have at least 1 Encased fan in your inventory at once. Placed blocks and items in containers do not count. |
-| `machines/millstone` | Millstone | Have at least 1 Millstone in your inventory at once. Placed blocks and items in containers do not count. |
-| `machines/mixer` | Mechanical mixer | Have at least 1 Mechanical mixer in your inventory at once. Placed blocks and items in containers do not count. |
-| `machines/press` | Mechanical press | Have at least 1 Mechanical press in your inventory at once. Placed blocks and items in containers do not count. |
-| `machines/sheets` | Iron sheets | Have at least 4 Iron sheets in your inventory at once. Placed blocks and items in containers do not count. |
+| `machines/fan` | Encased fan | Inventory: 1 Encased fan |
+| `machines/millstone` | Millstone | Inventory: 1 Millstone |
+| `machines/mixer` | Mechanical mixer | Inventory: 1 Mechanical mixer |
+| `machines/press` | Mechanical press | Inventory: 1 Mechanical press |
+| `machines/sheets` | Iron sheets | Inventory: 4 Iron sheets |
 | `machines/wheel` | Rotation source | Have at least 1 Water Wheel, 1 Large Water Wheel, or 1 Windmill Bearing in your inventory. Any one item completes this condition; it does not need to be placed or powered. |
-| `main/alloy` | Andesite alloy | Have at least 2 Andesite alloy in your inventory at once. Placed blocks and items in containers do not count. |
-| `main/brass` | Brass ingots | Have at least 2 Brass ingots in your inventory at once. Placed blocks and items in containers do not count. |
-| `main/iron` | Iron ingots | Have at least 3 Iron ingots in your inventory at once. Placed blocks and items in containers do not count. |
-| `main/kelp` | Kelp | Have at least 1 Kelp in your inventory at once. Placed blocks and items in containers do not count. |
-| `main/quartz` | Quartz | Have at least 1 Quartz in your inventory at once. Placed blocks and items in containers do not count. |
-| `main/water` | Water bucket | Have at least 1 Water bucket in your inventory at once. Placed blocks and items in containers do not count. |
-| `travel/connector` | Throwable rope connector | Have at least 1 Throwable rope connector in your inventory at once. Placed blocks and items in containers do not count. |
-| `travel/coupling` | Rope coupling | Have at least 1 Rope coupling in your inventory at once. Placed blocks and items in containers do not count. |
-| `travel/glider` | Glider | Have at least 1 Glider in your inventory at once. Placed blocks and items in containers do not count. |
-| `travel/membranes` | Phantom membranes | Have at least 2 Phantom membranes in your inventory at once. Placed blocks and items in containers do not count. |
-| `travel/winch` | Rope winch | Have at least 1 Rope winch in your inventory at once. Placed blocks and items in containers do not count. |
+| `main/alloy` | Andesite alloy | Inventory: 2 Andesite alloy |
+| `main/brass` | Brass ingots | Inventory: 2 Brass ingots |
+| `main/iron` | Iron ingots | Inventory: 3 Iron ingots |
+| `main/kelp` | Kelp | Inventory: 1 Kelp |
+| `main/quartz` | Quartz | Inventory: 1 Quartz |
+| `main/water` | Water bucket | Inventory: 1 Water bucket |
+| `travel/connector` | Throwable rope connector | Inventory: 1 Throwable rope connector |
+| `travel/coupling` | Rope coupling | Inventory: 1 Rope coupling |
+| `travel/glider` | Glider | Inventory: 1 Glider |
+| `travel/membranes` | Phantom membranes | Inventory: 2 Phantom membranes |
+| `travel/winch` | Rope winch | Inventory: 1 Rope winch |
 
 ## Implementation evidence
 
@@ -130,13 +133,11 @@ snapshot hashes. Player saves are never mounted in that server.
 
 ## Label fit
 
-The wording pass retains IDs, objective order and all condition fields. Only
-objective names and main descriptions changed. Exact quantities, item names,
-OR choices and interaction limits remain in the wrapping main description.
+Keep short objective labels separate from the wrapping main description. Put
+exact quantities, item names, OR choices and interaction limits in that description.
 
 Questlog 3.4.1 uses one-line objective labels with ellipsis and hover text.
 The inspected panel leaves 119 pixels for a root label and 107 for a nested
 alternative without an icon. All 69 labels fit the vanilla ASCII font metrics;
 the longest is 102 pixels. Compact mode changes the left list, not this budget.
-Custom fonts and actual client rendering were not tested. No panel resizing or
-client display settings changed.
+Custom fonts and actual client rendering were not tested by the font-metric check.

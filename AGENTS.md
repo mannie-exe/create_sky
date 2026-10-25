@@ -52,7 +52,7 @@ owning document instead of accumulating review reports. Group by purpose; omit
 incidental migration history and per-edit commentary. Keep the authoring UI
 editable, organized by domain, and aligned with the existing component conventions.
 
-Follow Skyweave's adaptation of `~/production/playground/AGENTS.md`: conventional
-subject, blank line, then relevant `- [tag]: message` bullets. Bullet messages are
+Use a conventional commit subject, a blank line, then relevant
+`- [tag]: message` bullets. Bullet messages are
 at most 40 characters, have no final period, and use lowercase except proper nouns
-and initialisms. Scale detail to the change; do not pad small commits to 15–30 bullets.
+and initialisms. Scale detail to the change; do not pad small commits to 15 to 30 bullets.

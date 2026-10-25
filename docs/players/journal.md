@@ -1,6 +1,6 @@
 # Journal
 
-Create Sky 0.1.7 includes Questlog. Press grave accent (`) or select the
+Press grave accent (`) to open Questlog, or select the
 journal button above the inventory. Change the key in Controls under Miscellaneous,
 Open journal. No book item is required.
 
@@ -20,6 +20,5 @@ Progress is individual and saved by Questlog. The glider recipe and repair
 materials are unchanged: obtain phantom membranes through normal play.
 
 Objective rows use short labels. Read the main description for full item names,
-counts and conditions. Inventory counts must be held at once; placed machines
-and stored items do not count. The description wraps and scrolls. Compact mode
+counts and conditions. The description wraps and scrolls. Compact mode
 does not make objective rows wrap.

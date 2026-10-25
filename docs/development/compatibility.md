@@ -30,10 +30,10 @@ Sky Archipelago requires LODs from its actual island chunks. The pack uses
 The worker count was chosen for a 14-processor host, not measured as optimal
 for all machines.
 
-Preserve both the saved **eee** preset and common Sky Archipelago TOML.
-Single-player selects the preset; dedicated servers prioritize common config.
-The current sizing mode is RANDOM. SPECIFIC size bands are dormant until that
-mode is selected. Existing vanilla worlds are not converted.
+New worlds use Create Sky Compat's expanded preset and geometry configuration.
+The **eee** preset and common Sky Archipelago TOML apply to ordinary upstream
+worlds; their RANDOM sizing leaves SPECIFIC bands dormant. Keep those files with
+ordinary saves. See [world generation](worldgen.md) for preset boundaries.
 
 SeedGen is excluded because its reconstructed vanilla noise terrain does not
 match Sky Archipelago. Do not use it to fill missing island LODs. Preserve world
@@ -41,8 +41,7 @@ and LOD identity when troubleshooting; renderer visibility and network transfer
 are separate problems. See [graphics](../players/graphics.md) for diagnosis.
 
 Current source enables the renderer but leaves cave culling enabled and the LOD
-radius at 256 chunks. The local test instance's disabled cave culling and seeded
-cache are not export defaults.
+radius at 256 chunks. Instance-specific changes to cave culling or caches are not export defaults.
 
 ## Dependency constraints
 
@@ -50,7 +49,7 @@ cache are not export defaults.
   its patched shader at launch; its generated folder name determines the preset filename.
 - JEI remains alongside EMI for recipe integrations.
 - Connector and Forgified Fabric API support the Hoofprint/Surveyor/McQoy stack.
-- Ten URL pins handle provider metadata conflicts involving old exact versions,
+- URL pins handle provider metadata conflicts involving old exact versions,
   Connector/Forgified Fabric API and client-only dependencies. Check runtime
   metadata before replacing them with provider roots or downgrading dependencies.
 - Published URL pins select DH Polygon Fix, Copycat Bar Extrusion, Create Sky
@@ -67,8 +66,7 @@ cache are not export defaults.
 Better Climbing, Ping Wheel, Easy Anvils, Easy Magic and
 Inventory Totem ship on both sides. Camera/UI/rendering mods and resource
 packs are client-only. EMF/ETF support Fresh Animations; Puzzles Lib, Collective
-and Searchables satisfy the other new dependencies. Existing dependency versions,
-Minecraft and NeoForge are unchanged. Exact selections are in [MODLIST](../MODLIST.md).
+and Searchables satisfy the corresponding dependencies. Exact selections are in [MODLIST](../MODLIST.md).
 
 | Domain | Authored choice |
 | --- | --- |
@@ -137,8 +135,8 @@ Choose checks that exercise the change:
 | Release | Verify CI, downloaded checksums and critical published archive contents |
 
 Record the exact source revision, commands, environment and outcome. A passing
-packaging check does not establish GPU compatibility. Keep earlier evidence in
-[decision history](decisions.md), and label untested behavior explicitly.
+packaging check does not establish GPU compatibility. Keep version-specific evidence with
+[release history](../README.md#source-and-releases), and label untested behavior explicitly.
 
 Earlier logs recorded an Analog Audio movement-registration `NoSuchMethodException`
 and Create Radars errors for empty model/blockstate JSONs. Those runs reached a
@@ -147,14 +145,14 @@ The history also retains a separate, unattributed native Apple Metal/IOGPU crash
 Do not conflate that report with the confirmed DH polygon-buffer defect.
 
 Survival resource access, structures, moving-ship interactions and acoustics still
-need broader gameplay coverage. The owner's testing supports enabling DH by
+need broader gameplay coverage. Player testing supports enabling DH by
 default; it is not a cross-platform performance benchmark.
 
 ## Progression and integration
 
 Hostile Skies automatic raids and departure explosions are disabled; capture is
 enabled. Delivery Quests uses village destinations, four offers and 120-minute
-deadlines. It samples search offsets from 500 to 2,000 blocks; the installed mod
+deadlines. It samples search offsets from 500 to 6,000 blocks; the installed mod
 can select a farther structure. These are structure destinations, not a
 simulated economy. Glider defaults and membrane requirements are retained.
 [Progression](progression.md) owns production/travel policy and remaining checks.
@@ -183,12 +181,13 @@ appearance, not moving ships, multiplayer state isolation or performance.
   `#plant` planes, retained its pot/soil elements and texture bindings, and added
   Crops elements whose faces use `#mushroom`/`#mushroom_top`. The existing stem base
   at y=4 fits inside the soil. Brown/red mushrooms and crimson/warped fungi all
-  rendered with their 3D plant and the Fresh pot. The generated client patch now
-  includes this composition for local playtesting, above both upstream packs.
+  rendered with their 3D plant and the Fresh pot. The generated client patch
+  includes this composition above both upstream packs.
 - **Chests:** Objects overrides Redstone Tweaks' three trapped-chest textures.
   Normal and trapped fronts are less distinct. Lootr still showed gold unopened
-  and muted opened chests and successfully opened generated loot. This does not
-  establish that Objects' custom animation model is applied to Lootr. Preserve
+  and muted opened chests and successfully opened generated loot. That baseline did not
+  establish animation support; the later [Lootr adapter](patches.md#lootr-and-fresh-objects)
+  does. Preserve
   Lootr's state textures; do not enable `vanilla_textures` just to match artwork.
 - **Glass:** vanilla, Create framed and Create tiled glass connected in the
   fixture while retaining their different borders. Midnighttigger does not
@@ -198,7 +197,7 @@ appearance, not moving ships, multiplayer state isolation or performance.
   golden chains look like iron. The replacement uses texture variable `1`, while
   Macaw's children bind `all`. Two child overrides adding `1` with the
   existing `all` value restored the correct colors on standing and hanging chains.
-  Better Lanterns and these two overrides are now selected for local playtesting.
+  Better Lanterns and these overrides are selected.
   The sampled lanterns rendered, but this is not coverage of all Macaw styles.
 - **Interface:** Icons was removed after user playtesting found excessive visual
   clutter. Its temporary disc-label merger was removed too; Clean Tooltips and
@@ -238,7 +237,7 @@ machinery and track samples do not establish working contraptions.
 
 | Family | Installed behavior and remaining work |
 | --- | --- |
-| Macaw lanterns | Bell, covered, cross and festive standing/hanging variants use fitted artwork. Bridge and stair lanterns use the detailed template within their original mounting envelope. The bridge must be directly below the lantern; its state selects the elevation. Native shader-off/on views cover representative variants. Wall lanterns remain separate upstream models. |
+| Macaw lanterns | Bell, covered, cross and festive standing/hanging variants use fitted artwork. Bridge and stair lanterns use the detailed template within their original mounting envelope. The bridge must be directly below the lantern; its state selects the elevation. Native shader-off/on views cover representative variants. Wall variants retain their brackets with fitted lantern bodies. |
 | Create and Deco bars | Texture-mask extrusion covers all three Create families and Deco's andesite, brass, copper, industrial iron, iron and zinc model families, including overlays. Native posts, ends, corners, crossings and three-block stacks were reviewed. Deco overlays are connected bars with additional panels, not wall decals. Connection blockstates remain upstream-owned. |
 | Cage lamps and frontlights | Deco's cage surfaces have depth while its base, light and material/color bindings remain intact. Eight DnD hood templates retain their bodies, texture bindings, rotation, lit and no-base variants. Representative straight/rotated and powered/unpowered views passed with shaders on and off. |
 | Mooshrooms | Details 2.2.1 refers to the removed `mooshroom_animations.jpm` in FA 1.11.1. The adapter retains adult/baby geometry, uses the current shared cow rig and replaces obsolete ear/tail expressions. Red/brown adults and babies render; a retained clip shows idle motion. Stationary fixture specimens also require `OnGround:1b`. Other Details rigs with missing references remain outside this fix. |
@@ -316,7 +315,7 @@ Copycat Bar Extrusion 0.1.0 JAR SHA-256:
 Native checks covered lantern standing/hanging/wall samples, the shorter straight
 and rotated frontlight hoods, cage bends, window corners/pane intersections and
 Copycat bar depth. The renderer generated all six facings for vanilla iron,
-Create andesite/brass/copper and Deco industrial iron/zinc, with 10–40 quads per
+Create andesite/brass/copper and Deco industrial iron/zinc, with 10 to 40 quads per
 panel. Adjacent brass panels joined visually; stone and unfilled panels retained
 native rendering. Resource reload through the pack-selection screen rebuilt the
 meshes successfully. Shader-off and Complementary Unbound 5.9.3/Euphoria 1.10.5

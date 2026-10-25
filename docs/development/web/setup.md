@@ -189,7 +189,7 @@ were found and is returned as an audit result, rather than an execution failure.
 
 Preview and validation jobs support cancellation on macOS/Linux. Cancellation or
 timeout terminates the process group and escalates to KILL after 500 ms. Output
-beyond the cap is discarded and stops the job. Publishing jobs do not offer Cancel:
+beyond the cap is discarded and stops the job. Jobs that write generated files do not offer Cancel:
 interruption can leave partial generated output, particularly during capture or
 multi-file journal generation. Resolve failures and rerun the owning generator.
 These are trusted repository scripts, not a sandbox for arbitrary code.
@@ -222,8 +222,7 @@ only rereads existing browser JSON. It does not capture or compile anything.
 
 Do not hand-edit generated snapshots. Removing `public/generated` also removes
 textures; `data:compile` alone cannot recreate those. Use a full refresh after
-cleaning capture dependencies. Historical evidence receipts do not need another
-copy in a root-level review report.
+cleaning capture dependencies. Retain evidence while it supports a documented claim; remove redundant run output.
 
 ## Deployment preparation
 
@@ -266,8 +265,7 @@ DYNAMIC 32 to 1500 configuration with its seed-equivalent CONSISTENT value.
 This probe targets the installed Sky Archipelago 1.3.6 API, including a reflected
 private method. Revalidate it after upgrades. It does not generate Sky Archipelago
 chunks, validate structures, or replace a world survey. A normal capture without
-`--worldgen` does not refresh this optional receipt; check its associated review
-record before using it as current evidence.
+`--worldgen` does not refresh this optional receipt; check its version and input provenance before using it as current evidence.
 
 ## Refresh resource-pack reviews
 

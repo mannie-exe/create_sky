@@ -17,7 +17,7 @@ flowchart TD
     Catalog --> Compile
     Evidence --> Compile
     Compile --> Public[public/generated JSON and textures]
-    Public --> Browser[Astro page and browser grid]
+    Public --> Browser[Astro pages and interactive views]
 ```
 
 ## Registered content
@@ -25,7 +25,7 @@ flowchart TD
 [`scripts/runtime.py`](../../../web/scripts/runtime.py) compiles
 [`AtlasExporter.java`](../../../web/tools/exporter/AtlasExporter.java) against the installed
 server libraries, then boots a disposable NeoForge server under `.cache/audit-server`.
-It uses installed server mods, selected pack additions and maintained resource JARs.
+It uses the installed server's mod set and checked maintained resource JARs.
 Config is copied from the server and common overrides; existing-world
 `serverconfig` is copied as configuration only. Live chunks, player data and LODs
 are never mounted. Java libraries and mod JARs are symlinked as read-only inputs
@@ -257,8 +257,6 @@ field at equal weight. Keep the current item, path and recipe in context; offer
 Back for ingredient navigation and the larger graph for exploration. Use compact,
 stable slots for spatial information and expandable records for text/alternatives.
 Keyboard access and source evidence remain available alongside visual navigation.
-These are project decisions, not a claim that the sibling sites define a formal
-shared UX standard; their Astro composition and disclosure conventions are retained.
 
 The [Minecraft Wiki slot documentation](https://minecraft.wiki/w/Template:Inventory_slot)
 separates icons, counts, tooltips and alternative frames; its
@@ -277,11 +275,10 @@ from data indexing and preserve the named-job execution boundary.
 
 ## Page and component structure
 
-The structure follows the sibling inherent.design site and cfgate.io examples:
-Astro layouts own the document, pages compose feature components, and TypeScript
-controllers own browser interactions. The existing Astro 7, TypeScript 6, pnpm,
-CSS and local Node/Python tooling remain appropriate for this internal app.
-The local editor uses no UI framework, database or deployment service.
+Astro layouts own the document and pages compose feature components. TypeScript
+controllers handle grid and editor interactions; React owns graph workspaces and
+shared recipe cards. Local Node/Python tooling handles filesystem operations.
+The editor has no database or hosted backend.
 
 - `src/layouts/Base.astro` owns document metadata, the favicon and shared CSS.
 - `src/components/AppHeader.astro` owns identity and navigation structure, with
@@ -302,9 +299,7 @@ The local editor uses no UI framework, database or deployment service.
   Shared `--page-width`, radius and color tokens keep those surfaces consistent.
 
 Keep page markup and rendering components separate from filesystem operations in
-`scripts/workspace.mjs` and `scripts/authoring.mjs`. Dependencies and formatter
-settings retain the app's existing conventions; framework changes are not required
-to share layouts and components.
+`scripts/workspace.mjs` and `scripts/authoring.mjs`. Reuse the shared layouts, controls and semantic style tokens across pages.
 
 ## Filesystem boundary
 
@@ -339,8 +334,8 @@ and inspects categorized configuration drift. Player quest progress is not read
 or edited by the app.
 
 [Journal definitions](../journal.md) owns quest conditions and authoring;
-`compatibility.md` owns installed fixes; `upstream.md` owns issue research. Those
-files live under the configured pack path. Keep gameplay fixes there and map
+[Compatibility](../compatibility.md) owns installed fixes;
+[upstream findings](../upstream.md) owns issue research. Keep gameplay fixes there and map
 implementation details here. See [setup](setup.md) for capture commands and
 [verification](verification.md) for dated results and remaining coverage gaps.
 
@@ -374,7 +369,7 @@ heated-mixers configuration changes.
 The opt-in `WorldgenProbe.java` writes `runtime/worldgen_review.json` from native
 Sky Archipelago layout calls using a read-only seed/settings input. Its descriptors
 are not measured island edges or crossing distances. The pack's world-generation
-document owns the candidate choice and live-instance boundary. Input fingerprints
+document owns the selected generation settings. Input fingerprints
 include `.properties` files so mixin configuration changes mark captures stale.
 
 ## Island generation surveys
@@ -443,9 +438,5 @@ views center the final operation; Fit still displays the entire path.
 
 The approach uses [Apple's layout guidance](https://developer.apple.com/design/human-interface-guidelines/layout)
 on grouping and hierarchy and [Google's adaptive list-detail pattern](https://developer.android.com/develop/ui/compose/layouts/adaptive/list-detail)
-on side-by-side content and narrow-screen reading order. Local inherent.design
-and cfgate examples informed semantic spacing roles and shared Astro layouts.
-[Misode's tools](https://github.com/misode/misode.github.io) are a Minecraft-specific
-reference for keeping structured input and its result close. The app retains
-Astro pages and focused React roots for recipes and graphs; this is not a new SPA
-or a second acquisition model.
+on side-by-side content and narrow-screen reading order. [Misode's tools](https://github.com/misode/misode.github.io) are a Minecraft-specific
+reference for keeping structured input and its result close. Astro pages and focused React roots share the same acquisition model.

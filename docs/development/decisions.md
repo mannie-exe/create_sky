@@ -26,12 +26,16 @@ Gliders retains its existing heat updrafts.
 
 ## Geography and settlements
 
-The 2026-10-21 spacing review selected CONSISTENT 1494 over DYNAMIC's seed-wide
+For ordinary Sky Archipelago worlds, the 2026-10-21 review selected CONSISTENT
+1494 over DYNAMIC's seed-wide
 32 to 1500 range. The original seed's native layout matched at 1494; other seeds
 retain location/shape variation without changing that spacing scale. This is a
 pack policy, not a claim that DYNAMIC is defective. See [world generation](worldgen.md).
 
-Sky Villages was selected over Create: Sky Village. Sky Village Neighbors places
+The expanded preset instead uses the authored Compat geometry, with island-relative
+geology and clearance. Its current values belong in [world generation](worldgen.md).
+
+Sky Villages was selected over Create: Sky Village. Create Sky Compat places
 floating settlements around sampled archipelago terrain, rather than directly on
 islands or anywhere in the void. Foundation ore/crop rules reduce easily stripped
 wealth while retaining useful settlement supplies. Placement and resource evidence,
@@ -40,7 +44,7 @@ including known sampling limits, live in [structures](structures.md).
 ## Rendering
 
 SeedGen is excluded because its vanilla noise reconstruction disagrees with island
-terrain. DH rendering is enabled after owner playtesting; shaders remain optional.
+terrain. DH rendering is enabled after player testing; shaders remain optional.
 That default is not a cross-platform performance benchmark.
 
 DH Polygon Fix retains the two-integer native polygon query required by DH 3.3.3.
@@ -66,144 +70,4 @@ requires separate authorization, a versioned tag and verified release assets.
 Editable launcher/config defaults use seed policies so updates retain player data.
 The [build guide](build.md) owns procedures and the Unix terminal workaround.
 
-Published v0.1.9 is tag `30f2bbb`. Its [pack validation](https://github.com/mannie-exe/create_sky/actions/runs/39935326647),
-[web validation](https://github.com/mannie-exe/create_sky/actions/runs/39935326686)
-and [release checks](https://github.com/mannie-exe/create_sky/actions/runs/39935330480)
-passed; downloaded assets matched checksums and tested exports. See [archived notes](../releases/0.1.9.md) for that release.
-
-## Create Sky 0.1.10 verification
-
-Published [v0.1.10](https://github.com/mannie-exe/create_sky/releases/tag/v0.1.10)
-is tag `95e97e9`, with the exact Minecraft/NeoForge pins unchanged. Root tests (26), web Node tests (32), web Python
-tests (9), browser checks (19), formatting, Astro diagnostics and the static build
-pass. The configuration audit covers 228 files with no drift or unregistered files.
-The isolated native capture completed on 2026-10-24 after client/server sync; the
-playing world was never mounted. All three reference exports passed archive checks.
-
-The final visual patch adds attribution to the previously tested models and
-animations without changing their rendered resources. Placed-model and local
-Lootr checks are documented in [web verification](web/verification.md); moving
-contraptions, multiplayer and other shader combinations remain unverified.
-The local update preserved player settings, access lists, saves and LODs.
-See [release notes](../RELEASE_NOTES.md) and [build commands](build.md#local-builds).
-
-[Pack validation](https://github.com/mannie-exe/create_sky/actions/runs/40079138434),
-[web validation](https://github.com/mannie-exe/create_sky/actions/runs/40079138444)
-and [release checks](https://github.com/mannie-exe/create_sky/actions/runs/40079139765)
-passed. All three downloaded release assets match `SHA256SUMS`; published client
-and server release recipes match the installed instances exactly. The published
-Prism and Modrinth payloads contain the verified visual patch and attribution.
-
-## Create Sky 0.1.11 verification
-
-The release retains Minecraft 1.21.1, NeoForge 21.1.264 and Java 21. Copycat Bar
-Extrusion 0.1.0 is the only added dependency: a client-only, hash-pinned GitHub
-artifact, replacing the local override. Its fresh-checkout build matches the
-native-tested JAR. The resource patch retains the verified
-`edce4c4265ea017caf638821d8a4b857060ca261b2c870c9c5059b282ba0691e` SHA-256.
-
-Root Python checks (27), web JavaScript checks (50), web Python checks (9), browser
-checks (27), formatting, Astro diagnostics and the production build passed.
-The configuration audit still covers 228 files without drift or unregistered
-files. Native rendering scope and exclusions are in [compatibility](compatibility.md#visual-compatibility-pass);
-Atlas behavior and evidence are in [web verification](web/verification.md).
-
-All three reference exports passed archive-integrity and critical-payload checks:
-the renderer is referenced only on clients, the visual patch matches its native-tested
-hash, and the server retains the terminal helper. The adapter's
-[Linux CI build](https://github.com/mannie-exe/copycat-bar-extrusion/actions/runs/40116091129)
-produced the same JAR as the local native-tested build. The release introduces no
-world reset, server seed change or local-instance settings replacement.
-See [release notes](../RELEASE_NOTES.md).
-
-Published [v0.1.11](https://github.com/mannie-exe/create_sky/releases/tag/v0.1.11)
-is tag `25fa85e`. [Pack validation](https://github.com/mannie-exe/create_sky/actions/runs/40116433107),
-[web validation](https://github.com/mannie-exe/create_sky/actions/runs/40116433194)
-and [release checks](https://github.com/mannie-exe/create_sky/actions/runs/40116434016)
-passed. All three downloaded exports matched `SHA256SUMS` and passed archive,
-version, client/server placement and critical-payload checks. Published client
-exports retain the tested visual-patch hash and reference the verified Copycat JAR;
-the server excludes that client adapter. No local instances were modified during
-publication; the preceding playtest sync remains intact.
-
-## Create Sky 0.1.12 verification
-
-The release selects Create Sky Compat 0.2.0 instead of Sky Village Neighbors and
-adds client-only Veil Iris Fix 0.1.0. Both published artifacts passed three-platform
-CI and match their release checksum manifests. Compat SHA-256 is
-`084153f7919964d3fd5e445f3c38a0a0a0cd4df42944a8cc5c8b3b57ca4a943d`;
-Veil SHA-256 is
-`f4144a2bfef7dcd60fed8a0647dc60d356d4ab9fe3ebb36f1647a119b6a183bc`.
-Their repositories own native verification and its limits. Veil's release differs
-from the native-tested artifact only in repository URL metadata.
-
-On 2026-10-25, 27 root Python checks, the 228-file configuration audit and journal
-generation check passed. `pnpm verify` passed 52 JavaScript checks, formatting,
-Astro diagnostics and build; the 11 Python checks passed. The preceding complete
-32-case browser pass covers React Flow, recipe and authoring changes. After label
-updates, the focused item-route/world-survey browser case passed again at desktop
-and 390-pixel width. See [web verification](web/verification.md) for scope.
-
-All three local reference exports passed archive-integrity and payload checks:
-Compat on both sides, Veil only on clients, no old neighbor JAR/config, the expanded
-new-world preset and no distributed seed. The server retains the terminal helper.
-The client visual patch retains its previously tested `edce4c42…` hash. Resource
-Review revision 8 rendered its burner and both Ponder buttons with shaders enabled;
-the saved local fixture passed 4,836 placements, 32 inventory slots and 27 specimens.
-
-The published [0.1.12 release](https://github.com/mannie-exe/create_sky/releases/tag/v0.1.12)
-passed release, pack and web CI. Both stopped local instances were installed from
-the published reference artifacts; personal settings and access lists were retained.
-The server's previous world and configuration were archived and verified against
-all 5,484 source files before replacement; named seeds were retained separately.
-Existing worlds are not converted.
-Survival fuel budgets, full deliveries, wing-borne flight and general seed/driver
-coverage remain unverified; [world generation](worldgen.md) owns those limits.
-
-## Create Sky 0.1.13 verification
-
-Select Create Sky Compat 0.3.0, source `fae87c2`. Its three-platform CI passed;
-the downloaded release binary matches the native-tested build, SHA-256
-`36f990b71bbddc31aff980f186b13a80265ddbc7017383c734d7673efc224c1d`.
-The owning mod's verification guide records native geometry, resource, village,
-climate, pressure and reopening checks, shader observations and the DH timeout
-limitation. [World generation](worldgen.md) owns selected parameters and tradeoffs.
-
-The root 27 Python tests, journal check and 229-file configuration audit passed.
-The visual resource builders retained the prior tested patch bytes. All three
-reference exports passed ZIP integrity checks; client/server recipes contain one
-Compat 0.3.0 JAR, no old neighbor/Compat JAR, matching geometry/ADQ defaults and
-correct Veil sidedness. The server archive retains the terminal helper.
-Atlas labels and imported native reports passed `pnpm verify` and data compilation;
-[web verification](web/verification.md) records the narrower UI scope.
-
-The release changes the existing islands preset and requires a fresh world.
-Local same-seed regeneration is separately authorized; no archive deletion or
-personal-client save removal is part of this release.
-
-## Create Sky 0.1.14 verification
-
-Select Create Sky Compat 0.4.0, source `f7ac591`. Its Linux, Windows and macOS
-checks and release passed. All downloaded assets matched both checksum manifests;
-the binary is byte-identical to the native-tested artifact, SHA-256
-`8b9d52d9eb07f05b0c2cb448bd927fd12152d9fafa8afd2aa00b47a4d1f8ec9f`.
-The mod's verification guide owns five-seed density, six-anchor resource,
-full/minimal reopening, village endpoint, spawn and visual/DH observations.
-[World generation](worldgen.md) owns the selected geometry and gameplay limits.
-
-The root 27 Python checks, journal generation check and 229-file configuration
-audit passed. Both resource builders retained their prior outputs. Empack sync
-resolved only Compat's release and destination changes, preserving Minecraft and
-all other dependency pins. `manifest check` reports a current lock.
-
-All three local reference exports passed archive integrity, version, geometry,
-mod selection and visual-patch checks. Exactly one Compat 0.4.0 is present on
-each side; Veil remains client-only and the obsolete neighbor mod is absent.
-Server launch scripts retain the terminal helper and executable modes; the
-server template supplies no seed. Atlas import/compile and application checks
-passed; [web verification](web/verification.md) records their scope.
-
-This release requires fresh terrain. The separate local reset is authorized to
-discard the current server world and choose a random seed, while retaining
-personal saves, settings, LOD caches and existing backups. A fresh DH key keeps
-the replacement world's client cache separate.
+Verification specific to a release is retained with its [release notes](../README.md#source-and-releases).

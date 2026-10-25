@@ -3,18 +3,18 @@
 ## Placement and compatibility
 
 The source includes [Sky Villages 1.0.6 for NeoForge](https://modrinth.com/mod/sky-villages/version/3InSHTOp)
-with Minecraft 1.21.1, NeoForge 21.1.264 and Architectury 13.0.11. This is not
-Create: Sky Village. Automated Logistics remains deferred to future Skyweave.
+with Minecraft 1.21.1, NeoForge 21.1.264 and Architectury 13.0.11. This is distinct from
+Create: Sky Village.
 Sky Villages uses datapack resources rather than a generated TOML. Maintained
 resources live in `pack-fixes/data/skyvillages`; the structures audit register
 owns their hashes and purpose. Build with `python3 scripts/build-fixes.py`.
 
 | Control | Current choice |
 | --- | --- |
-| Height | Uniform absolute start Y 160–224; no heightmap projection or terrain adaptation |
+| Height | Base start Y 160 to 224; Compat shifts it relative to the host island in the expanded preset |
 | Layout | Upstream jigsaw depth 7 and maximum distance 128 blocks |
-| Distribution | Upstream spacing 70 and separation 65 chunks; salt 23734816 |
-| Island proximity | Sky Village Neighbors: minimum gap 64, maximum host distance 512, minimum host radius 96 |
+| Distribution | Expanded preset: per-anchor allowance 0 to 3, candidate grid 24/12 chunks. Ordinary preset: upstream 70/65 chunks, salt 23734816 |
+| Island proximity | Create Sky Compat: minimum gap 64, maximum host distance 512, minimum host radius 96 |
 | Biomes | Ocean, river, jungle and forest tags, plus dark forest |
 | Pools | Installed templates and explicit empty entries only |
 | Village discovery | Include `skyvillages:skyvillage` in `#minecraft:village` |
@@ -22,7 +22,8 @@ owns their hashes and purpose. Build with `python3 scripts/build-fixes.py`.
 | Foundation minerals | One ordered pass: 0.025% diamond ore, 0.15% emerald ore, 20% diorite overall |
 | Crops and chest loot | Upstream defaults |
 
-The height override avoids adding 150 blocks to already high island surfaces.
+The base height override avoids adding 150 blocks to the upstream surface
+projection; Compat applies its host-relative altitude adaptation separately.
 It does not guarantee clearance from terrain. Removing 63 absent optional
 compatibility-template references prevents selections that cannot resolve.
 Revisit those pools when adding related content. Clearing generated jukebox
@@ -50,19 +51,19 @@ reducing mineral quantities enough that a settlement is not primarily an ore ban
 
 The 2026-10-22 survey placed 24 complete villages across seeds 1, 42, 8675309 and
 20261023 above flat terrain, excluding natural ore. Native piece selection,
-processors and overlapping placement remained active. Villages had 30–83 pieces
-and bounds within Y 153–278.
+processors and overlapping placement remained active. Villages had 30 to 83 pieces
+and bounds within Y 153 to 278.
 
 | Resource per village | Range | Median | Total across 24 |
 | --- | --- | --- | --- |
-| Foundation diamond ore | 0–5 | 2 | 51 |
-| Foundation emerald ore | 5–33 | 17 | 397 |
-| Chest diamonds | 0–3 | 0 | 17 |
-| Chest emeralds | 0–7 | 1 | 28 |
+| Foundation diamond ore | 0 to 5 | 2 | 51 |
+| Foundation emerald ore | 5 to 33 | 17 | 397 |
+| Chest diamonds | 0 to 3 | 0 | 17 |
+| Chest emeralds | 0 to 7 | 1 | 28 |
 
 The 361 chest rolls are one no-player sample, not guaranteed seeded yields or
 multiplayer Lootr entitlements. Ore counts are blocks before Fortune or processing.
-A median foundation yields roughly one light delivery's 15–20 emerald reward
+A median foundation yields roughly one light delivery's 15 to 20 emerald reward
 before Fortune, with excavation and a finite supply. This is a balance judgment,
 not a measured comparison of mining and transport time. Keep these rates for
 playtesting; do not increase delivery payouts to compete with the old foundations.
@@ -87,7 +88,7 @@ and the mason template includes a spruce sapling. That sapling can start renewab
 resin production; it is not necessary to find a natural taiga first if this
 building is present and reachable. None of these templates is guaranteed per village.
 
-## Location and density review
+## Placement policy
 
 The intended placement is floating **beside** island clusters, with a horizontal
 void gap. Regular villages and ground structures belong on the terrain. Floating
@@ -100,7 +101,7 @@ confirms that behavior. `StructurePlacementPolicy.categoryFor` classifies
 rule. `StructureRoutingPolicy.shouldRouteSkyToV2` selects the SKY engine before
 the legacy whitelist branch.
 
-The installed implementation has these relevant controls and limits:
+Sky Archipelago 1.3.6 has these controls before Compat applies its filter:
 
 | Control | Effect on Sky Villages |
 | --- | --- |
@@ -124,19 +125,11 @@ generator/settings. Clearance 0 and 8 failed; 9 passed; isolated void with zero
 nearby samples passed. A native village layout ran SKY air validation normally
 and bypassed it when explicitly whitelisted. `DEFAULT` with the current tokens
 still selected SKY. The probe read `level.dat` without changing it and generated
-no chunks in the live world. These checks establish current behavior, not a tested
-compatibility patch.
+no chunks in the live world. These checks establish upstream behavior without Compat's neighbor filter.
 
 Ocean biome eligibility compounds the visual effect: villages can pass their
 biome check where this pack suppresses natural terrain islands. Removing ocean
 eligibility would not establish a distance band or prevent above-island layouts.
-
-Read-only inspection of the stopped 2026-10-23 horseshoe-spawn world found two
-saved village layouts within 1,000 blocks of spawn, seven within 2,000, sixteen
-within 3,000 and twenty-nine within 4,000. The nearest centers were about 524 and
-843 blocks away. The scan read 1,600 possible original start chunks around spawn;
-these are recorded layouts, not an exhaustive terrain-clearance or loot survey.
-The world's seed is preserved privately beside the local backups.
 
 The ordinary Sky Archipelago baseline gives one candidate per 1,120 × 1,120-block cell before biome
 and placement rejection. The 65-chunk separation leaves only five possible chunk
@@ -145,7 +138,7 @@ Changing separation alone spreads candidate positions but does not reduce their
 number. The earlier four-seed generation survey measured a 74% valid-start rate;
 that is a sample, not a universal density guarantee.
 
-[Create Sky Compat 0.2.0](https://github.com/mannie-exe/create-sky-compat) replaces
+[Create Sky Compat](https://github.com/mannie-exe/create-sky-compat) replaces
 Sky Village Neighbors. Common placement controls live in
 `create_sky_compat-common.toml`. Its expanded preset shifts the structure altitude
 into the island band and assigns each anchor an allowance of zero to three
@@ -187,7 +180,7 @@ relevant generator version and resolved settings also remain the same.
 
 ## Verification scope
 
-The pinned JAR SHA-256 is
+The Sky Villages 1.0.6 JAR SHA-256 is
 `5ef7b63c6f1999a632085975afa14f00146369c142fd72980d760cbb617dd52f`.
 The 2026-10-22 isolated checks loaded 20 templates, resolved all 21 remaining pool
 references, registered 12 loot tables and confirmed village-tag membership.
@@ -209,8 +202,8 @@ Controlled placements bypass biome eligibility and natural terrain. Natural
 bounding-box resource counts include island terrain and must not be reported as
 foundation yields. No survival playthrough or multiplayer Lootr test was performed.
 
-These integration and resource changes ship in 0.1.8. Updating an installation
-preserves its world unless the operator explicitly requests a reset.
+The resource changes were introduced in 0.1.8; Compat later replaced the separate
+neighbor mod. Updates preserve a world unless its operator chooses a reset.
 Existing chunks are not retrofitted. Structures Arise and broader structure tuning
 remain a separate pass. See [progression](progression.md) for the connected fuel,
 processing, trade and travel decisions.

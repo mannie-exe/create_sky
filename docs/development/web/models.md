@@ -93,8 +93,8 @@ the first frame; the model advances through the texture's animation frames.
 
 This is a model preview, not Minecraft's renderer. It does not reproduce shaders,
 ambient occlusion, light levels, CTM, emissive extensions, animation interpolation,
-item display transforms or moving contraptions. Compare the saved output in
-Resource Review before selecting a new patch for play.
+item display transforms or moving contraptions. Compare saved output in a disposable Minecraft scene before selecting a patch
+for play; the local Resource Review fixture is one such scene.
 
 The loopback middleware shares the existing host/origin, body-size and serialized
 operation restrictions. Saves validate through the Python generator and check a
@@ -106,6 +106,8 @@ generation stops and preserves the previous output. External editors are not
 locked; finish their edits before generating and review the resulting diff.
 
 ## Implementation
+
+Paths in this table are relative to the pack repository root.
 
 | Responsibility                                       | Owner                               |
 | ---------------------------------------------------- | ----------------------------------- |

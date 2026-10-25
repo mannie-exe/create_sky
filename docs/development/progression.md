@@ -2,8 +2,8 @@
 
 The current source combines island exploration, Create production and Aeronautics
 transport. The Atlas records potential acquisition; it does not prove affordable
-quantities, working machinery or a safe outward and return journey. The archived
-terrain survey predates the active comparison world and Sky Villages.
+quantities, working machinery or a safe outward and return journey. Saved-world surveys and isolated generation samples have separate dates and
+provenance; use [world generation](worldgen.md) for the selected terrain profile.
 
 ## Resources and processing
 
@@ -30,8 +30,7 @@ was applied to decorative choices.
 
 The archived survey supports vertical resource specialization: iron and coal were
 common, while diamonds and most redstone were concentrated in deepslate. Preserve
-that reason to explore deeper terrain before increasing global ore rates. The
-Create Sky Compat maps those bands into each anchor's geological span;
+that reason to explore deeper terrain before increasing global ore rates. Create Sky Compat maps those bands into each anchor's geological span;
 [generated samples](worldgen.md#geology-and-features) now confirm zinc and
 other starting resources, with diamond/platinum in deep interiors. Mining access,
 travel time and whole-island quantities remain separate gameplay checks. Gold washing supplies a separate 5% platinum-nugget chance. At that
@@ -102,18 +101,17 @@ survey found medians of two diamond ore and 17 emerald ore. Keep chest loot,
 salvage and Fortune in the comparison with repeatable delivery rewards; these
 measurements do not establish mining/travel time or simulated settlement demand.
 
-Delivery Quests is in `CUSTOM` mode. The pack now owns its six stock templates in
+Delivery Quests is in `CUSTOM` mode. The pack owns its six stock templates in
 `config/aeronautics_delivery_quests/custom_quests.json`, with direct titles and
 descriptions. Schematics, masses, rewards and automatic endpoints are unchanged.
-The mod previously generated this file locally; it was not an absent-file
-procedural fallback after first launch. The available jobs award 15–50 emeralds
+The available jobs award 15 to 50 emeralds
 plus items, including one Mechanical Arm for a medium machinery shipment.
 
 These contracts transport supplied schematic cargo; they do not buy the player's
 farm output or simulate village consumption. Do not design a farming economy on
 that assumption. Existing villager trades are the actual item-demand mechanism.
 Village lookup, safe pickup placement and delivery completion remain separate
-checks. The structure search samples offsets from 500 to 2,000 blocks, with a
+checks. The structure search samples offsets from 500 to 6,000 blocks, with a
 120-minute limit and four offers. ADQ 1.1.1 checks the minimum after locating the
 nearest structure but does not enforce the configured maximum on that result;
 actual village routes can be longer. This is an implementation finding, not a
@@ -145,18 +143,20 @@ These are proposals, not applied settings or verified builds:
 The journal remains optional and bookless. Its 48 entries retain IDs, objective
 order and detectable conditions. Inventory goals require simultaneous possession;
 interaction goals do not claim a working machine or completed delivery. Turpentine
-and mixer descriptions now match the unheated recipe. No quest mechanics changed.
+and mixer descriptions reflect the unheated recipe.
 
-The review used the installed 1.21.1 / NeoForge 21.1.264 artifacts and native
+The 0.1.8 review used the installed 1.21.1 / NeoForge 21.1.264 artifacts and native
 runtime exports on 2026-10-22. `python3 scripts/generate-journal.py --check`,
 `python3 scripts/audit-changes.py`, the existing Python tests, resource build and
 Atlas refresh/check validate source consistency and the loaded recipes. Native
 Sky Villages processor sampling and its limits are recorded in
 [structures](structures.md). Runtime behavior was checked in a disposable server;
-no flight, delivery or full survival playthrough was performed.
+no flight, delivery or full survival playthrough was performed in that review.
+Later bounded aircraft checks are recorded in [world generation](worldgen.md#evidence-and-limits).
 All three empack reference distributions built successfully; the server archive
 retains its existing launch workaround.
 
-The review changes ship in 0.1.8. An ordinary update does not regenerate worlds. See [build and release](build.md) for installation,
+These processing and settlement policies were introduced in 0.1.8. An ordinary
+update does not regenerate worlds. See [build and release](build.md) for installation,
 [world generation](worldgen.md) for terrain settings, and
 [Atlas verification](web/verification.md) for map limitations.

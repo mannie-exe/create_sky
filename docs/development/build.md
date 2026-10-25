@@ -107,7 +107,7 @@ install new generation into existing play saves. Local previews are disposable;
 published artifacts and their source repositories own release identity.
 
 The native Ponder comparison covered shaders on/off, a working Create scene,
-world burner, inventory and shader reload. Veil's README owns renderer limits;
+world burner, inventory and shader reload. Veil's verification guide owns renderer limits;
 Compat's verification guide owns terrain, optional loading and flight evidence.
 [Patch maintenance](patches.md) owns coupled updates and removal criteria.
 
@@ -125,8 +125,9 @@ candidates; it does not validate gameplay or replace exact-artifact review.
 2. Synchronize and build all three profiles. Inspect client/server mod placement,
    shader presets, configuration and archive integrity. Run the relevant runtime
    checks from [verification](compatibility.md#verification-scope).
-3. Record commands, results, source revision and limitations in
-   [decision history](decisions.md). Commit and push the reviewed source.
+3. Record checks, tested versions and limitations in the relevant verification
+   guide. Update [decisions](decisions.md) only when policy changes. Commit and
+   push the reviewed source.
 4. Push the matching `v<version>` tag to trigger publication.
 5. Wait for validation and release jobs. Download the published assets, verify
    `SHA256SUMS`, and check the critical payloads before announcing the release.

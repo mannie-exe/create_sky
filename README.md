@@ -14,7 +14,7 @@ Prism and server reference packs require empack **0.8.2-beta** on `PATH` to prep
 the released files before launch. The Modrinth pack uses its launcher for downloads.
 Select Java 21 for the instance. The Prism profile allows up to 8 GiB of RAM.
 
-New worlds default to Sky Islands. Shaders are optional; Complementary, Euphoria
+New worlds default to Create Sky Islands. Shaders are optional; Complementary, Euphoria
 and BSL settings are included. Distant Horizons rendering
 is enabled by default.
 

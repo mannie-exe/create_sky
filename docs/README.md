@@ -13,7 +13,7 @@ record what was tested at the time; they do not define current defaults.
 | [Graphics](players/graphics.md) | DH rendering, shader choices and missing LODs |
 | [Servers](players/server.md) | Hosting, world preservation and DH generation |
 | [Included content](MODLIST.md) | Exact mods, resource packs and shaders in current source |
-| [Release notes](RELEASE_NOTES.md) | Current source notes; [previous v0.1.11](releases/0.1.11.md) |
+| [Release notes](RELEASE_NOTES.md) | Current release notes and links to earlier versions |
 
 ## Development and maintenance
 
@@ -37,3 +37,10 @@ record what was tested at the time; they do not define current defaults.
 Current defaults live in `overrides/` and `templates/`. Building source does not
 update a downloaded release or an installed instance. Archived release notes
 describe their named version; the unreleased notes describe the working tree.
+
+Earlier releases: [0.1.13](releases/0.1.13.md), [0.1.12](releases/0.1.12.md),
+[0.1.11](releases/0.1.11.md), [0.1.10](releases/0.1.10.md),
+[0.1.9](releases/0.1.9.md), [0.1.8](releases/0.1.8.md),
+[0.1.7](releases/0.1.7.md), [0.1.6](releases/0.1.6.md),
+[0.1.5](releases/0.1.5.md), [0.1.4](releases/0.1.4.md),
+[0.1.3](releases/0.1.3.md). Version-specific verification remains with those notes.

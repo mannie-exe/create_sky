@@ -10,8 +10,8 @@ The manifest and lock own exact selections. This guide owns update procedures;
 | Component | Source / output | Update together | Required check or removal condition |
 | --- | --- | --- | --- |
 | DH Polygon Fix 1.0.2 | Separate `dh-polygon-fix` repository; URL pin and placement in empack | DH 3.3.3, SSRD, Iris/Sodium and the native GL query | The patch requires DH 3.3.3. When updating DH, verify the upstream query fix and remove the incompatible patch; test native query/restore and shader pipelines. |
-| Veil Iris Fix 0.1.0 | Separate `~/production/veil-iris-fix`; Java mixin JAR | Sable 2.0.6 / nested Veil 4.3.2, Iris 1.8.14-beta.1+mc1.21.1 and shader stack | Run actual-class transformation/state checks and isolated native Ponder/world/reload comparisons. Remove when the selected upstream artifact restores framebuffer state and handles GUI/shadow passes and active Iris targets. |
-| Create Sky Compat 0.2.0 | `create-sky-compat` source project; common referenced JAR | Sky Archipelago 1.3.6; optional Sky Villages 1.0.6 + Architectury 13.x, Sable 2.0.6 and ADQ 1.1.1 | Revalidate terrain, geology, climate, village footprint/count policy, pressure and generation identity. For ADQ, review private route calls, horizontal-distance checks, chunk-ticket lifetime and success/failure cleanup. Rerun native endpoint checks; retain safety predicates. Replace the old neighbor dependency rather than installing both; see [worldgen](worldgen.md). |
+| Veil Iris Fix 0.1.0 | Separate `veil-iris-fix` repository; Java mixin JAR | Sable 2.0.6 / nested Veil 4.3.2, Iris 1.8.14-beta.1+mc1.21.1 and shader stack | Run actual-class transformation/state checks and isolated native Ponder/world/reload comparisons. Remove when the selected upstream artifact restores framebuffer state and handles GUI/shadow passes and active Iris targets. |
+| Create Sky Compat 0.4.0 | `create-sky-compat` source project; common referenced JAR | Sky Archipelago 1.3.6; optional Sky Villages 1.0.6 + Architectury 13.x, Sable 2.0.6 and ADQ 1.1.1 | Revalidate terrain, geology, climate, village footprint/count policy, pressure and generation identity. For ADQ, review private route calls, horizontal-distance checks, chunk-ticket lifetime and success/failure cleanup. Rerun native endpoint checks; retain safety predicates. Replace the old neighbor dependency rather than installing both; see [worldgen](worldgen.md). |
 | Worldgen configuration | `overrides/common/config/sky_archipelago*`, `zfastnoise.mixin.properties` | Sky Archipelago, Zfastnoise and generation/optimization mods | Preserve CONSISTENT 1494 for ordinary legacy Sky worlds. The expanded preset owns its embedded terrain settings. Recheck biome redirects and generation identity before generating new terrain. |
 | Shared data fixes | `pack-fixes/data/` → `create-sky-fixes-0.1.0.jar` | Mods owning the replaced recipe, loot, tag or processor resources | Compare new upstream JSON by exact resource ID. Remove bug overrides only when the installed artifact contains the fix; retain deliberate pack policy. Run native recipe/loot checks. |
 | Journal | `authoring/journal/` → Questlog config and language assets in the shared JAR | Questlog, item IDs, condition handlers and UI configuration | Generate, validate native handlers/counts/NBT restoration and check labels in the game UI. Locale edits alone do not change mechanics. |
@@ -152,7 +152,7 @@ bound without replacing unrelated bindings. `additional_elements` holds small
 explicit cuboids such as the cage's eight 45-degree corner connectors. The generator
 validates the complete model after composition; source templates remain unchanged.
 
-The new tavern, chain and striped lantern recipes reuse the fitted detailed body.
+The tavern, chain and striped lantern recipes reuse the fitted detailed body.
 Eight wall variants retain Macaw's bracket and attachment position. The DnD hood
 uses two plates extending two and one pixels, with the outer plate inset one pixel
 at each side. Cage connectors bridge the transition between side struts and top
@@ -206,8 +206,6 @@ compiler classes and obsolete exports after their findings enter the owning docs
 The Atlas's active generated data and textures are needed for local browsing;
 `web/dist/` is a duplicate build output and can be removed after checks.
 
-Keep Resource Review in the playing client's saves, existing world/seed backups
-and the preserved empack findings report. Cleanup is not permission to clear
-playing worlds, LODs, unrelated Prism instances or dependency caches shared by
-other projects. The harness under `~/Minecraft/modpack-testing` contains reusable
-source; it is not disposable merely because its name contains “testing.”
+Retain reusable visual fixtures and the source of testing harnesses. Cleanup of
+build output does not authorize deleting play worlds, LODs, backups, unrelated
+instances or dependency caches shared with other projects.

@@ -11,7 +11,7 @@ selected current source files. No issue, comment or PR was published. The entrie
 - Create Deco 2.1.3 placard ingredient: open issue #282.
   https://github.com/talrey/CreateDeco/issues/282
 - Interiors 0.6.1 dye tags: open issue #61; fix PR #60 merged 2026-07-27.
-  A source merge does not establish that our installed artifact contains the fix.
+  A source merge does not establish that the installed artifact contains the fix.
   https://github.com/aesefficio/CreateInteriorsMod/issues/61
   https://github.com/aesefficio/CreateInteriorsMod/pull/60
 - Bells & Whistles 0.4.7 metro glass tag: open issue #46 and open PR #54.
@@ -26,7 +26,7 @@ selected current source files. No issue, comment or PR was published. The entrie
 ## New-report candidates
 - Aero Cables 0.4.0: condition ae_cable, rs_cable and cc_cable recipes on ae2,
   refinedstorage and computercraft respectively. Installed runtime produced
-  recipe errors without those optional mods. Our three conditions remove them.
+  recipe errors without those optional mods. The pack's three conditions remove them.
   Current ae_cable JSON still lacks a condition at main revision
   a455e5639941745765657910ce3b73964fd0e2c6.
   https://github.com/tom5454/AeroCables/issues
@@ -36,14 +36,14 @@ selected current source files. No issue, comment or PR was published. The entrie
   other versions and are not established duplicates of this missing condition.
   https://github.com/Amronos/createaddoncompatibility/issues
 - Propulsion 1.1.5 copycat_wing, copycat_wing_8 and copycat_wing_12 drops:
-  installed loot tables only occupied obsolete loot_tables directory; our
+  installed loot tables only occupied obsolete loot_tables directory; the pack's
   singular-directory copies pass native loot rolls. Current main revision
   161ea5a8d1ec27080e9fe0327b6ac774495a21b6 retains those plural-path files;
   no corresponding singular files appeared in the tree. Report separately
   from casing #98, after checking a current build's actual wing behavior.
   https://github.com/Propulsion-Team/create-propulsion-simulated/issues
 - Hostile Skies 0.2.6 Modrinth version HaZ4GxKd still pins Sable version
-  e11C0I1A (2.0.3), while the shipped loader constraint accepts 2.0.3+ and our
+  e11C0I1A (2.0.3), while the shipped loader constraint accepts 2.0.3+ and the
   Sable 2.0.6 runtime boots. Metadata prevents normal empack resolution.
   Ask for compatible dependency metadata; this is not a demonstrated game crash.
   https://github.com/TheBlueTaco/Hostile-Skies/issues
@@ -55,14 +55,14 @@ selected current source files. No issue, comment or PR was published. The entrie
   https://github.com/DrMango14/Create-Design-n-Decor/issues/139
   https://github.com/DrMango14/Create-Design-n-Decor/pull/140
 - Analog Audio movement-behavior registration: issue #114 closed with author
-  comment 'Fixed in upcoming release.' Our 0.1.5-hotfix.1 capture still logs
+  comment 'Fixed in upcoming release.' The 0.1.5-hotfix.1 capture still logs
   'Failed to register Create movement behavior'. Prepare minimal reproduction
   before reporting recurrence; audio behavior in a moving craft is untested.
   https://github.com/palmmc/AnalogAudio/issues/114
 
 ## Ponder and Iris, 2026-10-24
 
-The user observed disappearing scene/UI content in Aeronautics' propeller Ponder;
+A playtest found disappearing scene/UI content in Aeronautics' propeller Ponder;
 other tested tutorials worked. Installed Aeronautics 1.3.2's
 `propeller_bearing/thrust.nbt` contains an adjustable burner at `(6,4,9)`.
 `PropellerScenes.propellerBearingThrust` powers it at signal 8 through
@@ -87,7 +87,8 @@ The isolated native client reproduced the propeller failure with
 Complementary/Euphoria enabled; disabling shaders restored it. Adding only Veil
 Iris Fix restored the affected scene with shaders, while the working mechanical
 press, world burner, inventory and shader reload continued to render. The exact
-A/B procedure and renderer limits live in that project's README.
+A/B procedure and renderer limits live in its
+[verification guide](https://github.com/mannie-exe/veil-iris-fix/blob/main/docs/verification.md).
 
 `./gradlew check build` also passes actual-class transformation and controlled
 framebuffer checks. The tested JAR is
@@ -103,7 +104,7 @@ update checks and the patch removal condition.
 Installed ADQ 1.1.1's `QuestGenerator.lambda$generateNewQuestAsync$4` resolves the
 structure locate position to a dry 3×3 surface. In two native Create Sky Compat
 villages, locate returned a start-chunk corner beside void and that predicate
-rejected the route despite valid ground two blocks away. The candidate's optional,
+rejected the route despite valid ground two blocks away. Compat's optional,
 version-guarded adapter retries within eight blocks and the known village bounds,
 retaining the original predicate. Both endpoints and negative scope controls passed
 before and after save/reopen. The owning mod's verification guide records hashes
@@ -112,27 +113,28 @@ and coordinates. Cargo placement and completion are not established by this chec
 Bytecode inspection of `lambda$generateNewQuestAsync$9` also shows that the
 configured maximum distance bounds the sampled search offset, not the final
 structure route. After `findNearestMapStructure`, only the minimum distance and
-world border are checked. The current 2,000-block value is therefore not a hard
-route cap in VILLAGE mode. No distance-policy patch was added. A future change
-must consider sparse settlement availability rather than silently discarding
-longer routes. Existing upstream issue coverage has not been checked for these
+world border are checked. The configured maximum is therefore not a hard route cap in VILLAGE mode. The
+pack now selects a 6,000-block search offset; Compat's horizontal-distance
+correction below affects minimum checks, not that maximum. Existing upstream issue coverage has not been checked for these
 findings and no report was submitted.
 
 The live isolated server then reproduced a separate loading failure: ADQ's paired
 background FULL requests returned `Unloaded chunk`, but route finalization ignored
 the failed `ChunkResult`s. A native control on the same two Sky Village chunks
-failed without explicit tickets and succeeded with retained tickets. The candidate
-now retains bounded endpoint neighborhoods through finalization and releases them
+failed without explicit tickets and succeeded with retained tickets. Compat
+retains bounded endpoint neighborhoods through finalization and releases them
 on success, rejection, failure or shutdown. This is reproduced with the installed
 stack; it has not been isolated to vanilla or C2ME alone.
 
 After loading worked, ADQ generated a one-block route from `(2240, 518, -3887)`
 to `(2240, 518, -3888)`. Before surface resolution, one locator position had Y=0;
 that artificial vertical difference satisfied the native 500-block minimum.
-The candidate uses horizontal distance for structure-origin and route checks in
+Compat uses horizontal distance for structure-origin and route checks in
 the new preset. The corrected native run produced a roughly 3,021-block route to
 `(-775, 524, -4079)` and released all 18 temporary tickets. It generated an offer;
-acceptance, cargo placement and completed delivery remain unverified.
+acceptance, cargo placement and completed delivery were not established by that
+run. Later acceptance and cargo pickup checks are recorded in
+[world generation](worldgen.md#evidence-and-limits); full deliveries remain unverified.
 
 ## Pack decisions
 - Zinc-sheet preference is pack unification policy.

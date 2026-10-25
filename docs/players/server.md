@@ -75,7 +75,7 @@ preset. Ordinary existing Sky Archipelago worlds retain their old terrain and
 neighbor filtering. Preserve their original generation settings. See the
 [generation guide](../development/worldgen.md) before creating a replacement world.
 
-## Fresh random-world pregen
+## New-world pregeneration
 
 After stopping the server and verifying a complete world/config backup, remove
 the previous world from the configured `level-name` path. Leave `level-seed=`
@@ -94,5 +94,6 @@ dh pregen status
 The radius is 1024 chunks (16,384 blocks), centered at block coordinates 0, 0.
 `dh pregen stop` cancels the job. The installed DH 3.3.3 command implementation
 accepts dimension, X/Z origin and chunk radius. This run generates real chunks
-and LODs; allow sufficient disk space. The previous world occupied about 18 GiB,
-which is a reference measurement, not a guarantee for a different seed.
+and LODs; allow sufficient disk space. Storage use depends on the generated terrain and LOD data. The example uses the
+world origin, not spawn; replace X/Z with the actual spawn coordinates to center
+the run there.
