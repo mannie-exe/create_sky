@@ -44,8 +44,12 @@ use this server command:
 ```
 
 DH synchronization on load and real-time updates are enabled. The authored
-per-player bandwidth limit is 500 KB/s, so a fresh client cache can take time
-to fill. A large pregen does not override the client's LOD display radius.
+per-player bandwidth limit is 2048 KB/s, with 64 generation/download requests
+and 100 sync requests per second. DH negotiates the lower client/server limits;
+existing installations need matching settings on both endpoints. Several players
+filling fresh caches can use the sum of their individual bandwidth allowances.
+A large pregen does not override the client's LOD display radius or make transfer
+immediate. Keep download progress optional in the client UI.
 See [missing distant terrain](graphics.md#missing-distant-terrain) for client checks.
 
 ## Webmap

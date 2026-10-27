@@ -34,11 +34,11 @@ _version = 5
 	#
 	# How many LOD generation requests per second should a client send? 
 	# Also limits the number of client requests allowed to stay in the server's queue.
-	generationRequestRateLimit = 20
+	generationRequestRateLimit = 64
 	#
 	# How many LOD sync requests per second should a client send? 
 	# Also limits the amount of player's requests allowed to stay in the server's queue.
-	syncOnLoadRateLimit = 50
+	syncOnLoadRateLimit = 100
 	#
 	# If true, clients will receive real-time LOD updates for chunks outside the client's render distance.
 	enableRealTimeUpdates = true
@@ -49,7 +49,7 @@ _version = 5
 	#
 	# Maximum per-player speed for uploading LODs to the clients, in KB/s.
 	# Value of 0 disables the limit.
-	playerBandwidthLimit = 500
+	playerBandwidthLimit = 2048
 	#
 	# Enables adaptive transfer speed based on client performance.
 	# If true, DH will automatically adjust transfer rate to minimize connection lag.
@@ -578,7 +578,7 @@ _version = 5
 				#  overhangs or walls for floating objects. 
 				#  Tweaking the caveCullingHeight, can resolve some 
 				#  of those issues.
-				enableCaveCulling = true
+				enableCaveCulling = false
 				#
 				# At what Y value should cave culling start? 
 				# Lower this value if you get walls for areas with 0 light.

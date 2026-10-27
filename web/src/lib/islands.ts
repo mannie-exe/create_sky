@@ -20,6 +20,9 @@ type ResourceIsland = {
   observedAnchorColumns: number
   observedBlocks: Counts
   estimatedBlocks: Counts
+  observedOresByReferenceY?: Record<string, Counts>
+  exposureCheckedOres?: Counts
+  exposedOres?: Counts
   elapsedSeconds: number
   samples: unknown[]
 }
@@ -162,6 +165,38 @@ export async function renderIslandSurvey() {
           number(i.elapsedSeconds),
         ]),
       )
+      for (const island of run.islands) {
+        if (!island.observedOresByReferenceY) continue
+        const depths = document.createElement('details')
+        const label = document.createElement('summary')
+        label.textContent = `Ore depth and exposure: ${island.descriptor.x}, ${island.descriptor.z}`
+        depths.append(label)
+        const note = document.createElement('p')
+        note.textContent =
+          'Observed blocks in 16-level geological bands, not absolute world Y or whole-island estimates. Exposure means an adjacent air or fluid block; chunk-edge columns are excluded. It does not establish a reachable mining route.'
+        depths.append(note)
+        surveyTable(
+          depths,
+          [
+            'Ore',
+            'Reference Y band: observed blocks',
+            'Exposed / checked blocks',
+          ],
+          Object.entries(island.observedOresByReferenceY)
+            .sort(([a], [b]) => a.localeCompare(b))
+            .map(([id, levels]) => [
+              id,
+              Object.entries(levels)
+                .sort(([a], [b]) => Number(a) - Number(b))
+                .map(([y, count]) => `${y}…${Number(y) + 15}: ${number(count)}`)
+                .join('; '),
+              island.exposureCheckedOres === undefined
+                ? 'Not captured'
+                : `${number(island.exposedOres?.[id] ?? 0)} / ${number(island.exposureCheckedOres[id] ?? 0)}`,
+            ]),
+        )
+        target.append(depths)
+      }
       const details = document.createElement('details')
       const summary = document.createElement('summary')
       summary.textContent = 'Sampling method, limits and tested artifacts'

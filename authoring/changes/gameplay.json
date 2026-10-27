@@ -645,6 +645,13 @@
       "review": "reviewed",
       "reason": "Serve the server-only webmap on TCP 8100; public routing remains an operator decision.",
       "reference": "docs/development/build.md#server-webmap"
+    },
+    {
+      "path": "overrides/server/config/create_sky_compat-bluemap.json",
+      "sha256": "1f3e769440d8c5b892cdda7148aa5f932f1c38494fcaa43cab6f438c681c2865",
+      "review": "reviewed",
+      "reason": "Opt the Overworld into the optional server-only BlueMap viewer adapter, with bounded detailed geometry and requests.",
+      "reference": "docs/development/build.md#server-webmap"
     }
   ]
 }

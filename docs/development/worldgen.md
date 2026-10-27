@@ -13,8 +13,8 @@ The authored profile is `overrides/common/config/create_sky_compat-generation.js
 | Control | Pack setting | Meaning |
 | --- | --- | --- |
 | Build range | Y=-128 through 767 | Includes terrain and building space |
-| Cluster grid | 2400 blocks, jitter 90 | Cell spacing and bounded center displacement |
-| Activation | 0.85 | Cluster activation before biome rejection |
+| Cluster grid | 2400 blocks, jitter 750 | Cell spacing and bounded center displacement |
+| Activation | 0.85 | Candidate activation before biome and clearance rejection |
 | Anchor center | Y=200 to 490 | Intersected with the safe band for the selected body |
 | Anchor height target | 250 to 400 blocks | Realized height varies with relief and erosion |
 | Anchor radius | 270 to 370 blocks | Descriptor radius, not an exact shoreline |
@@ -23,9 +23,11 @@ The authored profile is `overrides/common/config/create_sky_compat-generation.js
 | Floor/building clearance | 32 / 200 blocks | Reserved inside the build range |
 | Minimum cluster gap | 350 blocks | Complete terrain-density supports, not structures |
 
-The default shape bound gives a mathematical support gap of 354 blocks. This is
-not a guaranteed travel distance: shores, companions, biome exclusions and missing
-clusters affect the actual crossing. The tallest target requires an anchor center
+Deterministic priority rejects candidates whose complete cluster support bounds
+would violate the minimum gap. Wider jitter can therefore remove a candidate;
+it does not allow neighboring clusters to overlap. Grid spacing is not a guaranteed
+travel distance: shores, companions, biome exclusions and missing clusters affect
+the actual crossing. The tallest target requires an anchor center
 of at least Y=268. Curved undersides avoid the upstream density discontinuity.
 The fresh-world fallback checks generated support and headroom before setting spawn;
 it does not relocate existing worlds or create a platform.
@@ -41,9 +43,43 @@ not receive a complete compressed ore column.
 Native vein shapes, replacement rules, exposure checks and initial attempt counts
 remain authoritative. Coverage includes vanilla Overworld ores, Create zinc and
 striated deposits, and Propulsion platinum. Nether/End generation is unchanged.
-This does not restore vanilla noise caves, aquifers or large noise veins.
+Compat 0.5.0 also restores native large iron/copper veins in
+the same geological frame, including their raw-ore blocks and associated stone.
+Ordinary ore features remain separate. No large zinc or platinum veins are added.
 Temperature queries use reference Y=64 so biome climate is independent of island
 altitude. Cold biomes remain cold; altitude cooling above mountains is absent.
+
+### Interiors and local water
+
+The preset explicitly uses OVERLAP to retain lower island bodies. Cavities are
+subtracted within each contributing island before surviving rock is combined;
+one island's hollow cannot erase another island's rock. The exterior shape and
+taper remain unchanged. Geological depth uses the original anchor frame, not
+the thickness of a remaining cavern roof.
+
+`create_sky_compat-interiors.json` selects noise interiors with probability 0.55,
+hollows with 0.18, and baseline interiors otherwise. These are descriptor choices,
+not measured percentages of land. The shell is 12 blocks; selected openings can
+cut through it. Hollows retain rock pillars. Native classic carvers remain enabled.
+These custom cavities do not import the complete vanilla continental density router.
+
+`create_sky_compat-water.json` attempts local basins on 0.22 of eligible anchors,
+then rejects unsupported layouts. Radii are 20 to 36 and depths 6 to 12 blocks.
+Overflow and underside-outlet choices are 0.25 and 0.20; other admitted basins are
+enclosed. The outlet budget is one, two blocks wide, with three-block lining.
+Source water and its retaining bed/rim survive classic carving. Native fluid ticks
+produce the falls; this is not a global sea-level change or complete aquifer retrofit.
+
+Mangrove surfaces receive mud unless an existing upstream material override applies.
+Lush and dripstone biome projection includes retained lower bodies. Deep Dark and
+ancient-city eligibility retain the upper exterior's geological band; lower bodies
+do not independently acquire another city band or exterior grass cap.
+
+`create_sky_compat-oceans.json` keeps ocean experiments disabled. The available
+forms are an enclosed ocean basin, a beach/coast basin and a small water island
+with a falling perimeter. Native vegetation and biome spawn lists are present in
+tested examples; natural populations, coral acquisition and ocean progression are
+not certified. Enabling them changes generation identity and requires a fresh world.
 
 The mod's [terrain reference](https://github.com/mannie-exe/create-sky-compat/blob/main/docs/development/terrain.md)
 owns feature coverage and implementation. Its
@@ -69,11 +105,17 @@ Pressure follows world altitude, not each island's local surface.
 
 ### Evidence and limits
 
-Compat 0.4.0's recorded samples cover six anchors across seeds 42 and 8675309.
+Earlier density samples cover six anchors across seeds 42 and 8675309.
 Each used one chunk per stratum in a 7-by-7 grid. All contained zinc, iron, copper,
 coal, redstone, andesite, diamond and platinum. No emerald was observed; sparse
 samples cannot establish absence. Observed blocks and area-weighted estimates
 are separate, and neither proves mining access or survival scarcity.
+
+The qualified 0.5.0 survey separately samples three anchors on seed 42 with
+interiors, large veins and local water enabled. Atlas displays its artifact hash,
+reference-depth ore bands and ore adjacent to air or fluid. Exposure excludes
+chunk-edge columns and does not establish a reachable mining route. Keep these
+samples distinct from the server's dated saved-world survey and older density runs.
 
 Earlier creative flight checks demonstrated a glued cargo balloon, save/reopen
 and an outward/return crossing of roughly 1.5 km each way. Those are historical
@@ -86,6 +128,67 @@ The Atlas keeps saved-world surveys separate from imported isolated surveys.
 [World data](web/data.md#island-generation-surveys) describes provenance and import.
 Remaining play checks include cave access, mining time, flight budgets, survival
 controls and delivery completion. No recipe changes compensate for thin terrain.
+
+## Cluster visibility
+
+The 2026-10-26 stopped-world survey uses seed `-3702386035254534638` and
+`islands_v1-prototype-10`. Its recorded geometry matches the installed configuration:
+2400-block grid, ±750 displacement per horizontal axis, 0.85 candidate activation
+and 350-block minimum support gap. Biome admission still rejects ocean-biome
+anchors; clearance priority can reject another candidate. Sky Archipelago's
+ordinary CONSISTENT/DYNAMIC and size presets do not set this geometry. OVERLAP
+retains intersecting vertical bodies; it does not override inter-cluster clearance.
+
+A native descriptor survey using that exact seed, artifact and embedded settings
+found 30 anchor centers within 10,000 blocks of the origin. All their center chunks
+were stored with full status, and every cluster had saved solid terrain at its
+center or a bounded nearby sample; crescent/crater centers need not contain land.
+Nearest-other-anchor distances were 1968–3148 blocks, median 2204. Each had 1–6
+other anchor centers within 4096 blocks, median 4. These are center distances;
+two distinct nearest-center pairs had sampled solid-column shore gaps of 1047
+and 1230 blocks on a 16-block grid. Those gaps are neither exact routes nor a
+minimum guaranteed shoreline distance. The sampled nearest support gaps were
+428–1700 blocks; support bounds deliberately overestimate occupied terrain.
+
+At spawn (-836, 445, 852), other cluster centers are approximately 2144, 2809,
+3221 and 3800 blocks away. This supports nearby inter-cluster sightlines in range,
+not visibility from every point: foreground terrain, altitude and camera direction
+can obscure them. Farther clusters are expected to fall outside a finite view.
+
+### Local rendering limits
+
+| Setting inspected on 2026-10-26 | Value | Effect |
+| --- | --- | --- |
+| Client DH radius | 256 chunks / 4096 blocks | Nominal distant-terrain rendering radius |
+| Client and server vanilla view | 12 chunks / 192 blocks | Nearby full-detail chunks |
+| Client simulation / server simulation | 12 / 10 chunks | Does not extend distant rendering |
+| DH pregen request | 1024 chunks / 16384 blocks around spawn | Prepared data area, not a camera range |
+| Server DH sync/generation request caps | 4096 chunks each | Request permission, not a client render setting |
+| Server DH live-update radius | 256 chunks / 4096 blocks | Changed-chunk notifications |
+| Local client/server per-player DH bandwidth | 2048 KB/s | Tuned transfer cap; cached LOD delivery is still queued |
+| Client DH cave culling | Disabled | Avoids the stock low-altitude cave cutoff |
+
+The 4096-chunk request caps are confirmed by DH 3.3.3's
+`AbstractDhServerLevel`: it converts section-to-player block distance to chunks
+before checking those settings. Client DH renderer mode is DEFAULT, with MEDIUM
+horizontal/vertical quality and BLOCK maximum horizontal resolution. The
+shader-off DH fog begins at 0.4 of render distance (about 1638 blocks) and reaches
+its configured end at 4096, using exponential-squared falloff. These values do not
+establish the active shader's fog behavior.
+
+The selected shader is Complementary Unbound r5.9.3 with Euphoria Patches 1.10.5,
+with `ATM_FOG_DISTANCE=150`. In its DH path, atmospheric fog uses
+`1-exp2(-max(distance-40,0)*(0.4+0.4*rain)/150)`, then applies density, altitude,
+weather and cave/light factors. The value 150 is not a 150-block cutoff. Shader
+fog can substantially reduce distant contrast even when LOD data is available.
+The spacing/fog inspection did not launch a client or change rendering settings.
+Later live transfer tuning is recorded in [DH cache filling](compatibility.md#transfer-tuning).
+The measured spacing does not by itself justify increasing DH's radius; consider
+fog and data-transfer readiness before changing terrain or rendering budgets. The
+subsequent [cache-filling investigation](compatibility.md#dh-multiplayer-cache-filling)
+found available server LODs missing from the client's cache, nearest-first requests
+and logged rate limiting. Visibility after an approach/return is therefore evidence
+of data readiness, not sufficient evidence of a render-distance or fog cutoff.
 
 ## Ordinary Sky Archipelago worlds
 

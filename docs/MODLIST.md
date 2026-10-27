@@ -37,7 +37,7 @@ mods. Euphoria builds its patched shader at launch. See [release notes](RELEASE_
 | Concurrent Chunk Management Engine (NeoForge) | 0.4.0-alpha.0.123+1.21.1 | [Exact version](https://modrinth.com/mod/c2me-neoforge/version/avwWYPbG) |
 | Controlling | 19.0.5 | [Exact version](https://modrinth.com/mod/controlling/version/FaNppCJJ) |
 | Copycat Bar Extrusion | 0.1.0 | [Exact release](https://github.com/mannie-exe/copycat-bar-extrusion/releases/tag/v0.1.0) |
-| Create Sky Compat | 0.4.0 | [Exact release](https://github.com/mannie-exe/create-sky-compat/releases/tag/v0.4.0) |
+| Create Sky Compat | 0.5.0 | [Exact release](https://github.com/mannie-exe/create-sky-compat/releases/tag/v0.5.0) |
 | Create Accessories Compat | 1.0 | [Exact version](https://modrinth.com/mod/create-accessories-compat/version/2r7hvkCQ) |
 | Create Aeronautics | 1.3.2+mc1.21.1 | [Exact version](https://modrinth.com/mod/create-aeronautics/version/44pLdPGg) |
 | Create Aeronautics: Covers | 1.0.1 | [Exact version](https://modrinth.com/mod/create-aeronautics-covers/version/R35biaZf) |

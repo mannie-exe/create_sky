@@ -13,8 +13,9 @@ The pack's LOD radius is **256 chunks**. A server pregenerated to 1024 chunks do
 not automatically make the client draw that full radius. Raising the display
 radius increases the amount of terrain the client needs to load and render.
 
-Cave culling remains enabled in pack defaults. If low islands disappear, try
-turning it off in DH's settings (`enableCaveCulling = false`).
+Cave culling is disabled (`enableCaveCulling = false`) so its height-based cutoff
+does not hide low islands and undersides. Existing clients should check this setting
+if those surfaces disappear. Keep frustum culling enabled.
 
 Keep the release's DH Polygon Fix installed with DH 3.3.3 on clients, including macOS.
 The fix is version-specific; remove it when upgrading DH.

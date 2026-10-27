@@ -3,18 +3,23 @@ records:
   - id: islands/current
     title: Create Sky Islands
     evidence: configuration
-    detail: New worlds default to create_sky_compat:islands_v1, with a 1600-block anchor grid and bounded 180-block jitter. The expanded preset owns its terrain settings. CONSISTENT 1494 remains for ordinary legacy Sky Archipelago worlds; the former DYNAMIC setting chose one spacing for a whole world. Distributed server templates leave the seed blank.
+    detail: New worlds default to create_sky_compat:islands_v1, with a 2400-block anchor grid, bounded 750-block jitter and 0.85 activation before biome and support-clearance rejection. Anchor centers vary between Y=200 and 490 within body-specific safety bounds; target heights are 250–400 blocks. The expanded preset owns its terrain settings. CONSISTENT 1494 remains for ordinary legacy Sky Archipelago worlds; the former DYNAMIC setting chose one spacing for a whole world. Distributed server templates leave the seed blank.
     sources:
       [
         'create_sky_compat:islands_v1',
         'pack docs/development/worldgen.md',
-        'runtime/worldgen_review.json',
+        'overrides/common/config/create_sky_compat-generation.json',
       ]
   - id: ores/pregen
-    title: Archived terrain baseline
+    title: Early saved terrain sample
     evidence: measured
-    detail: This survey describes the archived world, not the current horseshoe-spawn world. Refresh it after pregen. Region headers were counted exhaustively; blocks are sampled reproducibly within every populated region. Air volume changes per-world-area yields, while vertical terrain availability changes which ore bands survive. A recipe or configured ore feature alone does not guarantee obtainable quantities.
+    detail: The current capture is early, partial and non-atomic, taken after fresh-world startup while pregeneration was running. It is not a completed 1024-chunk-radius survey. The saved-world survey records its exact seed, generation identity and capture date. It is a dated sample, not live pregen progress. Region headers are counted exhaustively; blocks are sampled reproducibly within every populated region. Stored chunks can include unfinished generation stages, especially at the pregen boundary; inspect the full-generation sample count before interpreting yields. Air volume changes per-world-area yields, while vertical terrain availability changes which ore bands survive. A recipe or configured ore feature alone does not guarantee obtainable quantities.
     sources: ['scripts/world.py', 'data/generated/world.json']
+  - id: ores/relative-height
+    title: Read ore heights against island geology
+    evidence: implementation-and-saved-terrain
+    detail: Ores use the host anchor’s geological frame, so the world-wide Y chart combines islands at different elevations. It does not define one mining level for every island. Companions share their host’s frame instead of receiving a complete compressed ore column. Area-weighted yields include void and incomplete chunks; observed ore does not establish exposure, mining access or enough material on the spawn island.
+    sources: ['pack docs/development/worldgen.md', 'data/generated/world.json']
   - id: structures/deferred
     title: Structure generation tuning is a separate pass
     evidence: decision
@@ -33,6 +38,17 @@ records:
   - id: islands/compat-candidate
     title: Island terrain and resource samples
     evidence: native-generation-samples
-    detail: Create Sky Compat adds a -128 to 768 build envelope, deep large anchors, independently sized companions, relative geology and a scoped altitude-pressure curve. Four-seed density samples averaged 1505–1588 blocks between nearest anchors and 303–343 blocks in anchor height. Distributed generated samples on six anchors found zinc, iron, copper, coal and logs on each. Counts, estimates, descriptors and artifact hashes appear separately under World & ores. These are isolated development samples, not a survey of the personal server world or proof of survival balance.
+    detail: Create Sky Compat adds a -128 to 768 build envelope, deep large anchors, independently sized companions, relative geology and a scoped altitude-pressure curve. Published Compat 0.4.0’s historical five-seed density samples averaged 2335–2585 blocks between nearest anchors. These are center distances, not shoreline gaps. The current development resource survey separately samples three seed-42 anchors with caves, veins and local water enabled; it records geological depth and exposure as well as quantities. Exposure to air or fluid does not prove reachable mining access. Counts, estimates, descriptors and artifact hashes appear separately under World & ores. These are isolated development samples, not a survey of the personal server world or proof of survival balance.
     sources:
       ['pack docs/development/worldgen.md', 'data/generated/islands.json']
+  - id: islands/interiors-water
+    title: Interiors and local water
+    evidence: implementation-and-native-samples
+    detail: OVERLAP retains lower island bodies. Per-island noise and hollow cavities preserve the exterior taper and geological frame; classic carvers remain enabled. Local basins have supported beds and deliberate overflow or underside outlets. Native large iron and copper veins are enabled. Ocean basin, coast and falling-perimeter experiments remain disabled in pack defaults. These settings require a fresh world and are recorded in generation identity; an older saved-world survey does not describe the new settings.
+    sources:
+      [
+        'pack docs/development/worldgen.md',
+        'overrides/common/config/create_sky_compat-interiors.json',
+        'overrides/common/config/create_sky_compat-water.json',
+        'overrides/common/config/create_sky_compat-oceans.json',
+      ]

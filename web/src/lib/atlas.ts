@@ -603,6 +603,7 @@ async function loadWorld() {
       }),
     )
   el('world-notes').innerHTML =
+    recordedGeneration(w.provenance?.generationIdentity) +
     `<p class="muted">${escape(w.method)}. ${w.fullChunksSampled} sampled chunks have full generation status. ${w.changedRegions.length} regions changed during the read.</p><p class="muted">Snapshot ${escape(w.completedAt)} · Bounds ${escape(JSON.stringify(w.boundsBlocks))}</p>` +
     w.limitations.map((text: string) => `<p>${escape(text)}</p>`).join('') +
     (await domains()).authored.worldgen.records
@@ -614,6 +615,25 @@ async function loadWorld() {
   drawWorld()
   drawProfile()
   travel()
+}
+function recordedGeneration(identity?: RecordData) {
+  if (!identity) return ''
+  const rows = [
+    ['Algorithm', identity.algorithm],
+    ['Overlap', identity.islands?.advanced?.terrain_overlap_mode],
+    ['Large veins', identity.largeVeins],
+    ['Interior profiles', identity.interiors],
+    ['Local water', identity.water],
+    ['Ocean variants', identity.oceans],
+  ].filter(([, value]) => value !== undefined)
+  return `<details><summary>Recorded generation settings</summary><p>Settings saved with this world. Current pack defaults may differ.</p><div class="table-scroll"><table><tbody>${rows
+    .map(
+      ([label, value]) =>
+        `<tr><th scope="row">${escape(label)}</th><td>${typeof value === 'object' ? pretty(value) : escape(value)}</td></tr>`,
+    )
+    .join(
+      '',
+    )}</tbody></table></div><details><summary>Full generation identity</summary>${pretty(identity)}</details></details>`
 }
 let worldGeometry = { minX: 0, minZ: 0, cell: 1, offsetX: 0, offsetY: 0 }
 function drawWorld() {
@@ -682,6 +702,7 @@ function drawProfile() {
     ${rows.map(([y, n]: number[]) => `<rect x="${x(y)}" y="${128 - (n / peak) * 100}" width="${Math.max(0.4, width)}" height="${(n / peak) * 100}" fill="var(--accent)"><title>Y ${y}: ${n.toFixed(5)} estimated blocks per chunk</title></rect>`).join('')}
     ${[min, Math.round((min + max) / 2), max].map((y, i) => `<text x="${x(y)}" y="150" text-anchor="${['start', 'middle', 'end'][i]}" font-size="11" fill="var(--muted)">Y ${y}</text>`).join('')}
     </svg><p class="muted">${ore === 'land' ? 'All observed ores' : escape(ore)} · peak ${peak.toFixed(4)} estimated blocks/chunk at one Y level. ${recordedBounds ? 'Recorded dimension height.' : 'Observed height range; unsampled heights are unknown.'}</p>
+    <p class="muted">World Y combines islands at different elevations. This survey does not record each block’s anchor-relative geological depth; it cannot identify a universal mining level or distinguish ordinary ore from large veins. Raw iron and copper blocks are counted separately.</p>
     <details><summary>Values by Y level</summary><div class="profile-values table-scroll"><table><thead><tr><th>World Y</th><th>Est. blocks/chunk</th></tr></thead><tbody>${rows.map(([y, n]: number[]) => `<tr><td>${y}</td><td>${n.toFixed(5)}</td></tr>`).join('')}</tbody></table></div></details>`
 }
 el('ore-map').addEventListener('change', () => {

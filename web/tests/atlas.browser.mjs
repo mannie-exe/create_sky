@@ -27,7 +27,17 @@ test('real snapshot, virtualized map, item provenance and world profile', async 
   await expect(page.locator('#island-survey')).toContainText(
     'Generated resource samples: seed 42',
   )
-  await expect(page.locator('#world-provenance')).toContainText('Legacy survey')
+  const depths = page
+    .locator('#island-survey summary')
+    .filter({ hasText: 'Ore depth and exposure:' })
+    .first()
+  await depths.click()
+  await expect(depths.locator('..')).toContainText('create:zinc_ore')
+  await expect(depths.locator('..')).toContainText('Reference Y band')
+  const survey = await (await page.request.get('/generated/world.json')).json()
+  await expect(page.locator('#world-provenance')).toContainText(
+    survey.provenance ? `Seed ${survey.provenance.seed}` : 'Legacy survey',
+  )
   await page.getByRole('button', { name: 'Zinc Ore', exact: true }).click()
   await expect(page.locator('#ore-map')).toHaveValue('create:zinc_ore')
   await expect(page.locator('#ore-profile')).toContainText('create:zinc_ore')
@@ -186,7 +196,12 @@ test('expanded-world profile exposes its source and keeps high ores in the chart
         provenance: {
           seed: '-9007199254740993',
           dimensionType: 'create_sky_compat:islands_v1',
-          generationIdentity: { dimension: { min_y: -128, height: 896 } },
+          generationIdentity: {
+            dimension: { min_y: -128, height: 896 },
+            algorithm: 'captured-fixture',
+            islands: { advanced: { terrain_overlap_mode: 'overlap' } },
+            oceans: { enabled: false },
+          },
         },
         regions: [
           {
@@ -212,6 +227,15 @@ test('expanded-world profile exposes its source and keeps high ores in the chart
     /-128 to 767/,
   )
   await expect(page.locator('#ore-profile svg rect')).toHaveCount(2)
+  await page
+    .getByText('Generation and sampling limits', { exact: true })
+    .click()
+  await page.getByText('Recorded generation settings', { exact: true }).click()
+  await expect(page.locator('#world-notes')).toContainText('captured-fixture')
+  await expect(page.locator('#world-notes')).toContainText('overlap')
+  await expect(page.locator('#ore-profile')).toContainText(
+    'anchor-relative geological depth',
+  )
   await page.getByText('Values by Y level', { exact: true }).click()
   await expect(page.locator('#ore-profile tbody')).toContainText('600')
   await page.setViewportSize({ width: 390, height: 844 })

@@ -4,6 +4,37 @@ These records describe the stated source revisions and artifacts. They are not
 continuous checks of the current checkout. Generated evidence and comparison
 media are local, ignored files; links to them work only in a populated workspace.
 
+## Terrain evidence UI, 2026-10-26
+
+The local worktree adds captured generation settings to World & ores and
+geological-depth/exposure tables to isolated island surveys. `pnpm verify` passed
+54 tests, type checking and production build. Three focused Chrome browser checks
+passed for the real snapshot, missing-survey state and expanded-height fixture,
+including opening an ore-depth table and checking narrow-screen overflow. The first
+attempt used a nonexistent test selector; correcting it required no application fix.
+
+`pnpm data:islands`, `pnpm data:compile` and `pnpm data:check` imported the current
+seed-42 three-anchor resource survey. Its Compat artifact is
+`58377f93469acc17d5fa4831bdd8ea479fdc7f43d8e3df5550f8dd75f94271ab`.
+The ten imported density runs retain their earlier artifact provenance. Exposure
+counts adjacent air/fluid within sampled chunk interiors; it does not establish
+reachable routes. The subsequent server-world refresh is recorded separately below.
+
+## Saved-world refresh, 2026-10-26
+
+`pnpm data:world` captured the fresh server world once at
+`2026-10-26T23:51:39Z`: seed `-3702386035254534638`, generation identity
+`islands_v1-prototype-10`, OVERLAP, spacing 2400, jitter 750 and ocean variants off.
+This supersedes the earlier prototype-9 world survey; isolated development surveys
+retain their independent provenance.
+
+The capture counted 3,953 stored chunk entries in 12 region files and sampled 48
+chunks. Only five sampled chunks had full generation status. It reported no read
+errors, changed region files or source-metadata changes, but the running-server
+capture is still partial and non-atomic. These early ore quantities are not a
+completed 1024-chunk-radius survey or a basis for scarcity tuning. No pregen progress
+or completion polling was performed after command acceptance.
+
 ## Atlas workbench and world evidence, 2026-10-25
 
 The worktree based on `b0ca189` reorganizes item inspection, world evidence and
@@ -446,13 +477,45 @@ diagnostics and build; the existing large-chunk warning remains.
 No new interaction or graph layout was introduced; browser interaction tests
 were not rerun for these table labels and import changes.
 
+## Saved-world refresh, 2026-10-26
+
+The Atlas sampled a consistent copy of the current server's Overworld, captured
+while it was stopped for the BlueMap adapter restart. Only region files, level
+metadata and the generation marker were copied; the temporary copy was removed
+after inspection. The running world and DH data were preserved.
+
+`pnpm data:world --samples 16 --world PATH` completed at 2026-10-27 04:15:51 UTC
+(October 26 locally), replacing the smaller earlier capture. The census found
+1,882,676 stored chunk entries across 1,940 regions. It sampled 30,976 chunks,
+28,673 with full status, without read errors, changed regions or metadata changes.
+Sampling increased from four to sixteen chunks per populated region. Bounds were
+X=-12288..10239 and Z=-10240..12287; these are region envelopes, not complete
+coverage or island edges. The remaining 2,303 unfinished samples can depress
+estimates. This capture does not establish pregen completion.
+
+The seed is `-3702386035254534638`, generation `islands_v1-prototype-10`, with
+2400-block spacing, jitter 750 and OVERLAP. The generation identity SHA-256 is
+`431c3d63a8281dfda9c6f595fcf3bb93678ecb405976fa3df078f41fbb659066`.
+Area-weighted sampled solid-column coverage was about 3.05%. Zinc, diamond,
+emerald and platinum were observed; absolute-Y ore distributions combine islands
+at different elevations and do not define a universal mining level.
+
+`pnpm data:compile` regenerated the browser projection and `pnpm data:check`
+passed. The two targeted Chrome checks passed for the real world/profile and
+missing-survey state. No application behavior changed, so the full application
+build was not repeated. Runtime item/recipe exports and older isolated island
+resource surveys remain separate; they were not recaptured by this world refresh.
+The exact-seed spacing and local renderer review is in
+[cluster visibility](../worldgen.md#cluster-visibility).
+
 ## Limits
 
 Mapped acquisition is potential access, not a budget for quantities, chance, XP,
 stress/RPM, fuel, safe combat or travel. Trade samples are not exhaustive. Arbitrary
-Java interactions and equipment drops still need targeted adapters. The archived
-world survey counted 4,285,004 stored chunk entries and sampled 16,900 chunks;
-structures/builds can contribute blocks, and sampled zero is not absence.
+Java interactions and equipment drops still need targeted adapters. Saved-world
+surveys are dated samples, not pregen-completion receipts. Structures/builds can
+contribute blocks, unfinished chunks can depress estimates, and sampled zero is
+not absence.
 
 The audit server does not import playing-world datapacks or gamerules. Check those
 separately when evaluating a world-specific change. Optional loot-table, Analog

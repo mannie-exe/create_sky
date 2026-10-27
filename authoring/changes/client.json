@@ -11,10 +11,10 @@
     },
     {
       "path": "overrides/common/config/DistantHorizons.toml",
-      "sha256": "fc688981d3e3af84ba4983695940a72923f4c2a785b2da911b663e5cd1ab46ff",
-      "review": "inherited",
-      "reason": "Retained from the imported pack. Individual setting intent has not been reviewed.",
-      "reference": "docs/development/decisions.md"
+      "sha256": "66b1b5cd153d2b31c452ea540ee3a2fc5a651ed924967632f2c69aafdd604802",
+      "review": "reviewed",
+      "reason": "Use bounded multiplayer LOD transfer limits on both endpoints (2048 KB/s, 64 fresh requests, 100 sync requests). Disable height-based cave culling for floating island undersides. Retain 256-chunk rendering, four workers, native CHUNKS_ONLY generation and hidden progress by default; preserve installation-specific identities.",
+      "reference": "docs/development/compatibility.md#dh-multiplayer-cache-filling"
     },
     {
       "path": "overrides/common/config/aeroworks-client.toml",

@@ -106,6 +106,11 @@ and the same three reference profiles. Never publish its local-input manifests o
 install new generation into existing play saves. Local previews are disposable;
 published artifacts and their source repositories own release identity.
 
+Geometry, interiors, water and ocean profiles are shared authored JSON files in
+`overrides/common/config/`. Keep them together with the qualified artifact and
+their categorized audit baselines. New terrain must use a fresh world; the saved
+generation marker is not a migration switch.
+
 The native Ponder comparison covered shaders on/off, a working Create scene,
 world burner, inventory and shader reload. Veil's verification guide owns renderer limits;
 Compat's verification guide owns terrain, optional loading and flight evidence.
@@ -124,6 +129,18 @@ resource-download consent to the owner. The default Overworld map has no X/Z lim
 and includes the complete Compat vertical range. New local defaults do not replace
 existing seed files automatically; review and apply intended changes separately.
 See [server webmap setup](../players/server.md#webmap).
+
+Create Sky Compat optionally adapts the BlueMap 5.7 browser viewer on dedicated
+servers. `overrides/server/config/create_sky_compat-bluemap.json` selects `world`;
+its seed policy preserves operator edits. Other maps retain the stock renderer.
+The adapter uses actual world bounds, extends detailed rendering with bounded
+loading, and clips empty-edge triangles in the finest overview layer. It does not
+change generation, DH data or stored tiles. Keep full-height map bounds and cave
+culling disabled to retain island undersides in detailed tiles. Coarse overview
+layers remain height fields: distant stacked terrain and undersides are not fully
+represented, and coarse sheets can remain visible from below. The adapter's
+configuration and update checks are owned by Create Sky Compat's
+`docs/development/bluemap.md`.
 
 ## Dependency updates
 

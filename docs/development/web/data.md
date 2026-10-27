@@ -153,6 +153,14 @@ identity remain labelled as such in the world view and survey-derived acquisitio
 records. Ore charts use recorded dimension bounds when available, otherwise the
 observed height range; they do not assume the current pack or vanilla height.
 
+The world view displays settings from the captured generation identity, separately
+from current pack configuration. Its absolute-Y ore chart combines differently
+elevated islands and does not define a universal mining level. Imported isolated
+island surveys can additionally provide 16-level geological-depth bands and counts
+of ore touching air or fluid. Exposure excludes chunk-edge columns and is neither
+an area-weighted estimate nor proof of a reachable route. Missing exposure fields
+in older imports remain explicitly uncaptured.
+
 ## Browser projection
 
 [`scripts/compile.mjs`](../../../web/scripts/compile.mjs) joins the evidence and authored

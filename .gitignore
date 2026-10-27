@@ -101,6 +101,7 @@ coverage.xml
 /dist/
 /.empack-cache/
 /.host-state/
+/.local-artifacts/
 
 # Exact provider payloads are reacquired; custom resource sources stay tracked.
 /pack/mods/*.jar

@@ -1,0 +1,13 @@
+{
+  "noiseChance": 0.55,
+  "hollowChance": 0.18,
+  "shellThickness": 12,
+  "noiseHorizontalScale": 64,
+  "noiseVerticalScale": 32,
+  "passageWidth": 0.075,
+  "chamberThreshold": 0.48,
+  "hollowRadius": 0.58,
+  "hollowHeight": 0.24,
+  "openingChance": 0.35,
+  "nativeCarvers": true
+}

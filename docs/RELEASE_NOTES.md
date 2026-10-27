@@ -1,56 +1,45 @@
-# Create Sky 0.1.15
+# Create Sky 0.1.16
 
-## Mod updates
+Minecraft remains 1.21.1 and NeoForge remains 21.1.264. Update Create Sky Compat
+from 0.4.0 to 0.5.0; other mod and resource-pack versions are unchanged.
 
-Minecraft remains 1.21.1 and NeoForge remains 21.1.264.
+## Islands and exploration
 
-| Mod | Previous | Updated |
-| --- | --- | --- |
-| Create: Radars | 0.4.9.4 | 5.0.1 |
-| JEI | 19.64.0.455 | 19.70.0.460 |
-| ModernFix | 5.27.26 | 5.27.27 |
-| Questlog | 3.4.1 | 3.5.0 |
-| Reliable EMI | 4.7.12 | 4.8.0 |
-| Sodium Extra | 0.9.4 | 0.9.5 |
-| Sound Physics Remastered | 1.5.1 | 1.5.2 |
-| Traveler's Backpack | 10.1.39 | 10.1.40 |
+- Use 750-block cluster jitter with deterministic neighboring-island clearance,
+  retaining 2400-block cells, varied elevation and the continuous underside taper.
+- Add island-relative noise interiors, hollow chambers, large iron/copper veins,
+  local basins and water outlets through the OVERLAP terrain pipeline.
+- Preserve biome-specific materials and cave/ancient-city placement rules across
+  the expanded terrain. Ocean-island prototypes are available but disabled.
+- Enable the optional BlueMap 5.7 viewer adapter for the server's `world` map.
+  Detailed views use actual height bounds and bounded loading; coarse views still
+  have limitations for stacked terrain and undersides.
 
-These include Radars monitor fixes, recipe-viewer improvements, Questlog fixes
-and corrected sound attenuation. Traveler's Backpack adds controls for dropped
-backpack despawning, fire and explosion resistance. Existing radar ranges are retained in the updated config schema. Repair Radars’
-new jammer and warning-receiver recipes so their outputs and ingredients resolve.
-Journal requirements and other pack recipes are unchanged. See
-[included content](MODLIST.md) for exact artifacts.
+The Atlas world/ore view separates height profiles, exposure observations and
+estimated resource quantities, and includes the current generation survey.
+Scarcity, cave access, rare structures and long-term water behavior remain playtest topics.
 
-Fzzy Config remains 0.7.7: the advertised fix1 NeoForge artifact has an unresolved
-version placeholder and fails native loading. It is excluded from this update.
+## Distant terrain
 
-## Server webmap
-
-Add BlueMap 5.7 on servers only. Clients receive neither the mod nor its configs.
-The Overworld map includes all saved terrain without horizontal limits, including
-pregenerated chunks, across the full island-world height range. One render worker
-limits contention with gameplay and DH. Detailed views preserve shaded undersides;
-distant tiles still have BlueMap's height-field limitations.
-
-Fresh server owners must accept BlueMap's Minecraft-resource download in its core
-config before rendering starts. The web server uses TCP 8100; public routing is
-operator-managed. Existing BlueMap configuration is preserved. Owners of the early
-bounded local setup should remove its X/Z map bounds explicitly. See
-[server webmap setup](players/server.md#webmap).
+Raise matching client/server DH limits to 2048 KB/s per player, 64 fresh-LOD
+requests and 100 sync requests. Disable client cave culling for island undersides.
+Keep the 256-chunk rendering radius, four workers and native CHUNKS_ONLY generation.
+The progress overlay remains a player preference and is hidden by default.
+This improves transfer allowances; it does not add island-priority scheduling.
 
 ## World compatibility
 
-No world reset, seed change or LOD removal is required. Terrain settings and
-Create Sky Compat remain unchanged. Stop instances before updating, retain their
-worlds and local settings, then restart any pregeneration job with its original
-center and radius.
+Released 0.1.15 worlds use the older generation identity and require a fresh world
+for this terrain update. Keep those saves and their configs separately; do not
+remove an identity marker to force conversion. The current local playtest world
+already uses the qualified `islands_v1-prototype-10` generation and matching
+settings, so it is preserved when moving to this release. Its seed and DH cache
+identity remain unchanged. Other server owners should verify their own world marker.
 
 ## Verification
 
-Pack checks pass, including resource generation and configuration auditing. An
-isolated Java 21.0.13 / NeoForge 21.1.264 server exported 9,253 recipes, including
-both repaired Radars recipes, and passed all 66 objective probes across 48 journal
-entries. A separate client loaded the Resource Review world, displayed journal
-details and opened a crafting recipe through EMI with JEI and Reliable EMI loaded.
-This was a loading/UI check, not a complete gameplay or radar-system playtest.
+Compat's versioned JAR differs from the qualified candidate only in version
+metadata. Its native generation, reopen, fluid, DH pregen and BlueMap evidence is
+recorded in the mod's verification guide. Pack tests, journal/resource generation,
+configuration audit and Atlas tests/build/snapshot checks pass. These checks do
+not establish complete survival balance or certify every rare structure.

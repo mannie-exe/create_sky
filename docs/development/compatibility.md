@@ -332,3 +332,114 @@ Selected comparison captures remain in the testing harness under
 `projects/create-sky-resources/images/2026-10-24-compat-pass/`. The fixture's native
 parser exposed an invalid Rechiseled sample ID; it now uses registered oak window
 bars, and both fill and individual placement validate registry IDs before generation.
+
+## BlueMap model parsing
+
+The optional Create Sky Compat viewer adapter targets BlueMap 5.7 on dedicated
+servers; see [server webmap](build.md#server-webmap). Browser checks on saved tiles
+confirmed bounded detailed rendering, reduced empty-edge stretching, disable and
+re-enable behavior, and camera movement across the floating-origin boundary.
+Coarse sheets remained visible from beneath the islands after the detailed-memory
+budget was reached; this is a remaining height-field limitation, not fixed 3D LODs.
+
+At the 2026-10-26 18:07 status check, all three maps were updated relative to saved
+terrain while DH pregeneration was 12.662% complete, with a reported ETA of
+10h52m15s. Those are historical observations, not a current completion estimate.
+BlueMap catches up to saved terrain rather than predicting the final pregen area.
+
+The inspected startup resource scan rejected eleven Macaw's Doors models for
+duplicate `particle` keys and Create Deco's `catwalk_bottom.json` for an invalid
+`EAST:` face direction. No other tile-generation exceptions were found in that
+BlueMap debug log; 24 sampled compressed tile files decoded successfully. This
+checks file integrity, not visual correctness of every block. Clearing tiles does
+not repair upstream model JSON. No broad resource overrides were added for this.
+
+## DH multiplayer cache filling
+
+On 2026-10-26, islands became visible from spawn after the player approached them
+and returned. The client log at 21:32 confirmed the DH handshake and the current
+`create-sky-20261026-a0fb6687aa24` level key. Both sides used CHUNKS_ONLY,
+INTERNAL_SERVER, enabled synchronization and generation, and 4096-chunk request
+caps. No exploration prerequisite was found in the inspected request paths.
+DH's [multiplayer FAQ](https://modrinth.com/mod/distanthorizons) distinguishes
+client-only exploration from server-provided LODs.
+
+Read-only database inspection found server LODs around the western anchor
+(-3516, 1692) dating to about 17:07, while its client's detailed section was first
+stored around 21:40. The northwestern anchor (-1892, -1014) likewise had server
+data before login and acquired client data during that session. Sampled server
+column-generation arrays were complete LIGHT (4096 of 4096 columns); several
+client parent sections still contained EMPTY columns. This establishes incomplete
+client coverage despite available server data. It does not reconstruct the exact
+contents of the rendered frame before the player's flight.
+
+Inspection of the installed DH 3.3.3 implementation found two nearest-first stages:
+`LodQuadTree.startQueuedRetrievalTasks` orders missing sections by Manhattan distance,
+and `AbstractFullDataNetworkRequestQueue.sendNextRequest` prioritizes by distance
+to the player. `RemoteWorldRetrievalQueue` uses the generation-request limit even
+when downloading already-generated LODs. The server fulfills complete stored
+sections without requiring a player visit. `RemoteFullDataSourceProvider` has a
+20-minute `visitedPositions` cache, but it deduplicates section sync requests;
+it is not a world-exploration permission system.
+
+Before tuning, both local endpoints limited fresh requests to 20, sync requests to
+50, and per-player bandwidth to 500 KB/s. Client logs recorded sync-rate rejection
+and requeueing at 21:32 and 21:39. Four DH worker threads also bound the retrieval queue to 80 tasks.
+The negotiated limits use the lower client/server value; raising only the server
+value may have no effect. The disabled generation-progress display also hid the
+multiplayer download-progress indication.
+
+The evidence supports delayed cache filling, with movement changing request
+priority and nearby vanilla chunks also contributing LODs. It does not isolate
+bandwidth, request concurrency and disk/CPU scheduling as independent bottlenecks.
+Do not switch to surface approximation, clear caches or regenerate terrain to
+address this symptom.
+
+### Transfer tuning
+
+The connected client and running server were tuned through DH's own UI and console
+on 2026-10-26. The same transfer limits are now authored pack defaults. The progress overlay
+remains a local preference; new installations keep it hidden.
+
+| Setting | Previous | Tuned value |
+| --- | --- | --- |
+| Per-player bandwidth, both endpoints | 500 KB/s | 2048 KB/s |
+| Generation/download request limit, both endpoints | 20 | 64 |
+| Sync-on-load request limit, both endpoints | 50 | 100 |
+| Client generation/download progress | DISABLED | OVERLAY |
+
+Server commands were `dh config common.playerBandwidthLimit 2048`,
+`dh config generation.requestRateLimit 64`, and `dh config syncOnLoad.rateLimit 100`.
+The client exposes the same limits under DH → Advanced options → Server, despite
+that category name. Saved TOML readback confirmed all three values on both sides.
+Pack cave culling is also disabled to match the client's existing island-friendly
+setting; the old Y=60 cutoff is unsuitable for exposed undersides.
+Render radius remains 256 chunks, worker count remains four, and generation stays
+CHUNKS_ONLY / INTERNAL_SERVER. No restart, movement, cache clearing or pregen
+rescheduling was needed.
+
+A read-only client SQLite comparison from 21:59:42 to 22:00:12 PDT found 1454
+additional detail-zero sections. The detail-four section containing the eastern
+anchor (2930, 1362) improved from 3216 to 4048 LIGHT columns out of 4096. The western,
+northwestern and southern sampled sections were complete at both observations.
+The visible download overlay and increasing stored coverage confirm stationary
+cache filling. This is not a controlled throughput comparison or proof that every
+island is rendered: the cache was already warming and no before/after flight or
+fresh-client test was performed.
+
+### Optional island-aware request ordering
+
+An adaptation could prioritize coarse coverage of likely land-bearing sections,
+then refine nearby terrain, before spending most of its initial budget on empty
+space. The inspected client has two scheduling stages, so changing only server
+response ordering cannot prioritize sections the client has not requested yet.
+A candidate would gate client hooks to the supported DH version and use bounded,
+cached island descriptors from the server to rank requests. Existing stored LOD
+occupancy could refine predictions without generating chunks to classify them.
+
+Treat these hints as priority, never permission or proof that a section is empty.
+Keep age-based fairness and a share of the request budget for all sections: bridges,
+structures and player builds can occupy nominal void. Preserve normal DH behavior
+without the optional adapter or hints. Descriptor lookup, network payloads and
+scheduling hooks still need implementation and runtime verification; no DH adapter
+is installed by this tuning pass.
