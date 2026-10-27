@@ -443,3 +443,16 @@ structures and player builds can occupy nominal void. Preserve normal DH behavio
 without the optional adapter or hints. Descriptor lookup, network payloads and
 scheduling hooks still need implementation and runtime verification; no DH adapter
 is installed by this tuning pass.
+
+### Release installation
+
+Create Sky 0.1.16's published Prism, server and Modrinth archives passed SHA-256
+verification and payload/sidedness checks. Both local instances installed the
+release through empack. The client prepare hook then reported zero changes; the
+server reopened the existing prototype-10 world and served BlueMap's adapter.
+The same pregen request was accepted once and left running. No new Minecraft
+client visual pass was performed for this metadata/configuration release.
+
+The [island LOD and SeedGen investigation](https://github.com/mannie-exe/create-sky-compat/blob/main/docs/development/lod.md)
+owns the proposed optional bridge and multiplayer reconstruction fix. Neither
+SeedGen nor Voxy/Roxy is included in 0.1.16.
