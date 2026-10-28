@@ -1,7 +1,7 @@
 schema: 5
 pack:
   name: Create Sky
-  version: 0.1.16
+  version: 0.1.17
   id: create_sky
   authors:
     - mannie-exe
@@ -13,6 +13,23 @@ runtime:
   minecraft: 1.21.1
   java: 21
 dependencies:
+  carryon-animation-fix:
+    side: client
+    source:
+      kind: url
+      downloads:
+        - https://github.com/Pelly-the-Crafter/carryon-animation-fix/releases/download/v1.0.0/carryon-animation-fix-1.0.0.jar
+    digests:
+      sha1: 20f3b426c334d69fbc40a1da77bd99fffa86da21
+      sha512: 3101b106371c5f349f6e78781677ba0329ba9bcd6a397a3c2de6376526e365bf17aad2b5a877a4e40fce0b0853b7ef9f804558ef35cd7d3b29a79cf8e277ac8b
+  ponder:
+    source:
+      kind: url
+      downloads:
+        - https://maven.createmod.net/net/createmod/ponder/ponder-neoforge/1.0.87+mc1.21.1/ponder-neoforge-1.0.87+mc1.21.1.jar
+    digests:
+      sha1: 7783eeff0389f8c6003457133b9dd98e903266c6
+      sha512: 2706cbc70e7800f13847d838ebbc2ac4f9776e0d979f60f94924336be2130e0f5790b145088158866cfdc37256bdf166d54169f047fbaaee7d260e8d630f9c40
   bluemap:
     source: modrinth:swbUV1cr
     pin: 8iJcPOHJ
@@ -71,7 +88,7 @@ dependencies:
     pin: Y68yiql9
   c2me-neoforge:
     source: modrinth:COlSi5iR
-    pin: avwWYPbG
+    pin: VACgDPOc
   cable-facades:
     source: modrinth:twipgzWx
     pin: XWCAtdzJ
@@ -158,7 +175,7 @@ dependencies:
     pin: 3Y4r0ItR
   create-radars:
     source: modrinth:BLu2Yqfq
-    pin: R0YpyH4w
+    pin: PxQPBxAp
   create-transmission:
     source: modrinth:QFCkBuIh
     pin: dOsq88jX
@@ -248,7 +265,7 @@ dependencies:
     environment:
       client: required
       server: required
-    pin: uG7oHgw6
+    pin: jRuOkBAG
   hoofprint:
     side: client
     source:
@@ -281,7 +298,7 @@ dependencies:
     pin: cxUohR7A
   jei:
     source: modrinth:u6dRKJwZ
-    pin: u8LQk1jf
+    pin: ufAsQKnC
   kotlin-for-forge:
     source: modrinth:ordsPcFz
     pin: uhJhCT7X
@@ -425,7 +442,7 @@ dependencies:
     pin: qKL9jM75
   supermartijn642s-core-lib:
     source: modrinth:rOUBggPv
-    pin: OG6Edgmm
+    pin: HGyYs7Z4
   surveyor:
     source:
       downloads:
@@ -684,10 +701,10 @@ dependencies:
     source:
       kind: url
       downloads:
-        - https://github.com/mannie-exe/create-sky-compat/releases/download/v0.5.0/create-sky-compat-0.5.0-mc1.21.1-neoforge.jar
+        - https://github.com/mannie-exe/create-sky-compat/releases/download/v0.5.1/create-sky-compat-0.5.1-mc1.21.1-neoforge.jar
     digests:
-      sha1: 35577ae83cd25287f4daceb71433fe0cfe731b9b
-      sha512: c6e639d18601892f09d8e824673a8c6fa7a79216a43b815c59465ca305a3256b3604deacb4a925f52f1308e0526f69967d03a462bab5fa107d4485caf36ab6f4
+      sha1: 65cfaf27a485368ec77700131eb48814c4ff4ebb
+      sha512: 641e16a845ac1c3ae37b70c15d6c77f43588e12b4f52b6949366c03533dfdefa5325392d78c904fa435d9c8aabdcfe88a774c775f83ec7380a80a0ff1cbb43d8
     environment:
       client: required
       server: required

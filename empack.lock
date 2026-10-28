@@ -19,6 +19,7 @@ coverage:
   c2me-neoforge: complete
   cable-facades: complete
   carry-on: complete
+  carryon-animation-fix: unknown
   chat-heads: complete
   clean-tooltips: complete
   cloth-config: complete
@@ -115,6 +116,7 @@ coverage:
   ping-wheel: complete
   playeranimator: complete
   polymorph: complete
+  ponder: unknown
   power-grid: complete
   puzzles-lib: complete
   questlog: complete
@@ -1037,25 +1039,25 @@ dependencies:
     - acquisition:
         downloads:
         - >-
-          https://cdn.modrinth.com/data/COlSi5iR/versions/avwWYPbG/c2me-neoforge-mc1.21.1-0.4.0-alpha.0.123.jar
+          https://cdn.modrinth.com/data/COlSi5iR/versions/VACgDPOc/c2me-neoforge-mc1.21.1-0.4.0-alpha.0.124.jar
         kind: provider
         pin:
           project:
             project: COlSi5iR
             provider: modrinth
           selection:
-            id: avwWYPbG
+            id: VACgDPOc
             provider: modrinth
-        slot: c2me-neoforge-mc1.21.1-0.4.0-alpha.0.123.jar
+        slot: c2me-neoforge-mc1.21.1-0.4.0-alpha.0.124.jar
       expected:
         accepted-observation: null
         digests:
-          sha1: 50fe2e38c6369b51e4dee1106d0295185e6251c4
+          sha1: 469497c209e77742a85020845a361851f14d99e2
           sha512: >-
-            c7c485d856fa0118694ae8484e85a714db92ce7886195dbc355257d59d4254da2ce537ac18da8e05c9786c3a98f70cc5ffdfd089ad23b6822f854d72f3caa62d
-        size: 3717365
+            ad5675893a856663659b4d73285d154615e6c1924fef0f52513e3f07895ba474e3629778087aa8ec0edcfd802c21ee773f6483397bde858ff30a2b62887b208b
+        size: 3717706
       placements:
-      - destination: mods/c2me-neoforge-mc1.21.1-0.4.0-alpha.0.123.jar
+      - destination: mods/c2me-neoforge-mc1.21.1-0.4.0-alpha.0.124.jar
         environment:
           client: required
           server: required
@@ -1063,9 +1065,9 @@ dependencies:
       provenance:
         conversions: []
         declared-digests:
-          sha1: 50fe2e38c6369b51e4dee1106d0295185e6251c4
+          sha1: 469497c209e77742a85020845a361851f14d99e2
           sha512: >-
-            c7c485d856fa0118694ae8484e85a714db92ce7886195dbc355257d59d4254da2ce537ac18da8e05c9786c3a98f70cc5ffdfd089ad23b6822f854d72f3caa62d
+            ad5675893a856663659b4d73285d154615e6c1924fef0f52513e3f07895ba474e3629778087aa8ec0edcfd802c21ee773f6483397bde858ff30a2b62887b208b
         location: COlSi5iR
         source: provider-catalog
       slot: primary
@@ -1080,7 +1082,7 @@ dependencies:
         project: COlSi5iR
         provider: modrinth
       selection:
-        id: avwWYPbG
+        id: VACgDPOc
         provider: modrinth
     source-selector:
       provider: modrinth
@@ -1196,6 +1198,43 @@ dependencies:
       provider: modrinth
       selector: joEfVgkn
     title: Carry On
+  carryon-animation-fix:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://github.com/Pelly-the-Crafter/carryon-animation-fix/releases/download/v1.0.0/carryon-animation-fix-1.0.0.jar
+        kind: url
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 20f3b426c334d69fbc40a1da77bd99fffa86da21
+          sha512: >-
+            3101b106371c5f349f6e78781677ba0329ba9bcd6a397a3c2de6376526e365bf17aad2b5a877a4e40fce0b0853b7ef9f804558ef35cd7d3b29a79cf8e277ac8b
+        size: null
+      placements:
+      - destination: mods/carryon-animation-fix-1.0.0.jar
+        environment:
+          client: required
+          server: unsupported
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 20f3b426c334d69fbc40a1da77bd99fffa86da21
+          sha512: >-
+            3101b106371c5f349f6e78781677ba0329ba9bcd6a397a3c2de6376526e365bf17aad2b5a877a4e40fce0b0853b7ef9f804558ef35cd7d3b29a79cf8e277ac8b
+        location: null
+        source: url-file
+      slot: primary
+    identity:
+      key: carryon-animation-fix
+      kind: url
+    incompatibilities: []
+    selection: null
+    source-selector: null
+    title: carryon-animation-fix
   chat-heads:
     content: mod
     files:
@@ -2717,25 +2756,25 @@ dependencies:
     - acquisition:
         downloads:
         - >-
-          https://cdn.modrinth.com/data/BLu2Yqfq/versions/R0YpyH4w/create_radar-5.0.1-1.21.1.jar
+          https://cdn.modrinth.com/data/BLu2Yqfq/versions/PxQPBxAp/create_radar-5.0.2-1.21.1.jar
         kind: provider
         pin:
           project:
             project: BLu2Yqfq
             provider: modrinth
           selection:
-            id: R0YpyH4w
+            id: PxQPBxAp
             provider: modrinth
-        slot: create_radar-5.0.1-1.21.1.jar
+        slot: create_radar-5.0.2-1.21.1.jar
       expected:
         accepted-observation: null
         digests:
-          sha1: 6e9d2cd12487b33bed4cbc6728342bbd4e9b856f
+          sha1: 3cae53e1a02daafe95f08c7afb48135fcc09266e
           sha512: >-
-            129a2a7d55725dbd0cf12767a08141b68d632eb5c3466d6003b37b0433cc2f594f2ebc9ec139fc029a7c0a16eb8e2108eda44dc28a558813d82bb9f518cf9fce
-        size: 5667204
+            e518aceb82273c653a9ecdbbf57388caf3cedd5d781c3493c171da9661a6ca3086cde144d19367861f0737e19416a8c5fc637b34a4782a30fd70604087cc4388
+        size: 5678107
       placements:
-      - destination: mods/create_radar-5.0.1-1.21.1.jar
+      - destination: mods/create_radar-5.0.2-1.21.1.jar
         environment:
           client: required
           server: required
@@ -2743,9 +2782,9 @@ dependencies:
       provenance:
         conversions: []
         declared-digests:
-          sha1: 6e9d2cd12487b33bed4cbc6728342bbd4e9b856f
+          sha1: 3cae53e1a02daafe95f08c7afb48135fcc09266e
           sha512: >-
-            129a2a7d55725dbd0cf12767a08141b68d632eb5c3466d6003b37b0433cc2f594f2ebc9ec139fc029a7c0a16eb8e2108eda44dc28a558813d82bb9f518cf9fce
+            e518aceb82273c653a9ecdbbf57388caf3cedd5d781c3493c171da9661a6ca3086cde144d19367861f0737e19416a8c5fc637b34a4782a30fd70604087cc4388
         location: BLu2Yqfq
         source: provider-catalog
       slot: primary
@@ -2760,7 +2799,7 @@ dependencies:
         project: BLu2Yqfq
         provider: modrinth
       selection:
-        id: R0YpyH4w
+        id: PxQPBxAp
         provider: modrinth
     source-selector:
       provider: modrinth
@@ -2772,17 +2811,17 @@ dependencies:
     - acquisition:
         downloads:
         - >-
-          https://github.com/mannie-exe/create-sky-compat/releases/download/v0.5.0/create-sky-compat-0.5.0-mc1.21.1-neoforge.jar
+          https://github.com/mannie-exe/create-sky-compat/releases/download/v0.5.1/create-sky-compat-0.5.1-mc1.21.1-neoforge.jar
         kind: url
       expected:
         accepted-observation: null
         digests:
-          sha1: 35577ae83cd25287f4daceb71433fe0cfe731b9b
+          sha1: 65cfaf27a485368ec77700131eb48814c4ff4ebb
           sha512: >-
-            c6e639d18601892f09d8e824673a8c6fa7a79216a43b815c59465ca305a3256b3604deacb4a925f52f1308e0526f69967d03a462bab5fa107d4485caf36ab6f4
+            641e16a845ac1c3ae37b70c15d6c77f43588e12b4f52b6949366c03533dfdefa5325392d78c904fa435d9c8aabdcfe88a774c775f83ec7380a80a0ff1cbb43d8
         size: null
       placements:
-      - destination: mods/create-sky-compat-0.5.0-mc1.21.1-neoforge.jar
+      - destination: mods/create-sky-compat-0.5.1-mc1.21.1-neoforge.jar
         environment:
           client: required
           server: required
@@ -2790,9 +2829,9 @@ dependencies:
       provenance:
         conversions: []
         declared-digests:
-          sha1: 35577ae83cd25287f4daceb71433fe0cfe731b9b
+          sha1: 65cfaf27a485368ec77700131eb48814c4ff4ebb
           sha512: >-
-            c6e639d18601892f09d8e824673a8c6fa7a79216a43b815c59465ca305a3256b3604deacb4a925f52f1308e0526f69967d03a462bab5fa107d4485caf36ab6f4
+            641e16a845ac1c3ae37b70c15d6c77f43588e12b4f52b6949366c03533dfdefa5325392d78c904fa435d9c8aabdcfe88a774c775f83ec7380a80a0ff1cbb43d8
         location: null
         source: url-file
       slot: primary
@@ -4366,23 +4405,23 @@ dependencies:
     - acquisition:
         downloads:
         - >-
-          https://cdn.modrinth.com/data/hYykXjDp/versions/uG7oHgw6/fzzy_config-0.7.7%2B1.21%2Bneoforge.jar
+          https://cdn.modrinth.com/data/hYykXjDp/versions/jRuOkBAG/fzzy_config-0.7.7%2Bfix1%2B1.21%2Bneoforge.jar
         kind: provider
         pin:
           project:
             project: hYykXjDp
             provider: modrinth
           selection:
-            id: uG7oHgw6
+            id: jRuOkBAG
             provider: modrinth
-        slot: fzzy_config-0.7.7+1.21+neoforge.jar
+        slot: fzzy_config-0.7.7+fix1+1.21+neoforge.jar
       expected:
         accepted-observation: null
         digests:
-          sha1: 518eadc53c065a74a49207769209c116e77d1849
+          sha1: aa04a2ddbce2f50b21d667d2f3e589f9e043e472
           sha512: >-
-            ef03b411b0e1b241a9952e1a8fdac61979665953eb5f28116aac06530964e7378eb20a78594a47ba4d942c74dfa20d550c292014b5de8e63c42b882a33aef5a5
-        size: 2392693
+            7ea074ac2bee3471a213ed6e55d3beafded16631ea517ecbc6711324f6af82b697c9d391aaadcefff67eda13d5dcc2bfb5011373c73a7015761060b6d89cf15c
+        size: 2392720
       placements:
       - destination: mods/fzzy-config.jar
         environment:
@@ -4392,9 +4431,9 @@ dependencies:
       provenance:
         conversions: []
         declared-digests:
-          sha1: 518eadc53c065a74a49207769209c116e77d1849
+          sha1: aa04a2ddbce2f50b21d667d2f3e589f9e043e472
           sha512: >-
-            ef03b411b0e1b241a9952e1a8fdac61979665953eb5f28116aac06530964e7378eb20a78594a47ba4d942c74dfa20d550c292014b5de8e63c42b882a33aef5a5
+            7ea074ac2bee3471a213ed6e55d3beafded16631ea517ecbc6711324f6af82b697c9d391aaadcefff67eda13d5dcc2bfb5011373c73a7015761060b6d89cf15c
         location: hYykXjDp
         source: provider-catalog
       slot: primary
@@ -4409,7 +4448,7 @@ dependencies:
         project: hYykXjDp
         provider: modrinth
       selection:
-        id: uG7oHgw6
+        id: jRuOkBAG
         provider: modrinth
     source-selector:
       provider: modrinth
@@ -4952,25 +4991,25 @@ dependencies:
     - acquisition:
         downloads:
         - >-
-          https://cdn.modrinth.com/data/u6dRKJwZ/versions/u8LQk1jf/jei-1.21.1-neoforge-19.70.0.460.jar
+          https://cdn.modrinth.com/data/u6dRKJwZ/versions/ufAsQKnC/jei-1.21.1-neoforge-19.70.0.464.jar
         kind: provider
         pin:
           project:
             project: u6dRKJwZ
             provider: modrinth
           selection:
-            id: u8LQk1jf
+            id: ufAsQKnC
             provider: modrinth
-        slot: jei-1.21.1-neoforge-19.70.0.460.jar
+        slot: jei-1.21.1-neoforge-19.70.0.464.jar
       expected:
         accepted-observation: null
         digests:
-          sha1: 28f60e82131464f4093f5400df6c0c04915ffb38
+          sha1: 4e3a3f58c02ca1c9362f7d089dec4a611d475582
           sha512: >-
-            2e2221b3979dbda313bd61b09a625d6edfa6c7644a0e9a7a791d25896a1b60c12fdd69aded150609cb1b78946bb9153011b8e4218fb1d535398503e00f429a33
-        size: 4735620
+            eb9b997017de0d9cdd0a849829eb4eccb017bb6d890260915e5f7b8c6aee752db88eb144d5a337c5d9cf75dc0e5ce2fa3fa6bf208550bb3b77f510e0dc36c5bd
+        size: 4736819
       placements:
-      - destination: mods/jei-1.21.1-neoforge-19.70.0.460.jar
+      - destination: mods/jei-1.21.1-neoforge-19.70.0.464.jar
         environment:
           client: required
           server: required
@@ -4978,9 +5017,9 @@ dependencies:
       provenance:
         conversions: []
         declared-digests:
-          sha1: 28f60e82131464f4093f5400df6c0c04915ffb38
+          sha1: 4e3a3f58c02ca1c9362f7d089dec4a611d475582
           sha512: >-
-            2e2221b3979dbda313bd61b09a625d6edfa6c7644a0e9a7a791d25896a1b60c12fdd69aded150609cb1b78946bb9153011b8e4218fb1d535398503e00f429a33
+            eb9b997017de0d9cdd0a849829eb4eccb017bb6d890260915e5f7b8c6aee752db88eb144d5a337c5d9cf75dc0e5ce2fa3fa6bf208550bb3b77f510e0dc36c5bd
         location: u6dRKJwZ
         source: provider-catalog
       slot: primary
@@ -4995,7 +5034,7 @@ dependencies:
         project: u6dRKJwZ
         provider: modrinth
       selection:
-        id: u8LQk1jf
+        id: ufAsQKnC
         provider: modrinth
     source-selector:
       provider: modrinth
@@ -6300,6 +6339,43 @@ dependencies:
       provider: modrinth
       selector: tagwiZkJ
     title: Polymorph
+  ponder:
+    content: mod
+    files:
+    - acquisition:
+        downloads:
+        - >-
+          https://maven.createmod.net/net/createmod/ponder/ponder-neoforge/1.0.87+mc1.21.1/ponder-neoforge-1.0.87+mc1.21.1.jar
+        kind: url
+      expected:
+        accepted-observation: null
+        digests:
+          sha1: 7783eeff0389f8c6003457133b9dd98e903266c6
+          sha512: >-
+            2706cbc70e7800f13847d838ebbc2ac4f9776e0d979f60f94924336be2130e0f5790b145088158866cfdc37256bdf166d54169f047fbaaee7d260e8d630f9c40
+        size: null
+      placements:
+      - destination: mods/ponder-neoforge-1.0.87+mc1.21.1.jar
+        environment:
+          client: required
+          server: required
+        layer: common
+      provenance:
+        conversions: []
+        declared-digests:
+          sha1: 7783eeff0389f8c6003457133b9dd98e903266c6
+          sha512: >-
+            2706cbc70e7800f13847d838ebbc2ac4f9776e0d979f60f94924336be2130e0f5790b145088158866cfdc37256bdf166d54169f047fbaaee7d260e8d630f9c40
+        location: null
+        source: url-file
+      slot: primary
+    identity:
+      key: ponder
+      kind: url
+    incompatibilities: []
+    selection: null
+    source-selector: null
+    title: ponder
   power-grid:
     content: mod
     files:
@@ -7730,25 +7806,25 @@ dependencies:
     - acquisition:
         downloads:
         - >-
-          https://cdn.modrinth.com/data/rOUBggPv/versions/OG6Edgmm/supermartijn642corelib-1.1.25-neoforge-mc1.21.jar
+          https://cdn.modrinth.com/data/rOUBggPv/versions/HGyYs7Z4/supermartijn642corelib-1.1.26-neoforge-mc1.21.jar
         kind: provider
         pin:
           project:
             project: rOUBggPv
             provider: modrinth
           selection:
-            id: OG6Edgmm
+            id: HGyYs7Z4
             provider: modrinth
-        slot: supermartijn642corelib-1.1.25-neoforge-mc1.21.jar
+        slot: supermartijn642corelib-1.1.26-neoforge-mc1.21.jar
       expected:
         accepted-observation: null
         digests:
-          sha1: 60d45feac8cd2f0b497b013c7fd501b3ae8b6f6d
+          sha1: 87cad4854002b2028c1b5e3e4ab150cf9f5fb722
           sha512: >-
-            c9c4f22ed1657da646331f519e5d40495cc7e92a6683800691823dfcaf858973c8f202285322c095ebeca245c6a512aa8edf83a97c8a65be0080f9b176f5c2e2
-        size: 562683
+            fa430e835175fe46a11fc2e2cf9a670cddd325ad6960245378b0adbdbfc9f45756e09e3a5f1a29b9f7c5be6f3a3498af13fd36d3bd5a4cca4549bf0040311bc7
+        size: 591925
       placements:
-      - destination: mods/supermartijn642corelib-1.1.25-neoforge-mc1.21.jar
+      - destination: mods/supermartijn642corelib-1.1.26-neoforge-mc1.21.jar
         environment:
           client: required
           server: required
@@ -7756,9 +7832,9 @@ dependencies:
       provenance:
         conversions: []
         declared-digests:
-          sha1: 60d45feac8cd2f0b497b013c7fd501b3ae8b6f6d
+          sha1: 87cad4854002b2028c1b5e3e4ab150cf9f5fb722
           sha512: >-
-            c9c4f22ed1657da646331f519e5d40495cc7e92a6683800691823dfcaf858973c8f202285322c095ebeca245c6a512aa8edf83a97c8a65be0080f9b176f5c2e2
+            fa430e835175fe46a11fc2e2cf9a670cddd325ad6960245378b0adbdbfc9f45756e09e3a5f1a29b9f7c5be6f3a3498af13fd36d3bd5a4cca4549bf0040311bc7
         location: rOUBggPv
         source: provider-catalog
       slot: primary
@@ -7773,7 +7849,7 @@ dependencies:
         project: rOUBggPv
         provider: modrinth
       selection:
-        id: OG6Edgmm
+        id: HGyYs7Z4
         provider: modrinth
     source-selector:
       provider: modrinth
@@ -8140,7 +8216,7 @@ dependencies:
       provider: modrinth
       selector: OnlVIpq5
     title: Fast Noise
-intent-revision: 147f1d663164511014322758ce4341aef175e3338da6fe25153d1407a04277a3
+intent-revision: 11ed193f21bcb1ab3260e99944cebcef843ed9beb18d011c15886d15cbcd98ee
 required-edges:
   accessories:
   - owo-lib
@@ -8196,9 +8272,6 @@ required-edges:
   - create
   create-power-loader:
   - create
-  create-radars:
-  - create
-  - create-big-cannons
   create-transmission:
   - create
   createaddoncompatibility:

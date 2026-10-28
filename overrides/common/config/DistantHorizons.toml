@@ -538,7 +538,7 @@ _version = 5
 				# Note:
 				# If you see gaps, or holes you may have to change
 				# worldCompression to [MERGE_SAME_BLOCKS] and re-generate the LODs.
-				ignoredRenderBlockCsv = "minecraft:barrier,minecraft:structure_void,minecraft:light,minecraft:tripwire,minecraft:brown_mushroom"
+				ignoredRenderBlockCsv = "minecraft:barrier,minecraft:structure_void,minecraft:light,minecraft:tripwire,minecraft:brown_mushroom,minecraft:glow_lichen"
 				#
 				# A comma separated list of block resource locations that will be removed 
 				# when on top of water.

@@ -1,0 +1,65 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#mcwlights:slab_lights",
+      "required": false
+    },
+    {
+      "id": "#mcwstairs:railings",
+      "required": false
+    },
+    {
+      "id": "#mcwstairs:terrace_stairs",
+      "required": false
+    },
+    {
+      "id": "#mcwstairs:skyline_stairs",
+      "required": false
+    },
+    {
+      "id": "#mcwstairs:compact_stairs",
+      "required": false
+    },
+    {
+      "id": "#mcwstairs:bulk_stairs",
+      "required": false
+    },
+    {
+      "id": "#mcwstairs:loft_stairs",
+      "required": false
+    },
+    {
+      "id": "#mcwbridges:log_bridges",
+      "required": false
+    },
+    {
+      "id": "#mcwbridges:rope_bridges",
+      "required": false
+    },
+    {
+      "id": "#mcwbridges:log_stairs",
+      "required": false
+    },
+    {
+      "id": "#mcwbridges:rope_stairs",
+      "required": false
+    },
+    {
+      "id": "#mcwbridges:wooden_piers",
+      "required": false
+    },
+    {
+      "id": "#mcwbridges:bamboo_bridges",
+      "required": false
+    },
+    {
+      "id": "#mcwbridges:bamboo_stairs",
+      "required": false
+    },
+    {
+      "id": "#mcwbridges:bamboo_piers",
+      "required": false
+    }
+  ]
+}

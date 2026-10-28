@@ -11,11 +11,13 @@ The manifest and lock own exact selections. This guide owns update procedures;
 | --- | --- | --- | --- |
 | DH Polygon Fix 1.0.2 | Separate `dh-polygon-fix` repository; URL pin and placement in empack | DH 3.3.3, SSRD, Iris/Sodium and the native GL query | The patch requires DH 3.3.3. When updating DH, verify the upstream query fix and remove the incompatible patch; test native query/restore and shader pipelines. |
 | Veil Iris Fix 0.1.0 | Separate `veil-iris-fix` repository; Java mixin JAR | Sable 2.0.6 / nested Veil 4.3.2, Iris 1.8.14-beta.1+mc1.21.1 and shader stack | Run actual-class transformation/state checks and isolated native Ponder/world/reload comparisons. Remove when the selected upstream artifact restores framebuffer state and handles GUI/shadow passes and active Iris targets. |
-| Create Sky Compat 0.5.0 | `create-sky-compat` source project; common referenced JAR | Sky Archipelago 1.3.6; optional Sky Villages 1.0.6 + Architectury 13.x, Sable 2.0.6 and ADQ 1.1.1 | Revalidate terrain, geology, climate, village footprint/count policy, pressure and generation identity. For ADQ, review private route calls, horizontal-distance checks, chunk-ticket lifetime and success/failure cleanup. Rerun native endpoint checks; retain safety predicates. Replace the old neighbor dependency rather than installing both; see [worldgen](worldgen.md). |
+| Create Sky Compat 0.5.1 | `create-sky-compat` source project; common referenced JAR | Sky Archipelago 1.3.6; optional Sky Villages 1.0.6 + Architectury 13.x, Sable 2.0.6 and ADQ 1.1.1 | Revalidate terrain, geology, climate, village footprint/count policy, pressure and generation identity. For ADQ, review private route calls, horizontal-distance checks, chunk-ticket lifetime and success/failure cleanup. Rerun native endpoint checks; retain safety predicates. Replace the old neighbor dependency rather than installing both; see [worldgen](worldgen.md). |
 | Worldgen configuration | `overrides/common/config/sky_archipelago*`, `zfastnoise.mixin.properties` | Sky Archipelago, Zfastnoise and generation/optimization mods | Preserve CONSISTENT 1494 for ordinary legacy Sky worlds. The expanded preset owns its embedded terrain settings. Recheck biome redirects and generation identity before generating new terrain. |
 | Shared data fixes | `pack-fixes/data/` → `create-sky-fixes-0.1.0.jar` | Mods owning the replaced recipe, loot, tag or processor resources | Compare new upstream JSON by exact resource ID. Remove bug overrides only when the installed artifact contains the fix; retain deliberate pack policy. Run native recipe/loot checks. |
 | Journal | `authoring/journal/` → Questlog config and language assets in the shared JAR | Questlog, item IDs, condition handlers and UI configuration | Generate, validate native handlers/counts/NBT restoration and check labels in the game UI. Locale edits alone do not change mechanics. |
 | Visual model patch | `authoring/resource-patches.json`, `build-resource-patches.py` → client ZIP | Fresh Flower Pots, 3D Crops, Better Lanterns, Macaw's Lights and Lamps, Create, Create Deco, DnD, Macaw’s Bridges, Fresh Animations/Details/Objects, EMF and Lootr | Exact versions/hashes and model contracts must pass. Compare pots/chains, bar connections, lantern variants and chest motion in Resource Review. |
+| Carry On Animation Fix | Client-only upstream URL dependency | Carry On, EMF/ETF and Fresh Animations | Check pickup, movement, camera views, placement and ordinary animation. Its optional injections can stop applying after an upstream method change; successful loading alone is insufficient. Remove when the selected Carry On version supplies stable entity identity and animation inputs. |
+| Ponder sprite registration | Explicit upstream Ponder dependency | Create's bundled Ponder, Create Deco and other Catnip users | Retain the thread-safe sprite registry from Ponder 1.0.87. Remove the explicit dependency when Create bundles a verified replacement; check startup and Ponder scenes. |
 | Server terminal wrapper | `foreground-runtime.py`, `patch-server-archives.py` → Unix launch scripts | empack 0.8.2-beta and its generated launch templates | Unknown templates must fail. Remove only after an upgraded empack passes real terminal input, Ctrl-C, direct SIGINT, non-TTY execution and clean shutdown. |
 | BlueMap viewer adaptation | Create Sky Compat; server-only settings | BlueMap 5.7 API and exact browser bundle | Keep the physical-server/version gates, explicit map opt-in and actual dimension bounds. Rerun native absence, selection/reload and browser budget/teardown checks. Do not clear tiles for viewer-only changes; see [server webmap](build.md#server-webmap). |
 | Atlas exporter | `web/tools/exporter/` and runtime/extraction scripts | Minecraft/NeoForge, Create recipe codecs and queried mod APIs | Align the installed server with the selected pack, compile with Java 21, capture into the isolated audit server and run `pnpm data:check`. Never install the exporter in play instances. |
@@ -162,19 +164,26 @@ struts. These are authored cuboids and texture-mask extrusion, not boolean geome
 The combined models were inspected in Resource Review with shaders off and with
 Complementary Unbound/Euphoria; see [verification](compatibility.md#visual-compatibility-pass).
 
-### Fresh Details and mooshrooms
+### Fresh Details animation rigs
 
-`fresh_details.py` adapts adult/baby Details models to FA's current `cow_animations.jpm`.
-It retains Details geometry and textures, takes the root and head flags from the
-pinned base model, and supplies small ear/tail motions using stable CEM inputs.
-The `fresh_details_mooshroom` switch controls inclusion. Update both input pins and
-review the rig contract together; copying the old missing JPM forward would retain
-expressions written for a different base rig.
+`fresh_details.py` binds the reviewed Details models to the pinned Fresh Animations
+rigs. The `fresh_details_rigs` switch includes these corrections:
 
-Review red/brown adults and babies, grounded poses and motion after updates. This
-adapter does not repair every Details model: inspected references for elder guardian,
-mule, wandering trader, sheep undercoat and villager variants also need a separate
-compatibility pass. Do not advertise the entire extension as verified.
+- Adult/baby mooshrooms use the shared cow rig and stable ear/tail motions.
+- Villagers, sleeping villagers and wandering traders use the shared villager rig
+  and current species flags. Details' sleeping model references a removed animation
+  file; without the adapter its leg pivots remain in the wrong positions.
+- Elder guardians use the shared guardian rig and elder flag while retaining fins.
+- Donkeys and mules use the current saddle/bridle hierarchy with Details' chest
+  straps. The old mule rig is absent from the selected base pack.
+
+Update both input pins together. Check resource overlays for Minecraft 1.21.1
+before treating an absent reference as an active defect. Do not copy old animation
+files forward merely to satisfy their filenames; their variables and model
+hierarchies can differ from the current rig. Review sleep/wake and walking poses,
+juveniles, chest/saddle visibility and representative swimming or airborne states.
+This adapter does not establish compatibility for every Details model or newer
+Minecraft overlays.
 
 ### Lootr and Fresh Objects
 

@@ -1,0 +1,373 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#mcwlights:lanterns",
+      "required": false
+    },
+    {
+      "id": "#mcwlights:wall_lanterns",
+      "required": false
+    },
+    {
+      "id": "#mcwlights:chains",
+      "required": false
+    },
+    {
+      "id": "#mcwwindows:blinds",
+      "required": false
+    },
+    {
+      "id": "#mcwwindows:shutters",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:oak_terrace_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:oak_skyline_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:oak_compact_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:oak_bulk_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:oak_loft_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:spruce_terrace_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:spruce_skyline_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:spruce_compact_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:spruce_bulk_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:spruce_loft_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:birch_terrace_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:birch_skyline_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:birch_compact_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:birch_bulk_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:birch_loft_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:jungle_terrace_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:jungle_skyline_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:jungle_compact_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:jungle_bulk_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:jungle_loft_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:acacia_terrace_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:acacia_skyline_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:acacia_compact_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:acacia_bulk_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:acacia_loft_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:dark_oak_terrace_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:dark_oak_skyline_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:dark_oak_compact_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:dark_oak_bulk_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:dark_oak_loft_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:crimson_terrace_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:crimson_skyline_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:crimson_compact_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:crimson_bulk_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:crimson_loft_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:warped_terrace_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:warped_skyline_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:warped_compact_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:warped_bulk_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:warped_loft_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:mangrove_terrace_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:mangrove_skyline_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:mangrove_compact_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:mangrove_bulk_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:mangrove_loft_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:cherry_terrace_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:cherry_skyline_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:cherry_compact_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:cherry_bulk_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:cherry_loft_stairs",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:oak_railing",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:spruce_railing",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:birch_railing",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:jungle_railing",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:acacia_railing",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:dark_oak_railing",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:crimson_railing",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:warped_railing",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:mangrove_railing",
+      "required": false
+    },
+    {
+      "id": "mcwstairs:cherry_railing",
+      "required": false
+    },
+    {
+      "id": "createdeco:andesite_bars",
+      "required": false
+    },
+    {
+      "id": "createdeco:andesite_bars_overlay",
+      "required": false
+    },
+    {
+      "id": "createdeco:brass_bars",
+      "required": false
+    },
+    {
+      "id": "createdeco:brass_bars_overlay",
+      "required": false
+    },
+    {
+      "id": "createdeco:iron_bars_overlay",
+      "required": false
+    },
+    {
+      "id": "createdeco:copper_bars",
+      "required": false
+    },
+    {
+      "id": "createdeco:copper_bars_overlay",
+      "required": false
+    },
+    {
+      "id": "createdeco:industrial_iron_bars",
+      "required": false
+    },
+    {
+      "id": "createdeco:industrial_iron_bars_overlay",
+      "required": false
+    },
+    {
+      "id": "createdeco:zinc_bars",
+      "required": false
+    },
+    {
+      "id": "createdeco:zinc_bars_overlay",
+      "required": false
+    },
+    {
+      "id": "dndecor:brass_lamp",
+      "required": false
+    },
+    {
+      "id": "dndecor:brass_frontlight",
+      "required": false
+    },
+    {
+      "id": "dndecor:andesite_lamp",
+      "required": false
+    },
+    {
+      "id": "dndecor:andesite_frontlight",
+      "required": false
+    },
+    {
+      "id": "dndecor:zinc_lamp",
+      "required": false
+    },
+    {
+      "id": "dndecor:zinc_frontlight",
+      "required": false
+    },
+    {
+      "id": "dndecor:copper_lamp",
+      "required": false
+    },
+    {
+      "id": "dndecor:copper_frontlight",
+      "required": false
+    },
+    {
+      "id": "dndecor:industrial_lamp",
+      "required": false
+    },
+    {
+      "id": "dndecor:industrial_frontlight",
+      "required": false
+    },
+    {
+      "id": "dndecor:gold_lamp",
+      "required": false
+    },
+    {
+      "id": "dndecor:gold_frontlight",
+      "required": false
+    },
+    {
+      "id": "dndecor:iron_lamp",
+      "required": false
+    },
+    {
+      "id": "dndecor:iron_frontlight",
+      "required": false
+    },
+    {
+      "id": "dndecor:netherite_lamp",
+      "required": false
+    },
+    {
+      "id": "dndecor:netherite_frontlight",
+      "required": false
+    }
+  ]
+}

@@ -652,6 +652,20 @@
       "review": "reviewed",
       "reason": "Opt the Overworld into the optional server-only BlueMap viewer adapter, with bounded detailed geometry and requests.",
       "reference": "docs/development/build.md#server-webmap"
+    },
+    {
+      "path": "pack-fixes/data/sable/tags/block/light.json",
+      "sha256": "175eb46cafd52c8c6ff74f7df4e17b4ff4eca4b88fb4c4e0d23ea539f3e717d8",
+      "review": "reviewed",
+      "reason": "Extend Sable mass tiers to thin fixtures and partial construction blocks using optional block-family references. Preserve the native collision-based mass exclusion.",
+      "reference": "docs/development/progression.md#airship-building-materials"
+    },
+    {
+      "path": "pack-fixes/data/sable/tags/block/super_light.json",
+      "sha256": "53e4a575dcab0aa64e3c6c6423d97a8fc699a4f4c696ba19c4a8eeeec18c28bd",
+      "review": "reviewed",
+      "reason": "Extend Sable mass tiers to thin fixtures and partial construction blocks using optional block-family references. Preserve the native collision-based mass exclusion.",
+      "reference": "docs/development/progression.md#airship-building-materials"
     }
   ]
 }

@@ -160,3 +160,20 @@ These processing and settlement policies were introduced in 0.1.8. An ordinary
 update does not regenerate worlds. See [build and release](build.md) for installation,
 [world generation](worldgen.md) for terrain settings, and
 [Atlas verification](web/verification.md) for map limitations.
+
+## Airship building materials
+
+Sable assigns unclassified colliding blocks a mass of 1.0. Its built-in categories
+include 0.25 for lanterns, bars and wooden stairs, 0.5 for planks and stone stairs,
+2.0 for natural stone and 4.0 for metal storage blocks. These are gameplay units,
+not physical material densities.
+
+The shared resource JAR extends Sable's light and super-light tags to corresponding
+Macaw building families, Create Deco bars and DnD lights. Existing tags and optional
+entries keep this policy additive. Full cubes, machinery, cargo contents and lift
+settings retain upstream behavior. Collisionless decorations, including Macaw's
+bridge lantern and curtains, remain massless under Sable's collision-based mass
+model; changing a mass property alone cannot include them in assembly calculations.
+
+After Sable or building-mod updates, check the live mass values and an assembled
+structure. A tooltip or a matching tag does not establish the assembled mass.

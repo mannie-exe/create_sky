@@ -176,11 +176,13 @@ candidates:
       style.
     concern:
       Details 2.2.1 references animation files removed in FA 1.11.1. The maintained
-      patch repairs adult/baby mooshrooms using the current cow rig; red/brown
-      variants and idle motion were reviewed. Other missing rig references
-      remain unresolved. Modded mobs retain their own styling.
-    nextCheck: Review villagers, golems, livestock and rare variants in villages
-      before adopting the whole extension.
+      patch binds mooshrooms, villagers, traders and elder guardians to current
+      shared rigs. Donkeys and mules use the current saddle/chest hierarchy with
+      Details' straps retained. Sleeping villager feet and equipped/unequipped
+      mule models were checked in game. Modded mobs retain their own styling.
+    nextCheck:
+      Recheck shared rig references, sleeping poses and equipment visibility
+      whenever Fresh Animations or Details changes. Rare variants remain untested.
   - id: fresh-animations-objects
     category: Entities
     status: installed

@@ -1,45 +1,47 @@
-# Create Sky 0.1.16
+# Create Sky 0.1.17
 
-Minecraft remains 1.21.1 and NeoForge remains 21.1.264. Update Create Sky Compat
-from 0.4.0 to 0.5.0; other mod and resource-pack versions are unchanged.
+Minecraft stays at 1.21.1 and NeoForge at 21.1.264. Existing 0.1.16 worlds,
+generation settings, seeds and DH caches are preserved; no regeneration is needed.
 
-## Islands and exploration
+## Compatibility
 
-- Use 750-block cluster jitter with deterministic neighboring-island clearance,
-  retaining 2400-block cells, varied elevation and the continuous underside taper.
-- Add island-relative noise interiors, hollow chambers, large iron/copper veins,
-  local basins and water outlets through the OVERLAP terrain pipeline.
-- Preserve biome-specific materials and cave/ancient-city placement rules across
-  the expanded terrain. Ocean-island prototypes are available but disabled.
-- Enable the optional BlueMap 5.7 viewer adapter for the server's `world` map.
-  Detailed views use actual height bounds and bounded loading; coarse views still
-  have limitations for stacked terrain and undersides.
+- Repair Fresh Details animation bindings for villagers, wandering traders and
+  elder guardians. Sleeping villagers retain their feet. Donkeys and mules use
+  the current equipment hierarchy while retaining Details' chest straps.
+- Add the client-only Carry On Animation Fix to stabilize carried entity state
+  with Fresh Animations. Normal animation and existing container exclusions remain.
+- Extend Sable's weight tags to partial building blocks and thin fixtures from
+  Macaw's mods, Create Deco and Design n' Decor. Collisionless decorations retain
+  Sable's native zero-mass behavior.
+- Update Create Sky Compat to 0.5.1 for optional DH lifecycle fixes. Cache isolation
+  remains opt-in; existing cache keys are unchanged by default.
+- Exclude glow lichen from DH tint sampling to prevent luminous distant columns.
+  Native lichen and fluid rendering remain enabled; cached terrain is not deleted.
+- Select Ponder 1.0.87 to fix concurrent sprite registration during startup.
 
-The Atlas world/ore view separates height profiles, exposure observations and
-estimated resource quantities, and includes the current generation survey.
-Scarcity, cave access, rare structures and long-term water behavior remain playtest topics.
+## Dependency updates
 
-## Distant terrain
+| Component | Previous | Selected |
+| --- | --- | --- |
+| C2ME NeoForge | 0.4.0-alpha.0.123 | 0.4.0-alpha.0.124 |
+| Create: Radars | 5.0.1 | 5.0.2 |
+| Fzzy Config | 0.7.7 | 0.7.7+fix1 |
+| JEI | 19.70.0.460 | 19.70.0.464 |
+| SuperMartijn642's Core Library | 1.1.25 | 1.1.26 |
+| Ponder | 1.0.82 bundled with Create | 1.0.87 explicit dependency |
+| Create Sky Compat | 0.5.0 | 0.5.1 |
 
-Raise matching client/server DH limits to 2048 KB/s per player, 64 fresh-LOD
-requests and 100 sync requests. Disable client cave culling for island undersides.
-Keep the 256-chunk rendering radius, four workers and native CHUNKS_ONLY generation.
-The progress overlay remains a player preference and is hidden by default.
-This improves transfer allowances; it does not add island-priority scheduling.
+Carry On Animation Fix 1.0.0 is new. DH Polygon Fix and Veil Iris Fix stay:
+the selected compatible DH/Iris/Sable artifacts still need them. SeedGen remains
+excluded. Authored configuration, patch maintenance and resourcepack Atlas entries
+were updated alongside the generated resources.
 
-## World compatibility
+## Verification limits
 
-Released 0.1.15 worlds use the older generation identity and require a fresh world
-for this terrain update. Keep those saves and their configs separately; do not
-remove an identity marker to force conversion. The current local playtest world
-already uses the qualified `islands_v1-prototype-10` generation and matching
-settings, so it is preserved when moving to this release. Its seed and DH cache
-identity remain unchanged. Other server owners should verify their own world marker.
-
-## Verification
-
-Compat's versioned JAR differs from the qualified candidate only in version
-metadata. Its native generation, reopen, fluid, DH pregen and BlueMap evidence is
-recorded in the mod's verification guide. Pack tests, journal/resource generation,
-configuration audit and Atlas tests/build/snapshot checks pass. These checks do
-not establish complete survival balance or certify every rare structure.
+Isolated fixtures cover sleeping/standing entity models, mule equipment, cow and
+villager pickup/carry/placement, seven actual Sable mass assemblies, recipe viewing,
+and propeller Ponder with shaders off/on. DH conversion preserves the sampled
+modded ores and stones. Minimum server generation, full-server DH shutdown and
+ADQ chunk-ticket checks pass. These are bounded checks, not a full survival or
+all-entity animation certification. See the maintained compatibility guides for
+artifact versions, known upstream warnings and client harness limitations.

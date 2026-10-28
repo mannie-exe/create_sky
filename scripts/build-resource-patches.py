@@ -78,7 +78,7 @@ def build(archives, recipes, config):
         require('lootr' in archives and 'entity-model-features' in archives,
                 'Lootr adaptation requires pinned renderer inputs')
         entries.update(build_lootr_models(archives['fresh-animations-objects']))
-    details_enabled = config.get('compatibility', {}).get('fresh_details_mooshroom', False)
+    details_enabled = config.get('compatibility', {}).get('fresh_details_rigs', False)
     require(type(details_enabled) is bool, 'Fresh Details selection must be a boolean')
     if details_enabled:
         entries.update(build_fresh_details(archives['fresh-animations'], archives['fresh-animations-details']))

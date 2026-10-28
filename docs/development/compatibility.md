@@ -40,10 +40,44 @@ match Sky Archipelago. Do not use it to fill missing island LODs. Preserve world
 and LOD identity when troubleshooting; renderer visibility and network transfer
 are separate problems. See [graphics](../players/graphics.md) for diagnosis.
 
-Current source enables the renderer but leaves cave culling enabled and the LOD
-radius at 256 chunks. Instance-specific changes to cave culling or caches are not export defaults.
+The renderer uses a 256-chunk radius with cave culling disabled so island
+undersides remain visible. Cache identities remain installation-specific.
+
+## DH luminous columns
+
+DH 3.3.3 can transfer glow lichen's tint and emissive material to the entire
+segment below it when `tintWithAvoidedBlocks=true`. This creates pale, luminous
+stripes on distant cliffs and can replace a liquid segment's material. A physical
+client fixture reproduced the transfer onto stone, lava and water; source and
+flowing lava alone retained the correct orange color.
+
+The authored DH configuration adds `minecraft:glow_lichen` to
+`ignoredRenderBlockCsv`. Reopening the same fixture and cache removed the stripe
+and preserved the original stone/fluid materials. This omits lichen from LODs;
+native lichen, fluids and ordinary foliage tinting remain enabled. It does not
+delete cached terrain or require a fluid-rendering Mixin.
+
+The check used Complementary Unbound r5.9.3 with Euphoria 1.10.5, with shaders
+enabled and disabled. Glow lichen was also identified on the reported live cliff.
+That supports this explanation for the observed pale patches, but does not
+establish that every historical liquid-color symptom has the same cause. Modded
+fluids and other shaders remain untested. See Create Sky Compat's
+[DH development notes](https://github.com/mannie-exe/create-sky-compat/blob/main/docs/development/lod.md)
+for the conversion boundary and upstream report candidate.
 
 ## Dependency constraints
+
+Carry On Animation Fix stabilizes the client-side entity used for carrying:
+it preserves render identity and age and aligns current/previous transforms.
+The isolated cow and villager checks covered pickup, carrying in both camera
+views, movement and placement. Fresh Animations stays enabled. This does not
+validate every entity or Carry On script; container exclusions remain separate.
+See the [upstream implementation](https://github.com/Pelly-the-Crafter/carryon-animation-fix).
+
+Fresh Details' older model references caused missing sleeping-villager feet and
+incorrect mule chest visibility with Fresh Animations 1.11.1. The generated
+resource patch binds reviewed models to current rigs; [patch maintenance](patches.md#fresh-details-animation-rigs)
+owns the source contracts and update procedure.
 
 - Complementary r5.9.3 is paired with Euphoria Patcher 1.10.5. Euphoria generates
   its patched shader at launch; its generated folder name determines the preset filename.
@@ -60,6 +94,20 @@ radius at 256 chunks. Instance-specific changes to cave culling or caches are no
 - Carry On excludes Lootr containers and Aeronautics/Sable objects and retains
   the generated Create/Copycats exclusions. These exclusions do not verify every
   carried entity or ship-storage interaction.
+
+### Distant terrain content
+
+The 2026-10-27 Atlas world sample contains ten modded terrain block IDs:
+Create's zinc ores and stone families, and Create Propulsion's platinum ores.
+Their installed models inherit vanilla `cube_all`, including the randomized
+Create stone variants. The physical-client DH conversion retained opaque colors,
+valid texture sprites and full test-column heights for all ten types, with stone,
+deepslate and grass controls. No missing terrain adapter was identified.
+The sample is not an inventory of every structure or runtime-placed block.
+
+Animated machinery, moving ships and specialized container renderers are outside
+this DH pass: their detailed behavior is not required for distant natural island
+terrain. This is a scope decision, not a claim that DH reproduces those renderers.
 
 ## Controls and resource packs
 
@@ -120,6 +168,33 @@ The presets retain most HIGH effects, reduce shadow distance to 128 blocks and
 lower Complementary/Euphoria light-shaft sampling. Reduced shadow coverage and
 sampling suggest less work; no fixed-scene FPS improvement was measured. Lower
 light-shaft sampling may show more noise in motion.
+
+## Compatibility fixture
+
+The 2026-10-28 isolated client used the selected 0.1.17 dependencies and generated
+patch `21cd22ce029c6a8190c2cc236de9b0b8f787bca5556b77cefc5005063197e5bb`.
+Sleeping villagers, standing traders, elder guardians and mule equipment were
+viewed. Cow and villager carry recordings were stable; pickup/placement and
+return to ordinary AI were checked. Seven actual Sable assemblies matched their
+expected mass, including unchanged wood/iron controls. The tag delta affected
+308 default states only in the intended building-mod families.
+
+Ponder 1.0.87's published source contains the concurrent sprite registry missing
+from bundled 1.0.82. The candidate started normally and rendered the Aeronautics
+propeller scene with shaders off/on, plus a Create press control. EMI opened
+recipes with JEI 19.70.0.464. Radar's new Sable silhouette/sound defaults were
+accepted; existing radar settings and C2ME's configuration were retained.
+
+This ModDev client excludes Connector, Surveyor and Hoofprint because of the
+harness's clean-Minecraft lookup limitation. It does not establish a complete
+launcher installation or every animation state. Dedicated-server fixtures use
+the full server mod set; release archives are verified separately.
+
+Copycats 3.0.9 still logs a physics selector for the absent `copycat_catwalk` block;
+Sable skips only that definition. DnD loot resources also reference absent color
+variants, and Let's Do EMI Compat contains serializers for uninstalled content.
+These inherited, skipped records did not block the fixtures. No dummy blocks,
+blanket log suppression or speculative recipes were added to hide them.
 
 ## Verification scope
 
@@ -342,9 +417,6 @@ re-enable behavior, and camera movement across the floating-origin boundary.
 Coarse sheets remained visible from beneath the islands after the detailed-memory
 budget was reached; this is a remaining height-field limitation, not fixed 3D LODs.
 
-At the 2026-10-26 18:07 status check, all three maps were updated relative to saved
-terrain while DH pregeneration was 12.662% complete, with a reported ETA of
-10h52m15s. Those are historical observations, not a current completion estimate.
 BlueMap catches up to saved terrain rather than predicting the final pregen area.
 
 The inspected startup resource scan rejected eleven Macaw's Doors models for
@@ -453,6 +525,6 @@ server reopened the existing prototype-10 world and served BlueMap's adapter.
 The same pregen request was accepted once and left running. No new Minecraft
 client visual pass was performed for this metadata/configuration release.
 
-The [island LOD and SeedGen investigation](https://github.com/mannie-exe/create-sky-compat/blob/main/docs/development/lod.md)
-owns the proposed optional bridge and multiplayer reconstruction fix. Neither
-SeedGen nor Voxy/Roxy is included in 0.1.16.
+[Compat's DH integration](https://github.com/mannie-exe/create-sky-compat/blob/main/docs/development/lod.md)
+owns lifecycle and optional cache-isolation hooks. It does not provide a separate
+terrain predictor. SeedGen and Voxy/Roxy are not included in the pack.

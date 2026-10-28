@@ -106,6 +106,21 @@ and the same three reference profiles. Never publish its local-input manifests o
 install new generation into existing play saves. Local previews are disposable;
 published artifacts and their source repositories own release identity.
 
+### Distant Horizons updates
+
+Keep DH and Compat's supported version pins aligned. Before updating either,
+review Compat's [DH hooks](https://github.com/mannie-exe/create-sky-compat/blob/main/docs/development/lod.md)
+and the separate DH Polygon Fix implementation. Shader behavior also depends on
+Iris, Complementary/Euphoria and the independent Veil Iris Fix; a successful
+terrain-generation check does not establish renderer compatibility.
+
+SeedGen is excluded. Do not add native worker inputs, prediction settings or seed
+sharing to distributed defaults. Preserve existing world and LOD cache identities
+when syncing an authorized update. Opt-in cache isolation requires an explicit
+operator decision because selecting a new key does not migrate old client data.
+
+### Generation profiles
+
 Geometry, interiors, water and ocean profiles are shared authored JSON files in
 `overrides/common/config/`. Keep them together with the qualified artifact and
 their categorized audit baselines. New terrain must use a fresh world; the saved
@@ -147,6 +162,14 @@ configuration and update checks are owned by Create Sky Compat's
 Use [dependency and patch maintenance](patches.md) for coupled versions, URL pins,
 resource overrides and required update checks. `empack outdated` reports provider
 candidates; it does not validate gameplay or replace exact-artifact review.
+For pinned provider updates, unpin only the reviewed keys, run `update` with their
+retained required dependents, then pin the resulting selections and materialize.
+Review the selected release policy: `prefer-stable` can choose an older stable
+release on a previously selected beta line. Confirm exact version IDs afterward.
+
+Ponder's explicit upstream Maven URL is valid in the referenced archives, but
+Modrinth hosting does not allow that download domain. GitHub distributions remain
+the publication target; review hosting eligibility before any Modrinth upload.
 
 ## Release procedure
 

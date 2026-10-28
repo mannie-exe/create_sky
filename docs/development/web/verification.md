@@ -4,6 +4,14 @@ These records describe the stated source revisions and artifacts. They are not
 continuous checks of the current checkout. Generated evidence and comparison
 media are local, ignored files; links to them work only in a populated workspace.
 
+## Maintenance review, 2026-10-28
+
+The app at pack revision `5786750` passed `pnpm verify`: formatting, 54 JavaScript
+tests, Astro diagnostics and production build. The shared header/layout,
+workbench components, semantic tokens and named-job boundaries were reviewed;
+no application changes were needed for the DH cleanup. No new browser or world
+capture was performed in this pass. The existing large-bundle warning remains.
+
 ## Terrain evidence UI, 2026-10-26
 
 The local worktree adds captured generation settings to World & ores and

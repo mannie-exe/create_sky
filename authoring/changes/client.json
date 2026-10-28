@@ -11,9 +11,9 @@
     },
     {
       "path": "overrides/common/config/DistantHorizons.toml",
-      "sha256": "66b1b5cd153d2b31c452ea540ee3a2fc5a651ed924967632f2c69aafdd604802",
+      "sha256": "fec30458fb13e44f6c0e0b89b624965b70e8712a90d388ff543ee7c7918628b1",
       "review": "reviewed",
-      "reason": "Use bounded multiplayer LOD transfer limits on both endpoints (2048 KB/s, 64 fresh requests, 100 sync requests). Disable height-based cave culling for floating island undersides. Retain 256-chunk rendering, four workers, native CHUNKS_ONLY generation and hidden progress by default; preserve installation-specific identities.",
+      "reason": "Bound multiplayer LOD transfers to 2048 KB/s, 64 fresh requests and 100 sync requests. Disable height-based cave culling for floating island undersides. Exclude glow lichen from LOD rendering because DH 3.3.3 transfers its tint and emissive material to columns below, including fluids; native lichen remains visible. Retain 256-chunk rendering, four workers, CHUNKS_ONLY generation and hidden progress; preserve installation-specific identities.",
       "reference": "docs/development/compatibility.md#dh-multiplayer-cache-filling"
     },
     {
@@ -67,10 +67,10 @@
     },
     {
       "path": "overrides/common/config/create_radar-client.toml",
-      "sha256": "3a1e43f0088398c24c7a0c4f320bb791592d68dc560793d18d1f18ddeab598dc",
-      "review": "inherited",
-      "reason": "Retained from the imported pack. Individual setting intent has not been reviewed.",
-      "reference": "docs/development/decisions.md"
+      "sha256": "817347288c8082b0a2da18e381d80548b6c6b86ffcb2b820ffdd54f600205d83",
+      "review": "reviewed",
+      "reason": "Retain existing radar display settings and accept native 5.0.2 Sable silhouette and sound-volume defaults. Debug overlays stay disabled.",
+      "reference": "docs/development/compatibility.md#dependency-constraints"
     },
     {
       "path": "overrides/common/config/createbigcannons-client.toml",
