@@ -1,65 +1,25 @@
 ---
 import Base from '../layouts/Base.astro'
 import AppHeader from '../components/AppHeader.astro'
-import ViewTabs from '../components/ViewTabs.astro'
-import JournalWorkbench from '../components/authoring/JournalWorkbench.astro'
-import DisclaimerWorkbench from '../components/authoring/DisclaimerWorkbench.astro'
-import ConfigAudit from '../components/authoring/ConfigAudit.astro'
-import SourceEditor from '../components/authoring/SourceEditor.astro'
+import AuthoringApp from '../components/authoring/AuthoringApp'
+import ActivityHost from '../components/activity/ActivityHost'
 import '../styles/authoring.css'
+import '../styles/journal.css'
+import '../styles/activity.css'
 ---
 
 <Base title="Pack authoring · Create Sky">
-  <AppHeader page="authoring" />
-  <ViewTabs label="Authoring views">
-    <button data-mode="journal" aria-pressed="true">
-      Journal
-    </button>
-    <button data-mode="disclaimers" aria-pressed="false">
-      Disclaimers
-    </button>
-    <button data-mode="audit" aria-pressed="false">
-      Config audit
-    </button>
-    <button data-mode="source" aria-pressed="false">
-      Source JSON
-    </button>
-  </ViewTabs>
-  <main class="authoring">
-    <div class="actions authoring-actions">
-      <a href="/model-authoring">Model authoring</a>
-      <button id="reload">Reload source</button>
-      <button id="save" disabled>
-        Save source
-      </button>
-      <button id="generate" disabled>
-        Generate Questlog files
-      </button>
-      <span id="status" role="status">
-        Loading local source…
-      </span>
+  <AppHeader page="authoring" showJobs={false} />
+  <div class="authoring-layout">
+    <div>
+      <AuthoringApp client:only="react" />
     </div>
-    <p class="scope">
-      Generation writes pack files. Build and instance installation are separate
-      steps.
-    </p>
-    <details class="generation-review">
-      <summary id="generation-summary">Comparing pack files…</summary>
-      <p id="generation-note" class="scope"></p>
-      <ul id="generation-files"></ul>
-    </details>
-    <div id="locale-controls" class="actions">
-      <label>
-        Locale <select id="locale"></select>
-      </label>
-      <span id="drafts"></span>
-    </div>
-    <JournalWorkbench />
-    <DisclaimerWorkbench />
-    <ConfigAudit />
-    <SourceEditor />
-  </main>
-  <script>
-    import '../lib/authoring'
-  </script>
+    <aside class="authoring-activity">
+      <ActivityHost
+        live={import.meta.env.DEV}
+        presentation="panel"
+        client:only="react"
+      />
+    </aside>
+  </div>
 </Base>

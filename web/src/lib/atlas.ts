@@ -1,9 +1,15 @@
+import { notify } from './activity'
+import { setFeedback } from './ui'
+import { mapOrientation } from './map-orientation'
 import { recipeMounts } from './recipe-mount'
 import { requestJSON as fetchJSON } from './http'
 import { scrollNavigation } from './minimap'
+import { readColorTokens } from './style-tokens'
+import { coverageStates, coverageStatus } from './coverage.mjs'
 import '../styles/recipes.css'
+import '../styles/item-details.css'
 import { recipePresentation, safeIcon } from './recipe-view.mjs'
-import { detailBucket } from './graph.mjs'
+import { detailBucket, layout } from './graph.mjs'
 import { clearRouteData } from './route-data'
 import { renderStructureSurvey } from './structures'
 import { renderIslandSurvey } from './islands'
@@ -16,8 +22,9 @@ type Node = {
   mod: string
   kind: string
   icon: string | null
+  family: string
+  progression?: Record<string, any>
   depth: number | null
-  complexity: number
   x: number
   y: number
   recipeCount: number
@@ -51,7 +58,9 @@ let scale = 1,
   editorFiles: RecordData = {},
   domainReady = false
 let itemCatalog = new Map<string, Node>()
-let inlineRoute: { destroy(): void } | undefined
+let orientation: ReturnType<typeof mapOrientation> | undefined
+let orientationSource: Node[] | undefined
+let acquisitionView: { destroy(): void } | undefined
 const inspectorHistory: string[] = []
 const detailCache = new Map<string, RecordData>()
 const viewport = el('viewport'),
@@ -61,17 +70,12 @@ const mapNavigation = scrollNavigation(
   viewport,
   el<HTMLCanvasElement>('map-minimap'),
 )
-function notice(message: string) {
-  el('notice').textContent = message
-  el('notice').hidden = false
-  setTimeout(() => {
-    el('notice').hidden = true
-  }, 10000)
-}
+const notice = notify
 async function loadCatalog() {
   clearRouteData()
   const data = await fetchJSON('/generated/catalog.json')
   nodes = data.nodes
+  applyPolicy()
   itemCatalog = new Map(nodes.map((n) => [n.id, n]))
   meta = data.meta
   el('snapshot').textContent =
@@ -110,6 +114,22 @@ async function loadCatalog() {
     )
   filter()
 }
+function applyPolicy() {
+  const policy = el<HTMLSelectElement>('progression-policy').value
+  nodes = layout(
+    nodes.map((n) => ({
+      ...n,
+      depth: n.progression?.[policy] ? n.progression[policy].depth : n.depth,
+      family: n.progression?.[policy]?.family ?? n.family,
+    })),
+  )
+  itemCatalog = new Map(nodes.map((n) => [n.id, n]))
+}
+el('progression-policy').addEventListener('change', () => {
+  applyPolicy()
+  viewport.scrollTo(0, 0)
+  filter()
+})
 function filter() {
   const query = el<HTMLInputElement>('search').value.toLowerCase(),
     mod = el<HTMLSelectElement>('mod-filter').value,
@@ -119,8 +139,8 @@ function filter() {
       (!query || `${n.id} ${n.name}`.toLowerCase().includes(query)) &&
       (!mod || n.mod === mod) &&
       (!route ||
-        (route === 'known' && n.depth !== null) ||
-        (route === 'unknown' && n.depth === null) ||
+        (route === 'known' && n.status === 'mapped') ||
+        (route === 'unknown' && ['blocked', 'unmapped'].includes(n.status)) ||
         (route === 'notes' && n.hasNote) ||
         route === n.status),
   )
@@ -136,12 +156,26 @@ function filter() {
       viewport.scrollTop = Math.max(0, first.y * 100 * scale - 25)
     }
   }
+  const palette = readColorTokens(
+    viewport,
+    Object.fromEntries(
+      Object.entries(coverageStates).map(([status, state]) => [
+        status,
+        state.token as `--${string}`,
+      ]),
+    ),
+  )
+  if (orientationSource !== nodes) {
+    orientation = mapOrientation(el('map-orientation'), viewport, nodes)
+    orientationSource = nodes
+  }
+  orientation?.update(filtered, 108 * scale, 100 * scale)
   mapNavigation.setScene(
     { x1: 0, y1: 0, x2: grid.offsetWidth, y2: grid.offsetHeight },
     filtered.map((n) => ({
       x: (n.x + 0.5) * 108 * scale,
       y: (n.y + 0.5) * 100 * scale,
-      color: n.depth === null ? '#b18645' : n.hasNote ? '#6e9c74' : '#91a8c7',
+      color: palette[coverageStatus(n.status)],
     })),
   )
   render()
@@ -163,11 +197,12 @@ function render() {
   grid.innerHTML = visible
     .map(
       (n) =>
-        `<button class="cell ${n.id === selected ? 'selected' : ''} ${n.hasNote ? 'has-note' : ''}" data-id="${escape(n.id)}" role="gridcell" aria-label="${escape(n.name)}; ${n.depth === null ? 'unresolved route' : `route depth ${n.depth}`}" style="left:${n.x * cw}px;top:${n.y * ch}px;width:${cw}px;height:${ch}px">${safeIcon(n.icon) ? `<img src="${n.icon}" alt="" loading="lazy" style="width:${36 * scale}px;height:${36 * scale}px"/>` : '<span class="fallback">◇</span>'}<span class="caption" style="font-size:${10 * scale}px">${escape(n.name)}</span><span class="namespace" style="font-size:${8 * scale}px">${escape(n.mod)}</span>${n.depth === null || n.hasNote ? '<i class="indicator"></i>' : ''}</button>`,
+        `<button class="cell ${n.id === selected ? 'selected' : ''} ${n.hasNote ? 'has-note' : ''}" data-id="${escape(n.id)}" data-coverage="${coverageStatus(n.status)}" role="gridcell" aria-label="${escape(n.name)}; ${coverageStates[coverageStatus(n.status)].label}${n.depth === null ? '' : `; route depth ${n.depth}`}${n.hasNote ? '; review note' : ''}" style="left:${n.x * cw}px;top:${n.y * ch}px;width:${cw}px;height:${ch}px">${safeIcon(n.icon) ? `<img src="${n.icon}" alt="" loading="lazy" style="width:${36 * scale}px;height:${36 * scale}px"/>` : '<span class="fallback">◇</span>'}<span class="caption" style="font-size:${10 * scale}px">${escape(n.name)}</span><span class="namespace" style="font-size:${8 * scale}px">${escape(n.mod)}</span>${n.hasNote ? '<i class="note-indicator" aria-hidden="true"></i>' : ''}</button>`,
     )
     .join('')
   el('position').textContent =
     `X ${Math.round(left / cw)} / Y ${Math.round(top / ch)}`
+  orientation?.render()
 }
 function queueRender() {
   if (!renderQueued) {
@@ -213,7 +248,7 @@ grid.addEventListener('pointerover', (event) => {
   if (!cell || !el('inspector').hidden) return
   const node = nodes.find((n) => n.id === cell.dataset.id)
   if (!node) return
-  tooltip.textContent = `${node.name}\n${node.id}\n${node.depth === null ? 'Unresolved crafting route' : `Optimistic route depth ${node.depth}`} · ${node.recipeCount} producing recipes · ${node.usesCount} uses\nClick for sources, conditions, drops and configuration.`
+  tooltip.textContent = `${node.name}\n${node.id}\n${node.depth === null ? coverageStates[coverageStatus(node.status)].label : `${el<HTMLSelectElement>('progression-policy').selectedOptions[0].text} · depth ${node.depth}`} · ${node.recipeCount} producing recipes · ${node.usesCount} uses\nClick for sources, conditions, drops and configuration.`
   const rect = cell.getBoundingClientRect()
   tooltip.style.left = `${Math.min(rect.right + 8, window.innerWidth - 365)}px`
   tooltip.style.top = `${Math.min(rect.top, window.innerHeight - 160)}px`
@@ -237,21 +272,21 @@ el('reset-map').addEventListener('click', () => {
 })
 el('layout-help').addEventListener('click', () =>
   notice(
-    'X advances through minimum modeled acquisition steps. Each stage occupies six columns; rows sort by ingredient-slot complexity and namespace, with a downward stage offset. Gaps preserve stable positions. Unresolved items occupy the final band. Routes retain conditions. Counts, working machinery and travel are not solved.',
+    'Columns follow the selected access policy. Rows group the chosen method into acquisition families; other methods remain in item details. Planned access prefers fewer opportunistic-source stages, then fewer unknown-chance stages, then fewer chance stages, then depth. Earliest access minimizes depth alone. Quality counts include prerequisite branches; shared earlier setup can count more than once. Neither policy measures playtime or proves a working production chain. Filters preserve positions.',
   ),
 )
 el('close-inspector').addEventListener('click', () => {
   el('inspector').hidden = true
-  inlineRoute?.destroy()
-  inlineRoute = undefined
+  acquisitionView?.destroy()
+  acquisitionView = undefined
   selected = ''
   render()
 })
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     el('inspector').hidden = true
-    inlineRoute?.destroy()
-    inlineRoute = undefined
+    acquisitionView?.destroy()
+    acquisitionView = undefined
     tooltip.hidden = true
   }
   if (
@@ -281,48 +316,6 @@ function recipeHTML(recipe: RecordData, open = false) {
       : recipe.id
   return `<details class="record recipe-record"${open ? ' open' : ''}><summary><span>${escape(output)}</span><span class="record-kind">${escape(type)}</span><small>${escape(recipe.id)}</small></summary><div data-recipe-host="${escape(recipe.id)}"></div></details>`
 }
-function relation(id: string) {
-  const node = nodes.find((n) => n.id === id)
-  return node
-    ? `<button class="relation" data-inspect="${escape(id)}">${escape(node.name)} <small>${escape(id)}</small></button>`
-    : `<code>${escape(id)}</code>`
-}
-function routeHTML(route: RecordData, open = false) {
-  return `<details class="record acquisition-record"${open ? ' open' : ''}><summary>${escape(route.title ?? route.kind ?? 'Interaction')}<small>${escape(route.id)}</small></summary><p>${escape(route.detail)}</p>${route.inputs.length ? `<p>${route.inputs.map((g: string[]) => (g.length ? g.map(relation).join(' OR ') : '<b>Unsupported or empty ingredient</b>')).join('<br/>AND ')}</p>` : ''}<details><summary>Conditions and source</summary>${pretty(route)}</details></details>`
-}
-function pathHTML(detail: RecordData) {
-  const c = detail.coverage
-  const status =
-    c.status === 'unmapped'
-      ? 'No acquisition adapter'
-      : c.status === 'excluded'
-        ? 'Internal / creative'
-        : c.status === 'blocked'
-          ? 'Blocked dependencies'
-          : 'Mapped potential route'
-  if (c.status === 'unified')
-    return `<h3>Unified variant</h3><p>New production uses ${relation(c.canonical)}. Existing items retain their tags and recipe compatibility.</p>`
-  let html = `<div class="detail-section-heading"><h3>${status}</h3><button id="view-item-route">Open full graph</button></div>`
-  if (detail.path?.length)
-    html += `<p class="muted">Minimum modeled path. ALL input groups are required; OR choices are alternatives. Quantities, chance and travel remain untested.</p><div class="inline-route"></div>`
-  else if (c.status === 'excluded')
-    html +=
-      '<p>Listed in acquisition.yml as an operator, creative or internal item. Not counted as a missing survival route.</p>'
-  else if (c.missing?.length)
-    html += `<p>${c.routeCount} candidate routes. These prerequisites remain unresolved:</p>${c.missing
-      .slice(0, 12)
-      .map(
-        (r: RecordData) =>
-          `<details class="record"><summary>${escape(r.route)} · ${r.missing.length} blocked groups</summary>${r.emptyInput ? '<p>One ingredient is empty or unsupported.</p>' : ''}${r.missing.map((g: string[]) => `<p>${g.map(relation).join(' OR ') || 'Empty ingredient'}</p>`).join('')}</details>`,
-      )
-      .join(
-        '',
-      )}${c.missing.length > 12 ? '<p>First 12 shown; full list in Evidence → Coverage gaps.</p>' : ''}`
-  else
-    html +=
-      '<p>No supported producing recipe or acquisition route. This is a map gap, not proof that the item is unobtainable.</p>'
-  return html
-}
 async function inspect(id: string, back = false) {
   const node = nodes.find((n) => n.id === id)
   if (!node) {
@@ -333,8 +326,8 @@ async function inspect(id: string, back = false) {
     inspectorHistory.push(selected)
     if (inspectorHistory.length > 30) inspectorHistory.shift()
   }
-  inlineRoute?.destroy()
-  inlineRoute = undefined
+  acquisitionView?.destroy()
+  acquisitionView = undefined
   selected = id
   tooltip.hidden = true
   el('inspector').hidden = false
@@ -349,19 +342,13 @@ async function inspect(id: string, back = false) {
     const detail = detailCache.get(key)![id]
     const section = (key: string, label: string, body: string) =>
       `<section data-detail-panel="${key}"${key === 'acquisition' ? '' : ' hidden'} aria-label="${label}">${body}</section>`
-    const methods = `<div class="item-methods">
-      <h3>Producing recipes · ${detail.recipes.length}</h3>
-      ${detail.recipes.length ? detail.recipes.map((r: RecordData, i: number) => recipeHTML(r, i === 0)).join('') : '<p class="muted">No producing recipe is mapped. Other acquisition routes are listed below.</p>'}
-      <h3>Other acquisition · ${detail.acquisition.length}</h3>
-      ${detail.acquisition.length ? detail.acquisition.map((r: RecordData, i: number) => routeHTML(r, !detail.recipes.length && i === 0)).join('') : '<p class="muted">No other acquisition route is mapped.</p>'}
-    </div>`
-    const uses = `<h3>Used by · ${detail.uses.length} recipes</h3>
+    const uses = `<h3 data-text-role="group-title">Used by · ${detail.uses.length} recipes</h3>
       ${detail.uses
         .slice(0, 80)
         .map((r: RecordData) => recipeHTML(r))
         .join('')}
       ${detail.uses.length > 80 ? '<p class="muted">First 80 shown; Evidence lists all active recipes.</p>' : ''}`
-    const evidence = `<h3>Potential drops · ${detail.drops.length} tables</h3>
+    const evidence = `<h3 data-text-role="group-title">Potential drops · ${detail.drops.length} tables</h3>
       ${detail.drops.map((drop: RecordData) => `<details class="record"><summary>${escape(drop.id)}</summary><p class="muted">Conditions and functions determine actual drops.</p>${pretty(drop.json)}</details>`).join('')}
       <details class="record"><summary>Tags & tool requirements</summary>${pretty({ tags: detail.tags, block: detail.block })}</details>
       <details class="record"><summary>Interactions & implementation hooks</summary>${pretty({ transformations: detail.interactions, hooks: detail.hooks })}</details>
@@ -370,24 +357,30 @@ async function inspect(id: string, back = false) {
       <button id="edit-item-note">Edit item notes in workspace</button>`
     el('detail').innerHTML = `
       ${inspectorHistory.length ? '<button id="item-back">← Back</button>' : ''}
-      <header class="item-heading">
-        ${safeIcon(node.icon) ? `<img class="detail-icon" src="${node.icon}" alt=""/>` : ''}
-        <div><h2>${escape(node.name)}</h2><div class="id">${escape(id)}</div><span class="badge">${node.depth === null ? 'UNRESOLVED' : `DEPTH ${node.depth}`}</span></div>
-      </header>
-      ${detail.note ? `<details class="item-notes"><summary>Pack notes</summary><div class="warning">${escape(detail.note.text)}<p>${sourceLinks(detail.note.sources)}</p></div></details>` : ''}
       <nav class="detail-tabs" aria-label="Item information">
         <button data-detail-tab="acquisition" aria-pressed="true">Acquisition</button>
         <button data-detail-tab="uses" aria-pressed="false">Uses · ${detail.uses.length}</button>
         <button data-detail-tab="evidence" aria-pressed="false">Evidence</button>
       </nav>
-      ${section('acquisition', 'Acquisition', `<div class="item-acquisition">${methods}<section class="item-route" aria-label="Potential route">${pathHTML(detail)}</section></div>`)}
+      <div class="item-detail-layout" data-active-panel="acquisition">
+      <div class="item-subject">
+      <header class="item-heading">
+        ${safeIcon(node.icon) ? `<img class="detail-icon" src="${node.icon}" alt=""/>` : ''}
+        <div><h2 data-text-role="item-title">${escape(node.name)}</h2><div class="id" data-text-role="code">${escape(id)}</div><span class="badge">${node.depth === null ? coverageStates[coverageStatus(node.status)].label : `DEPTH ${node.depth}`}</span></div>
+      </header>
+      ${detail.note ? `<details class="item-notes"><summary>Pack notes</summary><div class="pack-note">${escape(detail.note.text)}<p>${sourceLinks(detail.note.sources)}</p></div></details>` : ''}
+      </div>
+      ${section('acquisition', 'Acquisition', '<div class="item-acquisition method-workbench"></div>')}
       ${section('uses', 'Uses', uses)}
-      ${section('evidence', 'Evidence', evidence)}`
+      ${section('evidence', 'Evidence', evidence)}</div>`
     el('inspector').scrollTop = 0
     el('detail')
       .querySelectorAll<HTMLElement>('[data-detail-tab]')
       .forEach((button) =>
         button.addEventListener('click', () => {
+          el('detail').querySelector<HTMLElement>(
+            '.item-detail-layout',
+          )!.dataset.activePanel = button.dataset.detailTab
           el('detail')
             .querySelectorAll<HTMLElement>('[data-detail-tab]')
             .forEach((b) =>
@@ -408,30 +401,34 @@ async function inspect(id: string, back = false) {
     })
     detailRecipes.mount(
       el('detail'),
-      [...detail.recipes, ...detail.uses],
+      detail.uses,
       itemCatalog,
       inspect,
+      'semantic',
     )
-    const routeHost = el('detail').querySelector<HTMLElement>('.inline-route')
-    if (routeHost) {
-      const { routePreview } = await import('./route-preview')
-      if (selected !== id || !routeHost.isConnected || el('inspector').hidden)
-        return
-      inlineRoute = routePreview(routeHost, nodes, detail, inspect)
-    }
-    el('detail')
-      .querySelectorAll<HTMLElement>('[data-inspect]')
-      .forEach((button) =>
-        button.addEventListener('click', () =>
-          inspect(button.dataset.inspect!),
-        ),
-      )
-    document
-      .getElementById('view-item-route')
-      ?.addEventListener('click', async () => {
+    const host = el('detail').querySelector<HTMLElement>('.method-workbench')!
+    const { mountAcquisition } = await import('./acquisition-mount')
+    if (selected !== id || !host.isConnected) return
+    const mounted = await mountAcquisition(
+      host,
+      nodes,
+      detail,
+      id,
+      inspect,
+      async () => {
         await showView('graph')
-        graph?.openItem(id, true)
-      })
+        graph?.openItem(
+          id,
+          true,
+          el<HTMLSelectElement>('progression-policy').value,
+        )
+      },
+    )
+    if (selected !== id || !host.isConnected) {
+      mounted.destroy()
+      return
+    }
+    acquisitionView = mounted
     el('edit-item-note').addEventListener('click', () => {
       showView('editor')
       el<HTMLSelectElement>('edit-domain').value = 'items'
@@ -457,8 +454,8 @@ async function showView(name: string) {
       button.setAttribute('aria-pressed', String(button.dataset.view === name)),
     )
   el('inspector').hidden = true
-  inlineRoute?.destroy()
-  inlineRoute = undefined
+  acquisitionView?.destroy()
+  acquisitionView = undefined
   tooltip.hidden = true
   try {
     if (name === 'graph') {
@@ -473,7 +470,7 @@ async function showView(name: string) {
     if (name === 'editor') await initEditor()
     if (name === 'map') render()
   } catch (error) {
-    notice(String(error))
+    notice(String(error), { tone: 'error' })
   }
 }
 document
@@ -517,7 +514,7 @@ async function loadEvidence(reset = true) {
     .map((row) =>
       kind === 'recipes'
         ? recipeHTML(row)
-        : `<article class="record"><h3>${escape(row.title ?? row.id ?? row.tag ?? row.path ?? 'Diagnostic')}</h3>${row.status ? `<p>${escape(row.status)} · ${row.downstream} consuming routes</p>` : ''}${row.evidence ? `<span class="badge">${escape(row.evidence)}</span>` : ''}${row.detail ? `<p>${escape(row.detail)}</p>` : ''}${row.sources ? `<p class="sources">${sourceLinks(row.sources)}</p>` : ''}<details><summary>Source data</summary>${pretty(row)}</details></article>`,
+        : `<article class="record content-stack"><h3>${escape(row.title ?? row.id ?? row.tag ?? row.path ?? 'Diagnostic')}</h3>${row.status ? `<p>${escape(row.status)} · ${row.downstream} consuming routes</p>` : ''}${row.evidence ? `<span class="badge">${escape(row.evidence)}</span>` : ''}${row.detail ? `<p>${escape(row.detail)}</p>` : ''}${row.sources ? `<p class="sources">${sourceLinks(row.sources)}</p>` : ''}<details class="disclosure"><summary>Source data</summary><div class="content-stack">${pretty(row)}</div></details></article>`,
     )
     .join('')
   if (kind === 'recipes')
@@ -599,7 +596,6 @@ async function loadWorld() {
       button.addEventListener('click', () => {
         oreSelect.value = button.dataset.ore!
         oreSelect.dispatchEvent(new Event('change'))
-        el('ore-profile').scrollIntoView({ block: 'nearest' })
       }),
     )
   el('world-notes').innerHTML =
@@ -609,7 +605,7 @@ async function loadWorld() {
     (await domains()).authored.worldgen.records
       .map(
         (row: RecordData) =>
-          `<article class="record"><h3>${escape(row.title)}</h3><p>${escape(row.detail)}</p></article>`,
+          `<article class="record content-stack"><h3>${escape(row.title)}</h3><p>${escape(row.detail)}</p></article>`,
       )
       .join('')
   drawWorld()
@@ -650,9 +646,15 @@ function drawWorld() {
     (canvas.width - 70) / (maxX - minX + 1),
     (canvas.height - 50) / (maxZ - minZ + 1),
   )
-  worldGeometry = { minX, minZ, cell, offsetX: 35, offsetY: 25 }
-  ctx.fillStyle = '#f7f9fd'
-  ctx.fillRect(0, 0, canvas.width, canvas.height)
+  const offsetX = (canvas.width - (maxX - minX + 1) * cell) / 2,
+    offsetY = (canvas.height - (maxZ - minZ + 1) * cell) / 2
+  worldGeometry = { minX, minZ, cell, offsetX, offsetY }
+  const palette = readColorTokens(canvas, {
+    unknown: '--map-unknown-surface',
+    ink: '--ink',
+    location: '--map-location-mark',
+  })
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
   for (const region of regions) {
     const value =
       metric === 'land'
@@ -665,19 +667,20 @@ function drawWorld() {
       metric === 'land' ? Math.sqrt(value) : Math.min(1, Math.log1p(value) / 4)
     ctx.fillStyle = region.samples.length
       ? `hsl(219 ${15 + intensity * 55}% ${95 - intensity * 58}%)`
-      : '#e3e5e9'
+      : palette.unknown
     ctx.fillRect(
-      35 + (region.x - minX) * cell,
-      25 + (region.z - minZ) * cell,
+      offsetX + (region.x - minX) * cell,
+      offsetY + (region.z - minZ) * cell,
       Math.max(1, cell - 0.6),
       Math.max(1, cell - 0.6),
     )
   }
-  ctx.fillStyle = '#17233b'
-  ctx.font = '11px monospace'
-  ctx.fillText('X → / Z ↓', 35, 15)
-  ctx.fillStyle = '#dd7a42'
-  ctx.fillRect(35 - minX * cell, 25 - minZ * cell, cell, cell)
+  ctx.fillStyle = palette.ink
+  const style = getComputedStyle(canvas)
+  ctx.font = `${style.fontSize} ${style.fontFamily}`
+  ctx.fillText('X → / Z ↓', offsetX, offsetY - 10)
+  ctx.fillStyle = palette.location
+  ctx.fillRect(offsetX - minX * cell, offsetY - minZ * cell, cell, cell)
 }
 function drawProfile() {
   if (!world) return
@@ -698,12 +701,12 @@ function drawProfile() {
   const x = (y: number) => 34 + ((y - min) / span) * 368
   el('ore-profile').innerHTML =
     `<svg viewBox="0 0 440 170" role="img" aria-label="Estimated ore blocks by Y level from ${min} to ${max}">
-    <line x1="34" y1="128" x2="402" y2="128" stroke="var(--line)"/>
-    ${rows.map(([y, n]: number[]) => `<rect x="${x(y)}" y="${128 - (n / peak) * 100}" width="${Math.max(0.4, width)}" height="${(n / peak) * 100}" fill="var(--accent)"><title>Y ${y}: ${n.toFixed(5)} estimated blocks per chunk</title></rect>`).join('')}
-    ${[min, Math.round((min + max) / 2), max].map((y, i) => `<text x="${x(y)}" y="150" text-anchor="${['start', 'middle', 'end'][i]}" font-size="11" fill="var(--muted)">Y ${y}</text>`).join('')}
+    <line x1="34" y1="128" x2="402" y2="128" stroke="var(--line-subtle)"/>
+    ${rows.map(([y, n]: number[]) => `<rect x="${x(y)}" y="${128 - (n / peak) * 100}" width="${Math.max(0.4, width)}" height="${(n / peak) * 100}" fill="var(--world-profile-mark)"><title>Y ${y}: ${n.toFixed(5)} estimated blocks per chunk</title></rect>`).join('')}
+    ${[min, Math.round((min + max) / 2), max].map((y, i) => `<text x="${x(y)}" y="150" text-anchor="${['start', 'middle', 'end'][i]}">Y ${y}</text>`).join('')}
     </svg><p class="muted">${ore === 'land' ? 'All observed ores' : escape(ore)} · peak ${peak.toFixed(4)} estimated blocks/chunk at one Y level. ${recordedBounds ? 'Recorded dimension height.' : 'Observed height range; unsampled heights are unknown.'}</p>
     <p class="muted">World Y combines islands at different elevations. This survey does not record each block’s anchor-relative geological depth; it cannot identify a universal mining level or distinguish ordinary ore from large veins. Raw iron and copper blocks are counted separately.</p>
-    <details><summary>Values by Y level</summary><div class="profile-values table-scroll"><table><thead><tr><th>World Y</th><th>Est. blocks/chunk</th></tr></thead><tbody>${rows.map(([y, n]: number[]) => `<tr><td>${y}</td><td>${n.toFixed(5)}</td></tr>`).join('')}</tbody></table></div></details>`
+    <details class="disclosure"><summary>Values by Y level</summary><div class="content-stack"><div class="profile-values table-scroll"><table><thead><tr><th>World Y</th><th>Est. blocks/chunk</th></tr></thead><tbody>${rows.map(([y, n]: number[]) => `<tr><td>${y}</td><td>${n.toFixed(5)}</td></tr>`).join('')}</tbody></table></div></div></details>`
 }
 el('ore-map').addEventListener('change', () => {
   drawWorld()
@@ -743,8 +746,10 @@ for (const id of ['distance', 'speed']) el(id).addEventListener('input', travel)
 async function initEditor() {
   if (domainReady) return
   if (!import.meta.env.DEV) {
-    el('editor-status').textContent =
-      'Static snapshot; edit with pnpm dev on the source machine.'
+    setFeedback(
+      el('editor-status'),
+      'Static snapshot; edit with pnpm dev on the source machine.',
+    )
     for (const id of [
       'save-editor',
       'export-patch',
@@ -763,18 +768,30 @@ async function initEditor() {
     domainReady = true
     loadEditor('items')
   } catch {
-    el('editor-status').textContent =
-      'Editing requires pnpm dev on this machine. Static previews are read-only.'
+    setFeedback(
+      el('editor-status'),
+      'Editing requires pnpm dev on this machine. Static previews are read-only.',
+      'error',
+    )
     el<HTMLButtonElement>('save-editor').disabled = true
     el<HTMLButtonElement>('export-patch').disabled = true
     el<HTMLButtonElement>('refresh-data').disabled = true
   }
 }
+function updateEditorActions() {
+  const name = el<HTMLSelectElement>('edit-domain').value
+  const changed =
+    editorFiles[name] &&
+    el<HTMLTextAreaElement>('domain-editor').value !== editorFiles[name].text
+  el('reload-editor').dataset.intent = changed ? 'destructive' : 'default'
+}
+el('domain-editor').addEventListener('input', updateEditorActions)
 function loadEditor(name: string) {
   if (!editorFiles[name]) return
   el<HTMLSelectElement>('edit-domain').value = name
   el<HTMLTextAreaElement>('domain-editor').value = editorFiles[name].text
-  el('editor-status').textContent = `data/authored/${name}.yml`
+  setFeedback(el('editor-status'), `data/authored/${name}.yml`)
+  updateEditorActions()
 }
 el('edit-domain').addEventListener('change', (event) =>
   loadEditor((event.target as HTMLSelectElement).value),
@@ -789,7 +806,7 @@ el('save-editor').addEventListener('click', async () => {
   const name = el<HTMLSelectElement>('edit-domain').value,
     button = el<HTMLButtonElement>('save-editor')
   button.disabled = true
-  el('editor-status').textContent = 'Validating and rebuilding…'
+  setFeedback(el('editor-status'), 'Validating and rebuilding…')
   try {
     const text = el<HTMLTextAreaElement>('domain-editor').value
     const result = await fetchJSON(`/__atlas/domain/${name}`, {
@@ -797,14 +814,17 @@ el('save-editor').addEventListener('click', async () => {
       revision: editorFiles[name].revision,
     })
     editorFiles[name] = { text, revision: result.revision }
+    updateEditorActions()
     domainData = null
     graphStale = true
     detailCache.clear()
     await loadCatalog()
-    el('editor-status').textContent =
-      'Saved to disk; map rebuilt. Runtime evidence preserved.'
+    setFeedback(
+      el('editor-status'),
+      'Saved to disk; map rebuilt. Runtime evidence preserved.',
+    )
   } catch (error) {
-    el('editor-status').textContent = String(error)
+    setFeedback(el('editor-status'), String(error), 'error')
   } finally {
     button.disabled = false
   }
@@ -820,14 +840,26 @@ el('export-patch').addEventListener('click', async () => {
       'Recipe scenario exported. Test it in a disposable instance before applying to a world.',
     )
   } catch (error) {
-    notice(String(error))
+    notice(String(error), { tone: 'error' })
   }
 })
-loadCatalog().catch((error) => {
-  el('counts').textContent =
-    'No generated snapshot. Run pnpm data:refresh against a configured local pack.'
-  notice(String(error))
-})
+loadCatalog()
+  .then(async () => {
+    const params = new URLSearchParams(location.search)
+    if (params.get('view') === 'world') await showView('world')
+    const item = params.get('item')
+    if (!item) return
+    if (itemCatalog.has(item)) {
+      el<HTMLInputElement>('search').value = item
+      filter()
+    }
+    await inspect(item)
+  })
+  .catch((error) => {
+    el('counts').textContent =
+      'No generated snapshot. Run pnpm data:refresh against a configured local pack.'
+    notice(String(error), { tone: 'error' })
+  })
 
 async function freshness() {
   try {
@@ -844,8 +876,10 @@ async function freshness() {
 el('refresh-data').addEventListener('click', async () => {
   const button = el<HTMLButtonElement>('refresh-data')
   button.disabled = true
-  el('editor-status').textContent =
-    'Capturing isolated runtime; this can take a minute…'
+  setFeedback(
+    el('editor-status'),
+    'Capturing isolated runtime; this can take a minute…',
+  )
   try {
     await fetchJSON('/__atlas/refresh', {})
     domainData = null
@@ -853,10 +887,12 @@ el('refresh-data').addEventListener('click', async () => {
     detailCache.clear()
     await loadCatalog()
     await freshness()
-    el('editor-status').textContent =
-      'Implementation refreshed. World measurements retain their separate survey date.'
+    setFeedback(
+      el('editor-status'),
+      'Implementation refreshed. World measurements retain their separate survey date.',
+    )
   } catch (error) {
-    el('editor-status').textContent = String(error)
+    setFeedback(el('editor-status'), String(error), 'error')
   } finally {
     button.disabled = false
   }

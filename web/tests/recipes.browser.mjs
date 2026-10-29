@@ -103,39 +103,32 @@ test('inspector embeds the route, recipe selection, evidence tabs and back navig
     'data-scene-nodes',
     /\d+/,
   )
-  await expect(
-    page.locator('.route-preview-selection .recipe-grid'),
-  ).toBeVisible()
+  await expect(page.locator('.method-detail .recipe-grid')).toBeVisible()
   await expect(page.locator('#graph-view')).toBeHidden()
   const methods = page.locator('.item-methods')
-  await expect(methods.locator('.recipe-record').first()).toHaveAttribute(
-    'open',
-    '',
-  )
+  await expect(methods.locator('[data-method-id]')).toHaveCount(1)
   await expect(methods.locator('.recipe-grid')).toBeVisible()
   const columns = await page.locator('.item-acquisition').evaluate((node) => {
     const methods = node.querySelector('.item-methods').getBoundingClientRect()
     const route = node.querySelector('.item-route').getBoundingClientRect()
-    return { methods: methods.right, route: route.left }
+    return { methods: methods.left, route: route.right }
   })
-  expect(columns.methods).toBeLessThan(columns.route)
+  expect(columns.route).toBeLessThan(columns.methods)
   await page.setViewportSize({ width: 390, height: 844 })
   const narrow = await page.locator('#inspector').evaluate((node) => {
     const methods = node.querySelector('.item-methods').getBoundingClientRect()
     const route = node.querySelector('.item-route').getBoundingClientRect()
     return {
-      methods: methods.bottom,
-      route: route.top,
+      methods: methods.top,
+      route: route.bottom,
       overflow: node.scrollWidth > node.clientWidth,
     }
   })
-  expect(narrow.route).toBeGreaterThan(narrow.methods)
+  expect(narrow.route).toBeLessThan(narrow.methods)
   expect(narrow.overflow).toBe(false)
   await page.setViewportSize({ width: 1440, height: 1000 })
   await page
-    .locator(
-      '.route-preview-selection [data-inspect="minecraft:phantom_membrane"]',
-    )
+    .locator('.method-detail [data-inspect="minecraft:phantom_membrane"]')
     .first()
     .click()
   await expect(page.locator('#detail h2')).toHaveText('Phantom Membrane')
@@ -148,8 +141,6 @@ test('inspector embeds the route, recipe selection, evidence tabs and back navig
   ).toBeVisible()
   await page.locator('[data-detail-tab="acquisition"]').click()
   await expect(page.locator('.route-preview-canvas')).toBeVisible()
-  await expect(
-    page.locator('.route-preview-selection .recipe-grid'),
-  ).toBeVisible()
+  await expect(page.locator('.method-detail .recipe-grid')).toBeVisible()
   expect(errors).toEqual([])
 })

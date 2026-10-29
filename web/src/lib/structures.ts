@@ -1,3 +1,4 @@
+import { createDisclosure } from './disclosure'
 import { surveyTable as table } from './survey-table'
 import { requestJSON } from './http'
 
@@ -81,19 +82,16 @@ export async function renderStructureSurvey() {
           String(run.placementFailures.length),
         ]),
     )
-    const details = document.createElement('details')
-    const summary = document.createElement('summary')
-    summary.textContent = 'Method and limits'
-    details.append(summary)
+    const { element: details, body } = createDisclosure('Method and limits')
     for (const limitation of survey.limitations) {
       const paragraph = document.createElement('p')
       paragraph.textContent = limitation
-      details.append(paragraph)
+      body.append(paragraph)
     }
     const source = document.createElement('a')
     source.href = '/generated/structures.json'
     source.textContent = 'Full counts and provenance (JSON)'
-    details.append(source)
+    body.append(source)
     target.append(details)
   } catch (error) {
     target.textContent = `Village survey unavailable: ${error instanceof Error ? error.message : String(error)}`

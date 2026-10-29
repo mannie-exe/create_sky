@@ -4,12 +4,24 @@ on:
     branches: [main]
     paths:
       - "web/**"
+      - "authoring/**"
+      - "scripts/generate-journal.py"
+      - "scripts/audit-changes.py"
+      - "empack.yml"
+      - "empack.lock"
+      - "overrides/client/options.txt"
       - "docs/development/web/**"
       - ".github/workflows/web-ci.yml"
       - ".gitignore"
   pull_request:
     paths:
       - "web/**"
+      - "authoring/**"
+      - "scripts/generate-journal.py"
+      - "scripts/audit-changes.py"
+      - "empack.yml"
+      - "empack.lock"
+      - "overrides/client/options.txt"
       - "docs/development/web/**"
       - ".github/workflows/web-ci.yml"
       - ".gitignore"

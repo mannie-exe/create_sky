@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro'
+---
+
+<Base title="Create Sky · Resource packs">
+  <a href="/resourcepacks">Open Resource packs</a>
+</Base>
+<script>
+  const url = new URL(location.href)
+  url.pathname = '/resourcepacks'
+  url.searchParams.delete('layout')
+  location.replace(url.href)
+</script>

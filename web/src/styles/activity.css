@@ -1,0 +1,88 @@
+.activity-control {
+  margin: 0 var(--gutter-page) var(--space-control);
+  max-width: 42rem;
+  font-size: var(--type-caption-size);
+}
+.activity-panel {
+  min-width: 0;
+}
+.activity-results {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.activity-result {
+  padding-block: var(--space-content);
+  border-bottom: 1px solid var(--line-subtle);
+}
+.activity-result:first-child {
+  padding-top: 0;
+}
+.activity-panel pre {
+  max-height: 12rem;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.activity-result p,
+.activity-panel > p,
+.toast p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.activity-result [data-tone='error'] {
+  color: var(--status-error-ink);
+}
+.toast-region {
+  position: fixed;
+  inset-inline-end: var(--gutter-page);
+  bottom: var(--space-section);
+  width: min(26rem, calc(100vw - var(--gutter-page) * 2));
+  display: grid;
+  gap: var(--space-control);
+  z-index: var(--layer-notification);
+  pointer-events: none;
+  max-height: calc(100dvh - var(--space-section) * 2);
+  overflow-y: auto;
+}
+.toast {
+  pointer-events: auto;
+  background: var(--surface-panel);
+  color: var(--ink);
+  border: 1px solid var(--line-control);
+  border-radius: var(--radius-panel);
+  padding: var(--space-content);
+  box-shadow: var(--shadow-overlay);
+  max-height: 30dvh;
+  overflow-y: auto;
+}
+.authoring-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 19rem;
+  gap: var(--space-section);
+  align-items: start;
+}
+.authoring-activity {
+  position: sticky;
+  top: var(--space-section);
+  border-inline-start: 1px solid var(--line-subtle);
+  padding-inline-start: var(--space-section);
+  padding-block-start: var(--space-section);
+  margin-inline-end: var(--gutter-page);
+  max-height: calc(100dvh - var(--space-section) * 2);
+  overflow-y: auto;
+}
+@media (max-width: 1100px) {
+  .authoring-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .authoring-activity {
+    position: static;
+    border-inline-start: 0;
+    border-top: 1px solid var(--line-subtle);
+    margin: var(--space-section) var(--gutter-page);
+    padding: var(--space-content) 0;
+    max-height: none;
+    overflow-y: visible;
+  }
+}

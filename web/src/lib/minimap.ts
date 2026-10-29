@@ -1,3 +1,6 @@
+import '../styles/minimap.css'
+import { readColorTokens } from './style-tokens'
+
 type Bounds = { x1: number; y1: number; x2: number; y2: number }
 type Point = { x: number; y: number; color?: string }
 export function createMinimap(
@@ -14,7 +17,15 @@ export function createMinimap(
     scaleY = 1,
     x = 0,
     y = 0
+  let colors = readColorTokens(canvas, {
+    item: '--minimap-item',
+    viewport: '--map-viewport-line',
+  })
   function setScene(bounds: Bounds, points: Point[]) {
+    colors = readColorTokens(canvas, {
+      item: '--minimap-item',
+      viewport: '--map-viewport-line',
+    })
     const w = Math.max(1, bounds.x2 - bounds.x1),
       h = Math.max(1, bounds.y2 - bounds.y1)
     scaleX = (canvas.width - 16) / w
@@ -25,14 +36,14 @@ export function createMinimap(
     const c = base.getContext('2d')!
     c.clearRect(0, 0, base.width, base.height)
     for (const p of points) {
-      c.fillStyle = p.color || '#91a8c7'
+      c.fillStyle = p.color || colors.item
       c.fillRect(p.x * scaleX + x, p.y * scaleY + y, 2, 2)
     }
   }
   function draw(extent: Bounds) {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.drawImage(base, 0, 0)
-    ctx.strokeStyle = '#315dc1'
+    ctx.strokeStyle = colors.viewport
     ctx.lineWidth = 1.5
     ctx.strokeRect(
       extent.x1 * scaleX + x,

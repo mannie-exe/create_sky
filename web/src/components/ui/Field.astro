@@ -1,0 +1,33 @@
+---
+interface Props {
+  layout?: 'stacked' | 'inline'
+  id: string
+  label: string
+  hint?: string
+  error?: string
+  class?: string
+}
+const {
+  id,
+  label,
+  hint,
+  error,
+  layout = 'stacked',
+  class: className,
+} = Astro.props
+---
+
+<div class:list={['field', className]} data-layout={layout}>
+  <label for={id}>{label}</label>
+  <slot />
+  {hint && (
+    <p id={`${id}-hint`} class="field-hint">
+      {hint}
+    </p>
+  )}
+  {error && (
+    <p id={`${id}-error`} class="feedback" data-tone="error" role="alert">
+      {error}
+    </p>
+  )}
+</div>

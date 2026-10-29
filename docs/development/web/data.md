@@ -34,14 +34,38 @@ by convention; this is process isolation, not an operating-system sandbox.
 The exporter captures registries, resolved RecipeManager recipes, tags, loot,
 advancements, fluids and targeted Java interaction adapters. Runtime resource
 provenance distinguishes active resources from competing raw JAR definitions.
-`complete.json` marks a finished export; `snapshot.json` records loaded JAR hashes,
-the pack-lock hash and input fingerprint. A failed capture must be investigated
+The exporter waits for the first completed server tick, after startup listeners,
+and allows five ticks for fixture cleanup before stopping. The isolated BlueMap
+webserver, asset downloads and metrics are disabled. `complete.json` marks a
+finished export; `scripts/runtime_capture.py` accepts it only after clean process
+exit and rejects fatal shutdown diagnostics even with exit code zero. Failed or
+timed-out runs remove the marker. `snapshot.json` records loaded JAR hashes, the
+pack-lock hash and input fingerprint after that check. Investigate a failed capture
 before compiling its output.
 
 The adapter is specific to this pack and Minecraft 1.21.1 / NeoForge. Adding a mod
 can require new Java or graph adapters. User-world datapacks and gamerules are not
 imported. The disposable world can persist between captures; its state is not
 an observation of the playing world.
+
+## Runtime compatibility and weight coverage
+
+Create Sky Compat's Analog Audio adapter changes startup registration only. It
+adds no recipes, acquisition routes, textures or mass values for the Atlas to
+project. Pack resource fixes remain inputs to the existing runtime exporter and
+asset extraction; their generated projections must not be edited by hand.
+
+The Atlas does not currently export Sable block mass or assembled-ship weight.
+Its weighted loot outcomes and world-survey estimates are unrelated to physics.
+Use the [building-weight guide](../weights.md) for that policy and its native
+checks. Do not infer ship weight from item or recipe records.
+
+After updating the installed dependency set, refresh the runtime snapshot and
+extraction, compile, then run `pnpm data:check`. Confirm the loaded JAR hashes in
+`runtime/snapshot.json`; a newer pack lock or Compat source checkout is not
+evidence that the exporter loaded it. Keep an older capture's provenance and
+stale indication until its inputs can be refreshed. Runtime refresh does not
+replace the separately dated world, island or structure surveys.
 
 ## Textures and names
 
@@ -51,8 +75,14 @@ English translations. For duplicate asset paths, later scanned files replace
 earlier files; this scanner order does not reproduce every client resource-pack
 priority rule. User-selected resource packs are not scanned.
 
-For each registered item it follows the item model's parent chain, resolves
-texture aliases, and selects an available PNG: `layer0`, `all`, `front`, `side`,
+For each registered item it follows the item model's parent chain and resolves
+texture aliases. Static `item/generated` models with two to five complete, square,
+equal-sized layers are composited in layer order by
+[`item_icons.py`](../../../web/scripts/item_icons.py). The resulting content-hashed
+SVG embeds unchanged PNG bytes and records each source. Custom loaders, geometry,
+animated textures and incomplete layers retain the single-texture fallback.
+
+That fallback selects an available PNG: `layer0`, `all`, `front`, `side`,
 `top`, `particle`, then other texture entries. The bytes are copied unchanged to
 `public/generated/icons/<content-hash>.png`; identical textures share a file.
 Each icon retains its JAR and resource path. Names come from `en_us` translations,
@@ -60,7 +90,8 @@ with an identifier-based fallback. Matching Ponder translation text is indexed;
 Ponder scenes are not executed.
 
 These are texture previews, not Minecraft inventory renders. Model geometry,
-tints, animation timing, layered textures and custom renderers are not reproduced.
+tints, animation timing, state-dependent overrides and custom renderers are not
+reproduced. Layer compositing alone does not reproduce runtime tinting.
 Missing models/textures use the grid's placeholder. Old unused icon files can
 remain after extraction; generated assets are rebuildable and excluded from Git.
 
@@ -105,11 +136,13 @@ exporter, include it in captured resources, such as the pack's maintained resour
 JAR. A datapack installed only in the playing world is not imported by runtime
 capture. Recompiling an empty change list restores the unmodified graph.
 
-The grid includes every registered item. X advances through minimum modeled
-acquisition depth. Each stage has six columns; rows sort by ingredient complexity
-and namespace. AND prerequisites and OR alternatives determine reachability.
-Item details show a selected path, the contributing sources and unresolved inputs.
-Nothing becomes a free resource merely because it participates in a recipe cycle.
+The grid includes every registered item. X follows the selected access policy;
+vertical bands group the chosen method into gathering, production, trading,
+exploration/events, mob drops and other interactions. Untraced items have their own
+band. Each depth has six columns; identifiers order cells within each family/depth.
+Filters retain positions. The same item can have methods in other families without
+being duplicated on the map. AND prerequisites and OR alternatives determine
+reachability; closed cycles cannot bootstrap themselves.
 
 Adapters cover runtime recipes, Rechiseled groups, Create sequenced assembly,
 NeoForge compound/difference/intersection/block-tag ingredients, fluids, distinct
@@ -120,8 +153,9 @@ Chest, fishing, mob, barter, archaeology and selected event sources retain their
 conditions and functions. `acquisition.yml` holds explicit environmental and
 interaction assumptions; those are editable, not discoveries made by the solver.
 
-A mapped route is **potential access**. It does not solve quantities, probability,
-XP, stress/RPM, safe combat, actual village/biome positions or travel time.
+A mapped route is **potential access**. It does not solve inventory budgets, XP, stress/RPM, safe combat, actual
+village/biome positions or travel time. Supported per-operation quantities and odds
+are separate evidence, not a whole-chain production simulation.
 Trade offers are seeded samples, not every possible enchantment or NBT variant.
 Most item components are evidence rather than independent nodes; potion contents
 are specifically modeled. Arbitrary Java mechanics still need source adapters.
@@ -166,7 +200,8 @@ in older imports remain explicitly uncaptured.
 [`scripts/compile.mjs`](../../../web/scripts/compile.mjs) joins the evidence and authored
 domains, applies recipe scenarios, builds acquisition edges, and writes the browser
 projection. [`src/lib/acquisition.mjs`](../../../web/src/lib/acquisition.mjs) owns route
-adapters; [`src/lib/graph.mjs`](../../../web/src/lib/graph.mjs) owns reachability and layout.
+adapters; [`src/lib/graph.mjs`](../../../web/src/lib/graph.mjs) owns coverage and layout. `progression.mjs` owns the shared policy solver;
+`acquisition-facts.mjs` normalizes quantities, output semantics and supported odds.
 
 `catalog.json` holds the grid and summary counts. Item details are split by mod
 namespace into 16 hash buckets and fetched on demand. `domains.json`, `recipes.json`,
@@ -181,6 +216,12 @@ plots. [`index.astro`](../../../web/src/pages/index.astro) composes the map view
 account system or production application server. React islands own graph workspaces
 and shared recipe cards; Astro retains page/layout composition and the existing
 TypeScript controllers own the item grid and authoring pages.
+
+The item grid and minimap use `coverage.mjs` for status labels and color-token
+assignments, with shared DOM styles in `coverage.css`. Depth controls position;
+coverage status controls color. Mapped and unresolved filters also use coverage
+status: unresolved includes blocked prerequisites and missing adapters, not
+internal/creative exclusions or unified variants. Review notes are independent.
 
 ## Graph projection and rendering
 
@@ -202,11 +243,13 @@ reachability solver, change acquisition semantics or lay out the entire dependen
 graph. Catalog, routes and indexes remain in browser memory.
 
 `components/graph/GraphWorkbench.tsx` owns full-graph controls and state;
-`RoutePreview.tsx` embeds the same canvas in item details. `atlas-graph.ts` bridges
-navigation from the retained page controller; `route-preview.tsx` mounts and
-unmounts the embedded React root. `route-data.ts` caches compiled records with
-explicit invalidation. Recipe interpretation and graph projections remain independent
-of React; changing the renderer does not run a second progression solver.
+`AcquisitionMethods.tsx` embeds the shared canvas for the selected acquisition
+method. `MethodChooser.tsx` owns filtering and sorting; both panels use the same
+selected route. The page controller owns item inspection and Back navigation;
+`acquisition-mount.tsx` mounts and destroys the React island. Recipe details use
+`RecipeCard`; compact graph operation nodes avoid duplicating that card. The full
+progression view remains in the graph workbench. Method comparison semantics are
+specified [below](#progression-model).
 
 `GraphCanvas.tsx` uses React Flow custom nodes with clickable item slots, recipe
 cards and expandable evidence. The existing vertical layout is expanded for
@@ -292,19 +335,23 @@ The editor has no database or hosted backend.
 - `src/components/AppHeader.astro` owns identity and navigation structure, with
   one ordered page-link list and a snapshot-status slot. `JobStatus.astro` shares
   bounded process feedback and cancellation across local pages.
-  `ViewTabs.astro` supplies separate, labeled local view controls.
-- `src/components/authoring/` owns the journal and disclaimer workbenches, config
-  audit and JSON editor. Both workbenches share the list/editor layout in
-  `Workbench.astro`. `src/components/map/ScenarioEditor.astro` owns the YAML
-  scenario editor.
-- `src/components/SourceText.astro` shares source-text input markup between both
-  editors. Each editor retains its own save semantics and source authority.
-- `src/lib/atlas.ts` and `src/lib/authoring.ts` own their page controllers.
+  `ui/ViewTabs` supplies labeled local view controls in Astro and React.
+- `src/components/authoring/AuthoringApp.tsx` owns journal, disclaimer, localization,
+  audit and source views; journal components retain their own editing behavior.
+  Shared `ui/Workbench` composes browser/editor regions in React and Astro.
+  `src/components/map/ScenarioEditor.astro` owns the YAML scenario editor.
+- `ui/Field` connects labels and descriptions to controls. `ui/SourceEditor` shares
+  source-text presentation and action slots across journal JSON, model JSON and
+  scenario YAML. Each editor retains its own validation and source authority;
+  journal `JsonEditor` adds retained drafts through its context.
+- `src/lib/atlas.ts` and `src/lib/model-authoring.ts` own their DOM controllers.
   `src/lib/http.ts` shares JSON requests and error handling, including valid null
   snapshots and explicit JSON writes.
-- `src/styles/base.css` owns shared tokens, document controls, navigation and tables.
-  Map, authoring and resource-review CSS is imported only by its owning page.
-  Shared `--page-width`, radius and color tokens keep those surfaces consistent.
+- `src/styles/base.css` loads tokens, typography, composition and UI styles, and
+  owns document defaults, native control states, navigation and tables. Feature
+  styles retain their geometry and domain visuals. The
+  [design-token guide](design-tokens.md#shared-ui-components) owns component
+  contracts and explains the retained exceptions.
 
 Keep page markup and rendering components separate from filesystem operations in
 `scripts/workspace.mjs` and `scripts/authoring.mjs`. Reuse the shared layouts, controls and semantic style tokens across pages.
@@ -321,6 +368,27 @@ Compilation publishes individual files, not one atomic snapshot transaction.
 operations, including temporary validation and subsequent source publication.
 Status/cancellation endpoints remain available while the operation lock is held.
 [Setup](setup.md#named-authoring-jobs) owns job registration and execution limits.
+
+`operations.mjs` records user-action outcomes around the complete middleware
+operation, including file publication. Named jobs are steps within that action;
+a successful validator does not establish a successful save. `/__atlas/jobs`
+returns both layers, with a session identity and a bounded operation history.
+The history lives in server memory and resets when the development server restarts.
+
+`lib/activity.ts` owns the shared browser subscription store. `ActivityHost` renders
+notifications and either the authoring side panel or the compact Activity disclosure
+on other pages. Both presentations use `ActivityPanel`; React islands and DOM
+consumers use the same store. Each page mounts a single host for polling and toasts.
+Polling is single-flight, pauses while the document is hidden and refreshes on
+return. Connection failures retain last-known results but mark them disconnected.
+There is no filesystem watcher, background recapture or automatic draft reload.
+
+Notices have separate timers, pause on hover/focus and retain at most 20 messages
+for the page session. At most three toasts are visible. Errors remain until
+dismissed or displaced by the bounded stack; the message remains in Activity.
+Existing results are not replayed as toasts on navigation or server-session changes.
+Successful operations in the visible owning page use its local feedback instead
+of a duplicate toast. Other completed operations may notify once by operation ID.
 
 The status endpoint compares file sizes/mtimes and the lock hash when the map
 loads and after an explicit implementation refresh. This detects selected input changes, not every asset or
@@ -418,14 +486,44 @@ SHA-512 hashes, inspected resource paths and author-gallery URLs. Rankings are
 not comparable between sites and cross-site listings are not unique projects.
 Neither a version tag nor a matching asset namespace establishes full support.
 
-`src/lib/resourcepack-data.ts` joins these inputs and compares the captured lock
-hash with `empack.lock`. A changed lock marks the review stale. Changes outside
-the lock, such as resource order or shader settings, still need manual review.
-The page uses `Base.astro`, `AppHeader.astro` and shared style tokens.
-`components/resourcepacks/Candidate.astro` and `Gallery.astro` own row and image
-markup; `src/lib/resourcepacks.ts` owns filters and the image dialog. External
-source images load lazily; missing images retain a link to the source gallery.
-No downloaded third-party artwork or archives are committed.
+`src/lib/resourcepack-data.ts` joins the review metadata with `empack.yml`,
+`empack.lock` and `overrides/client/options.txt`. `resourcepack-stack.mjs` separates
+inclusion, default enablement, priority and inspected-file hash agreement. A
+formerly selected review cannot remain “Selected stack” after its dependency is
+removed. Personal client settings are not read. These values refresh with the
+local server/module or static build; they are not an installation monitor.
+
+`local-projects.json` describes the generated resource ZIP and resource-only JAR.
+The page reads their existence and SHA-256 from fixed repository paths at render
+or build time. Run web commands from `web/`, as in the setup guide. Presence alone
+does not verify that their sources are current; each entry exposes the owning
+builder's check command. The JAR is loaded through NeoForge and has no position in
+the selectable client resource stack. Built-in resource selections are listed in
+Coverage and limits. Overlap inspection still uses its recorded older baseline.
+
+`local-media.json` assigns selected archived screenshots and clips to relevant
+reviews. It records original paths, SHA-256 hashes, run context, dates and captions.
+A run's final combined patch hash does not identify its before images.
+
+`ReviewIndex.astro` renders the same ordered reviews as the document, so its links
+work before enhancement. `resourcepack-index.ts` tracks the reading position and
+scrolls only the bounded index to keep its current link visible. The existing
+filter controller updates both views; there is no second filter or selection model.
+`resource-index.css` owns the desktop rail and narrow-screen arrangement using
+shared spacing, selection, label and caption roles.
+
+`Candidate.astro` and `Gallery.astro` share author and local media in one viewer,
+with separate thumbnail groups and per-selection attribution. `resourcepacks.ts`
+owns filters, playback and the dialog. Images load lazily; recordings load metadata
+only when selected and pause when hidden or closed. Missing media retains its
+source link. The page uses the shared layout and semantic style tokens.
+
+`pnpm media:collect` (named job `resources.media`) verifies and copies only the
+manifest's selected captures from the sibling testing archive. It never moves or
+deletes originals or overwrites changed captures. Atlas-origin files are already
+archived under `public/generated/resource-review`; the manifest cannot recreate
+those bytes if the archive is deleted. Media remains ignored by Git. Restart the
+dev server after importing new files because generated paths are not watched.
 
 The archive inspector applies overlays matching resource format 34 and can
 include Fusion override folders explicitly. It compares different bytes at the
@@ -438,13 +536,98 @@ The selected file's exact version and the gallery's capture date remain separate
 
 Item details separate acquisition choices from the dependency explanation. Recipes
 and gathering methods occupy one column; the embedded route occupies the other.
-A container query stacks them when the inspector is narrow. The first producing
-recipe is visible immediately, while source records and additional recipes remain
-expandable. This changes presentation, not the solver's selected route or assumptions.
-Non-recipe graph operations reserve less height than recipe cards. Initial path
-views center the final operation; Fit still displays the entire path.
+A container query stacks them when the inspector is narrow. One selection owns
+both the direct diagram and recipe/source details. The diagram initially fits all
+its nodes; recipe cards remain in the adjacent panel. Filtering preserves the
+selection even when its method is hidden. Full item progression is a separate
+navigation action, explicitly identified as a potentially different solver witness.
 
 The approach uses [Apple's layout guidance](https://developer.apple.com/design/human-interface-guidelines/layout)
 on grouping and hierarchy and [Google's adaptive list-detail pattern](https://developer.android.com/develop/ui/compose/layouts/adaptive/list-detail)
 on side-by-side content and narrow-screen reading order. [Misode's tools](https://github.com/misode/misode.github.io) are a Minecraft-specific
 reference for keeping structured input and its result close. Astro pages and focused React roots share the same acquisition model.
+
+## Progression model
+
+`progression.mjs` supplies compilation and item comparisons with the same AND/OR
+solver. It keeps one witness per item per policy, with deterministic identifier
+tie-breaking. **Earliest possible access** minimizes prerequisite depth.
+**Planned first access** minimizes opportunistic-source branch occurrences first,
+then uncalculated-chance occurrences, then chance-based occurrences, then depth.
+Exploration/event loot and sampled trades count as opportunistic: a sampled offer
+is not evidence of a profession/level unlock. All alternatives remain available.
+
+Quality costs add across prerequisite branches, collapsing identical direct OR
+groups. Shared earlier prerequisites can count more than once. These are structural
+planning preferences, not quantities, total work or probabilities of the whole chain.
+Depth is the longest chosen prerequisite branch plus one. Nonnegative additive
+costs allow coherent acyclic witnesses without enumerating all production plans.
+The dependency queue revisits consumers of improved labels. There is no unbounded
+longest-path search; “most steps” sorts minimum possible method depths.
+
+`method-comparison.mjs` withholds routes that can produce the target, including their
+co-products, before tracing first supply. An ingredient obtained alongside that
+target is not independent first-access evidence. Methods available only in the full
+graph form an existing-supply group; unresolved methods remain unranked. Independent
+sources can make a conversion a valid first route. This does not establish positive
+net yield or renewable production. Filtering never changes the selected method.
+
+### Quantities, chance and access
+
+`acquisition-facts.mjs` preserves shaped ingredient multiplicity, supported fluid
+amounts, assembly loop counts, output quantities and weighted alternatives. Setup
+and operating gates are separate from consumed slots; deployer tool consumption
+can remain unresolved. No route-level material count is multiplied into a complete
+inventory plan. Repeatability notes describe requirements, not proven renewability.
+
+Exact odds are limited to recognized recipe types and simple loot pools with
+supported weights, rolls, counts and conditions. Sequenced assembly uses weighted
+alternatives; ordinary supported processing uses independent output rolls. Loot
+odds include both pool activation and competing entries. Mining adapts ordinary
+Silk Touch branching, no Fortune, correct tools and no explosions. Mob baselines
+with enchantment-sensitive drops use no Looting. Numeric results state their
+eligible attempt and assumptions; averages do not guarantee a batch. Nested/custom
+predicates or unsupported functions remain unknown. Parent table context is kept
+instead of assigning a referenced subtable's odds to an entire event.
+
+Chance comparisons group by attempt unit; kills, chests and recipe executions are
+not equivalent effort. Expected attempts assume identical independent trials.
+Planned routing counts chance-bearing branches, without multiplying probabilities
+across correlated/shared prerequisites or summing retry counts from different
+activities. Conditional odds and yields remain separately inspectable; it is not
+a stochastic inventory optimizer.
+
+The compiler emits planned and earliest paths plus catalog policy metadata. Full
+route evidence has one owner in `routes.json`; detail buckets retain the selected
+path references rather than duplicating route summaries. The
+map, inspector selection and full graph carry the selected policy. Item comparisons
+show both planned and earliest depths, conditional yield, source assumptions and
+material/setup details. Unsupported facts remain inspectable in source records.
+
+World survey occurrence can include structures and builds. It does not prove natural
+availability, ownership or a source on the starting island. Environmental gates and
+mechanical operating assumptions still belong to authored YAML; detailed output
+facts do not remove those limitations. Recompile after adapter or authored-data
+changes; refresh runtime evidence when registered recipes, loot or dependencies
+change. The source snapshot and world survey keep their separate dates.
+
+Entity/mob and item/block interactions remain coverage priorities. Many rely on
+coarse authored gates or specific adapters; registry presence alone does not establish
+an interaction, its conditions, consumption or repeatability. Add source-backed
+routes and facts incrementally rather than assigning difficulty from entity or item
+type. Missing evidence must remain visible until the relevant behavior is captured.
+
+### Journal authoring boundary
+
+Journal editing uses the pack-owned chapter and locale documents, not the mapper's
+compiled item records. `src/lib/journal.mjs` provides draft operations and resolved
+text; `scripts/generate-journal.py` validates source and emits native Questlog JSON
+and language resources. Cross-language tests exercise both against a temporary
+pack, including entry deletion and sparse translation fallback. See the
+[authoring guide](authoring.md) for save, generation and locale behavior.
+
+World, structure and island views continue to render their owning survey exports;
+shared content-stack markup also applies to HTML created by their renderers.
+Neither layout nor journal changes update a survey's capture date or generator
+identity. Mapper edits still rebuild through the existing domain-save/compile
+path; runtime capture and world imports remain separate explicit operations.

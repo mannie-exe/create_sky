@@ -13,6 +13,7 @@ export type RecipeProps = {
   inspect: (id: string) => void
   state?: RecipeState
   onState?: (state: RecipeState) => void
+  typography?: 'semantic'
 }
 
 export const ItemSlot = memo(function ItemSlot({
@@ -59,6 +60,7 @@ export const RecipeCard = memo(function RecipeCard({
   inspect,
   state,
   onState,
+  typography,
 }: RecipeProps) {
   const view = recipePresentation(recipe),
     prefix = useId()
@@ -166,7 +168,7 @@ export const RecipeCard = memo(function RecipeCard({
     outputs = view.outputs.map((v: any, i: number) => slot(v, 'Output', i))
   return (
     <div className="recipe-card" data-recipe={recipe.id}>
-      <p className="recipe-type">
+      <p className="recipe-type" data-text-role={typography && 'code'}>
         {view.type}
         {recipe.scenario ? ' · SCENARIO' : ''}
       </p>
@@ -180,7 +182,10 @@ export const RecipeCard = memo(function RecipeCard({
               }
               data-layout={view.columns > 3 ? 'wide' : 'standard'}
             >
-              <span className="recipe-caption recipe-input-caption">
+              <span
+                className="recipe-caption recipe-input-caption"
+                data-text-role={typography && 'caption'}
+              >
                 {view.shape === 'shaped'
                   ? 'Pattern'
                   : view.shape === 'shapeless'
@@ -189,7 +194,10 @@ export const RecipeCard = memo(function RecipeCard({
                       ? 'Template · base · material'
                       : 'Inputs · all slots'}
               </span>
-              <span className="recipe-caption recipe-output-caption">
+              <span
+                className="recipe-caption recipe-output-caption"
+                data-text-role={typography && 'caption'}
+              >
                 {view.derivedOutput ? 'Modified base' : 'Outputs'}
               </span>
               <div className="recipe-grid">{inputs}</div>

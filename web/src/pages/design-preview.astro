@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro'
+---
+
+<Base title="Create Sky · Atlas">
+  <a href="/">Open Atlas</a>
+</Base>
+
+<script>
+  // Keep shared review links useful after the design has been adopted.
+  const params = new URLSearchParams(location.search)
+  const item =
+    params.get('example') === 'iron' ||
+    (params.has('methods') && params.get('example') !== 'glider')
+      ? 'minecraft:iron_ingot'
+      : 'reliable_gliders:glider'
+  location.replace(
+    params.has('orientation') ? '/' : `/?${new URLSearchParams({ item })}`,
+  )
+</script>

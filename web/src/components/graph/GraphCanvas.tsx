@@ -1,3 +1,4 @@
+import Button from '../ui/Button'
 import {
   createContext,
   memo,
@@ -49,18 +50,18 @@ const GraphNode = memo(function GraphNode({ id, data }: NodeProps) {
     >
       <Handle type="target" position={Position.Top} isConnectable={false} />
       {n.type === 'overview' ? (
-        <button className="nodrag nopan" onClick={() => center(n.x, n.y, 0.7)}>
+        <Button className="nodrag nopan" onClick={() => center(n.x, n.y, 0.7)}>
           {n.count} nodes
-        </button>
+        </Button>
       ) : (
         <>
-          <button
+          <Button
             className="flow-node-title nodrag nopan"
             onClick={() => select(id)}
           >
             {n.label}
-          </button>
-          {n.type === 'route' && data.detailed ? (
+          </Button>
+          {n.type === 'route' && !n.compact && data.detailed ? (
             <div className="flow-node-content nodrag nopan nowheel">
               {recipe ? (
                 <RecipeCard
@@ -107,7 +108,11 @@ export function cardScene(source: any) {
     (n: any) => n.type === 'route',
   )
   const nodeHeight = (n: any) =>
-    n.type === 'route' ? (n.route?.kind === 'recipe' ? 440 : 180) : 86
+    n.type === 'route' && !n.compact
+      ? n.route?.kind === 'recipe'
+        ? 440
+        : 180
+      : 86
   const rows = new Map<number, number>()
   for (const n of source.nodes.values())
     rows.set(n.y, Math.max(rows.get(n.y) ?? 0, nodeHeight(n)))
@@ -129,7 +134,7 @@ export function cardScene(source: any) {
         ...n,
         x: n.x * (detailed ? 1.25 : 1),
         y: detailed ? positions.get(n.y) : n.y,
-        width: n.type === 'route' ? 380 : 190,
+        width: n.type === 'route' && !n.compact ? 380 : 190,
         height: nodeHeight(n),
       },
     ]),
@@ -153,6 +158,7 @@ type Props = {
   viewport: Viewport
   onViewport: (v: Viewport) => void
   canvasId?: string
+  initialFraming?: 'route' | 'all'
   mode?: string
   controls: React.RefObject<CanvasHandle | null>
   recipeStates: Map<string, RecipeState>
@@ -170,6 +176,7 @@ function Canvas(props: Props) {
     viewport,
     onViewport,
     canvasId,
+    initialFraming = 'route',
     mode,
     controls,
     recipeStates,
@@ -263,7 +270,11 @@ function Canvas(props: Props) {
       const routes = [...scene.nodes.values()].filter(
         (n: any) => n.type === 'route',
       )
-      if (routes.length && (mode === 'routes' || !canvasId)) {
+      if (
+        initialFraming === 'route' &&
+        routes.length &&
+        (mode === 'routes' || !canvasId)
+      ) {
         const target: any = routes.at(-1)
         center(
           target.x,
@@ -272,7 +283,7 @@ function Canvas(props: Props) {
         )
       } else fit()
     }
-  }, [source, fit, viewport])
+  }, [source, fit, viewport, initialFraming])
   const keyboard = useCallback(
     (e: KeyboardEvent | React.KeyboardEvent) => {
       if (e.target !== host.current && e.target !== mini.current) return
@@ -379,7 +390,10 @@ function Canvas(props: Props) {
           label: e.label || undefined,
           markerEnd: { type: MarkerType.ArrowClosed },
           style: {
-            stroke: e.type === 'alternative' ? 'var(--muted)' : 'var(--accent)',
+            stroke:
+              e.type === 'alternative'
+                ? 'var(--ink-muted)'
+                : 'var(--color-action)',
             strokeDasharray: e.type === 'alternative' ? '5 5' : undefined,
           },
           ariaLabel: `${scene.nodes.get(e.source)?.label} to ${scene.nodes.get(e.target)?.label}`,

@@ -1,0 +1,28 @@
+/* Shared coverage colors for DOM and Canvas; never operation success/error. */
+:root {
+  --coverage-mapped: #91a8c7;
+  --coverage-blocked: #b18645;
+  --coverage-unmapped: var(--ink-muted);
+  --coverage-neutral: var(--line-subtle);
+  --note-line: var(--ref-color-amber);
+  --note-surface: color-mix(
+    in oklab,
+    var(--note-line) 6%,
+    var(--surface-panel)
+  );
+  --review-note-mark: var(--color-action);
+}
+[data-coverage] {
+  --coverage-mark: var(--coverage-neutral);
+  --coverage-line-style: solid;
+}
+[data-coverage='mapped'] {
+  --coverage-mark: var(--coverage-mapped);
+}
+[data-coverage='blocked'] {
+  --coverage-mark: var(--coverage-blocked);
+}
+[data-coverage='unmapped'] {
+  --coverage-mark: var(--coverage-unmapped);
+  --coverage-line-style: dashed;
+}

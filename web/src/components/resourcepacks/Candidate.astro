@@ -1,12 +1,20 @@
 ---
 import Gallery from './Gallery.astro'
-import { projects, statuses, type Review } from '../../lib/resourcepack-data'
+import {
+  galleryFor,
+  projects,
+  statuses,
+  stack,
+  type Review,
+} from '../../lib/resourcepack-data'
 interface Props {
   review: Review
 }
 const { review } = Astro.props
 const project = projects[review.id]
 const evidence = project.inspection
+const current = stack[review.id]
+const images = galleryFor(review.id)
 const searchable = [
   project.title,
   review.category,
@@ -53,14 +61,52 @@ const searchable = [
         </li>
       ))}
     </ul>
+    {current && (
+      <p class="candidate-current" data-text-role="caption">
+        {current.kind} · {current.side}
+        {current.order >= 0 &&
+          ` · Default priority ${current.order + 1} (higher wins)`}
+        {current.kind === 'Resource-only mod' && ' · Loaded through NeoForge'}
+        {current.filename && <span class="file-name">{current.filename}</span>}
+        {current.intentMatches === false && (
+          <strong>Manifest and lock differ.</strong>
+        )}
+        {current.inspectionMatches === false && (
+          <strong>Selected file differs from the archived inspection.</strong>
+        )}
+      </p>
+    )}
     <details class="candidate-evidence">
       <summary>
         File evidence
-        {evidence
-          ? ` · ${evidence.effectiveAssetCount.toLocaleString()} effective assets`
-          : ' · source review only'}
+        {current?.source
+          ? ' · Generated artifact'
+          : evidence
+            ? ` · ${evidence.effectiveAssetCount.toLocaleString()} effective assets`
+            : ' · source review only'}
       </summary>
-      {evidence ? (
+      {current?.source ? (
+        <>
+          <p>
+            {current.present
+              ? 'Built artifact present.'
+              : 'Built artifact missing.'}{' '}
+            Presence does not prove source freshness or runtime behavior.
+          </p>
+          <p>
+            Sources: <code>{current.source}</code>
+          </p>
+          <p>
+            Check without rewriting: <code>{current.check}</code>
+          </p>
+          {current.sha256 && (
+            <details>
+              <summary>Built SHA-256</summary>
+              <code class="digest">{current.sha256}</code>
+            </details>
+          )}
+        </>
+      ) : evidence ? (
         <>
           <p>
             <a
@@ -145,5 +191,16 @@ const searchable = [
       )}
     </details>
   </div>
-  <Gallery title={project.title} images={project.gallery} />
+  {images.length ? (
+    <Gallery title={project.title} images={images} />
+  ) : (
+    <div class="candidate-no-media">
+      <p data-text-role="group-title">Data and journal resources</p>
+      <p>
+        No matching capture is catalogued. Use the journal and configuration
+        authoring views to inspect this artifact’s content.
+      </p>
+      <a href="/authoring">Open authoring</a>
+    </div>
+  )}
 </article>

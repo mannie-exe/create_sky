@@ -108,6 +108,20 @@ class AuthoringTests(unittest.TestCase):
             path.write_text(json.dumps(data))
             with self.assertRaises(ValueError): compile_journal(self.root)
 
+    def test_reward_validation_rejects_invalid_form_values(self):
+        path = self.root / 'authoring/journal/chapters/travel.json'
+        data = json.loads(path.read_text())
+        for reward in [
+            {'type': 'questlog:item', 'item': 'minecraft:iron_ingot', 'count': 0},
+            {'type': 'questlog:experience', 'experience': None},
+            {'type': 'questlog:command', 'command': 'say missing slash'},
+            {'type': 'questlog:choice', 'choices': {}},
+        ]:
+            with self.subTest(reward=reward):
+                data['entries'][0]['definition']['rewards'] = [reward]
+                path.write_text(json.dumps(data))
+                with self.assertRaises(ValueError): compile_journal(self.root)
+
     def test_audit_missing_drift_and_unregistered(self):
         report = audit(self.root)
         self.assertTrue(all(r['status'] == 'missing' for r in report['records']))

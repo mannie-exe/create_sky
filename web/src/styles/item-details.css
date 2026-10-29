@@ -1,0 +1,69 @@
+/* Shared inspector composition. */
+.item-detail-layout[data-active-panel='acquisition'] {
+  --detail-column-gap: calc(var(--ref-space-unit) * 7);
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(300px, 1fr);
+  gap: 0 var(--detail-column-gap);
+  align-items: start;
+}
+.item-detail-layout[data-active-panel='acquisition']
+  > [data-detail-panel='acquisition'],
+.item-detail-layout[data-active-panel='acquisition'] .item-acquisition {
+  display: contents;
+}
+.item-detail-layout[data-active-panel='acquisition'] .item-subject {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+}
+.item-detail-layout[data-active-panel='acquisition'] .item-heading {
+  display: grid;
+  gap: var(--space-section);
+}
+.item-detail-layout[data-active-panel='acquisition'] .detail-icon {
+  justify-self: center;
+  margin-block: var(--space-content);
+}
+.item-detail-layout[data-active-panel='acquisition'] .item-methods {
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: var(--detail-column-gap);
+}
+.item-detail-layout[data-active-panel='acquisition'] .item-route {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  margin: 0;
+  padding: 0 var(--detail-column-gap) 0 0;
+  border: 0;
+  border-right: 1px solid var(--line-subtle);
+}
+.item-detail-layout .item-methods .recipe-scroll {
+  background: var(--surface-inset);
+  border: 1px solid var(--line-subtle);
+  border-radius: var(--radius-panel);
+  padding: var(--space-content) var(--space-control);
+  margin-block: var(--space-section);
+}
+.item-detail-layout .item-methods .recipe-flow {
+  margin-inline: auto;
+  column-gap: calc(var(--ref-space-unit) * 1.5);
+}
+@container (max-width: 780px) {
+  .item-detail-layout[data-active-panel='acquisition'] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .item-detail-layout[data-active-panel='acquisition'] .item-route {
+    grid-column: 1;
+    grid-row: 1;
+    border: 0;
+    padding: 0;
+  }
+  .item-detail-layout[data-active-panel='acquisition'] .item-subject {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .item-detail-layout[data-active-panel='acquisition'] .item-methods {
+    grid-column: 1;
+    grid-row: 3;
+  }
+}

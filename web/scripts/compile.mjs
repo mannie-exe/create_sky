@@ -1,3 +1,5 @@
+import { enrichRoutes } from '../src/lib/acquisition-facts.mjs'
+import { routeFamily } from '../src/lib/progression.mjs'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import crypto from 'node:crypto'
@@ -202,7 +204,9 @@ export async function compile() {
     ...authored.acquisition.records.flatMap((r) => r.excluded ?? []),
     ...items.filter((i) => i.class.endsWith('SpawnEggItem')).map((i) => i.id),
   ]
-  const analysis = analyzeRoutes(ids, roots, routes, excluded),
+  enrichRoutes(routes, active, loot, tags, fluidTags)
+  const earliest = analyzeRoutes(ids, roots, routes, excluded, 'earliest')
+  const analysis = analyzeRoutes(ids, roots, routes, excluded, 'planned'),
     depth = analysis.depth
   const aliases = authored.acquisition.records.flatMap((r) => r.aliases ?? [])
   for (const alias of aliases) {
@@ -230,22 +234,11 @@ export async function compile() {
       ...item,
       coverage: analysis.coverage.get(item.id),
       path: depth.has(item.id) ? analysis.pathFor(item.id) : [],
+      earliestPath: earliest.depth.has(item.id)
+        ? earliest.pathFor(item.id)
+        : [],
       acquisition: (analysis.producing.get(item.id) ?? []).filter(
         (r) => r.kind !== 'recipe',
-      ),
-      pathRoutes: Object.fromEntries(
-        analysis
-          .pathFor(item.id)
-          .filter((p) => p.route)
-          .map((p) => [
-            p.route,
-            {
-              kind: routeById[p.route].kind,
-              detail: routeById[p.route].detail,
-              source: routeById[p.route].source,
-              conditions: routeById[p.route].conditions,
-            },
-          ]),
       ),
       block: blockMap[item.id],
       note: authored.items.notes[item.id],
@@ -276,11 +269,24 @@ export async function compile() {
       mod: item.mod,
       icon: item.icon?.url ?? null,
       depth: depth.get(item.id) ?? null,
-      complexity: Math.min(
-        ...(byOutput[item.id] ?? []).map(
-          (id) => recipesById[id].ingredients?.length ?? 0,
-        ),
-        99,
+      family: analysis.witnesses.has(item.id)
+        ? routeFamily(routeById[analysis.witnesses.get(item.id).route])
+        : 'unresolved',
+      progression: Object.fromEntries(
+        [
+          ['planned', analysis],
+          ['earliest', earliest],
+        ].map(([policy, result]) => [
+          policy,
+          {
+            ...result.labels.get(item.id),
+            depth: result.depth.get(item.id) ?? null,
+            route: result.witnesses.get(item.id)?.route ?? null,
+            family: result.witnesses.has(item.id)
+              ? routeFamily(routeById[result.witnesses.get(item.id).route])
+              : 'unresolved',
+          },
+        ]),
       ),
       recipeCount: byOutput[item.id]?.length ?? 0,
       usesCount: byInput[item.id]?.length ?? 0,

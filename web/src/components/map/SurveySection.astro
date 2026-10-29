@@ -7,7 +7,12 @@ interface Props {
 const { id, title, kind } = Astro.props
 ---
 
-<section id={id} class="survey-section" aria-labelledby={`${id}-title`}>
+<section
+  id={id}
+  class="survey-section content-stack"
+  data-space="section"
+  aria-labelledby={`${id}-title`}
+>
   <header class="survey-heading">
     <div>
       <span class="survey-kind">{kind}</span>

@@ -17,6 +17,7 @@
     "setup:python": "python3 -m venv .cache/python && .cache/python/bin/python -m pip install -r requirements.txt",
     "test:python": ".cache/python/bin/python -m unittest discover -s tests -p 'test_*.py'",
     "data:check": "node scripts/verify_snapshot.mjs",
+    "media:collect": "node scripts/collect-resource-media.mjs",
     "data:runtime": "python3 scripts/runtime.py",
     "data:extract": "python3 scripts/extract.py",
     "data:world": ".cache/python/bin/python scripts/world.py",
@@ -28,7 +29,8 @@
     "lint": "prettier --check . ../docs/development/web",
     "test:browser": "playwright test",
     "data:structures": "python3 scripts/structures.py",
-    "data:islands": "python3 scripts/islands.py"
+    "data:islands": "python3 scripts/islands.py",
+    "data:locales": "node scripts/minecraft-locales.mjs"
   },
   "dependencies": {
     "@astrojs/react": "7.1.1",

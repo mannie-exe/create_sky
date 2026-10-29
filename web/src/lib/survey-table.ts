@@ -4,7 +4,7 @@ export function surveyTable(
   rows: string[][],
 ) {
   const scroll = document.createElement('div')
-  scroll.style.overflowX = 'auto'
+  scroll.className = 'table-scroll'
   const table = document.createElement('table')
   const head = table.createTHead().insertRow()
   for (const column of columns) {

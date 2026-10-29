@@ -182,8 +182,10 @@ expected outputs, timeout, output cap and cancellation policy.
 | `snapshot.fingerprint`, `snapshot.capture`, `snapshot.extract` | No inputs; fingerprint or explicitly regenerate implementation evidence                                                           | 30 s for fingerprint, 660 s for capture/extraction; 2 MiB |
 | `scenario.export`                                              | No inputs; export the validated recipe scenario                                                                                   | 30 s, 2 MiB                                               |
 
-The header shows the current or last job, bounded diagnostics and Cancel when
-available. Status polling keeps only one current job and one result in memory;
+Activity shows complete user operations and up to 20 recent outcomes for the
+development-server session. Reads and automatic previews do not replace them.
+An active operation exposes its current named job, bounded diagnostics and Cancel
+when supported. The subprocess runner still retains only its current and last job;
 there is no persisted history or work queue. Audit exit code 1 means differences
 were found and is returned as an audit result, rather than an execution failure.
 
@@ -197,7 +199,9 @@ These are trusted repository scripts, not a sandbox for arbitrary code.
 To add a workbench process, add a registry entry, validate its inputs, specify its
 outputs and limits, and call `jobs.run` from a protected workspace handler. Keep
 revision checks and any source publication in that handler. Add execution/failure
-tests and UI feedback; avoid another `spawn` or `execFile` wrapper. To remove a
+tests and UI feedback; register its user-facing action in `scripts/operations.mjs`
+when it needs an Activity result. Quiet reads and previews stay out of history.
+Avoid another `spawn` or `execFile` wrapper. To remove a
 job, remove its callers, registry entry and applicable tests/docs together.
 Restart `pnpm dev` after changing the registry or middleware. Restart it also if
 a newly generated public file exists on disk but returns 404: generated paths are
@@ -274,6 +278,12 @@ Edit judgments in `data/authored/resourcepacks.yml`; update dated evidence in
 installation queue or automatic scraper. Recheck the linked catalogs and project
 pages, choose an exact Minecraft 1.21.1 file, and compare its published SHA-512
 with the downloaded bytes before recording inspection evidence.
+
+To collect selected existing test media, edit `local-media.json` in that research
+directory and run `pnpm media:collect`. The equivalent allowlisted job is
+`resources.media` (no inputs; 30-second limit). Original archives stay in place;
+changed hashes fail rather than overwrite files. Restart the dev server after new
+captures are copied. See [media ownership](data.md#resource-pack-research).
 
 Use a temporary directory under `.cache/resourcepacks` for downloaded archives:
 

@@ -1,5 +1,68 @@
 import { test, expect } from '@playwright/test'
 
+test('world links, stationary ore selection and centered map hit detection', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1100 })
+  await page.goto('/world-preview?layout=beside')
+  await expect(page).toHaveURL(/\?view=world$/)
+  await expect(page.locator('#ore-table button').first()).toBeVisible()
+  const scroll = await page.evaluate(() => scrollY)
+  await page.getByRole('button', { name: 'Zinc Ore', exact: true }).click()
+  await expect(page.locator('#ore-profile')).toContainText('create:zinc_ore')
+  expect(await page.evaluate(() => scrollY)).toBe(scroll)
+  await page.locator('#ore-map').selectOption('minecraft:iron_ore')
+  await expect(
+    page.getByRole('button', { name: 'Iron Ore', exact: true }),
+  ).toHaveAttribute('aria-pressed', 'true')
+
+  const world = await (await page.request.get('/generated/world.json')).json()
+  const target = world.regions.find(
+    (r) => r.samples.length && (r.x !== 0 || r.z !== 0),
+  )
+  const point = await page.locator('#world-canvas').evaluate(
+    (canvas, { regions, target }) => {
+      const minX = Math.min(...regions.map((r) => r.x)),
+        maxX = Math.max(...regions.map((r) => r.x))
+      const minZ = Math.min(...regions.map((r) => r.z)),
+        maxZ = Math.max(...regions.map((r) => r.z))
+      const cell = Math.min(
+        (canvas.width - 70) / (maxX - minX + 1),
+        (canvas.height - 50) / (maxZ - minZ + 1),
+      )
+      const left = (canvas.width - (maxX - minX + 1) * cell) / 2
+      const top = (canvas.height - (maxZ - minZ + 1) * cell) / 2
+      const box = canvas.getBoundingClientRect()
+      return {
+        x:
+          box.left +
+          ((left + (target.x - minX + 0.5) * cell) * box.width) / canvas.width,
+        y:
+          box.top +
+          ((top + (target.z - minZ + 0.5) * cell) * box.height) / canvas.height,
+        cornerAlpha: canvas.getContext('2d').getImageData(0, 0, 1, 1).data[3],
+        background: getComputedStyle(canvas.parentElement).backgroundColor,
+      }
+    },
+    { regions: world.regions, target },
+  )
+  expect(point.cornerAlpha).toBe(0)
+  expect(point.background).toBe('rgba(0, 0, 0, 0)')
+  await page.mouse.move(point.x, point.y)
+  await expect(page.locator('#world-hover')).toContainText(
+    `r.${target.x}.${target.z} · block origin`,
+  )
+  await page.mouse.move(1, 1)
+  for (const width of [1024, 390]) {
+    await page.setViewportSize({ width, height: 844 })
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true)
+  }
+})
+
 test('real snapshot, virtualized map, item provenance and world profile', async ({
   page,
 }) => {
@@ -12,8 +75,8 @@ test('real snapshot, virtualized map, item provenance and world profile', async 
   await page.locator('[data-id="reliable_gliders:glider"]').click()
   await expect(page.locator('#detail h2')).toHaveText('Glider')
   await expect(page.locator('.intro')).toHaveCount(0)
-  await expect(page.locator('#detail')).toContainText('Mapped potential route')
-  await expect(page.locator('#detail .inline-route select')).toContainText(
+  await expect(page.locator('#detail')).toContainText('Acquisition methods')
+  await expect(page.locator('#detail .method-route')).toContainText(
     'Phantom Membrane',
   )
   await expect(page.locator('#detail')).toContainText('phantom membranes')

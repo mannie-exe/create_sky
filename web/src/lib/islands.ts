@@ -1,3 +1,4 @@
+import { createDisclosure } from './disclosure'
 import { requestJSON } from './http'
 import { surveyTable } from './survey-table'
 
@@ -167,16 +168,15 @@ export async function renderIslandSurvey() {
       )
       for (const island of run.islands) {
         if (!island.observedOresByReferenceY) continue
-        const depths = document.createElement('details')
-        const label = document.createElement('summary')
-        label.textContent = `Ore depth and exposure: ${island.descriptor.x}, ${island.descriptor.z}`
-        depths.append(label)
+        const { element: depths, body: depthBody } = createDisclosure(
+          `Ore depth and exposure: ${island.descriptor.x}, ${island.descriptor.z}`,
+        )
         const note = document.createElement('p')
         note.textContent =
           'Observed blocks in 16-level geological bands, not absolute world Y or whole-island estimates. Exposure means an adjacent air or fluid block; chunk-edge columns are excluded. It does not establish a reachable mining route.'
-        depths.append(note)
+        depthBody.append(note)
         surveyTable(
-          depths,
+          depthBody,
           [
             'Ore',
             'Reference Y band: observed blocks',
@@ -197,10 +197,9 @@ export async function renderIslandSurvey() {
         )
         target.append(depths)
       }
-      const details = document.createElement('details')
-      const summary = document.createElement('summary')
-      summary.textContent = 'Sampling method, limits and tested artifacts'
-      details.append(summary)
+      const { element: details, body } = createDisclosure(
+        'Sampling method, limits and tested artifacts',
+      )
       for (const text of [
         run.method,
         run.limitations,
@@ -213,7 +212,7 @@ export async function renderIslandSurvey() {
       ]) {
         const p = document.createElement('p')
         p.textContent = text
-        details.append(p)
+        body.append(p)
       }
       target.append(details)
     }

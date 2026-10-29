@@ -1,3 +1,6 @@
+import { createField } from './fields'
+import { setFeedback } from './ui'
+import { readColorTokens } from './style-tokens'
 import { requestJSON } from './http'
 import { ModelPreview, type Preview, type TextureSource } from './model-preview'
 
@@ -59,6 +62,8 @@ function controls() {
   button('models-save').disabled = !dirty || running || jsonDrafts.size > 0
   button('models-generate').disabled =
     dirty || running || !workspace || jsonDrafts.size > 0
+  button('models-reload').dataset.intent =
+    dirty || jsonDrafts.size ? 'destructive' : 'default'
   button('models-reload').disabled = running
   for (const field of element('model-editor').querySelectorAll<
     HTMLInputElement | HTMLSelectElement
@@ -74,7 +79,7 @@ function controls() {
 function changed() {
   dirty = true
   version++
-  status.textContent = 'Unsaved changes; updating preview…'
+  setFeedback(status, 'Unsaved changes; updating preview…')
   if (!jsonDrafts.has(selected))
     element<HTMLTextAreaElement>('model-json').value = JSON.stringify(
       recipe(),
@@ -101,9 +106,9 @@ function vector(
   const root = element(id)
   root.replaceChildren(
     ...labels.map((text, i) => {
-      const label = document.createElement('label'),
-        field = document.createElement('input')
-      label.append(document.createTextNode(text), field)
+      const field = document.createElement('input')
+      field.id = `${id}-${i}`
+      const label = createField(text, field)
       field.type = 'number'
       field.step = '0.125'
       field.value = String(values[i])
@@ -126,6 +131,9 @@ function list() {
       .map((r) => {
         const item = document.createElement('button'),
           detail = document.createElement('small')
+        item.type = 'button'
+        item.className = 'ui-button'
+        item.dataset.intent = 'default'
         item.textContent = r.label
         detail.textContent = `${r.kind} · ${r.enabled ? 'included' : 'not included'}`
         item.append(detail)
@@ -194,9 +202,9 @@ function drawTexture() {
     256,
   )
   const [u0, v0, u1, v1] = uv()
-  context.strokeStyle = getComputedStyle(document.documentElement)
-    .getPropertyValue('--accent')
-    .trim()
+  context.strokeStyle = readColorTokens(textureCanvas, {
+    selection: '--color-action',
+  }).selection
   context.lineWidth = 2
   context.strokeRect(u0 * 16, v0 * 16, (u1 - u0) * 16, (v1 - v0) * 16)
 }
@@ -297,7 +305,11 @@ function render() {
   controls()
 }
 function error(reason: unknown) {
-  status.textContent = reason instanceof Error ? reason.message : String(reason)
+  setFeedback(
+    status,
+    reason instanceof Error ? reason.message : String(reason),
+    'error',
+  )
 }
 async function updatePreview() {
   if (running) return
@@ -311,7 +323,7 @@ async function updatePreview() {
       view?.show(preview()).catch(error)
       element('model-statistics').textContent =
         `${preview().elements} elements · ${preview().faces} faces`
-      status.textContent = 'Unsaved changes; preview current'
+      setFeedback(status, 'Unsaved changes; preview current')
       list()
     }
   } catch (reason) {
@@ -334,7 +346,7 @@ async function load() {
     dirty = false
     jsonDrafts.clear()
     render()
-    status.textContent = 'Source loaded'
+    setFeedback(status, 'Source loaded')
   } catch (reason) {
     error(reason)
   } finally {
@@ -355,10 +367,13 @@ async function operation(action: 'save' | 'generate') {
     if (action === 'save') {
       workspace.revision = result.revision
       dirty = requested !== version
-      status.textContent = dirty
-        ? 'Recipes saved; newer edits remain unsaved'
-        : 'Recipes saved; generate to update the pack'
-    } else status.textContent = result.output
+      setFeedback(
+        status,
+        dirty
+          ? 'Recipes saved; newer edits remain unsaved'
+          : 'Recipes saved; generate to update the pack',
+      )
+    } else setFeedback(status, result.output)
   } catch (reason) {
     error(reason)
   } finally {
@@ -448,7 +463,7 @@ button('model-apply-json').addEventListener('click', async () => {
     jsonDrafts.delete(id)
     dirty = true
     version++
-    status.textContent = 'Unsaved changes; preview current'
+    setFeedback(status, 'Unsaved changes; preview current')
     render()
     controls()
   } catch (reason) {
@@ -462,17 +477,20 @@ element<HTMLTextAreaElement>('model-json').addEventListener('input', () => {
   const text = element<HTMLTextAreaElement>('model-json').value
   if (text === JSON.stringify(recipe(), null, 2)) jsonDrafts.delete(selected)
   else jsonDrafts.set(selected, text)
-  status.textContent = jsonDrafts.size
-    ? 'Apply or discard JSON edits before saving or generating'
-    : dirty
-      ? 'Unsaved changes'
-      : 'Source loaded'
+  setFeedback(
+    status,
+    jsonDrafts.size
+      ? 'Apply or discard JSON edits before saving or generating'
+      : dirty
+        ? 'Unsaved changes'
+        : 'Source loaded',
+  )
   controls()
 })
 button('model-discard-json').addEventListener('click', () => {
   jsonDrafts.delete(selected)
   render()
-  status.textContent = dirty ? 'Unsaved changes' : 'Source loaded'
+  setFeedback(status, dirty ? 'Unsaved changes' : 'Source loaded')
 })
 button('models-reload').addEventListener('click', () => void load())
 button('models-save').addEventListener('click', () => void operation('save'))

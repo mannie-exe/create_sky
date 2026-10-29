@@ -1,0 +1,65 @@
+/* Parents own rhythm; children own their content and intrinsic dimensions. */
+.content-stack {
+  --stack-gap: var(--space-content);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--stack-gap);
+  min-width: 0;
+}
+.content-stack[data-space='control'] {
+  --stack-gap: var(--space-control);
+}
+.content-stack[data-space='section'] {
+  --stack-gap: var(--space-section);
+}
+.content-stack > :where(*) {
+  margin-block: 0;
+  min-width: 0;
+}
+/* Native details controls visibility. A real body wrapper also separates inline
+   children, and prevents details' anonymous content box from defeating flex gap. */
+.disclosure > .content-stack {
+  margin-block-start: var(--space-content);
+}
+.action-row,
+.control-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-control);
+}
+.action-row {
+  align-items: center;
+}
+.control-row {
+  align-items: end;
+}
+.action-row > :where(*),
+.control-row > :where(*) {
+  margin: 0;
+  min-width: 0;
+}
+.control-row > label {
+  display: grid;
+  gap: var(--space-tight);
+}
+.control-row
+  :is(button, select, input:not([type='checkbox']):not([type='radio'])) {
+  min-block-size: var(--control-min-block-size);
+}
+.control-note {
+  display: flex;
+  align-items: center;
+  min-block-size: var(--control-min-block-size);
+}
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-block-size: var(--control-min-block-size);
+  flex-wrap: wrap;
+  gap: var(--space-content);
+}
+.section-heading > :where(*) {
+  margin: 0;
+}

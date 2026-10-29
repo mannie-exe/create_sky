@@ -70,7 +70,7 @@ records:
   - id: guidance/journal
     title: Questlog journal
     evidence: runtime
-    detail: Questlog 3.4.1 provides 48 entries in eight chapters. Inventory thresholds and two block-interaction events are checked by the shipped handlers; all 66 branches pass negative and positive cases and NBT restoration. Entries grant no rewards or recipe unlocks. All entries are available immediately; no flight, production-throughput or successful-delivery detector is implied.
+    detail: Questlog 3.5.0 loads 48 pack entries in eight chapters. The current runtime export checks inventory thresholds and two block-interaction events through the shipped handlers; all 66 branches pass negative and positive cases and NBT restoration. Entries grant no rewards or recipe unlocks. All entries are available immediately; no flight, production-throughput or successful-delivery detector is implied.
     sources:
       - runtime/journal.json
       - overrides/common/config/questlog
@@ -78,7 +78,7 @@ records:
   - id: fixes/biome-redirect
     title: Sky Archipelago biome projection
     evidence: isolated-server-verified
-    detail: Zfastnoise's biome redirect displaced Sky Archipelago's Deep Dark projection. The candidate disables mixin.perf.biome while retaining mixin.perf.noise; the isolated boot no longer logs the redirect conflict. Actual regenerated biome and structure placement remain untested. Local generation settings are synchronized for the pending random-world review.
+    detail: Zfastnoise's biome redirect conflicts with Sky Archipelago's Deep Dark projection. The pack disables mixin.perf.biome while retaining mixin.perf.noise; configured boots no longer report the redirect collision. This does not establish ancient-city availability. World and island surveys retain their own generation identity and capture date.
     sources:
       [
         'pack docs/development/worldgen.md',

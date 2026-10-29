@@ -2,8 +2,9 @@
 import JobStatus from './JobStatus.astro'
 interface Props {
   page: 'atlas' | 'authoring' | 'resources'
+  showJobs?: boolean
 }
-const { page } = Astro.props
+const { page, showJobs = true } = Astro.props
 const pages = [
   { id: 'atlas', href: '/', label: 'Item map' },
   { id: 'authoring', href: '/authoring', label: 'Pack authoring' },
@@ -11,6 +12,9 @@ const pages = [
 ]
 ---
 
+<a class="skip-navigation" href="#main-content">
+  Skip to content
+</a>
 <header class="topbar">
   <a class="identity" href="/" aria-label="Create Sky atlas">
     <span class="mark">⌘</span>
@@ -29,4 +33,4 @@ const pages = [
   <slot name="status" />
 </header>
 
-{import.meta.env.DEV && <JobStatus />}
+{showJobs && <JobStatus />}

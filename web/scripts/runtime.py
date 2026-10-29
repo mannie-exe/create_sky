@@ -9,6 +9,7 @@ import zipfile
 from pathlib import Path
 from paths import ROOT, paths, write_json
 from fingerprint import fingerprint
+from runtime_capture import run_capture
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--worldgen", action="store_true", help="Read the configured world seed/settings for a chunk-free spacing comparison")
@@ -40,6 +41,11 @@ for folder in ['config', 'defaultconfigs']:
     if (p['server'] / folder).exists(): shutil.copytree(p['server'] / folder, target)
     authored = p['pack'] / 'overrides/common' / folder
     if authored.exists(): shutil.copytree(authored, target, dirs_exist_ok=True)
+# Registry capture does not need a web server or downloaded map assets.
+bluemap = audit / 'config/bluemap'
+if bluemap.is_dir():
+    (bluemap / 'webserver.conf').write_text('enabled: false\n')
+    (bluemap / 'core.conf').write_text('accept-download: false\nmetrics: false\n')
 # Existing-world SERVER configs override defaultconfigs. Copy only configuration,
 # never chunks, level.dat, players, saved data or LOD databases.
 world_config=p['server']/'world/serverconfig'
@@ -57,13 +63,10 @@ with zipfile.ZipFile(mods / 'create-sky-atlas-exporter.jar', 'w') as jar:
 args = next(libraries.glob('net/neoforged/neoforge/*/unix_args.txt'))
 out = ROOT / 'data/generated/runtime'
 out.mkdir(parents=True, exist_ok=True)
-(out / 'complete.json').unlink(missing_ok=True)
 print('Starting isolated audit server; live world is never mounted.', flush=True)
-with (ROOT / '.cache/runtime.log').open('w') as log:
-    worldgen_args = ['-Datlas.worldgen.level='+str(p['server'] / 'world/level.dat')] if args_cli.worldgen else []
-    result = subprocess.run([str(p['java'] / 'java'), '-Xmx4G', *worldgen_args, '-Datlas.export.dir='+str(out), '@'+str(args), 'nogui'], cwd=audit, stdout=log, stderr=subprocess.STDOUT, timeout=600)
-if result.returncode or not (out / 'complete.json').exists():
-    raise SystemExit('Runtime export failed. Inspect .cache/runtime.log')
+worldgen_args = ['-Datlas.worldgen.level='+str(p['server'] / 'world/level.dat')] if args_cli.worldgen else []
+run_capture([str(p['java'] / 'java'), '-Xmx4G', *worldgen_args, '-Datlas.export.dir='+str(out), '@'+str(args), 'nogui'],
+            cwd=audit, log=ROOT / '.cache/runtime.log', complete=out / 'complete.json')
 inventory = {f.name: hashlib.sha256(f.read_bytes()).hexdigest() for f in mods.glob('*.jar')}
 write_json(out / 'snapshot.json', {'mods': inventory, 'sourceFingerprint':source_fingerprint,'sourceChangedDuringExport':source_fingerprint!=fingerprint(),'lockSha256': hashlib.sha256((p['pack'] / 'empack.lock').read_bytes()).hexdigest()})
 print('Runtime export complete:', json.loads((out / 'complete.json').read_text()))

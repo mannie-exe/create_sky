@@ -27,13 +27,22 @@ export async function configuredPack(root) {
 
 export function authoring(pack) {
   const base = path.join(pack, 'authoring')
-  async function filePath(name) {
+  async function filePath(name, creating = false) {
     if (typeof name !== 'string' || !allowed.test(name))
       throw new Error('Unknown authoring file')
     const file = path.join(base, name)
     // Do not allow authored symlinks to turn this editor into an arbitrary file writer.
     if (
-      (await fs.realpath(file)) !== file ||
+      (await fs.realpath(path.dirname(file))) !== path.dirname(file) ||
+      ((!creating ||
+        (await fs.lstat(file).then(
+          () => true,
+          (e) => {
+            if (e.code === 'ENOENT') return false
+            throw e
+          },
+        ))) &&
+        (await fs.realpath(file)) !== file) ||
       (await fs.realpath(base)) !== base
     )
       throw new Error('Authoring symlinks are not supported')
@@ -75,25 +84,51 @@ export function authoring(pack) {
       return JSON.parse(await command('config.audit'))
     },
     async save(input) {
-      const destination = await filePath(input.name)
-      if (
-        typeof input.text !== 'string' ||
-        Buffer.byteLength(input.text) > 1000000
-      )
-        throw new Error('Invalid source text')
-      JSON.parse(input.text)
+      const batch = input.changes !== undefined
+      if (!batch) await filePath(input.name)
       const before = await files()
-      if (before[input.name].revision !== input.revision)
+      const changes = batch ? input.changes : { [input.name]: input.text }
+      if (
+        !changes ||
+        typeof changes !== 'object' ||
+        Array.isArray(changes) ||
+        !Object.keys(changes).length ||
+        Object.keys(changes).length > 100
+      )
+        throw new Error('Expected source changes')
+      if (
+        batch
+          ? input.revision !== revision(before)
+          : input.revision !== before[input.name]?.revision
+      )
         throw new Error('File changed on disk. Reload before saving.')
+      const destinations = {}
+      for (const [name, text] of Object.entries(changes)) {
+        const newLocale = /^journal\/locales\/[a-z0-9_]+\.json$/.test(name)
+        if (text === null) {
+          if (!newLocale || name.endsWith('/en_us.json') || !before[name])
+            throw new Error('Only additional locale files can be deleted')
+        } else {
+          if (typeof text !== 'string' || Buffer.byteLength(text) > 1000000)
+            throw new Error('Invalid source text')
+          JSON.parse(text)
+        }
+        destinations[name] = await filePath(name, newLocale && !before[name])
+      }
       const temporary = await fs.mkdtemp(path.join(os.tmpdir(), 'sky-journal-'))
+      const staged = [],
+        applied = []
       try {
-        for (const [name, value] of Object.entries(before)) {
+        for (const [name, value] of Object.entries({
+          ...Object.fromEntries(
+            Object.entries(before).map(([name, file]) => [name, file.text]),
+          ),
+          ...changes,
+        })) {
+          if (value === null) continue
           const target = path.join(temporary, 'authoring', name)
           await fs.mkdir(path.dirname(target), { recursive: true })
-          await fs.writeFile(
-            target,
-            name === input.name ? input.text : value.text,
-          )
+          await fs.writeFile(target, value)
         }
         await fs.mkdir(path.join(temporary, 'scripts'))
         for (const script of ['generate-journal.py', 'audit-changes.py'])
@@ -107,17 +142,36 @@ export function authoring(pack) {
           throw new Error(
             'Source changed during validation. Reload before saving.',
           )
-        await filePath(input.name)
-        // Exclusive creation avoids following a pre-existing temporary symlink.
-        await fs.writeFile(destination + '.tmp', input.text, { flag: 'wx' })
-        try {
-          await fs.rename(destination + '.tmp', destination)
-        } catch (error) {
-          await fs.unlink(destination + '.tmp')
-          throw error
+        // Stage all writes before replacing any source. Roll back ordinary I/O
+        // failures; this is not a crash-atomic filesystem transaction.
+        for (const [name, text] of Object.entries(changes)) {
+          await filePath(name, !before[name])
+          if (text === null) continue
+          const stage = destinations[name] + '.tmp'
+          await fs.writeFile(stage, text, { flag: 'wx' })
+          staged.push(stage)
         }
-        return { revision: digest(input.text) }
+        if (revision(await files()) !== revision(before))
+          throw new Error(
+            'Source changed during validation. Reload before saving.',
+          )
+        for (const [name, text] of Object.entries(changes)) {
+          if (text === null) await fs.unlink(destinations[name])
+          else await fs.rename(destinations[name] + '.tmp', destinations[name])
+          applied.push(name)
+        }
+        return {
+          revision: batch ? revision(await files()) : digest(input.text),
+        }
+      } catch (error) {
+        for (const name of applied.reverse()) {
+          if (before[name])
+            await fs.writeFile(destinations[name], before[name].text)
+          else await fs.unlink(destinations[name])
+        }
+        throw error
       } finally {
+        for (const stage of staged) await fs.rm(stage, { force: true })
         await fs.rm(temporary, { recursive: true, force: true })
       }
     },

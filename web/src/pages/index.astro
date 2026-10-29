@@ -1,12 +1,15 @@
 ---
+import Button from '../components/ui/Button.astro'
+import { policies } from '../lib/progression.mjs'
 import Base from '../layouts/Base.astro'
 import AppHeader from '../components/AppHeader.astro'
-import ViewTabs from '../components/ViewTabs.astro'
+import ViewTabs from '../components/ui/ViewTabs.astro'
 import '../styles/atlas.css'
+import { coverageStates } from '../lib/coverage.mjs'
 import ScenarioEditor from '../components/map/ScenarioEditor.astro'
 import StructureSurvey from '../components/map/StructureSurvey.astro'
 import IslandSurvey from '../components/map/IslandSurvey.astro'
-import SurveySection from '../components/map/SurveySection.astro'
+import WorldSurvey from '../components/map/WorldSurvey.astro'
 import Minimap from '../components/map/Minimap.astro'
 import ProgressionGraph from '../components/map/ProgressionGraph.astro'
 ---
@@ -18,23 +21,23 @@ import ProgressionGraph from '../components/map/ProgressionGraph.astro'
     </span>
   </AppHeader>
   <ViewTabs label="Atlas views">
-    <button disabled data-view="map" aria-pressed="true">
+    <Button disabled data-view="map" aria-pressed="true">
       Item map
-    </button>
-    <button disabled data-view="graph" aria-pressed="false">
+    </Button>
+    <Button disabled data-view="graph" aria-pressed="false">
       Progression graph
-    </button>
-    <button disabled data-view="world" aria-pressed="false">
+    </Button>
+    <Button disabled data-view="world" aria-pressed="false">
       World &amp; ores
-    </button>
-    <button disabled data-view="evidence" aria-pressed="false">
+    </Button>
+    <Button disabled data-view="evidence" aria-pressed="false">
       Evidence
-    </button>
-    <button disabled data-view="editor" aria-pressed="false">
+    </Button>
+    <Button disabled data-view="editor" aria-pressed="false">
       Edit data
-    </button>
+    </Button>
   </ViewTabs>
-  <main>
+  <main id="main-content" tabindex="-1">
     <section id="map-view" class="view">
       <div class="toolbar">
         <label class="search">
@@ -59,6 +62,12 @@ import ProgressionGraph from '../components/map/ProgressionGraph.astro'
           <option value="unified">Unified variants</option>
           <option value="notes">Has review note</option>
         </select>
+        <select id="progression-policy" aria-label="Progression policy">
+          {Object.entries(policies).map(([id, label]) => (
+            <option value={id}>{label}</option>
+          ))}
+        </select>
+        <select id="family-jump" aria-label="Jump to acquisition band"></select>
         <label class="zoom">
           Scale{' '}
           <input
@@ -70,29 +79,45 @@ import ProgressionGraph from '../components/map/ProgressionGraph.astro'
             value="1"
           />
         </label>
-        <button id="reset-map" class="subtle">
+        <Button id="reset-map" class="subtle">
           Origin ↖
-        </button>
+        </Button>
       </div>
       <div id="coverage-summary" class="summary-strip"></div>
       <div class="map-meta">
         <span id="counts">Loading item registry…</span>
-        <span>
-          <i class="dot mapped"></i> Mapped route <i class="dot unresolved"></i>{' '}
-          Unresolved <i class="dot noted"></i> Review note
+        <span class="coverage-legend" aria-label="Coverage legend">
+          {Object.entries(coverageStates).map(([status, state]) => (
+            <span>
+              <i
+                class="coverage-swatch"
+                data-coverage={status}
+                aria-hidden="true"
+              ></i>
+              {state.label}
+            </span>
+          ))}
+          <span>
+            <i class="note-swatch" aria-hidden="true"></i>Review note
+          </span>
         </span>
         <span>Select an item for routes</span>
       </div>
       <div class="map-shell">
-        <div class="axis-label">
-          ROUTE DEPTH → <span>Minimum modeled steps · conditions apply</span>
-        </div>
         <div
-          id="viewport"
-          tabindex="0"
-          aria-label="Scrollable two-dimensional item map"
-        >
-          <div id="grid" role="grid" aria-label="Items by route depth"></div>
+          id="map-orientation"
+          class="map-orientation"
+          aria-label="Map navigation"
+        ></div>
+        <div class="map-stage">
+          <aside id="family-axis" aria-label="Acquisition bands"></aside>
+          <div
+            id="viewport"
+            tabindex="0"
+            aria-label="Scrollable two-dimensional item map"
+          >
+            <div id="grid" role="grid" aria-label="Items by route depth"></div>
+          </div>
         </div>
         <div id="tooltip" role="tooltip" hidden></div>
       </div>
@@ -102,7 +127,7 @@ import ProgressionGraph from '../components/map/ProgressionGraph.astro'
           Drag or scroll in both directions · Minimap to navigate · / to search
           · Esc to close
         </span>
-        <button id="layout-help">Layout</button>
+        <Button id="layout-help">Layout</Button>
         <Minimap
           id="map-minimap"
           label="Item map minimap. Click or drag to navigate; arrow keys pan, Home returns to origin."
@@ -116,77 +141,7 @@ import ProgressionGraph from '../components/map/ProgressionGraph.astro'
         <a href="#generation-samples">Island samples</a>
         <a href="#village-samples">Village samples</a>
       </nav>
-      <SurveySection
-        id="terrain-survey"
-        title="Overworld survey"
-        kind="Saved terrain"
-      >
-        <p id="world-provenance" slot="status" class="survey-provenance"></p>
-        <div id="world-summary" class="summary-strip"></div>
-        <div id="world-layout" class="world-layout">
-          <div class="panel world-map-panel">
-            <div class="panel-heading">
-              <h3>Region map</h3>
-              <select id="ore-map" aria-label="World map metric">
-                <option value="land">Land column fraction</option>
-              </select>
-            </div>
-            <canvas
-              id="world-canvas"
-              width="900"
-              height="660"
-              aria-label="Region survey heatmap"
-            ></canvas>
-            <p id="world-hover" class="muted" aria-live="polite">
-              Hover a region for its coordinates and sample coverage.
-            </p>
-            <p class="muted">
-              One square is a 32 × 32 chunk region. Colors summarize sampled
-              chunks, not island outlines. Orange marks the origin.
-            </p>
-          </div>
-          <div class="world-reading">
-            <div class="panel">
-              <h3>Vertical ore profile</h3>
-              <div id="ore-profile"></div>
-            </div>
-            <div class="panel">
-              <h3>Travel estimate</h3>
-              <label>
-                Route distance (blocks)
-                <input id="distance" type="number" value="1000" min="0" />
-              </label>
-              <label>
-                Measured speed (blocks/second)
-                <input
-                  id="speed"
-                  type="number"
-                  value="5"
-                  min="0.1"
-                  step="0.1"
-                />
-              </label>
-              <p id="travel-result"></p>
-              <p class="muted">
-                Time in motion only. Stops, climbing, acceleration and loading
-                are extra.
-              </p>
-            </div>
-          </div>
-          <div class="panel world-ores">
-            <h3>Ore availability</h3>
-            <p class="muted">
-              Select an ore to compare its regional distribution and height
-              profile.
-            </p>
-            <div id="ore-table"></div>
-          </div>
-        </div>
-        <details class="panel survey-method">
-          <summary>Generation and sampling limits</summary>
-          <div id="world-notes"></div>
-        </details>
-      </SurveySection>
+      <WorldSurvey />
       <IslandSurvey />
       <StructureSurvey />
     </section>
@@ -223,22 +178,21 @@ import ProgressionGraph from '../components/map/ProgressionGraph.astro'
         <span id="evidence-count"></span>
       </div>
       <div id="evidence-list"></div>
-      <button id="more-evidence" hidden>
+      <Button id="more-evidence" hidden>
         Load next 100
-      </button>
+      </Button>
     </section>
     <ScenarioEditor />
   </main>
   <aside id="inspector" aria-label="Item details" hidden>
     <div class="inspector-top">
       <span>ITEM DETAILS</span>
-      <button id="close-inspector" aria-label="Close item details">
+      <Button id="close-inspector" aria-label="Close item details">
         ✕
-      </button>
+      </Button>
     </div>
     <div id="detail"></div>
   </aside>
-  <div id="notice" role="status" hidden></div>
   <script>
     import '../lib/atlas'
   </script>

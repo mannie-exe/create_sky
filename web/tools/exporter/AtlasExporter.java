@@ -12,6 +12,7 @@ import net.minecraft.advancements.Advancement;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import java.nio.file.*;
 import java.util.*;
 
@@ -19,11 +20,24 @@ import java.util.*;
 @Mod("create_sky_atlas_exporter")
 public final class AtlasExporter {
   private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().create();
-  public AtlasExporter() { NeoForge.EVENT_BUS.addListener(this::started); }
-  private void started(ServerStartedEvent event) {
+  private boolean pending;
+  private int stopTicks;
+  public AtlasExporter() {
+    NeoForge.EVENT_BUS.addListener((ServerStartedEvent event) ->
+        pending = System.getProperty("atlas.export.dir") != null);
+    NeoForge.EVENT_BUS.addListener(this::tick);
+  }
+  private void tick(ServerTickEvent.Post event) {
+    if (stopTicks > 0 && --stopTicks == 0) event.getServer().halt(false);
+    if (!pending) return;
+    pending = false;
+    // Complete startup listeners before exporting; allow fixture cleanup before stopping.
+    export(event.getServer());
+    stopTicks = 5;
+  }
+  private void export(MinecraftServer server) {
     String destination = System.getProperty("atlas.export.dir");
     if (destination == null) return;
-    MinecraftServer server = event.getServer();
     try {
       Path out = Path.of(destination); Files.createDirectories(out);
       var ops = RegistryOps.create(JsonOps.INSTANCE, server.registryAccess());
@@ -241,7 +255,6 @@ public final class AtlasExporter {
       Files.writeString(out.resolve("complete.json"), "{\"minecraft\":\""+server.getServerVersion()+"\",\"time\":\""+java.time.Instant.now()+"\"}");
       System.out.println("ATLAS_EXPORT_COMPLETE items="+items.size()+" recipes="+recipes.size()+" errors="+errors.size());
     } catch (Exception e) { e.printStackTrace(); }
-    server.halt(false);
   }
   private static void exportHeat(MinecraftServer server, Path out) throws Exception {
     var world=server.overworld();var pos=new net.minecraft.core.BlockPos(4,200,4);

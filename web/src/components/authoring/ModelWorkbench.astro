@@ -1,19 +1,22 @@
 ---
-import Workbench from './Workbench.astro'
+import Field from '../ui/Field.astro'
+import SourceEditor from '../ui/SourceEditor.astro'
+import Button from '../ui/Button.astro'
+import Workbench from '../ui/Workbench.astro'
 ---
 
 <Workbench>
   <Fragment slot="browser">
-    <label>
-      Find model <input id="model-search" type="search" />
-    </label>
+    <Field id="model-search" label="Find model">
+      <input id="model-search" type="search" />
+    </Field>
     <div id="model-list" class="entry-list" aria-label="Model recipes"></div>
   </Fragment>
-  <section id="model-editor" hidden>
-    <div class="actions">
-      <label>
-        Label <input id="model-label" />
-      </label>
+  <section id="model-editor" class="content-stack" hidden>
+    <div class="control-row">
+      <Field id="model-label" label="Label">
+        <input id="model-label" />
+      </Field>
       <label class="inline-field">
         <input id="model-enabled" type="checkbox" /> Include in generated pack
       </label>
@@ -22,8 +25,7 @@ import Workbench from './Workbench.astro'
     <fieldset id="extrusion-fields" hidden>
       <legend>Extrusion</legend>
       <div class="model-fields">
-        <label>
-          Depth{' '}
+        <Field id="model-depth" label="Depth">
           <input
             id="model-depth"
             type="number"
@@ -31,53 +33,54 @@ import Workbench from './Workbench.astro'
             max="4"
             step="0.125"
           />
-        </label>
-        <label>
-          Alpha threshold{' '}
+        </Field>
+        <Field id="model-threshold" label="Alpha threshold">
           <input id="model-threshold" type="number" min="1" max="255" />
-        </label>
-        <label>
-          Plane <select id="model-plane"></select>
-        </label>
-        <label>
-          Axis{' '}
+        </Field>
+        <Field id="model-plane" label="Plane">
+          <select id="model-plane"></select>
+        </Field>
+        <Field id="model-axis" label="Axis">
           <select id="model-axis">
             <option>x</option>
             <option>y</option>
             <option>z</option>
           </select>
-        </label>
-        <label>
-          Center <input id="model-center" type="number" step="0.125" />
-        </label>
+        </Field>
+        <Field id="model-center" label="Center">
+          <input id="model-center" type="number" step="0.125" />
+        </Field>
       </div>
       <div id="model-span" class="model-fields"></div>
     </fieldset>
     <fieldset id="fitting-fields" hidden>
       <legend>Model fitting</legend>
       <div class="model-fields">
-        <label>
-          Element <select id="model-element"></select>
-        </label>
-        <label>
-          Face <select id="model-face"></select>
-        </label>
-        <label>
-          UV rotation{' '}
+        <Field id="model-element" label="Element">
+          <select id="model-element"></select>
+        </Field>
+        <Field id="model-face" label="Face">
+          <select id="model-face"></select>
+        </Field>
+        <Field id="model-rotation" label="UV rotation">
           <select id="model-rotation">
             <option>0</option>
             <option>90</option>
             <option>180</option>
             <option>270</option>
           </select>
-        </label>
+        </Field>
       </div>
       <div id="model-bounds" class="model-fields"></div>
-      <button id="model-reset-element">Reset element</button>
+      <Button intent="destructive" id="model-reset-element">
+        Reset element
+      </Button>
     </fieldset>
     <div class="model-previews">
-      <section>
-        <h2>Texture region</h2>
+      <section class="content-stack">
+        <header class="section-heading">
+          <h2>Texture region</h2>
+        </header>
         <div id="model-uv" class="model-fields"></div>
         <canvas
           id="model-texture"
@@ -90,10 +93,10 @@ import Workbench from './Workbench.astro'
           first frame.
         </p>
       </section>
-      <section>
-        <div class="actions">
+      <section class="content-stack">
+        <div class="section-heading">
           <h2>Model</h2>
-          <button id="model-camera">Reset view</button>
+          <Button id="model-camera">Reset view</Button>
           <label class="inline-field">
             <input id="model-wire" type="checkbox" /> Wireframe
           </label>
@@ -111,14 +114,19 @@ import Workbench from './Workbench.astro'
     </div>
     <details>
       <summary>Recipe JSON</summary>
-      <label>
-        Selected recipe{' '}
-        <textarea id="model-json" rows="18" spellcheck="false"></textarea>
-      </label>
-      <button id="model-apply-json">Apply to draft</button>
-      <button id="model-discard-json" disabled>
-        Discard JSON edits
-      </button>
+      <SourceEditor
+        id="model-json"
+        label="Selected recipe"
+        rows={18}
+        aria-describedby="models-status"
+      >
+        <Fragment slot="actions">
+          <Button id="model-apply-json">Apply to draft</Button>
+          <Button intent="destructive" id="model-discard-json" disabled>
+            Discard JSON edits
+          </Button>
+        </Fragment>
+      </SourceEditor>
     </details>
   </section>
 </Workbench>

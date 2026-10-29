@@ -1,105 +1,50 @@
 .authoring {
-  padding: 20px var(--page-gutter);
-  max-width: var(--page-width);
+  padding: 20px var(--gutter-page);
+  max-width: var(--measure-page);
   margin: auto;
 }
 .authoring .actions {
   display: flex;
-  gap: 12px;
+  gap: var(--space-control);
   align-items: center;
   flex-wrap: wrap;
   margin-bottom: 14px;
 }
 .authoring .scope {
-  color: var(--muted);
+  color: var(--ink-muted);
 }
 .authoring-actions {
   position: sticky;
   top: 0;
   z-index: 2;
   padding: 10px 0;
-  background: var(--surface);
-}
-.authoring .workbench {
-  display: grid;
-  grid-template-columns: 280px minmax(0, 1fr);
-  gap: 28px;
-}
-.authoring .entry-browser {
-  position: sticky;
-  top: 76px;
-  align-self: start;
-}
-.authoring .entry-list {
-  max-height: calc(100dvh - 260px);
-  min-height: 180px;
-  overflow-y: auto;
-  padding: 4px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--panel);
-}
-.authoring .entry-list h2 {
-  margin: 12px 8px 6px;
-  font-size: 13px;
-  color: var(--muted);
-}
-.authoring .entry-list button {
-  display: block;
-  text-align: left;
-  width: 100%;
-  border-color: transparent;
-  overflow-wrap: anywhere;
-  margin: 2px 0;
-}
-.authoring .entry-list button[aria-current='true'] {
-  background: var(--tint);
-  border-color: var(--accent);
-  color: var(--accent);
-}
-.authoring .entry-list small {
-  display: block;
-  color: var(--muted);
-}
-.authoring .entry-editor {
-  min-width: 0;
+  background: var(--surface-page);
 }
 .authoring .entry-editor h1 {
   margin: 0;
   font-size: 21px;
 }
-.authoring #entry-id {
-  margin-top: 4px;
-  font-family: var(--mono);
-}
-.authoring label {
+:where(.authoring) label {
   display: grid;
-  gap: 5px;
-  margin-bottom: 12px;
+  gap: var(--space-tight);
+  margin-bottom: var(--space-control);
 }
-.authoring textarea {
+:where(.authoring textarea:not(.source-editor)) {
   width: 100%;
-  padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  color: var(--ink);
-  background: var(--panel);
+  padding: var(--space-control);
 }
 .authoring select,
 .authoring input {
   max-width: 100%;
   min-width: 0;
 }
-.authoring #source-text {
-  font-family: var(--mono);
-}
 .authoring .preview-columns {
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-  gap: 16px;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  padding: 18px;
+  gap: var(--space-content);
+  background: var(--surface-panel);
+  border: 1px solid var(--line-subtle);
+  padding: var(--space-content);
   overflow-wrap: anywhere;
 }
 .authoring th,
@@ -108,65 +53,47 @@
   vertical-align: top;
 }
 .authoring fieldset {
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-subtle);
   min-width: 0;
 }
-.authoring details {
-  margin-top: 24px;
+.authoring details:not(.disclosure) {
+  margin-top: var(--space-section);
   overflow-wrap: anywhere;
 }
-.authoring #conditions {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-.authoring h2 {
+.authoring .entry-editor h2:not([data-text-role]) {
   font-size: 18px;
 }
 .authoring [aria-pressed='true'] {
-  border-color: var(--accent);
+  border-color: var(--line-selected);
 }
 @media (max-width: 800px) {
-  .authoring .workbench {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .authoring .entry-browser {
-    position: static;
-  }
-  .authoring .entry-list {
-    min-height: 0;
-    max-height: 240px;
-  }
   .authoring {
-    padding: 12px;
+    padding: var(--space-control);
   }
 }
 
 .authoring .message-preview {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
-  padding: 18px;
-  background: var(--panel);
-  border: 1px solid var(--line);
-}
-.authoring .field-error {
-  color: var(--accent);
+  padding: var(--space-content);
+  background: var(--surface-panel);
+  border: 1px solid var(--line-subtle);
 }
 
 .authoring .generation-review {
-  border: 1px solid var(--line);
-  background: var(--panel);
+  border: 1px solid var(--line-subtle);
+  background: var(--surface-panel);
   border-radius: var(--radius-panel);
   padding: var(--space-content);
-  margin-bottom: var(--space-section);
 }
 .authoring .generation-review summary {
   cursor: pointer;
-  font-size: 13px;
+  font-size: var(--type-label-size);
 }
 .authoring .generation-review ul {
   max-height: 200px;
   overflow: auto;
   padding-left: 20px;
-  font: 12px/1.8 var(--mono);
+  font: var(--type-code-size)/1.8 var(--type-code-family);
   overflow-wrap: anywhere;
 }

@@ -34,8 +34,8 @@ The app's **Disclaimers** tab creates, edits and deletes these shared messages.
 Keys use lowercase letters, numbers and underscores. The editor keeps existing
 keys fixed and lists referring entries; reassign those entries before deletion.
 The generator rejects invalid keys, blank messages and missing references, including
-edits made through Source JSON or external tools. Messages and references belong
-to the selected locale. Editing English does not rewrite another locale.
+edits made through Source JSON or external tools. Messages and references resolve through the selected locale. Missing overrides
+inherit English; editing English does not overwrite authored translations.
 
 `requirements` here is prose in the **left-hand description**. It does not change
 native Questlog's `requirements` array, which controls unlocking. `labels` owns
@@ -44,10 +44,20 @@ such as `0` and `0.1`. Full conditions and caveats belong in the left-hand text.
 The preview shows section order, not Minecraft's exact font width or truncation.
 
 Keep locale IDs aligned with Minecraft, for example `en_us` and `de_de`. English
-is required. To add a locale, copy the English file, retain all chapter/entry IDs
-and label positions, then translate its values. All authored locales must cover
-the same IDs. The current content includes English only. The local editor edits
-existing files; create new locales or chapter files in the filesystem, then reload.
+is required and owns the complete set of chapter/entry IDs and objective labels.
+Additional schema-1 locales can contain sparse `shared`, `chapters` and `entries`
+overrides. Missing fields inherit English recursively; arrays such as description
+paragraphs replace the complete English array. Explicit empty optional fields do
+not inherit. Unknown keys and invalid resolved text fail compilation.
+
+The Atlas creates sparse locales and maintains entry IDs across mechanics and
+translations when adding or deleting entries. Existing complete locale files
+remain valid. Native keys are derived from stable chapter/entry IDs:
+`createsky.journal.<chapter>.<entry>.title`, `.description`, and `.objective.<position>`.
+The description key composes the authored sections and resolved disclaimer.
+Additional languages receive full resolved output, so mixed translated/fallback
+sections agree with the editor preview. Chapter names use
+`createsky.journal.chapter.<chapter>`.
 
 Generated descriptions use JSON translation components to retain client-side
 locale selection. Inline Markdown-like Questlog links are not parsed inside
@@ -58,7 +68,8 @@ generator. See [integration findings](journal-integrations.md) before adding the
 
 The Atlas **Pack authoring** page edits source files on the configured local pack.
 Save validates all journal source and register structure in a temporary directory
-before replacing one source file. It refuses stale revisions and preserves the
+before replacing the coordinated changed files. Ordinary replacement failures
+roll back; the batch is not crash-atomic. It refuses stale revisions and preserves the
 editor's unsaved text on failure. Generation uses saved source only and checks
 that its revision still matches. Neither action touches instances or worlds.
 
@@ -74,8 +85,8 @@ python3 scripts/build-fixes.py
 ```
 
 Generated JSON stays in Git for review. The resource JAR is rebuilt and ignored.
-The build refuses stale journal output. Removed quest or locale outputs require
-explicit deletion; generation never silently leaves an obsolete quest active.
+The build refuses stale journal output. The preview lists removed quest or locale outputs. Generate removes obsolete
+files bearing the journal identity; unrelated native quests are preserved.
 Review quest IDs, objective order and existing progress before removing or
 changing mechanics. The regression fixture records the accepted mechanics baseline; deliberate
 mechanics changes require a reviewed update to that fixture.

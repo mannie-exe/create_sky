@@ -1,0 +1,5 @@
+:root {
+  /* Existing data palette, separate from operation status and selection. */
+  --minimap-item: #91a8c7;
+  --map-viewport-line: #315dc1;
+}

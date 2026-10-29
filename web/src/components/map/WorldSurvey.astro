@@ -1,0 +1,72 @@
+---
+import Field from '../ui/Field.astro'
+import SurveySection from './SurveySection.astro'
+import '../../styles/world.css'
+---
+
+<SurveySection
+  id="terrain-survey"
+  title="Overworld survey"
+  kind="Saved terrain"
+>
+  <p id="world-provenance" slot="status" class="survey-provenance"></p>
+  <div id="world-summary" class="summary-strip"></div>
+  <div id="world-layout" class="world-layout">
+    <div class="panel content-stack world-ores">
+      <header class="section-heading">
+        <h3 data-text-role="group-title">Ore availability</h3>
+      </header>
+      <p class="muted">
+        Select an ore to compare its regional distribution and height profile.
+      </p>
+      <div id="ore-table"></div>
+    </div>
+    <div class="panel content-stack" data-surface="open">
+      <div class="section-heading">
+        <h3 data-text-role="group-title">Region map</h3>
+        <select id="ore-map" aria-label="World map metric">
+          <option value="land">Land column fraction</option>
+        </select>
+      </div>
+      <canvas
+        id="world-canvas"
+        width="900"
+        height="660"
+        aria-label="Region survey heatmap"
+      ></canvas>
+      <p id="world-hover" class="muted" aria-live="polite">
+        Hover a region for its coordinates and sample coverage.
+      </p>
+      <p class="muted">
+        One square is a 32 × 32 chunk region. Colors summarize sampled chunks,
+        not island outlines. Orange marks the origin.
+      </p>
+    </div>
+    <div class="panel content-stack world-profile">
+      <header class="section-heading">
+        <h3 data-text-role="group-title">Vertical ore profile</h3>
+      </header>
+      <div id="ore-profile" class="content-stack"></div>
+    </div>
+    <div class="panel content-stack world-travel">
+      <header class="section-heading">
+        <h3 data-text-role="group-title">Travel estimate</h3>
+      </header>
+      <Field id="distance" label="Route distance (blocks)" layout="inline">
+        <input id="distance" type="number" value="1000" min="0" />
+      </Field>
+      <Field id="speed" label="Measured speed (blocks/second)" layout="inline">
+        <input id="speed" type="number" value="5" min="0.1" step="0.1" />
+      </Field>
+      <p id="travel-result"></p>
+      <p class="muted">
+        Time in motion only. Stops, climbing, acceleration and loading are
+        extra.
+      </p>
+    </div>
+  </div>
+  <details class="panel survey-method disclosure">
+    <summary>Generation and sampling limits</summary>
+    <div id="world-notes" class="content-stack"></div>
+  </details>
+</SurveySection>

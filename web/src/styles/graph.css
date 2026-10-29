@@ -8,16 +8,16 @@
 }
 .graph-canvas,
 .route-preview-canvas {
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-subtle);
   border-radius: var(--radius-panel);
-  background: var(--panel);
+  background: var(--surface-panel);
   overflow: hidden;
 }
 .flow-navigation {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 8px;
+  gap: var(--space-control);
+  margin-top: var(--space-inline);
 }
 .flow-navigation p {
   flex: 1;
@@ -25,28 +25,28 @@
 .flow-navigation canvas {
   width: 180px;
   height: 120px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border: 1px solid var(--line-subtle);
+  border-radius: var(--radius-control);
 }
 .flow-node {
   height: 100%;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 8px;
+  background: var(--surface-panel);
+  border: 1px solid var(--line-subtle);
+  border-radius: var(--radius-control);
+  padding: var(--space-inline);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: var(--space-inline);
   flex-direction: column;
   overflow: hidden;
 }
 .react-flow__node.selected .flow-node {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 2px var(--accent);
+  border-color: var(--line-selected);
+  box-shadow: 0 0 0 2px var(--line-selected);
 }
 .flow-node-title {
-  font-size: 12px;
+  font-size: var(--type-caption-size);
   white-space: pre-line;
   overflow-wrap: anywhere;
   max-width: 100%;
@@ -73,23 +73,23 @@
   overflow-wrap: anywhere;
 }
 .react-flow__handle {
-  background: var(--accent);
-  border-color: var(--panel);
+  background: var(--color-action);
+  border-color: var(--surface-panel);
 }
 .react-flow__edge-text {
   fill: var(--ink);
 }
 .react-flow__edge-textbg {
-  fill: var(--panel);
+  fill: var(--surface-panel);
 }
 .react-flow__attribution {
-  background: var(--panel);
-  color: var(--muted);
+  background: var(--surface-panel);
+  color: var(--ink-muted);
 }
 .flow-workbench {
   display: grid;
   grid-template-columns: 220px minmax(0, 1fr);
-  gap: 16px;
+  gap: var(--space-content);
 }
 .flow-sidebar {
   align-self: start;
@@ -107,9 +107,9 @@
 .graph-results button {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-inline);
   text-align: left;
-  font-size: 12px;
+  font-size: var(--type-caption-size);
   overflow-wrap: anywhere;
 }
 .graph-results img {
@@ -118,7 +118,7 @@
   image-rendering: pixelated;
 }
 .flow-selection {
-  margin-top: 12px;
+  margin-top: var(--space-control);
 }
 .flow-selection pre {
   max-height: 280px;
@@ -129,10 +129,10 @@
 .flow-record-controls {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 8px;
+  gap: var(--space-inline);
+  margin-top: var(--space-inline);
 }
-.flow-record-controls label {
+.flow-record-controls .field {
   flex: 1;
   min-width: 0;
 }

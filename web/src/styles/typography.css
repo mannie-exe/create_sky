@@ -1,0 +1,50 @@
+/* Explicit text roles opt in without changing semantic heading levels. */
+[data-text-role='body'] {
+  font-family: var(--type-body-family);
+  font-size: var(--type-body-size);
+  font-weight: var(--type-body-weight);
+  line-height: var(--type-body-leading);
+  letter-spacing: var(--type-body-tracking);
+}
+[data-text-role='item-title'] {
+  font-family: var(--type-item-title-family);
+  font-size: var(--type-item-title-size);
+  font-weight: var(--type-item-title-weight);
+  line-height: var(--type-item-title-leading);
+  letter-spacing: var(--type-item-title-tracking);
+}
+[data-text-role='section-title'] {
+  font-family: var(--type-section-title-family);
+  font-size: var(--type-section-title-size);
+  font-weight: var(--type-section-title-weight);
+  line-height: var(--type-section-title-leading);
+  letter-spacing: var(--type-section-title-tracking);
+}
+[data-text-role='group-title'] {
+  font-family: var(--type-group-title-family);
+  font-size: var(--type-group-title-size);
+  font-weight: var(--type-group-title-weight);
+  line-height: var(--type-group-title-leading);
+  letter-spacing: var(--type-group-title-tracking);
+}
+[data-text-role='label'] {
+  font-family: var(--type-label-family);
+  font-size: var(--type-label-size);
+  font-weight: var(--type-label-weight);
+  line-height: var(--type-label-leading);
+  letter-spacing: var(--type-label-tracking);
+}
+[data-text-role='caption'] {
+  font-family: var(--type-caption-family);
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+  line-height: var(--type-caption-leading);
+  letter-spacing: var(--type-caption-tracking);
+}
+[data-text-role='code'] {
+  font-family: var(--type-code-family);
+  font-size: var(--type-code-size);
+  font-weight: var(--type-code-weight);
+  line-height: var(--type-code-leading);
+  letter-spacing: var(--type-code-tracking);
+}

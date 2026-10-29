@@ -20,13 +20,13 @@ const { id, label } = Astro.props
     width: 140px;
     height: 96px;
     flex-shrink: 0;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 4px;
+    background: var(--surface-canvas);
+    border: 1px solid var(--line-subtle);
+    border-radius: var(--radius-control);
     cursor: crosshair;
     touch-action: none;
   }
   .minimap:focus-visible {
-    outline: 2px solid var(--accent);
+    outline: var(--focus-width) solid var(--color-focus);
   }
 </style>

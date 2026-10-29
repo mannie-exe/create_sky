@@ -1,0 +1,114 @@
+/* Survey composition and data presentation; independent of recipe materials. */
+.world-layout {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.9fr) minmax(20rem, 1.4fr) minmax(
+      16rem,
+      1fr
+    );
+  gap: var(--space-content);
+  align-items: start;
+}
+.world-layout > * {
+  min-width: 0;
+}
+.world-layout > .panel {
+  margin: 0;
+  padding: var(--space-section);
+}
+.world-layout h3 {
+  margin-top: 0;
+}
+.world-ores {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+#ore-table > .table-scroll {
+  max-height: 35rem;
+}
+#ore-table table {
+  font-size: var(--type-caption-size);
+}
+#ore-table th {
+  position: sticky;
+  top: 0;
+  background: var(--surface-panel);
+}
+.world-ores td:not(:first-child) {
+  font-variant-numeric: tabular-nums;
+}
+.ore-choice {
+  text-align: left;
+  border-color: transparent;
+  padding: var(--space-tight);
+  overflow-wrap: anywhere;
+}
+.ore-choice[aria-pressed='true'] {
+  color: var(--ink-selected);
+  background: var(--surface-selected);
+  border-color: var(--line-selected);
+}
+#world-canvas {
+  --map-unknown-surface: #e3e5e9;
+  --map-location-mark: #dd7a42;
+  width: 100%;
+  aspect-ratio: 900 / 660;
+  image-rendering: pixelated;
+  display: block;
+  cursor: crosshair;
+  font: var(--type-code-size) var(--type-code-family);
+}
+#ore-profile {
+  --world-profile-mark: var(--ref-color-blue);
+}
+#ore-profile svg {
+  width: 100%;
+}
+#ore-profile svg text {
+  font-size: var(--type-caption-size);
+  fill: var(--ink-muted);
+}
+.profile-values {
+  max-height: 16.25rem;
+}
+.world-travel {
+  grid-column: 2 / -1;
+}
+@media (max-width: 1180px) {
+  .world-layout {
+    grid-template-columns: minmax(17rem, 0.8fr) minmax(0, 1.5fr);
+  }
+  .world-profile {
+    grid-column: 2;
+  }
+  .world-ores {
+    grid-row: 1 / 4;
+  }
+}
+@media (max-width: 720px) {
+  .world-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .world-ores,
+  .world-profile,
+  .world-travel {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  #ore-table > .table-scroll {
+    max-height: 17rem;
+  }
+}
+
+/* Parent stacks own spacing; panel-specific geometry stays above. */
+.survey-section.content-stack > *,
+.survey-section .content-stack > * {
+  margin-block: 0;
+}
+
+.world-travel .field {
+  font-size: var(--type-caption-size);
+}
+.world-travel .field input {
+  width: 130px;
+  justify-self: end;
+}

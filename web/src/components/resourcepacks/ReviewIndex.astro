@@ -1,0 +1,23 @@
+---
+import { projects, reviews, statuses } from '../../lib/resourcepack-data'
+---
+
+<nav
+  id="resource-index"
+  class="resource-index"
+  aria-label="Resource pack index"
+>
+  {reviews.map((review, index) => (
+    <a href={`#${review.id}`} data-review-link={review.id}>
+      <span class="resource-index-marker" aria-hidden="true">
+        {String(index + 1).padStart(2, '0')}
+      </span>
+      <span>
+        {projects[review.id].title}
+        <small>
+          {review.category} · {statuses[review.status]}
+        </small>
+      </span>
+    </a>
+  ))}
+</nav>

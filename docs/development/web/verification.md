@@ -1,156 +1,177 @@
 # Verification
 
-These records describe the stated source revisions and artifacts. They are not
-continuous checks of the current checkout. Generated evidence and comparison
-media are local, ignored files; links to them work only in a populated workspace.
+Checks apply to the recorded source or artifact, not every later checkout. Browser
+checks establish interface behavior; native game checks and survey evidence have
+separate owners and limits. Commands and prerequisites live in [setup](setup.md).
 
-## Maintenance review, 2026-10-28
+## Commit readiness, 2026-10-29
 
-The app at pack revision `5786750` passed `pnpm verify`: formatting, 54 JavaScript
-tests, Astro diagnostics and production build. The shared header/layout,
-workbench components, semantic tokens and named-job boundaries were reviewed;
-no application changes were needed for the DH cleanup. No new browser or world
-capture was performed in this pass. The existing large-bundle warning remains.
+Reviewed the combined Atlas, journal tooling and exporter worktree against
+`0110606`. No additional gameplay or dependency changes are pending. Web CI now
+also runs for its shared authoring scripts, source documents, pack manifest/lock
+and default resource selection inputs.
 
-## Terrain evidence UI, 2026-10-26
+- `pnpm verify` passed 76 unit tests, Astro checking and the eight-page build.
+  It also passed in a temporary source-only copy without generated game data,
+  extracted assets or local configuration.
+- `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser` passed all 66 checks. Graph checks
+  logged ResizeObserver loop notifications; the development toolbar logged an
+  audit fetch error. Assertions passed; these development diagnostics remain.
+- `pnpm test:python` passed 21 tests; pack `unittest discover -s tests -v` passed
+  29 tests. Both resource builders passed `--check`; the configuration audit found
+  no changed, missing or unregistered files among 242 entries.
+- A new isolated `pnpm data:refresh` completed at `2026-10-29T09:20:27.902965Z`
+  with zero exporter errors and no fatal shutdown diagnostics. Extraction,
+  compilation and `pnpm data:check` passed. Snapshot SHA-256:
+  `bc90f0ac4ac53ed431463c530db8c150cae072d40daeea9c24f6ee1d4f392cf8`.
 
-The local worktree adds captured generation settings to World & ores and
-geological-depth/exposure tables to isolated island surveys. `pnpm verify` passed
-54 tests, type checking and production build. Three focused Chrome browser checks
-passed for the real snapshot, missing-survey state and expanded-height fixture,
-including opening an ore-depth table and checking narrow-screen overflow. The first
-attempt used a nonexistent test selector; correcting it required no application fix.
+Tested source fingerprint (sorted JSON mapping `web/`-relative files under `src`,
+`scripts`, `tests` and `tools` to SHA-256, excluding Python bytecode):
+`1434946e59a801242470a5b424de036efd52dbb1b652362b5cd0de833376af7e`.
+Disposable exporter worlds, crash reports and test logs were removed after review;
+generated Atlas data, runtime-default configuration and review media were retained.
+No commit, publication, instance sync or playing-world change was made.
 
-`pnpm data:islands`, `pnpm data:compile` and `pnpm data:check` imported the current
-seed-42 three-anchor resource survey. Its Compat artifact is
-`58377f93469acc17d5fa4831bdd8ea479fdc7f43d8e3df5550f8dd75f94271ab`.
-The ten imported density runs retain their earlier artifact provenance. Exposure
-counts adjacent air/fluid within sampled chunk interiors; it does not establish
-reachable routes. The subsequent server-world refresh is recorded separately below.
+## Pack content refresh, 2026-10-29
 
-## Saved-world refresh, 2026-10-26
+Reviewed Create Sky `59ed4fe` (0.1.19), Compat `a5e0885` (0.5.2), the shared
+resource JAR and generated visual patch against Atlas sources. Existing gallery
+entries already describe the expanded Fresh Details rigs; added the separate
+Carry On animation fix, building-weight scope and radio-registration limitations.
+Updated the Questlog version and removed an obsolete pending biome-review note.
+No physics calculator, terrain resurvey or new interface was added.
 
-`pnpm data:world` captured the fresh server world once at
-`2026-10-26T23:51:39Z`: seed `-3702386035254534638`, generation identity
-`islands_v1-prototype-10`, OVERLAP, spacing 2400, jitter 750 and ocean variants off.
-This supersedes the earlier prototype-9 world survey; isolated development surveys
-retain their independent provenance.
+The named `/__atlas/refresh` action completed runtime capture, extraction and
+compilation. Loaded Compat SHA-256 is
+`0228b2cd34f402114ba6bf57a02e29b6d03c2b294dd8f970b37bd523a828320e`;
+Pack Fixes is `08889c597b21623c2353ab677738209ec7e6bacc6a7d2eed8794a270478210c8`.
+The source fingerprint and lock hash match the configured inputs. Both resource
+builders passed `--check`; the visual patch is
+`21cd22ce029c6a8190c2cc236de9b0b8f787bca5556b77cefc5005063197e5bb`.
+The compiled map contains 10,125 items, 9,545 blocks and 9,253 recipes. All 48
+journal entries pass 66 negative/positive condition branches and NBT restoration.
+The separately dated world, island and structure surveys were retained.
 
-The capture counted 3,953 stored chunk entries in 12 region files and sampled 48
-chunks. Only five sampled chunks had full generation status. It reported no read
-errors, changed region files or source-metadata changes, but the running-server
-capture is still partial and non-atomic. These early ore quantities are not a
-completed 1024-chunk-radius survey or a basis for scarcity tuning. No pregen progress
-or completion polling was performed after command acceptance.
+- `pnpm data:compile` and `pnpm data:check` passed with the refreshed inputs.
+- `pnpm verify` passed 76 unit checks, Astro checking and the production build;
+  the existing large-bundle advisory remains.
+- `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser tests/atlas.browser.mjs tests/recipes.browser.mjs tests/resourcepacks.browser.mjs`
+  passed all 17 checks. The Astro development toolbar logged an audit fetch error;
+  map, recipe and resource-gallery assertions passed.
 
-## Atlas workbench and world evidence, 2026-10-25
+A shell refresh reproduced a DH shutdown interruption after export completed.
+The exporter was stopping inside `ServerStartedEvent`; it now exports on the
+first completed tick and allows five ticks for fixture cleanup before stopping.
+The runner disables the disposable BlueMap webserver/downloads and rejects fatal
+shutdown logs even when the process exits zero. Failed or timed-out captures
+remove the completion marker.
 
-The worktree based on `b0ca189` reorganizes item inspection, world evidence and
-authoring output comparison. Desktop captures at 1440×1000 and narrow captures at
-390×844 were reviewed for the three views. Item acquisition methods sit beside
-the embedded route on wide screens and above it on narrow screens. The first
-producing recipe is visible; desktop view navigation remains accessible.
+The corrected `pnpm data:refresh` exited normally with zero exporter errors at
+`2026-10-29T09:10:00.469864Z`, then extraction, compilation and `pnpm data:check`
+passed. `pnpm test:python` passed 21 tests, including five new subprocess checks
+for clean completion, stale/missing markers, nonzero exits, zero-exit crashes and
+timeouts. `pnpm verify` also passed again. No new browser interaction was added
+by this exporter fix. The live server remained stopped throughout this corrected
+capture; no playing world was mounted. Run shell and named refresh jobs serially
+because they share the same disposable workspace.
 
-Saved terrain displays its capture date and identity status separately from
-isolated generation and village experiments. Ore profiles support negative and
-high island heights, numeric values and missing-data states. The authoring
-comparison is adjacent to save/generate controls and distinguishes saved outputs
-from unsaved drafts. These changes retain the shared recipes, React Flow graphs,
-Astro pages and named-job authoring boundaries.
+## Authoring activity, 2026-10-29
 
-Final checks:
+The wrap-up scopes the output status to Questlog in journal views and journal
+source editing. Config audit and configuration-register editing no longer display
+that unrelated comparison. On `59ed4fe` plus the worktree, `pnpm verify` passed
+(76 unit checks, Astro checking and production build). After correcting the browser
+test's select locator, `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser tests/authoring.browser.mjs`
+passed all six checks, including switching between these scopes. The final
+`src`/`scripts`/`tests` fingerprint using the method below is
+`1fbdc4b33f3aee35b5f78e6ade8689b9eac813984a4a275986dcce64ebbbb476`.
+Python and the full browser suite were not repeated for this UI-only correction.
 
-- `pnpm verify`: formatting, 54 JavaScript tests, Astro diagnostics and static build pass.
-- `pnpm test:python`: 12 tests pass, including exact large-seed serialization,
-  generation identity provenance and exclusion of player records.
-- `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser`: 33 cases pass across item/map,
-  graph/recipe, authoring, model, navigation and resource-pack interactions.
-- `pnpm data:check`: current runtime, recipe/acquisition and 48 journal-target checks pass.
-- `git diff --check`: clean.
+The workspace records complete actions independently of their subprocesses.
+Journal saves retain acknowledged revisions when the follow-up read fails.
+The approved Activity panel is adopted at `/authoring`, alongside the editor on
+wide screens and below it on narrow screens. Other pages retain the compact
+Activity disclosure. Both presentations share one host for polling and notices;
+the A/B simulation and its unused transport/state options have been removed.
 
-Earlier browser runs exposed covered view navigation and an out-of-order Evidence
-response; the final pass includes their fixes. An intermittent ResizeObserver
-notification remains when switching embedded/full graphs. Read-only instrumentation
-captured React Flow renderer/node measurement callbacks after a zero-to-visible
-size change, but this does not isolate the cause. The full run also emitted an
-Astro dev-toolbar audit fetch diagnostic. Interaction checks passed; neither
-diagnostic is presented as resolved or suppressed. The existing large-bundle
-build warning remains.
+Snapshot: `c01417e` plus the local worktree. SHA-256 of sorted JSON mapping files
+under `src`, `scripts` and `tests`, relative to `web/`, to SHA-256 hashes:
+`fe970c7ed7322327664608f2e36336056e41ce8e48616c3274415ce94727f336`.
 
-The named capture/extract jobs refreshed implementation evidence at
-`2026-10-25T07:28:01.151764Z`: 10,119 items, 9,249 recipes and 12,503 modeled routes.
-The exporter used the installed 0.1.12 server set, including the published Compat
-JAR `084153f7…`; inputs did not change during capture. The isolated audit server
-never mounted the playing world. Its disposable outputs were removed after
-extraction and checks. The retained saved-world survey is historical. Provenance and height-range handling
-were checked with fixtures, not a completed survey of the replacement world.
+- Final `pnpm verify` passed: formatting, 76 unit checks, Astro checking of 88
+  files without errors/warnings/hints, and the eight-page production build.
+- `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser tests/activity.browser.mjs tests/authoring.browser.mjs tests/ui.browser.mjs`
+  passed all 18 checks. After removing the unused preview connection state, the
+  four activity browser checks passed again on the recorded snapshot.
+- Coverage includes notice lifetime and retention, reconnect behavior, source
+  recovery, live panel status/cancellation, literal diagnostics, a single toast
+  host, keyboard navigation, legacy preview redirects and responsive placement.
+  Writes remain mocked or isolated; no pack files or Minecraft instances were changed.
+- Read-only captures of the running authoring page were inspected at 1440 and
+  390 pixels. No horizontal overflow or page errors were observed.
 
-## Authoring and graph baseline, 2026-10-24
+Before layout adoption, the shared operation/notification refactor passed the full
+66-check browser suite. That run logged a ResizeObserver notification during graph
+checks and an Astro dev-toolbar audit fetch error; their assertions passed. The
+host mounts client-only to avoid hydration racing an early DOM notification.
+The production build retains its large-bundle advisory. No Python code changed,
+so Python checks were not repeated. Operation history is process-local, not a
+durable audit or restart-recovery system.
 
-The worktree based on `7cf5797` passed `pnpm verify` (45 JavaScript tests),
-25 browser tests and nine Python tests. Named-job checks covered fixed inputs,
-serialization, time/output limits, cancellation and descendant termination.
-Browser checks covered workbench drafts, navigation, item/grid virtualization,
-source escaping, graph semantics and narrow layouts. The native snapshot contained
-10,119 items and 12,503 modeled routes. These records predate the React Flow pass
-below; current architecture and limits belong in [data](data.md).
+## Minecraft locale picker, 2026-10-29
 
-## Release checks, 2026-10-24
+The journal picker uses 143 languages from Minecraft 1.21.1's vanilla metadata.
+`pnpm data:locales <Prism-version.json> <assets-directory>` verified the installed
+asset index and `pack.mcmeta` hashes and generated the checked-in catalogue.
 
-Create Sky 0.1.10 preparation, based on `9bef645`, passed 26 root Python tests,
-32 web Node tests, nine web Python tests and 19 browser tests. `pnpm verify`
-passes formatting, Astro diagnostics and the four-page static build; the existing
-large Three.js chunk warning remains. `scripts/audit-changes.py` reports 228 files
-with no drift or unregistered files. Both resource builders pass `--check`.
+Snapshot: `8aed6cb` plus the local worktree. SHA-256 of sorted JSON mapping
+`src/` paths, relative to `web/`, to file SHA-256 hashes:
+`003656b0501c3cde8ac34ba2131b0d0268c0e74c0c04954f11de5306de9acdd3`.
 
-After local instance synchronization, `pnpm data:runtime`, `pnpm data:extract`,
-`pnpm data:compile` and `pnpm data:check` passed. The isolated capture completed at
-`2026-10-24T08:40:14.203623Z` with 10,119 items and 9,249 recipes; 429 crafting
-routes remain unresolved. This is coverage evidence, not proof of gameplay balance.
+- `pnpm verify` passed: formatting, 73 unit checks, Astro checking of 85 files
+  with no errors/warnings/hints, and the eight-page build.
+- `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser tests/authoring.browser.mjs tests/ui.browser.mjs`
+  passed all 13 checks. These cover locale selection, readable names, duplicate
+  exclusion, disabled empty selection, sparse translations, fallback, entry previews
+  and existing journal interactions. Writes use mocked authoring endpoints.
+- Headless Chrome captures of the running authoring page were inspected at
+  1440 and 390 pixels. The narrow page had no horizontal overflow. No translations
+  were saved to the real pack, and no Minecraft instance was changed.
 
-The release visual patch SHA-256 is
-`859bafa24b2141808e23aad831908168531bd4b7c2baa6029125f5380b5f849d`.
-Its rendered resources are byte-identical to the native-tested patch below;
-`CREDITS.txt` is the only added content. No new graphical behavior is claimed.
+The full browser suite and native game language switching were not repeated;
+this change selects existing locale identifiers without changing Questlog output.
 
-## Maintenance checks, 2026-10-23
+## Local application checks, 2026-10-29
 
-Working tree based on `9bef645`, Minecraft 1.21.1, NeoForge 21.1.264 and Java 21.
-The maintenance-check lock SHA-256 was
-`c89790565d6bfd1be5bbfe488c1e5919b64d84f2a8228151d6e08e9f4478039a`.
-The maintenance-check source digest was
-`81b97540a02ac9eeb8a81705df386dc83fbdba5cb8f1563c3bdcaf6223559ce8`
-(SHA-256 of sorted relative paths, NUL, bytes, NUL for root scripts/tests, immediate
-web scripts/tests, `web/src/`, Astro configuration and the lock).
-These checks cover source cleanup and the existing selected resources; they do
-not publish a release or establish new gameplay compatibility.
+The release-preparation pass retains the ongoing Atlas work locally. None of its
+code, app-only tooling, tests or documentation is included in pack release commits.
+The shared header now offers a keyboard skip link to a focusable main landmark on
+the item map, journal authoring, model authoring and resource review pages. It uses
+existing surface, spacing and focus roles; controls keep their native tab order.
 
-| Check                    | Evidence                                                                                                                                                                                                                                     |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Root unit tests          | 15 pass; journal/audit boundaries, server archive patching, resource input rejection and no-op/check-only archive publication                                                                                                                |
-| Maintained archives      | Both builders' `--check` passes; the shared JAR and six-model client ZIP are unchanged by the refactor                                                                                                                                       |
-| Atlas `pnpm verify`      | Formatting, 27 JavaScript tests, Astro diagnostics and all three static routes pass                                                                                                                                                          |
-| Atlas Python suite       | Nine tests pass for paths, Anvil decoding/sampling and resource overlays                                                                                                                                                                     |
-| Browser suite            | 16 pass, including journal/disclaimer CRUD, conflicts, local write restrictions, resource filtering/gallery behavior and consistent page navigation on mobile                                                                                |
-| Isolated runtime refresh | Refreshed after Barrel Roll removal at `2026-10-23T20:47:17.178836Z`; no input changes during capture. Extracted 10,119 items, 31,689 resource paths and 10,053 texture previews; compiled 9,249 recipes with 429 unresolved crafting routes |
+The existing consolidation uses shared fields, source editors, view navigation,
+feedback, buttons, disclosures and workbench composition. Reviewed boundaries
+remain in [design tokens](design-tokens.md): graph/recipe geometry, renderer colors,
+source authority and action availability stay with their owning implementations.
 
-After Barrel Roll removal, `empack manifest check`, `scripts/audit-changes.py`
-(228 files), both archive builders with `--check`, all three reference builds and
-`pnpm data:refresh`/`pnpm data:check` pass. Flight feel has not been retested.
+Snapshot: `8aed6cb` plus the local worktree; SHA-256 of sorted JSON mapping
+`web/src` paths to file SHA-256 hashes: `7540cafac537580ceda3742190eb3e5439aa941bb5702b50a184035c3b618ed4`.
 
-Runtime capture now takes its dependency set from the configured installed server
-and overlays the checked maintained resource JAR. It no longer mixes selected
-authoring JARs into an older server set. The server must be synchronized before a
-capture following dependency changes. The isolated exporter cleans old classes
-before compilation and never mounts the playing world.
+- `pnpm verify` passed: formatting, 73 unit checks, Astro checking of 84 files
+  with no errors/warnings/hints, and the eight-page production build.
+- `pnpm test:python` passed all 16 checks.
+- `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser` passed all 61 checks. The four
+  added keyboard checks cover first focus, visible narrow-screen placement,
+  Enter to the main landmark and onward Tab navigation on every primary page.
+- Root Python tests passed all 29 checks, including the pack archive check mode.
+  Release checkout checks separately establish the committed pack-only scope.
 
-`pnpm data:check` passes the current 48 journal targets and recipe/loot/acquisition
-assertions. All three reference profiles build; their ZIP CRCs pass, and the Prism
-and server release recipes match the installed snapshots below.
-Rendered map, authoring and resource pages were inspected at 1440×1000, with the
-authoring page also inspected at 390×844. Navigation and mobile overflow checks
-run across all pages in the browser suite. Local documentation targets and Markdown
-anchors resolve; archived 0.1.8/0.1.9 notes match their published tags.
+Browser writes used test fixtures or unsaved drafts. No live game instance,
+world, runtime export or terrain survey was changed by this app pass. Existing
+bundle-size and development diagnostics remain; these checks do not establish
+full accessibility certification or Minecraft gameplay. Earlier interface
+iteration logs were consolidated; native artifacts and surveys below retain
+their historical scope.
 
 ## Retained game evidence
 
@@ -336,7 +357,8 @@ Commands and outcomes:
   and 16-item transfers, stair mounting, and grounded NoAI specimens.
 
 Native captures remain in the harness's
-`projects/create-sky-resources/images/2026-10-24-visual-pass/`, not a new Atlas gallery.
+`projects/create-sky-resources/images/2026-10-24-visual-pass/`. Selected captures
+are also available in the relevant Atlas resource-pack galleries.
 The retained world has the matching revision-6 builder. Views cover Create/Deco
 bar families and overlays, standing/hanging lanterns, bridge/stair mounting,
 cage lamps and representative lit/unlit, rotated and no-base frontlights.
@@ -347,105 +369,8 @@ used the existing Complementary/Euphoria configuration and its disabled state.
 The mooshroom clip records idle movement; red/brown adults and babies render with
 Details geometry. It does not establish every locomotion, rare variant or creature
 rig. Other missing Details animation references remain documented in
-[patch maintenance](../patches.md#fresh-details-and-mooshrooms).
+[patch maintenance](../patches.md#fresh-details-animation-rigs).
 Moving contraptions, multiplayer, other shaders and performance were not tested.
-
-## Route diagrams and compatibility, 2026-10-24
-
-Tested the uncommitted worktree based on `7cf5797`. The tested model source had
-87 recipes. This pass extends the earlier model review; native rendering evidence
-and artifact hashes are owned by [compatibility](../compatibility.md#visual-compatibility-pass).
-
-The shared recipe renderer, vertical scene builder and graph controller have these
-SHA-256 values (in that order):
-
-- `src/lib/recipe-view.mjs`: `970503d6fd3800dc40caeec7f4a1322706809145dcf9d35a7450e88be0c329b4`
-- `src/lib/graph-views.mjs`: `571293ea5ebde7bedc5d369d2869a40bf823b8147a5f9289268b1ea3b32af79c`
-- `src/lib/atlas-graph.ts`: `15b38e2710353c98986db0c07385ffddf9c8aa8f0c412a4006b1ff48a5243044`
-
-Commands and outcomes:
-
-- `pnpm verify`: formatting, 50 JavaScript tests, Astro diagnostics and production
-  build passed. The existing large-chunk warning remains.
-- `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser`: 27 passed. After the final path
-  camera and capability-description adjustments, the six tests in
-  `tests/graph.browser.mjs` passed again; `pnpm check` had no diagnostics.
-- `pnpm data:compile` and `pnpm data:check`: passed with 10,119 items and 9,249
-  active recipes. Coverage counts remain 9,690 mapped, 326 unmapped and one blocked.
-- Browser inspection covered the Glider's repeated shaped slots, empty slot and
-  item icons; brass mixing quantities/heat; unsupported sequenced assembly; item
-  links; path access from the item map; minimap/navigation; and narrow-screen fit.
-  Long paths open near their target at readable scale; Fit retains the overview.
-  Native GUI execution, arbitrary custom recipe interfaces and quantitative
-  production planning are outside this renderer.
-
-The modpack check/build commands were `python3 scripts/model-workbench.py --validate`,
-`python3 scripts/build-resource-patches.py --check`, root Python discovery (27 passed),
-and the separate Copycat adapter's `./gradlew check build` (two transform tests).
-Harness safety tests passed (four). Its saved-world verifier checked 4,828 blocks,
-32 equipment slots and 27 stationary specimens without mismatches.
-
-## Inspector and recipe baseline, 2026-10-24
-
-The worktree based on `59aa21f` passed 52 JavaScript tests, 30 browser checks,
-Astro validation, build and snapshot checks before the React Flow replacement.
-Slots measured 48×48 with alternatives outside the grid and a responsive arrow.
-All 18 vanilla smithing-trim recipes retained consuming uses without treating the
-sample iron chestplate as a produced item. Coverage remained 9,690 mapped,
-326 unmapped and one blocked. The adapter was checked against Minecraft 1.21.1
-`SmithingTrimRecipe` source. [Data](data.md#recipe-presentation) owns the semantics.
-
-## React Flow workspace, 2026-10-24
-
-Uncommitted worktree based on `59aa21f`, preserving the earlier inspector and
-smithing changes. Web source SHA-256 is `592ead6e7e034eb0d5dfea0c777fb83636c0f699db7e82dce03ddc7a49b3863f`
-(sorted relative paths, NUL, bytes, NUL for source/scripts/tests excluding bytecode,
-package/lock and Astro/Playwright/TypeScript configuration).
-
-- `pnpm verify`: 52 JavaScript tests, formatting, zero Astro diagnostics and the
-  four-page static build passed. The existing large Three.js chunk warning remains.
-- `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser`: 31 checks passed, including
-  journal/disclaimer/model authoring, named jobs, fixed recipe slots, trim output,
-  graph navigation and the source fallback. The final 11 targeted graph/recipe
-  checks passed after the completion audit: interactive node slots, disclosure
-  state after actual culling and Back, narrow-screen initial fit and rejected
-  markup in catalog icon paths.
-- A clean source copy without generated Minecraft data passed `pnpm build`.
-- `pnpm data:check`: 10,119 items, 9,249 recipes; coverage remains 9,690 mapped,
-  326 unmapped and one blocked. No runtime/world export was needed for UI changes.
-- Resource builders passed `--check`; journal had zero changes and the config
-  audit reported 228 files, zero drift and zero unregistered files.
-
-Headless Chrome at 1440×1000, local development mode, gave representative
-page/grid, graph-open and inline-inspector times of 156/234/190 ms, compared with
-172/232/134 ms before the renderer change. Warm repeated visits measured roughly
-50/150/182 ms. These are local samples with different rendered content, not
-statistically controlled performance equivalence. The richer inline inspector
-costs more; indexes are cached across ingredient navigation.
-
-On the 153-node Processing/All scene, final median/p95 frame intervals during
-90 synthetic wheel frames were 16.7/16.7 ms, matching the earlier sample. Before
-stabilizing node/edge objects and callbacks, the p95 reached 33.4 ms. The final
-scene draws 153 nodes and 152 connections versus the old sample's 111/110, so
-neither raw heap samples nor projection timing establish an apples-to-apples
-memory/rendering advantage. Separate Node measurements were 35.2 ms to index
-routes, 0.4 ms to project the 28-node Glider path and 7.6 ms for Processing/All.
-The canvas's `data-render-ms` measures projection only, not total painting.
-
-Desktop/narrow browser captures were reviewed. An early lost-navigation click,
-repeated node remeasurement and disclosure state lost during culling were corrected.
-The completion audit also reproduced an initial-fit mismatch on a 390-pixel
-viewport (zoom 0.597 before manual Fit versus 0.287 afterward). Initial fitting
-now waits for measured dimensions; the same test passes. Grid icons use the same
-local-path validation as recipe cards; malformed attribute payloads are rejected.
-The latest targeted run had no resize-loop warnings. Astro's development toolbar
-occasionally logs a failed audit fetch during test navigation; it is not a data/API
-failure and is absent from the static production interface.
-
-The separate Veil Iris Fix's build and native rendering checks are owned by its
-[verification guide](https://github.com/mannie-exe/veil-iris-fix/blob/main/docs/verification.md)
-and [upstream findings](../upstream.md). Web checks do not establish
-Minecraft rendering behavior.
 
 ## Candidate generation survey integration
 

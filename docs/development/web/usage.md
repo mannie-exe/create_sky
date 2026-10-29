@@ -8,33 +8,57 @@ available. Scrollbars are hidden. Click or drag the minimap to move across the g
 arrow keys pan while the grid or minimap is focused, Home returns to the origin,
 and End moves to the far corner. The minimap scales the two grid axes independently
 to keep both directions usable across the tall layout. Hover for a summary; select an item for its acquisition paths,
-recipes, uses, drops, tags, implementation hooks and source records.
+recipes, uses, drops, tags, implementation hooks and source records. Direct links
+use `/?item=minecraft:iron_ingot`; existing review links redirect to the normal Atlas.
 
-Horizontal position follows minimum modeled acquisition depth. Rows sort by
-ingredient-slot complexity and namespace, with a downward offset for each depth.
-Each depth occupies six columns with a gap before the next. This is a dependency
-layout, not elapsed playtime or a required quest order. Unresolved items occupy
-the final band.
+Choose **Planned first access** for paths that prefer fewer opportunistic sources,
+unknown-chance stages and chance-based stages before comparing depth. **Earliest
+possible access** keeps optimistic shortcuts, including loot. Neither estimates
+playtime. The aligned depth labels and jump selector navigate horizontally;
+acquisition bands and their selector navigate vertically. Counts follow filters.
+Each depth has six columns; families describe the chosen method, not every way
+of obtaining an item. Open the item to compare its alternatives.
 
 Coverage distinguishes mapped routes, blocked prerequisites, missing adapters,
-internal/creative exclusions and unified variants. A mapped path shows potential
-access under its listed assumptions. Quantities, success probabilities, working
-machinery, travel and combat remain separate constraints.
+internal/creative exclusions and unified variants. Coverage buttons mark mapped
+routes in blue, blocked routes in amber and missing adapters with a dashed gray
+line. Grid markers, the legend and minimap use those same colors; the minimap's
+small points omit the dashed pattern. Internal/creative and unified items stay
+neutral. Review notes have a separate corner dot and the **Has review note** filter.
+These marks do not indicate the selected filter or verified playability.
+A mapped path shows potential
+access under its listed assumptions. Supported quantities and conditional odds are
+shown separately; working machinery, travel and combat remain constraints.
 
 ## Item details
 
-Acquisition places producing recipes and other acquisition methods beside the
-minimum-depth route on wide screens, and above it on narrow screens. The first
-producing recipe opens automatically; records show the item and operation before
-the source identifier. Expand other records to compare alternatives and conditions.
+Acquisition places the selected method's diagram first, with the item and method
+list beside it on wide screens and below it on narrow screens. Selecting a method
+updates both its direct prerequisites and recipe or source conditions. The list
+supports search, method-type filters, planned access, chance per eligible attempt,
+and fewest/most graph steps. First-supply
+methods and methods that depend on an existing supply are compared separately;
+unresolved prerequisites stay unranked. **More filters** narrows prerequisite
+evidence and output role, including conversions and secondary outputs.
 
-The embedded graph starts near the final operation at a readable scale. Select a
-node or use Inspect step to center it; Fit and the minimap expose earlier steps.
-Recipe cards are interactive inside nodes at readable zoom. Open full graph
-retains the larger browsing view. Uses lists consuming recipes; Evidence holds
-drops, tags, hooks and provenance. Pack notes are expandable. Back returns to the
-previous inspected item without leaving the map; Escape or Close dismisses details.
-Desktop view navigation remains accessible above the inspector.
+**How are methods compared?** explains the comparison. The selected method's evidence
+lists independently traced prerequisites. Depth describes the longest modeled
+branch, not total operations or gameplay difficulty. Input counts include machines
+and environmental gates; they are not material quantities. Recipes retain their
+quantities, alternatives and operating requirements. Filtering does not change the
+selected method; a message identifies selections outside the current filters.
+
+Expand **yield and requirements** for conditional odds, expected output, materials
+and setup. Unsupported odds say “Chance not calculated.” Attempts are grouped by
+unit; a mob kill, chest and crafting execution are different activities. Averages
+assume eligible sources and stated conditions, not guaranteed success or equal time.
+
+Select an ingredient to inspect how to obtain it. Back restores the previous item,
+selected method and filters. Fit, zoom and the minimap navigate the direct diagram.
+**Open item progression** carries the map policy into the full path, which can use a
+different acquisition method. Uses lists consuming recipes; Evidence holds drops,
+tags, hooks and provenance. Pack notes are expandable. Escape or Close dismisses
+details; desktop view navigation remains accessible above the inspector.
 
 ## Progression graph
 
@@ -48,8 +72,8 @@ Open **Progression graph** beside Item map. Its tabs answer separate questions:
   recipes; they are not one combined recipe. Machine requirements come from the
   authored progression model, including machines used in multi-step routes.
 - **Item routes:** vertical acquisition diagrams with item icons. **Single route**
-  shows acquisition or use alternatives; **Minimum-depth path** expands one finite
-  chain from the existing solver. The item inspector's **Open full graph** opens
+  shows acquisition or use alternatives; **Item progression** expands one finite
+  chain under its policy selector. The item inspector's **Open item progression** opens
   that path directly. Paths open near the target at a readable scale; use Fit
   for the overview or the minimap to move through earlier steps. Dashed edges are OR choices; ALL input groups feeding an
   operation are required. Separate routes are alternatives, not sequential tasks.
@@ -117,8 +141,11 @@ placement samples. The saved survey displays its capture date and recorded world
 identity, or an explicit legacy warning when identity was not captured. It is not
 a live view. A new server world does not automatically replace these measurements.
 
-Each map square represents a 32 × 32 chunk region. Select an ore from the metric
-menu or availability table to compare its map and vertical profile. The table
+Open the survey directly at `/?view=world`. The ore list sits beside the centered
+region map and height profile on wide screens; it stacks above them on narrow
+screens. Selecting an ore keeps the page in place. Each map square represents a
+32 × 32 chunk region. Use the metric menu or availability table to compare its map
+and vertical profile. The table
 shows area-weighted estimates and approximate sampling intervals; sparse samples
 can miss rare ore. Height charts use recorded dimension bounds or the observed
 range and include an expandable numeric table. The travel calculator estimates
@@ -154,17 +181,30 @@ future static deployments provide browsing only.
 
 Open **Resource packs** in the header for the dated review at `/resourcepacks`.
 Search by pack, feature or mod, then narrow by decision or scope. Filters are
-stored in the URL; Reset clears them. Each row pairs the review and source links
-with an author's image gallery. Select a thumbnail or enlarge the image; arrow
-keys move through the enlarged gallery and Escape closes it.
+stored in the URL; Reset clears them. The numbered index stays beside the continuous
+reviews and highlights your reading position. Select a pack to jump to its review;
+scrolling does not move keyboard focus. On narrow screens the index sits above the
+reviews, with a **Back to pack list** link. Filters apply to both the index and the
+reviews. Each row pairs the review and source links
+with a gallery. Author images and **Create Sky tests** share the viewer, with
+separate thumbnail groups. Select an image or recording, then enlarge it if needed.
+Arrow keys move through the enlarged gallery; video controls retain their native
+keyboard behavior. Escape closes the viewer and pauses playback.
 
-File evidence shows the exact selected version, hash, declared resource format,
+Each included entry shows its artifact kind, side and default priority where
+applicable. Higher priority overrides lower entries. **Pack-owned** filters to the
+generated visual patch and shared data/JAR repairs; they have different load paths.
+The JAR has no gallery capture assigned, and links to its authoring tools instead.
+
+File evidence shows the inspected version, hash, declared resource format,
 matching installed asset paths and overlaps. These are inspection results, not
 proof of correct rendering. Galleries can depict other versions, shaders and
-optional mods; they are labelled as source images rather than Create Sky tests.
+optional mods. Local captures include their test date, context and before/patched
+labels where known; older captures may differ from the current pack.
 “Try first” identifies candidates for a controlled playtest, not packs to install
-together. Selected stack entries describe the current selection. Inspection overlaps retain
-the dated six-pack baseline recorded with the survey.
+together. Selected stack entries derive from current modpack defaults, not your
+personal client. Inspection overlaps retain the dated six-pack baseline recorded
+with the survey.
 
 Catalog screening retains all 750 ranked listings and their first-pass screening
 reasons. Its search is separate from the detailed review filters. Following a

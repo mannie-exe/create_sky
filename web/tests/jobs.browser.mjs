@@ -27,6 +27,14 @@ test('local job state exposes real audit results and rejects overlapping preview
   expect(results.jobs.current).toBeNull()
   expect(results.jobs.last.name).toBe('config.audit')
   expect(results.jobs.last.state).toBe('succeeded')
+  expect(results.jobs.operations.history[0].label).toBe('Check config files')
+  // A read launches journal.preview, but must not replace the user's result.
+  await page.request.get('/__atlas/authoring')
+  const afterRead = await (await page.request.get('/__atlas/jobs')).json()
+  expect(afterRead.last.name).toBe('journal.preview')
+  expect(afterRead.operations.history[0].id).toBe(
+    results.jobs.operations.history[0].id,
+  )
   expect(results.bad).toBe(400)
 })
 
@@ -37,12 +45,24 @@ test('job diagnostics are escaped and cancellation sends only the current job ID
   await page.route('**/__atlas/jobs', (route) =>
     route.fulfill({
       json: {
-        current: {
-          id: '12',
-          name: 'models.preview',
-          state: 'running',
-          cancellable: true,
-          diagnostic: '<img src=x onerror=alert(1)>',
+        operations: {
+          session: 'test',
+          history: [],
+          current: {
+            id: 'operation',
+            label: 'Check config files',
+            href: '/authoring',
+            state: 'running',
+            message: '',
+            startedAt: new Date().toISOString(),
+            job: {
+              id: '12',
+              name: 'models.preview',
+              state: 'running',
+              cancellable: true,
+              diagnostic: '<img src=x onerror=alert(1)>',
+            },
+          },
         },
       },
     }),
@@ -53,10 +73,9 @@ test('job diagnostics are escaped and cancellation sends only the current job ID
     return route.fulfill({ json: {} })
   })
   await page.goto('/resourcepacks', { waitUntil: 'domcontentloaded' })
-  await expect(page.locator('#job-summary')).toContainText(
-    'models.preview: running',
-  )
+  await expect(page.locator('#job-summary')).toContainText('Check config files')
   await page.locator('#job-summary').click()
+  await page.getByText('Diagnostics', { exact: true }).click()
   await expect(page.locator('#job-diagnostic')).toHaveText(
     '<img src=x onerror=alert(1)>',
   )

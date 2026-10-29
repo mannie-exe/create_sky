@@ -1,16 +1,17 @@
 ---
-import SourceText from '../SourceText.astro'
+import Button from '../ui/Button.astro'
+import SourceEditor from '../ui/SourceEditor.astro'
 ---
 
 <section id="editor-view" class="view" hidden>
   <div class="toolbar">
     <select id="edit-domain" aria-label="Edit domain"></select>
-    <button id="reload-editor">Reload from disk</button>
-    <button id="save-editor" class="primary">
+    <Button id="reload-editor">Reload from disk</Button>
+    <Button intent="primary" id="save-editor">
       Save & rebuild map
-    </button>
-    <button id="refresh-data">Refresh data</button>
-    <button id="export-patch">Export recipe datapack</button>
+    </Button>
+    <Button id="refresh-data">Refresh data</Button>
+    <Button id="export-patch">Export recipe datapack</Button>
     <span id="editor-status" role="status"></span>
   </div>
   <p class="editor-hint">
@@ -18,5 +19,9 @@ import SourceText from '../SourceText.astro'
     their exported datapack is installed and a fresh runtime capture confirms
     them. Regeneration never overwrites these files.
   </p>
-  <SourceText id="domain-editor" label="Domain YAML editor" />
+  <SourceEditor
+    id="domain-editor"
+    label="Domain YAML editor"
+    aria-describedby="editor-status"
+  />
 </section>

@@ -1,0 +1,276 @@
+{
+  "schema": 1,
+  "runs": {
+    "pots-20261023": {
+      "date": "2026-10-23",
+      "context": "Resource Review; shaders off. Composite prototype, not a current-pack verification.",
+      "evidence": "docs/development/web/verification.md#maintenance-checks-2026-10-23"
+    },
+    "models-20261024": {
+      "date": "2026-10-24",
+      "context": "Resource Review revision 5; MC 1.21.1 / NeoForge 21.1.264. Archived model/animation comparison.",
+      "evidence": "docs/development/web/verification.md#native-model-checks-2026-10-24",
+      "finalCombinedPatchSha256": "e44afbb31646a575f6e298f6acb29875cc1a4edea600b6fc9a41425211c43307"
+    },
+    "visual-20261024": {
+      "date": "2026-10-24",
+      "context": "Resource Review revision 6; Complementary/Euphoria on unless the caption says otherwise. Exact patch hash not separately recorded for these captures.",
+      "evidence": "docs/development/web/verification.md"
+    },
+    "compat-20261024": {
+      "date": "2026-10-24",
+      "context": "Create 6.0.10 / Copycats+ 3.0.9 / Create Deco 2.1.3. Complementary 5.9.3 + Euphoria 1.10.5 where enabled.",
+      "evidence": "docs/development/compatibility.md#visual-compatibility-pass",
+      "patchSha256": "edce4c4265ea017caf638821d8a4b857060ca261b2c870c9c5059b282ba0691e",
+      "copycatSha256": "ba32ee265b9bcf838c9cc177398081759e870aadffdadee8bf41fd207bfb99eb"
+    }
+  },
+  "media": [
+    {
+      "id": "pots-selected-pots",
+      "projects": ["fresh-flower-pots", "3d-crops"],
+      "file": "pots-selected.png",
+      "kind": "image",
+      "run": "pots-20261023",
+      "stage": "Before",
+      "caption": "Potted mushrooms and fungi with the earlier pack order.",
+      "sha256": "410b3fc66c5eac09d101a16f8af77ab03dfcadf01be126e047529b1db7e4186a",
+      "source": "atlas/pots-selected.png"
+    },
+    {
+      "id": "pots-composite-pots",
+      "projects": [
+        "fresh-flower-pots",
+        "3d-crops",
+        "create-sky-resource-patches"
+      ],
+      "file": "pots-composite.png",
+      "kind": "image",
+      "run": "pots-20261023",
+      "stage": "Prototype",
+      "caption": "Composite pots with the four overlapping plants.",
+      "sha256": "1eb8454cae861ac9818e41decbda3760bafd2b1cdb85310614b4c6342aa7387e",
+      "source": "atlas/pots-composite.png"
+    },
+    {
+      "id": "baseline-bars-models",
+      "projects": ["simple-3d-iron-bars"],
+      "file": "models/baseline-bars.png",
+      "kind": "image",
+      "run": "models-20261024",
+      "stage": "Before",
+      "caption": "Industrial iron bars before the model patch; shaders off.",
+      "sha256": "ef9758a585120bb857590b9170f9c19585006be5005d43e8c43c19767f8a5ded",
+      "source": "atlas/models/baseline-bars.png"
+    },
+    {
+      "id": "candidate-bars-models",
+      "projects": ["simple-3d-iron-bars", "create-sky-resource-patches"],
+      "file": "models/candidate-bars.png",
+      "kind": "image",
+      "run": "models-20261024",
+      "stage": "Patched",
+      "caption": "Industrial iron bars with the model patch; shaders off.",
+      "sha256": "b4cd6cb98aae510381babf592ee895655dd712a949db7683ec75e512cfefb7de",
+      "source": "atlas/models/candidate-bars.png"
+    },
+    {
+      "id": "baseline-bell-models",
+      "projects": ["better-lanterns"],
+      "file": "models/baseline-bell.png",
+      "kind": "image",
+      "run": "models-20261024",
+      "stage": "Before",
+      "caption": "Bell lantern before the model patch; shaders off.",
+      "sha256": "ea243f3058c4436bea86c16600350260befc80eebad55e76161edeed1cee7f30",
+      "source": "atlas/models/baseline-bell.png"
+    },
+    {
+      "id": "candidate-bell-models",
+      "projects": ["better-lanterns", "create-sky-resource-patches"],
+      "file": "models/candidate-bell.png",
+      "kind": "image",
+      "run": "models-20261024",
+      "stage": "Patched",
+      "caption": "Bell lantern with the model patch; shaders off.",
+      "sha256": "067c44f77d0ff3477a4b9b9ca76270e2dc47f2578fb5f996cff3466100bd0e31",
+      "source": "atlas/models/candidate-bell.png"
+    },
+    {
+      "id": "baseline-covered-models",
+      "projects": ["better-lanterns"],
+      "file": "models/baseline-covered.png",
+      "kind": "image",
+      "run": "models-20261024",
+      "stage": "Before",
+      "caption": "Covered lantern before the model patch; shaders off.",
+      "sha256": "b8e60c180be2ad1e7d9e9a7f8fbcdde8d00d5e2186367dc59c1a61c9cb111252",
+      "source": "atlas/models/baseline-covered.png"
+    },
+    {
+      "id": "candidate-covered-models",
+      "projects": ["better-lanterns", "create-sky-resource-patches"],
+      "file": "models/candidate-covered.png",
+      "kind": "image",
+      "run": "models-20261024",
+      "stage": "Patched",
+      "caption": "Covered lantern with the model patch; shaders off.",
+      "sha256": "70355c4a5c3d7c25c44d3c712395b6fa830603fe82e7b967b386df780d2f6461",
+      "source": "atlas/models/candidate-covered.png"
+    },
+    {
+      "id": "deco-panels-before-compat",
+      "projects": ["simple-3d-iron-bars"],
+      "file": "harness/2026-10-24-compat-pass/deco-panels-before.png",
+      "kind": "image",
+      "run": "compat-20261024",
+      "stage": "Before",
+      "caption": "Create Deco material on six Copycat panel facings before extrusion; shaders off.",
+      "sha256": "966b44da410f5bb510c393d87767cd7aff864e41bf0ca840d328111d8ae43b14",
+      "source": "harness/images/2026-10-24-compat-pass/deco-panels-before.png"
+    },
+    {
+      "id": "deco-panels-after-compat",
+      "projects": ["simple-3d-iron-bars"],
+      "file": "harness/2026-10-24-compat-pass/deco-panels-after.png",
+      "kind": "image",
+      "run": "compat-20261024",
+      "stage": "Patched",
+      "caption": "The same panel facings with Copycat Bar Extrusion; shaders off.",
+      "sha256": "9baa5e04aec121d608da36a2a8fd7ecb6df559c13c1347e5570396dd0e09bfc9",
+      "source": "harness/images/2026-10-24-compat-pass/deco-panels-after.png"
+    },
+    {
+      "id": "ct-framed-compat",
+      "projects": ["mt-ct-d"],
+      "file": "harness/2026-10-24-compat-pass/ct-framed.png",
+      "kind": "image",
+      "run": "compat-20261024",
+      "stage": "Observed",
+      "caption": "Create framed glass uses native connected frames; shaders off.",
+      "sha256": "492c34a3c0b46e0c6588c4d2c18418b07ca0df3589d592dfa4280d817b0e2664",
+      "source": "harness/images/2026-10-24-compat-pass/ct-framed.png"
+    },
+    {
+      "id": "wall-shader-compat",
+      "projects": ["better-lanterns", "create-sky-resource-patches"],
+      "file": "harness/2026-10-24-compat-pass/wall-shader.png",
+      "kind": "image",
+      "run": "compat-20261024",
+      "stage": "Patched",
+      "caption": "Tavern and other wall lanterns after model/UV changes; shaders on.",
+      "sha256": "e3bef6ee4bf5a210b80cc9907c2e390c2da1119db467347a066cc9ba06c1c68d",
+      "source": "harness/images/2026-10-24-compat-pass/wall-shader.png"
+    },
+    {
+      "id": "cage-shader-compat",
+      "projects": ["better-lanterns", "create-sky-resource-patches"],
+      "file": "harness/2026-10-24-compat-pass/cage-shader.png",
+      "kind": "image",
+      "run": "compat-20261024",
+      "stage": "Patched",
+      "caption": "Create Deco cage lamp bends after the connector revision; shaders on.",
+      "sha256": "edc994314f1da3adb09c0aabaa2970f2d40a7d6b6597b18f465661ff467d6df1",
+      "source": "harness/images/2026-10-24-compat-pass/cage-shader.png"
+    },
+    {
+      "id": "hood-shader-compat",
+      "projects": ["better-lanterns", "create-sky-resource-patches"],
+      "file": "harness/2026-10-24-compat-pass/hood-shader.png",
+      "kind": "image",
+      "run": "compat-20261024",
+      "stage": "Patched",
+      "caption": "DnD frontlight with the shorter two-plate hood; shaders on.",
+      "sha256": "d631d8fa9b55d1fe001b0ac918357579b4525e30db464a7168482d09e0edee26",
+      "source": "harness/images/2026-10-24-compat-pass/hood-shader.png"
+    },
+    {
+      "id": "bridge-stair-mounted-on-visual",
+      "projects": ["better-lanterns"],
+      "file": "harness/2026-10-24-visual-pass/bridge-stair-mounted-on.png",
+      "kind": "image",
+      "run": "visual-20261024",
+      "stage": "Observed",
+      "caption": "Macaw bridge lantern mounted on stairs; shaders on.",
+      "sha256": "f92a57c2768c7af4508e71722f0e8d4bb840c91f193b3ffe65febc2da6325905",
+      "source": "harness/images/2026-10-24-visual-pass/bridge-stair-mounted-on.png"
+    },
+    {
+      "id": "overlays-connected-on-visual",
+      "projects": ["simple-3d-iron-bars"],
+      "file": "harness/2026-10-24-visual-pass/overlays-connected-on.png",
+      "kind": "image",
+      "run": "visual-20261024",
+      "stage": "Observed",
+      "caption": "Create Deco overlay stacks; shaders on.",
+      "sha256": "54471de8593abd54b389caea27f721b86f13eb0e3acf6b842b1f0635b18065be",
+      "source": "harness/images/2026-10-24-visual-pass/overlays-connected-on.png"
+    },
+    {
+      "id": "mooshroom-close-on-visual",
+      "projects": ["fresh-animations-details"],
+      "file": "harness/2026-10-24-visual-pass/mooshroom-close-on.png",
+      "kind": "image",
+      "run": "visual-20261024",
+      "stage": "Observed",
+      "caption": "Red adult mooshroom with Details geometry; shaders on.",
+      "sha256": "3d2e2f6d6b3f028748cc7dd50134092faa7059a6f0ecd1875f0c9fe277fdc519",
+      "source": "harness/images/2026-10-24-visual-pass/mooshroom-close-on.png"
+    },
+    {
+      "id": "mooshroom-motion-on-visual",
+      "projects": ["fresh-animations-details"],
+      "file": "harness/2026-10-24-visual-pass/mooshroom-motion-on.mp4",
+      "kind": "video",
+      "run": "visual-20261024",
+      "stage": "Observed",
+      "caption": "Mooshroom idle movement recording; not a check of every animation.",
+      "sha256": "74ea0cf99ed271f4572f26012c3f8ccd820a6a0f818b53a23e893f2998ed0771",
+      "source": "harness/images/2026-10-24-visual-pass/mooshroom-motion-on.mp4"
+    },
+    {
+      "id": "lootr-close-range-models",
+      "projects": ["fresh-animations-objects", "create-sky-resource-patches"],
+      "file": "models/lootr-close-range.mp4",
+      "kind": "video",
+      "run": "models-20261024",
+      "stage": "Patched",
+      "caption": "Lootr chest close recording with the EMF animation attachment; shaders off.",
+      "sha256": "b779d0738014a424a33066ec27a3a217a4e9cd676dbda9fe68794ba009178426",
+      "source": "atlas/models/lootr-close-range.mp4"
+    },
+    {
+      "id": "vanilla-close-range-models",
+      "projects": ["fresh-animations-objects"],
+      "file": "models/vanilla-close-range.mp4",
+      "kind": "video",
+      "run": "models-20261024",
+      "stage": "Control",
+      "caption": "Vanilla chest close recording for comparison; shaders off.",
+      "sha256": "b2affa93e71774b6744e269dbd4fcfaf1b2f7855a95318e2d4390fb8fa9dbea5",
+      "source": "atlas/models/vanilla-close-range.mp4"
+    },
+    {
+      "id": "final-bell-animation-models",
+      "projects": ["better-lanterns", "create-sky-resource-patches"],
+      "file": "models/final-bell-animation.mp4",
+      "kind": "video",
+      "run": "models-20261024",
+      "stage": "Patched",
+      "caption": "Bell lantern flame animation after resource reload.",
+      "sha256": "142bbd5de28c5f6a8e13c2486ed0694ead350e78aaf8434d8e8b0ddc304fbb34",
+      "source": "atlas/models/final-bell-animation.mp4"
+    },
+    {
+      "id": "final-covered-animation-models",
+      "projects": ["better-lanterns", "create-sky-resource-patches"],
+      "file": "models/final-covered-animation.mp4",
+      "kind": "video",
+      "run": "models-20261024",
+      "stage": "Patched",
+      "caption": "Covered lantern flame animation after resource reload.",
+      "sha256": "e3989463f2c3d4d521a6b736fd9d2feb6a67ac7ff30b60276f23241a79f28000",
+      "source": "atlas/models/final-covered-animation.mp4"
+    }
+  ]
+}

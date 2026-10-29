@@ -74,6 +74,11 @@ test('unsupported types keep source data without inventing a layout', () => {
 })
 test('icon URLs only admit generated local assets', () => {
   assert.equal(safeIcon('javascript:alert(1)'), null)
+  assert.equal(
+    safeIcon('/generated/icons/ab12.svg'),
+    '/generated/icons/ab12.svg',
+  )
+  assert.equal(safeIcon('/generated/icons/../../unsafe.svg'), null)
   assert.equal(safeIcon('https://example.com/icon.png'), null)
   assert.equal(
     safeIcon('/generated/icons/ab12.png'),

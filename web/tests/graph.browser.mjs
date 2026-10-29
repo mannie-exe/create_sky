@@ -53,14 +53,27 @@ test('focused views retain real routes, source records and item inspection', asy
   await page.locator('#close-inspector').click()
   await page.locator('#graph-relation').selectOption('uses')
   await expect(page.locator('#graph-counts')).toContainText('No modeled route')
+  const catalog = await (
+    await page.request.get('/generated/catalog.json')
+  ).json()
+  const unmapped = catalog.nodes.filter((item) => item.status === 'unmapped')
+  const blocked = catalog.nodes.filter((item) => item.status === 'blocked')
+  expect(unmapped.length).toBeGreaterThan(0)
+  expect(blocked.length).toBeGreaterThan(0)
   await page.locator('[data-graph="coverage"]').click()
   await expect(page.locator('#graph-counts')).toContainText(
-    '326 unmapped items',
+    `${unmapped.length.toLocaleString('en-US')} unmapped items`,
   )
   await page.locator('#graph-search').fill('')
   await page.locator('#graph-status').selectOption('blocked')
-  await expect(page.locator('#graph-counts')).toContainText('1 blocked items')
-  await expect(page.locator('#graph-results button')).toHaveCount(1)
+  await expect(page.locator('#graph-counts')).toContainText(
+    `${blocked.length.toLocaleString('en-US')} blocked items`,
+  )
+  const entries = page.locator('#graph-results button[data-item]')
+  await expect(entries).toHaveCount(Math.min(100, blocked.length))
+  expect(
+    await entries.evaluateAll((buttons) => buttons.map((b) => b.dataset.item)),
+  ).toEqual(blocked.slice(0, 100).map((item) => item.id))
   await page.setViewportSize({ width: 390, height: 844 })
   expect(
     await page.evaluate(() => document.body.scrollWidth <= innerWidth),
@@ -205,18 +218,16 @@ test('item map opens vertical paths and shared recipes remain inspectable', asyn
   await page.goto('/')
   await page.locator('#search').fill('reliable_gliders:glider')
   await page.locator('#grid .cell').click()
-  const recipe = page
-    .locator('#detail .record')
-    .filter({ has: page.locator('[data-recipe="reliable_gliders:glider"]') })
-    .first()
-  await expect(recipe).toHaveAttribute('open', '')
+  const recipe = page.locator(
+    '.method-detail [data-recipe="reliable_gliders:glider"]',
+  )
   await expect(recipe.locator('.recipe-grid > .recipe-slot')).toHaveCount(9)
   await expect(recipe.locator('.recipe-grid .empty')).toHaveCount(1)
   await expect(recipe.locator('.recipe-grid img').first()).toBeVisible()
   await page.locator('#view-item-route').click()
   await expect(page.locator('#inspector')).toBeHidden()
   await expect(page.locator('#graph-counts')).toContainText(
-    'One minimum-depth path',
+    'Planned first access',
   )
   await expect(page.locator('#graph-route-view')).toHaveValue('path')
   await expect(page.locator('#graph-relation')).toBeDisabled()
@@ -280,7 +291,8 @@ test('recipe nodes are interactive and keep disclosure state across culling', as
   await page.goto('/')
   await page.locator('#search').fill('reliable_gliders:glider')
   await page.locator('#grid .cell').click()
-  const canvas = page.locator('#detail .route-preview-canvas')
+  await page.locator('#view-item-route').click()
+  const canvas = page.locator('#graph-canvas')
   const node = canvas
     .locator('.react-flow__node')
     .filter({ has: page.locator('[data-recipe="reliable_gliders:glider"]') })
@@ -288,8 +300,9 @@ test('recipe nodes are interactive and keep disclosure state across culling', as
   const disclosure = node.locator('.recipe-ingredients')
   await disclosure.locator(':scope > summary').click()
   await expect(disclosure).toHaveAttribute('open', '')
-  const step = page.locator('select[aria-label="Inspect route step"]')
-  const selected = await step.inputValue()
+  const step = page.locator('#graph-node')
+  const selected = await node.getAttribute('data-id')
+  await step.selectOption(selected)
   await canvas.focus()
   for (let i = 0; i < 12; i++) await page.keyboard.press('ArrowDown')
   await expect(node).toHaveCount(0)
@@ -301,8 +314,7 @@ test('recipe nodes are interactive and keep disclosure state across culling', as
     .first()
     .click()
   await expect(page.locator('#detail h2')).toHaveText('Phantom Membrane')
-  await page.locator('#item-back').click()
-  await expect(page.locator('#detail h2')).toHaveText('Glider')
+  await page.locator('#close-inspector').click()
   await expect(
     canvas.locator(
       '[data-recipe="reliable_gliders:glider"] .recipe-ingredients',

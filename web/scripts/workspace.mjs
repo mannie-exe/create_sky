@@ -6,16 +6,27 @@ import { compile, root } from './compile.mjs'
 import { authoring, configuredPack } from './authoring.mjs'
 import { modelAuthoring } from './model-authoring.mjs'
 import { jobs, jobRegistry, JobError } from './jobs.mjs'
+import { createOperations } from './operations.mjs'
 const hash = (text) => crypto.createHash('sha256').update(text).digest('hex')
 
 export function workspace() {
   let busy = false
+  const operations = createOperations()
   return {
     name: 'atlas-local-workspace',
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
         if (!req.url?.startsWith('/__atlas/')) return next()
+        let operation = null
         const send = (status, value) => {
+          if (operation) {
+            operations.finish(
+              operation,
+              status >= 400 ? value.error || 'Operation failed' : null,
+              value.code,
+            )
+            operation = null
+          }
           res.writeHead(status, {
             'Content-Type': 'application/json',
             'Cache-Control': 'no-store',
@@ -45,6 +56,7 @@ export function workspace() {
           if (req.method === 'GET' && req.url === '/__atlas/jobs')
             return send(200, {
               ...jobs.snapshot(),
+              operations: operations.snapshot(jobs.snapshot().current),
               busy,
               definitions: Object.entries(jobRegistry).map(([name, job]) => ({
                 name,
@@ -91,6 +103,7 @@ export function workspace() {
               'busy',
             )
           busy = acquired = true
+          operation = operations.begin(req.method, req.url, input)
           const context = { web: root, pack: await configuredPack(root) }
           if (req.method === 'GET') {
             if (req.url === '/__atlas/models')
@@ -209,7 +222,10 @@ export function workspace() {
           }
           return send(200, { revision: hash(input.text) })
         } catch (error) {
-          send(error.code === 'busy' ? 409 : 400, { error: error.message })
+          send(error.code === 'busy' ? 409 : 400, {
+            error: error.message,
+            code: error.code,
+          })
         } finally {
           if (acquired) busy = false
         }

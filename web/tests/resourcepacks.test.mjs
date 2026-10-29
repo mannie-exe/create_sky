@@ -6,7 +6,11 @@ import YAML from 'yaml'
 const read = (name) =>
   readFileSync(new URL(`../data/${name}`, import.meta.url), 'utf8')
 const reviews = YAML.parse(read('authored/resourcepacks.yml')).candidates
-const { projects } = JSON.parse(read('research/resourcepacks/projects.json'))
+const observations = JSON.parse(read('research/resourcepacks/projects.json'))
+const localProjects = JSON.parse(
+  read('research/resourcepacks/local-projects.json'),
+)
+const projects = { ...observations.projects, ...localProjects }
 const catalog = JSON.parse(read('research/resourcepacks/catalog.json'))
 
 test('resource reviews join to sourced galleries and hash-verified files', () => {
@@ -30,7 +34,8 @@ test('resource reviews join to sourced galleries and hash-verified files', () =>
       ].includes(review.status),
     )
     const project = projects[review.id]
-    assert.ok(project.gallery.length > 0, review.id)
+    if (!(review.id in localProjects))
+      assert.ok(project.gallery.length > 0, review.id)
     for (const image of project.gallery) {
       assert.ok(image.caption.trim(), review.id)
       for (const key of ['url', 'thumbnail', 'source'])
@@ -41,7 +46,7 @@ test('resource reviews join to sourced galleries and hash-verified files', () =>
       assert.match(file.sha512, /^[a-f0-9]{128}$/)
       assert.equal(file.sha512, file.file.hashes.sha512)
       assert.ok(file.version.game_versions.includes('1.21.1'))
-    } else assert.ok(project.fileNote)
+    } else assert.ok(project.fileNote || project.artifact)
   }
 })
 
@@ -62,5 +67,35 @@ test('catalog ranks are contiguous per source and review links identify the same
       normalize(row.title).startsWith(normalize(projects[row.candidate].title)),
       row.title,
     )
+  }
+})
+
+test('archived media has unique files, known projects and attributable runs', () => {
+  const manifest = JSON.parse(read('research/resourcepacks/local-media.json'))
+  assert.equal(
+    new Set(manifest.media.map((media) => media.id)).size,
+    manifest.media.length,
+  )
+  assert.equal(
+    new Set(manifest.media.map((media) => media.file)).size,
+    manifest.media.length,
+  )
+  for (const media of manifest.media) {
+    assert.ok(manifest.runs[media.run], media.id)
+    assert.match(manifest.runs[media.run].date, /^\d{4}-\d{2}-\d{2}$/)
+    assert.ok(media.projects.length)
+    for (const project of media.projects) assert.ok(projects[project], project)
+    assert.match(media.sha256, /^[a-f0-9]{64}$/)
+    assert.ok(['image', 'video'].includes(media.kind))
+    assert.match(media.source, /^(atlas|harness)\//)
+    for (const relative of [media.file, media.source]) {
+      assert.ok(!relative.includes('\\'))
+      assert.ok(
+        relative
+          .split('/')
+          .every((part) => part && part !== '.' && part !== '..'),
+      )
+    }
+    assert.ok(media.caption.trim() && media.stage.trim())
   }
 })

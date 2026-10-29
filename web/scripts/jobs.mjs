@@ -39,6 +39,18 @@ const python = (script, cwd, outputs, options = {}) => ({
 // Only repository code supplies execution context. Browser input never supplies
 // programs, arguments, working directories or paths to scripts.
 export const jobRegistry = Object.freeze({
+  'resources.media': {
+    program: process.execPath,
+    script: 'collect-resource-media.mjs',
+    cwd: 'web',
+    outputs: ['public/generated/resource-review'],
+    args: [],
+    validate: empty,
+    inputs: 'none',
+    timeoutMs: 30000,
+    maxBytes: 2 * 1024 * 1024,
+    cancellable: true,
+  },
   'journal.preview': python(
     'generate-journal.py',
     'pack',

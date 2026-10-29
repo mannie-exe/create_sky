@@ -1,0 +1,44 @@
+{
+  "create-sky-resource-patches": {
+    "title": "Create Sky Resource Patches",
+    "url": "/model-authoring",
+    "links": [
+      { "label": "Model authoring", "url": "/model-authoring" },
+      {
+        "label": "Patch sources",
+        "url": "https://github.com/mannie-exe/create_sky/blob/main/authoring/resource-patches.json"
+      }
+    ],
+    "gallery": [],
+    "retrieved": "",
+    "inspection": null,
+    "artifact": {
+      "path": "overrides/client/resourcepacks/Create Sky Resource Patches.zip",
+      "kind": "Resource pack",
+      "side": "Client",
+      "source": "authoring/resource-patches.json; authoring/model-recipes.json",
+      "check": "python3 scripts/build-resource-patches.py --check"
+    }
+  },
+  "create-sky-fixes": {
+    "title": "Create Sky Pack Fixes",
+    "url": "/authoring",
+    "links": [
+      { "label": "Journal and configuration authoring", "url": "/authoring" },
+      {
+        "label": "Resource-only mod sources",
+        "url": "https://github.com/mannie-exe/create_sky/tree/main/pack-fixes"
+      }
+    ],
+    "gallery": [],
+    "retrieved": "",
+    "inspection": null,
+    "artifact": {
+      "path": "overrides/common/mods/create-sky-fixes-0.1.0.jar",
+      "kind": "Resource-only mod",
+      "side": "Client and server",
+      "source": "pack-fixes/; authoring/journal/",
+      "check": "python3 scripts/build-fixes.py --check"
+    }
+  }
+}

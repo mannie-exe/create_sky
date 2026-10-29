@@ -1,0 +1,105 @@
+.method-search {
+  width: 100%;
+  margin-block: var(--space-inline);
+}
+.method-list {
+  max-height: 280px;
+  overflow: auto;
+  scrollbar-gutter: stable;
+  border-block: 1px solid var(--line-subtle);
+}
+.method-list h4 {
+  margin: var(--space-content) 0 var(--space-tight);
+  color: var(--ink-muted);
+}
+.method-list button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: var(--space-inline);
+}
+.method-list button[aria-pressed='true'] {
+  background: var(--surface-selected);
+  box-shadow: inset 3px 0 var(--line-selected);
+}
+.method-list small {
+  display: block;
+  color: var(--ink-muted);
+}
+.method-detail {
+  margin-top: var(--space-section);
+}
+.method-detail .recipe-card {
+  border: 0;
+  padding: 0;
+}
+.method-detail .recipe-type {
+  display: none;
+}
+.method-detail pre {
+  max-height: 300px;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.method-caution {
+  border-left: 3px solid var(--coverage-blocked);
+  padding-left: var(--space-control);
+}
+.method-route .route-preview-canvas {
+  height: 440px;
+}
+.method-alternatives {
+  display: flex;
+  gap: var(--space-tight);
+  flex-wrap: wrap;
+}
+.method-alternatives p {
+  flex-basis: 100%;
+}
+.method-controls {
+  display: grid;
+  align-items: end;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-inline);
+  margin-block: var(--space-inline);
+}
+.method-controls .field {
+  font-size: var(--type-label-size);
+}
+.method-controls select {
+  width: 100%;
+  min-width: 0;
+}
+.method-filters,
+.method-ranking-help,
+.method-evidence {
+  margin-block: var(--space-inline);
+}
+.method-results {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-inline);
+  color: var(--ink-muted);
+  font-size: var(--type-caption-size);
+}
+.method-results button {
+  padding: var(--space-tight) var(--space-inline);
+}
+.method-ranking-help {
+  font-size: var(--type-caption-size);
+  color: var(--ink-muted);
+}
+.method-selection-note {
+  color: var(--ink-muted);
+}
+.method-evidence {
+  overflow-wrap: anywhere;
+}
+.method-source {
+  overflow-wrap: anywhere;
+}

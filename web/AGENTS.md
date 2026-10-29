@@ -39,6 +39,30 @@ diagrams represent exported data, not simulated game GUIs; do not imply that a
 placeholder output proves dynamic crafting behavior. Keep controls and prose
 direct, without introductory marketing sections.
 
+## Interface design
+
+Improve one interaction at a time. Use working previews and user discussion to
+approve substantial visual changes; references inform decisions, not approval.
+Balance content and whitespace before adding containers, decoration or copy.
+
+Reuse shared UI across Astro, React and DOM consumers. Express spacing, alignment,
+typography and action states through semantic roles and composition. Derive values
+where meaning permits; equal values alone do not justify merging distinct roles.
+Recheck other consumers when extracting components, and remove superseded styles.
+Destructive actions must remain distinguishable beyond color alone.
+
+Icons must earn their space through recognition, orientation or interaction.
+Prefer Material Symbols for interface icons, with consistent outlined/filled
+variants for meaningful distinctions. Evaluate exceptions deliberately; do not
+mix families casually or decorate every label. Share sizing and treatment through
+components/tokens, retain accessible action names, and keep game imagery separate.
+
+Keep drafts, saved files, generated output and displayed snapshots distinguishable.
+Preserve edits on errors or stale-source conflicts. Place actionable feedback near
+its owner; transient notifications must not be the only record of failures or jobs.
+Use the game's versioned locale catalogue for language choices, readable text in
+editors, and shared keyed messages rather than duplicated prose.
+
 ## Verification
 
 Run `pnpm verify` for application changes and `pnpm test:python` for Python changes.

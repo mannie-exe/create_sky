@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { readColorTokens } from './style-tokens.ts'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 
 export type Face = { uv: number[]; texture: string; rotation?: number }
@@ -144,10 +145,12 @@ export class ModelPreview {
 
   constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas
-    const style = getComputedStyle(canvas)
-    const color = (token: string) =>
-      new THREE.Color(style.getPropertyValue(token).trim())
-    this.highlightColor = color('--accent').multiplyScalar(0.2)
+    const palette = readColorTokens(canvas, {
+      selected: '--color-action',
+      grid: '--ink-muted',
+      line: '--line-subtle',
+    })
+    this.highlightColor = new THREE.Color(palette.selected).multiplyScalar(0.2)
     this.renderer = new THREE.WebGLRenderer({
       canvas,
       antialias: true,
@@ -164,7 +167,7 @@ export class ModelPreview {
     const light = new THREE.DirectionalLight(0xffffff, 2)
     light.position.set(10, 30, 20)
     this.scene.add(light)
-    this.grid = new THREE.GridHelper(32, 16, color('--muted'), color('--line'))
+    this.grid = new THREE.GridHelper(32, 16, palette.grid, palette.line)
     this.grid.position.set(8, -0.02, 8)
     this.scene.add(this.grid)
     this.observer = new ResizeObserver(() => {

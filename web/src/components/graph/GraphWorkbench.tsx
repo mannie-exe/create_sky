@@ -1,3 +1,8 @@
+import Button from '../ui/Button'
+import ViewTabs from '../ui/ViewTabs'
+import Field from '../ui/Field'
+import Feedback from '../ui/Feedback'
+import { policies } from '../../lib/progression.mjs'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { Viewport } from '@xyflow/react'
 import { GraphCanvas, type CanvasHandle } from './GraphCanvas'
@@ -25,7 +30,7 @@ const questions: Record<string, string> = {
   processing:
     'Separate possible routes for a machine. Power, heat and plumbing remain separate requirements.',
   routes:
-    'Top to bottom: potential acquisition. ALL input groups are required; dashed inputs are OR choices. Depth is not time or a production budget.',
+    'Top to bottom: potential acquisition under the selected policy. ALL input groups are required; dashed inputs are OR choices. Depth is not time or a production budget.',
   coverage: 'Mapping coverage, not confirmed gameplay failures.',
 }
 export default function GraphWorkbench() {
@@ -35,6 +40,7 @@ export default function GraphWorkbench() {
     [mod, setMod] = useState('create'),
     [status, setStatus] = useState('unmapped'),
     [cap, setCap] = useState(12)
+  const [policy, setPolicy] = useState('planned')
   const [item, setItem] = useState('reliable_gliders:glider'),
     [machine, setMachine] = useState('create:mechanical_press'),
     [direction, setDirection] = useState('acquisition'),
@@ -85,15 +91,19 @@ export default function GraphWorkbench() {
     },
     [mode, camera, selection],
   )
-  const openItem = useCallback((id: string, fullPath = false) => {
-    setItem(id)
-    setPath(fullPath)
-    setDirection('acquisition')
-    setRouteId('')
-    setMode('routes')
-    setCamera(initialCamera())
-    setSelection({})
-  }, [])
+  const openItem = useCallback(
+    (id: string, fullPath = false, nextPolicy?: string) => {
+      if (nextPolicy) setPolicy(nextPolicy)
+      setItem(id)
+      setPath(fullPath)
+      setDirection('acquisition')
+      setRouteId('')
+      setMode('routes')
+      setCamera(initialCamera())
+      setSelection({})
+    },
+    [],
+  )
   useEffect(() => {
     registerGraph({ load, openItem })
   }, [load, openItem])
@@ -120,7 +130,12 @@ export default function GraphWorkbench() {
       void read
         .then((d) => {
           details.current.set(key, d)
-          if (active) setDetail(d[item] ?? {})
+          if (active)
+            setDetail({
+              ...(d[item] ?? {}),
+              path:
+                policy === 'earliest' ? d[item]?.earliestPath : d[item]?.path,
+            })
         })
         .catch((e) => {
           if (active) setError(String(e))
@@ -129,7 +144,7 @@ export default function GraphWorkbench() {
     return () => {
       active = false
     }
-  }, [index, item, path, mode])
+  }, [index, item, path, mode, policy])
   const entries = useMemo(
     () =>
       index
@@ -204,9 +219,11 @@ export default function GraphWorkbench() {
   if (!bundle || !scene)
     return (
       <div>
-        <p role="status">{error || 'Loading graph data…'}</p>
+        <Feedback role="status" tone={error ? 'error' : 'neutral'}>
+          {error || 'Loading graph data…'}
+        </Feedback>
         {error && (
-          <button onClick={() => void load(true)}>Retry loading graph</button>
+          <Button onClick={() => void load(true)}>Retry loading graph</Button>
         )}
       </div>
     )
@@ -228,7 +245,14 @@ export default function GraphWorkbench() {
       : (edge ??
         (mode === 'routes'
           ? path
-            ? detail?.pathRoutes
+            ? Object.fromEntries(
+                (detail?.path ?? [])
+                  .filter((step: any) => step.route)
+                  .map((step: any) => [
+                    step.route,
+                    index.byRoute.get(step.route)?.route,
+                  ]),
+              )
             : entry?.route
           : undefined)))
   const counts =
@@ -239,76 +263,82 @@ export default function GraphWorkbench() {
         : mode === 'processing'
           ? `${index.byId.get(machine)?.name || 'No modeled machines'} · ${scene.entries.length} routes`
           : path
-            ? `One minimum-depth path · ${detail?.path?.length ?? 0} steps · ${scene.hiddenChoices} other choices${scene.hiddenSteps ? ` · ${scene.hiddenSteps} earlier steps omitted` : ''}${scene.missingRoutes ? ` · ${scene.missingRoutes} missing route records` : ''}`
+            ? `${policies[policy as keyof typeof policies]} · ${detail?.path?.length ?? 0} steps · ${scene.hiddenChoices} other choices${scene.hiddenSteps ? ` · ${scene.hiddenSteps} earlier steps omitted` : ''}${scene.missingRoutes ? ` · ${scene.missingRoutes} missing route records` : ''}`
             : entry
               ? `${entry.route.id}${entry.route.scenario ? ' · SCENARIO' : ''} · ${scene.hiddenChoices} alternatives in group details${scene.hiddenOutputs ? ` · ${scene.hiddenOutputs} outputs in source record` : ''}`
               : 'No modeled route in this direction. This is not proof of unobtainability.'
   return (
     <div className="flow-workspace">
-      <nav className="view-tabs" aria-label="Graph questions">
+      <ViewTabs label="Graph questions">
         {['systems', 'processing', 'routes', 'coverage'].map((m) => (
-          <button
+          <Button
             key={m}
             data-graph={m}
             aria-pressed={mode === m}
             onClick={() => switchMode(m)}
           >
             {m === 'routes' ? 'Item routes' : m[0].toUpperCase() + m.slice(1)}
-          </button>
+          </Button>
         ))}
-      </nav>
+      </ViewTabs>
       <div className="toolbar">
         {mode === 'systems' && (
-          <label>
-            System{' '}
-            <select
-              id="graph-mod"
-              value={mod}
-              onChange={(e) => change(() => setMod(e.target.value))}
-            >
-              {[...new Set<string>(index.items.map((n: any) => n.mod))]
-                .sort()
-                .map((m) => (
-                  <option key={m}>{m}</option>
-                ))}
-            </select>
-          </label>
+          <Field label={<>System </>} id="graph-mod" layout="inline">
+            {(attributes) => (
+              <select
+                {...attributes}
+                id="graph-mod"
+                value={mod}
+                onChange={(e) => change(() => setMod(e.target.value))}
+              >
+                {[...new Set<string>(index.items.map((n: any) => n.mod))]
+                  .sort()
+                  .map((m) => (
+                    <option key={m}>{m}</option>
+                  ))}
+              </select>
+            )}
+          </Field>
         )}
         {mode === 'coverage' && (
-          <label>
-            Coverage{' '}
-            <select
-              id="graph-status"
-              value={status}
-              onChange={(e) => change(() => setStatus(e.target.value))}
-            >
-              {['unmapped', 'blocked', 'excluded', 'unified', 'mapped'].map(
-                (s) => (
-                  <option key={s}>{s}</option>
-                ),
-              )}
-            </select>
-          </label>
+          <Field label={<>Coverage </>} id="graph-status" layout="inline">
+            {(attributes) => (
+              <select
+                {...attributes}
+                id="graph-status"
+                value={status}
+                onChange={(e) => change(() => setStatus(e.target.value))}
+              >
+                {['unmapped', 'blocked', 'excluded', 'unified', 'mapped'].map(
+                  (s) => (
+                    <option key={s}>{s}</option>
+                  ),
+                )}
+              </select>
+            )}
+          </Field>
         )}
         {mode !== 'routes' && (
-          <label>
-            Connections{' '}
-            <select
-              id="graph-limit"
-              value={cap}
-              onChange={(e) => change(() => setCap(Number(e.target.value)))}
-            >
-              <option value={12}>Top 12</option>
-              <option value={24}>Top 24</option>
-              <option value={1000}>All</option>
-            </select>
-          </label>
+          <Field label={<>Connections </>} id="graph-limit" layout="inline">
+            {(attributes) => (
+              <select
+                {...attributes}
+                id="graph-limit"
+                value={cap}
+                onChange={(e) => change(() => setCap(Number(e.target.value)))}
+              >
+                <option value={12}>Top 12</option>
+                <option value={24}>Top 24</option>
+                <option value={1000}>All</option>
+              </select>
+            )}
+          </Field>
         )}
         <div className="flow-actions">
-          <button id="graph-fit" onClick={() => controls.current?.fit()}>
+          <Button id="graph-fit" onClick={() => controls.current?.fit()}>
             Fit
-          </button>
-          <button
+          </Button>
+          <Button
             id="graph-reset"
             onClick={() => {
               setQuery('')
@@ -317,24 +347,24 @@ export default function GraphWorkbench() {
             }}
           >
             Reset view
-          </button>
-          <button
+          </Button>
+          <Button
             id="graph-in"
             aria-label="Zoom graph in"
             onClick={() => controls.current?.zoom(1.5)}
           >
             +
-          </button>
-          <button
+          </Button>
+          <Button
             id="graph-out"
             aria-label="Zoom graph out"
             onClick={() => controls.current?.zoom(1 / 1.5)}
           >
             −
-          </button>
-          <button id="graph-reload" onClick={() => void load(true)}>
+          </Button>
+          <Button id="graph-reload" onClick={() => void load(true)}>
             Reload data
-          </button>
+          </Button>
         </div>
       </div>
       <p id="graph-question" className="muted">
@@ -352,7 +382,19 @@ export default function GraphWorkbench() {
             onChange={(e) => change(() => setPath(e.target.value === 'path'))}
           >
             <option value="single">Single route</option>
-            <option value="path">Minimum-depth path</option>
+            <option value="path">Item progression</option>
+          </select>
+          <select
+            aria-label="Graph progression policy"
+            value={policy}
+            disabled={!path}
+            onChange={(e) => change(() => setPolicy(e.target.value))}
+          >
+            {Object.entries(policies).map(([id, label]) => (
+              <option key={id} value={id}>
+                {label}
+              </option>
+            ))}
           </select>
           <select
             id="graph-relation"
@@ -382,9 +424,9 @@ export default function GraphWorkbench() {
               </option>
             ))}
           </select>
-          <button id="graph-inspect" onClick={() => inspect(item)}>
+          <Button id="graph-inspect" onClick={() => inspect(item)}>
             Item details
-          </button>
+          </Button>
         </div>
       )}
       <p id="graph-counts" className="muted" role="status">
@@ -407,7 +449,7 @@ export default function GraphWorkbench() {
           <p className="muted">{filtered.length.toLocaleString()} items</p>
           <div id="graph-results" className="graph-results">
             {filtered.slice(0, limit).map((n: any) => (
-              <button
+              <Button
                 key={n.id}
                 data-item={n.id}
                 onClick={() =>
@@ -418,13 +460,13 @@ export default function GraphWorkbench() {
               >
                 {safeIcon(n.icon) && <img src={n.icon} alt="" loading="lazy" />}
                 {n.name}
-              </button>
+              </Button>
             ))}
           </div>
           {filtered.length > limit && (
-            <button id="graph-more" onClick={() => setLimit((n) => n + 100)}>
+            <Button id="graph-more" onClick={() => setLimit((n) => n + 100)}>
               Show more
-            </button>
+            </Button>
           )}
         </section>
         <div className="flow-main">
@@ -444,42 +486,46 @@ export default function GraphWorkbench() {
             recipeStates={recipeStates.current}
           />
           <div className="flow-record-controls">
-            <label>
-              Inspect node
-              <select
-                id="graph-node"
-                aria-label="Inspect graph node"
-                value={selection.node ?? ''}
-                onChange={(e) => {
-                  selectNode(e.target.value)
-                  controls.current?.reveal(e.target.value)
-                }}
-              >
-                <option value="">Choose a node…</option>
-                {[...scene.nodes.values()].map((n: any) => (
-                  <option key={n.id} value={n.id}>
-                    {n.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Inspect connection
-              <select
-                id="graph-edge"
-                aria-label="Inspect graph connection"
-                value={selection.edge ?? ''}
-                onChange={(e) => selectEdge(e.target.value)}
-              >
-                <option value="">Choose a connection…</option>
-                {scene.edges.map((e: any) => (
-                  <option key={e.id} value={e.id}>
-                    {scene.nodes.get(e.source)?.label} →{' '}
-                    {scene.nodes.get(e.target)?.label}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <Field label={<>Inspect node</>} id="graph-node">
+              {(attributes) => (
+                <select
+                  {...attributes}
+                  id="graph-node"
+                  aria-label="Inspect graph node"
+                  value={selection.node ?? ''}
+                  onChange={(e) => {
+                    selectNode(e.target.value)
+                    controls.current?.reveal(e.target.value)
+                  }}
+                >
+                  <option value="">Choose a node…</option>
+                  {[...scene.nodes.values()].map((n: any) => (
+                    <option key={n.id} value={n.id}>
+                      {n.label}
+                    </option>
+                  ))}
+                </select>
+              )}
+            </Field>
+            <Field label={<>Inspect connection</>} id="graph-edge">
+              {(attributes) => (
+                <select
+                  {...attributes}
+                  id="graph-edge"
+                  aria-label="Inspect graph connection"
+                  value={selection.edge ?? ''}
+                  onChange={(e) => selectEdge(e.target.value)}
+                >
+                  <option value="">Choose a connection…</option>
+                  {scene.edges.map((e: any) => (
+                    <option key={e.id} value={e.id}>
+                      {scene.nodes.get(e.source)?.label} →{' '}
+                      {scene.nodes.get(e.target)?.label}
+                    </option>
+                  ))}
+                </select>
+              )}
+            </Field>
           </div>
           <section
             className="panel flow-selection"
@@ -498,33 +544,33 @@ export default function GraphWorkbench() {
             <div id="graph-route-list" className="graph-results">
               {node?.type === 'item' && (
                 <>
-                  <button onClick={() => inspect(node.itemId || node.id)}>
+                  <Button onClick={() => inspect(node.itemId || node.id)}>
                     Item details
-                  </button>
-                  <button onClick={() => openItem(node.itemId || node.id)}>
+                  </Button>
+                  <Button onClick={() => openItem(node.itemId || node.id)}>
                     Trace acquisition
-                  </button>
+                  </Button>
                 </>
               )}
               {node?.alternatives
                 ?.slice(0, selectionLimit)
                 .map((id: string) => (
-                  <button key={id} onClick={() => inspect(id)}>
+                  <Button key={id} onClick={() => inspect(id)}>
                     {index.byId.get(id)?.name ?? id}
-                  </button>
+                  </Button>
                 ))}
               {selectedEntries.slice(0, selectionLimit).map((e: any) => (
-                <button key={e.index} onClick={() => openRoute(e)}>
+                <Button key={e.index} onClick={() => openRoute(e)}>
                   {e.route.kind}: {e.route.id}
-                </button>
+                </Button>
               ))}
               {Math.max(
                 selectedEntries.length,
                 node?.alternatives?.length ?? 0,
               ) > selectionLimit && (
-                <button onClick={() => setSelectionLimit((n) => n + 100)}>
+                <Button onClick={() => setSelectionLimit((n) => n + 100)}>
                   Show more choices
-                </button>
+                </Button>
               )}
             </div>
             <div id="graph-recipe-preview">

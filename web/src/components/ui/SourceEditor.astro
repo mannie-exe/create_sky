@@ -1,0 +1,44 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import Field from './Field.astro'
+import { fieldControl } from '../../lib/fields'
+type Props = HTMLAttributes<'textarea'> & {
+  id: string
+  label: string
+  hint?: string
+  error?: string
+}
+const {
+  id,
+  label,
+  hint,
+  error,
+  'aria-describedby': describedBy,
+  ...props
+} = Astro.props
+const attributes = fieldControl(id, {
+  hint: Boolean(hint),
+  error: Boolean(error),
+})
+---
+
+<div class="content-stack" data-space="control">
+  <Field {id} {label} {hint} {error}>
+    <textarea
+      {...attributes}
+      spellcheck="false"
+      {...props}
+      aria-describedby={
+        [attributes['aria-describedby'], describedBy]
+          .filter(Boolean)
+          .join(' ') || undefined
+      }
+      class="source-editor"
+    />
+  </Field>
+  {Astro.slots.has('actions') && (
+    <div class="action-row">
+      <slot name="actions" />
+    </div>
+  )}
+</div>

@@ -1,0 +1,142 @@
+/* Shared roles. Candidate visual changes are isolated in design previews. */
+:root {
+  --layer-notification: 30;
+  --shadow-overlay: 0 6px 30px color-mix(in srgb, var(--ink) 13%, transparent);
+  color-scheme: light;
+  --ref-color-white: #fff;
+  --ref-color-mist: #f7f9fd;
+  --ref-color-navy: #17233b;
+  --ref-color-slate: #64718a;
+  --ref-color-rule: #dce3ef;
+  --ref-color-blue: #285de0;
+  --ref-color-amber: #be8b43;
+  --ref-color-red: #b42318;
+  --ref-color-blue-pale: #edf2fc;
+  --ref-space-unit: 4px;
+  --ref-font-sans: Inter, Helvetica, Arial, sans-serif;
+  --ref-font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --surface-page: var(--ref-color-mist);
+  --surface-panel: var(--ref-color-white);
+  --surface-inset: var(--surface-page);
+  --surface-canvas: var(--surface-page);
+  --surface-inverse: var(--ref-color-navy);
+  --ink: var(--ref-color-navy);
+  --ink-muted: var(--ref-color-slate);
+  --ink-inverse: var(--ref-color-white);
+  --color-action: var(--ref-color-blue);
+  --color-action-hover: color-mix(
+    in oklab,
+    var(--color-action) 85%,
+    var(--ink)
+  );
+  --ink-on-action: var(--ink-inverse);
+  --color-destructive: var(--ref-color-red);
+  --surface-destructive-hover: color-mix(
+    in oklab,
+    var(--color-destructive) 6%,
+    var(--surface-panel)
+  );
+  --status-error-ink: var(--ref-color-red);
+  --surface-disabled: var(--surface-inset);
+  --ink-disabled: var(--ink-muted);
+  --line-disabled: var(--line-subtle);
+  --color-focus: var(--color-action);
+  --color-action-pressed: color-mix(
+    in oklab,
+    var(--color-action) 75%,
+    var(--ink)
+  );
+  --surface-hover: color-mix(in oklab, var(--ink) 4%, var(--surface-panel));
+  --surface-pressed: color-mix(in oklab, var(--ink) 8%, var(--surface-panel));
+  --surface-destructive-pressed: color-mix(
+    in oklab,
+    var(--color-destructive) 12%,
+    var(--surface-panel)
+  );
+  --ink-selected: var(--color-action);
+  --ink-selected-muted: var(--ink);
+  --line-selected: var(--color-action);
+  --focus-width: 2px;
+  --focus-offset: 2px;
+  --surface-selected: var(--ref-color-blue-pale);
+  --line-subtle: var(--ref-color-rule);
+  --line-control: var(--ref-color-rule);
+
+  --space-tight: var(--ref-space-unit);
+  --space-inline: calc(var(--ref-space-unit) * 2);
+  --space-control: calc(var(--ref-space-unit) * 3);
+  --space-content: calc(var(--ref-space-unit) * 4);
+  --space-section: calc(var(--ref-space-unit) * 6);
+  --radius-control: 5px;
+  --radius-panel: 7px;
+  --measure-page: 1600px;
+  --measure-inspector: 1040px;
+  --gutter-page: calc(var(--ref-space-unit) * 7.5);
+  --surface-scrim: #17233be6;
+
+  --type-body-family: var(--ref-font-sans);
+  --type-body-size: 14px;
+  --type-body-weight: 400;
+  --type-body-leading: 1.5;
+  --type-body-tracking: 0;
+  /* Standard controls: body line box + vertical inset + two one-pixel borders. */
+  --control-border-width: 1px;
+  --control-min-block-size: calc(
+    var(--type-body-size) * var(--type-body-leading) + var(--space-inline) * 2 +
+      var(--control-border-width) * 2
+  );
+
+  /* Item-detail roles, also used by the isolated design studies. */
+  --type-item-title-family: var(--type-body-family);
+  --type-item-title-size: 1.75rem;
+  --type-item-title-weight: 600;
+  --type-item-title-leading: 1.2;
+  --type-item-title-tracking: -0.01em;
+
+  --type-section-title-family: var(--type-body-family);
+  --type-section-title-size: 1.25rem;
+  --type-section-title-weight: 600;
+  --type-section-title-leading: 1.35;
+  --type-section-title-tracking: 0;
+
+  --type-group-title-family: var(--type-body-family);
+  --type-group-title-size: 0.875rem;
+  --type-group-title-weight: 600;
+  --type-group-title-leading: 1.4;
+  --type-group-title-tracking: 0;
+
+  --type-label-family: var(--type-body-family);
+  --type-label-size: 0.8125rem;
+  --type-label-weight: 500;
+  --type-label-leading: 1.4;
+  --type-label-tracking: 0;
+
+  /* Repeated metadata and view headings, separate from pixel-bound game labels. */
+  --type-meta-size: 0.6875rem;
+  --type-view-title-size: 1.375rem;
+  --type-view-title-weight: 550;
+
+  --type-caption-family: var(--type-body-family);
+  --type-caption-size: 0.75rem;
+  --type-caption-weight: 400;
+  --type-caption-leading: 1.5;
+  --type-caption-tracking: 0;
+
+  --type-code-family: var(--ref-font-mono);
+  --type-code-size: 0.75rem;
+  --type-code-weight: 400;
+  --type-code-leading: 1.6;
+  --type-code-tracking: 0;
+}
+
+@media (max-width: 1000px) {
+  :root {
+    --gutter-page: 16px;
+  }
+}
+@media (max-width: 680px) {
+  :root {
+    --gutter-page: 12px;
+  }
+}

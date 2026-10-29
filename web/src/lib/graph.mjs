@@ -1,27 +1,8 @@
-/** Optimistic AND/OR recipe depth. Unresolved cycles are never silently made roots. */
+import { solveProgression, families } from './progression.mjs'
+
+/** Potential access; unresolved cycles never become roots. */
 export function depths(ids, roots, routes) {
-  const known = new Set(ids),
-    result = new Map(roots.filter((id) => known.has(id)).map((id) => [id, 0]))
-  let changed = true
-  while (changed) {
-    changed = false
-    for (const route of routes) {
-      if (!route.inputs.length || route.inputs.some((group) => !group.length))
-        continue
-      const costs = route.inputs.map((group) =>
-        Math.min(...group.map((id) => result.get(id) ?? Infinity)),
-      )
-      const cost = Math.max(...costs) + 1
-      if (!Number.isFinite(cost)) continue
-      for (const output of route.outputs) {
-        if (known.has(output) && cost < (result.get(output) ?? Infinity)) {
-          result.set(output, cost)
-          changed = true
-        }
-      }
-    }
-  }
-  return result
+  return solveProgression(ids, roots, routes, 'earliest').depth
 }
 
 export function recipeOutputs(recipe) {
@@ -50,25 +31,37 @@ export function recipeInputs(recipe, tags) {
 
 export function layout(nodes) {
   const maximum = Math.max(0, ...nodes.map((n) => n.depth ?? 0))
-  const mapped = nodes.filter((n) => n.depth !== null && n.depth !== undefined)
-  const minimum = mapped.length ? Math.min(...mapped.map((n) => n.depth)) : 0
-  const groups = new Map()
-  for (const node of nodes) {
-    const stage = node.depth ?? maximum + 2
-    if (!groups.has(stage)) groups.set(stage, [])
-    groups.get(stage).push(node)
-  }
-  for (const [stage, group] of groups) {
-    group.sort(
-      (a, b) =>
-        a.complexity - b.complexity ||
-        a.mod.localeCompare(b.mod) ||
-        a.id.localeCompare(b.id),
+  const minimum = Math.min(
+    ...nodes.filter((n) => n.depth != null).map((n) => n.depth),
+    maximum,
+  )
+  const familyKeys = Object.keys(families)
+  let y = 0
+  for (const family of familyKeys) {
+    const group = nodes.filter(
+      (n) =>
+        (n.family ?? (n.depth == null ? 'unresolved' : 'production')) ===
+        family,
     )
-    group.forEach((node, index) => {
-      node.x = (stage - minimum) * 7 + (index % 6)
-      node.y = (stage - minimum) * 3 + Math.floor(index / 6)
-    })
+    const stages = new Map()
+    for (const node of group) {
+      const stage = node.depth ?? maximum + 2
+      if (!stages.has(stage)) stages.set(stage, [])
+      stages.get(stage).push(node)
+    }
+    let rows = 0
+    for (const [stage, items] of stages) {
+      items.sort(
+        (a, b) => a.mod.localeCompare(b.mod) || a.id.localeCompare(b.id),
+      )
+      rows = Math.max(rows, Math.ceil(items.length / 6))
+      items.forEach((node, i) => {
+        node.x = (stage - minimum) * 7 + (i % 6)
+        node.y = y + Math.floor(i / 6)
+        node.family = family
+      })
+    }
+    if (rows) y += rows + 1
   }
   return nodes
 }
@@ -77,14 +70,19 @@ export function detailBucket(id) {
   return [...id].reduce((n, c) => (n * 31 + c.charCodeAt(0)) >>> 0, 0) % 16
 }
 
-/** Minimum-depth witnesses and actionable gaps. No cycle becomes a root. */
-export function analyzeRoutes(ids, roots, routes, excluded = []) {
-  const depth = depths(ids, roots, routes),
-    rootSet = new Set(roots),
-    excludedSet = new Set(excluded)
+/** Policy-selected witnesses and actionable gaps. No cycle becomes a root. */
+export function analyzeRoutes(
+  ids,
+  roots,
+  routes,
+  excluded = [],
+  policy = 'earliest',
+) {
+  const solution = solveProgression(ids, roots, routes, policy)
+  const { depth, witnesses, pathFor, labels } = solution
+  const excludedSet = new Set(excluded)
   const producing = new Map(),
-    consumers = new Map(),
-    witnesses = new Map()
+    consumers = new Map()
   for (const route of routes) {
     for (const id of route.outputs) {
       if (!producing.has(id)) producing.set(id, [])
@@ -94,24 +92,6 @@ export function analyzeRoutes(ids, roots, routes, excluded = []) {
       if (!consumers.has(id)) consumers.set(id, new Set())
       consumers.get(id).add(route.id)
     }
-    if (!route.inputs.length || route.inputs.some((g) => !g.length)) continue
-    const chosen = route.inputs.map(
-      (g) =>
-        [...g].sort(
-          (a, b) =>
-            (depth.get(a) ?? Infinity) - (depth.get(b) ?? Infinity) ||
-            a.localeCompare(b),
-        )[0],
-    )
-    const cost = Math.max(...chosen.map((id) => depth.get(id) ?? Infinity)) + 1
-    for (const output of route.outputs)
-      if (
-        Number.isFinite(cost) &&
-        cost === depth.get(output) &&
-        !rootSet.has(output) &&
-        !witnesses.has(output)
-      )
-        witnesses.set(output, { route: route.id, inputs: chosen })
   }
   const coverage = new Map(
     ids.map((id) => {
@@ -141,23 +121,5 @@ export function analyzeRoutes(ids, roots, routes, excluded = []) {
       ]
     }),
   )
-  function pathFor(id) {
-    const result = [],
-      seen = new Set()
-    const visit = (key) => {
-      if (seen.has(key)) return
-      seen.add(key)
-      const witness = witnesses.get(key)
-      if (witness) for (const input of witness.inputs) visit(input)
-      result.push({
-        id: key,
-        depth: depth.get(key) ?? null,
-        root: rootSet.has(key),
-        ...witness,
-      })
-    }
-    visit(id)
-    return result
-  }
-  return { depth, coverage, producing, witnesses, pathFor }
+  return { depth, coverage, producing, witnesses, pathFor, labels }
 }

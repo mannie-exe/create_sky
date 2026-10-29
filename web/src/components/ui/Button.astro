@@ -1,0 +1,20 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import type { ButtonIntent } from '../../lib/ui'
+type Props = HTMLAttributes<'button'> & { intent?: ButtonIntent }
+const {
+  intent = 'default',
+  type = 'button',
+  class: className,
+  ...props
+} = Astro.props
+---
+
+<button
+  {...props}
+  type={type}
+  class:list={['ui-button', className]}
+  data-intent={intent}
+>
+  <slot />
+</button>

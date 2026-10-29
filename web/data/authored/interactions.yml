@@ -1,5 +1,23 @@
 schema: 1
 records:
+  - id: flight/building-weights
+    title: Building materials affect ship mass
+    inputs: []
+    outputs: []
+    evidence: native-mass-and-assembly-checks
+    detail: Pack Fixes extends Sable's existing weight tiers to partial construction, windows, furniture, fixtures and equivalent machine variants. DnD recolored flywheels match Create at 4.0; the complete gigantic cogwheel remains 9.0 across nine physical positions. Weight belongs to placed colliding blocks, not inventory item count. Cargo, lift, volume and copied-material rules remain unchanged. The Atlas exports the tags but does not calculate assembled-ship mass.
+    sources:
+      - pack-fixes/data/sable/tags/block
+      - docs/development/weights.md
+  - id: contraptions/radio
+    title: Radio movement-handler compatibility
+    inputs: [[analogaudio:radio]]
+    outputs: []
+    evidence: isolated-registration-and-server-callbacks
+    detail: Create Sky Compat 0.5.2 restores Analog Audio's existing movement-handler registration for Analog Audio 0.1.5-hotfix.1 with Create 6.0.10. Recipes, controls and Sable audio behavior are unchanged. Registration and server callbacks were verified; audible playback and GUI behavior on ordinary moving contraptions still need playtesting.
+    sources:
+      - docs/development/compatibility.md
+      - https://github.com/mannie-exe/create-sky-compat/blob/main/docs/development/README.md#analog-audio
   - id: travel/glider
     title: Glide and climb local updrafts
     inputs: [[reliable_gliders:glider]]
