@@ -177,6 +177,13 @@ resource-only change needs no Create Sky Compat update.
 
 ## Analog Audio release verification, 0.1.19
 
+[Create Sky 0.1.19](https://github.com/mannie-exe/create_sky/releases/tag/v0.1.19)
+was published from `59ed4fecdb1cdbad2e64475adf03dd829da81ce5` by
+[release run 40845603600](https://github.com/mannie-exe/create_sky/actions/runs/40845603600).
+Validation and release CI passed. Downloaded Prism, Modrinth and server archives
+match `SHA256SUMS`; archive integrity, Compat path/hash, shared resources,
+client visual patches and app-source exclusion checks passed on those downloads.
+
 Create Sky 0.1.19 selects Compat 0.5.2, SHA-256
 `0228b2cd34f402114ba6bf57a02e29b6d03c2b294dd8f970b37bd523a828320e`.
 The downloaded GitHub artifact matches the locally tested binary, and its binary
@@ -204,6 +211,21 @@ verification remains in its [own guide](web/verification.md). App changes are
 excluded from this release. Existing block weights and resource patches remain
 byte-identical. Audible client playback, moving sound positions and ordinary
 Create contraption GUIs are not certified by the server tests.
+
+Both local instances were installed from the verified 0.1.19 release. The client
+release descriptor is `0f0a32d61c3be5ed907416f3f31e4d91d3457d321ee9cec7ddc2b974016926bd`;
+the server descriptor is `dc249be3609dbf86d8b547b2eb5eeeefdc647d420eea103744b996b2ac237472`.
+Both retained exactly one Compat JAR matching the published binary. Consumer
+assets and launcher hashes were updated together while preserving other launcher
+settings; subsequent prepare dry runs reported zero changes.
+
+The server stopped gracefully before installation and remained off afterward,
+as requested. Preservation comparisons passed for 36,144 client and 24,038 server
+paths covering worlds, DH data, configuration and settings. Checks compared size
+and modification time, plus SHA-256 for files up to 1 MiB and all selected config
+files. Large world/database files were not reread in full; BlueMap's generated
+tile tree was not enumerated or targeted. No world reset, cache clearing or
+pregeneration occurred. The server process exited and port 25565 had no listener.
 
 ## Release verification, 2026-10-29
 
