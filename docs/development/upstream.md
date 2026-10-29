@@ -114,9 +114,11 @@ framebuffer checks. The tested JAR is
 `31c784adc24fa2e8d83b5bcebf0aed4e61d9f0be568d630ac1e28767ef34487f`.
 The server-side mixin probe leaves the target byte-identical. Native checks used
 Java 21.0.13/macOS arm64; other graphics drivers and shader packs remain unverified.
-Veil Iris Fix 0.1.0 is a separate client-only release pin in the pack. Existing
-Veil uniform-type warnings remain outside this fix. Its README owns upstream
-update checks and the patch removal condition.
+That standalone 0.1.0 release is now incorporated in Compat 0.6.0. Existing
+Veil uniform-type warnings remain outside the correction. Compat’s
+[rendering reference](https://github.com/mannie-exe/create-sky-compat/blob/main/docs/development/rendering.md)
+owns active update/removal procedures. Native checks of the combined release
+remain pending; the earlier A/B observation above is historical evidence.
 
 ## Delivery endpoint integration, 2026-10-24
 

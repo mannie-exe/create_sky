@@ -1,29 +1,26 @@
-# Create Sky 0.1.19
+# Create Sky 0.1.20
 
-Update Create Sky Compat to 0.5.2. Minecraft remains 1.21.1, NeoForge 21.1.264,
-Analog Audio 0.1.5-hotfix.1 and Create 6.0.10.
+Update Create Sky Compat to 0.6.1 and remove standalone Veil Iris Fix. Compat now
+owns optional framebuffer restoration, balloon shadow-pass exclusion, construct
+shader material IDs, and single-block model-data/pass adapters. The pass correction
+restores glass and glass Copycat single-block constructs with Iris shaders. Minecraft, NeoForge,
+and the integrated upstream mods retain their existing versions.
 
-## Radio compatibility
+The common startup feature file explicitly selects the pack’s adaptations.
+Compat itself can be installed with NeoForge alone; disabled adaptations do not
+load target hooks or constrain target versions. The pack continues to enable its
+existing island preset and gameplay adaptations. DH cache isolation stays off.
+World generation identity, saves, block weights, and recipes are preserved.
 
-Compat now repairs Analog Audio's reflective Create registry lookup, restoring
-registration of its existing radio movement handler. This removes the associated
-startup exception. The adapter activates only for the affected version pair.
+Compat passed background build, dependency-boundary and dedicated-server checks.
+Native macOS checks covered standalone/full client loading, Ponder, shader toggling
+and reload, heated balloons, and static/assembled material controls. Missing
+single-block glass was reproduced with the pass adaptation disabled and restored
+when enabled. Flickering or gapped airship shadows remain unresolved; this release
+does not claim a general shadow correction.
 
-The fix changes no recipes, building weights, terrain or Sable audio handling.
-Ordinary Create contraption GUI support and audible playback during movement
-remain separate playtest limitations. Power Grid keeps its working Java fallback
-on macOS; no backend setting changes are needed.
+Atlas changes are excluded from release commits. No new recipe or mass projection
+is introduced. See [patch maintenance](development/patches.md) for coupled updates
+and [compatibility](development/compatibility.md) for evidence and limitations.
 
-## Verification and maintenance
-
-The old Compat release fails the radio-registration control; 0.5.2 passes checks
-with neither optional mod, each alone, both together and the full pack. The full
-pack retains Create's control drill handler, and radio server callbacks complete
-without loading client classes. Build, package, resource and authoring checks
-passed. See the [compatibility evidence](development/compatibility.md) and
-[dependency maintenance](development/patches.md) for scope and update procedures.
-
-Atlas app changes are excluded from this release's commits and payloads.
-No new recipes or weight projections are needed for this registration fix.
-
-Previous releases: [0.1.18](releases/0.1.18.md), [0.1.17](releases/0.1.17.md).
+Previous releases: [0.1.19](releases/0.1.19.md), [0.1.18](releases/0.1.18.md).

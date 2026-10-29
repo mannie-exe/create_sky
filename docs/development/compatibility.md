@@ -6,6 +6,34 @@ Player instructions belong in [graphics](../players/graphics.md) and
 [content list](../MODLIST.md), with authoritative selections in `empack.yml` and
 `empack.lock`.
 
+## Optional adaptations and rendering, 2026-10-29
+
+Create Sky 0.1.20 selects Compat 0.6.1 and removes standalone Veil Iris Fix.
+`create_sky_compat-features.properties` explicitly selects pack behavior; the cache
+identity option remains off. Compat's own minimum installation needs NeoForge
+alone. Disabled adapters select no target mixins, callbacks, or integration data,
+and do not reject target versions. Terrain identity remains protected.
+
+Compat 0.6.1 passed 64 JUnit cases, five release-tool checks, exact artifact/package
+checks, and standalone/full dedicated-server startup and shutdown. The 0.6.0
+boundary matrix passed seven selections, and native minimal island generation /
+reopen retained ore counts. No generation algorithms changed in 0.6.1.
+See [the exact artifacts and limits](https://github.com/mannie-exe/create-sky-compat/blob/v0.6.1/docs/development/verification.md#release-061).
+
+Full-stack Prism checks on macOS arm64 used Complementary Unbound r5.9.3 and
+Euphoria Patches 1.10.5. Ponder, shader toggling/reload, heated balloon fixtures,
+static/assembled material controls, and a minimum Compat-only client were reviewed.
+Single-block glass and glass Copycats disappeared with shaders when their pass
+adaptation was disabled; enabling it restored them. Balloon telemetry confirmed
+valid envelopes and filled volume, but the old misplaced overlay was not reproduced
+in the disabled control. That guard has source and controlled execution evidence.
+
+Flickering/gapped airship shadows were not reproduced and remain unresolved. These
+checks do not establish every shader, driver or special block model. Existing
+nonfatal upstream diagnostics remain. No machine weights, recipes or core physics
+changed. Offline quickplay/LAN shutdown needed the disposable probe's explicit
+server stop; no production shutdown workaround was added from that observation.
+
 ## DH Polygon Fix
 
 Clients include [DH Polygon Fix 1.0.2](https://github.com/mannie-exe/dh-polygon-fix/releases/tag/v1.0.2)
@@ -87,9 +115,10 @@ owns the source contracts and update procedure.
   Connector/Forgified Fabric API and client-only dependencies. Check runtime
   metadata before replacing them with provider roots or downgrading dependencies.
 - Published URL pins select DH Polygon Fix, Copycat Bar Extrusion, Create Sky
-  Compat and Veil Iris Fix with content digests. Compat requires Sky Archipelago
-  1.3.6; its optional village hooks need Sky Villages 1.0.6 and Architectury.
-  Veil Iris Fix is client-only and pins Veil 4.3.2 and Iris 1.8.14-beta.1.
+  Compat with content digests. Compat itself requires no content mods; this pack
+  enables its Sky Archipelago 1.3.6 preset and Sky Villages/Architectury adapters.
+  Compat also owns the optional client framebuffer, balloon, and construct-model
+  corrections. Do not install the former standalone Veil Iris Fix alongside it.
   Review coupled versions together; see [patch maintenance](patches.md).
 - Carry On excludes Lootr containers and Aeronautics/Sable objects and retains
   the generated Create/Copycats exclusions. These exclusions do not verify every

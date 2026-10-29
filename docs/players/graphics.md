@@ -20,6 +20,20 @@ if those surfaces disappear. Keep frustum culling enabled.
 Keep the release's DH Polygon Fix installed with DH 3.3.3 on clients, including macOS.
 The fix is version-specific; remove it when upgrading DH.
 
+## Compatibility adaptations
+
+Create Sky Compat includes the Veil/Iris framebuffer correction and optional
+balloon shadow-pass, construct-material, and single-block render-pass adaptations. Do not install the old
+standalone Veil Iris Fix JAR. Their `rendering.*` switches live in
+`config/create_sky_compat-features.properties`; change them only with the game
+stopped and restart to apply. Other feature switches are independent.
+
+Native checks covered the selected shader stack, Ponder, heated balloons, and
+material controls. Single-block glass rendering is corrected; flickering or gapped
+airship shadows remain unresolved. Report the shader pack,
+block types, whether the balloon is inflated, and whether camera or ship motion
+changes the artifact. Do not clear worlds or LOD caches to troubleshoot it.
+
 ## Resource packs
 
 The selected stack includes RAY's ladders and rails, Midnighttigger's Fusion

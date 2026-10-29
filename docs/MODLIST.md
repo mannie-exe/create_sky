@@ -1,6 +1,6 @@
 # Included content
 
-Create Sky 0.1.19 selections. Minecraft is 1.21.1 and NeoForge is 21.1.264.
+Create Sky 0.1.20 selections. Minecraft is 1.21.1 and NeoForge is 21.1.264.
 The manifest/lock are authoritative; this list excludes libraries bundled inside
 mods. Euphoria builds its patched shader at launch. See [release notes](RELEASE_NOTES.md).
 
@@ -38,7 +38,7 @@ mods. Euphoria builds its patched shader at launch. See [release notes](RELEASE_
 | Concurrent Chunk Management Engine (NeoForge) | 0.4.0-alpha.0.124+1.21.1 | [Exact version](https://modrinth.com/mod/c2me-neoforge/version/VACgDPOc) |
 | Controlling | 19.0.5 | [Exact version](https://modrinth.com/mod/controlling/version/FaNppCJJ) |
 | Copycat Bar Extrusion | 0.1.0 | [Exact release](https://github.com/mannie-exe/copycat-bar-extrusion/releases/tag/v0.1.0) |
-| Create Sky Compat | 0.5.2 | [Exact release](https://github.com/mannie-exe/create-sky-compat/releases/tag/v0.5.2) |
+| Create Sky Compat | 0.6.1 | [Exact release](https://github.com/mannie-exe/create-sky-compat/releases/tag/v0.6.1) |
 | Create Accessories Compat | 1.0 | [Exact version](https://modrinth.com/mod/create-accessories-compat/version/2r7hvkCQ) |
 | Create Aeronautics | 1.3.2+mc1.21.1 | [Exact version](https://modrinth.com/mod/create-aeronautics/version/44pLdPGg) |
 | Create Aeronautics: Covers | 1.0.1 | [Exact version](https://modrinth.com/mod/create-aeronautics-covers/version/R35biaZf) |
@@ -158,5 +158,4 @@ mods. Euphoria builds its patched shader at launch. See [release notes](RELEASE_
 | Surveyor Map Framework | 1.2.4+1.21 | [Exact version](https://modrinth.com/mod/surveyor/version/egJBsDTn) |
 | Traveler's Backpack | 1.21.1-10.1.40 | [Exact version](https://modrinth.com/mod/travelersbackpack/version/ZqrwMSn5) |
 | TxniLib | neoforge-1.21.1-1.0.24 | [Exact version](https://modrinth.com/mod/txnilib/version/M1CyD3Uu) |
-| Veil Iris Fix | 0.1.0 | [Exact release](https://github.com/mannie-exe/veil-iris-fix/releases/tag/v0.1.0) |
 | YetAnotherConfigLib (YACL) | 3.8.2+1.21.1-neoforge | [Exact version](https://modrinth.com/mod/yacl/version/7TVdVtxF) |

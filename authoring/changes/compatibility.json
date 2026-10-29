@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "records": [
+    {
+      "path": "overrides/common/config/create_sky_compat-features.properties",
+      "sha256": "442362afeec11594690297abb7667ac931ea88bb1e0affcf0b8b56553c4fcd04",
+      "review": "reviewed",
+      "reason": "Explicit Create Sky Compat adaptation selections. Preserve the pack behavior, enable the incorporated rendering fixes, and keep per-save DH cache isolation opt-in."
+    }
+  ]
+}

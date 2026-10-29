@@ -10,8 +10,7 @@ The manifest and lock own exact selections. This guide owns update procedures;
 | Component | Source / output | Update together | Required check or removal condition |
 | --- | --- | --- | --- |
 | DH Polygon Fix 1.0.2 | Separate `dh-polygon-fix` repository; URL pin and placement in empack | DH 3.3.3, SSRD, Iris/Sodium and the native GL query | The patch requires DH 3.3.3. When updating DH, verify the upstream query fix and remove the incompatible patch; test native query/restore and shader pipelines. |
-| Veil Iris Fix 0.1.0 | Separate `veil-iris-fix` repository; Java mixin JAR | Sable 2.0.6 / nested Veil 4.3.2, Iris 1.8.14-beta.1+mc1.21.1 and shader stack | Run actual-class transformation/state checks and isolated native Ponder/world/reload comparisons. Remove when the selected upstream artifact restores framebuffer state and handles GUI/shadow passes and active Iris targets. |
-| Create Sky Compat 0.5.2 | `create-sky-compat` source project; common referenced JAR | Sky Archipelago 1.3.6; optional Sky Villages 1.0.6 + Architectury 13.x, Sable 2.0.6 and ADQ 1.1.1 | Revalidate terrain, geology, climate, village footprint/count policy, pressure and generation identity. For ADQ, review private route calls, horizontal-distance checks, chunk-ticket lifetime and success/failure cleanup. Rerun native endpoint checks; retain safety predicates. Replace the old neighbor dependency rather than installing both; see [worldgen](worldgen.md). |
+| Create Sky Compat 0.6.0 | `create-sky-compat` source project; common referenced JAR | Sky Archipelago 1.3.6; optional Sky Villages 1.0.6 + Architectury 13.x, Sable 2.0.6 and ADQ 1.1.1 | Revalidate terrain, geology, climate, village footprint/count policy, pressure and generation identity. For ADQ, review private route calls, horizontal-distance checks, chunk-ticket lifetime and success/failure cleanup. Rerun native endpoint checks; retain safety predicates. Replace the old neighbor dependency rather than installing both; see [worldgen](worldgen.md). |
 | Copycat Bar Extrusion 0.1.0 | Separate `copycat-bar-extrusion` repository; client-only URL JAR | Create 6.0.10 (`UjX6dr61`), Create Deco 2.1.3 bar artwork and active resource stack | Recheck `CopycatBarsModel` delegation, exact Create SHA-512 and required Mixin; run `./gradlew check build`, then six facings, adjacency, reload, supported materials and shader-off/on native checks. Retire only if the selected Create version supplies equivalent bounded depth and native fallback behavior. |
 | Worldgen configuration | `overrides/common/config/sky_archipelago*`, `zfastnoise.mixin.properties` | Sky Archipelago, Zfastnoise and generation/optimization mods | Preserve CONSISTENT 1494 for ordinary legacy Sky worlds. The expanded preset owns its embedded terrain settings. Recheck biome redirects and generation identity before generating new terrain. |
 | Shared data fixes | `pack-fixes/data/` → `create-sky-fixes-0.1.0.jar` | Mods owning the replaced recipe, loot, tag or processor resources | Compare new upstream JSON by exact resource ID. Remove bug overrides only when the installed artifact contains the fix; retain deliberate pack policy. Run native recipe/loot checks. |
@@ -27,16 +26,17 @@ The manifest and lock own exact selections. This guide owns update procedures;
 The shared fixes JAR and visual patch have different load paths. The first supplies
 server datapack resources and journal translations; the second overrides client
 models at the top of the selected resource stack. Neither replaces DH Polygon Fix
-or Create Sky Compat. Veil Iris Fix is also executable Java and
-must remain separate from both resource artifacts. A successful resource build cannot validate Java mixins,
+or Create Sky Compat, which now owns the incorporated Veil/Iris framebuffer adapter.
+Executable Java remains separate from both resource artifacts. A successful resource build cannot validate Java mixins,
 world generation, recipe execution or GPU behavior.
 
 ## Coupled update boundaries
 
 A Sable update affects more than mass tags: inspect its bundled Veil, Aeronautics'
 bundled Simulated, Create Sky Compat's pressure adapter, and Escalated/CBC paths.
-Recheck Veil Iris Fix's exact input hashes and runtime constraints before changing
-Sable, Veil or Iris. A successful weight comparison does not validate rendering.
+Recheck Compat’s framebuffer, construct material-ID, single-block model-data, and
+balloon adapters before changing Sable, Veil, Iris, Sodium, or Aeronautics. Their
+startup switches and exact artifact guards have independent removal conditions. A successful weight comparison does not validate rendering.
 
 A Create update requires reviewing Copycat Bar Extrusion's required renderer hook,
 Ponder registration, Analog Audio movement registration, the visual model patch
@@ -47,13 +47,22 @@ constraint alongside the Compat terrain/preview integration and shader stack.
 
 The independent patch repositories own their builds and detailed procedures:
 [DH Polygon Fix](https://github.com/mannie-exe/dh-polygon-fix/blob/main/docs/development.md),
-[Veil Iris Fix](https://github.com/mannie-exe/veil-iris-fix/blob/main/docs/development.md),
+[Compat rendering](https://github.com/mannie-exe/create-sky-compat/blob/main/docs/development/rendering.md),
 [Copycat Bar Extrusion](https://github.com/mannie-exe/copycat-bar-extrusion/blob/main/docs/development.md),
 and [Create Sky Compat](https://github.com/mannie-exe/create-sky-compat/blob/main/docs/development/README.md).
 Publish changed runtime mods first, verify downloaded release assets, then update
 the pack's URL/version/hash and placement bindings together. Never manufacture a
-mod release for resource-only policy changes. Retain client-only placement for
-all three rendering patches; Compat and shared data belong on both sides.
+mod release for resource-only policy changes. Retain client-only placement for standalone rendering patches. Compat and shared
+data belong on both sides; Compat selects its rendering hooks only on clients.
+
+
+Compat’s [adapter reference](https://github.com/mannie-exe/create-sky-compat/blob/main/docs/development/adapters.md)
+owns its supported combinations and retirement procedures. Every adaptation can
+be disabled before target mixins/classes load, including for unsupported installed
+versions. Keep the pack’s explicit feature file aligned with that reference.
+Rendering corrections do not change mass tiers, recipes, or resources. Interactive
+shader/Ponder/balloon/material checks remain pending for this release; flickering
+or gapped airship shadows remain unresolved.
 
 ## Shared data overrides
 

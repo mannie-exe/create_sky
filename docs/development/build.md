@@ -87,31 +87,39 @@ the tested JAR and limits; no server installation or saved-data migration is nee
 
 ### Terrain and rendering mods
 
-[Create Sky Compat](https://github.com/mannie-exe/create-sky-compat) and
-[Veil Iris Fix](https://github.com/mannie-exe/veil-iris-fix) have independent Java 21
-builds and GitHub releases. Compat replaces Sky Village Neighbors and belongs on
-both sides. Veil Iris Fix belongs only on clients. Neither belongs inside the
-resource-only `create-sky-fixes` JAR.
+[Create Sky Compat](https://github.com/mannie-exe/create-sky-compat) owns optional
+terrain, gameplay, and rendering adapters and belongs on both pack sides. It
+incorporates the former Veil Iris Fix; do not include that standalone JAR or Sky
+Village Neighbors in any payload. Runtime code does not belong in the resource-only
+`create-sky-fixes` JAR.
 
-Publish and verify those artifacts before updating their URL and digest pins in
-`empack.yml`. Use empack to regenerate bindings and the lock; inspect each export's
-release record for sidedness and duplicate/obsolete JARs. Keep the old neighbor
-mod out of every payload. The new common config is
-`create_sky_compat-common.toml`, with geometry in
-`create_sky_compat-generation.json`; client defaults and the server template select
-`create_sky_compat:islands_v1` for new worlds. Distributed seeds remain blank.
+Publish and verify Compat before updating its URL and digest pins in `empack.yml`.
+Use empack to regenerate bindings and the lock; inspect exports for duplicate or
+obsolete JARs. `overrides/common/config/create_sky_compat-features.properties`
+explicitly selects the pack's adaptations. Unknown feature keys fail startup, so
+review this file whenever removing or renaming upstreamed adapters.
+
+Remove retired dependencies with `empack remove`, then inspect the lock and exports.
+Deleting an intent entry and running `sync` can retain its previous selection.
+If URL dependencies lack metadata, review the removal plan before acknowledging
+unknown dependency evidence; `--forget` deliberately retains installed content.
+
+The mod itself requires no content mods. The pack deliberately installs Sky
+Archipelago and enables its expanded preset. Geometry remains in
+`create_sky_compat-generation.json`; village tuning remains in
+`create_sky_compat-common.toml`. Client defaults and the server template select
+`create_sky_compat:islands_v1` only for new worlds. Distributed seeds remain blank.
 
 For development, use a marked disposable empack workspace with local JAR inputs
-and the same three reference profiles. Never publish its local-input manifests or
-install new generation into existing play saves. Local previews are disposable;
-published artifacts and their source repositories own release identity.
+and the same three reference profiles. Never publish local-input manifests or
+install changed generation into existing play saves.
 
 ### Distant Horizons updates
 
 Keep DH and Compat's supported version pins aligned. Before updating either,
 review Compat's [DH hooks](https://github.com/mannie-exe/create-sky-compat/blob/main/docs/development/lod.md)
 and the separate DH Polygon Fix implementation. Shader behavior also depends on
-Iris, Complementary/Euphoria and the independent Veil Iris Fix; a successful
+Iris, Complementary/Euphoria and Compat’s optional rendering adapters; a successful
 terrain-generation check does not establish renderer compatibility.
 
 SeedGen is excluded. Do not add native worker inputs, prediction settings or seed
@@ -126,9 +134,9 @@ Geometry, interiors, water and ocean profiles are shared authored JSON files in
 their categorized audit baselines. New terrain must use a fresh world; the saved
 generation marker is not a migration switch.
 
-The native Ponder comparison covered shaders on/off, a working Create scene,
-world burner, inventory and shader reload. Veil's verification guide owns renderer limits;
-Compat's verification guide owns terrain, optional loading and flight evidence.
+Compat’s verification guide owns adapter loading, terrain, and rendering evidence.
+Historical standalone Ponder checks do not establish native rendering behavior
+for a new combined artifact; retain pending interactive checks explicitly.
 [Patch maintenance](patches.md) owns coupled updates and removal criteria.
 
 ## Server webmap

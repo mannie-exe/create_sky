@@ -200,18 +200,11 @@ bindings:
           layer: common
   create-sky-compat:
     placement:
-    - destination: mods/create-sky-compat-0.5.2-mc1.21.1-neoforge.jar
+    - destination: mods/create-sky-compat-0.6.1-mc1.21.1-neoforge.jar
       environment:
         client: required
         server: required
       layer: common
-  veil-iris-fix-0.1.0-mc1.21.1-neoforge:
-    placement:
-    - destination: mods/veil-iris-fix-0.1.0-mc1.21.1-neoforge.jar
-      environment:
-        client: required
-        server: unsupported
-      layer: client
 
 policies:
   config/bluemap/core.conf: seed

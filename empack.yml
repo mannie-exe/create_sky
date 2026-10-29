@@ -1,7 +1,7 @@
 schema: 5
 pack:
   name: Create Sky
-  version: 0.1.19
+  version: 0.1.20
   id: create_sky
   authors:
     - mannie-exe
@@ -701,24 +701,13 @@ dependencies:
     source:
       kind: url
       downloads:
-        - https://github.com/mannie-exe/create-sky-compat/releases/download/v0.5.2/create-sky-compat-0.5.2-mc1.21.1-neoforge.jar
+        - https://github.com/mannie-exe/create-sky-compat/releases/download/v0.6.1/create-sky-compat-0.6.1-mc1.21.1-neoforge.jar
     digests:
-      sha1: 77942b1968c94eb7302bc76c04290fa03d0c3eff
-      sha512: e5f6903eb28778f4762fb408df6ccbaa3cfc4a3133aea71bd76fa4fb27680a3b981e04157df0e5b049e87c1404d3df724a8dbe604ffc290479652f6456972180
+      sha1: 241f2b5b7464ea9acb3f987686c3fe1202bcbb88
+      sha512: 052eb7524879c37ab332a375dc17bcf4c3e1ab69663ff8740cb0aa1008124fb02be48ff3bff5950292f560c70081fc87079a343289f8787671e3fc4fa9bb169e
     environment:
       client: required
       server: required
-  veil-iris-fix-0.1.0-mc1.21.1-neoforge:
-    source:
-      kind: url
-      downloads:
-        - https://github.com/mannie-exe/veil-iris-fix/releases/download/v0.1.0/veil-iris-fix-0.1.0-mc1.21.1-neoforge.jar
-    digests:
-      sha1: d8441619372050a35cbe25887794c1f0b94b7e2a
-      sha512: 8247d724c6aa983a13ac89533362f2898339d52744f2897c9dce76bf229d5a70f67e9e36c83c7163d1fdd2b6bd522856db9fa4f1690af05238d596deee8bd063
-    environment:
-      client: required
-      server: unsupported
 
 build:
   default:
