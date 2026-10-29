@@ -175,6 +175,49 @@ light-shaft sampling may show more noise in motion.
 artifact, all-state comparison, representative assemblies and limits. The
 resource-only change needs no Create Sky Compat update.
 
+## Release verification, 2026-10-29
+
+[Create Sky 0.1.18](https://github.com/mannie-exe/create_sky/releases/tag/v0.1.18)
+was published from `045784a79d5d7ed75fb6ac4eb5d8c3371733599b` by
+[release run 40834796342](https://github.com/mannie-exe/create_sky/actions/runs/40834796342).
+The isolated pack checkout passed 28 Python tests, the 242-file audit, both
+resource builders, all three reference builds and the server archive patch/check.
+No Atlas or unrelated journal-authoring edits entered the commit or builds.
+Create Sky Compat remained at 0.5.1 because its distributable behavior did not change.
+
+Downloaded assets matched `SHA256SUMS`. Archive CRCs, embedded asset hashes,
+runtime pins, dependency sidedness and the native-tested fixes JAR passed inspection.
+Only that JAR changed in the client/server managed payloads from 0.1.17.
+
+| Published archive | SHA-256 |
+| --- | --- |
+| Prism references | `d93b48d4beb1ddc7bd14ca7b3302964a9db76e56d0fab8ef77f32c31ccdf6b2d` |
+| Modrinth | `8bb0f953010482a97eacaf3fc1fa5ddc8c1066d8c1f4d9d1b5a5327cd2e08e83` |
+| Server references | `66266c36ed32a39580a1d8d8bce9bae22cb7bb5806ce93afaeb751a999c2d53a` |
+
+The stopped local Prism client and server were installed from the verified release.
+Their exact release descriptors are respectively
+`47392a1ad8085b06fc0adb91c999f9b5033b8743c2712d36dd8d68c199c12cba` and
+`382ebf1d3ee1243fccc9aeb42ace3d00fe87145f9a914586c9a8f9d23659be8c`.
+Consumer assets and launch hashes were updated together, preserving other Prism
+settings. Both subsequent `instance prepare --dry-run` checks reported zero changes.
+
+Before restarting, preservation comparisons passed for 35,734 client and 24,067
+server paths: size/mtime fingerprints for all sampled paths, plus SHA-256 for
+files up to 1 MiB and all configuration files. These include worlds, LOD data,
+settings and access lists. Large world/database files were not reread in full.
+BlueMap's generated tile tree was not enumerated or targeted by installation.
+No world reset, migration, cache clearing or pregeneration was performed.
+
+The server stopped gracefully, restarted through its existing blocking console
+and empack wrapper, reached `Done`, and listened on Minecraft port 25565. BlueMap
+returned HTTP 200 on port 8100. After stripping timestamps, thread prefixes and
+ANSI formatting, all 279 startup error signatures already occurred in the previous
+log. Existing optional loot resources and Sable's missing Copycat catwalk warnings
+remain; this is not an error-free startup claim. The client was updated without
+launching a graphical session. Native weight checks are documented in
+[building weights](weights.md); app checks remain local in the web verification guide.
+
 ## Compatibility fixture
 
 The 2026-10-28 isolated client used the selected 0.1.17 dependencies and generated
