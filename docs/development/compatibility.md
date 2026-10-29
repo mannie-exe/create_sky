@@ -169,6 +169,12 @@ lower Complementary/Euphoria light-shaft sampling. Reduced shadow coverage and
 sampling suggest less work; no fixed-scene FPS improvement was measured. Lower
 light-shaft sampling may show more noise in motion.
 
+## Weight classification verification
+
+[Building weights](weights.md#verification-2026-10-29) records the exact resource
+artifact, all-state comparison, representative assemblies and limits. The
+resource-only change needs no Create Sky Compat update.
+
 ## Compatibility fixture
 
 The 2026-10-28 isolated client used the selected 0.1.17 dependencies and generated

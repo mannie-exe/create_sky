@@ -60,6 +60,846 @@
     {
       "id": "#mcwbridges:bamboo_piers",
       "required": false
+    },
+    {
+      "id": "#interiors:chairs",
+      "required": false
+    },
+    {
+      "id": "#interiors:floor_chairs",
+      "required": false
+    },
+    {
+      "id": "#mcwbridges:rail_bridges",
+      "required": false
+    },
+    {
+      "id": "#mcwpaths:path_stairs",
+      "required": false
+    },
+    {
+      "id": "#mcwpaths:slab_paths",
+      "required": false
+    },
+    {
+      "id": "#mcwpaths:stone_paths",
+      "required": false
+    },
+    {
+      "id": "#mcwpaths:stone_pavings",
+      "required": false
+    },
+    {
+      "id": "#mcwstairs:balconies",
+      "required": false
+    },
+    {
+      "id": "#mcwstairs:platforms",
+      "required": false
+    },
+    {
+      "id": "#mcwwindows:parapets",
+      "required": false
+    },
+    {
+      "id": "bits_n_bobs:andesite_encased_piston_extension_pole",
+      "required": false
+    },
+    {
+      "id": "bits_n_bobs:brass_encased_piston_extension_pole",
+      "required": false
+    },
+    {
+      "id": "bits_n_bobs:brass_lamp",
+      "required": false
+    },
+    {
+      "id": "bits_n_bobs:industrial_iron_encased_cogwheel",
+      "required": false
+    },
+    {
+      "id": "bits_n_bobs:industrial_iron_encased_large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "bits_n_bobs:industrial_iron_encased_piston_extension_pole",
+      "required": false
+    },
+    {
+      "id": "bits_n_bobs:industrial_iron_encased_shaft",
+      "required": false
+    },
+    {
+      "id": "bits_n_bobs:industrial_truss_shaft",
+      "required": false
+    },
+    {
+      "id": "bits_n_bobs:weathered_iron_encased_cogwheel",
+      "required": false
+    },
+    {
+      "id": "bits_n_bobs:weathered_iron_encased_large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "bits_n_bobs:weathered_iron_encased_piston_extension_pole",
+      "required": false
+    },
+    {
+      "id": "bits_n_bobs:weathered_iron_encased_shaft",
+      "required": false
+    },
+    {
+      "id": "create_connected:crank_wheel",
+      "required": false
+    },
+    {
+      "id": "create_connected:large_crank_wheel",
+      "required": false
+    },
+    {
+      "id": "create_vibrant_vaults:black_stock_link",
+      "required": false
+    },
+    {
+      "id": "create_vibrant_vaults:blue_stock_link",
+      "required": false
+    },
+    {
+      "id": "create_vibrant_vaults:brown_stock_link",
+      "required": false
+    },
+    {
+      "id": "create_vibrant_vaults:cyan_stock_link",
+      "required": false
+    },
+    {
+      "id": "create_vibrant_vaults:gray_stock_link",
+      "required": false
+    },
+    {
+      "id": "create_vibrant_vaults:green_stock_link",
+      "required": false
+    },
+    {
+      "id": "create_vibrant_vaults:light_blue_stock_link",
+      "required": false
+    },
+    {
+      "id": "create_vibrant_vaults:light_gray_stock_link",
+      "required": false
+    },
+    {
+      "id": "create_vibrant_vaults:lime_stock_link",
+      "required": false
+    },
+    {
+      "id": "create_vibrant_vaults:magenta_stock_link",
+      "required": false
+    },
+    {
+      "id": "create_vibrant_vaults:orange_stock_link",
+      "required": false
+    },
+    {
+      "id": "create_vibrant_vaults:pink_stock_link",
+      "required": false
+    },
+    {
+      "id": "create_vibrant_vaults:purple_stock_link",
+      "required": false
+    },
+    {
+      "id": "create_vibrant_vaults:red_stock_link",
+      "required": false
+    },
+    {
+      "id": "create_vibrant_vaults:white_stock_link",
+      "required": false
+    },
+    {
+      "id": "create_vibrant_vaults:yellow_stock_link",
+      "required": false
+    },
+    {
+      "id": "dndecor:belt",
+      "required": false
+    },
+    {
+      "id": "dndecor:black_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:black_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:black_large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:black_large_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:blue_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:blue_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:blue_large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:blue_large_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:brown_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:brown_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:brown_large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:brown_large_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:cyan_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:cyan_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:cyan_large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:cyan_large_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:dark_metal_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:gray_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:gray_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:gray_large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:gray_large_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:green_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:green_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:green_large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:green_large_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:large_dark_metal_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:large_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:light_blue_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:light_blue_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:light_blue_large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:light_blue_large_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:light_gray_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:light_gray_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:light_gray_large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:light_gray_large_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:lime_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:lime_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:lime_large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:lime_large_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:magenta_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:magenta_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:magenta_large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:magenta_large_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:orange_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:orange_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:orange_large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:orange_large_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:pink_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:pink_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:pink_large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:pink_large_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:purple_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:purple_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:purple_large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:purple_large_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:red_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:red_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:red_large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:red_large_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:white_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:white_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:white_large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:white_large_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:yellow_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:yellow_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:yellow_large_cogwheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:yellow_large_industrial_cogwheel",
+      "required": false
+    },
+    {
+      "id": "interiors:kelp_chair",
+      "required": false
+    },
+    {
+      "id": "interiors:kelp_floor_chair",
+      "required": false
+    },
+    {
+      "id": "interiors:kelp_seat",
+      "required": false
+    },
+    {
+      "id": "lootr:lootr_barrel",
+      "required": false
+    },
+    {
+      "id": "lootr:lootr_trapped_chest",
+      "required": false
+    },
+    {
+      "id": "mcwbridges:asian_red_bridge",
+      "required": false
+    },
+    {
+      "id": "powergrid:copper_plating_slab",
+      "required": false
+    },
+    {
+      "id": "powergrid:copper_plating_stairs",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:andesite_cut_polished_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:andesite_cut_polished_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:andesite_cut_small_brick_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:andesite_cut_small_brick_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:asurine_cut_polished_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:asurine_cut_polished_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:asurine_cut_small_brick_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:asurine_cut_small_brick_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:calcite_cut_polished_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:calcite_cut_polished_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:calcite_cut_small_brick_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:calcite_cut_small_brick_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:crimsite_cut_polished_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:crimsite_cut_polished_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:crimsite_cut_small_brick_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:crimsite_cut_small_brick_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:deepslate_cut_polished_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:deepslate_cut_polished_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:deepslate_cut_small_brick_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:deepslate_cut_small_brick_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:diorite_cut_polished_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:diorite_cut_polished_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:diorite_cut_small_brick_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:diorite_cut_small_brick_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:dripstone_cut_polished_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:dripstone_cut_polished_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:dripstone_cut_small_brick_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:dripstone_cut_small_brick_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:granite_cut_polished_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:granite_cut_polished_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:granite_cut_small_brick_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:granite_cut_small_brick_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:limestone_cut_polished_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:limestone_cut_polished_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:limestone_cut_small_brick_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:limestone_cut_small_brick_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:ochrum_cut_polished_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:ochrum_cut_polished_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:ochrum_cut_small_brick_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:ochrum_cut_small_brick_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:scorchia_cut_polished_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:scorchia_cut_polished_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:scorchia_cut_small_brick_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:scorchia_cut_small_brick_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:scoria_cut_polished_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:scoria_cut_polished_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:scoria_cut_small_brick_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:scoria_cut_small_brick_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:tuff_cut_polished_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:tuff_cut_polished_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:tuff_cut_small_brick_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:tuff_cut_small_brick_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:veridium_cut_polished_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:veridium_cut_polished_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:veridium_cut_small_brick_slab_connecting",
+      "required": false
+    },
+    {
+      "id": "rechiseledcreate:veridium_cut_small_brick_stairs_connecting",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:medium_stone_lantern",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:medium_stone_lantern_top_dark",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:medium_stone_lantern_top_light",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:thin_stone_lantern",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:thin_stone_lantern_top_dark",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:thin_stone_lantern_top_light",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:broad_stone_lantern",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:broad_stone_lantern_top_dark",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:broad_stone_lantern_top_light",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:small_stone_lantern_light",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:small_stone_lantern_dark",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:smallfoot_stone_lantern_dark",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:smallfoot_stone_lantern_light",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:smallproof_stone_lantern_dark",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:smallproof_stone_lantern_light",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:smallnoproof_stone_lantern_dark",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:smallnoproof_stone_lantern_light",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:stone_pillar_thin_a_short",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:stone_pillar_mid_bottom",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:stone_pillar_mid_top",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:stone_pillar_mid_middle",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:stone_pillar_mid_short",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:stone_pillar_thin_a_top",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:stone_pillar_thin_a_bottom",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:stone_pillar_thin_b_bottom",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:stone_pillar_thin_b_short",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:stone_pillar_thin_b_top",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:stone_pillar_thin_c_bottom",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:stone_pillar_thin_c_middle",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:stone_pillar_thin_c_short",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:stone_pillar_thin_c_top",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:broad_stone_lantern_block_dark",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:broad_stone_lantern_block_light",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:mid_stone_lantern_block_dark",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:mid_stone_lantern_block_light",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:thin_stone_lantern_block_dark",
+      "required": false
+    },
+    {
+      "id": "reddensstonelantern:thin_stone_lantern_block_light",
+      "required": false
     }
   ]
 }

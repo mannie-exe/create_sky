@@ -12,6 +12,7 @@ The manifest and lock own exact selections. This guide owns update procedures;
 | DH Polygon Fix 1.0.2 | Separate `dh-polygon-fix` repository; URL pin and placement in empack | DH 3.3.3, SSRD, Iris/Sodium and the native GL query | The patch requires DH 3.3.3. When updating DH, verify the upstream query fix and remove the incompatible patch; test native query/restore and shader pipelines. |
 | Veil Iris Fix 0.1.0 | Separate `veil-iris-fix` repository; Java mixin JAR | Sable 2.0.6 / nested Veil 4.3.2, Iris 1.8.14-beta.1+mc1.21.1 and shader stack | Run actual-class transformation/state checks and isolated native Ponder/world/reload comparisons. Remove when the selected upstream artifact restores framebuffer state and handles GUI/shadow passes and active Iris targets. |
 | Create Sky Compat 0.5.1 | `create-sky-compat` source project; common referenced JAR | Sky Archipelago 1.3.6; optional Sky Villages 1.0.6 + Architectury 13.x, Sable 2.0.6 and ADQ 1.1.1 | Revalidate terrain, geology, climate, village footprint/count policy, pressure and generation identity. For ADQ, review private route calls, horizontal-distance checks, chunk-ticket lifetime and success/failure cleanup. Rerun native endpoint checks; retain safety predicates. Replace the old neighbor dependency rather than installing both; see [worldgen](worldgen.md). |
+| Copycat Bar Extrusion 0.1.0 | Separate `copycat-bar-extrusion` repository; client-only URL JAR | Create 6.0.10 (`UjX6dr61`), Create Deco 2.1.3 bar artwork and active resource stack | Recheck `CopycatBarsModel` delegation, exact Create SHA-512 and required Mixin; run `./gradlew check build`, then six facings, adjacency, reload, supported materials and shader-off/on native checks. Retire only if the selected Create version supplies equivalent bounded depth and native fallback behavior. |
 | Worldgen configuration | `overrides/common/config/sky_archipelago*`, `zfastnoise.mixin.properties` | Sky Archipelago, Zfastnoise and generation/optimization mods | Preserve CONSISTENT 1494 for ordinary legacy Sky worlds. The expanded preset owns its embedded terrain settings. Recheck biome redirects and generation identity before generating new terrain. |
 | Shared data fixes | `pack-fixes/data/` → `create-sky-fixes-0.1.0.jar` | Mods owning the replaced recipe, loot, tag or processor resources | Compare new upstream JSON by exact resource ID. Remove bug overrides only when the installed artifact contains the fix; retain deliberate pack policy. Run native recipe/loot checks. |
 | Journal | `authoring/journal/` → Questlog config and language assets in the shared JAR | Questlog, item IDs, condition handlers and UI configuration | Generate, validate native handlers/counts/NBT restoration and check labels in the game UI. Locale edits alone do not change mechanics. |
@@ -29,12 +30,36 @@ or Create Sky Compat. Veil Iris Fix is also executable Java and
 must remain separate from both resource artifacts. A successful resource build cannot validate Java mixins,
 world generation, recipe execution or GPU behavior.
 
+## Coupled update boundaries
+
+A Sable update affects more than mass tags: inspect its bundled Veil, Aeronautics'
+bundled Simulated, Create Sky Compat's pressure adapter, and Escalated/CBC paths.
+Recheck Veil Iris Fix's exact input hashes and runtime constraints before changing
+Sable, Veil or Iris. A successful weight comparison does not validate rendering.
+
+A Create update requires reviewing Copycat Bar Extrusion's required renderer hook,
+Ponder registration, the visual model patch and modded machine counterparts. Static
+bar models and Copycat Panel extrusion have different owners and cannot replace
+each other's checks. A DH update requires reviewing DH Polygon Fix's exact-version
+constraint alongside the Compat terrain/preview integration and shader stack.
+
+The independent patch repositories own their builds and detailed procedures:
+[DH Polygon Fix](https://github.com/mannie-exe/dh-polygon-fix/blob/main/docs/development.md),
+[Veil Iris Fix](https://github.com/mannie-exe/veil-iris-fix/blob/main/docs/development.md),
+[Copycat Bar Extrusion](https://github.com/mannie-exe/copycat-bar-extrusion/blob/main/docs/development.md),
+and [Create Sky Compat](https://github.com/mannie-exe/create-sky-compat/blob/main/docs/development/README.md).
+Publish changed runtime mods first, verify downloaded release assets, then update
+the pack's URL/version/hash and placement bindings together. Never manufacture a
+mod release for resource-only policy changes. Retain client-only placement for
+all three rendering patches; Compat and shared data belong on both sides.
+
 ## Shared data overrides
 
 | Family | Intent | Recheck on update |
 | --- | --- | --- |
 | Create Radars jammer and warning receiver | Repair output, shaft item and copper-plate tag references | Registered outputs and nonempty ingredients; keep the resource JAR ordered after `create_radar` and remove overrides once upstream recipes are valid |
 | Create Deco placard; Interiors recoloring; Bells & Whistles metro window; Design n' Decor cogwheel tag | Repair ingredient/tag references | Native item/tag decoding and intended ingredient membership |
+| Sable mass tags | Extend existing weight conventions to equivalent modded construction and machine variants; see [building weights](weights.md) | Recheck registered IDs, optional family membership, overlapping property selectors and priority against exact Sable/building-mod artifacts. Remove redundant entries when upstream provides equivalent behavior; do not override newly authored upstream weights. Compare all-state mass/zero-mass controls and assembled fixtures, including double slabs and multipart doors/lights. Rebuild the shared fixes JAR and update audit digests. |
 | Aero Cables and TFMG overrides | Condition recipes on optional mods | Startup with optional mods absent; retain recipes when their dependencies are present |
 | Propulsion loot and processing | Correct singular loot paths and processing-time keys; suppress overlapping platinum crushing | Four block-drop rolls, preserved 150/50-tick work values, and no exact crushing collisions |
 | Almost Unified config | Unify manufactured materials while preserving stone/deepslate ore identity | Ingredient alternatives, zinc-sheet ownership and crushing yields |

@@ -59,6 +59,19 @@ class ServerArchiveTests(unittest.TestCase):
             PATCH.patch_archive(self.path)
         self.assertEqual(self.path.read_bytes(), before)
 
+    def test_check_requires_patch_and_never_writes(self):
+        self.archive()
+        before = self.path.read_bytes()
+        with self.assertRaisesRegex(ValueError, "needs the terminal patch"):
+            PATCH.patch_archive(self.path, check=True)
+        self.assertEqual(self.path.read_bytes(), before)
+        PATCH.patch_archive(self.path)
+        before = self.path.read_bytes()
+        modified = self.path.stat().st_mtime_ns
+        self.assertFalse(PATCH.patch_archive(self.path, check=True))
+        self.assertEqual(self.path.read_bytes(), before)
+        self.assertEqual(self.path.stat().st_mtime_ns, modified)
+
     def test_unknown_helper_is_rejected_without_writing(self):
         self.archive(helper=b"unrelated helper")
         before = self.path.read_bytes()

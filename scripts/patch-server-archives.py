@@ -37,7 +37,7 @@ def patched_script(gui=False):
     ).replace(b'-- "$JAVA_PATH"', b'-- "$PWD/foreground-runtime.py"')
 
 
-def patch_archive(path):
+def patch_archive(path, check=False):
     path = Path(path)
     if path.is_symlink() or not path.is_file():
         raise ValueError(f"Expected a regular archive: {path}")
@@ -62,6 +62,8 @@ def patch_archive(path):
             raise ValueError("Existing runtime helper differs; refusing replacement")
         if all(name in names and source.read(name) == data for name, data in replacements.items()):
             return False
+        if check:
+            raise ValueError(f"Server archive needs the terminal patch: {path}")
         temporary = None
         try:
             with tempfile.NamedTemporaryFile(dir=path.parent, suffix=".zip", delete=False) as output:
@@ -92,6 +94,7 @@ def patch_archive(path):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("archives", nargs="*", type=Path)
+    parser.add_argument("--check", action="store_true", help="Verify patched archives without rewriting them")
     args = parser.parse_args()
     archives = args.archives
     if not archives:
@@ -109,7 +112,7 @@ def main():
     if not archives:
         raise ValueError("No server reference archives selected")
     for archive in archives:
-        changed = patch_archive(archive)
+        changed = patch_archive(archive, check=args.check)
         print(f"{'Patched' if changed else 'Already patched'} {archive}")
 
 

@@ -245,6 +245,9 @@ This selects the current default server reference ZIP from `empack build --expla
 Explicit archive paths are also accepted. It checks the exact generated scripts,
 adds `foreground-runtime.py`, and replaces only the Unix runtime command. Unknown
 scripts or helpers fail without modifying the archive; rerunning is a no-op.
+Use `python3 scripts/patch-server-archives.py --check` to verify existing exports
+without rewriting them. Explicit archive paths work in check mode too; an
+unpatched or unfamiliar archive fails the check.
 The immutable release recipe, game content, Windows launchers and preparation
 script remain byte-identical. CI runs the same step before staging and checksums.
 

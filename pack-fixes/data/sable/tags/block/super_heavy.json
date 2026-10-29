@@ -1,0 +1,69 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "dndecor:black_flywheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:blue_flywheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:brown_flywheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:cyan_flywheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:gray_flywheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:green_flywheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:light_blue_flywheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:light_gray_flywheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:lime_flywheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:magenta_flywheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:orange_flywheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:pink_flywheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:purple_flywheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:red_flywheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:white_flywheel",
+      "required": false
+    },
+    {
+      "id": "dndecor:yellow_flywheel",
+      "required": false
+    }
+  ]
+}

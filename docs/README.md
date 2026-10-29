@@ -28,6 +28,7 @@ record what was tested at the time; they do not define current defaults.
 | [Journal integrations](development/journal-integrations.md) | EMI/JEI, translation and Ponder findings |
 | [World generation](development/worldgen.md) | Spacing policy and biome compatibility |
 | [Structures](development/structures.md) | Sky Villages placement, loot and delivery integration |
+| [Building weights](development/weights.md) | Classification policy, multipart decisions and native verification |
 | [Progression review](development/progression.md) | Routes, overlaps and remaining play checks |
 | [Upstream findings](development/upstream.md) | Known reports and candidates for submission |
 | [Decision history](development/decisions.md) | Accepted pack policies and supporting evidence |
@@ -38,7 +39,7 @@ Current defaults live in `overrides/` and `templates/`. Building source does not
 update a downloaded release or an installed instance. Archived release notes
 describe their named version; the unreleased notes describe the working tree.
 
-Earlier releases: [0.1.15](releases/0.1.15.md), [0.1.14](releases/0.1.14.md), [0.1.13](releases/0.1.13.md), [0.1.12](releases/0.1.12.md),
+Earlier releases: [0.1.17](releases/0.1.17.md), [0.1.16](releases/0.1.16.md), [0.1.15](releases/0.1.15.md), [0.1.14](releases/0.1.14.md), [0.1.13](releases/0.1.13.md), [0.1.12](releases/0.1.12.md),
 [0.1.11](releases/0.1.11.md), [0.1.10](releases/0.1.10.md),
 [0.1.9](releases/0.1.9.md), [0.1.8](releases/0.1.8.md),
 [0.1.7](releases/0.1.7.md), [0.1.6](releases/0.1.6.md),

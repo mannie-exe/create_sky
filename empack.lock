@@ -8216,7 +8216,7 @@ dependencies:
       provider: modrinth
       selector: OnlVIpq5
     title: Fast Noise
-intent-revision: 11ed193f21bcb1ab3260e99944cebcef843ed9beb18d011c15886d15cbcd98ee
+intent-revision: 09b351307f65a9d4ab27839d8c6a9984bc1b66ed8980fa8072827e3580d14a5b
 required-edges:
   accessories:
   - owo-lib
