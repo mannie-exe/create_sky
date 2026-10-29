@@ -1,37 +1,29 @@
-# Create Sky 0.1.18
+# Create Sky 0.1.19
 
-Minecraft remains 1.21.1, NeoForge 21.1.264 and Create Sky Compat 0.5.1.
-Existing worlds, seeds, player settings and DH caches are preserved.
+Update Create Sky Compat to 0.5.2. Minecraft remains 1.21.1, NeoForge 21.1.264,
+Analog Audio 0.1.5-hotfix.1 and Create 6.0.10.
 
-## Building weights
+## Radio compatibility
 
-- Extend Sable's existing mass tiers to 1,005 modded blocks: partial construction,
-  windows, doors, furniture, fixtures and equivalent Create machine variants.
-- Classify carved stone lantern components and narrow pillars at 0.5, and
-  miniature lanterns at 0.25. Complete multipart objects retain each physical part.
-- Match colored DnD flywheels to Create's mass of 4.0. Existing core weights,
-  cargo behavior, copied-material behavior, volume and lift settings remain intact.
-- Retain the Bits 'n' Bobs gigantic wheel at 9.0 for its nine physical positions.
-  Native assembly checks found no missing or duplicate part mass requiring a fix.
+Compat now repairs Analog Audio's reflective Create registry lookup, restoring
+registration of its existing radio movement handler. This removes the associated
+startup exception. The adapter activates only for the affected version pair.
 
-Existing decorated ships may become lighter; colored flywheels become heavier.
-No new material- or inventory-dependent weight system or save migration is added.
+The fix changes no recipes, building weights, terrain or Sable audio handling.
+Ordinary Create contraption GUI support and audible playback during movement
+remain separate playtest limitations. Power Grid keeps its working Java fallback
+on macOS; no backend setting changes are needed.
 
-## Maintenance
+## Verification and maintenance
 
-Building-weight policy and evidence now have one maintained guide. Dependency
-procedures cover coupled Sable/Veil, Create/Copycat and DH patch updates. The
-server archive patcher supports read-only `--check` verification. Atlas app work
-remains local and is excluded from this release's commits and payloads.
+The old Compat release fails the radio-registration control; 0.5.2 passes checks
+with neither optional mod, each alone, both together and the full pack. The full
+pack retains Create's control drill handler, and radio server callbacks complete
+without loading client classes. Build, package, resource and authoring checks
+passed. See the [compatibility evidence](development/compatibility.md) and
+[dependency maintenance](development/patches.md) for scope and update procedures.
 
-## Verification
+Atlas app changes are excluded from this release's commits and payloads.
+No new recipes or weight projections are needed for this registration fix.
 
-Native before/after checks covered 9,545 blocks and 330,524 states, with 23,624
-changed states in the intended 1,005 blocks. All other state masses, all 13,769
-zero-mass states and all volumes were preserved. Each run passed 194 representative
-assemblies plus three complete gigantic wheels, covering all axes. Resource and
-audit checks passed. These are bounded classification and assembly checks, not a
-full survival, powered-machinery or flight-handling certification. See
-[building weights](development/weights.md) for exact artifacts and limits.
-
-Previous releases: [0.1.17](releases/0.1.17.md), [0.1.16](releases/0.1.16.md).
+Previous releases: [0.1.18](releases/0.1.18.md), [0.1.17](releases/0.1.17.md).

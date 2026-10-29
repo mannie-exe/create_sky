@@ -54,11 +54,30 @@ selected current source files. No issue, comment or PR was published. The entrie
   PR #140 was CLOSED WITHOUT MERGE; do not describe it as an upstream fix.
   https://github.com/DrMango14/Create-Design-n-Decor/issues/139
   https://github.com/DrMango14/Create-Design-n-Decor/pull/140
-- Analog Audio movement-behavior registration: issue #114 closed with author
-  comment 'Fixed in upcoming release.' The 0.1.5-hotfix.1 capture still logs
-  'Failed to register Create movement behavior'. Prepare minimal reproduction
-  before reporting recurrence; audio behavior in a moving craft is untested.
+- Analog Audio 0.1.5-hotfix.1 requests a typed reflective registry method that
+  Create 6.0.10 exposes with erased parameters. Create Sky Compat 0.5.2 repairs
+  this lookup and restores the upstream radio movement handler. Recheck the
+  [adapter procedure](https://github.com/mannie-exe/create-sky-compat/blob/main/docs/development/README.md#analog-audio)
+  when updating either dependency; remove the hook when upstream fixes the lookup.
+  Ordinary contraption GUI support and audible moving playback remain separate
+  checks. Upstream issue #114 is closed, but the selected Analog Audio binary
+  still needs the fix; issue #123 tracks broader contraption limitations.
   https://github.com/palmmc/AnalogAudio/issues/114
+  https://github.com/palmmc/AnalogAudio/issues/123
+- Power Grid 0.6.2 reports an unsupported native backend on macOS. Its native
+  loader supports Linux and Windows; networks start with JavaMNA and reject a
+  switch to an unsupported backend. Keep `NATIVE` selected so supported hosts
+  retain acceleration. An isolated Java 21 / NeoForge 21.1.264 check against
+  Create Sky 0.1.18 on 2026-10-29 retained JavaMNA and produced 2 A through 6 Ω
+  at 12 V, 1 A after changing to 12 Ω, and 0 A with the source off.
+  Large-network fallback performance remains unmeasured.
+
+Analog Audio's Sable integration is separate from Create movement registration.
+The same isolated 0.1.18 check confirmed an active Sable hook, an assembled radio
+with its block entity intact, and correct shipyard-to-world position projection.
+Normal radio client ticking uses that projection. This does not establish audible
+playback or sound tracking during flight. The maintained Compat probe owns
+registration verification; no runtime changes are required for Power Grid.
 
 ## Ponder and Iris, 2026-10-24
 

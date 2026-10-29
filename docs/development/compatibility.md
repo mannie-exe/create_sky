@@ -175,6 +175,36 @@ light-shaft sampling may show more noise in motion.
 artifact, all-state comparison, representative assemblies and limits. The
 resource-only change needs no Create Sky Compat update.
 
+## Analog Audio release verification, 0.1.19
+
+Create Sky 0.1.19 selects Compat 0.5.2, SHA-256
+`0228b2cd34f402114ba6bf57a02e29b6d03c2b294dd8f970b37bd523a828320e`.
+The downloaded GitHub artifact matches the locally tested binary, and its binary
+and source JARs matched across Linux, Windows and macOS CI. The adapter's exact
+pair is Analog Audio 0.1.5-hotfix.1 and Create 6.0.10.
+
+The old Compat release reproduced the missing-handler failure. Five isolated
+server selections passed with the new artifact: minimum install, Create alone,
+Analog Audio alone, the pair and the full 0.1.18 dependency set. The pair and full
+pack registered the original radio handler, retained Create's drill handler, and
+completed radio server callbacks without client class loading. The full startup
+no longer reported the reflection error. No other dependency selection changed.
+[Compat verification](https://github.com/mannie-exe/create-sky-compat/blob/v0.5.2/docs/development/verification.md#release-052)
+owns the commands and runtime scope.
+
+The isolated staged source passed 28 Python tests, the 242-file configuration
+audit and both resource builders. Both generated resource artifacts match the
+working-tree outputs. Prism, Modrinth and server reference exports passed CRC,
+Compat path/hash and app-source exclusion checks; server launch patch/check passed.
+Only explicitly selected modpack paths enter the release commit.
+
+Atlas source/data review
+found no recipe or physics projection requiring a change for this hook; app
+verification remains in its [own guide](web/verification.md). App changes are
+excluded from this release. Existing block weights and resource patches remain
+byte-identical. Audible client playback, moving sound positions and ordinary
+Create contraption GUIs are not certified by the server tests.
+
 ## Release verification, 2026-10-29
 
 [Create Sky 0.1.18](https://github.com/mannie-exe/create_sky/releases/tag/v0.1.18)
@@ -262,9 +292,9 @@ Record the exact source revision, commands, environment and outcome. A passing
 packaging check does not establish GPU compatibility. Keep version-specific evidence with
 [release history](../README.md#source-and-releases), and label untested behavior explicitly.
 
-Earlier logs recorded an Analog Audio movement-registration `NoSuchMethodException`
-and Create Radars errors for empty model/blockstate JSONs. Those runs reached a
-title screen and sky world; these findings have not been established as resolved.
+Earlier logs recorded Create Radars errors for empty model/blockstate JSONs.
+Those runs reached a title screen and sky world; that finding has not been
+established as resolved. Analog Audio registration is covered by the 0.1.19 check.
 The history also retains a separate, unattributed native Apple Metal/IOGPU crash.
 Do not conflate that report with the confirmed DH polygon-buffer defect.
 
