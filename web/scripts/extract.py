@@ -3,6 +3,7 @@ import collections, hashlib, io, json, re, tomllib, zipfile
 from pathlib import Path
 from paths import ROOT, paths, write_json
 from item_icons import model_textures, texture_path, layered_icon
+from feature_switches import FILENAME as FEATURE_FILE, parse_feature_switches
 
 p = paths(); runtime = ROOT/'data/generated/runtime'
 items = json.loads((runtime/'items.json').read_text())
@@ -67,9 +68,11 @@ for item in items:
 configs=[]
 for base,label in [(p['pack']/'overrides/common/config','authored'),(ROOT/'.cache/audit-server/config','runtime-defaults')]:
     for file in sorted(base.rglob('*')):
-        if not file.is_file() or file.suffix not in ('.toml','.json') or file.stat().st_size>2_000_000:continue
+        if not file.is_file() or (file.suffix not in ('.toml','.json') and file.name != FEATURE_FILE) or file.stat().st_size>2_000_000:continue
         try:
-            text=file.read_text(); parsed=tomllib.loads(text) if file.suffix=='.toml' else json.loads(text)
+            text=file.read_text()
+            parsed=(parse_feature_switches(text) if file.name == FEATURE_FILE
+                    else tomllib.loads(text) if file.suffix=='.toml' else json.loads(text))
             configs.append({'path':str(file.relative_to(base)),'layer':label,'sha256':hashlib.sha256(file.read_bytes()).hexdigest(),'values':parsed,'text':text})
         except Exception: pass
 log_path=ROOT/'.cache/runtime.log'

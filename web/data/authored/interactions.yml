@@ -14,7 +14,7 @@ records:
     inputs: [[analogaudio:radio]]
     outputs: []
     evidence: isolated-registration-and-server-callbacks
-    detail: Create Sky Compat 0.5.2 restores Analog Audio's existing movement-handler registration for Analog Audio 0.1.5-hotfix.1 with Create 6.0.10. Recipes, controls and Sable audio behavior are unchanged. Registration and server callbacks were verified; audible playback and GUI behavior on ordinary moving contraptions still need playtesting.
+    detail: Create Sky Compat restores Analog Audio's existing movement-handler registration for Analog Audio 0.1.5-hotfix.1 with Create 6.0.10. Recipes, controls and Sable audio behavior are unchanged. Registration and server callbacks were verified; audible playback and GUI behavior on ordinary moving contraptions still need playtesting.
     sources:
       - docs/development/compatibility.md
       - https://github.com/mannie-exe/create-sky-compat/blob/main/docs/development/README.md#analog-audio
@@ -50,7 +50,7 @@ records:
     inputs: []
     outputs: []
     evidence: implementation
-    detail: Quest board creates physical schematic cargo and route compasses. Village mode targets structure positions, not a simulated village economy or NPC demand. Four offers and a 120-minute deadline. Search offsets are 500 to 2000 blocks, but ADQ 1.1.1 does not enforce that maximum after locating a structure; actual routes can be longer. Damaged cargo reduces payout. The isolated Compat candidate retains endpoint chunks, uses horizontal route-distance checks and retries unsafe Sky Village locate points within their bounds. A native offer was generated; completed cargo delivery remains unverified.
+    detail: Quest board creates physical schematic cargo and route compasses. Village mode targets structure positions, not a simulated village economy or NPC demand. Four offers and a 120-minute deadline. Search offsets are 500 to 2000 blocks, but ADQ 1.1.1 does not enforce that maximum after locating a structure; actual routes can be longer. Damaged cargo reduces payout. The optional Compat adapters retain endpoint chunks, use horizontal route-distance checks and retry unsafe Sky Village locate points within their bounds. A native offer was generated; completed cargo delivery remains unverified.
     sources:
       [
         'https://modrinth.com/mod/aeronautics-delivery-quests',

@@ -50,10 +50,18 @@ an observation of the playing world.
 
 ## Runtime compatibility and weight coverage
 
-Create Sky Compat's Analog Audio adapter changes startup registration only. It
-adds no recipes, acquisition routes, textures or mass values for the Atlas to
-project. Pack resource fixes remain inputs to the existing runtime exporter and
-asset extraction; their generated projections must not be edited by hand.
+Create Sky Compat’s Analog Audio and rendering adapters add no recipes,
+acquisition routes, textures, or mass values for the Atlas to project. Its startup
+feature file selects adapters before loading their hooks and built-in data packs;
+raw JAR resources alone no longer establish that an integration’s tags are active.
+Use the runtime export’s resource provenance for active terrain, placement, and
+pressure data. The exporter already reads the resolved resource manager.
+
+The Atlas does not execute Iris shaders or display native Ponder/construct shader
+materials. Its static previews cannot verify the rendering corrections. The
+configuration extractor reads the authored boolean `key=value` subset of Compat’s
+properties file and displays it through the existing configuration catalog; it is not a live feature toggle for a running game.
+Pack resource fixes remain inputs to runtime export and asset extraction.
 
 The Atlas does not currently export Sable block mass or assembled-ship weight.
 Its weighted loot outcomes and world-survey estimates are unrelated to physics.

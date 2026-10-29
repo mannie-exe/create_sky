@@ -32,48 +32,44 @@ Disposable exporter worlds, crash reports and test logs were removed after revie
 generated Atlas data, runtime-default configuration and review media were retained.
 No commit, publication, instance sync or playing-world change was made.
 
-## Pack content refresh, 2026-10-29
+## Compat 0.6.1 content refresh, 2026-10-29
 
-Reviewed Create Sky `59ed4fe` (0.1.19), Compat `a5e0885` (0.5.2), the shared
-resource JAR and generated visual patch against Atlas sources. Existing gallery
-entries already describe the expanded Fresh Details rigs; added the separate
-Carry On animation fix, building-weight scope and radio-registration limitations.
-Updated the Questlog version and removed an obsolete pending biome-review note.
-No physics calculator, terrain resurvey or new interface was added.
+Tested pack `533dfd8` (0.1.20), Compat `c46db2a` (0.6.1), and the local Atlas
+worktree. The config extractor now reads Compat's canonical startup properties
+as strict boolean feature values. Both authored and runtime-default projections
+contain all 25 switches. Adapter-gated built-in resources remain runtime evidence;
+Atlas does not simulate renderer behavior, construct weights, or disabled hooks.
+The shared UI/components review required no additional interface changes.
 
-The named `/__atlas/refresh` action completed runtime capture, extraction and
-compilation. Loaded Compat SHA-256 is
-`0228b2cd34f402114ba6bf57a02e29b6d03c2b294dd8f970b37bd523a828320e`;
-Pack Fixes is `08889c597b21623c2353ab677738209ec7e6bacc6a7d2eed8794a270478210c8`.
-The source fingerprint and lock hash match the configured inputs. Both resource
-builders passed `--check`; the visual patch is
-`21cd22ce029c6a8190c2cc236de9b0b8f787bca5556b77cefc5005063197e5bb`.
-The compiled map contains 10,125 items, 9,545 blocks and 9,253 recipes. All 48
-journal entries pass 66 negative/positive condition branches and NBT restoration.
-The separately dated world, island and structure surveys were retained.
+After updating the stopped local server from the checksum-verified release,
+`pnpm data:refresh` completed at `2026-10-29T12:05:48.090712Z` with zero exporter
+errors and normal shutdown. The disposable audit server never mounted the playing
+world. Its loaded Compat SHA-256 is
+`fc8aa5c9f4e82dd7daa0e26c0c54e4e9c844881f1ec623348b1bd71a0636370c`.
+Runtime snapshot SHA-256:
+`7b61d41549de26aa53e167a9b3fbfc10ce63b4a3a056de27121f9d0184f55f5f`.
+The source fingerprint stayed unchanged during capture; the lock matches 0.1.20.
 
-- `pnpm data:compile` and `pnpm data:check` passed with the refreshed inputs.
-- `pnpm verify` passed 76 unit checks, Astro checking and the production build;
-  the existing large-bundle advisory remains.
-- `PLAYWRIGHT_CHANNEL=chrome pnpm test:browser tests/atlas.browser.mjs tests/recipes.browser.mjs tests/resourcepacks.browser.mjs`
-  passed all 17 checks. The Astro development toolbar logged an audit fetch error;
-  map, recipe and resource-gallery assertions passed.
+- `pnpm data:check` passed: 10,125 items, 9,545 blocks, 9,253 recipes and 48
+  journal entries. There are 663 unresolved crafting routes; these are recorded
+  coverage limits, not newly proven gameplay failures.
+- `pnpm test:python` passed all 24 tests, including strict feature parsing.
+- `pnpm verify` passed formatting, 76 unit tests, Astro checking and the eight-page
+  build; the existing bundle-size advisory remains.
 
-A shell refresh reproduced a DH shutdown interruption after export completed.
-The exporter was stopping inside `ServerStartedEvent`; it now exports on the
-first completed tick and allows five ticks for fixture cleanup before stopping.
-The runner disables the disposable BlueMap webserver/downloads and rejects fatal
-shutdown logs even when the process exits zero. Failed or timed-out captures
-remove the completion marker.
+No browser interaction changed, so browser tests were not repeated. Saved-world,
+island and structure surveys were retained without rescanning. The pack's native
+rendering evidence and unresolved shadow report live in
+[compatibility](../compatibility.md); an Atlas refresh does not establish rendering.
+Disposable exporter world/logs were removed after review; generated data and
+runtime-default config were retained.
 
-The corrected `pnpm data:refresh` exited normally with zero exporter errors at
-`2026-10-29T09:10:00.469864Z`, then extraction, compilation and `pnpm data:check`
-passed. `pnpm test:python` passed 21 tests, including five new subprocess checks
-for clean completion, stale/missing markers, nonzero exits, zero-exit crashes and
-timeouts. `pnpm verify` also passed again. No new browser interaction was added
-by this exporter fix. The live server remained stopped throughout this corrected
-capture; no playing world was mounted. Run shell and named refresh jobs serially
-because they share the same disposable workspace.
+The final worktree review against `533dfd8` repeated `pnpm verify`,
+`pnpm test:python` and `pnpm data:check` successfully. Installed JAR hashes still
+match the capture, and both feature-file projections match the authored file.
+The broader input fingerprint has changed since capture; its stale indication
+is retained rather than treating these focused checks as a new runtime export.
+Web CI includes the feature file because the parser tests read it directly.
 
 ## Authoring activity, 2026-10-29
 
@@ -451,7 +447,6 @@ contribute blocks, unfinished chunks can depress estimates, and sampled zero is
 not absence.
 
 The audit server does not import playing-world datapacks or gamerules. Check those
-separately when evaluating a world-specific change. Optional loot-table, Analog
-Audio movement-hook and Sable missing-block warnings remain tracked in
+separately when evaluating a world-specific change. Optional loot-table and Sable missing-block warnings remain tracked in
 [upstream findings](../upstream.md). Automatic Hostile Skies raids remain disabled;
 its captain-order route is not enabled merely because the graph can describe it.
