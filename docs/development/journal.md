@@ -4,6 +4,14 @@ Questlog provides an optional, bookless journal for Create Sky. The selected
 artifact is recorded in `empack.yml`; the current implementation review covers
 Questlog 3.5.0 on Minecraft 1.21.1 / NeoForge.
 
+Compat 0.7.0 owns wrapped rows, reward previews, bookmark preferences and runtime
+notifications. The pack enables its three independent startup switches and native
+completion flags. Review the exact Questlog pin and Compat hooks together before
+upgrading either. Keep the native Questlog panel textures replaceable; adding panel
+overrides also requires checking controls, ink colors and per-entry skins. Existing
+client palettes may need a reviewed color-only merge rather than replacement of
+all user presentation settings.
+
 ## Ownership
 
 - `authoring/journal/chapters/` owns chapter properties and quest mechanics.
@@ -12,7 +20,8 @@ Questlog 3.5.0 on Minecraft 1.21.1 / NeoForge.
 - `overrides/common/config/questlog/` contains generated native JSON; the generator
   also owns their exact managed-file policies in `empack.bindings.yml`.
 - `overrides/client/config/questlog-client.json` owns client display defaults.
-- `pack-fixes/assets/questlog/` owns panel artwork and journal interface wording;
+- `pack-fixes/assets/questlog/` owns journal interface wording; native Questlog
+  artwork supplies the parchment panels and controls;
   `pack-fixes/assets/createsky/lang/` contains generated entry translations.
 - `scripts/build-fixes.py` packages language assets with maintained data fixes.
 

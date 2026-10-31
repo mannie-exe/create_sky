@@ -1,26 +1,20 @@
-# Create Sky 0.1.21
+# Create Sky 0.1.22
 
-Reorganize the optional Questlog journal into nine activity-based chapters with
-64 entries. Field supplies, workshop operation, airframes, controls, cargo and
-other projects now distinguish equipment possession from detected actions.
-Concise conditions and shared disclaimers explain what each entry actually checks.
+Update Create Sky Compat to 0.7.0 with optional Questlog interface, notifications
+and reward validation. Conditions and rewards wrap, scrollbars have proportional
+thumbs, and rewards can be previewed before completion. Collection remains manual.
 
-Nineteen entries offer small, fixed supplies for continued use or expansion.
-Rewards are collected manually. They do not unlock recipes or provide rare
-components needed to skip a discovery. Chapter browsing remains unrestricted,
-and progress remains personal.
+A Settings bookmark opens grouped display and notification preferences. It retains
+the current entry and scroll position. Item images and condition symbols can be
+switched independently. Notices announce first objective progress and completion;
+completion replaces a pending start, and reconnect does not replay old progress.
 
-The journal source, localized resources, authoring previews and Atlas acquisition
-routes are updated together. Portable-engine recoloring is now represented in
-the Atlas. No dependency, recipe, terrain, world identity or LOD setting changes.
+Restore Questlog's native warm parchment, ink and control artwork. Remove the
+older partial flat reskin while retaining generated translations. Compat's Mods
+configuration entry also exposes effective adaptation status and file guidance.
 
-This is a journal definition redesign rather than a saved-completion migration.
-New categories rename some entries and replace several possession conditions with
-advancement checks. Existing advancements count; world and player saves are retained.
+Quest definitions, quantities, rewards, recipes, terrain, world identity and LOD
+settings remain unchanged apart from enabling completion notices on all entries.
+Existing worlds and individual journal progress are preserved.
 
-Previous releases: [0.1.20](releases/0.1.20.md), [0.1.19](releases/0.1.19.md).
-
-Journal definitions now update as managed pack files. Upgrades from older seeded
-definitions need the reviewed ownership transition described in the
-[journal update guide](development/journal.md#update-checks); custom definitions
-and saved player progress must remain separate.
+Previous release: [0.1.21](releases/0.1.21.md).

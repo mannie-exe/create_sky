@@ -24,11 +24,22 @@ the completed entry; completion does not automatically collect rewards. Leave
 inventory space when collecting. Rewards are supplementary and never required
 to unlock a recipe or chapter.
 
+Journal notices announce first objective progress and completion. Opening the
+journal and collecting rewards remain manual. Unlocking an entry does not show
+a notice. Completion replaces a pending start notice.
+
+The Settings bookmark opens display and notification preferences. Item images
+and condition symbols can be switched independently; requirements stay readable
+with both off. Notifications can be disabled or limited to completion. Changes
+apply immediately and save on this client. Back/Escape returns to the same entry
+and section. The Rewards tab previews rewards before completion; selecting a tab
+or visiting settings does not collect anything.
+
 Progress is individual and saved by Questlog. Entries do not consume items or
 unlock recipes. Equipment conditions establish possession; suggested builds in
 their descriptions still need assembly, power and testing. The glider recipe and
 repair materials are unchanged: obtain phantom membranes through normal play.
 
 Objective rows use short labels. Read the main description for full item names,
-counts and conditions. The description wraps and scrolls. Compact mode
-does not make objective rows wrap.
+counts and conditions. Descriptions and objective rows wrap and scroll; compact mode does not restore
+the old truncated rows.

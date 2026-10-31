@@ -6,7 +6,22 @@ Player instructions belong in [graphics](../players/graphics.md) and
 [content list](../MODLIST.md), with authoritative selections in `empack.yml` and
 `empack.lock`.
 
-## Optional adaptations and rendering, 2026-10-29
+## Journal adaptation, 2026-10-31
+
+Create Sky 0.1.22 selects Compat 0.7.0 with independent Questlog interface,
+notifications and reward-validation switches. Native Questlog artwork and ink
+colors replace the old partial resource reskin. Grouped bookmark preferences are
+client-local; authoritative claim validation runs on the server. Quest content,
+terrain and LOD settings are unchanged.
+
+Compat passed 73 unit cases, package/pin checks, five dedicated loading/shutdown
+selections and isolated minimal/full-pack client checks. Actual reward collection
+also works with an unadapted Questlog server. Spoken narration and arbitrary
+third-party reward implementations remain unverified. The
+[mod verification](https://github.com/mannie-exe/create-sky-compat/blob/v0.7.0/docs/development/verification.md#release-070)
+owns artifact identifiers and detailed limits.
+
+## Rendering baseline, 2026-10-29
 
 Create Sky 0.1.20 selects Compat 0.6.1 and removes standalone Veil Iris Fix.
 `create_sky_compat-features.properties` explicitly selects pack behavior; the cache

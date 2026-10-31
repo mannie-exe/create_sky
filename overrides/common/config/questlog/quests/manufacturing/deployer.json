@@ -1,7 +1,7 @@
 {
   "include_in_main": false,
   "toast_on_unlock": false,
-  "toast_on_complete": false,
+  "toast_on_complete": true,
   "show_popup_on_unlock": false,
   "details_open_by_default": true,
   "chapter": "questlog:manufacturing",

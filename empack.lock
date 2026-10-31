@@ -2810,17 +2810,17 @@ dependencies:
     - acquisition:
         downloads:
         - >-
-          https://github.com/mannie-exe/create-sky-compat/releases/download/v0.6.1/create-sky-compat-0.6.1-mc1.21.1-neoforge.jar
+          https://github.com/mannie-exe/create-sky-compat/releases/download/v0.7.0/create-sky-compat-0.7.0-mc1.21.1-neoforge.jar
         kind: url
       expected:
         accepted-observation: null
         digests:
-          sha1: 241f2b5b7464ea9acb3f987686c3fe1202bcbb88
+          sha1: 114e5958721baea088b91be5cfeafdfc7e869040
           sha512: >-
-            052eb7524879c37ab332a375dc17bcf4c3e1ab69663ff8740cb0aa1008124fb02be48ff3bff5950292f560c70081fc87079a343289f8787671e3fc4fa9bb169e
+            71a6a7e5e6080a2851bc32209ae3dc362d691848448b026f2c7c9a17b195a82ca7344d76df3bd7f0f22192e945143fa9056a3c2d21bbbd8b735c9370abbe2998
         size: null
       placements:
-      - destination: mods/create-sky-compat-0.6.1-mc1.21.1-neoforge.jar
+      - destination: mods/create-sky-compat-0.7.0-mc1.21.1-neoforge.jar
         environment:
           client: required
           server: required
@@ -2828,9 +2828,9 @@ dependencies:
       provenance:
         conversions: []
         declared-digests:
-          sha1: 241f2b5b7464ea9acb3f987686c3fe1202bcbb88
+          sha1: 114e5958721baea088b91be5cfeafdfc7e869040
           sha512: >-
-            052eb7524879c37ab332a375dc17bcf4c3e1ab69663ff8740cb0aa1008124fb02be48ff3bff5950292f560c70081fc87079a343289f8787671e3fc4fa9bb169e
+            71a6a7e5e6080a2851bc32209ae3dc362d691848448b026f2c7c9a17b195a82ca7344d76df3bd7f0f22192e945143fa9056a3c2d21bbbd8b735c9370abbe2998
         location: null
         source: url-file
       slot: primary
@@ -8178,7 +8178,7 @@ dependencies:
       provider: modrinth
       selector: OnlVIpq5
     title: Fast Noise
-intent-revision: 90bbc3d0ac739c66be7f61cacedcdda20fa34a04b120575e2775e40c92f9ea1e
+intent-revision: dbd3ed984ef5db28da6a69cde0f85ac35086eb178c489f899bbf7e9b6d764297
 required-edges:
   accessories:
   - owo-lib

@@ -4,6 +4,16 @@ Checks apply to the recorded source or artifact, not every later checkout. Brows
 checks establish interface behavior; native game checks and survey evidence have
 separate owners and limits. Commands and prerequisites live in [setup](setup.md).
 
+## Journal presentation facts, 2026-10-31
+
+For Create Sky 0.1.22, the source configuration and resource-pack notes reflect
+64 entries, nineteen rewarded entries, native Questlog artwork and Compat 0.7.0.
+`python3 scripts/extract.py` and `pnpm data:compile` refreshed the existing asset /
+configuration projection: 10,125 items, 9,253 recipes and 648 unresolved routes.
+No world scan or runtime recipe recapture was needed for this presentation change.
+`pnpm verify` passes 76 tests, Astro checks and eight page builds. Game-interface
+checks belong to the [Compat verification](https://github.com/mannie-exe/create-sky-compat/blob/v0.7.0/docs/development/verification.md#release-070).
+
 ## Journal redesign, 2026-10-30
 
 Tested the 0.1.21 worktree against `c8889a2`, with unchanged Minecraft 1.21.1,

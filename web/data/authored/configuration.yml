@@ -70,7 +70,7 @@ records:
   - id: guidance/journal
     title: Questlog journal
     evidence: runtime
-    detail: Questlog 3.5.0 loads 48 pack entries in eight chapters. The current runtime export checks inventory thresholds and two block-interaction events through the shipped handlers; all 66 branches pass negative and positive cases and NBT restoration. Entries grant no rewards or recipe unlocks. All entries are available immediately; no flight, production-throughput or successful-delivery detector is implied.
+    detail: Questlog 3.5.0 has 64 entries in nine chapters; nineteen offer small fixed supplies. Inventory, block-interaction and advancement objectives remain native. Compat 0.7.0 adds wrapped conditions, reward previews, grouped local settings, first-progress/completion notices and server claim validation. All chapters are available immediately; completion does not prove a working airship, production line or delivery service.
     sources:
       - runtime/journal.json
       - overrides/common/config/questlog
