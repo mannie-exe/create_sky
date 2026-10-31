@@ -5,7 +5,7 @@
   "show_popup_on_unlock": false,
   "details_open_by_default": true,
   "chapter": "questlog:flight",
-  "sort_order": 20,
+  "sort_order": 30,
   "icon": {
     "item": "aeronautics:adjustable_burner"
   },

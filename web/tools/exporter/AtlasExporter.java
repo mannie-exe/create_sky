@@ -291,27 +291,80 @@ public final class AtlasExporter {
   private static void exportJournal(MinecraftServer server, Path out) throws Exception {
     if (!net.neoforged.fml.ModList.get().isLoaded("questlog")) return;
     org.infernalstudios.questlog.core.DefinitionUtil.loadFromConfig();
-    var player = net.neoforged.neoforge.common.util.FakePlayerFactory.getMinecraft(server.overworld());
+    // NeoForge's normal fake-player advancements deliberately discard progress.
+    // Keep real advancement state in this disposable probe, never a user save.
+    var player = new net.neoforged.neoforge.common.util.FakePlayer(server.overworld(), new com.mojang.authlib.GameProfile(java.util.UUID.fromString("874aeb32-b798-4f24-9b56-78988f09071a"), "AtlasJournal")) {
+      private net.minecraft.server.PlayerAdvancements journalAdvancements;
+      @Override public net.minecraft.server.PlayerAdvancements getAdvancements() {
+        if (journalAdvancements == null) journalAdvancements = new net.minecraft.server.PlayerAdvancements(server.getFixerUpper(), server.getPlayerList(), server.getAdvancements(), out.resolve("journal-probe-advancements.json"), this);
+        return journalAdvancements;
+      }
+    };
     var manager = new org.infernalstudios.questlog.core.QuestManager(player) {
       @Override public void sync(net.minecraft.resources.ResourceLocation id) {}
+    };
+    var managersField = org.infernalstudios.questlog.core.ServerPlayerManager.class.getDeclaredField("questManagers");
+    managersField.setAccessible(true);
+    @SuppressWarnings("unchecked")
+    var managers = (java.util.Map<java.util.UUID, org.infernalstudios.questlog.core.QuestManager>) managersField.get(org.infernalstudios.questlog.core.ServerPlayerManager.INSTANCE);
+    managers.put(player.getUUID(), manager);
+    var context = new org.infernalstudios.questlog.network.IPacketContext() {
+      @Override public net.minecraft.world.entity.player.Player getSender() { return player; }
+      @Override public org.infernalstudios.questlog.network.IPacketContext.Direction getDirection() { return org.infernalstudios.questlog.network.IPacketContext.Direction.CLIENT_TO_SERVER; }
     };
     JsonArray rows = new JsonArray();
     for (var id : org.infernalstudios.questlog.core.DefinitionUtil.getCachedQuestKeys()) {
       var definition = org.infernalstudios.questlog.core.DefinitionUtil.getCachedQuest(id);
       var quest = org.infernalstudios.questlog.core.quests.Quest.create(definition, id, manager);
+      manager.addQuest(quest);
       if (quest.objectives.isEmpty()) throw new IllegalStateException("Empty quest: " + id);
       if (org.infernalstudios.questlog.core.DefinitionUtil.getCachedChapter(net.minecraft.resources.ResourceLocation.parse(definition.get("chapter").getAsString())) == null) throw new IllegalStateException("Missing chapter: " + id);
       int checks = 0;
       for (int i = 0; i < quest.objectives.size(); i++) checks += checkJournalObjective(definition.getAsJsonArray("objectives").get(i).getAsJsonObject(), quest.objectives.get(i), player);
       if (!quest.isCompleted()) throw new IllegalStateException("Objective did not complete: " + id);
+      int rewardChecks = 0;
+      for (int i = 0; i < quest.rewards.size(); i++) {
+        if (!(quest.rewards.get(i) instanceof org.infernalstudios.questlog.core.quests.rewards.ItemReward reward)) throw new IllegalStateException("Untested journal reward: " + id);
+        var data = definition.getAsJsonArray("rewards").get(i).getAsJsonObject();
+        var expected = BuiltInRegistries.ITEM.get(net.minecraft.resources.ResourceLocation.parse(data.get("item").getAsString()));
+        int amount = data.get("count").getAsInt();
+        if (expected == Items.AIR || reward.isAutoClaim() || reward.hasRewarded()) throw new IllegalStateException("Invalid fixed manual reward: " + id);
+        if (!reward.getStack().is(expected) || reward.getStack().getCount() != amount) throw new IllegalStateException("Reward decoded incorrectly: " + id);
+        player.getInventory().clearContent();
+        var packet = new org.infernalstudios.questlog.network.packet.QuestRewardCollectPacket(id, i, List.of());
+        org.infernalstudios.questlog.network.packet.QuestRewardCollectPacket.handle(packet, context);
+        if (!reward.hasRewarded() || player.getInventory().countItem(expected) != amount) throw new IllegalStateException("Reward grant failed: " + id);
+        org.infernalstudios.questlog.network.packet.QuestRewardCollectPacket.handle(packet, context);
+        if (player.getInventory().countItem(expected) != amount) throw new IllegalStateException("Repeated claim duplicated reward: " + id);
+        rewardChecks++;
+      }
       var restored = org.infernalstudios.questlog.core.quests.Quest.create(definition, id, manager);
       restored.deserialize(quest.serialize());
       if (!restored.isCompleted()) throw new IllegalStateException("Journal progress did not restore: " + id);
+      for (var reward : restored.rewards) if (!reward.hasRewarded()) throw new IllegalStateException("Reward claim did not restore: " + id);
       JsonObject row = new JsonObject(); row.addProperty("id", id.toString()); row.add("definition", definition);
-      row.addProperty("checkedLeaves", checks); row.addProperty("negativeAndPositiveHandlers", true); row.addProperty("nbtRoundTrip", true); rows.add(row);
+      row.addProperty("checkedLeaves", checks); row.addProperty("negativeAndPositiveHandlers", true); row.addProperty("nbtRoundTrip", true);
+      row.addProperty("fixedRewardGrants", rewardChecks); row.addProperty("repeatClaimRejected", true); row.addProperty("rewardClaimNbtRoundTrip", true); rows.add(row);
     }
+    // Inventory overflow is intentionally tested on one ordinary fixed reward.
+    var overflow = manager.getAllQuests().stream().filter(quest -> !quest.rewards.isEmpty()).findFirst().orElseThrow();
+    var overflowReward = (org.infernalstudios.questlog.core.quests.rewards.ItemReward) overflow.rewards.getFirst();
+    var overflowStack = overflowReward.getStack();
+    overflowReward.revokeReward();
+    player.setPos(0, 10, 0);
+    server.overworld().getChunkAt(player.blockPosition());
+    for (int slot = 0; slot < player.getInventory().items.size(); slot++) player.getInventory().setItem(slot, new ItemStack(Items.BARRIER, 64));
+    var bounds = player.getBoundingBox().inflate(8);
+    var before = new java.util.HashSet<>(server.overworld().getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class, bounds));
+    org.infernalstudios.questlog.network.packet.QuestRewardCollectPacket.handle(new org.infernalstudios.questlog.network.packet.QuestRewardCollectPacket(overflow.getId(), 0, List.of()), context);
+    var drops = server.overworld().getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class, bounds).stream().filter(entity -> !before.contains(entity)).toList();
+    int dropped = drops.stream().filter(entity -> entity.getItem().is(overflowStack.getItem())).mapToInt(entity -> entity.getItem().getCount()).sum();
+    if (dropped != overflowStack.getCount() || !overflowReward.hasRewarded() || player.getInventory().countItem(overflowStack.getItem()) != 0) throw new IllegalStateException("Journal reward overflow was not dropped safely");
+    drops.forEach(net.minecraft.world.entity.Entity::discard);
+    managers.remove(player.getUUID());
     player.getInventory().clearContent();
     Files.writeString(out.resolve("journal.json"), GSON.toJson(rows));
+    Files.writeString(out.resolve("journal_rewards.json"), "{\"manualClaims\":true,\"repeatClaimsRejected\":true,\"overflowDropped\":true,\"scope\":\"Native packet handler in isolated server; no client input or gameplay completion implied\"}");
   }
   private static int checkJournalObjective(JsonObject data, org.infernalstudios.questlog.core.quests.objectives.Objective objective, net.minecraft.server.level.ServerPlayer player) throws Exception {
     if (data.get("type").getAsString().equals("questlog:or")) {
@@ -338,6 +391,24 @@ public final class AtlasExporter {
       }
       player.getInventory().setItem(0, new ItemStack(BuiltInRegistries.ITEM.get(id), count));
       timer.setInt(objective, 0); handler.invoke(objective, event);
+    } else if (data.get("type").getAsString().equals("questlog:advancement")) {
+      var id = net.minecraft.resources.ResourceLocation.parse(data.get("advancement").getAsString());
+      var advancement = player.getServer().getAdvancements().get(id);
+      if (advancement == null) throw new IllegalStateException("Unknown journal advancement: " + id);
+      var eventType = Class.forName("com.evandev.triggers.event.events.TriggerPlayerEvent$Tick");
+      var event = eventType.getConstructor(net.minecraft.world.entity.player.Player.class).newInstance(player);
+      var handler = objective.getClass().getDeclaredMethod("onPlayerTick", eventType); handler.setAccessible(true);
+      var timer = objective.getClass().getDeclaredField("ticksUntilCheck"); timer.setAccessible(true);
+      for (String criterion : advancement.value().criteria().keySet()) player.getAdvancements().revoke(advancement, criterion);
+      timer.setInt(objective, 0); handler.invoke(objective, event);
+      if (objective.getUnits() != 0) throw new IllegalStateException("Missing advancement accepted: " + id);
+      try {
+        for (String criterion : advancement.value().criteria().keySet()) player.getAdvancements().award(advancement, criterion);
+        if (!player.getAdvancements().getOrStartProgress(advancement).isDone()) throw new IllegalStateException("Fixture failed to grant advancement: " + id + "; " + player.getAdvancements().getClass().getName());
+        timer.setInt(objective, 0); handler.invoke(objective, event);
+      } finally {
+        for (String criterion : advancement.value().criteria().keySet()) player.getAdvancements().revoke(advancement, criterion);
+      }
     } else if (data.get("type").getAsString().equals("questlog:block_interact")) {
       var id = net.minecraft.resources.ResourceLocation.parse(data.get("block").getAsString());
       if (!BuiltInRegistries.BLOCK.containsKey(id)) throw new IllegalStateException("Unknown journal block: " + id);

@@ -8,6 +8,10 @@ texture extrusion, UV fitting and resource-pack generation.
 
 ## Journal source
 
+The [journal design reference](journal.md#design-policy) owns entry purpose,
+completion evidence and reward budgets. This guide owns source editing and
+generation; the Atlas edits the same files and must not maintain separate rules.
+
 | Path | Content |
 | --- | --- |
 | `authoring/journal/chapters/*.json` | Native chapter properties and quest mechanics, split by chapter |
@@ -84,12 +88,20 @@ python3 -m unittest discover -s tests -v
 python3 scripts/build-fixes.py
 ```
 
-Generated JSON stays in Git for review. The resource JAR is rebuilt and ignored.
+Generated JSON and exact `managed` policies in `empack.bindings.yml` stay in Git
+for review. Generation updates policies for current definitions and removes policies
+for retired pack-owned definitions; unrelated configuration retains its policy.
+Run `empack sync --materialize` after policy changes before building releases.
+The resource JAR is rebuilt and ignored.
 The build refuses stale journal output. The preview lists removed quest or locale outputs. Generate removes obsolete
 files bearing the journal identity; unrelated native quests are preserved.
-Review quest IDs, objective order and existing progress before removing or
-changing mechanics. The regression fixture records the accepted mechanics baseline; deliberate
-mechanics changes require a reviewed update to that fixture.
+Review quest IDs, objective and reward order, locale references and existing
+progress before removing or changing mechanics. A category move must not silently
+rename saved quests. Adding rewards to completed entries needs an explicit policy
+for existing players. Follow the [update checks](journal.md#update-checks).
+The regression fixture records the accepted mechanics baseline; deliberate
+mechanics changes require a reviewed update to that fixture after inspecting the
+semantic diff, not merely to make a failing comparison pass.
 
 Install native quest JSON and the rebuilt resource JAR together during an explicit
 instance update. Client translations require the JAR. A successful source build

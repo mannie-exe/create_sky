@@ -4,6 +4,46 @@ Checks apply to the recorded source or artifact, not every later checkout. Brows
 checks establish interface behavior; native game checks and survey evidence have
 separate owners and limits. Commands and prerequisites live in [setup](setup.md).
 
+## Journal redesign, 2026-10-30
+
+Tested the 0.1.21 worktree against `c8889a2`, with unchanged Minecraft 1.21.1,
+NeoForge 21.1.264 and Questlog 3.5.0. The isolated runtime capture completed at
+`2026-10-31T00:20:20.352377Z` (UTC). It decoded 64 entries and exercised 118
+objective leaves, including absent/present advancement state, native reward
+collection packets, all 20 fixed stacks, repeated claims, NBT completion/claim
+restoration and one full-inventory overflow case. These are handler checks;
+they do not demonstrate each machine operation or a survival playthrough.
+
+- `python3 -m unittest discover -s tests -q`: 30 passed, including policy ownership,
+  accepted mechanics, sparse locales and coordinated generation.
+- `pnpm verify`: 76 tests, Astro checks and all eight pages passed; the existing
+  large-bundle warning remains. `pnpm test:python`: 24 passed.
+- `pnpm data:runtime`, `pnpm data:extract`, `pnpm data:compile` and
+  `pnpm data:check` passed: 10,125 items, 9,253 recipes, 64 journal entries and
+  648 unresolved crafting routes. Portable-engine dyeing adds fifteen reviewed
+  representative routes; it does not enumerate every color-to-color permutation.
+- Both resource builders passed `--check`; the configuration audit reported
+  243 files without drift. All three reference distributions built and passed ZIP
+  integrity checks, with 73 journal definitions. Prism and server recipes mark all
+  of those definitions managed; the server terminal patch passed.
+
+An isolated Prism client displayed 7/8 food as incomplete, completion at eight,
+manual collection of two bread, and the collected state. The final managed-file
+candidate displayed the Field supplies chapter, flight chapter, short advancement
+labels and scrollable descriptions without localization keys. The upgrade test
+caught obsolete seeded definitions; reviewed replacements and retirement restored
+one current definition set. No personal instance was used for these checks.
+
+The Prism release recipe tested was
+`adb15308546c4f39bae3e42243e177303ff82c84e3da2bbef83601491b320b93`.
+Language fallback is covered by generator checks; a non-English client was not
+visually tested. Two disposable-client exits stalled during disconnect, with the
+render thread in Sodium framebuffer blitting while the integrated server still
+ran. They were terminated after collecting evidence. This is an unresolved exit
+limitation, not a verified journal regression or a clean-exit result. No graphics
+or runtime dependencies changed in this pass. Personal worlds and the existing
+Atlas world/ore survey were not regenerated.
+
 ## Commit readiness, 2026-10-29
 
 Reviewed the combined Atlas, journal tooling and exporter worktree against

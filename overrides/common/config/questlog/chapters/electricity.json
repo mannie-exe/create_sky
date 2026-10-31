@@ -1,6 +1,6 @@
 {
   "icon": {
-    "item": "powergrid:battery"
+    "item": "powergrid:electric_motor"
   },
   "order": 7,
   "default_chapter": false,

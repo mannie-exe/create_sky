@@ -148,6 +148,18 @@ assert(
   new Set(journal.map((q) => q.id)).size === journal.length,
   'Duplicate journal IDs',
 )
+assert(
+  journal.every(
+    (q) =>
+      q.fixedRewardGrants === q.definition.rewards.length &&
+      q.rewardClaimNbtRoundTrip &&
+      q.repeatClaimRejected,
+  ),
+  'Journal reward grant, persistence or repeat-claim check failed',
+)
+const journalRewards = await read('data/generated/runtime/journal_rewards.json')
+assert(journalRewards.manualClaims && journalRewards.repeatClaimsRejected)
+assert.equal(journalRewards.overflowDropped, true)
 console.log(
   'Snapshot checks passed:',
   catalog.meta.counts,

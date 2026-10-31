@@ -22,8 +22,13 @@ documents relevant to the task. Runtime and dependency pins live in `empack.yml`
   tuning, including Structures Arise, remains a separate pass.
 - Keep automatic Hostile Skies raids disabled pending deliberate encounter design.
 - Questlog is a bookless, optional journal. Use detectable conditions, short
-  objective labels, clear descriptions and shared disclaimer IDs; no invented
-  completion triggers, compulsory chapter gates or reward-based progression.
+  objective labels, clear descriptions and shared disclaimer IDs. Organize around
+  useful capabilities and lasting roles; distinguish equipment acquired, actions
+  demonstrated and suggested projects. No invented triggers or compulsory gates.
+- Follow `docs/development/journal.md` for journal design and reward budgets.
+  Rewards supplement useful setups or operating batches without replacing scarce
+  discoveries. Budget across a route, including reward-triggered completions.
+  Keep multiplayer progress personal; leave final naming and flavor to the owner.
 
 ## Work and evidence
 

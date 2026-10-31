@@ -19,7 +19,13 @@
       "translatable": true
     }
   ],
-  "rewards": [],
+  "rewards": [
+    {
+      "type": "questlog:item",
+      "item": "minecraft:bread",
+      "count": 2
+    }
+  ],
   "text_color": "#273238",
   "title_color": "#18242b",
   "completed_text_color": "#356b52",

@@ -34,7 +34,9 @@ files remain trackable; generated assets and local credentials stay ignored.
 `empack.bindings.yml` marks `icon.png`, `options.txt` and the authored shader preset
 TXT files as `seed`: initial installation writes the default, while later preparation
 preserves edits. Prism rewrites `icon.png` before its pre-launch hook. Server properties
-come from the server template and remain installation-local.
+come from the server template and remain installation-local. Generated Questlog
+definitions have exact `managed` policies so journal edits and removals apply on
+updates. See [journal updates](journal.md#update-checks) for older seeded definitions.
 
 ## Local builds
 

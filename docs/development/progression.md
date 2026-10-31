@@ -140,26 +140,24 @@ These are proposals, not applied settings or verified builds:
 
 ## Journal and verification
 
-The journal remains optional and bookless. Its 48 entries retain IDs, objective
-order and detectable conditions. Inventory goals require simultaneous possession;
-interaction goals do not claim a working machine or completed delivery. Turpentine
-and mixer descriptions reflect the unheated recipe.
+[Journal design](journal.md#design-policy) owns capability-based routes, completion
+claims and reward budgets. Use the resource and operating constraints above when
+selecting entries. Equipment entries distinguish possession from operation;
+verified advancements cover pressing, mixing, fan processing, hot-air fill,
+propeller rotation, packaging, motor use and selected ordinary activities.
+None proves a complete factory, successful flight or completed delivery.
 
-The 0.1.8 review used the installed 1.21.1 / NeoForge 21.1.264 artifacts and native
-runtime exports on 2026-10-22. `python3 scripts/generate-journal.py --check`,
-`python3 scripts/audit-changes.py`, the existing Python tests, resource build and
-Atlas refresh/check validate source consistency and the loaded recipes. Native
-Sky Villages processor sampling and its limits are recorded in
-[structures](structures.md). Runtime behavior was checked in a disposable server;
-no flight, delivery or full survival playthrough was performed in that review.
-Later bounded aircraft checks are recorded in [world generation](worldgen.md#evidence-and-limits).
-All three empack reference distributions built successfully; the server archive
-retains its existing launch workaround.
+Local travel, workshop processing and airship operation connect preparation,
+detectable use and modest expansion. Supplies, controls, cargo, electricity and
+optional projects retain their own useful roles. The journal guide records exact
+trigger attribution and reward reference budgets; recheck those assumptions when
+upstream recipes or behavior change.
 
-These processing and settlement policies were introduced in 0.1.8. An ordinary
-update does not regenerate worlds. See [build and release](build.md) for installation,
-[world generation](worldgen.md) for terrain settings, and
-[Atlas verification](web/verification.md) for map limitations.
+The [Atlas verification guide](web/verification.md) owns capture scope and limits.
+[Structures](structures.md) and [world generation](worldgen.md#evidence-and-limits)
+own their measured results. The [0.1.8 release record](../releases/0.1.8.md) retains
+historical processing and settlement checks. A current recipe export or successful
+build does not establish an affordable survival route or safe round trip.
 
 ## Airship building materials
 

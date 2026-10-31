@@ -26,6 +26,7 @@ class AuthoringTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
         shutil.copytree(ROOT / 'authoring', self.root / 'authoring')
+        shutil.copy2(ROOT / 'empack.bindings.yml', self.root / 'empack.bindings.yml')
 
     def locale(self):
         return json.loads((self.root / 'authoring/journal/locales/en_us.json').read_text())
@@ -33,10 +34,10 @@ class AuthoringTests(unittest.TestCase):
     def write_locale(self, value, locale='en_us'):
         (self.root / f'authoring/journal/locales/{locale}.json').write_text(json.dumps(value))
 
-    def test_migration_preserves_all_conditions_and_positions(self):
+    def test_accepted_mechanics_and_positions(self):
         native = {p: mechanics(json.loads(t)) for p, t in compile_journal(self.root).items() if p.startswith('overrides/')}
         baseline = json.loads((ROOT / 'tests/journal-baseline.json').read_text())
-        self.assertEqual(len(native), 56)
+        self.assertEqual(len(native), baseline['nativeFiles'])
         self.assertEqual(hashlib.sha256(json.dumps(native, sort_keys=True).encode()).hexdigest(), baseline['mechanicsSha256'])
 
     def test_sections_locales_and_short_labels_are_independent(self):
@@ -121,6 +122,23 @@ class AuthoringTests(unittest.TestCase):
                 data['entries'][0]['definition']['rewards'] = [reward]
                 path.write_text(json.dumps(data))
                 with self.assertRaises(ValueError): compile_journal(self.root)
+
+    def test_generated_policies_manage_current_and_retire_only_owned_entries(self):
+        policy = runpy.run_path(str(ROOT / 'scripts/generate-journal.py'))['journal_policies']
+        source = ('schema: 1\n# keep this comment\npolicies:\n'
+                  '  options.txt: seed\n  config/questlog/quests/foreign.json: seed\n'
+                  '  config/questlog/quests/travel/old.json: managed\n')
+        current = {'config/questlog/quests/travel/new.json'}
+        retired = {'config/questlog/quests/travel/old.json'}
+        result = policy(source, current, retired)
+        self.assertIn('# keep this comment', result)
+        self.assertIn('  options.txt: seed', result)
+        self.assertIn('  config/questlog/quests/foreign.json: seed', result)
+        self.assertNotIn('travel/old.json', result)
+        self.assertIn('  config/questlog/quests/travel/new.json: managed', result)
+        self.assertEqual(policy(result, current, set()), result)
+        output = compile_journal(self.root)
+        self.assertIn('config/questlog/quests/travel/glider.json: managed', output['empack.bindings.yml'])
 
     def test_audit_missing_drift_and_unregistered(self):
         report = audit(self.root)

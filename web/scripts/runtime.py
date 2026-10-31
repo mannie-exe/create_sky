@@ -40,6 +40,10 @@ for folder in ['config', 'defaultconfigs']:
     if target.exists(): shutil.rmtree(target)
     if (p['server'] / folder).exists(): shutil.copytree(p['server'] / folder, target)
     authored = p['pack'] / 'overrides/common' / folder
+    # Journal definitions are a complete authored set. Do not retain retired
+    # installed entries when testing a source reorganization before final sync.
+    if folder == 'config' and (authored / 'questlog').exists():
+        shutil.rmtree(target / 'questlog', ignore_errors=True)
     if authored.exists(): shutil.copytree(authored, target, dirs_exist_ok=True)
 # Registry capture does not need a web server or downloaded map assets.
 bluemap = audit / 'config/bluemap'

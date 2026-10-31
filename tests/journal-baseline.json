@@ -1,4 +1,5 @@
 {
-  "revision": "b5465d2aaf4b685baa46093fc805da0a51047bd9",
-  "mechanicsSha256": "8ced6ace727d253efeae0106f62ae6c3b5d4f650ed21e7909614d27bfe17bb55"
+  "revision": "journal capability redesign; 0.1.21",
+  "nativeFiles": 73,
+  "mechanicsSha256": "7b52a75ed622d450dd9150ccd8892cdd30faa5163c18fb122b8e98a83047aec2"
 }

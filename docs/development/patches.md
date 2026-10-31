@@ -14,7 +14,7 @@ The manifest and lock own exact selections. This guide owns update procedures;
 | Copycat Bar Extrusion 0.1.0 | Separate `copycat-bar-extrusion` repository; client-only URL JAR | Create 6.0.10 (`UjX6dr61`), Create Deco 2.1.3 bar artwork and active resource stack | Recheck `CopycatBarsModel` delegation, exact Create SHA-512 and required Mixin; run `./gradlew check build`, then six facings, adjacency, reload, supported materials and shader-off/on native checks. Retire only if the selected Create version supplies equivalent bounded depth and native fallback behavior. |
 | Worldgen configuration | `overrides/common/config/sky_archipelago*`, `zfastnoise.mixin.properties` | Sky Archipelago, Zfastnoise and generation/optimization mods | Preserve CONSISTENT 1494 for ordinary legacy Sky worlds. The expanded preset owns its embedded terrain settings. Recheck biome redirects and generation identity before generating new terrain. |
 | Shared data fixes | `pack-fixes/data/` → `create-sky-fixes-0.1.0.jar` | Mods owning the replaced recipe, loot, tag or processor resources | Compare new upstream JSON by exact resource ID. Remove bug overrides only when the installed artifact contains the fix; retain deliberate pack policy. Run native recipe/loot checks. |
-| Journal | `authoring/journal/` → Questlog config and language assets in the shared JAR | Questlog, item IDs, condition handlers and UI configuration | Generate, validate native handlers/counts/NBT restoration and check labels in the game UI. Locale edits alone do not change mechanics. |
+| Journal | `authoring/journal/` → Questlog config and language assets in the shared JAR | Questlog, item/tag/advancement IDs, recipes and condition handlers | Follow [journal update checks](journal.md#update-checks): review saved IDs and positions, trigger meaning, setup costs and rewards; generate and validate native behavior, persistence and label fit. Locale edits alone do not change mechanics. |
 | Visual model patch | `authoring/resource-patches.json`, `build-resource-patches.py` → client ZIP | Fresh Flower Pots, 3D Crops, Better Lanterns, Macaw's Lights and Lamps, Create, Create Deco, DnD, Macaw’s Bridges, Fresh Animations/Details/Objects, EMF and Lootr | Exact versions/hashes and model contracts must pass. Compare pots/chains, bar connections, lantern variants and chest motion in Resource Review. |
 | Carry On Animation Fix | Client-only upstream URL dependency | Carry On, EMF/ETF and Fresh Animations | Check pickup, movement, camera views, placement and ordinary animation. Its optional injections can stop applying after an upstream method change; successful loading alone is insufficient. Remove when the selected Carry On version supplies stable entity identity and animation inputs. |
 | Ponder sprite registration | Explicit upstream Ponder dependency | Create's bundled Ponder, Create Deco and other Catnip users | Retain the thread-safe sprite registry from Ponder 1.0.87. Remove the explicit dependency when Create bundles a verified replacement; check startup and Ponder scenes. |
@@ -31,6 +31,14 @@ Executable Java remains separate from both resource artifacts. A successful reso
 world generation, recipe execution or GPU behavior.
 
 ## Coupled update boundaries
+
+Journal updates cross source, generated config, translations and Atlas evidence.
+Recipe, loot, mass, fuel or worldgen changes can invalidate a useful setup or reward
+budget even when every item ID still resolves. The journal owns those gameplay
+assumptions; the authoring generator owns output and the shared fixes JAR owns
+language assets and any pack-authored advancement or loot resources. Regenerate
+and install affected outputs together. Refresh relevant Atlas records and captures
+when mechanics change; wording changes alone do not require a world survey.
 
 A Sable update affects more than mass tags: inspect its bundled Veil, Aeronautics'
 bundled Simulated, Create Sky Compat's pressure adapter, and Escalated/CBC paths.

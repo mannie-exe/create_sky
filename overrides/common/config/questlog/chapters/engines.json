@@ -1,0 +1,10 @@
+{
+  "icon": {
+    "item": "createpropulsion:solid_fuel_thruster"
+  },
+  "order": 5,
+  "default_chapter": false,
+  "hidden": false,
+  "name": "createsky.journal.chapter.engines",
+  "translatable": true
+}

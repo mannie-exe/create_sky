@@ -5,7 +5,7 @@
   "show_popup_on_unlock": false,
   "details_open_by_default": true,
   "chapter": "questlog:electricity",
-  "sort_order": 40,
+  "sort_order": 20,
   "icon": {
     "item": "powergrid:electric_motor"
   },

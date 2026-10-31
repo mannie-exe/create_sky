@@ -167,7 +167,39 @@ def compile_journal(root=ROOT):
         if any(not isinstance(v, str) for v in lang.values()):
             raise ValueError(f'{locale}: translation values must be strings')
         outputs[f'pack-fixes/assets/createsky/lang/{locale}.json'] = lang
-    return {path: json.dumps(value, ensure_ascii=False, indent=2) + '\n' for path, value in outputs.items()}
+    rendered = {path: json.dumps(value, ensure_ascii=False, indent=2) + '\n' for path, value in outputs.items()}
+    # empack defaults config/ to seed. Authored definitions must update and retire
+    # with the journal, while unrelated configuration keeps its own policy.
+    prefix = 'overrides/common/'
+    current = {path.removeprefix(prefix) for path in rendered if path.startswith(prefix)}
+    retired = {path.removeprefix(prefix) for path in output_changes(root, rendered)[1] if path.startswith(prefix)}
+    path = root / 'empack.bindings.yml'
+    bindings = path.read_text() if path.exists() else 'schema: 1\nbindings: {}\n'
+    rendered['empack.bindings.yml'] = journal_policies(bindings, current, retired)
+    return rendered
+
+
+def journal_policies(bindings, current, retired):
+    """Edit exact policy lines without reserializing unrelated YAML or comments."""
+    lines = bindings.splitlines(keepends=True)
+    headers = [i for i, line in enumerate(lines) if re.match(r'^policies:\s*(?:#.*)?$', line)]
+    if len(headers) > 1:
+        raise ValueError('Duplicate policies in empack.bindings.yml')
+    if not headers:
+        if re.search(r'^policies:', bindings, re.MULTILINE):
+            raise ValueError('Journal policies require a block mapping in empack.bindings.yml')
+        lines = [bindings.rstrip() + '\n', '\n', 'policies:\n']
+        headers = [2]
+    start = headers[0] + 1
+    end = next((i for i in range(start, len(lines)) if re.match(r'^[^\s#]', lines[i])), len(lines))
+    policy = re.compile(r'^  [\"\']?(config/questlog/(?:chapters|quests)/[a-z0-9_/]+\.json)[\"\']?:')
+    kept = []
+    for line in lines[start:end]:
+        match = policy.match(line)
+        if not match or match[1] not in current | retired:
+            kept.append(line)
+    generated = [f'  {path}: managed\n' for path in sorted(current)]
+    return ''.join(lines[:start] + kept + generated + lines[end:])
 
 
 def output_changes(root, outputs):
@@ -202,7 +234,7 @@ def main():
         for rel in changed:
             destination = ROOT / rel
             destination.parent.mkdir(parents=True, exist_ok=True)
-            temporary = destination.with_suffix('.json.tmp')
+            temporary = destination.with_name(destination.name + '.tmp')
             temporary.write_text(outputs[rel])
             temporary.replace(destination)
         for rel in stale:

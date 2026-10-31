@@ -1,26 +1,26 @@
-# Create Sky 0.1.20
+# Create Sky 0.1.21
 
-Update Create Sky Compat to 0.6.1 and remove standalone Veil Iris Fix. Compat now
-owns optional framebuffer restoration, balloon shadow-pass exclusion, construct
-shader material IDs, and single-block model-data/pass adapters. The pass correction
-restores glass and glass Copycat single-block constructs with Iris shaders. Minecraft, NeoForge,
-and the integrated upstream mods retain their existing versions.
+Reorganize the optional Questlog journal into nine activity-based chapters with
+64 entries. Field supplies, workshop operation, airframes, controls, cargo and
+other projects now distinguish equipment possession from detected actions.
+Concise conditions and shared disclaimers explain what each entry actually checks.
 
-The common startup feature file explicitly selects the pack’s adaptations.
-Compat itself can be installed with NeoForge alone; disabled adaptations do not
-load target hooks or constrain target versions. The pack continues to enable its
-existing island preset and gameplay adaptations. DH cache isolation stays off.
-World generation identity, saves, block weights, and recipes are preserved.
+Nineteen entries offer small, fixed supplies for continued use or expansion.
+Rewards are collected manually. They do not unlock recipes or provide rare
+components needed to skip a discovery. Chapter browsing remains unrestricted,
+and progress remains personal.
 
-Compat passed background build, dependency-boundary and dedicated-server checks.
-Native macOS checks covered standalone/full client loading, Ponder, shader toggling
-and reload, heated balloons, and static/assembled material controls. Missing
-single-block glass was reproduced with the pass adaptation disabled and restored
-when enabled. Flickering or gapped airship shadows remain unresolved; this release
-does not claim a general shadow correction.
+The journal source, localized resources, authoring previews and Atlas acquisition
+routes are updated together. Portable-engine recoloring is now represented in
+the Atlas. No dependency, recipe, terrain, world identity or LOD setting changes.
 
-Atlas changes are excluded from release commits. No new recipe or mass projection
-is introduced. See [patch maintenance](development/patches.md) for coupled updates
-and [compatibility](development/compatibility.md) for evidence and limitations.
+This is a journal definition redesign rather than a saved-completion migration.
+New categories rename some entries and replace several possession conditions with
+advancement checks. Existing advancements count; world and player saves are retained.
 
-Previous releases: [0.1.19](releases/0.1.19.md), [0.1.18](releases/0.1.18.md).
+Previous releases: [0.1.20](releases/0.1.20.md), [0.1.19](releases/0.1.19.md).
+
+Journal definitions now update as managed pack files. Upgrades from older seeded
+definitions need the reviewed ownership transition described in the
+[journal update guide](development/journal.md#update-checks); custom definitions
+and saved player progress must remain separate.

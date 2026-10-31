@@ -490,3 +490,153 @@ records:
         'config/almostunified/unification/materials.json',
         'runtime pressing recipes and item tags',
       ]
+  - id: dyeing/portable_engine_white
+    title: White portable engine
+    inputs: [[simulated:red_portable_engine], [minecraft:white_dye]]
+    outputs: [simulated:white_portable_engine]
+    detail: Representative recoloring route from the craftable red engine. The native custom recipe accepts any engine color plus one dye and preserves stack components; the map does not enumerate every color-to-color permutation.
+    sources:
+      [
+        'Simulated 1.3.2 PortableEngineDyeingRecipe matches/assemble',
+        'simulated:crafting/portable_engine_dyeing',
+      ]
+  - id: dyeing/portable_engine_orange
+    title: Orange portable engine
+    inputs: [[simulated:red_portable_engine], [minecraft:orange_dye]]
+    outputs: [simulated:orange_portable_engine]
+    detail: Representative recoloring route from the craftable red engine. The native custom recipe accepts any engine color plus one dye and preserves stack components; the map does not enumerate every color-to-color permutation.
+    sources:
+      [
+        'Simulated 1.3.2 PortableEngineDyeingRecipe matches/assemble',
+        'simulated:crafting/portable_engine_dyeing',
+      ]
+  - id: dyeing/portable_engine_magenta
+    title: Magenta portable engine
+    inputs: [[simulated:red_portable_engine], [minecraft:magenta_dye]]
+    outputs: [simulated:magenta_portable_engine]
+    detail: Representative recoloring route from the craftable red engine. The native custom recipe accepts any engine color plus one dye and preserves stack components; the map does not enumerate every color-to-color permutation.
+    sources:
+      [
+        'Simulated 1.3.2 PortableEngineDyeingRecipe matches/assemble',
+        'simulated:crafting/portable_engine_dyeing',
+      ]
+  - id: dyeing/portable_engine_light_blue
+    title: Light blue portable engine
+    inputs: [[simulated:red_portable_engine], [minecraft:light_blue_dye]]
+    outputs: [simulated:light_blue_portable_engine]
+    detail: Representative recoloring route from the craftable red engine. The native custom recipe accepts any engine color plus one dye and preserves stack components; the map does not enumerate every color-to-color permutation.
+    sources:
+      [
+        'Simulated 1.3.2 PortableEngineDyeingRecipe matches/assemble',
+        'simulated:crafting/portable_engine_dyeing',
+      ]
+  - id: dyeing/portable_engine_yellow
+    title: Yellow portable engine
+    inputs: [[simulated:red_portable_engine], [minecraft:yellow_dye]]
+    outputs: [simulated:yellow_portable_engine]
+    detail: Representative recoloring route from the craftable red engine. The native custom recipe accepts any engine color plus one dye and preserves stack components; the map does not enumerate every color-to-color permutation.
+    sources:
+      [
+        'Simulated 1.3.2 PortableEngineDyeingRecipe matches/assemble',
+        'simulated:crafting/portable_engine_dyeing',
+      ]
+  - id: dyeing/portable_engine_lime
+    title: Lime portable engine
+    inputs: [[simulated:red_portable_engine], [minecraft:lime_dye]]
+    outputs: [simulated:lime_portable_engine]
+    detail: Representative recoloring route from the craftable red engine. The native custom recipe accepts any engine color plus one dye and preserves stack components; the map does not enumerate every color-to-color permutation.
+    sources:
+      [
+        'Simulated 1.3.2 PortableEngineDyeingRecipe matches/assemble',
+        'simulated:crafting/portable_engine_dyeing',
+      ]
+  - id: dyeing/portable_engine_pink
+    title: Pink portable engine
+    inputs: [[simulated:red_portable_engine], [minecraft:pink_dye]]
+    outputs: [simulated:pink_portable_engine]
+    detail: Representative recoloring route from the craftable red engine. The native custom recipe accepts any engine color plus one dye and preserves stack components; the map does not enumerate every color-to-color permutation.
+    sources:
+      [
+        'Simulated 1.3.2 PortableEngineDyeingRecipe matches/assemble',
+        'simulated:crafting/portable_engine_dyeing',
+      ]
+  - id: dyeing/portable_engine_gray
+    title: Gray portable engine
+    inputs: [[simulated:red_portable_engine], [minecraft:gray_dye]]
+    outputs: [simulated:gray_portable_engine]
+    detail: Representative recoloring route from the craftable red engine. The native custom recipe accepts any engine color plus one dye and preserves stack components; the map does not enumerate every color-to-color permutation.
+    sources:
+      [
+        'Simulated 1.3.2 PortableEngineDyeingRecipe matches/assemble',
+        'simulated:crafting/portable_engine_dyeing',
+      ]
+  - id: dyeing/portable_engine_light_gray
+    title: Light gray portable engine
+    inputs: [[simulated:red_portable_engine], [minecraft:light_gray_dye]]
+    outputs: [simulated:light_gray_portable_engine]
+    detail: Representative recoloring route from the craftable red engine. The native custom recipe accepts any engine color plus one dye and preserves stack components; the map does not enumerate every color-to-color permutation.
+    sources:
+      [
+        'Simulated 1.3.2 PortableEngineDyeingRecipe matches/assemble',
+        'simulated:crafting/portable_engine_dyeing',
+      ]
+  - id: dyeing/portable_engine_cyan
+    title: Cyan portable engine
+    inputs: [[simulated:red_portable_engine], [minecraft:cyan_dye]]
+    outputs: [simulated:cyan_portable_engine]
+    detail: Representative recoloring route from the craftable red engine. The native custom recipe accepts any engine color plus one dye and preserves stack components; the map does not enumerate every color-to-color permutation.
+    sources:
+      [
+        'Simulated 1.3.2 PortableEngineDyeingRecipe matches/assemble',
+        'simulated:crafting/portable_engine_dyeing',
+      ]
+  - id: dyeing/portable_engine_purple
+    title: Purple portable engine
+    inputs: [[simulated:red_portable_engine], [minecraft:purple_dye]]
+    outputs: [simulated:purple_portable_engine]
+    detail: Representative recoloring route from the craftable red engine. The native custom recipe accepts any engine color plus one dye and preserves stack components; the map does not enumerate every color-to-color permutation.
+    sources:
+      [
+        'Simulated 1.3.2 PortableEngineDyeingRecipe matches/assemble',
+        'simulated:crafting/portable_engine_dyeing',
+      ]
+  - id: dyeing/portable_engine_blue
+    title: Blue portable engine
+    inputs: [[simulated:red_portable_engine], [minecraft:blue_dye]]
+    outputs: [simulated:blue_portable_engine]
+    detail: Representative recoloring route from the craftable red engine. The native custom recipe accepts any engine color plus one dye and preserves stack components; the map does not enumerate every color-to-color permutation.
+    sources:
+      [
+        'Simulated 1.3.2 PortableEngineDyeingRecipe matches/assemble',
+        'simulated:crafting/portable_engine_dyeing',
+      ]
+  - id: dyeing/portable_engine_brown
+    title: Brown portable engine
+    inputs: [[simulated:red_portable_engine], [minecraft:brown_dye]]
+    outputs: [simulated:brown_portable_engine]
+    detail: Representative recoloring route from the craftable red engine. The native custom recipe accepts any engine color plus one dye and preserves stack components; the map does not enumerate every color-to-color permutation.
+    sources:
+      [
+        'Simulated 1.3.2 PortableEngineDyeingRecipe matches/assemble',
+        'simulated:crafting/portable_engine_dyeing',
+      ]
+  - id: dyeing/portable_engine_green
+    title: Green portable engine
+    inputs: [[simulated:red_portable_engine], [minecraft:green_dye]]
+    outputs: [simulated:green_portable_engine]
+    detail: Representative recoloring route from the craftable red engine. The native custom recipe accepts any engine color plus one dye and preserves stack components; the map does not enumerate every color-to-color permutation.
+    sources:
+      [
+        'Simulated 1.3.2 PortableEngineDyeingRecipe matches/assemble',
+        'simulated:crafting/portable_engine_dyeing',
+      ]
+  - id: dyeing/portable_engine_black
+    title: Black portable engine
+    inputs: [[simulated:red_portable_engine], [minecraft:black_dye]]
+    outputs: [simulated:black_portable_engine]
+    detail: Representative recoloring route from the craftable red engine. The native custom recipe accepts any engine color plus one dye and preserves stack components; the map does not enumerate every color-to-color permutation.
+    sources:
+      [
+        'Simulated 1.3.2 PortableEngineDyeingRecipe matches/assemble',
+        'simulated:crafting/portable_engine_dyeing',
+      ]

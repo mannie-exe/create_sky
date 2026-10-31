@@ -1,0 +1,10 @@
+{
+  "icon": {
+    "item": "simulated:docking_connector"
+  },
+  "order": 6,
+  "default_chapter": false,
+  "hidden": false,
+  "name": "createsky.journal.chapter.cargo",
+  "translatable": true
+}

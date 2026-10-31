@@ -22,7 +22,7 @@ record what was tested at the time; they do not define current defaults.
 | [Build and release](development/build.md) | Source layout, empack commands and CI |
 | [Dependency and patch maintenance](development/patches.md) | Coupled updates, patch ownership, checks and removal criteria |
 | [Compatibility and verification](development/compatibility.md) | Dependency constraints, shader evidence and test scope |
-| [Journal definitions](development/journal.md) | Conditions, authoring and implementation evidence |
+| [Journal design and definitions](development/journal.md) | Capabilities, reward budgets, conditions and update checks |
 | [Pack authoring](development/authoring.md) | Journal generation, locale editing and categorized configuration audit |
 | [Web map and authoring](development/web/README.md) | App setup, editor controls, data pipeline and verification |
 | [Journal integrations](development/journal-integrations.md) | EMI/JEI, translation and Ponder findings |

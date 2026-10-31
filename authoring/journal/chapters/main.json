@@ -2,7 +2,7 @@
   "schema": 1,
   "chapter": {
     "icon": {
-      "item": "create:andesite_alloy"
+      "item": "minecraft:bread"
     },
     "order": 0,
     "default_chapter": true,
@@ -10,68 +10,38 @@
   },
   "entries": [
     {
-      "id": "alloy",
-      "definition": {
-        "chapter": "questlog:main",
-        "sort_order": 10,
-        "icon": {
-          "item": "create:andesite_alloy"
-        },
-        "requirements": [],
-        "objectives": [
-          {
-            "type": "questlog:item_obtain",
-            "item": "create:andesite_alloy",
-            "required_amount": 2
-          }
-        ],
-        "rewards": [],
-        "text_color": "#273238",
-        "title_color": "#18242b",
-        "completed_text_color": "#356b52",
-        "progress_text_color": "#435b68"
-      }
-    },
-    {
-      "id": "brass",
-      "definition": {
-        "chapter": "questlog:main",
-        "sort_order": 50,
-        "icon": {
-          "item": "create:brass_ingot"
-        },
-        "requirements": [],
-        "objectives": [
-          {
-            "type": "questlog:item_obtain",
-            "item": "create:brass_ingot",
-            "required_amount": 2
-          }
-        ],
-        "rewards": [],
-        "text_color": "#273238",
-        "title_color": "#18242b",
-        "completed_text_color": "#356b52",
-        "progress_text_color": "#435b68"
-      }
-    },
-    {
-      "id": "iron",
+      "id": "food",
       "definition": {
         "chapter": "questlog:main",
         "sort_order": 0,
         "icon": {
-          "item": "minecraft:iron_ingot"
+          "item": "minecraft:bread"
         },
         "requirements": [],
         "objectives": [
           {
-            "type": "questlog:item_obtain",
-            "item": "minecraft:iron_ingot",
-            "required_amount": 3
+            "type": "questlog:or",
+            "objectives": [
+              {
+                "type": "questlog:item_obtain",
+                "item": "minecraft:bread",
+                "required_amount": 8
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "minecraft:baked_potato",
+                "required_amount": 8
+              }
+            ]
           }
         ],
-        "rewards": [],
+        "rewards": [
+          {
+            "type": "questlog:item",
+            "item": "minecraft:bread",
+            "count": 2
+          }
+        ],
         "text_color": "#273238",
         "title_color": "#18242b",
         "completed_text_color": "#356b52",
@@ -79,45 +49,28 @@
       }
     },
     {
-      "id": "kelp",
+      "id": "breeding",
       "definition": {
         "chapter": "questlog:main",
-        "sort_order": 30,
+        "sort_order": 10,
         "icon": {
-          "item": "minecraft:kelp"
+          "item": "minecraft:wheat"
         },
         "requirements": [],
         "objectives": [
           {
-            "type": "questlog:item_obtain",
-            "item": "minecraft:kelp",
+            "type": "questlog:advancement",
+            "advancement": "minecraft:husbandry/breed_an_animal",
             "required_amount": 1
           }
         ],
-        "rewards": [],
-        "text_color": "#273238",
-        "title_color": "#18242b",
-        "completed_text_color": "#356b52",
-        "progress_text_color": "#435b68"
-      }
-    },
-    {
-      "id": "quartz",
-      "definition": {
-        "chapter": "questlog:main",
-        "sort_order": 40,
-        "icon": {
-          "item": "minecraft:quartz"
-        },
-        "requirements": [],
-        "objectives": [
+        "rewards": [
           {
-            "type": "questlog:item_obtain",
-            "item": "minecraft:quartz",
-            "required_amount": 1
+            "type": "questlog:item",
+            "item": "minecraft:wheat",
+            "count": 4
           }
         ],
-        "rewards": [],
         "text_color": "#273238",
         "title_color": "#18242b",
         "completed_text_color": "#356b52",
@@ -138,6 +91,194 @@
             "type": "questlog:item_obtain",
             "item": "minecraft:water_bucket",
             "required_amount": 1
+          }
+        ],
+        "rewards": [],
+        "text_color": "#273238",
+        "title_color": "#18242b",
+        "completed_text_color": "#356b52",
+        "progress_text_color": "#435b68"
+      }
+    },
+    {
+      "id": "anvil",
+      "definition": {
+        "chapter": "questlog:main",
+        "sort_order": 30,
+        "icon": {
+          "item": "minecraft:anvil"
+        },
+        "requirements": [],
+        "objectives": [
+          {
+            "type": "questlog:item_obtain",
+            "item": "minecraft:anvil",
+            "required_amount": 1
+          }
+        ],
+        "rewards": [],
+        "text_color": "#273238",
+        "title_color": "#18242b",
+        "completed_text_color": "#356b52",
+        "progress_text_color": "#435b68"
+      }
+    },
+    {
+      "id": "enchanting",
+      "definition": {
+        "chapter": "questlog:main",
+        "sort_order": 40,
+        "icon": {
+          "item": "minecraft:enchanting_table"
+        },
+        "requirements": [],
+        "objectives": [
+          {
+            "type": "questlog:advancement",
+            "advancement": "minecraft:story/enchant_item",
+            "required_amount": 1
+          }
+        ],
+        "rewards": [
+          {
+            "type": "questlog:item",
+            "item": "minecraft:lapis_lazuli",
+            "count": 3
+          }
+        ],
+        "text_color": "#273238",
+        "title_color": "#18242b",
+        "completed_text_color": "#356b52",
+        "progress_text_color": "#435b68"
+      }
+    },
+    {
+      "id": "backpack",
+      "definition": {
+        "chapter": "questlog:main",
+        "sort_order": 50,
+        "icon": {
+          "item": "camping:small_backpack"
+        },
+        "requirements": [],
+        "objectives": [
+          {
+            "type": "questlog:or",
+            "objectives": [
+              {
+                "type": "questlog:item_obtain",
+                "item": "camping:small_backpack",
+                "required_amount": 1
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "camping:large_backpack",
+                "required_amount": 1
+              }
+            ]
+          }
+        ],
+        "rewards": [],
+        "text_color": "#273238",
+        "title_color": "#18242b",
+        "completed_text_color": "#356b52",
+        "progress_text_color": "#435b68"
+      }
+    },
+    {
+      "id": "sleeping_bag",
+      "definition": {
+        "chapter": "questlog:main",
+        "sort_order": 60,
+        "icon": {
+          "item": "camping:sleeping_bag_white"
+        },
+        "requirements": [],
+        "objectives": [
+          {
+            "type": "questlog:or",
+            "objectives": [
+              {
+                "type": "questlog:item_obtain",
+                "item": "camping:sleeping_bag_white",
+                "required_amount": 1
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "camping:sleeping_bag_orange",
+                "required_amount": 1
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "camping:sleeping_bag_magenta",
+                "required_amount": 1
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "camping:sleeping_bag_light_blue",
+                "required_amount": 1
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "camping:sleeping_bag_yellow",
+                "required_amount": 1
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "camping:sleeping_bag_lime",
+                "required_amount": 1
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "camping:sleeping_bag_pink",
+                "required_amount": 1
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "camping:sleeping_bag_gray",
+                "required_amount": 1
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "camping:sleeping_bag_light_gray",
+                "required_amount": 1
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "camping:sleeping_bag_cyan",
+                "required_amount": 1
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "camping:sleeping_bag_purple",
+                "required_amount": 1
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "camping:sleeping_bag_blue",
+                "required_amount": 1
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "camping:sleeping_bag_brown",
+                "required_amount": 1
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "camping:sleeping_bag_green",
+                "required_amount": 1
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "camping:sleeping_bag_red",
+                "required_amount": 1
+              },
+              {
+                "type": "questlog:item_obtain",
+                "item": "camping:sleeping_bag_black",
+                "required_amount": 1
+              }
+            ]
           }
         ],
         "rewards": [],

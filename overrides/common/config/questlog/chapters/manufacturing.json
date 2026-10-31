@@ -1,0 +1,10 @@
+{
+  "icon": {
+    "item": "create:mechanical_crafter"
+  },
+  "order": 3,
+  "default_chapter": false,
+  "hidden": false,
+  "name": "createsky.journal.chapter.manufacturing",
+  "translatable": true
+}

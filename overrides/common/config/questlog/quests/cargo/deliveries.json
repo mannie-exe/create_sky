@@ -1,0 +1,28 @@
+{
+  "include_in_main": false,
+  "toast_on_unlock": false,
+  "toast_on_complete": false,
+  "show_popup_on_unlock": false,
+  "details_open_by_default": true,
+  "chapter": "questlog:cargo",
+  "sort_order": 50,
+  "icon": {
+    "item": "aeronautics_delivery_quests:delivery_quests_table"
+  },
+  "requirements": [],
+  "objectives": [
+    {
+      "type": "questlog:block_interact",
+      "block": "aeronautics_delivery_quests:delivery_quests_table",
+      "required_amount": 1,
+      "name": "createsky.journal.cargo.deliveries.objective.0",
+      "translatable": true
+    }
+  ],
+  "rewards": [],
+  "title": "createsky.journal.cargo.deliveries.title",
+  "translatable": true,
+  "description": {
+    "translate": "createsky.journal.cargo.deliveries.description"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "icon": {
+    "item": "create:mechanical_press"
+  },
+  "order": 2,
+  "default_chapter": false,
+  "hidden": false,
+  "name": "createsky.journal.chapter.workshop",
+  "translatable": true
+}
